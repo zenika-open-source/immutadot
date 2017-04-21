@@ -19,7 +19,7 @@
     "lodash": "^4.17.4"
   },
   "scripts": {
-    "build": "babel es -d .",
-    "lint": "eslint es"
+    "build": "babel src -d .",
+    "lint": "eslint src"
   }
 }
