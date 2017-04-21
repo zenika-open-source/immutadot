@@ -2,7 +2,12 @@
   "name": "immutadot",
   "version": "0.1.0",
   "description": "Immutable functions using dot-prop notation",
-  "keywords": ["immutable", "dot-prop", "react", "redux"],
+  "keywords": [
+    "immutable",
+    "dot-prop",
+    "react",
+    "redux"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/nlepage/immutadot",
   "bugs": "https://github.com/nlepage/immutadot/issues",
@@ -13,13 +18,16 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.4.0",
-    "eslint": "^3.19.0"
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "mocha": "^3.2.0"
   },
   "peerDependencies": {
     "lodash": "^4.17.4"
   },
   "scripts": {
     "build": "babel src -d .",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test": "mocha --compilers js:babel-register src/**/*.spec.js"
   }
 }
