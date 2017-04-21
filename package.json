@@ -1,15 +1,25 @@
 {
-  "name": "immutable",
-  "version": "1.0.0",
+  "name": "immutadot",
+  "version": "0.1.0",
+  "description": "Immutable functions using dot-prop notation",
+  "keywords": ["immutable", "dot-prop", "react", "redux"],
   "license": "MIT",
+  "homepage": "https://github.com/nlepage/immutadot",
+  "bugs": "https://github.com/nlepage/immutadot/issues",
+  "repository": "github:nlepage/immutadot",
+  "author": "Nicolas Lepage (https://github.com/nlepage)",
+  "contributors": [],
+  "main": "index.js",
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "babel-preset-env": "^1.4.0"
+    "babel-preset-env": "^1.4.0",
+    "eslint": "^3.19.0"
   },
   "peerDependencies": {
     "lodash": "^4.17.4"
   },
   "scripts": {
-    "build": "babel es6 -d ."
+    "build": "babel es -d .",
+    "lint": "eslint es"
   }
 }
