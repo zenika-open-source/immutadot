@@ -16,7 +16,6 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.unset = undefined;
 
   var _unset2 = _interopRequireDefault(_unset);
 
@@ -26,5 +25,7 @@
     };
   }
 
-  var unset = exports.unset = _unset2.default.convert(_consts.lodashFpConvertOptions);
+  var unset = _unset2.default.convert(_consts.lodashFpConvertOptions);
+
+  exports.default = unset;
 });

@@ -2,4 +2,6 @@ import fpSet from 'lodash/fp/set'
 
 import { lodashFpConvertOptions } from './consts'
 
-export const set = fpSet.convert(lodashFpConvertOptions)
+const set = fpSet.convert(lodashFpConvertOptions)
+
+export default set

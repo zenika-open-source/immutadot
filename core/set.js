@@ -16,7 +16,6 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.set = undefined;
 
   var _set2 = _interopRequireDefault(_set);
 
@@ -26,5 +25,7 @@
     };
   }
 
-  var set = exports.set = _set2.default.convert(_consts.lodashFpConvertOptions);
+  var set = _set2.default.convert(_consts.lodashFpConvertOptions);
+
+  exports.default = set;
 });

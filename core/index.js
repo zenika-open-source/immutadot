@@ -16,31 +16,21 @@
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  Object.keys(_set).forEach(function (key) {
-    if (key === "default" || key === "__esModule") return;
-    Object.defineProperty(exports, key, {
-      enumerable: true,
-      get: function () {
-        return _set[key];
-      }
-    });
-  });
-  Object.keys(_unset).forEach(function (key) {
-    if (key === "default" || key === "__esModule") return;
-    Object.defineProperty(exports, key, {
-      enumerable: true,
-      get: function () {
-        return _unset[key];
-      }
-    });
-  });
-  Object.keys(_update).forEach(function (key) {
-    if (key === "default" || key === "__esModule") return;
-    Object.defineProperty(exports, key, {
-      enumerable: true,
-      get: function () {
-        return _update[key];
-      }
-    });
-  });
+  exports.update = exports.unset = exports.set = undefined;
+
+  var _set2 = _interopRequireDefault(_set);
+
+  var _unset2 = _interopRequireDefault(_unset);
+
+  var _update2 = _interopRequireDefault(_update);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  exports.set = _set2.default;
+  exports.unset = _unset2.default;
+  exports.update = _update2.default;
 });
