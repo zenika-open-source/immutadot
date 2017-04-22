@@ -5,11 +5,25 @@ machine:
     PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
 
 dependencies:
+  pre:
+    - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
   override:
     - yarn
   cache_directories:
     - ~/.cache/yarn
 
+compile:
+  override:
+    - yarn build
+
 test:
   override:
+    - yarn lint
     - yarn test
+
+deployment:
+  pre:
+  release:
+    tag: /\d+\.\d+\.\d+/
+    commands:
+      - npm publish
