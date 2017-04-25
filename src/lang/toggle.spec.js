@@ -9,7 +9,7 @@ describe('Toggle', () => {
   const withFalse = { nested: { prop: false } }
 
   it('should toggle false to true', () => {
-    expect(toggle({ nested: { prop: false } }, 'nested.prop')).to.be.deep.equal(withTrue)
+    expect(toggle(withFalse, 'nested.prop')).to.be.deep.equal(withTrue)
   })
 
   it('should toggle falsy to true', () => {
@@ -25,7 +25,7 @@ describe('Toggle', () => {
   })
 
   it('should toggle true to false', () => {
-    expect(toggle({ nested: { prop: true } }, 'nested.prop')).to.be.deep.equal(withFalse)
+    expect(toggle(withTrue, 'nested.prop')).to.be.deep.equal(withFalse)
   })
 
   it('should toggle truthy to false', () => {
