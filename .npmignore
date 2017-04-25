@@ -1,4 +1,5 @@
 .babelrc
 circle.yml
+jsdoc.json
 /src/
 yarn.lock
