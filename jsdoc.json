@@ -1,0 +1,14 @@
+{
+  "source": {
+    "include": ["src", "package.json", "README.md"]
+  },
+  "opts": {
+    "template": "node_modules/hotdoc/template",
+    "destination": "docs",
+    "recurse": true
+  },
+  "hotdoc": {
+    "github": "https://github.com/nlepage/immutadot",
+    "home": "immutadot"
+  }
+}

@@ -22,6 +22,8 @@
     "babel-preset-stage-0": "^6.24.1",
     "chai": "^3.5.0",
     "eslint": "^3.19.0",
+    "hotdoc": "^0.7.2",
+    "jsdoc": "^3.4.3",
     "mocha": "^3.2.0"
   },
   "peerDependencies": {
@@ -30,6 +32,7 @@
   "scripts": {
     "build": "babel src -d .",
     "lint": "eslint src",
-    "test": "mocha --compilers js:babel-register src/**/*.spec.js"
+    "test": "mocha --compilers js:babel-register src/**/*.spec.js",
+    "jsdoc": "jsdoc -c jsdoc.json"
   }
 }
