@@ -10,7 +10,7 @@ import update from '../core/update'
  * @param {number} addend The number to add.
  * @return {Object} Returns the updated object.
  * @example add({ nested: { prop: 2 } }, 'nested.prop', 4) // => { nested: { prop: 6 } }
- * @see {@link https://lodash.com/docs#add|Lodash.add} for more information
+ * @see {@link https://lodash.com/docs#add|Lodash.add} for more information.
  * @since 0.1.7
  */
 export default update(add)
