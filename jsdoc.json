@@ -9,6 +9,7 @@
   },
   "hotdoc": {
     "github": "https://github.com/nlepage/immutadot",
-    "home": "immutad●t"
+    "home": "immutad●t",
+    "customOverrides": "docs/hotdoc-overrides.scss"
   }
 }
