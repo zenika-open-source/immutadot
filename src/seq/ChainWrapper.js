@@ -53,7 +53,7 @@ class ChainWrapper {
   }
 }
 
-// Add namespaces functions to the ChainWrapper prototpye
+// Add namespaces functions to the ChainWrapper prototype
 [
   array,
   collection,
@@ -66,8 +66,8 @@ class ChainWrapper {
     namespace,
     fn => function(...args) {
       return this._call(fn, args) // eslint-disable-line no-invalid-this
-    },
-  ),
+    }
+  )
 ))
 
 export default ChainWrapper
