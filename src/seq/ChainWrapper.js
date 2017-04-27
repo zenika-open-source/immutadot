@@ -1,14 +1,16 @@
+import * as array from '../array'
+import * as core from '../core'
+import * as lang from '../lang'
+import * as math from '../math'
+
 import flow from 'lodash/flow'
 import mapValues from 'lodash/mapValues'
-
-import * as array from '../core'
-import * as core from '../core'
-import * as lang from '../core'
 
 const namespaces = [
   array,
   core,
   lang,
+  math,
 ]
 
 class ChainWrapper {
@@ -34,8 +36,8 @@ namespaces.forEach(namespace => Object.assign(
   mapValues(
     namespace,
     fn => function(...args) {
-      return this._call(fn, args)
-    }
+      return this._call(fn, args) // eslint-disable-line no-invalid-this
+    },
   ),
 ))
 

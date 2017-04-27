@@ -1,7 +1,6 @@
 /* eslint-env node, mocha */
-import { expect } from 'chai'
-
 import chain from './chain'
+import { expect } from 'chai'
 
 describe('Chain', () => {
 
@@ -27,9 +26,7 @@ describe('Chain', () => {
           prop1: 'value1',
           prop2: 'value5',
         },
-        nested2: {
-          prop3: 'VALUE3',
-        },
+        nested2: { prop3: 'VALUE3' },
       })
   })
 })

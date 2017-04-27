@@ -1,5 +1,4 @@
 import toArray from 'lodash/toArray'
-
 import update from '../core/update'
 
 /**

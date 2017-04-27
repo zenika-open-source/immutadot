@@ -1,5 +1,4 @@
 import add from 'lodash/add'
-
 import update from '../core/update'
 
 /**
