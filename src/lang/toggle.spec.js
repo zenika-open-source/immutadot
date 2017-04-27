@@ -1,6 +1,5 @@
 /* eslint-env node, mocha */
 import { expect } from 'chai'
-
 import toggle from './toggle'
 
 describe('Toggle', () => {
