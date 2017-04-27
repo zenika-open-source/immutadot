@@ -2,6 +2,7 @@
 yarn-error.log
 /*.js
 /array/
+/collection/
 /core/
 /lang/
 /math/
