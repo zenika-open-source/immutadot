@@ -50,6 +50,7 @@ class ChainWrapper {
    *   .set('nested1.prop', 'new')
    *   .unset('nested2.prop')
    *   .value() // => { nested1: { prop: 'new' }, nested2: {} }
+   * @see {@link seq.chain|chain} for more information.
    * @since 0.1.8
    */
   value() {

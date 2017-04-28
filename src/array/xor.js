@@ -10,7 +10,8 @@ import xor from 'lodash/xor'
  * @param {...Array} arrays The arrays to inspect.
  * @return {Array} Returns the new array of filtered values.
  * @example xor({ nested: { prop: [1, 2] } }, 'nested.prop', [2, 3]) // => { nested: { prop: [1, 3] } }
- * @see {@link https://lodash.com/docs#xor|Lodash.xor} for more information.
+ * @see {@link https://lodash.com/docs#xor|lodash.xor} for more information.
+ * @see {@link core.update|update}.
  * @since 0.1.6
  */
 export default update(xor)

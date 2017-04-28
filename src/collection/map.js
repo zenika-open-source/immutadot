@@ -8,10 +8,11 @@ import update from '../core/update'
  * @memberof collection
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
- * @param {Function} [iteratee=Lodash.identity] The function invoked per iteration.
+ * @param {Function} [iteratee=lodash.identity] The function invoked per iteration.
  * @return {Object} Returns the updated object.
- * @see {@link https://lodash.com/docs#map|Lodash.map} for more information.
- * @see {@link https://lodash.com/docs#identity|Lodash.identity} for more information.
+ * @see {@link https://lodash.com/docs#map|lodash.map} for more information.
+ * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
+ * @see {@link core.update|update}.
  * @since 0.1.8
  */
 export default update(map)
