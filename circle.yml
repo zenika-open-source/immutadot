@@ -26,9 +26,6 @@ deployment:
     tag: /\d+\.\d+\.\d+/
     commands:
       - npm publish
-  publish_doc:
-    tag: /\d+\.\d+\.\d+/
-    commands:
       - yarn docs
       - git config user.name $GIT_USER_NAME
       - git config user.email $GIT_USER_EMAIL
