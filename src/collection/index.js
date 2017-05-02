@@ -2,7 +2,7 @@ import map from './map'
 
 /**
  * Collection functions.
- * @namespace math
+ * @namespace collection
  */
 export {
   map,

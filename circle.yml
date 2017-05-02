@@ -22,8 +22,17 @@ test:
     - yarn test
 
 deployment:
-  pre:
   release:
     tag: /\d+\.\d+\.\d+/
     commands:
       - npm publish
+  publish_doc:
+    tag: /\d+\.\d+\.\d+/
+    commands:
+      - yarn docs
+      - git config user.name $GIT_USER_NAME
+      - git config user.email $GIT_USER_EMAIL
+      - git checkout master
+      - git add docs/immutadot
+      - "git commit -m ':memo: Publish documentation'"
+      - git pull -r origin master && git push origin master
