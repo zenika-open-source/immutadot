@@ -14,8 +14,8 @@ import update from '../core/update'
  * @example <caption>Add several elements.</caption>
  * push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4) // => { nested: { prop: [1, 2, 3, 4] } }
  * @see {@link https://lodash.com/docs#toArray|lodash.toArray} for more information.
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push|Array.prototype.push} for more information.
- * @see {@link core.update|update}.
+ * @see {@link https://mdn.io/Array.prototype.push|Array.prototype.push} for more information.
+ * @see {@link core.update|update} for more information.
  * @since 0.1.7
  */
 export default update((value, ...values) => {

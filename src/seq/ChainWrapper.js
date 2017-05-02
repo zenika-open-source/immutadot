@@ -32,7 +32,7 @@ class ChainWrapper {
 
   /**
    * Add a function call to the sequence.
-   * @param {Function} fn The function to call.
+   * @param {function} fn The function to call.
    * @param {...*} args The arguments for the function call.
    * @returns {seq.ChainWrapper} The wrapper instance.
    * @since 0.1.8
