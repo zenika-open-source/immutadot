@@ -1,5 +1,6 @@
+/docs/
+/src/
 .babelrc
 circle.yml
 jsdoc.json
-/src/
 yarn.lock
