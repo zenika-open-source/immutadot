@@ -4,9 +4,11 @@
   "description": "immutad●t (pronounced immutadot) is a set of immutable functions using dot notation.",
   "keywords": [
     "immutable",
+    "dot-notation",
     "dot-prop",
     "react",
-    "redux"
+    "redux",
+    "lodash"
   ],
   "license": "MIT",
   "homepage": "https://github.com/nlepage/immutadot",
