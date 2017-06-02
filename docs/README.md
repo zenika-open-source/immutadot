@@ -1,1 +1,1 @@
-Latest documentation is available at [nlepage.github.io/immutadot](https://nlepage.github.io/immutadot).
+Latest documentation is available at [zenika.github.io/immutadot](https://zenika.github.io/immutadot).

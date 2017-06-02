@@ -11,9 +11,9 @@
     "lodash"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/nlepage/immutadot",
-  "bugs": "https://github.com/nlepage/immutadot/issues",
-  "repository": "github:nlepage/immutadot",
+  "homepage": "https://github.com/Zenika/immutadot",
+  "bugs": "https://github.com/Zenika/immutadot/issues",
+  "repository": "github:Zenika/immutadot",
   "author": "Nicolas Lepage (https://github.com/nlepage)",
   "contributors": [],
   "main": "index.js",

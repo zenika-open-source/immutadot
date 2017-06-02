@@ -8,7 +8,7 @@
     "recurse": true
   },
   "hotdoc": {
-    "github": "https://github.com/nlepage/immutadot",
+    "github": "https://github.com/Zenika/immutadot",
     "home": "immutad●t",
     "customOverrides": "docs/hotdoc-overrides.scss"
   }
