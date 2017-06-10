@@ -4,7 +4,7 @@ import UsingWrapper from './UsingWrapper'
  * Allows to specify one or several paths to use as parameters for an immutadot function call.
  * @function using
  * @memberof core
- * @param {...Array|string} paths The paths to use as parameters.
+ * @param {...(Array|string)} paths The paths to use as parameters.
  * @return {Object} Returns an object with immutadot functions.
  * @example <caption>Add <code>b</code> to <code>a</code></caption>
  * const o = { nested: { a: 2, b: 3 } }
