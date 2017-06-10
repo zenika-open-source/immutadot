@@ -6,7 +6,6 @@ import * as math from '../math'
 
 import at from 'lodash/at'
 import concat from 'lodash/concat'
-import isArray from 'lodash/isArray'
 import map from 'lodash/map'
 import mapValues from 'lodash/mapValues'
 import omit from 'lodash/omit'
@@ -16,7 +15,7 @@ import toPath from 'lodash/toPath'
 class UsingWrapper {
 
   constructor(...paths) {
-    this._paths = map(paths.length === 1 && isArray(paths[0]) ? paths[0] : paths, toPath)
+    this._paths = map(paths, toPath)
   }
 
   _call(fn, object, path, args) {
