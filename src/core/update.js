@@ -4,7 +4,18 @@ import { lodashFpConvertOptions } from './consts'
 
 const rawUpdate = fpUpdate.convert(lodashFpConvertOptions)
 
-const updatePassingArgs = (obj, path, fn, ...args) => rawUpdate(obj, path, v => fn(v, ...args))
+/**
+ * Internal version of <code>update</code> without support of <code>updater</code> only.
+ * @memberof core
+ * @param {Object} object The object to modify.
+ * @param {Array|string} path The path of the property to set.
+ * @param {function} updater The function to produce the updated value.
+ * @param {...*} args The remaining args.
+ * @return {Object} Returns the updated object.
+ * @since 0.1.5
+ * @private
+ */
+export const updatePassingArgs = (object, path, updater, ...args) => rawUpdate(object, path, v => updater(v, ...args))
 
 /**
  * Updates the value at <code>path</code> of <code>object</code> using the <code>updater</code> function.<br/>
