@@ -7,13 +7,14 @@ import * as math from '../math'
 import concat from 'lodash/concat'
 import flow from 'lodash/flow'
 import mapValues from 'lodash/mapValues'
+import omit from 'lodash/omit'
 import toPath from 'lodash/toPath'
 
 /**
  * Wrapper allowing to make sequences of immutadot functions calls on an object.<br/>
  * Instances are created by calling {@link seq.chain}.<br/>
  * The result of such sequences must be unwrapped with {@link seq.ChainWrapper#value}.
- * @memberof seq.
+ * @memberof seq
  * @see {@link seq.chain} for more information.
  * @private
  * @since 0.1.8
@@ -77,7 +78,7 @@ class ChainWrapper {
 [
   array,
   collection,
-  core,
+  omit(core, ['using']),
   lang,
   math,
 ].forEach(namespace => Object.assign(
