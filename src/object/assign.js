@@ -1,5 +1,8 @@
 import assign from 'lodash/fp/assign'
+import { lodashFpConvertOptions } from '../core/consts'
 import update from '../core/update'
+
+const rawAssign = assign.convert(lodashFpConvertOptions)
 
 /**
  * Applies <code>!</code> to the property.
@@ -13,4 +16,4 @@ import update from '../core/update'
  * @see {@link core.update|update} for more information.
  * @since 0.1.5
  */
-export default update(assign)
+export default update(rawAssign)
