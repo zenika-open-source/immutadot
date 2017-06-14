@@ -15,7 +15,9 @@
   "bugs": "https://github.com/Zenika/immutadot/issues",
   "repository": "github:Zenika/immutadot",
   "author": "Nicolas Lepage (https://github.com/nlepage)",
-  "contributors": [],
+  "contributors": [
+    "Yvonnick FRIN (https://github.com/frinyvonnick)"
+  ],
   "main": "index.js",
   "devDependencies": {
     "babel-cli": "^6.24.1",
