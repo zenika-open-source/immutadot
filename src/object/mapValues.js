@@ -1,5 +1,5 @@
-import mapValues from 'lodash/fp/mapValues'
 import { lodashFpConvertOptions } from '../core/consts'
+import mapValues from 'lodash/fp/mapValues'
 import update from '../core/update'
 
 const rawMapValues = mapValues.convert(lodashFpConvertOptions)
