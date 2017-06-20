@@ -1,4 +1,5 @@
 import assign from './assign'
+import mapValues from './mapValues'
 
 /**
  * Array functions.
@@ -7,4 +8,5 @@ import assign from './assign'
  */
 export {
   assign,
+  mapValues,
 }
