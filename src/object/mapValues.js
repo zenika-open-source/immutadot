@@ -15,7 +15,7 @@ const rawMapValues = mapValues.convert(lodashFpConvertOptions)
  * @param {function} [iteratee={@link https://lodash.com/docs#identity|lodash.identity}] The function invoked per iteration.
  * @return {Object} Returns the updated object.
  * @example mapValues({ nested: { a: 1, b: 2, c: 3 } }, 'nested', v => v * v) // => { nested: { a:1, b: 4, c: 9 } }
- * @example mapValues({ nested: { a: { age: 40, name: "Jhon" }, b: { age: 30, name: "Alice" } } }, 'nested', 'age')
+ * @example mapValues({ nested: { a: { age: 40, name: 'John' }, b: { age: 30, name: 'Alice' } } }, 'nested', 'age')
  * // => { nested: { a: 40, b: 30 } }
  * @see {@link https://lodash.com/docs#mapValues|lodash.mapValues} for more information.
  * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
