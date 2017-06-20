@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>core/UsingWrapper.js - Documentation</title>
+
+    <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2 class="home-link"><a href="index.html">immutad●t</a></h2><h3>Namespaces</h3><ul><li><details open><summary><a href="array.html">array</a></summary><ul class='methods'><li data-type='method'><a href="array.html#.push">push</a></li><li data-type='method'><a href="array.html#.xor">xor</a></li></ul></details></li><li><details open><summary><a href="collection.html">collection</a></summary><ul class='methods'><li data-type='method'><a href="collection.html#.map">map</a></li></ul></details></li><li><details open><summary><a href="core.html">core</a></summary><ul class='methods'><li data-type='method'><a href="core.html#.set">set</a></li><li data-type='method'><a href="core.html#.unset">unset</a></li><li data-type='method'><a href="core.html#.update">update</a></li><li data-type='method'><a href="core.html#.using">using</a></li></ul></details></li><li><details open><summary><a href="lang.html">lang</a></summary><ul class='methods'><li data-type='method'><a href="lang.html#.toggle">toggle</a></li></ul></details></li><li><details open><summary><a href="math.html">math</a></summary><ul class='methods'><li data-type='method'><a href="math.html#.add">add</a></li></ul></details></li><li><details open><summary><a href="object.html">object</a></summary><ul class='methods'><li data-type='method'><a href="object.html#.assign">assign</a></li><li data-type='method'><a href="object.html#.mapValues">mapValues</a></li><li data-type='method'><a href="object.html#.pickBy">pickBy</a></li></ul></details></li><li><details open><summary><a href="seq.html">seq</a></summary><ul class='methods'><li data-type='method'><a href="seq.html#.chain">chain</a></li><li data-type='method'><a href="seq.html#value">value</a></li></ul></details></li></ul>
+</nav>
+
+<div id="main" class="main-container">
+    
+        <h1 class="page-title">core/UsingWrapper.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="source linenums"><code><ol class="lines"><li id="line1" class="line"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> array <span class="hljs-keyword">from</span> <span class="hljs-string">'../array'</span></li><li id="line2" class="line"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> collection <span class="hljs-keyword">from</span> <span class="hljs-string">'../collection'</span></li><li id="line3" class="line"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> core <span class="hljs-keyword">from</span> <span class="hljs-string">'../core'</span></li><li id="line4" class="line"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> lang <span class="hljs-keyword">from</span> <span class="hljs-string">'../lang'</span></li><li id="line5" class="line"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> math <span class="hljs-keyword">from</span> <span class="hljs-string">'../math'</span></li><li id="line6" class="line"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> object <span class="hljs-keyword">from</span> <span class="hljs-string">'../object'</span></li><li id="line7" class="line"></li><li id="line8" class="line"><span class="hljs-keyword">import</span> at <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash/at'</span></li><li id="line9" class="line"><span class="hljs-keyword">import</span> concat <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash/concat'</span></li><li id="line10" class="line"><span class="hljs-keyword">import</span> map <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash/map'</span></li><li id="line11" class="line"><span class="hljs-keyword">import</span> mapValues <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash/mapValues'</span></li><li id="line12" class="line"><span class="hljs-keyword">import</span> omit <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash/omit'</span></li><li id="line13" class="line"><span class="hljs-keyword">import</span> toPath <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash/toPath'</span></li><li id="line14" class="line"><span class="hljs-keyword">import</span> { updatePassingArgs } <span class="hljs-keyword">from</span> <span class="hljs-string">'./update'</span></li><li id="line15" class="line"></li><li id="line16" class="line"><span class="hljs-comment">/**</span></li><li id="line17" class="line"><span class="hljs-comment"> * Wrapper allowing to specify one or several paths to use as arguments for an immutadot function call.&lt;br/&gt;</span></li><li id="line18" class="line"><span class="hljs-comment"> * Instances are created by calling {@link core.using}.</span></li><li id="line19" class="line"><span class="hljs-comment"> * @memberof core</span></li><li id="line20" class="line"><span class="hljs-comment"> * @see {@link core.using} for more information.</span></li><li id="line21" class="line"><span class="hljs-comment"> * @private</span></li><li id="line22" class="line"><span class="hljs-comment"> * @since 0.1.12</span></li><li id="line23" class="line"><span class="hljs-comment"> */</span></li><li id="line24" class="line"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsingWrapper</span> </span>{</li><li id="line25" class="line"></li><li id="line26" class="line">  <span class="hljs-comment">/**</span></li><li id="line27" class="line"><span class="hljs-comment">   * This constructor should not be called directly.&lt;br/&gt;</span></li><li id="line28" class="line"><span class="hljs-comment">   * Instances are created by calling {@link core.using}.</span></li><li id="line29" class="line"><span class="hljs-comment">   * @param {...(Array|string)} paths The paths to use as arguments.</span></li><li id="line30" class="line"><span class="hljs-comment">   * @see {@link core.using} for more information.</span></li><li id="line31" class="line"><span class="hljs-comment">   * @since 0.1.12</span></li><li id="line32" class="line"><span class="hljs-comment">   */</span></li><li id="line33" class="line">  <span class="hljs-keyword">constructor</span>(...paths) {</li><li id="line34" class="line">    <span class="hljs-keyword">this</span>._paths = map(paths, toPath)</li><li id="line35" class="line">  }</li><li id="line36" class="line"></li><li id="line37" class="line">  <span class="hljs-comment">/**</span></li><li id="line38" class="line"><span class="hljs-comment">   * Call a function with the specified arguments and possibly some more arguments.</span></li><li id="line39" class="line"><span class="hljs-comment">   * @param {function} fn The function to call.</span></li><li id="line40" class="line"><span class="hljs-comment">   * @param {Object} object The object to modify.</span></li><li id="line41" class="line"><span class="hljs-comment">   * @param {Array|string} path The path of the property to be set.</span></li><li id="line42" class="line"><span class="hljs-comment">   * @param {...*} args The arguments for the function call.</span></li><li id="line43" class="line"><span class="hljs-comment">   * @return {Object} Returns the updated object.</span></li><li id="line44" class="line"><span class="hljs-comment">   * @since 0.1.12</span></li><li id="line45" class="line"><span class="hljs-comment">   */</span></li><li id="line46" class="line">  _call(fn, object, path, args) {</li><li id="line47" class="line">    <span class="hljs-keyword">return</span> fn(object, path, ...concat(at(object, <span class="hljs-keyword">this</span>._paths), args))</li><li id="line48" class="line">  }</li><li id="line49" class="line">}</li><li id="line50" class="line"></li><li id="line51" class="line"><span class="hljs-comment">// Add namespaces functions to the UsingWrapper prototype</span></li><li id="line52" class="line">[</li><li id="line53" class="line">  array,</li><li id="line54" class="line">  collection,</li><li id="line55" class="line">  {</li><li id="line56" class="line">    ...omit(core, [<span class="hljs-string">'unset'</span>]), <span class="hljs-comment">// Unset doesn't take any parameters</span></li><li id="line57" class="line">    update: updatePassingArgs, <span class="hljs-comment">// Avoid updater only version of update</span></li><li id="line58" class="line">  },</li><li id="line59" class="line">  lang,</li><li id="line60" class="line">  math,</li><li id="line61" class="line">  object,</li><li id="line62" class="line">].forEach(<span class="hljs-function"><span class="hljs-params">namespace</span> =&gt;</span> <span class="hljs-built_in">Object</span>.assign(</li><li id="line63" class="line">  UsingWrapper.prototype,</li><li id="line64" class="line">  mapValues(</li><li id="line65" class="line">    namespace,</li><li id="line66" class="line">    fn =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">object, path, ...args</span>) </span>{</li><li id="line67" class="line">      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._call(fn, object, path, args) <span class="hljs-comment">// eslint-disable-line no-invalid-this</span></li><li id="line68" class="line">    }</li><li id="line69" class="line">  )</li><li id="line70" class="line">))</li><li id="line71" class="line"></li><li id="line72" class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> UsingWrapper</li><li id="line73" class="line"></li></ol></code></pre>
+        </article>
+    </section>
+
+
+
+
+
+</div>
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script src="scripts/main.js"></script>
+</body>
+</html>
