@@ -1,4 +1,4 @@
-import { lodashFpConvertOptions } from '../core/consts'
+import { lodashFpConvertOptions } from '../consts'
 import pickBy from 'lodash/fp/pickBy'
 import update from '../core/update'
 
