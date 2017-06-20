@@ -1,4 +1,4 @@
-import { lodashFpConvertOptions } from '../core/consts'
+import { lodashFpConvertOptions } from '../consts'
 import mapValues from 'lodash/fp/mapValues'
 import update from '../core/update'
 

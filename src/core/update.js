@@ -1,6 +1,6 @@
 import fpUpdate from 'lodash/fp/update'
 import isFunction from 'lodash/isFunction'
-import { lodashFpConvertOptions } from './consts'
+import { lodashFpConvertOptions } from '../consts'
 
 const rawUpdate = fpUpdate.convert(lodashFpConvertOptions)
 

@@ -1,5 +1,5 @@
 import assign from 'lodash/fp/assign'
-import { lodashFpConvertOptions } from '../core/consts'
+import { lodashFpConvertOptions } from '../consts'
 import update from '../core/update'
 
 const rawAssign = assign.convert(lodashFpConvertOptions)
