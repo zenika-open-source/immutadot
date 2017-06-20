@@ -38,6 +38,7 @@
     "build": "babel src -d .",
     "lint": "eslint src",
     "test": "mocha --compilers js:babel-register src/**/*.spec.js",
-    "docs": "jsdoc -c jsdoc.json"
+    "docs": "jsdoc -c jsdoc.json",
+    "docs:private": "jsdoc -c jsdoc.json -p"
   }
 }
