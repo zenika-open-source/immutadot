@@ -32,15 +32,15 @@ describe('Chain', () => {
 
   it('should apply modifications at a path', () => {
     expect(chain(object, 'nested1')
-        .set('prop1', 'value5')
-        .unset('prop2')
-        .value())
-        .to.be.deep.equal({
-          nested1: { prop1: 'value5' },
-          nested2: {
-            prop3: 'value3',
-            prop4: 'value4',
-          },
-        })
+      .set('prop1', 'value5')
+      .unset('prop2')
+      .value())
+      .to.be.deep.equal({
+        nested1: { prop1: 'value5' },
+        nested2: {
+          prop3: 'value3',
+          prop4: 'value4',
+        },
+      })
   })
 })
