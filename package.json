@@ -16,7 +16,8 @@
   "repository": "github:Zenika/immutadot",
   "author": "Nicolas Lepage (https://github.com/nlepage)",
   "contributors": [
-    "Yvonnick FRIN (https://github.com/frinyvonnick)"
+    "Yvonnick FRIN (https://github.com/frinyvonnick)",
+    "Valentin COCAUD (https://github.com/EmrysMyrddin)"
   ],
   "main": "index.js",
   "devDependencies": {
