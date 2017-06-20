@@ -1,5 +1,6 @@
 import assign from './assign'
 import mapValues from './mapValues'
+import pickBy from './pickBy'
 
 /**
  * Array functions.
@@ -9,4 +10,5 @@ import mapValues from './mapValues'
 export {
   assign,
   mapValues,
+  pickBy,
 }
