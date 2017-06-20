@@ -1,5 +1,4 @@
 /* eslint-env node, mocha */
-import { expect } from 'chai'
 import update from './update'
 
 describe('Update', () => {
@@ -12,19 +11,19 @@ describe('Update', () => {
 
     const output = update(input, 'nested.prop', inc)
 
-    expect(input).to.be.deep.equal({ nested: { prop: 5 } })
-    expect(input.nested).to.be.equal(nested)
-    expect(output).to.be.deep.equal({ nested: { prop: 6 } })
+    input.should.deep.equal({ nested: { prop: 5 } })
+    input.nested.should.equal(nested)
+    output.should.deep.equal({ nested: { prop: 6 } })
   })
 
   it('should update a prop with a param', () => {
-    expect(update({ nested: { prop: 5 } }, 'nested.prop', inc, 2)).to.be.deep.equal({ nested: { prop: 7 } })
+    update({ nested: { prop: 5 } }, 'nested.prop', inc, 2).should.deep.equal({ nested: { prop: 7 } })
   })
 
   it('should wrap a function', () => {
     const immutableInc = update(inc)
 
-    expect(immutableInc({ nested: { prop: 5 } }, 'nested.prop')).to.be.deep.equal({ nested: { prop: 6 } })
-    expect(immutableInc({ nested: { prop: 5 } }, 'nested.prop', 2)).to.be.deep.equal({ nested: { prop: 7 } })
+    immutableInc({ nested: { prop: 5 } }, 'nested.prop').should.deep.equal({ nested: { prop: 6 } })
+    immutableInc({ nested: { prop: 5 } }, 'nested.prop', 2).should.deep.equal({ nested: { prop: 7 } })
   })
 })

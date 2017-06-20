@@ -4,3 +4,4 @@
 circle.yml
 jsdoc.json
 yarn.lock
+.*.js

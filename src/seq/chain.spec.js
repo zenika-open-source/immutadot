@@ -1,6 +1,5 @@
 /* eslint-env node, mocha */
 import chain from './chain'
-import { expect } from 'chai'
 
 describe('Chain', () => {
 
@@ -16,12 +15,12 @@ describe('Chain', () => {
   }
 
   it('should apply modifications', () => {
-    expect(chain(object)
+    chain(object)
       .set('nested1.prop2', 'value5')
       .update('nested2.prop3', value => value.toUpperCase())
       .unset('nested2.prop4')
-      .value())
-      .to.be.deep.equal({
+      .value()
+      .should.deep.equal({
         nested1: {
           prop1: 'value1',
           prop2: 'value5',
@@ -31,11 +30,11 @@ describe('Chain', () => {
   })
 
   it('should apply modifications at a path', () => {
-    expect(chain(object, 'nested1')
+    chain(object, 'nested1')
       .set('prop1', 'value5')
       .unset('prop2')
-      .value())
-      .to.be.deep.equal({
+      .value()
+      .should.deep.equal({
         nested1: { prop1: 'value5' },
         nested2: {
           prop3: 'value3',
