@@ -37,7 +37,7 @@
   "scripts": {
     "build": "babel src -d .",
     "lint": "eslint src",
-    "test": "mocha --compilers js:babel-register --require ./.test.setup.js src/**/*.spec.js",
+    "test": "mocha --compilers js:babel-register --require .test.setup.js src/**/*.spec.js",
     "docs": "jsdoc -c jsdoc.json",
     "docs:private": "jsdoc -c jsdoc.json -p"
   }
