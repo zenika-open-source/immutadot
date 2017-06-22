@@ -1,7 +1,6 @@
 import set from './set'
 import unset from './unset'
 import update from './update'
-import using from './using'
 
 /**
  * Core functions.
@@ -12,5 +11,4 @@ export {
   set,
   unset,
   update,
-  using,
 }

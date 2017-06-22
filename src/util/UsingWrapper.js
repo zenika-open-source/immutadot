@@ -11,7 +11,7 @@ import map from 'lodash/map'
 import mapValues from 'lodash/mapValues'
 import omit from 'lodash/omit'
 import toPath from 'lodash/toPath'
-import { updatePassingArgs } from './update'
+import { updatePassingArgs } from '../core/update'
 
 /**
  * Wrapper allowing to specify one or several paths to use as arguments for an immutadot function call.<br/>
