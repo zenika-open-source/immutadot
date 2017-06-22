@@ -1,6 +1,5 @@
 import * as array from '../array'
 import * as collection from '../collection'
-import * as core from '../core'
 import * as lang from '../lang'
 import * as math from '../math'
 import * as object from '../object'
@@ -11,13 +10,13 @@ import map from 'lodash/map'
 import mapValues from 'lodash/mapValues'
 import omit from 'lodash/omit'
 import toPath from 'lodash/toPath'
-import { updatePassingArgs } from '../core/update'
+import { updatePassingArgs } from '../object/update'
 
 /**
  * Wrapper allowing to specify one or several paths to use as arguments for an immutadot function call.<br/>
- * Instances are created by calling {@link core.using}.
- * @memberof core
- * @see {@link core.using} for more information.
+ * Instances are created by calling {@link object.using}.
+ * @memberof util
+ * @see {@link object.using} for more information.
  * @private
  * @since 0.1.12
  */
@@ -25,9 +24,9 @@ class UsingWrapper {
 
   /**
    * This constructor should not be called directly.<br/>
-   * Instances are created by calling {@link core.using}.
+   * Instances are created by calling {@link object.using}.
    * @param {...(Array|string)} paths The paths to use as arguments.
-   * @see {@link core.using} for more information.
+   * @see {@link object.using} for more information.
    * @since 0.1.12
    */
   constructor(...paths) {
@@ -53,7 +52,7 @@ class UsingWrapper {
   array,
   collection,
   {
-    ...omit(core, ['unset']), // Unset doesn't take any parameters
+    ...omit(object, ['unset']), // Unset doesn't take any parameters
     update: updatePassingArgs, // Avoid updater only version of update
   },
   lang,

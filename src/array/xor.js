@@ -1,4 +1,4 @@
-import update from '../core/update'
+import update from '../object/update'
 import xor from 'lodash/xor'
 
 /**
@@ -11,7 +11,7 @@ import xor from 'lodash/xor'
  * @return {Array} Returns the new array of filtered values.
  * @example xor({ nested: { prop: [1, 2] } }, 'nested.prop', [2, 3]) // => { nested: { prop: [1, 3] } }
  * @see {@link https://lodash.com/docs#xor|lodash.xor} for more information.
- * @see {@link core.update|update} for more information.
+ * @see {@link object.update|update} for more information.
  * @since 0.1.6
  */
 export default update(xor)

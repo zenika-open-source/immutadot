@@ -1,6 +1,6 @@
 import { lodashFpConvertOptions } from '../consts'
 import mapValues from 'lodash/fp/mapValues'
-import update from '../core/update'
+import update from '../object/update'
 
 const rawMapValues = mapValues.convert(lodashFpConvertOptions)
 
@@ -19,7 +19,7 @@ const rawMapValues = mapValues.convert(lodashFpConvertOptions)
  * // => { nested: { a: 40, b: 30 } }
  * @see {@link https://lodash.com/docs#mapValues|lodash.mapValues} for more information.
  * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
- * @see {@link core.update|update} for more information.
+ * @see {@link object.update|update} for more information.
  * @since 0.1.12
  */
 export default update(rawMapValues)

@@ -1,5 +1,5 @@
 import map from 'lodash/map'
-import update from '../core/update'
+import update from '../object/update'
 
 /**
  * Replaces by an array of values by running each element in the former collection thru iteratee.
@@ -12,7 +12,7 @@ import update from '../core/update'
  * @return {Object} Returns the updated object.
  * @see {@link https://lodash.com/docs#map|lodash.map} for more information.
  * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
- * @see {@link core.update|update} for more information.
+ * @see {@link object.update|update} for more information.
  * @since 0.1.8
  */
 export default update(map)

@@ -1,6 +1,6 @@
 import assign from 'lodash/fp/assign'
 import { lodashFpConvertOptions } from '../consts'
-import update from '../core/update'
+import update from '../object/update'
 
 const rawAssign = assign.convert(lodashFpConvertOptions)
 
@@ -15,7 +15,7 @@ const rawAssign = assign.convert(lodashFpConvertOptions)
  * @param {...Object} [sources] The source objects.
  * @return {Object} Returns the updated object.
  * @example assign({ nested: { a: 1, b: 2 } }, 'nested', { b: 3, c: 4 }) // => { nested: { a:1, b: 3, c: 4 } }
- * @see {@link core.update|update} for more information.
+ * @see {@link object.update|update} for more information.
  * @see {@link https://lodash.com/docs#assign|lodash.assign} for more information.
  * @since 0.1.12
  */
