@@ -1,11 +1,11 @@
 import fpUnset from 'lodash/fp/unset'
-import { lodashFpConvertOptions } from './consts'
+import { lodashFpConvertOptions } from '../consts'
 
 /**
  * Removes the property at <code>path</code> of <code>object</code>.
  * This is the <code>lodash/fp</code> <code>unset</code>, with no arguments rearranging and no currying.
  * @function unset
- * @memberof core
+ * @memberof object
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to unset.
  * @return {Object} Returns the updated object.

@@ -3,7 +3,7 @@ import UsingWrapper from './UsingWrapper'
 /**
  * Allows to specify one or several paths to use as arguments for an immutadot function call.
  * @function using
- * @memberof core
+ * @memberof util
  * @param {...(Array|string)} paths The paths to use as arguments.
  * @return {Object} Returns an object with immutadot functions.
  * @example <caption>Add <code>b</code> to <code>a</code></caption>

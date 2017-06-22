@@ -1,5 +1,4 @@
 /* eslint-env node, mocha */
-import { expect } from 'chai'
 import mapValues from './mapValues'
 
 describe('MapValues', () => {
@@ -21,6 +20,6 @@ describe('MapValues', () => {
   }
 
   it('should map over each values of an object', () => {
-    expect(mapValues(objectOne, 'nested', v => v * v)).to.be.deep.equal(output)
+    mapValues(objectOne, 'nested', v => v * v).should.deep.equal(output)
   })
 })

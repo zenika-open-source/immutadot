@@ -1,5 +1,4 @@
 /* eslint-env node, mocha */
-import { expect } from 'chai'
 import unset from './unset'
 
 describe('Unset', () => {
@@ -10,8 +9,8 @@ describe('Unset', () => {
 
     const output = unset(input, 'nested.prop')
 
-    expect(input).to.be.deep.equal({ nested: { prop: 'initial' } })
-    expect(input.nested).to.be.equal(nested)
-    expect(output).to.be.deep.equal({ nested: {} })
+    input.should.deep.equal({ nested: { prop: 'initial' } })
+    input.nested.should.equal(nested)
+    output.should.deep.equal({ nested: {} })
   })
 })

@@ -1,9 +1,5 @@
 /node_modules/
 yarn-error.log
-/*.js
-/array/
-/collection/
-/core/
-/lang/
-/math/
-/seq/
+**/*.js
+!.*.js
+!/src/**/*.js

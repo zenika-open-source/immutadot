@@ -1,6 +1,5 @@
 import * as array from '../array'
 import * as collection from '../collection'
-import * as core from '../core'
 import * as lang from '../lang'
 import * as math from '../math'
 import * as object from '../object'
@@ -8,7 +7,6 @@ import * as object from '../object'
 import concat from 'lodash/concat'
 import flow from 'lodash/flow'
 import mapValues from 'lodash/mapValues'
-import omit from 'lodash/omit'
 import toPath from 'lodash/toPath'
 
 /**
@@ -79,7 +77,6 @@ class ChainWrapper {
 [
   array,
   collection,
-  omit(core, ['using']),
   lang,
   math,
   object,

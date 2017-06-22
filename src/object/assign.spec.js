@@ -1,6 +1,5 @@
 /* eslint-env node, mocha */
 import assign from './assign'
-import { expect } from 'chai'
 
 describe('Assign', () => {
 
@@ -23,6 +22,6 @@ describe('Assign', () => {
   }
 
   it('should assign objects', () => {
-    expect(assign(objectOne, 'nested', objectTwo)).to.be.deep.equal(output)
+    assign(objectOne, 'nested', objectTwo).should.deep.equal(output)
   })
 })

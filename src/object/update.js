@@ -1,12 +1,12 @@
 import fpUpdate from 'lodash/fp/update'
 import isFunction from 'lodash/isFunction'
-import { lodashFpConvertOptions } from './consts'
+import { lodashFpConvertOptions } from '../consts'
 
 const rawUpdate = fpUpdate.convert(lodashFpConvertOptions)
 
 /**
  * Internal version of <code>update</code> without support of <code>updater</code> only.
- * @memberof core
+ * @memberof object
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
  * @param {function} updater The function to produce the updated value.
@@ -22,7 +22,7 @@ export const updatePassingArgs = (object, path, updater, ...args) => rawUpdate(o
  * The updater is invoked with <code>value</code> and <code>…args</code>.<br/>
  * <code>update</code> can be called with <code>updater</code> only, returning a function taking only <code>object</code>, <code>path</code> and <code>…args</code>.
  * @function update
- * @memberof core
+ * @memberof object
  * @param {Object} [object] The object to modify.
  * @param {Array|string} [path] The path of the property to set.
  * @param {function} updater The function to produce the updated value.
