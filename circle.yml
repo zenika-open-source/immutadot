@@ -23,8 +23,7 @@ test:
 
 deployment:
   release:
-#    tag: /\d+\.\d+\.\d+/
-    branch: enhancement/28
+    tag: /\d+\.\d+\.\d+/
     commands:
-#      - npm publish
+      - npm publish
       - ./publish-docs.sh
