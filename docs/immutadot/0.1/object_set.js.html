@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>math/add.js - Documentation</title>
+    <title>object/set.js - Documentation</title>
 
     <!--[if lt IE 9]>
         <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -25,7 +25,7 @@
 
 <div id="main" class="main-container">
     
-        <h1 class="page-title">math/add.js</h1>
+        <h1 class="page-title">object/set.js</h1>
     
 
     
@@ -35,7 +35,7 @@
     
     <section>
         <article>
-            <pre class="source linenums"><code><ol class="lines"><li id="line1" class="line"><span class="hljs-keyword">import</span> add <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash/add'</span></li><li id="line2" class="line"><span class="hljs-keyword">import</span> update <span class="hljs-keyword">from</span> <span class="hljs-string">'../object/update'</span></li><li id="line3" class="line"></li><li id="line4" class="line"><span class="hljs-comment">/**</span></li><li id="line5" class="line"><span class="hljs-comment"> * Replaces by the addition of the former number and the given number.</span></li><li id="line6" class="line"><span class="hljs-comment"> * @function add</span></li><li id="line7" class="line"><span class="hljs-comment"> * @memberof math</span></li><li id="line8" class="line"><span class="hljs-comment"> * @param {Object} object The object to modify.</span></li><li id="line9" class="line"><span class="hljs-comment"> * @param {Array|string} path The path of the property to set.</span></li><li id="line10" class="line"><span class="hljs-comment"> * @param {number} addend The number to add.</span></li><li id="line11" class="line"><span class="hljs-comment"> * @return {Object} Returns the updated object.</span></li><li id="line12" class="line"><span class="hljs-comment"> * @example add({ nested: { prop: 2 } }, 'nested.prop', 4) // =&gt; { nested: { prop: 6 } }</span></li><li id="line13" class="line"><span class="hljs-comment"> * @see {@link https://lodash.com/docs#add|lodash.add} for more information.</span></li><li id="line14" class="line"><span class="hljs-comment"> * @see {@link object.update|update} for more information.</span></li><li id="line15" class="line"><span class="hljs-comment"> * @since 0.1.7</span></li><li id="line16" class="line"><span class="hljs-comment"> */</span></li><li id="line17" class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> update(add)</li><li id="line18" class="line"></li></ol></code></pre>
+            <pre class="source linenums"><code><ol class="lines"><li id="line1" class="line"><span class="hljs-keyword">import</span> fpSet <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash/fp/set'</span></li><li id="line2" class="line"><span class="hljs-keyword">import</span> { lodashFpConvertOptions } <span class="hljs-keyword">from</span> <span class="hljs-string">'../consts'</span></li><li id="line3" class="line"></li><li id="line4" class="line"><span class="hljs-comment">/**</span></li><li id="line5" class="line"><span class="hljs-comment"> * Sets the value at &lt;code&gt;path&lt;/code&gt; of &lt;code&gt;object&lt;/code&gt;.</span></li><li id="line6" class="line"><span class="hljs-comment"> * This is the &lt;code&gt;lodash/fp&lt;/code&gt; &lt;code&gt;set&lt;/code&gt;, with no arguments rearranging and no currying.</span></li><li id="line7" class="line"><span class="hljs-comment"> * @function set</span></li><li id="line8" class="line"><span class="hljs-comment"> * @memberof object</span></li><li id="line9" class="line"><span class="hljs-comment"> * @param {Object} object The object to modify.</span></li><li id="line10" class="line"><span class="hljs-comment"> * @param {Array|string} path The path of the property to set.</span></li><li id="line11" class="line"><span class="hljs-comment"> * @param {*} value The value to set.</span></li><li id="line12" class="line"><span class="hljs-comment"> * @return {Object} Returns the updated object.</span></li><li id="line13" class="line"><span class="hljs-comment"> * @example set({ nested: { prop: 'old' } }, 'nested.prop', 'new') // =&gt; { nested: { prop: 'new' } }</span></li><li id="line14" class="line"><span class="hljs-comment"> * @see {@link https://lodash.com/docs#set|lodash.set} for more information.</span></li><li id="line15" class="line"><span class="hljs-comment"> * @since 0.1.5</span></li><li id="line16" class="line"><span class="hljs-comment"> */</span></li><li id="line17" class="line"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> fpSet.convert(lodashFpConvertOptions)</li><li id="line18" class="line"></li></ol></code></pre>
         </article>
     </section>
 

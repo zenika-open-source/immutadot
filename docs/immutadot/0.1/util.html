@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>lang - Documentation</title>
+    <title>util - Documentation</title>
 
     <!--[if lt IE 9]>
         <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -25,7 +25,7 @@
 
 <div id="main" class="main-container">
     
-        <h1 class="page-title">lang</h1>
+        <h1 class="page-title">util</h1>
     
 
     
@@ -38,7 +38,7 @@
     <header class="page-header">
         
             <h2>
-            lang
+            util
             </h2>
             
         
@@ -54,7 +54,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul><li>
-        <a href="lang_index.js.html">lang/index.js</a>, <a href="lang_index.js.html#line3">line 3</a>
+        <a href="util_index.js.html">util/index.js</a>, <a href="util_index.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -62,7 +62,7 @@
 
     
     <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul><li>0.1.5</li></ul></dd>
+    <dd class="tag-since"><ul><li>0.1.13</li></ul></dd>
     
 
     
@@ -96,7 +96,7 @@
 
 
                 
-                    <div class="description">Lang functions.</div>
+                    <div class="description">Array functions.</div>
                 
 
                 
@@ -124,7 +124,7 @@
 
 <article class="method">
     
-        <h4 class="name" id=".toggle"><span class="signature-type">(static) </span>toggle<span class="signature">(object, path)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+        <h4 class="name" id=".using"><span class="signature-type">(static) </span>using<span class="signature">(&hellip;paths)</span><span class="signature-return"> &rarr; {Object}</span></h4>
 
         
     
@@ -136,7 +136,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul><li>
-        <a href="lang_toggle.js.html">lang/toggle.js</a>, <a href="lang_toggle.js.html#line3">line 3</a>
+        <a href="util_using.js.html">util/using.js</a>, <a href="util_using.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -144,7 +144,7 @@
 
     
     <dt class="tag-since">Since:</dt>
-    <dd class="tag-since"><ul><li>0.1.5</li></ul></dd>
+    <dd class="tag-since"><ul><li>0.1.12</li></ul></dd>
     
 
     
@@ -169,13 +169,6 @@
 
     
 
-    
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="object.html#.update">update</a> for more information.</li>
-        </ul>
-    </dd>
     
 
     
@@ -186,7 +179,7 @@
 
     
     <div class="description">
-        Applies <code>!</code> to the property.
+        Allows to specify one or several paths to use as arguments for an immutadot function call.
     </div>
     
 
@@ -197,9 +190,18 @@
     
 
     
-        <h5>Example</h5>
+        <h5>Examples</h5>
         
-    <pre class="prettyprint"><code>toggle({ nested: { prop: true } }, 'nested.prop') // { nested: { prop: false } }</code></pre>
+        <p class="code-caption">Add <code>b</code> to <code>a</code></p>
+    
+    <pre class="prettyprint"><code>const o = { nested: { a: 2, b: 3 } }
+using('nested.b').add(o, 'nested.a') // => { nested: { a: 5, b: 3 } }</code></pre>
+
+        <p class="code-caption">Replace <code>a</code> by <code>a * b + c</code></p>
+    
+    <pre class="prettyprint"><code>const o = { nested: { a: 2, b: 3, c: 4 } }
+using('nested.b', 'nested.c')
+  .update(o, 'nested.a', (a, b, c) => a * b + c) // => { nested: { a: 10, b: 3, c: 4 } }</code></pre>
 
     
 
@@ -217,6 +219,8 @@
         <th>Type</th>
 
         
+            <th>Attributes</th>
+        
 
         
 
@@ -232,37 +236,7 @@
     
         <td class="name">
             
-            <code>object</code>
-        </td>
-    
-
-    <td class="type">
-        
-            
-<span class="param-type">Object</span>
-
-
-        
-    </td>
-
-    
-
-    
-
-    <td class="description last">The object to modify.</td>
-
-</tr>
-
-
-
-        
-            
-            
-<tr class="prop">
-    
-        <td class="name">
-            
-            <code>path</code>
+            <code>paths</code>
         </td>
     
 
@@ -279,10 +253,20 @@
     </td>
 
     
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
 
     
 
-    <td class="description last">The path of the property to set.</td>
+    <td class="description last">The paths to use as arguments.</td>
 
 </tr>
 
@@ -309,7 +293,7 @@
     
             
 <div class="param-desc">
-    Returns the updated object.
+    Returns an object with immutadot functions.
 </div>
 
 
