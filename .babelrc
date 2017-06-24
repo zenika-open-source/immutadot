@@ -3,6 +3,11 @@
     ["env", {
       "modules": "umd"
     }],
-    ["stage-0"]
-  ]
+    ["stage-0"],
+  ],
+  "env": {
+    "production": {
+      "ignore": ".spec.js"
+    }
+  }
 }
