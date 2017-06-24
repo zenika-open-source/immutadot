@@ -36,7 +36,7 @@
   "scripts": {
     "build": "babel src -d .",
     "lint": "eslint src",
-    "test": "jest src/**/*.spec.js",
+    "test": "jest",
     "docs": "jsdoc -c jsdoc.json",
     "docs:private": "jsdoc -c jsdoc.json -p"
   }
