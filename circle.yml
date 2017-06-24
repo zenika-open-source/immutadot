@@ -19,7 +19,7 @@ compile:
 test:
   override:
     - yarn lint
-    - yarn test
+    - yarn test:coverage
 
 deployment:
   release:
