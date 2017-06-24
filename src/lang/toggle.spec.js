@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* eslint-env jest */
 import toggle from './toggle'
 
 describe('Toggle', () => {
@@ -7,29 +7,29 @@ describe('Toggle', () => {
   const withFalse = { nested: { prop: false } }
 
   it('should toggle false to true', () => {
-    toggle(withFalse, 'nested.prop').should.deep.equal(withTrue)
+    expect(toggle(withFalse, 'nested.prop')).toEqual(withTrue)
   })
 
   it('should toggle falsy to true', () => {
-    toggle({ nested: {} }, 'nested.prop').should.deep.equal(withTrue)
-    toggle({ nested: { prop: null } }, 'nested.prop').should.deep.equal(withTrue)
-    toggle({ nested: { prop: '' } }, 'nested.prop').should.deep.equal(withTrue)
-    toggle({ nested: { prop: 0 } }, 'nested.prop').should.deep.equal(withTrue)
+    expect(toggle({ nested: {} }, 'nested.prop')).toEqual(withTrue)
+    expect(toggle({ nested: { prop: null } }, 'nested.prop')).toEqual(withTrue)
+    expect(toggle({ nested: { prop: '' } }, 'nested.prop')).toEqual(withTrue)
+    expect(toggle({ nested: { prop: 0 } }, 'nested.prop')).toEqual(withTrue)
   })
 
   it('should toggle deep undefined to true', () => {
-    toggle({}, 'nested.prop').should.deep.equal(withTrue)
-    toggle(undefined, 'nested.prop').should.deep.equal(withTrue)
+    expect(toggle({}, 'nested.prop')).toEqual(withTrue)
+    expect(toggle(undefined, 'nested.prop')).toEqual(withTrue)
   })
 
   it('should toggle true to false', () => {
-    toggle(withTrue, 'nested.prop').should.deep.equal(withFalse)
+    expect(toggle(withTrue, 'nested.prop')).toEqual(withFalse)
   })
 
   it('should toggle truthy to false', () => {
-    toggle({ nested: { prop: 'a' } }, 'nested.prop').should.deep.equal(withFalse)
-    toggle({ nested: { prop: {} } }, 'nested.prop').should.deep.equal(withFalse)
-    toggle({ nested: { prop: [] } }, 'nested.prop').should.deep.equal(withFalse)
-    toggle({ nested: { prop: 1 } }, 'nested.prop').should.deep.equal(withFalse)
+    expect(toggle({ nested: { prop: 'a' } }, 'nested.prop')).toEqual(withFalse)
+    expect(toggle({ nested: { prop: {} } }, 'nested.prop')).toEqual(withFalse)
+    expect(toggle({ nested: { prop: [] } }, 'nested.prop')).toEqual(withFalse)
+    expect(toggle({ nested: { prop: 1 } }, 'nested.prop')).toEqual(withFalse)
   })
 })

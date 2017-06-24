@@ -25,11 +25,10 @@
     "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.5.2",
     "babel-preset-stage-0": "^6.24.1",
-    "chai": "^4.0.2",
     "eslint": "^4.0.0",
     "hotdoc": "^0.7.2",
-    "jsdoc": "^3.4.3",
-    "mocha": "^3.4.2"
+    "jest": "^20.0.4",
+    "jsdoc": "^3.4.3"
   },
   "peerDependencies": {
     "lodash": "^4.17.4"
@@ -37,7 +36,7 @@
   "scripts": {
     "build": "babel src -d .",
     "lint": "eslint src",
-    "test": "mocha --compilers js:babel-register --require .test.setup.js src/**/*.spec.js",
+    "test": "jest src/**/*.spec.js",
     "docs": "jsdoc -c jsdoc.json",
     "docs:private": "jsdoc -c jsdoc.json -p"
   }

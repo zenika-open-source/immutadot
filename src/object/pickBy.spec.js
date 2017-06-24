@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* eslint-env jest */
 import pickBy from './pickBy'
 
 describe('PickBy', () => {
@@ -19,10 +19,10 @@ describe('PickBy', () => {
   }
 
   it('should pick all matching props by value', () => {
-    pickBy(objectOne, 'nested', v => v < 3).should.deep.equal(output)
+    expect(pickBy(objectOne, 'nested', v => v < 3)).toEqual(output)
   })
 
   it('should pick all matching props by key', () => {
-    pickBy(objectOne, 'nested', (v, k) => k < 'c').should.deep.equal(output)
+    expect(pickBy(objectOne, 'nested', (v, k) => k < 'c')).toEqual(output)
   })
 })

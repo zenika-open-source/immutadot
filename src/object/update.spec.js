@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* eslint-env jest */
 import update from './update'
 
 describe('Update', () => {
@@ -11,19 +11,19 @@ describe('Update', () => {
 
     const output = update(input, 'nested.prop', inc)
 
-    input.should.deep.equal({ nested: { prop: 5 } })
-    input.nested.should.equal(nested)
-    output.should.deep.equal({ nested: { prop: 6 } })
+    expect(input).toEqual({ nested: { prop: 5 } })
+    expect(input.nested).toBe(nested)
+    expect(output).toEqual({ nested: { prop: 6 } })
   })
 
   it('should update a prop with a param', () => {
-    update({ nested: { prop: 5 } }, 'nested.prop', inc, 2).should.deep.equal({ nested: { prop: 7 } })
+    expect(update({ nested: { prop: 5 } }, 'nested.prop', inc, 2)).toEqual({ nested: { prop: 7 } })
   })
 
   it('should wrap a function', () => {
     const immutableInc = update(inc)
 
-    immutableInc({ nested: { prop: 5 } }, 'nested.prop').should.deep.equal({ nested: { prop: 6 } })
-    immutableInc({ nested: { prop: 5 } }, 'nested.prop', 2).should.deep.equal({ nested: { prop: 7 } })
+    expect(immutableInc({ nested: { prop: 5 } }, 'nested.prop')).toEqual({ nested: { prop: 6 } })
+    expect(immutableInc({ nested: { prop: 5 } }, 'nested.prop', 2)).toEqual({ nested: { prop: 7 } })
   })
 })

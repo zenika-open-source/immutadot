@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* eslint-env jest */
 import using from './using'
 
 describe('Using', () => {
@@ -6,7 +6,7 @@ describe('Using', () => {
   it('should set a prop with another prop', () => {
     const input = { nested: { a: 2 } }
     const output = using('nested.a').set(input, 'nested.b')
-    output.should.deep.equal({
+    expect(output).toEqual({
       nested: {
         a: 2,
         b: 2,
@@ -22,7 +22,7 @@ describe('Using', () => {
       },
     }
     const output = using('nested.a').add(input, 'nested.b')
-    output.should.deep.equal({
+    expect(output).toEqual({
       nested: {
         a: 2,
         b: 5,
@@ -39,7 +39,7 @@ describe('Using', () => {
       },
     }
     const output = using('nested.a', 'nested.b').push(input, 'nested.c')
-    output.should.deep.equal({
+    expect(output).toEqual({
       nested: {
         a: 2,
         b: 3,

@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* eslint-env jest */
 import xor from './xor'
 
 describe('Xor', () => {
@@ -10,12 +10,12 @@ describe('Xor', () => {
   const withTwoAndThree = { nested: { prop: twoAndThree } }
 
   it('should xor arrays', () => {
-    xor(withOneAndTwo, 'nested.prop', twoAndThree).should.deep.equal(withOneAndThree)
-    xor(withOneAndTwo, 'nested.prop', oneAndThree).should.deep.equal(withTwoAndThree)
+    expect(xor(withOneAndTwo, 'nested.prop', twoAndThree)).toEqual(withOneAndThree)
+    expect(xor(withOneAndTwo, 'nested.prop', oneAndThree)).toEqual(withTwoAndThree)
   })
 
   it('should xor deep undefined to array', () => {
-    xor({}, 'nested.prop', oneAndThree).should.deep.equal(withOneAndThree)
-    xor(undefined, 'nested.prop', oneAndThree).should.deep.equal(withOneAndThree)
+    expect(xor({}, 'nested.prop', oneAndThree)).toEqual(withOneAndThree)
+    expect(xor(undefined, 'nested.prop', oneAndThree)).toEqual(withOneAndThree)
   })
 })
