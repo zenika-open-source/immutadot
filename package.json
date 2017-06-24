@@ -38,7 +38,7 @@
     "build": "BABEL_ENV=production babel src -d .",
     "lint": "eslint src",
     "test": "jest",
-    "test:coverage": "jest --coverage && codecov",
+    "test:coverage": "jest --coverage",
     "docs": "jsdoc -c jsdoc.json",
     "docs:private": "jsdoc -c jsdoc.json -p"
   }
