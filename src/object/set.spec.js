@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* eslint-env jest */
 import set from './set'
 
 describe('Set', () => {
@@ -9,12 +9,12 @@ describe('Set', () => {
 
     const output = set(input, 'nested.prop', 'final')
 
-    input.should.deep.equal({ nested: { prop: 'initial' } })
-    input.nested.should.equal(nested)
-    output.should.deep.equal({ nested: { prop: 'final' } })
+    expect(input).toEqual({ nested: { prop: 'initial' } })
+    expect(input.nested).toBe(nested)
+    expect(output).toEqual({ nested: { prop: 'final' } })
   })
 
   it('should set a deep undefined prop', () => {
-    set(undefined, 'nested.prop', 'final').should.deep.equal({ nested: { prop: 'final' } })
+    expect(set(undefined, 'nested.prop', 'final')).toEqual({ nested: { prop: 'final' } })
   })
 })

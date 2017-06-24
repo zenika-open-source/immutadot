@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* eslint-env jest */
 import assign from './assign'
 
 describe('Assign', () => {
@@ -22,6 +22,6 @@ describe('Assign', () => {
   }
 
   it('should assign objects', () => {
-    assign(objectOne, 'nested', objectTwo).should.deep.equal(output)
+    expect(assign(objectOne, 'nested', objectTwo)).toEqual(output)
   })
 })

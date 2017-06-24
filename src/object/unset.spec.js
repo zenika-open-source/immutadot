@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* eslint-env jest */
 import unset from './unset'
 
 describe('Unset', () => {
@@ -9,8 +9,8 @@ describe('Unset', () => {
 
     const output = unset(input, 'nested.prop')
 
-    input.should.deep.equal({ nested: { prop: 'initial' } })
-    input.nested.should.equal(nested)
-    output.should.deep.equal({ nested: {} })
+    expect(input).toEqual({ nested: { prop: 'initial' } })
+    expect(input.nested).toBe(nested)
+    expect(output).toEqual({ nested: {} })
   })
 })

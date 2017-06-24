@@ -1,4 +1,4 @@
-/* eslint-env node, mocha */
+/* eslint-env jest */
 import mapValues from './mapValues'
 
 describe('MapValues', () => {
@@ -20,6 +20,6 @@ describe('MapValues', () => {
   }
 
   it('should map over each values of an object', () => {
-    mapValues(objectOne, 'nested', v => v * v).should.deep.equal(output)
+    expect(mapValues(objectOne, 'nested', v => v * v)).toEqual(output)
   })
 })
