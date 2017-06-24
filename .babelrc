@@ -5,7 +5,9 @@
     }],
     ["stage-0"],
   ],
-  "ignore": [
-    ".spec.js"
-  ]
+  "env": {
+    "production": {
+      "ignore": ".spec.js"
+    }
+  }
 }
