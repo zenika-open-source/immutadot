@@ -3,5 +3,6 @@
 .babelrc
 circle.yml
 jsdoc.json
+publish-docs.sh
 yarn.lock
 .*.js
