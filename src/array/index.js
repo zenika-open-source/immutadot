@@ -1,4 +1,5 @@
 import push from './push'
+import splice from './splice'
 import xor from './xor'
 
 /**
@@ -8,5 +9,6 @@ import xor from './xor'
  */
 export {
   push,
+  splice,
   xor,
 }
