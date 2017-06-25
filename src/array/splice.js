@@ -18,7 +18,7 @@ import update from '../object/update'
  * @since 0.1.14
  */
 export default update((array, ...args) => {
-  const result = toArray(array)
-  result.splice(...args)
-  return result
+  const newArray = toArray(array)
+  newArray.splice(...args)
+  return newArray
 })

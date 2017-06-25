@@ -3,7 +3,7 @@ import splice from './splice'
 
 describe('Splice', () => {
 
-  it('should add one element', () => {
+  it('should replace two elements', () => {
     const original = { nested: { prop: [1, 2, 3, 4] } }
 
     const final = splice(original, 'nested.prop', 1, 2, 5, 6)

@@ -1,5 +1,6 @@
 import push from './push'
 import splice from './splice'
+import unshift from './unshift'
 import xor from './xor'
 
 /**
@@ -10,5 +11,6 @@ import xor from './xor'
 export {
   push,
   splice,
+  unshift,
   xor,
 }
