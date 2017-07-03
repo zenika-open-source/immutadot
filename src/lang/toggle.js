@@ -1,4 +1,4 @@
-import update from '../object/update'
+import convert from '../util/convert'
 
 /**
  * Applies <code>!</code> to the property.
@@ -8,7 +8,6 @@ import update from '../object/update'
  * @param {Array|string} path The path of the property to set.
  * @return {Object} Returns the updated object.
  * @example toggle({ nested: { prop: true } }, 'nested.prop') // { nested: { prop: false } }
- * @see {@link object.update|update} for more information.
  * @since 0.1.5
  */
-export default update(v => !v)
+export default convert(v => !v)

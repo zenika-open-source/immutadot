@@ -1,6 +1,6 @@
+import convert from '../util/convert'
 import { lodashFpConvertOptions } from '../consts'
 import pickBy from 'lodash/fp/pickBy'
-import update from '../object/update'
 
 const rawPickBy = pickBy.convert(lodashFpConvertOptions)
 
@@ -14,9 +14,8 @@ const rawPickBy = pickBy.convert(lodashFpConvertOptions)
  * @param {function} [predicate={@link https://lodash.com/docs#identity|lodash.identity}] The function invoked per iteration.
  * @return {Object} Returns the updated object.
  * @example pickBy({ nested: { a: 1, b: 2, c: 3, d: 4 } }, 'nested', v => v < 3) // => { nested: { a: 1, b: 2 } }
- * @see {@link object.update|update} for more information.
  * @see {@link https://lodash.com/docs#pickBy|lodash.pickBy} for more information.
  * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
  * @since 0.1.12
  */
-export default update(rawPickBy)
+export default convert(rawPickBy)

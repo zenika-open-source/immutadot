@@ -1,3 +1,4 @@
+import convert from './convert'
 import using from './using'
 
 /**
@@ -6,5 +7,6 @@ import using from './using'
  * @since 0.1.13
  */
 export {
+  convert,
   using,
 }
