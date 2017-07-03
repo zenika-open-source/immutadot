@@ -7,7 +7,7 @@ immutad●t (pronounced immutadot) is a library to deal with nested immutable st
 [![codecov](https://codecov.io/gh/Zenika/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/Zenika/immutadot)
 [![npm version](https://badge.fury.io/js/immutadot.svg)](https://badge.fury.io/js/immutadot)
 
-**immutad●t** let you use a more friendly and shorter syntax to apply operations on immutable structures.
+immutad●t let you use a more friendly and shorter syntax to apply operations on immutable structures.
 
 ```js
 const newState = {
@@ -39,7 +39,7 @@ const newState = {
 const newState = push(state, 'nested.prop', value)
 ```
 
-With the dot notation we removed a big amount of code. This is the real strength of **immutad●t**.
+With the dot notation we removed a big amount of code. This is the real strength of immutad●t.
 
 ## Immutability
 
@@ -56,12 +56,12 @@ An immutable object is an object that cannot be changed once created. At first i
 
 ### Concise
 
-**ES2015 and further versions** new features are great to deal with arrays and objects. As structures grows it becomes verbose to keep them immutable. **immutad●t** provides a concise dot notation to resolve this issue.
+*ES2015 and further versions* new features are great to deal with arrays and objects. As structures grows it becomes verbose to keep them immutable. immutad●t provides a concise dot notation to resolve this issue.
 
 ### Exhaustive and yet extensible
 
-We embark most of **lodash**'s features. The method you want isn't implemented ? `mixin`function let you extend library's features.
+We embark most of *lodash*'s features. The method you want isn't implemented ? `mixin`function let you extend library's features.
 
 ### Learning curve
 
-If you are familiar with **lodash** and **ES2015 and further versions** you won't have to learn much more to use **immutad●t** efficiently.
+If you are familiar with *lodash* and *ES2015 and further versions* you won't have to learn much more to use immutad●t efficiently.
