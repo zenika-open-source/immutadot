@@ -1,5 +1,5 @@
+import convert from '../util/convert'
 import map from 'lodash/map'
-import update from '../object/update'
 
 /**
  * Replaces by an array of values by running each element in the former collection thru iteratee.
@@ -15,4 +15,4 @@ import update from '../object/update'
  * @see {@link object.update|update} for more information.
  * @since 0.1.8
  */
-export default update(map)
+export default convert(map)

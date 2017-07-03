@@ -10,7 +10,6 @@ import map from 'lodash/map'
 import mapValues from 'lodash/mapValues'
 import omit from 'lodash/omit'
 import toPath from 'lodash/toPath'
-import { updatePassingArgs } from '../object/update'
 
 /**
  * Wrapper allowing to specify one or several paths to use as arguments for an immutadot function call.<br/>
@@ -51,10 +50,7 @@ class UsingWrapper {
 [
   array,
   collection,
-  {
-    ...omit(object, ['unset']), // Unset doesn't take any parameters
-    update: updatePassingArgs, // Avoid updater only version of update
-  },
+  { ...omit(object, ['unset']) },
   lang,
   math,
   object,

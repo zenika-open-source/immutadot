@@ -1,5 +1,5 @@
+import convert from '../util/convert'
 import toArray from 'lodash/toArray'
-import update from '../object/update'
 
 /**
  * Add one or more elements to the end of an array.
@@ -15,10 +15,9 @@ import update from '../object/update'
  * push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4) // => { nested: { prop: [1, 2, 3, 4] } }
  * @see {@link https://lodash.com/docs#toArray|lodash.toArray} for more information.
  * @see {@link https://mdn.io/Array.prototype.push|Array.prototype.push} for more information.
- * @see {@link object.update|update} for more information.
  * @since 0.1.7
  */
-export default update((array, ...values) => {
+export default convert((array, ...values) => {
   const newArray = toArray(array)
   newArray.push(...values)
   return newArray

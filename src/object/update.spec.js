@@ -19,11 +19,4 @@ describe('Update', () => {
   it('should update a prop with a param', () => {
     expect(update({ nested: { prop: 5 } }, 'nested.prop', inc, 2)).toEqual({ nested: { prop: 7 } })
   })
-
-  it('should wrap a function', () => {
-    const immutableInc = update(inc)
-
-    expect(immutableInc({ nested: { prop: 5 } }, 'nested.prop')).toEqual({ nested: { prop: 6 } })
-    expect(immutableInc({ nested: { prop: 5 } }, 'nested.prop', 2)).toEqual({ nested: { prop: 7 } })
-  })
 })
