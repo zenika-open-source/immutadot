@@ -5,7 +5,7 @@ We are very happy to welcome new contributors. :tada:
 ## How can I contribute ?
 ### Report a bug :bug:
 If you think you have found a bug, please check out [our issue tracker](https://github.com/Zenika/immutadot/issues) to see if anyone has already reported it.<br />
-If you are the first to have noticed it, please create an issue, and make sure to provide any information that might help us resolve the issue.<br />
+If you are the first to have noticed it, please [create an issue](https://github.com/Zenika/immutadot/issues/new), and make sure to provide any information that might help us resolve it.<br />
 You're welcome to try and fix it by submitting a pull request if you would like to (see Pull requests section for more information).
 
 ### Feature requests :sparkles:
@@ -15,6 +15,7 @@ TODO
 TODO
 
 ### Pull requests
+TODO
 #### Code style
 TODO
 #### emojis :beers:
