@@ -6,7 +6,7 @@
 [Description of the issue]
 
 ### Only for bugs :bug:
-**Version** : [The version of immutadot you are using]
+**Version :** [The version of immutadot you are using]
 
 #### Expected behavior
 [What you expect to happen]
@@ -15,7 +15,7 @@
 [What actually happens]
 
 #### How to reproduce
-[Steps to reproduces the bug, or a simple example on runkit]
+[Steps to reproduces the bug, or a simple example on [runkit](https://runkit.com/)]
 
 ### Only for feature requests :sparkles:
 
