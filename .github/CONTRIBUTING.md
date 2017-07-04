@@ -4,15 +4,15 @@ We are very happy to welcome new contributors. :tada:
 
 ## How can I contribute ? :man_technologist:
 ### Report a bug :bug:
-If you think you have found a bug, please search [our issue tracker](https://github.com/Zenika/immutadot/issues) to see if anyone has already reported it.<br />
-If you are the first to have noticed it, please [create an issue](https://github.com/Zenika/immutadot/issues/new), and make sure to provide any information that might help us resolve it.<br />
+If you think you have found a bug, please search [our issue tracker][issues] to see if anyone has already reported it.<br />
+If you are the first to have noticed it, please [create an issue][new_issue], and make sure to provide any information that might help us resolve it.<br />
 You are welcome to try and fix it by submitting a pull request if you would like to (see Pull requests section for more information).
 
 ### Feature requests and enhancements :sparkles:
-We are open to feature requests, be sure to search [our issue tracker](https://github.com/Zenika/immutadot/issues) to see if anyone has already asked for it.<br />
-If not, please [create an issue](https://github.com/Zenika/immutadot/issues/new) describing what you want, what is your use case, and an example of code.<br />
+We are open to feature requests, be sure to search [our issue tracker][issues] to see if anyone has already asked for it.<br />
+If not, please [create an issue][new_issue] describing what you want, what is your use case, and an example of code.<br />
 You are welcome to try and do it yourself by submitting a pull request if you would like to (see Pull requests section for more information).<br />
-As immutad●t is still a very young project, we are also open to enhancement suggestions ; if you think of anything that might help us improve the project, please [create an issue](https://github.com/Zenika/immutadot/issues/new) and we will be happy to discuss it with you.
+As immutad●t is still a very young project, we are also open to enhancement suggestions ; if you think of anything that might help us improve the project, please [create an issue][new_issue] and we will be happy to discuss it with you.
 
 ### Pull requests :arrow_up:
 #### Installation :package:
@@ -40,7 +40,10 @@ Each and every commit message has to be prefixed by an emoji.<br />
 Please refer to [the gitmoji guide](https://gitmoji.carloscuesta.me/) to know which one to use.
 
 ## I have a question :question:
-If you are not sure whether to report a bug or ask for a new feature, or if you just have a question about anything, please [create an issue](https://github.com/Zenika/immutadot/issues/new).
+If you are not sure whether to report a bug or ask for a new feature, or if you just have a question about anything, please [create an issue][new_issue].
 
 ## Code of conduct :page_facing_up:
 In order to keep a happy and respectful atmosphere around the project, we expect everyone participating in it to follow our [Code of conduct](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md).
+
+[issues]: https://github.com/Zenika/immutadot/issues
+[new_issue]: https://github.com/Zenika/immutadot/issues/new
