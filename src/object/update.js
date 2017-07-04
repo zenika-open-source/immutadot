@@ -1,7 +1,7 @@
-import fpUpdate from 'lodash/fp/update'
-import { lodashFpConvertOptions } from '../consts'
+import convertLodashFp from '../util/convertLodashFp'
+import update from 'lodash/fp/update'
 
-const rawUpdate = fpUpdate.convert(lodashFpConvertOptions)
+const convertedUpdate = convertLodashFp(update)
 
 /**
  * Updates the value at <code>path</code> of <code>object</code> using the <code>updater</code> function.<br/>
@@ -22,4 +22,4 @@ const rawUpdate = fpUpdate.convert(lodashFpConvertOptions)
  * @see {@link https://lodash.com/docs#update|lodash.update} for more information.
  * @since 0.1.5
  */
-export default (object, path, updater, ...args) => rawUpdate(object, path, v => updater(v, ...args))
+export default (object, path, updater, ...args) => convertedUpdate(object, path, v => updater(v, ...args))

@@ -1,10 +1,11 @@
+import convertLodashFp from './convertLodashFp'
 import update from '../object/update'
 
 /**
  * Wraps an <code>updater</code> function, returning a new function taking <code>object</code>, <code>path</code> and <code>…args</code> as parameters.<br/>
  * The <code>updater</code> function is invoked with <code>value</code> and <code>…args</code>.<br/>
  * Be carefull, the <code>updater</code> function must not mutate its <code>value</code> argument.
- * @function convert
+ * @function
  * @memberof util
  * @param {function} updater The updater function.
  * @return {function} Returns the wrapped function.
@@ -17,4 +18,17 @@ import update from '../object/update'
  * @see {@link object.update|update} for more information.
  * @since 0.1.14
  */
-export default updater => (obj, path, ...rest) => update(obj, path, updater, ...rest)
+const convert = updater => (obj, path, ...rest) => update(obj, path, updater, ...rest)
+export default convert
+
+/**
+ * Converts and wraps a lodash/fp function.
+ * @function
+ * @memberof util
+ * @param {function} fn The lodash/fp function.
+ * @return {function} Returns the wrapped function.
+ * @see {@link util.convert|convert} for more information.
+ * @since 0.1.14
+ * @private
+ */
+export const convertLodashFpToImmutadot = fn => convert(convertLodashFp(fn))
