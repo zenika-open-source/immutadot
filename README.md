@@ -18,7 +18,7 @@ immutad●t lets you use a more meaningful and shorter syntax to apply operation
 
 ## Immutability
 
-In last years one of our biggest challenge has been to find an efficient way to detect changes in our data to determine when to re-render our interfaces.
+In the last years one of our biggest challenge has been to find an efficient way to detect changes in our data to determine when to re-render our interfaces.
 
 An immutable object is an object that cannot be changed once created. It brings several benefits :
 
