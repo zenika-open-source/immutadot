@@ -2,7 +2,7 @@
 First of all thank you for the interest you show in immutad●t ! :+1:<br />
 We are very happy to welcome new contributors. :tada:
 
-## How can I contribute ? :man_technology:
+## How can I contribute ? :man_technologist:
 ### Report a bug :bug:
 If you think you have found a bug, please search [our issue tracker](https://github.com/Zenika/immutadot/issues) to see if anyone has already reported it.<br />
 If you are the first to have noticed it, please [create an issue](https://github.com/Zenika/immutadot/issues/new), and make sure to provide any information that might help us resolve it.<br />
