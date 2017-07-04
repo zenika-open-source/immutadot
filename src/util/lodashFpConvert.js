@@ -12,7 +12,7 @@ const lodashFpConvertOptions = {
 
 /**
  * Converts a lodash/fp function with {@link util.lodashFpConvertOptions|lodashFpConvertOptions}.
- * @function convertLodashFp
+ * @function lodashFpConvert
  * @memberof util
  * @param {function} fn The lodash/fp function.
  * @return {function} Returns the converted lodash/fp function.

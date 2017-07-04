@@ -1,4 +1,4 @@
-import convertLodashFp from '../util/convertLodashFp'
+import lodashFpConvert from '../util/lodashFpConvert'
 import set from 'lodash/fp/set'
 
 /**
@@ -14,4 +14,4 @@ import set from 'lodash/fp/set'
  * @see {@link https://lodash.com/docs#set|lodash.set} for more information.
  * @since 0.1.5
  */
-export default convertLodashFp(set)
+export default lodashFpConvert(set)

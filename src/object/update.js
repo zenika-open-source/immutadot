@@ -1,7 +1,7 @@
-import convertLodashFp from '../util/convertLodashFp'
+import lodashFpConvert from '../util/lodashFpConvert'
 import update from 'lodash/fp/update'
 
-const convertedUpdate = convertLodashFp(update)
+const convertedUpdate = lodashFpConvert(update)
 
 /**
  * Updates the value at <code>path</code> of <code>object</code> using the <code>updater</code> function.<br/>

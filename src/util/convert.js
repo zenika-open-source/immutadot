@@ -1,4 +1,5 @@
-import convertLodashFp from './convertLodashFp'
+import lodashFpConvert from './lodashFpConvert'
+import toArray from 'lodash/toArray'
 import update from '../object/update'
 
 /**
@@ -31,4 +32,21 @@ export default convert
  * @since 0.1.14
  * @private
  */
-export const convertLodashFpToImmutadot = fn => convert(convertLodashFp(fn))
+export const convertLodashFp = fn => convert(lodashFpConvert(fn))
+
+/**
+ * Converts an Array method.
+ * @function
+ * @memberof util
+ * @param {string} method Array method name.
+ * @return {function} Returns the wrapped function.
+ * @see {@link util.convert|convert} for more information.
+ * @see {@link https://lodash.com/docs#toArray|lodash.toArray} for more information.
+ * @since 0.1.14
+ * @private
+ */
+export const convertArrayMethod = method => convert((array, ...args) => {
+  const newArray = toArray(array)
+  newArray[method](...args)
+  return newArray
+})

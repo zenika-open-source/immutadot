@@ -1,5 +1,5 @@
 import assign from 'lodash/fp/assign'
-import { convertLodashFpToImmutadot } from '../util/convert'
+import { convertLodashFp } from '../util/convert'
 
 /**
  * Assigns own enumerable string keyed properties of source objects to the
@@ -15,4 +15,4 @@ import { convertLodashFpToImmutadot } from '../util/convert'
  * @see {@link https://lodash.com/docs#assign|lodash.assign} for more information.
  * @since 0.1.12
  */
-export default convertLodashFpToImmutadot(assign)
+export default convertLodashFp(assign)
