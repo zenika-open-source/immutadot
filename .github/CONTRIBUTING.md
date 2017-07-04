@@ -12,7 +12,7 @@ You are welcome to try and fix it by submitting a pull request if you would like
 We are open to feature requests, be sure to search [our issue tracker](https://github.com/Zenika/immutadot/issues) to see if anyone has already asked for it.<br />
 If not, please [create an issue](https://github.com/Zenika/immutadot/issues/new) describing what you want, what is your use case, and an example of code.<br />
 You are welcome to try and do it yourself by submitting a pull request if you would like to (see Pull requests section for more information).<br />
-As immutad●t is still a very young project, we are also open to enhancement suggestions ; if you think of anything that might help us improve the project, please [create an issue](https://github.com/Zenika/immutadot/issues/new), and we will be happy to discuss it with you.
+As immutad●t is still a very young project, we are also open to enhancement suggestions ; if you think of anything that might help us improve the project, please [create an issue](https://github.com/Zenika/immutadot/issues/new) and we will be happy to discuss it with you.
 
 ### Pull requests :arrow_up:
 #### Installation :package:
@@ -31,7 +31,7 @@ Before pushing anything, please be sure to check that the tests are OK by runnin
 #### Documentation :bulb:
 The better the documentation, the less questions users will ask themeselves.<br />
 We [use jsdoc](http://usejsdoc.org/) to document our code, if you write any new code please write the documentation with it and try to conform to the existing documention.<br />
-If you want to see the result of what you wrote you can run `yarn docs` or `npm run docs`, it will generate the documentation in `docs/<version>/`.
+If you want to see the result of what you wrote you can run `yarn docs` or `npm run docs`, it will generate the documentation in `docs/<version>/`.<br />
 :warning: Please do not commit the files generated in `docs/`, it is automatically updated once we create a new tag.
 
 #### emojis :beers:
@@ -43,4 +43,4 @@ Please refer to [the gitmoji guide](https://gitmoji.carloscuesta.me/) to know wh
 If you are not sure whether to report a bug or ask for a new feature, or if you just have a question about anything, please [create an issue](https://github.com/Zenika/immutadot/issues/new).
 
 ## Code of conduct :page_facing_up:
-In order to keep a happy and respectful atmosphere around the project, we expect everyone participating in it to follow our [Code of conduct](https://github.com/Zenika/immutadot/blob/master/CODE_OF_CONDUCT.md).
+In order to keep a happy and respectful atmosphere around the project, we expect everyone participating in it to follow our [Code of conduct](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md).
