@@ -34,6 +34,10 @@ An immutable object is an object that cannot be changed once created. It brings 
 
 [ES2015+](https://github.com/tc39/ecma262#ecmascript) new features are great to deal with arrays and objects. As data structures get deeper, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
 
+### Interoperability
+
+Since immutad●t uses plain JavaScript objects you can use all standards ways to access your data. Moreover it lets you use all your favorites libraries.
+
 ### Exhaustive and yet extensible
 
 immutad●t comes with a large set of built-in utilities, mostly based on [lodash](https://lodash.com/). You haven't found what you're looking for? Do it yourself with the `convert` feature.
