@@ -46,6 +46,24 @@ immutad●t comes with a large set of built-in utilities, mostly based on [lodas
 
 If you are already familiar with [lodash](https://lodash.com/) and [ES2015+](https://github.com/tc39/ecma262#ecmascript) then you should be able to use immutad●t quickly.
 
+## Installation
+
+immutad●t is available on [npm repository](https://www.npmjs.com/package/immutadot).
+
+using npm:
+
+```shell
+$ npm install immutadot
+```
+
+using yarn:
+
+```shell
+$ yarn add immutadot
+```
+
+or you can directly download [sources](https://github.com/Zenika/immutadot/releases)
+
 ## Notes
 
 - [1](#immutability): You can find more informations about immutability and its benefits in the following article http://reactkungfu.com/2015/08/pros-and-cons-of-using-immutability-with-react-js/
