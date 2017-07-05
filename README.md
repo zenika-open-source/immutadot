@@ -90,9 +90,19 @@ You can find out a full list of immutad●t's features in our [documentation](ht
 
 ## Contributing
 
+We want contributing to immutad●t to be fun, enjoyable, and educational for anyone, and everyone.
+
 ### [Code of Conduct](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md)
 
-We have adopted a Code of Conduct that we expect project participants to adhere to. Please read the [full text](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+In the interest of fostering an open and welcoming environment, we have adopted a Code of Conduct that we expect project participants to adhere to. Please read the [full text](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+
+### [Contributing guide](https://github.com/Zenika/immutadot/blob/master/.github/CONTRIBUTING.md)
+
+If you are interested in contributing to immutad●t, please read our [contributing guide](https://github.com/Zenika/immutadot/blob/master/.github/CONTRIBUTING.md) to learn more about how to propose bugfixes and improvements.
+
+## License
+
+immutad●t is [MIT licensed](https://github.com/Zenika/immutadot/blob/master/LICENSE.md).
 
 ## Notes
 
