@@ -1,8 +1,5 @@
 import convert from '../util/convert'
-import { lodashFpConvertOptions } from '../consts'
-import pickBy from 'lodash/fp/pickBy'
-
-const rawPickBy = pickBy.convert(lodashFpConvertOptions)
+import pickBy from 'lodash/pickBy'
 
 /**
  * Creates an object composed of the object properties predicate returns truthy
@@ -18,4 +15,4 @@ const rawPickBy = pickBy.convert(lodashFpConvertOptions)
  * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
  * @since 0.1.12
  */
-export default convert(rawPickBy)
+export default convert(pickBy)

@@ -1,8 +1,5 @@
 import assign from 'lodash/fp/assign'
-import convert from '../util/convert'
-import { lodashFpConvertOptions } from '../consts'
-
-const rawAssign = assign.convert(lodashFpConvertOptions)
+import { convertLodashFp } from '../util/convert'
 
 /**
  * Assigns own enumerable string keyed properties of source objects to the
@@ -18,4 +15,4 @@ const rawAssign = assign.convert(lodashFpConvertOptions)
  * @see {@link https://lodash.com/docs#assign|lodash.assign} for more information.
  * @since 0.1.12
  */
-export default convert(rawAssign)
+export default convertLodashFp(assign)

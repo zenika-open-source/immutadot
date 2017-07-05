@@ -1,5 +1,5 @@
-import fpUnset from 'lodash/fp/unset'
-import { lodashFpConvertOptions } from '../consts'
+import lodashFpConvert from '../util/lodashFpConvert'
+import unset from 'lodash/fp/unset'
 
 /**
  * Removes the property at <code>path</code> of <code>object</code>.
@@ -13,4 +13,4 @@ import { lodashFpConvertOptions } from '../consts'
  * @see {@link https://lodash.com/docs#unset|lodash.unset} for more information.
  * @since 0.1.5
  */
-export default fpUnset.convert(lodashFpConvertOptions)
+export default lodashFpConvert(unset)

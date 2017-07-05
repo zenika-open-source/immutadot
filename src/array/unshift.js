@@ -1,5 +1,4 @@
-import convert from '../util/convert'
-import toArray from 'lodash/toArray'
+import convertArrayMethod from './convertArrayMethod'
 
 /**
  * Adds one or more elements at the start of an array.
@@ -13,12 +12,7 @@ import toArray from 'lodash/toArray'
  * push({ nested: { prop: [1, 2] } }, 'nested.prop', 3) // => { nested: { prop: [3, 1, 2] } }
  * @example <caption>Add several elements.</caption>
  * push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4) // => { nested: { prop: [3, 4, 1, 2] } }
- * @see {@link https://lodash.com/docs#toArray|lodash.toArray} for more information.
  * @see {@link https://mdn.io/Array.prototype.unshift|Array.prototype.unshift} for more information.
  * @since 0.1.7
  */
-export default convert((array, ...values) => {
-  const newArray = toArray(array)
-  newArray.unshift(...values)
-  return newArray
-})
+export default convertArrayMethod('unshift')
