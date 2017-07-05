@@ -64,6 +64,26 @@ $ yarn add immutadot
 
 or you can directly download [sources](https://github.com/Zenika/immutadot/releases)
 
+## Usage
+
+in browser:
+
+```js
+  import { push } from 'immutadot'
+
+  push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)
+  // → { nested: { prop: [1, 2, 3, 4] } }
+```
+
+in node:
+
+```js
+  const { push } = require('immutadot')
+
+  push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)
+  // → { nested: { prop: [1, 2, 3, 4] } }
+```
+
 ## Documentation
 
 You can find out a full list of immutad●t's features in our [documentation](https://zenika.github.io/immutadot)
