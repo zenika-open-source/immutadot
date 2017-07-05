@@ -88,6 +88,12 @@ in node:
 
 You can find out a full list of immutad●t's features in our [documentation](https://zenika.github.io/immutadot)
 
+## Contributing
+
+### [Code of Conduct](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md)
+
+We have adopted a Code of Conduct that we expect project participants to adhere to. Please read the [full text](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+
 ## Notes
 
 - [1](#immutability): You can find more informations about immutability and its benefits in the following article http://reactkungfu.com/2015/08/pros-and-cons-of-using-immutability-with-react-js/
