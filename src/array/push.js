@@ -1,4 +1,4 @@
-import { convertArrayMethod } from '../util/convert'
+import convertArrayMethod from './convertArrayMethod'
 
 /**
  * Add one or more elements to the end of an array.

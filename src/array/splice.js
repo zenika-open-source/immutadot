@@ -1,4 +1,4 @@
-import { convertArrayMethod } from '../util/convert'
+import convertArrayMethod from './convertArrayMethod'
 
 /**
  * Changes the contents of an array by removing existing elements and/or adding new elements.

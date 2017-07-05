@@ -1,4 +1,4 @@
-import { convertArrayMethod } from '../util/convert'
+import convertArrayMethod from './convertArrayMethod'
 
 /**
  * Adds one or more elements at the start of an array.
