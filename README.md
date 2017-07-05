@@ -64,6 +64,10 @@ $ yarn add immutadot
 
 or you can directly download [sources](https://github.com/Zenika/immutadot/releases)
 
+## Documentation
+
+You can find out a full list of immutad●t's features in our [documentation](https://zenika.github.io/immutadot)
+
 ## Notes
 
 - [1](#immutability): You can find more informations about immutability and its benefits in the following article http://reactkungfu.com/2015/08/pros-and-cons-of-using-immutability-with-react-js/
