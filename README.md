@@ -20,7 +20,7 @@ immutad●t gives you a short and meaningful syntax to apply operations on immut
 
 In the last few years one of our biggest challenge has been to find an efficient way to detect changes in our data to determine when to re-render our interfaces.
 
-An immutable object is an object that cannot be changed once created. It brings up several benefits<sup>[1](#notes)</sup> :
+An immutable object is an object that cannot be changed once created. It brings several benefits<sup>[1](#notes)</sup> :
 
 - Data changes detection made simple (Shallow comparison)
 - Memoization
@@ -32,15 +32,15 @@ An immutable object is an object that cannot be changed once created. It brings 
 
 ### Concise
 
-*ES2015+* new features are great to deal with arrays and objects. As data structures get deeper, your code gets bigger and less readable to keep your data immutable. immutad●t uses the dot notation to address this issue.
+[ES2015+](https://github.com/tc39/ecma262#ecmascript) new features are great to deal with arrays and objects. As data structures get deeper, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
 
 ### Exhaustive and yet extensible
 
-immutad●t comes with a large set of built-in utilities, mostly based on *lodash*. You haven't found what you're looking for? Do it yourself with the `convert` feature
+immutad●t comes with a large set of built-in utilities, mostly based on [lodash](https://lodash.com/). You haven't found what you're looking for? Do it yourself with the `convert` feature.
 
 ### Learning curve
 
-If you are already familiar with *lodash* and *ES2015+* then you should be able to use immutad●t quickly.
+If you are already familiar with [lodash](https://lodash.com/) and [ES2015+](https://github.com/tc39/ecma262#ecmascript) then you should be able to use immutad●t quickly.
 
 ## Notes
 
