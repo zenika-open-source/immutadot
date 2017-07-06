@@ -9,9 +9,9 @@ import convertArrayMethod from './convertArrayMethod'
  * @param {...*} values The values to add.
  * @return {Object} Returns the updated object.
  * @example <caption>Add one element.</caption>
- * push({ nested: { prop: [1, 2] } }, 'nested.prop', 3) // => { nested: { prop: [3, 1, 2] } }
+ * unshift({ nested: { prop: [1, 2] } }, 'nested.prop', 3) // => { nested: { prop: [3, 1, 2] } }
  * @example <caption>Add several elements.</caption>
- * push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4) // => { nested: { prop: [3, 4, 1, 2] } }
+ * unshift({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4) // => { nested: { prop: [3, 4, 1, 2] } }
  * @see {@link https://mdn.io/Array.prototype.unshift|Array.prototype.unshift} for more information.
  * @since 0.1.7
  */
