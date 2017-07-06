@@ -12,6 +12,6 @@ import convertArrayMethod from './convertArrayMethod'
  * @return {Object} Returns the updated object.
  * @example splice({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 1, 2, 5, 6) // => { nested: { prop: [1, 5, 6, 4] } }
  * @see {@link https://mdn.io/Array.prototype.splice|Array.prototype.splice} for more information.
- * @since 0.1.14
+ * @since 0.2.0
  */
 export default convertArrayMethod('splice')

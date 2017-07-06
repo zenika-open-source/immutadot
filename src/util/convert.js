@@ -16,7 +16,7 @@ import update from '../object/update'
  * incProp(object, 'nested.prop') // => { nested: { prop: 5 } }
  * incProp(object, 'nested.prop', 2) // => { nested: { prop: 6 } }
  * @see {@link object.update|update} for more information.
- * @since 0.1.14
+ * @since 0.2.0
  */
 const convert = updater => (obj, path, ...rest) => update(obj, path, updater, ...rest)
 export default convert
@@ -28,7 +28,7 @@ export default convert
  * @param {function} fn The lodash/fp function.
  * @return {function} Returns the wrapped function.
  * @see {@link util.convert|convert} for more information.
- * @since 0.1.14
+ * @since 0.2.0
  * @private
  */
 export const convertLodashFp = fn => convert(lodashFpConvert(fn))

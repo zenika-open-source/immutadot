@@ -9,7 +9,7 @@ import toArray from 'lodash/toArray'
  * @return {function} Returns the wrapped function.
  * @see {@link util.convert|convert} for more information.
  * @see {@link https://lodash.com/docs#toArray|lodash.toArray} for more information.
- * @since 0.1.14
+ * @since 0.2.0
  * @private
  */
 export default method => convert((array, ...args) => {

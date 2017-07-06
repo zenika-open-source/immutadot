@@ -16,7 +16,7 @@ const lodashFpConvertOptions = {
  * @memberof util
  * @param {function} fn The lodash/fp function.
  * @return {function} Returns the converted lodash/fp function.
- * @since 0.1.14
+ * @since 0.2.0
  * @private
  */
 export default fn => fn.convert(lodashFpConvertOptions)
