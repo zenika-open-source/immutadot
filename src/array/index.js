@@ -3,6 +3,7 @@ import difference from './difference'
 import drop from './drop'
 import pull from './pull'
 import push from './push'
+import remove from './remove'
 import splice from './splice'
 import unshift from './unshift'
 import xor from './xor'
@@ -18,6 +19,7 @@ export {
   drop,
   pull,
   push,
+  remove,
   splice,
   unshift,
   xor,
