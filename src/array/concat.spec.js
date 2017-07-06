@@ -16,7 +16,7 @@ describe('Concat', () => {
     expect(concat({ nested: { prop: [1, 2] } }, 'nested.prop', [3, 4], [5, 6])).toEqual({ nested: { prop: [1, 2, 3, 4, 5, 6] } })
   })
 
-  it('should replace deep value with array', () => {
+  it('should replace value with array', () => {
     expect(concat({ nested: { prop: 1 } }, 'nested.prop', [2, 3])).toEqual({ nested: { prop: [1, 2, 3] } })
   })
 })

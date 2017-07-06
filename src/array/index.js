@@ -1,5 +1,6 @@
 import concat from './concat'
 import difference from './difference'
+import drop from './drop'
 import push from './push'
 import splice from './splice'
 import unshift from './unshift'
@@ -13,6 +14,7 @@ import xor from './xor'
 export {
   concat,
   difference,
+  drop,
   push,
   splice,
   unshift,
