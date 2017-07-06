@@ -1,9 +1,9 @@
-import concat from 'lodash/concat'
+import _concat from 'lodash/concat'
 import convert from '../util/convert'
 
 /**
  * Creates a new array concatenating array with any additional arrays and/or values.
- * @function concat
+ * @function
  * @memberof array
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
@@ -13,4 +13,6 @@ import convert from '../util/convert'
  * @see {@link https://lodash.com/docs#concat|lodash.concat} for more information.
  * @since 0.2.0
  */
-export default convert(concat)
+const concat = convert(_concat)
+
+export default concat
