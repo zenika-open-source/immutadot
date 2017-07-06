@@ -15,6 +15,7 @@ immutad●t gives you a short and meaningful syntax to apply operations on immut
 [![CircleCI](https://circleci.com/gh/Zenika/immutadot.svg?style=shield&circle-token=8b309750f5785783ec9fb4531ba097da60563beb)](https://circleci.com/gh/Zenika/immutadot)
 [![codecov](https://codecov.io/gh/Zenika/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/Zenika/immutadot)
 [![npm version](https://badge.fury.io/js/immutadot.svg)](https://badge.fury.io/js/immutadot)
+[![](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://zenika.github.io/immutadot)
 
 ## Immutability
 
