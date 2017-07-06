@@ -1,7 +1,7 @@
 import convertArrayMethod from './convertArrayMethod'
 
 /**
- * Adds one or more elements at the start of an array.
+ * Replaces an array adding elements at the start of the former array.
  * @function unshift
  * @memberof array
  * @param {Object} object The object to modify.

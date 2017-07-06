@@ -1,4 +1,9 @@
+import concat from './concat'
+import difference from './difference'
+import drop from './drop'
+import pull from './pull'
 import push from './push'
+import remove from './remove'
 import splice from './splice'
 import unshift from './unshift'
 import xor from './xor'
@@ -9,7 +14,12 @@ import xor from './xor'
  * @since 0.1.6
  */
 export {
+  concat,
+  difference,
+  drop,
+  pull,
   push,
+  remove,
   splice,
   unshift,
   xor,

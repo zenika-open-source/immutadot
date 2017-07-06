@@ -1,7 +1,7 @@
 import convertArrayMethod from './convertArrayMethod'
 
 /**
- * Add one or more elements to the end of an array.
+ * Replaces an array adding one or more elements to the end of the former array.
  * @function push
  * @memberof array
  * @param {Object} object The object to modify.

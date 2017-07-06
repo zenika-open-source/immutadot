@@ -1,7 +1,7 @@
 import convertArrayMethod from './convertArrayMethod'
 
 /**
- * Changes the contents of an array by removing existing elements and/or adding new elements.
+ * Replaces an array removing and/or adding elements at <code>index</code> in the former array.
  * @function splice
  * @memberof array
  * @param {Object} object The object to modify.
