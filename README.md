@@ -32,11 +32,11 @@ An immutable object is an object that cannot be changed once created. It brings 
 
 ### Concise
 
-[ES2015+](https://github.com/tc39/ecma262#ecmascript) new features are great to deal with arrays and objects. As data structures get deeper, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
+[ES2015+](https://github.com/tc39/ecma262#ecmascript) new features are great to deal with arrays and objects. As data structures expand, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
 
 ### Interoperability
 
-Since immutad●t uses plain JavaScript objects you can use all standards ways to access your data. Moreover it lets you use all your favorites libraries.
+immutad●t uses plain JavaScript objects so you can access your data using standard ways. Moreover, it lets you freely enjoy your favorite libraries.
 
 ### Exhaustive and yet extensible
 
@@ -50,16 +50,16 @@ If you are already familiar with [lodash](https://lodash.com/) and [ES2015+](htt
 
 immutad●t is available on [npm repository](https://www.npmjs.com/package/immutadot).
 
-using npm:
-
-```shell
-$ npm install immutadot
-```
-
 using yarn:
 
 ```shell
 $ yarn add immutadot
+```
+
+using npm:
+
+```shell
+$ npm install immutadot
 ```
 
 or you can directly download [sources](https://github.com/Zenika/immutadot/releases).
@@ -84,11 +84,11 @@ in node:
   // → { nested: { prop: [1, 2, 3, 4] } }
 ```
 
-Feel free to try immutad●t with our online [demo](https://npm.runkit.com/immutadot).
+Feel free to try immutad●t on [runkit](https://npm.runkit.com/immutadot).
 
 ## Documentation
 
-You can find out a full list of immutad●t's features in our [documentation](https://zenika.github.io/immutadot).
+The full list of immutad●t's features is available in our [documentation](https://zenika.github.io/immutadot).
 
 ## Contributing
 
@@ -96,11 +96,11 @@ We want contributing to immutad●t to be fun, enjoyable, and educational for an
 
 ### [Code of Conduct](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md)
 
-In the interest of fostering an open and welcoming environment, we have adopted a Code of Conduct that we expect project participants to adhere to. Please read the [full text](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+In the interest of fostering an open and welcoming environment, we have adopted a Code of Conduct that we expect project participants to commit to. Please read the [full text](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md) so that you can understand what behavior will and will not be tolerated.
 
 ### [Contributing guide](https://github.com/Zenika/immutadot/blob/master/.github/CONTRIBUTING.md)
 
-If you are interested in contributing to immutad●t, please read our [contributing guide](https://github.com/Zenika/immutadot/blob/master/.github/CONTRIBUTING.md) to learn more about how to propose bugfixes and improvements.
+If you are interested in contributing to immutad●t, please read our [contributing guide](https://github.com/Zenika/immutadot/blob/master/.github/CONTRIBUTING.md) to learn more about how to suggest bugfixes and improvements.
 
 ## License
 
