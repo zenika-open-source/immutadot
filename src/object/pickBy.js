@@ -1,10 +1,10 @@
+import _pickBy from 'lodash/pickBy'
 import convert from '../util/convert'
-import pickBy from 'lodash/pickBy'
 
 /**
  * Creates an object composed of the object properties predicate returns truthy
  * for. The predicate is invoked with two arguments: (value, key).
- * @function pickBy
+ * @function
  * @memberof object
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
@@ -15,4 +15,5 @@ import pickBy from 'lodash/pickBy'
  * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
  * @since 0.1.12
  */
-export default convert(pickBy)
+const pickBy = convert(_pickBy)
+export default pickBy

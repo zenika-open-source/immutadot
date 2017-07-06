@@ -2,7 +2,7 @@ import UsingWrapper from './UsingWrapper'
 
 /**
  * Allows to specify one or several paths to use as arguments for an immutadot function call.
- * @function using
+ * @function
  * @memberof util
  * @param {...(Array|string)} paths The paths to use as arguments.
  * @return {Object} Returns an object with immutadot functions.
@@ -15,4 +15,5 @@ import UsingWrapper from './UsingWrapper'
  *   .update(o, 'nested.a', (a, b, c) => a * b + c) // => { nested: { a: 10, b: 3, c: 4 } }
  * @since 0.1.12
  */
-export default (...paths) => new UsingWrapper(...paths)
+const using = (...paths) => new UsingWrapper(...paths)
+export default using

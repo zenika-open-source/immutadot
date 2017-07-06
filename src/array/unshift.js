@@ -2,7 +2,7 @@ import convertArrayMethod from './convertArrayMethod'
 
 /**
  * Replaces an array adding elements at the start of the former array.
- * @function unshift
+ * @function
  * @memberof array
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
@@ -15,4 +15,5 @@ import convertArrayMethod from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.unshift|Array.prototype.unshift} for more information.
  * @since 0.1.7
  */
-export default convertArrayMethod('unshift')
+const unshift = convertArrayMethod('unshift')
+export default unshift
