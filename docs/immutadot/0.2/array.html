@@ -1,0 +1,2678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>array - Documentation</title>
+
+    <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2 class="home-link"><a href="index.html">immutad●t</a></h2><h3>Namespaces</h3><ul><li><details open><summary><a href="array.html">array</a></summary><ul class='methods'><li data-type='method'><a href="array.html#.concat">concat</a></li><li data-type='method'><a href="array.html#.difference">difference</a></li><li data-type='method'><a href="array.html#.drop">drop</a></li><li data-type='method'><a href="array.html#.pull">pull</a></li><li data-type='method'><a href="array.html#.push">push</a></li><li data-type='method'><a href="array.html#.remove">remove</a></li><li data-type='method'><a href="array.html#.splice">splice</a></li><li data-type='method'><a href="array.html#.unshift">unshift</a></li><li data-type='method'><a href="array.html#.xor">xor</a></li></ul></details></li><li><details open><summary><a href="collection.html">collection</a></summary><ul class='methods'><li data-type='method'><a href="collection.html#.map">map</a></li></ul></details></li><li><details open><summary><a href="lang.html">lang</a></summary><ul class='methods'><li data-type='method'><a href="lang.html#.toggle">toggle</a></li></ul></details></li><li><details open><summary><a href="math.html">math</a></summary><ul class='methods'><li data-type='method'><a href="math.html#.add">add</a></li></ul></details></li><li><details open><summary><a href="object.html">object</a></summary><ul class='methods'><li data-type='method'><a href="object.html#.assign">assign</a></li><li data-type='method'><a href="object.html#.mapValues">mapValues</a></li><li data-type='method'><a href="object.html#.pickBy">pickBy</a></li><li data-type='method'><a href="object.html#.set">set</a></li><li data-type='method'><a href="object.html#.unset">unset</a></li><li data-type='method'><a href="object.html#.update">update</a></li></ul></details></li><li><details open><summary><a href="seq.html">seq</a></summary><ul class='methods'><li data-type='method'><a href="seq.html#.chain">chain</a></li><li data-type='method'><a href="seq.html#value">value</a></li></ul></details></li><li><details open><summary><a href="util.html">util</a></summary><ul class='methods'><li data-type='method'><a href="util.html#.convert">convert</a></li><li data-type='method'><a href="util.html#.using">using</a></li></ul></details></li></ul>
+</nav>
+
+<div id="main" class="main-container">
+    
+        <h1 class="page-title">array</h1>
+    
+
+    
+
+
+
+
+<section class="page-container">
+
+    <header class="page-header">
+        
+            <h2>
+            array
+            </h2>
+            
+        
+    </header>
+
+    <section class="page-content">
+        <article class="container-overview">
+            
+                
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_index.js.html">array/index.js</a>, <a href="array_index.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.1.6</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+                
+                    <div class="description">Array functions.</div>
+                
+
+                
+            
+        </article>
+
+        
+
+        
+
+        
+
+         
+
+        
+
+        
+
+        
+            <article class="container-methods">
+                <h3 class="subsection-title">Methods</h3>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".concat"><span class="signature-type">(static) </span>concat<span class="signature">(object, path, &hellip;arrays)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_concat.js.html">array/concat.js</a>, <a href="array_concat.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.2.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://lodash.com/docs#concat">lodash.concat</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array concatenating the former array with additional arrays and/or values.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>concat({ nested: { prop: [1, 2] } }, 'nested.prop', [3, 4]) // => { nested: { prop: [1, 2, 3, 4] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">string</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>arrays</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The arrays to concatenate.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".difference"><span class="signature-type">(static) </span>difference<span class="signature">(object, path, &hellip;arrays)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_difference.js.html">array/difference.js</a>, <a href="array_difference.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.2.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://lodash.com/docs#difference">lodash.difference</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array removing values in the other given arrays from the former array.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>difference({ nested: { prop: [1, 2] } }, 'nested.prop', [2, 3]) // => { nested: { prop: [1] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">string</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>arrays</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The arrays of values to exclude.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".drop"><span class="signature-type">(static) </span>drop<span class="signature">(object, path, <span class="optional">[n]</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_drop.js.html">array/drop.js</a>, <a href="array_drop.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.2.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://lodash.com/docs#drop">lodash.drop</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array dropping one or several elements at the start of the former array.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>drop({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 2) // => { nested: { prop: [3, 4] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+            <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">string</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>n</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+                <code>1</code>
+            
+        </td>
+    
+
+    <td class="description last">The number of elements to drop.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".pull"><span class="signature-type">(static) </span>pull<span class="signature">(object, path, &hellip;values)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_pull.js.html">array/pull.js</a>, <a href="array_pull.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.2.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://lodash.com/docs#pull">lodash.pull</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array removing all given values from the former array.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>pull({ nested: { prop: [1, 2, 3, 1, 2, 3] } }, 'nested.prop', 1, 3) // => { nested: { prop: [2, 2] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">string</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>values</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The values to remove.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".push"><span class="signature-type">(static) </span>push<span class="signature">(object, path, &hellip;values)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_push.js.html">array/push.js</a>, <a href="array_push.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.1.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.push">Array.prototype.push</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array adding one or more elements to the end of the former array.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+        <p class="code-caption">Add one element.</p>
+    
+    <pre class="prettyprint"><code>push({ nested: { prop: [1, 2] } }, 'nested.prop', 3) // => { nested: { prop: [1, 2, 3] } }</code></pre>
+
+        <p class="code-caption">Add several elements.</p>
+    
+    <pre class="prettyprint"><code>push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4) // => { nested: { prop: [1, 2, 3, 4] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">string</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>values</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The values to add.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".remove"><span class="signature-type">(static) </span>remove<span class="signature">(object, path, <span class="optional">[predicate]</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_remove.js.html">array/remove.js</a>, <a href="array_remove.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.2.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://lodash.com/docs#remove">lodash.remove</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array removing elements that predicate returns truthy for from the former array.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>remove({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v > 2) // => { nested: { prop: [1, 2] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+            <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">string</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>predicate</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">function</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+                <code><a href="https://lodash.com/docs#identity">lodash.identity</a></code>
+            
+        </td>
+    
+
+    <td class="description last">The function invoked per iteration.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".splice"><span class="signature-type">(static) </span>splice<span class="signature">(object, path, start, <span class="optional">[deleteCount]</span>, &hellip;values)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_splice.js.html">array/splice.js</a>, <a href="array_splice.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.2.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.splice">Array.prototype.splice</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array removing and/or adding elements at <code>index</code> in the former array.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>splice({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 1, 2, 5, 6) // => { nested: { prop: [1, 5, 6, 4] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">string</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>start</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Index at which to start changing the array.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>deleteCount</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The number of old array elements to remove.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>values</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The values to add.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".unshift"><span class="signature-type">(static) </span>unshift<span class="signature">(object, path, &hellip;values)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_unshift.js.html">array/unshift.js</a>, <a href="array_unshift.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.1.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.unshift">Array.prototype.unshift</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array adding elements at the start of the former array.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+        <p class="code-caption">Add one element.</p>
+    
+    <pre class="prettyprint"><code>unshift({ nested: { prop: [1, 2] } }, 'nested.prop', 3) // => { nested: { prop: [3, 1, 2] } }</code></pre>
+
+        <p class="code-caption">Add several elements.</p>
+    
+    <pre class="prettyprint"><code>unshift({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4) // => { nested: { prop: [3, 4, 1, 2] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">string</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>values</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The values to add.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".xor"><span class="signature-type">(static) </span>xor<span class="signature">(object, path, &hellip;arrays)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_xor.js.html">array/xor.js</a>, <a href="array_xor.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.1.6</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://lodash.com/docs#xor">lodash.xor</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array by the symmetric difference of the former array and the given arrays.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>xor({ nested: { prop: [1, 2] } }, 'nested.prop', [2, 3]) // => { nested: { prop: [1, 3] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type">string</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>arrays</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The arrays to inspect.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+            </article>
+        
+
+        
+
+        
+    </section>
+
+</section>
+
+
+
+
+</div>
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script src="scripts/main.js"></script>
+</body>
+</html>
