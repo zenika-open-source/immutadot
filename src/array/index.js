@@ -1,6 +1,7 @@
 import concat from './concat'
 import difference from './difference'
 import drop from './drop'
+import pull from './pull'
 import push from './push'
 import splice from './splice'
 import unshift from './unshift'
@@ -15,6 +16,7 @@ export {
   concat,
   difference,
   drop,
+  pull,
   push,
   splice,
   unshift,

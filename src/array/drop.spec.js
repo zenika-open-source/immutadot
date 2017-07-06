@@ -16,7 +16,7 @@ describe('Drop', () => {
     expect(drop({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 2)).toEqual({ nested: { prop: [3, 4] } })
   })
 
-  it('should replace deep value with array', () => {
+  it('should replace deep undefined with array', () => {
     expect(drop(undefined, 'nested.prop')).toEqual({ nested: { prop: [] } })
   })
 })
