@@ -5,7 +5,7 @@
   "keywords": [
     "immutable",
     "dot-notation",
-    "dot-prop",
+    "nested-structures",
     "react",
     "redux",
     "lodash"
