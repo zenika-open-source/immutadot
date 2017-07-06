@@ -2,17 +2,16 @@ import _concat from 'lodash/concat'
 import convert from '../util/convert'
 
 /**
- * Creates a new array concatenating array with any additional arrays and/or values.
+ * Replaces an array concatenating the former array with additional arrays and/or values.
  * @function
  * @memberof array
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
  * @param {...Array} arrays The arrays to concatenate.
- * @return {Array} Returns the new concatenated array.
+ * @return {Object} Returns the updated object.
  * @example concat({ nested: { prop: [1, 2] } }, 'nested.prop', [3, 4]) // => { nested: { prop: [1, 2, 3, 4] } }
  * @see {@link https://lodash.com/docs#concat|lodash.concat} for more information.
  * @since 0.2.0
  */
 const concat = convert(_concat)
-
 export default concat
