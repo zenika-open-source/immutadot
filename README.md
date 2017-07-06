@@ -20,7 +20,7 @@ immutad●t gives you a short and meaningful syntax to apply operations on immut
 
 In the last few years one of our biggest challenge has been to find an efficient way to detect changes in our data to determine when to re-render our interfaces.
 
-An immutable object is an object that cannot be changed once created. It brings several benefits<sup>[1](#notes)</sup> :
+An immutable object is an object that cannot be changed once created. It brings several benefits<sup>[1](#notes)</sup>:
 
 - Data changes detection made simple (Shallow comparison)
 - Memoization
@@ -62,7 +62,7 @@ using yarn:
 $ yarn add immutadot
 ```
 
-or you can directly download [sources](https://github.com/Zenika/immutadot/releases)
+or you can directly download [sources](https://github.com/Zenika/immutadot/releases).
 
 ## Usage
 
@@ -84,9 +84,11 @@ in node:
   // → { nested: { prop: [1, 2, 3, 4] } }
 ```
 
+Feel free to try immutad●t with our online [demo](https://npm.runkit.com/immutadot).
+
 ## Documentation
 
-You can find out a full list of immutad●t's features in our [documentation](https://zenika.github.io/immutadot)
+You can find out a full list of immutad●t's features in our [documentation](https://zenika.github.io/immutadot).
 
 ## Contributing
 
