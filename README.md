@@ -20,7 +20,7 @@ immutad●t gives you a short and meaningful syntax to apply operations on immut
 
 In the last few years one of our biggest challenge has been to find an efficient way to detect changes in our data to determine when to re-render our interfaces.
 
-An immutable object is an object that cannot be changed once created. It brings several benefits<sup>[1](#notes)</sup> :
+An immutable object is an object that cannot be changed once created. It brings several benefits<sup>[1](#notes)</sup>:
 
 - Data changes detection made simple (Shallow comparison)
 - Memoization
@@ -32,7 +32,11 @@ An immutable object is an object that cannot be changed once created. It brings 
 
 ### Concise
 
-[ES2015+](https://github.com/tc39/ecma262#ecmascript) new features are great to deal with arrays and objects. As data structures get deeper, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
+[ES2015+](https://github.com/tc39/ecma262#ecmascript) new features are great to deal with arrays and objects. As data structures expand, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
+
+### Interoperability
+
+immutad●t uses plain JavaScript objects so you can access your data using standard ways. Moreover, it lets you freely enjoy your favorite libraries.
 
 ### Exhaustive and yet extensible
 
@@ -41,6 +45,66 @@ immutad●t comes with a large set of built-in utilities, mostly based on [lodas
 ### Learning curve
 
 If you are already familiar with [lodash](https://lodash.com/) and [ES2015+](https://github.com/tc39/ecma262#ecmascript) then you should be able to use immutad●t quickly.
+
+## Installation
+
+immutad●t is available on [npm repository](https://www.npmjs.com/package/immutadot).
+
+using yarn:
+
+```shell
+$ yarn add immutadot
+```
+
+using npm:
+
+```shell
+$ npm install immutadot
+```
+
+or you can directly download [sources](https://github.com/Zenika/immutadot/releases).
+
+## Usage
+
+in browser:
+
+```js
+  import { push } from 'immutadot'
+
+  push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)
+  // → { nested: { prop: [1, 2, 3, 4] } }
+```
+
+in node:
+
+```js
+  const { push } = require('immutadot')
+
+  push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)
+  // → { nested: { prop: [1, 2, 3, 4] } }
+```
+
+Feel free to try immutad●t on [runkit](https://npm.runkit.com/immutadot).
+
+## Documentation
+
+The full list of immutad●t's features is available in our [documentation](https://zenika.github.io/immutadot).
+
+## Contributing
+
+We want contributing to immutad●t to be fun, enjoyable, and educational for anyone, and everyone.
+
+### [Code of Conduct](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md)
+
+In the interest of fostering an open and welcoming environment, we have adopted a Code of Conduct that we expect project participants to commit to. Please read the [full text](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md) so that you can understand what behavior will and will not be tolerated.
+
+### [Contributing guide](https://github.com/Zenika/immutadot/blob/master/.github/CONTRIBUTING.md)
+
+If you are interested in contributing to immutad●t, please read our [contributing guide](https://github.com/Zenika/immutadot/blob/master/.github/CONTRIBUTING.md) to learn more about how to suggest bugfixes and improvements.
+
+## License
+
+immutad●t is [MIT licensed](https://github.com/Zenika/immutadot/blob/master/LICENSE.md).
 
 ## Notes
 
