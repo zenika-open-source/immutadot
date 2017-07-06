@@ -1,10 +1,10 @@
+import _map from 'lodash/map'
 import convert from '../util/convert'
-import map from 'lodash/map'
 
 /**
  * Replaces by an array of values by running each element in the former collection thru iteratee.
  * The iteratee is invoked with three arguments: (value, index|key, collection).
- * @function map
+ * @function
  * @memberof collection
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
@@ -15,4 +15,5 @@ import map from 'lodash/map'
  * @see {@link object.update|update} for more information.
  * @since 0.1.8
  */
-export default convert(map)
+const map = convert(_map)
+export default map

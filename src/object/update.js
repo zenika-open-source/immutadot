@@ -1,13 +1,13 @@
+import _update from 'lodash/fp/update'
 import lodashFpConvert from '../util/lodashFpConvert'
-import update from 'lodash/fp/update'
 
-const convertedUpdate = lodashFpConvert(update)
+const convertedUpdate = lodashFpConvert(_update)
 
 /**
  * Updates the value at <code>path</code> of <code>object</code> using the <code>updater</code> function.<br/>
  * The updater is invoked with <code>value</code> and <code>…args</code>.<br/>
  * Be carefull, the <code>updater</code> function must not mutate its <code>value</code> argument.
- * @function update
+ * @function
  * @memberof object
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
@@ -22,4 +22,5 @@ const convertedUpdate = lodashFpConvert(update)
  * @see {@link https://lodash.com/docs#update|lodash.update} for more information.
  * @since 0.1.5
  */
-export default (object, path, updater, ...args) => convertedUpdate(object, path, v => updater(v, ...args))
+const update = (object, path, updater, ...args) => convertedUpdate(object, path, v => updater(v, ...args))
+export default update

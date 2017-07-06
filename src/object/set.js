@@ -1,10 +1,10 @@
+import _set from 'lodash/fp/set'
 import lodashFpConvert from '../util/lodashFpConvert'
-import set from 'lodash/fp/set'
 
 /**
  * Sets the value at <code>path</code> of <code>object</code>.
  * This is the <code>lodash/fp</code> <code>set</code>, with no arguments rearranging and no currying.
- * @function set
+ * @function
  * @memberof object
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
@@ -14,4 +14,5 @@ import set from 'lodash/fp/set'
  * @see {@link https://lodash.com/docs#set|lodash.set} for more information.
  * @since 0.1.5
  */
-export default lodashFpConvert(set)
+const set = lodashFpConvert(_set)
+export default set

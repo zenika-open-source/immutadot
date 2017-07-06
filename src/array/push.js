@@ -2,7 +2,7 @@ import convertArrayMethod from './convertArrayMethod'
 
 /**
  * Replaces an array adding one or more elements to the end of the former array.
- * @function push
+ * @function
  * @memberof array
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
@@ -15,4 +15,5 @@ import convertArrayMethod from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.push|Array.prototype.push} for more information.
  * @since 0.1.7
  */
-export default convertArrayMethod('push')
+const push = convertArrayMethod('push')
+export default push

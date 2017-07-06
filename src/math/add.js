@@ -1,9 +1,9 @@
-import add from 'lodash/add'
+import _add from 'lodash/add'
 import convert from '../util/convert'
 
 /**
  * Replaces by the addition of the former number and the given number.
- * @function add
+ * @function
  * @memberof math
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
@@ -13,4 +13,5 @@ import convert from '../util/convert'
  * @see {@link https://lodash.com/docs#add|lodash.add} for more information.
  * @since 0.1.7
  */
-export default convert(add)
+const add = convert(_add)
+export default add

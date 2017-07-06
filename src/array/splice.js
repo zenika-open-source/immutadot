@@ -2,7 +2,7 @@ import convertArrayMethod from './convertArrayMethod'
 
 /**
  * Replaces an array removing and/or adding elements at <code>index</code> in the former array.
- * @function splice
+ * @function
  * @memberof array
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
@@ -14,4 +14,5 @@ import convertArrayMethod from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.splice|Array.prototype.splice} for more information.
  * @since 0.2.0
  */
-export default convertArrayMethod('splice')
+const splice = convertArrayMethod('splice')
+export default splice

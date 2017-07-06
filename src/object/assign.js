@@ -1,11 +1,11 @@
-import assign from 'lodash/fp/assign'
+import _assign from 'lodash/fp/assign'
 import { convertLodashFp } from '../util/convert'
 
 /**
  * Assigns own enumerable string keyed properties of source objects to the
  * destination object. Source objects are applied from left to right.
  * Subsequent sources overwrite property assignments of previous sources.
- * @function assign
+ * @function
  * @memberof object
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
@@ -15,4 +15,5 @@ import { convertLodashFp } from '../util/convert'
  * @see {@link https://lodash.com/docs#assign|lodash.assign} for more information.
  * @since 0.1.12
  */
-export default convertLodashFp(assign)
+const assign = convertLodashFp(_assign)
+export default assign

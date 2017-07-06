@@ -2,7 +2,7 @@ import convert from '../util/convert'
 
 /**
  * Applies <code>!</code> to the property.
- * @function toggle
+ * @function
  * @memberof lang
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
@@ -10,4 +10,5 @@ import convert from '../util/convert'
  * @example toggle({ nested: { prop: true } }, 'nested.prop') // { nested: { prop: false } }
  * @since 0.1.5
  */
-export default convert(v => !v)
+const toggle = convert(v => !v)
+export default toggle
