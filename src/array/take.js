@@ -1,5 +1,5 @@
 import _take from 'lodash/fp/take'
-import { convert } from '../util/convert'
+import { convertLodashFp } from '../util/convert'
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the beginning.
@@ -13,5 +13,5 @@ import { convert } from '../util/convert'
  * @see {@link https://lodash.com/docs#take|lodash.take} for more information.
  * @since 0.3.0
  */
-const take = convert(_take)
+const take = convertLodashFp(_take)
 export default take
