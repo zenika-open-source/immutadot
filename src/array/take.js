@@ -1,5 +1,5 @@
 import _take from 'lodash/fp/take'
-import { convertLodashFp } from '../util/convert'
+import { convertLodashFp } from '../util/convert'
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the beginning.
