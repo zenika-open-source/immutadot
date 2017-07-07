@@ -1,5 +1,5 @@
 import _take from 'lodash/fp/take'
-import { convertLodashFp } from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the beginning.
@@ -11,7 +11,7 @@ import { convertLodashFp } from '../util/convert'
  * @return {Object} Returns the updated object.
  * @example take({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 2) // => { nested: { prop: [1, 2] } }
  * @see {@link https://lodash.com/docs#take|lodash.take} for more information.
- * @since 0.2.0
+ * @since 0.3.0
  */
-const take = convertLodashFp(_take)
+const take = convert(_take)
 export default take
