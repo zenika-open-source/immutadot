@@ -24,7 +24,7 @@
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.6.0",
-    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "codecov": "^2.2.0",
     "eslint": "^4.1.1",
     "hotdoc": "^0.7.2",
