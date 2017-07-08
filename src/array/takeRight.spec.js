@@ -3,7 +3,7 @@ import takeRight from './takeRight'
 
 describe('TakeRight', () => {
 
-  it('should takeRight one element at the end of the array', () => {
+  it('should take one element at the end of the array', () => {
     const original = { nested: { prop: [1, 2, 3] } }
 
     const final = takeRight(original, 'nested.prop', 1)
