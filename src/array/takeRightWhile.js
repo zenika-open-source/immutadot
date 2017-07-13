@@ -1,5 +1,5 @@
-import _takeRightWhile from 'lodash/fp/takeRightWhile'
-import { convertLodashFp } from '../util/convert'
+import _takeRightWhile from 'lodash/takeRightWhile'
+import convert from '../util/convert'
 
 /**
  * Creates a slice of array with elements taken from the end.
@@ -15,5 +15,5 @@ import { convertLodashFp } from '../util/convert'
  * @see {@link https://lodash.com/docs#takeRightWhile|lodash.takeRightWhile} for more information.
  * @since 0.3.0
  */
-const takeRightWhile = convertLodashFp(_takeRightWhile)
+const takeRightWhile = convert(_takeRightWhile)
 export default takeRightWhile

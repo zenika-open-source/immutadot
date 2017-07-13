@@ -1,5 +1,5 @@
-import _takeWhile from 'lodash/fp/takeWhile'
-import { convertLodashFp } from '../util/convert'
+import _takeWhile from 'lodash/takeWhile'
+import convert from '../util/convert'
 
 /**
  * Creates a slice of array with elements taken from the beginning.
@@ -15,5 +15,5 @@ import { convertLodashFp } from '../util/convert'
  * @see {@link https://lodash.com/docs#takeWhile|lodash.takeWhile} for more information.
  * @since 0.3.0
  */
-const takeWhile = convertLodashFp(_takeWhile)
+const takeWhile = convert(_takeWhile)
 export default takeWhile
