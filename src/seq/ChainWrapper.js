@@ -4,8 +4,8 @@ import * as lang from '../lang'
 import * as math from '../math'
 import * as object from '../object'
 
+import _flow from 'lodash/flow'
 import concat from 'lodash/concat'
-import flow from 'lodash/flow'
 import mapValues from 'lodash/mapValues'
 import toPath from 'lodash/toPath'
 
@@ -25,13 +25,14 @@ class ChainWrapper {
    * Instances are created by calling {@link seq.chain}.
    * @param {Object} object The object to wrap.
    * @param {Array|string} [path] The path of the object on which functions are called.
+   * @param {Array} [flow=[]] Current calls flow.
    * @see {@link seq.chain} for more information.
    * @since 0.1.8
    */
-  constructor(object, path) {
+  constructor(object, path, flow = []) {
     this._object = object
     this._path = path
-    this._flow = []
+    this._flow = flow
   }
 
   /**
@@ -53,8 +54,11 @@ class ChainWrapper {
    * @since 0.1.8
    */
   _call(fn, path, args) {
-    this._flow.push(object => fn(object, this._absolutePath(path), ...args))
-    return this
+    return new ChainWrapper(
+      this._object,
+      this._path,
+      concat(this._flow, object => fn(object, this._absolutePath(path), ...args))
+    )
   }
 
   /**
@@ -69,7 +73,7 @@ class ChainWrapper {
    * @since 0.1.8
    */
   value() {
-    return flow(this._flow)(this._object)
+    return _flow(this._flow)(this._object)
   }
 }
 
