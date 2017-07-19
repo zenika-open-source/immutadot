@@ -86,8 +86,8 @@ class ChainWrapper {
     namespace,
     fn => function(path, ...args) {
       return this._call(fn, path, args) // eslint-disable-line no-invalid-this
-    }
-  )
+    },
+  ),
 ))
 
 export default ChainWrapper
