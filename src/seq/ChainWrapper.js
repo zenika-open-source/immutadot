@@ -80,6 +80,21 @@ class ChainWrapper {
   }
 
   /**
+   * Executes the chain sequence and calls <code>callback</code> with the unwrapped object.
+   * @param {seq.peekCallback} callback Function to be called with the resolved unwrapped value.
+   * @returns {seq.ChainWrapper} The new wrapper instance.
+   * @todo Add an example.
+   * @since 0.3.0
+   */
+  peek(callback) {
+    const commited = this.commit()
+
+    callback(commited._wrapped)
+
+    return commited
+  }
+
+  /**
    * Executes the chain sequence and returns the unwrapped object.
    * @returns {Object} Returns the resolved unwrapped object.
    * @example
@@ -94,6 +109,14 @@ class ChainWrapper {
     return this.commit()._wrapped
   }
 }
+
+/**
+ * Function to be called by {@link seq.peek|peek} with the resolved unwrapped value.
+ * @memberof seq
+ * @callback peekCallback
+ * @param {Object} unwrapped The resolved unwrapped object
+ * @since 0.3.0
+ */
 
 // Add namespaces functions to the ChainWrapper prototype
 [
