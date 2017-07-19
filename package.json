@@ -41,5 +41,6 @@
     "test:coverage": "jest --coverage && codecov",
     "docs": "jsdoc -c jsdoc.json",
     "docs:private": "jsdoc -c jsdoc.json -p"
-  }
+  },
+  "runkitExample": "require('lodash')\nconst immutadot = require('immutadot')\n\nimmutadot.push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)\n// → { nested: { prop: [1, 2, 3, 4] } }\n\npickBy({ nested: [{ a: 1, b: 2, c: 3, d: 4 }, { e: 6 }] }, 'nested.0', v => v < 3)\n// → { nested: [{ a: 1, b: 2 }, { e: 6 }] }"
 }
