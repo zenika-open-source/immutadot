@@ -4,8 +4,8 @@ import * as lang from '../lang'
 import * as math from '../math'
 import * as object from '../object'
 
-import _flow from 'lodash/flow'
 import concat from 'lodash/concat'
+import flow from 'lodash/flow'
 import mapValues from 'lodash/mapValues'
 import toPath from 'lodash/toPath'
 
@@ -23,16 +23,17 @@ class ChainWrapper {
   /**
    * This constructor should not be called directly.<br/>
    * Instances are created by calling {@link seq.chain}.
-   * @param {Object} object The object to wrap.
+   * @param {Object} wrapped The object to wrap.
    * @param {Array|string} [path] The path of the object on which functions are called.
-   * @param {Array} [flow=[]] Current calls flow.
+   * @param {Array} [pFlow=[]] Current calls flow.
    * @see {@link seq.chain} for more information.
    * @since 0.1.8
    */
-  constructor(object, path, flow = []) {
-    this._object = object
+  constructor(wrapped, path, pFlow = []) {
+    this._wrapped = wrapped
     this._path = path
-    this._flow = flow
+    this._flow = pFlow
+    this._commited = null
   }
 
   /**
@@ -50,19 +51,36 @@ class ChainWrapper {
    * @param {function} fn The function to call.
    * @param {Array|string} path The path of the property to be set.
    * @param {...*} args The arguments for the function call.
-   * @returns {seq.ChainWrapper} The wrapper instance.
+   * @returns {seq.ChainWrapper} The new wrapper instance.
    * @since 0.1.8
    */
   _call(fn, path, args) {
     return new ChainWrapper(
-      this._object,
+      this._wrapped,
       this._path,
-      concat(this._flow, object => fn(object, this._absolutePath(path), ...args))
+      concat(this._flow, object => fn(object, this._absolutePath(path), ...args)),
     )
   }
 
   /**
-   * Executes the chain sequence to resolve the unwrapped object.
+   * Executes the chain sequence.
+   * @returns {seq.ChainWrapper} The new wrapper instance.
+   * @since 0.3.0
+   */
+  commit() {
+    if (this._flow.length === 0) return this
+
+    if (this._commited === null)
+      this._commited = new ChainWrapper(
+        flow(this._flow)(this._wrapped),
+        this._path,
+      )
+
+    return this._commited
+  }
+
+  /**
+   * Executes the chain sequence and returns the unwrapped object.
    * @returns {Object} Returns the resolved unwrapped object.
    * @example
    * chain({ nested1: { prop: 'old' }, nested2: { prop: 1 } })
@@ -73,7 +91,7 @@ class ChainWrapper {
    * @since 0.1.8
    */
   value() {
-    return _flow(this._flow)(this._object)
+    return this.commit()._wrapped
   }
 }
 
