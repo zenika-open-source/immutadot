@@ -60,8 +60,8 @@ class UsingWrapper {
     namespace,
     fn => function(object, path, ...args) {
       return this._call(fn, object, path, args) // eslint-disable-line no-invalid-this
-    }
-  )
+    },
+  ),
 ))
 
 export default UsingWrapper
