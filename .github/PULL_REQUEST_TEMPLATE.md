@@ -7,7 +7,7 @@
 
 **Issue :** [Reference to the issue]
 
-## Example usage
+### Example usage
 ```js
 // An example of code using what you made
 ```
