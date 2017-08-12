@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import remove from './remove'
 
-describe('Drop', () => {
+describe('Remove', () => {
 
   it('should remove an element', () => {
     const original = { nested: { prop: [1, 2, 3] } }
