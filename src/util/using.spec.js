@@ -38,13 +38,25 @@ describe('Using', () => {
         c: [1],
       },
     }
-    const output = using('nested.a', 'nested.b').push(input, 'nested.c')
+    const output = using('nested.a', 'nested.b').push(input, 'nested.c', 4)
     expect(output).toEqual({
       nested: {
         a: 2,
         b: 3,
-        c: [1, 2, 3],
+        c: [1, 2, 3, 4],
       },
+    })
+  })
+
+  it('should update a prop with another prop and a custom updater', () => {
+    const input = {
+      pages: [1, 2, 3],
+      selectedPages: [4, 5, 6],
+    }
+    const output = using('pages').update(input, 'selectedPages', (_, pages, start, end) => pages.slice(start, start + end), 1, 2)
+    expect(output).toEqual({
+      pages: [1, 2, 3],
+      selectedPages: [2, 3],
     })
   })
 })
