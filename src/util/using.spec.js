@@ -50,13 +50,22 @@ describe('Using', () => {
 
   it('should update a prop with another prop and a custom updater', () => {
     const input = {
-      pages: [1, 2, 3],
-      selectedPages: [4, 5, 6],
+      nested: {
+        a: 2,
+        b: 3,
+      },
     }
-    const output = using('pages').update(input, 'selectedPages', (_, pages, start, end) => pages.slice(start, start + end), 1, 2)
+    const output = using(using.placeholder, 'nested.b').update(
+      input,
+      'nested.a',
+      (a, b, c) => a * b + c,
+      4
+    )
     expect(output).toEqual({
-      pages: [1, 2, 3],
-      selectedPages: [2, 3],
+      nested: {
+        a: 10,
+        b: 3,
+      },
     })
   })
 })
