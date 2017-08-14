@@ -1,8 +1,6 @@
 immutad●t
 =================
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/Zenika/immutadot.svg)](https://greenkeeper.io/)
-
 A JavaScript library to deal with nested immutable structures.
 
 ```js
@@ -14,11 +12,13 @@ pickBy({ nested: [{ a: 1, b: 2, c: 3, d: 4 }, { e: 6 }] }, 'nested.0', v => v < 
 ```
 immutad●t gives you a short and meaningful syntax to apply operations on immutable structures.
 
-[![CircleCI](https://circleci.com/gh/Zenika/immutadot.svg?style=shield&circle-token=8b309750f5785783ec9fb4531ba097da60563beb)](https://circleci.com/gh/Zenika/immutadot)
-[![codecov](https://codecov.io/gh/Zenika/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/Zenika/immutadot)
 [![npm version](https://badge.fury.io/js/immutadot.svg)](https://badge.fury.io/js/immutadot)
 [![Try on RunKit](https://badge.runkitcdn.com/immutadot.svg)](https://npm.runkit.com/immutadot)
 [![](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://zenika.github.io/immutadot)
+
+[![CircleCI](https://circleci.com/gh/Zenika/immutadot.svg?style=shield&circle-token=8b309750f5785783ec9fb4531ba097da60563beb)](https://circleci.com/gh/Zenika/immutadot)
+[![codecov](https://codecov.io/gh/Zenika/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/Zenika/immutadot)
+[![Greenkeeper](https://badges.greenkeeper.io/Zenika/immutadot.svg)](https://greenkeeper.io/)
 
 ## Immutability
 
