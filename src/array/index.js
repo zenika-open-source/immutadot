@@ -4,6 +4,8 @@ import { differenceBy } from './differenceBy'
 import { differenceWith } from './differenceWith'
 import { drop } from './drop'
 import { dropRight } from './dropRight'
+import { dropRightWhile } from './dropRightWhile'
+import { dropWhile } from './dropWhile'
 import { pull } from './pull'
 import { push } from './push'
 import { remove } from './remove'
@@ -27,6 +29,8 @@ export {
   differenceWith,
   drop,
   dropRight,
+  dropRightWhile,
+  dropWhile,
   pull,
   push,
   remove,
