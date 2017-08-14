@@ -11,8 +11,4 @@ describe('Remove', () => {
     expect(final).toEqual({ nested: { prop: [1, 2] } })
     expect(original).toEqual({ nested: { prop: [1, 2, 3] } })
   })
-
-  it('should replace deep undefined with array', () => {
-    expect(remove(undefined, 'nested.prop', () => true)).toEqual({ nested: { prop: [] } })
-  })
 })

@@ -1,5 +1,5 @@
-import _remove from 'lodash/fp/remove'
-import { convertLodashFp } from '../util/convert'
+import _remove from 'lodash/remove'
+import convert from '../util/convert'
 
 /**
  * Replaces an array removing elements that predicate returns truthy for from the former array.
@@ -13,5 +13,8 @@ import { convertLodashFp } from '../util/convert'
  * @see {@link https://lodash.com/docs#remove|lodash.remove} for more information.
  * @since 0.2.0
  */
-const remove = convertLodashFp(_remove)
+const remove = convert((array, predicate) => {
+  _remove(array, predicate)
+  return array
+})
 export default remove
