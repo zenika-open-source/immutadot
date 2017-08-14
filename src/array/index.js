@@ -6,6 +6,7 @@ import { drop } from './drop'
 import { dropRight } from './dropRight'
 import { dropRightWhile } from './dropRightWhile'
 import { dropWhile } from './dropWhile'
+import { fill } from './fill'
 import { pull } from './pull'
 import { push } from './push'
 import { remove } from './remove'
@@ -31,6 +32,7 @@ export {
   dropRight,
   dropRightWhile,
   dropWhile,
+  fill,
   pull,
   push,
   remove,
