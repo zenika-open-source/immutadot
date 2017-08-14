@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 6
+    version: 8
   environment:
     PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
 
@@ -9,6 +9,7 @@ dependencies:
     - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
   override:
     - yarn
+    - yarn global add greenkeeper-lockfile@1
   cache_directories:
     - ~/.cache/yarn
 
@@ -17,9 +18,13 @@ compile:
     - yarn build
 
 test:
+  pre:
+    - greenkeeper-lockfile-update
   override:
     - yarn lint
     - yarn test:coverage
+  post:
+    - greenkeeper-lockfile-upload
 
 deployment:
   release:
