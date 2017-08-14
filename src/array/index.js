@@ -1,6 +1,7 @@
 import { concat } from './concat'
 import { difference } from './difference'
 import { differenceBy } from './differenceBy'
+import { differenceWith } from './differenceWith'
 import { drop } from './drop'
 import { pull } from './pull'
 import { push } from './push'
@@ -22,6 +23,7 @@ export {
   concat,
   difference,
   differenceBy,
+  differenceWith,
   drop,
   pull,
   push,
