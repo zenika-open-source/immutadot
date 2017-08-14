@@ -1,6 +1,8 @@
 immutad●t
 =================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Zenika/immutadot.svg)](https://greenkeeper.io/)
+
 A JavaScript library to deal with nested immutable structures.
 
 ```js
