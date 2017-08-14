@@ -2,7 +2,7 @@ import _differenceBy from 'lodash/differenceBy'
 import { convert } from '../util/convert'
 
 /**
- * Replaces an array removing values in the other given arrays from the former array.
+ * This method is like {@link array.difference} except that it uses <code>iteratee</code> to generate the value to be compared for each element.
  * @function
  * @memberof array
  * @param {Object} object The object to modify.
