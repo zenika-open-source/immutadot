@@ -8,6 +8,8 @@ import { dropRightWhile } from './dropRightWhile'
 import { dropWhile } from './dropWhile'
 import { fill } from './fill'
 import { intersection } from './intersection'
+import { intersectionBy } from './intersectionBy'
+import { intersectionWith } from './intersectionWith'
 import { pull } from './pull'
 import { push } from './push'
 import { remove } from './remove'
@@ -35,6 +37,8 @@ export {
   dropWhile,
   fill,
   intersection,
+  intersectionBy,
+  intersectionWith,
   pull,
   push,
   remove,
