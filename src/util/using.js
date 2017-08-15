@@ -1,4 +1,4 @@
-import UsingWrapper from './UsingWrapper'
+import { UsingWrapper } from './UsingWrapper'
 
 /**
  * Allows to specify one or several paths to use as arguments for an immutadot function call.
@@ -16,4 +16,4 @@ import UsingWrapper from './UsingWrapper'
  * @since 0.1.12
  */
 const using = (...paths) => new UsingWrapper(...paths)
-export default using
+export { using, using as default }

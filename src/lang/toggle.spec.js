@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import toggle from './toggle'
+import { toggle } from './toggle'
 
 describe('Toggle', () => {
 

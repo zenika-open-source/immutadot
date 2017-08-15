@@ -1,4 +1,4 @@
-import convertArrayMethod from './convertArrayMethod'
+import { convertArrayMethod } from './convertArrayMethod'
 
 /**
  * Replaces an array removing and/or adding elements at <code>index</code> in the former array.
@@ -15,4 +15,4 @@ import convertArrayMethod from './convertArrayMethod'
  * @since 0.2.0
  */
 const splice = convertArrayMethod('splice')
-export default splice
+export { splice, splice as default }

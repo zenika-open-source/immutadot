@@ -1,5 +1,5 @@
 import _set from 'lodash/fp/set'
-import lodashFpConvert from '../util/lodashFpConvert'
+import { lodashFpConvert } from '../util/lodashFpConvert'
 
 /**
  * Sets the value at <code>path</code> of <code>object</code>.
@@ -15,4 +15,4 @@ import lodashFpConvert from '../util/lodashFpConvert'
  * @since 0.1.5
  */
 const set = lodashFpConvert(_set)
-export default set
+export { set, set as default }

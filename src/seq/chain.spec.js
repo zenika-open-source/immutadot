@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import chain from './chain'
+import { chain } from './chain'
 
 describe('Chain', () => {
 

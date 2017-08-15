@@ -1,5 +1,5 @@
 import _drop from 'lodash/drop'
-import convert from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Replaces an array dropping one or several elements at the start of the former array.
@@ -14,4 +14,4 @@ import convert from '../util/convert'
  * @since 0.2.0
  */
 const drop = convert(_drop)
-export default drop
+export { drop, drop as default }

@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import map from './map'
+import { map } from './map'
 
 describe('Map', () => {
 

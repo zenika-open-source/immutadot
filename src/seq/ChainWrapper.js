@@ -90,4 +90,4 @@ class ChainWrapper {
   ),
 ))
 
-export default ChainWrapper
+export { ChainWrapper, ChainWrapper as default }

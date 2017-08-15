@@ -1,5 +1,5 @@
 import _remove from 'lodash/remove'
-import convert from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Replaces an array removing elements that predicate returns truthy for from the former array.
@@ -17,4 +17,4 @@ const remove = convert((array, predicate) => {
   _remove(array, predicate)
   return array
 })
-export default remove
+export { remove, remove as default }

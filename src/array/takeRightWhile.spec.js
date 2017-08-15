@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import takeRightWhile from './takeRightWhile'
+import { takeRightWhile } from './takeRightWhile'
 
 describe('TakeRight', () => {
 

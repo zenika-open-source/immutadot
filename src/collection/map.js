@@ -1,5 +1,5 @@
 import _map from 'lodash/map'
-import convert from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Replaces by an array of values by running each element in the former collection thru iteratee.
@@ -16,4 +16,4 @@ import convert from '../util/convert'
  * @since 0.1.8
  */
 const map = convert(_map)
-export default map
+export { map, map as default }

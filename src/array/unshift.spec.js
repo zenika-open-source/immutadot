@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import unshift from './unshift'
+import { unshift } from './unshift'
 
 describe('Unshift', () => {
 

@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import push from './push'
+import { push } from './push'
 
 describe('Push', () => {
 

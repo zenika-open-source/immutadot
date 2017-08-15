@@ -1,5 +1,5 @@
-import convert from './convert'
-import using from './using'
+import { convert } from './convert'
+import { using } from './using'
 
 /**
  * Array functions.

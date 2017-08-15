@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import take from './take'
+import { take } from './take'
 
 describe('Take', () => {
 

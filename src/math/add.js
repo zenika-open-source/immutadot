@@ -1,5 +1,5 @@
 import _add from 'lodash/add'
-import convert from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Replaces by the addition of the former number and the given number.
@@ -14,4 +14,4 @@ import convert from '../util/convert'
  * @since 0.1.7
  */
 const add = convert(_add)
-export default add
+export { add, add as default }

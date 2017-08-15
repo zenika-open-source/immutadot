@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import pickBy from './pickBy'
+import { pickBy } from './pickBy'
 
 describe('PickBy', () => {
 

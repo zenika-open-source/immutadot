@@ -1,5 +1,5 @@
 import _pickBy from 'lodash/pickBy'
-import convert from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Creates an object composed of the object properties predicate returns truthy
@@ -16,4 +16,4 @@ import convert from '../util/convert'
  * @since 0.1.12
  */
 const pickBy = convert(_pickBy)
-export default pickBy
+export { pickBy, pickBy as default }

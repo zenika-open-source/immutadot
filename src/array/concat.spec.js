@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import concat from './concat'
+import { concat } from './concat'
 
 describe('Concat', () => {
 

@@ -1,5 +1,5 @@
 import _takeRight from 'lodash/takeRight'
-import convert from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the end.
@@ -14,4 +14,4 @@ import convert from '../util/convert'
  * @since 0.3.0
  */
 const takeRight = convert(_takeRight)
-export default takeRight
+export { takeRight, takeRight as default }

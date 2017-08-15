@@ -1,5 +1,5 @@
 import _update from 'lodash/fp/update'
-import lodashFpConvert from '../util/lodashFpConvert'
+import { lodashFpConvert } from '../util/lodashFpConvert'
 
 const convertedUpdate = lodashFpConvert(_update)
 
@@ -23,4 +23,4 @@ const convertedUpdate = lodashFpConvert(_update)
  * @since 0.1.5
  */
 const update = (object, path, updater, ...args) => convertedUpdate(object, path, v => updater(v, ...args))
-export default update
+export { update, update as default }

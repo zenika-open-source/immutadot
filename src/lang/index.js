@@ -1,4 +1,4 @@
-import toggle from './toggle'
+import { toggle } from './toggle'
 
 /**
  * Lang functions.

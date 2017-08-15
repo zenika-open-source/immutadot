@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import remove from './remove'
+import { remove } from './remove'
 
 describe('Remove', () => {
 

@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import set from './set'
+import { set } from './set'
 
 describe('Set', () => {
 

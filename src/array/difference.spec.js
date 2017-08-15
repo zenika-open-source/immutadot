@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import difference from './difference'
+import { difference } from './difference'
 
 describe('Difference', () => {
 

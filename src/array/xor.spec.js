@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import xor from './xor'
+import { xor } from './xor'
 
 describe('Xor', () => {
 

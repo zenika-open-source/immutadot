@@ -1,5 +1,5 @@
 import _take from 'lodash/take'
-import convert from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the beginning.
@@ -14,4 +14,4 @@ import convert from '../util/convert'
  * @since 0.3.0
  */
 const take = convert(_take)
-export default take
+export { take, take as default }

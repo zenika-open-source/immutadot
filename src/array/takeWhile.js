@@ -1,5 +1,5 @@
 import _takeWhile from 'lodash/takeWhile'
-import convert from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Creates a slice of array with elements taken from the beginning.
@@ -16,4 +16,4 @@ import convert from '../util/convert'
  * @since 0.3.0
  */
 const takeWhile = convert(_takeWhile)
-export default takeWhile
+export { takeWhile, takeWhile as default }

@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import takeRight from './takeRight'
+import { takeRight } from './takeRight'
 
 describe('TakeRight', () => {
 

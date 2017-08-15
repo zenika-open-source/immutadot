@@ -1,4 +1,4 @@
-import convertArrayMethod from './convertArrayMethod'
+import { convertArrayMethod } from './convertArrayMethod'
 
 /**
  * Replaces an array adding one or more elements to the end of the former array.
@@ -16,4 +16,4 @@ import convertArrayMethod from './convertArrayMethod'
  * @since 0.1.7
  */
 const push = convertArrayMethod('push')
-export default push
+export { push, push as default }

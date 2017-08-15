@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import mapValues from './mapValues'
+import { mapValues } from './mapValues'
 
 describe('MapValues', () => {
   it('should map over each values of an object', () => {

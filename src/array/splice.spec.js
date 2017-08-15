@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import splice from './splice'
+import { splice } from './splice'
 
 describe('Splice', () => {
 

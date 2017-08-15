@@ -1,5 +1,5 @@
 import _xor from 'lodash/xor'
-import convert from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Replaces an array by the symmetric difference of the former array and the given arrays.
@@ -14,4 +14,4 @@ import convert from '../util/convert'
  * @since 0.1.6
  */
 const xor = convert(_xor)
-export default xor
+export { xor, xor as default }

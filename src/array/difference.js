@@ -1,5 +1,5 @@
 import _difference from 'lodash/difference'
-import convert from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Replaces an array removing values in the other given arrays from the former array.
@@ -14,4 +14,4 @@ import convert from '../util/convert'
  * @since 0.2.0
  */
 const difference = convert(_difference)
-export default difference
+export { difference, difference as default }

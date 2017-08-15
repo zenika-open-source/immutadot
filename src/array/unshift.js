@@ -1,4 +1,4 @@
-import convertArrayMethod from './convertArrayMethod'
+import { convertArrayMethod } from './convertArrayMethod'
 
 /**
  * Replaces an array adding elements at the start of the former array.
@@ -16,4 +16,4 @@ import convertArrayMethod from './convertArrayMethod'
  * @since 0.1.7
  */
 const unshift = convertArrayMethod('unshift')
-export default unshift
+export { unshift, unshift as default }

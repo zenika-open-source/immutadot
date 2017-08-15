@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import using from './using'
+import { using } from './using'
 
 describe('Using', () => {
 

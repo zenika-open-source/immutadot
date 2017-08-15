@@ -1,4 +1,4 @@
-import ChainWrapper from './ChainWrapper'
+import { ChainWrapper } from './ChainWrapper'
 
 /**
  * Creates an immutadot wrapper instance that wraps <code>object</code> allowing to make sequences of immutadot functions calls on it.<br/>
@@ -23,4 +23,4 @@ import ChainWrapper from './ChainWrapper'
  * @since 0.1.8
  */
 const chain = (object, path) => new ChainWrapper(object, path)
-export default chain
+export { chain, chain as default }

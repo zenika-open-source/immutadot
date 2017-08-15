@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import unset from './unset'
+import { unset } from './unset'
 
 describe('Unset', () => {
 

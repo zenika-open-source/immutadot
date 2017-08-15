@@ -1,9 +1,9 @@
-import assign from './assign'
-import mapValues from './mapValues'
-import pickBy from './pickBy'
-import set from './set'
-import unset from './unset'
-import update from './update'
+import { assign } from './assign'
+import { mapValues } from './mapValues'
+import { pickBy } from './pickBy'
+import { set } from './set'
+import { unset } from './unset'
+import { update } from './update'
 
 /**
  * Array functions.

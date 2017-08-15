@@ -1,5 +1,5 @@
 import _assign from 'lodash/assign'
-import convert from '../util/convert'
+import { convert } from '../util/convert'
 
 /**
  * Assigns own enumerable string keyed properties of source objects to the
@@ -16,4 +16,4 @@ import convert from '../util/convert'
  * @since 0.1.12
  */
 const assign = convert(_assign)
-export default assign
+export { assign, assign as default }

@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import update from './update'
+import { update } from './update'
 
 describe('Update', () => {
 

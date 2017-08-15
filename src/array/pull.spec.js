@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import pull from './pull'
+import { pull } from './pull'
 
 describe('Pull', () => {
 
