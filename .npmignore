@@ -3,7 +3,9 @@
 /docs/
 /src/
 .babelrc
+.codecov.yml
 circle.yml
 jsdoc.json
+package-lock.json
 publish-docs.sh
 yarn.lock
