@@ -1,40 +1,73 @@
 /* eslint-env jest */
 import forEach from 'lodash/forEach'
 import groupBy from 'lodash/groupBy'
-import isEqual from 'lodash/isEqual'
+import intersectionWith from 'lodash/intersectionWith'
+import isArray from 'lodash/isArray'
+import isString from 'lodash/isString'
 import map from 'lodash/map'
 import xorWith from 'lodash/xorWith'
 
 const toRefs = object => {
-  const stack = [[[], object]]
+  const stack = [['', object]]
   const refs = []
 
   while (stack.length) {
     const ref = stack.shift()
     refs.push(ref)
     forEach(ref[1], (value, prop) => {
-      stack.push([[...ref[0], prop], value])
+      stack.push([`${ref[0]}${ref[0].length ? '.' : ''}${prop}`, value])
     })
   }
 
   return refs
 }
 
+const toFilter = filter => {
+  if (isArray(filter)) return filter
+  if (isString(filter)) return [filter]
+  return []
+}
+
+const toFilterFn = (pFilter, exclude) => {
+  const filter = toFilter(pFilter)
+  if (!filter.length) return undefined
+  if (exclude)
+    return ([path]) => filter.every(filterPath => !filterPath.startsWith(path) && !path.startsWith(filterPath))
+  return ([path]) => filter.some(filterPath => filterPath.startsWith(path))
+}
+
 expect.extend({
-  toBeDeep(received, refs) {
-    const receivedRefs = toRefs(received)
-    const diff = xorWith(refs, receivedRefs, (ref, receivedRef) => isEqual(ref[0], receivedRef[0]) && ref[1] === receivedRef[1])
-    const pass = !diff.length
+  toBeDeep(received, pRefs, { include, exclude } = {}) {
+    let refs = pRefs
+    let receivedRefs = toRefs(received)
+
+    const includeFilter = toFilterFn(include, false)
+    if (includeFilter) {
+      refs = refs.filter(includeFilter)
+      receivedRefs = receivedRefs.filter(includeFilter)
+    }
+
+    const excludeFilter = toFilterFn(exclude, true)
+    if (excludeFilter) {
+      refs = refs.filter(excludeFilter)
+      receivedRefs = receivedRefs.filter(excludeFilter)
+    }
+
+    const diff = (this.isNot ? intersectionWith : xorWith)(refs, receivedRefs, (ref, receivedRef) => ref[0] === receivedRef[0] && ref[1] === receivedRef[1])
+    const pass = Boolean(this.isNot ^ !diff.length)
     let message
     if (pass)
-      message = () => `${this.utils.matcherHint('.not.toBeDeep')} expected value not to be the same deep references`
+      message = () => {
+        const formattedDiff = map(diff, ([path, ref]) => `  "${path}": ${this.utils.printReceived(ref)}`).join('\n')
+        return `${this.utils.matcherHint('.not.toBeDeep')} expected values not to have the same deep references, same references at paths :\n${formattedDiff}`
+      }
     else
       message = () => {
         const formattedDiff = map(
-          groupBy(diff, ref => ref[0].join('.')),
+          groupBy(diff, ref => ref[0]),
           ([[, ref], [, receivedRef] = []], path) => `  "${path}": ${this.utils.printExpected(ref)} !== ${this.utils.printReceived(receivedRef)}`,
         ).join('\n')
-        return `${this.utils.matcherHint('.toBeDeep')} expected value to be the same deep references, differences at paths :\n${formattedDiff}`
+        return `${this.utils.matcherHint('.toBeDeep')} expected values to have the same deep references, different references at paths :\n${formattedDiff}`
       }
 
     return {
@@ -42,19 +75,4 @@ expect.extend({
       pass,
     }
   },
-})
-
-describe('test', () => {
-  it('should', () => {
-    const input = {
-      nested: { prop: [1, 2] },
-      other: { prop: [3, 4] },
-    }
-    const refs = toRefs(input)
-
-    input.other.a = 3
-    input.other = { ...input.other }
-
-    expect(input).not.toBeDeep(refs)
-  })
 })
