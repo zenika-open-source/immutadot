@@ -1,5 +1,5 @@
 import { lodashFpConvert } from './lodashFpConvert'
-import { update } from '../object/update'
+import { update } from 'object/update'
 
 /**
  * Wraps an <code>updater</code> function, returning a new function taking <code>object</code>, <code>path</code> and <code>…args</code> as parameters.<br/>

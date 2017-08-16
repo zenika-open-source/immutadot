@@ -1,15 +1,21 @@
 /* eslint-env jest */
 import { concat } from './concat'
+import { toRefs } from 'test.utils'
 
 describe('Concat', () => {
 
   it('should concat an array', () => {
-    const original = { nested: { prop: [1, 2] } }
+    const input = { nested: { prop: [1, 2] } }
 
-    const final = concat(original, 'nested.prop', [3, 4])
+    const inputRefs = toRefs(input)
 
-    expect(final).toEqual({ nested: { prop: [1, 2, 3, 4] } })
-    expect(original).toEqual({ nested: { prop: [1, 2] } })
+    const output = concat(input, 'nested.prop', [3, 4])
+
+    expect(output).toEqual({ nested: { prop: [1, 2, 3, 4] } })
+
+    expect(input).toBeDeep(inputRefs)
+    expect(output).toBeDeep(inputRefs, { exclude: 'nested.prop' })
+    expect(output).not.toBeDeep(inputRefs, { include: 'nested.prop' })
   })
 
   it('should add several arrays', () => {

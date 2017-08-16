@@ -1,5 +1,5 @@
 import _update from 'lodash/fp/update'
-import { lodashFpConvert } from '../util/lodashFpConvert'
+import { lodashFpConvert } from 'util/lodashFpConvert'
 
 const convertedUpdate = lodashFpConvert(_update)
 

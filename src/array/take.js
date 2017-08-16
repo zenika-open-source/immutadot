@@ -1,5 +1,5 @@
 import _take from 'lodash/take'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the beginning.

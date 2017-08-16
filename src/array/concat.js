@@ -1,5 +1,5 @@
 import _concat from 'lodash/concat'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * Replaces an array concatenating the former array with additional arrays and/or values.

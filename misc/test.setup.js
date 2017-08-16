@@ -1,26 +1,11 @@
 /* eslint-env jest */
-import forEach from 'lodash/forEach'
 import groupBy from 'lodash/groupBy'
 import intersectionWith from 'lodash/intersectionWith'
 import isArray from 'lodash/isArray'
 import isString from 'lodash/isString'
 import map from 'lodash/map'
+import { toRefs } from 'test.utils'
 import xorWith from 'lodash/xorWith'
-
-const toRefs = object => {
-  const stack = [['', object]]
-  const refs = []
-
-  while (stack.length) {
-    const ref = stack.shift()
-    refs.push(ref)
-    forEach(ref[1], (value, prop) => {
-      stack.push([`${ref[0]}${ref[0].length ? '.' : ''}${prop}`, value])
-    })
-  }
-
-  return refs
-}
 
 const toFilter = filter => {
   if (isArray(filter)) return filter

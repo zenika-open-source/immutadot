@@ -1,5 +1,5 @@
 import _pull from 'lodash/pull'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * Replaces an array removing all given values from the former array.

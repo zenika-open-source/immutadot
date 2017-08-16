@@ -4,6 +4,7 @@
 /src/
 .babelrc
 .codecov.yml
+.eslintrc.json
 circle.yml
 jsdoc.json
 package-lock.json

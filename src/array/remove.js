@@ -1,5 +1,5 @@
 import _remove from 'lodash/remove'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * Replaces an array removing elements that predicate returns truthy for from the former array.

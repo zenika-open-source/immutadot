@@ -1,5 +1,5 @@
 import _difference from 'lodash/difference'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * Replaces an array removing values in the other given arrays from the former array.
