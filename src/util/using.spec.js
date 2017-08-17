@@ -55,7 +55,7 @@ describe('Using', () => {
         b: 3,
       },
     }
-    const output = using(using.placeholder, 'nested.b').update(
+    const output = using(using._, 'nested.b').update(
       input,
       'nested.a',
       (a, b, c) => a * b + c,

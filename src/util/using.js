@@ -20,8 +20,10 @@ const using = (...paths) => new UsingWrapper(...paths)
 
 const { placeholder } = UsingWrapper
 using.placeholder = placeholder
+using._ = placeholder
 
 export {
   placeholder,
+  placeholder as _,
   using as default,
 }
