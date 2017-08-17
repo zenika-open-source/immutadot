@@ -321,7 +321,7 @@ incProp(object, 'nested.prop', 2) // => { nested: { prop: 6 } }</code></pre>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul><li>
-        <a href="util_using.js.html">util/using.js</a>, <a href="util_using.js.html#line18">line 18</a>
+        <a href="util_using.js.html">util/using.js</a>, <a href="util_using.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -364,7 +364,8 @@ incProp(object, 'nested.prop', 2) // => { nested: { prop: 6 } }</code></pre>
 
     
     <div class="description">
-        Allows to specify one or several paths to use as arguments for an immutadot function call.
+        Allows to specify one or several paths to use as arguments for an immutadot function call.<br/>
+<code>using.placeholder</code> may be used to insert a passed argument before a path argument (see second example).
     </div>
     
 
@@ -377,16 +378,16 @@ incProp(object, 'nested.prop', 2) // => { nested: { prop: 6 } }</code></pre>
     
         <h5>Examples</h5>
         
-        <p class="code-caption">Add <code>b</code> to <code>a</code></p>
+        <p class="code-caption">Push <code>b</code>, <code>c</code> and <code>4</code> to <code>a</code></p>
+    
+    <pre class="prettyprint"><code>const o = { nested: { a: [1], b: 2, c: 3 } }
+using('nested.b', 'nested.c').push(o, 'nested.a', 4) // => { nested: { a: [1, 2, 3, 4], b: 2, c: 3 } }</code></pre>
+
+        <p class="code-caption">Replace <code>a</code> by <code>a * b + 4</code> (use placeholder to send <code>updater</code> as first argument)</p>
     
     <pre class="prettyprint"><code>const o = { nested: { a: 2, b: 3 } }
-using('nested.b').add(o, 'nested.a') // => { nested: { a: 5, b: 3 } }</code></pre>
-
-        <p class="code-caption">Replace <code>a</code> by <code>a * b + c</code></p>
-    
-    <pre class="prettyprint"><code>const o = { nested: { a: 2, b: 3, c: 4 } }
-using('nested.b', 'nested.c')
-  .update(o, 'nested.a', (a, b, c) => a * b + c) // => { nested: { a: 10, b: 3, c: 4 } }</code></pre>
+using(using.placeholder, 'nested.b')
+  .update(o, 'nested.a', (a, b, c) => a * b + c, 4) // => { nested: { a: 10, b: 3 } }</code></pre>
 
     
 
