@@ -14,6 +14,7 @@ import { pull } from './pull'
 import { pullAll } from './pullAll'
 import { pullAllBy } from './pullAllBy'
 import { pullAllWith } from './pullAllWith'
+import { pullAt } from './pullAt'
 import { push } from './push'
 import { remove } from './remove'
 import { splice } from './splice'
@@ -46,6 +47,7 @@ export {
   pullAll,
   pullAllBy,
   pullAllWith,
+  pullAt,
   push,
   remove,
   splice,
