@@ -17,6 +17,7 @@ import { pullAllWith } from './pullAllWith'
 import { pullAt } from './pullAt'
 import { push } from './push'
 import { remove } from './remove'
+import { reverse } from './reverse'
 import { splice } from './splice'
 import { take } from './take'
 import { takeRight } from './takeRight'
@@ -50,6 +51,7 @@ export {
   pullAt,
   push,
   remove,
+  reverse,
   splice,
   take,
   takeRight,
