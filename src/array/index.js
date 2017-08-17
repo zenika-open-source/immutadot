@@ -29,6 +29,8 @@ import { unionBy } from './unionBy'
 import { unionWith } from './unionWith'
 import { unshift } from './unshift'
 import { xor } from './xor'
+import { xorBy } from './xorBy'
+import { xorWith } from './xorWith'
 
 /**
  * Array functions.
@@ -67,4 +69,6 @@ export {
   unionWith,
   unshift,
   xor,
+  xorBy,
+  xorWith,
 }
