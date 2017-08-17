@@ -38,12 +38,33 @@ describe('Using', () => {
         c: [1],
       },
     }
-    const output = using('nested.a', 'nested.b').push(input, 'nested.c')
+    const output = using('nested.a', 'nested.b').push(input, 'nested.c', 4)
     expect(output).toEqual({
       nested: {
         a: 2,
         b: 3,
-        c: [1, 2, 3],
+        c: [1, 2, 3, 4],
+      },
+    })
+  })
+
+  it('should update a prop with another prop and a custom updater', () => {
+    const input = {
+      nested: {
+        a: 2,
+        b: 3,
+      },
+    }
+    const output = using(using._, 'nested.b').update(
+      input,
+      'nested.a',
+      (a, b, c) => a * b + c,
+      4,
+    )
+    expect(output).toEqual({
+      nested: {
+        a: 10,
+        b: 3,
       },
     })
   })
