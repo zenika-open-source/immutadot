@@ -23,15 +23,17 @@ class ChainWrapper {
   /**
    * This constructor should not be called directly.<br/>
    * Instances are created by calling {@link seq.chain}.
-   * @param {Object} object The object to wrap.
+   * @param {Object} wrapped The object to wrap.
    * @param {Array|string} [path] The path of the object on which functions are called.
+   * @param {Array} [pFlow=[]] Current calls flow.
    * @see {@link seq.chain} for more information.
    * @since 0.1.8
    */
-  constructor(object, path) {
-    this._object = object
+  constructor(wrapped, path, pFlow = []) {
+    this._wrapped = wrapped
     this._path = path
-    this._flow = []
+    this._flow = pFlow
+    this._commited = null
   }
 
   /**
@@ -49,16 +51,51 @@ class ChainWrapper {
    * @param {function} fn The function to call.
    * @param {Array|string} path The path of the property to be set.
    * @param {...*} args The arguments for the function call.
-   * @returns {seq.ChainWrapper} The wrapper instance.
+   * @returns {seq.ChainWrapper} The new wrapper instance.
    * @since 0.1.8
    */
   _call(fn, path, args) {
-    this._flow.push(object => fn(object, this._absolutePath(path), ...args))
-    return this
+    return new ChainWrapper(
+      this._wrapped,
+      this._path,
+      concat(this._flow, object => fn(object, this._absolutePath(path), ...args)),
+    )
   }
 
   /**
-   * Executes the chain sequence to resolve the unwrapped object.
+   * Executes the chain sequence.
+   * @returns {seq.ChainWrapper} The new wrapper instance.
+   * @since 0.3.0
+   */
+  commit() {
+    if (this._flow.length === 0) return this
+
+    if (this._commited === null)
+      this._commited = new ChainWrapper(
+        flow(this._flow)(this._wrapped),
+        this._path,
+      )
+
+    return this._commited
+  }
+
+  /**
+   * Executes the chain sequence and calls <code>callback</code> with the unwrapped object.
+   * @param {seq.peekCallback} callback Function to be called with the resolved unwrapped value.
+   * @returns {seq.ChainWrapper} The new wrapper instance.
+   * @todo Add an example.
+   * @since 0.3.0
+   */
+  peek(callback) {
+    const commited = this.commit()
+
+    callback(commited._wrapped)
+
+    return commited
+  }
+
+  /**
+   * Executes the chain sequence and returns the unwrapped object.
    * @returns {Object} Returns the resolved unwrapped object.
    * @example
    * chain({ nested1: { prop: 'old' }, nested2: { prop: 1 } })
@@ -69,9 +106,17 @@ class ChainWrapper {
    * @since 0.1.8
    */
   value() {
-    return flow(this._flow)(this._object)
+    return this.commit()._wrapped
   }
 }
+
+/**
+ * Function to be called by {@link seq.peek|peek} with the resolved unwrapped value.
+ * @memberof seq
+ * @callback peekCallback
+ * @param {Object} unwrapped The resolved unwrapped object
+ * @since 0.3.0
+ */
 
 // Add namespaces functions to the ChainWrapper prototype
 [

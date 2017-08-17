@@ -42,4 +42,30 @@ describe('Chain', () => {
         },
       })
   })
+
+  it('should allow to peek in the middle of modifications', () => {
+    expect(chain(object)
+      .set('nested1.prop2', 'value5')
+      .peek(peeked => {
+        expect(peeked).toEqual({
+          nested1: {
+            prop1: 'value1',
+            prop2: 'value5',
+          },
+          nested2: {
+            prop3: 'value3',
+            prop4: 'value4',
+          },
+        })
+      })
+      .unset('nested2.prop4')
+      .value())
+      .toEqual({
+        nested1: {
+          prop1: 'value1',
+          prop2: 'value5',
+        },
+        nested2: { prop3: 'value3' },
+      })
+  })
 })
