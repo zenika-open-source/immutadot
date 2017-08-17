@@ -11,6 +11,9 @@ import { intersection } from './intersection'
 import { intersectionBy } from './intersectionBy'
 import { intersectionWith } from './intersectionWith'
 import { pull } from './pull'
+import { pullAll } from './pullAll'
+import { pullAllBy } from './pullAllBy'
+import { pullAllWith } from './pullAllWith'
 import { push } from './push'
 import { remove } from './remove'
 import { splice } from './splice'
@@ -40,6 +43,9 @@ export {
   intersectionBy,
   intersectionWith,
   pull,
+  pullAll,
+  pullAllBy,
+  pullAllWith,
   push,
   remove,
   splice,
