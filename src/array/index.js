@@ -24,6 +24,7 @@ import { take } from './take'
 import { takeRight } from './takeRight'
 import { takeRightWhile } from './takeRightWhile'
 import { takeWhile } from './takeWhile'
+import { union } from './union'
 import { unshift } from './unshift'
 import { xor } from './xor'
 
@@ -59,6 +60,7 @@ export {
   takeRight,
   takeRightWhile,
   takeWhile,
+  union,
   unshift,
   xor,
 }
