@@ -28,6 +28,7 @@ import { union } from './union'
 import { unionBy } from './unionBy'
 import { unionWith } from './unionWith'
 import { unshift } from './unshift'
+import { without } from './without'
 import { xor } from './xor'
 import { xorBy } from './xorBy'
 import { xorWith } from './xorWith'
@@ -68,6 +69,7 @@ export {
   unionBy,
   unionWith,
   unshift,
+  without,
   xor,
   xorBy,
   xorWith,
