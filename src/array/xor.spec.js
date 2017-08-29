@@ -1,4 +1,5 @@
 /* eslint-env jest */
+import { immutaTest } from 'test.utils'
 import { xor } from './xor'
 
 describe('Xor', () => {
@@ -10,12 +11,24 @@ describe('Xor', () => {
   const withTwoAndThree = { nested: { prop: twoAndThree } }
 
   it('should xor arrays', () => {
-    expect(xor(withOneAndTwo, 'nested.prop', twoAndThree)).toEqual(withOneAndThree)
-    expect(xor(withOneAndTwo, 'nested.prop', oneAndThree)).toEqual(withTwoAndThree)
+    immutaTest((input, path) => {
+      const output = xor(input, path, twoAndThree)
+      expect(output).toEqual(withOneAndThree)
+      return output
+    }, withOneAndTwo, 'nested.prop')
+
+    immutaTest((input, path) => {
+      const output = xor(input, path, oneAndThree)
+      expect(output).toEqual(withTwoAndThree)
+      return output
+    }, withOneAndTwo, 'nested.prop')
   })
 
   it('should xor deep undefined to array', () => {
-    expect(xor({}, 'nested.prop', oneAndThree)).toEqual(withOneAndThree)
-    expect(xor(undefined, 'nested.prop', oneAndThree)).toEqual(withOneAndThree)
+    immutaTest((input, path) => {
+      const output = xor(input, path, oneAndThree)
+      expect(output).toEqual(withOneAndThree)
+      return output
+    }, undefined, 'nested.prop')
   })
 })

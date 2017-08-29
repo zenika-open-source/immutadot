@@ -1,3 +1,4 @@
+/* eslint-env jest */
 import forEach from 'lodash/forEach'
 
 export const toRefs = object => {
@@ -13,4 +14,14 @@ export const toRefs = object => {
   }
 
   return refs
+}
+
+export const immutaTest = (cb, input, path) => {
+  const inputRefs = toRefs(input)
+
+  const output = cb(input, path)
+
+  expect(input).toBeDeep(inputRefs)
+  expect(output).toBeDeep(inputRefs, { exclude: path })
+  expect(output).not.toBeDeep(inputRefs, { include: path })
 }

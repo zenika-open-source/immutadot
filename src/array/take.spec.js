@@ -1,18 +1,22 @@
 /* eslint-env jest */
+import { immutaTest } from 'test.utils'
 import { take } from './take'
 
 describe('Take', () => {
 
   it('should take one element', () => {
-    const original = { nested: { prop: [1, 2, 3] } }
-
-    const final = take(original, 'nested.prop', 1)
-
-    expect(final).toEqual({ nested: { prop: [1] } })
-    expect(original).toEqual({ nested: { prop: [1, 2, 3] } })
+    immutaTest((input, path) => {
+      const output = take(input, path, 1)
+      expect(output).toEqual({ nested: { prop: [1] } })
+      return output
+    }, { nested: { prop: [1, 2, 3] } }, 'nested.prop')
   })
 
   it('should replace deep undefined with array', () => {
-    expect(take(undefined, 'nested.prop', () => true)).toEqual({ nested: { prop: [] } })
+    immutaTest((input, path) => {
+      const output = take(input, path)
+      expect(output).toEqual({ nested: { prop: [] } })
+      return output
+    }, undefined, 'nested.prop')
   })
 })

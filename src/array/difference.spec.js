@@ -1,22 +1,30 @@
 /* eslint-env jest */
 import { difference } from './difference'
+import { immutaTest } from 'test.utils'
 
 describe('Difference', () => {
 
   it('should remove intersecting elements', () => {
-    const original = { nested: { prop: [1, 2, 3] } }
-
-    const final = difference(original, 'nested.prop', [3, 4])
-
-    expect(final).toEqual({ nested: { prop: [1, 2] } })
-    expect(original).toEqual({ nested: { prop: [1, 2, 3] } })
+    immutaTest((input, path) => {
+      const output = difference(input, path, [3, 4])
+      expect(output).toEqual({ nested: { prop: [1, 2] } })
+      return output
+    }, { nested: { prop: [1, 2, 3] } }, 'nested.prop')
   })
 
   it('should remove intersecting elements from several arrays', () => {
-    expect(difference({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', [1], [2])).toEqual({ nested: { prop: [3, 4] } })
+    immutaTest((input, path) => {
+      const output = difference(input, path, [1], [2])
+      expect(output).toEqual({ nested: { prop: [3, 4] } })
+      return output
+    }, { nested: { prop: [1, 2, 3, 4] } }, 'nested.prop')
   })
 
   it('should replace deep undefined with array', () => {
-    expect(difference(undefined, 'nested.prop', [1, 2])).toEqual({ nested: { prop: [] } })
+    immutaTest((input, path) => {
+      const output = difference(input, path, [1, 2])
+      expect(output).toEqual({ nested: { prop: [] } })
+      return output
+    }, undefined, 'nested.prop')
   })
 })
