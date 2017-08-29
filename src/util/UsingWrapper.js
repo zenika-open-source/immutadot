@@ -1,8 +1,8 @@
-import * as array from '../array'
-import * as collection from '../collection'
-import * as lang from '../lang'
-import * as math from '../math'
-import * as object from '../object'
+import * as array from 'array'
+import * as collection from 'collection'
+import * as lang from 'lang'
+import * as math from 'math'
+import * as object from 'object'
 
 import concat from 'lodash/concat'
 import drop from 'lodash/drop'

@@ -1,18 +1,28 @@
 /* eslint-env jest */
+import { immutaTest } from 'test.utils'
 import { takeRightWhile } from './takeRightWhile'
 
-describe('TakeRight', () => {
+describe('TakeRightWhile', () => {
 
   it('should take one element at the end of the array', () => {
-    const original = { nested: { prop: [1, 2, 3] } }
-
-    const final = takeRightWhile(original, 'nested.prop', v => v > 2)
-
-    expect(final).toEqual({ nested: { prop: [3] } })
-    expect(original).toEqual({ nested: { prop: [1, 2, 3] } })
+    immutaTest((input, path) => {
+      const output = takeRightWhile(input, path, v => v > 2)
+      expect(output).toEqual({
+        nested: { prop: [3] },
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: [1, 2, 3] },
+      other: {},
+    }, 'nested.prop')
   })
 
   it('should replace deep undefined with array', () => {
-    expect(takeRightWhile(undefined, 'nested.prop', () => true)).toEqual({ nested: { prop: [] } })
+    immutaTest((input, path) => {
+      const output = takeRightWhile(input, path, () => true)
+      expect(output).toEqual({ nested: { prop: [] } })
+      return output
+    }, undefined, 'nested.prop')
   })
 })

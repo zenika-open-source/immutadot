@@ -1,4 +1,5 @@
 /* eslint-env jest */
+import { immutaTest } from 'test.utils'
 import { update } from './update'
 
 describe('Update', () => {
@@ -6,17 +7,30 @@ describe('Update', () => {
   const inc = (v, i = 1) => v + i
 
   it('should update a prop', () => {
-    const nested = { prop: 5 }
-    const input = { nested }
-
-    const output = update(input, 'nested.prop', inc)
-
-    expect(input).toEqual({ nested: { prop: 5 } })
-    expect(input.nested).toBe(nested)
-    expect(output).toEqual({ nested: { prop: 6 } })
+    immutaTest((input, path) => {
+      const output = update(input, path, inc)
+      expect(output).toEqual({
+        nested: { prop: 6 },
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: 5 },
+      other: {},
+    }, 'nested.prop')
   })
 
   it('should update a prop with a param', () => {
-    expect(update({ nested: { prop: 5 } }, 'nested.prop', inc, 2)).toEqual({ nested: { prop: 7 } })
+    immutaTest((input, path) => {
+      const output = update(input, path, inc, 2)
+      expect(output).toEqual({
+        nested: { prop: 7 },
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: 5 },
+      other: {},
+    }, 'nested.prop')
   })
 })

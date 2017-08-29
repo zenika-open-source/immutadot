@@ -1,35 +1,31 @@
 /* eslint-env jest */
+import { immutaTest } from 'test.utils'
 import { mapValues } from './mapValues'
 
 describe('MapValues', () => {
   it('should map over each values of an object', () => {
-    const input = {
+    immutaTest((input, path) => {
+      const output = mapValues(input, path, v => v * v)
+      expect(output).toEqual({
+        nested: {
+          prop: {
+            a: 1,
+            b: 4,
+            c: 9,
+          },
+        },
+        other: {},
+      })
+      return output
+    }, {
       nested: {
-        a: 1,
-        b: 2,
-        c: 3,
+        prop: {
+          a: 1,
+          b: 2,
+          c: 3,
+        },
       },
-      d: 4,
-    }
-
-    const output = mapValues(input, 'nested', v => v * v)
-
-    expect(output).toEqual({
-      nested: {
-        a: 1,
-        b: 4,
-        c: 9,
-      },
-      d: 4,
-    })
-
-    expect(input).toEqual({
-      nested: {
-        a: 1,
-        b: 2,
-        c: 3,
-      },
-      d: 4,
-    })
+      other: {},
+    }, 'nested.prop')
   })
 })

@@ -1,71 +1,90 @@
 /* eslint-env jest */
+import { immutaTest } from 'test.utils'
 import { using } from './using'
 
 describe('Using', () => {
 
   it('should set a prop with another prop', () => {
-    const input = { nested: { a: 2 } }
-    const output = using('nested.a').set(input, 'nested.b')
-    expect(output).toEqual({
-      nested: {
-        a: 2,
-        b: 2,
-      },
-    })
+    immutaTest((input, path) => {
+      const output = using('nested.a').set(input, path)
+      expect(output).toEqual({
+        nested: {
+          a: 2,
+          b: 2,
+        },
+        other: {},
+      })
+      return output
+    }, {
+      nested: { a: 2 },
+      other: {},
+    }, 'nested.b')
   })
 
   it('should update a prop with another prop', () => {
-    const input = {
+    immutaTest((input, path) => {
+      const output = using('nested.a').add(input, path)
+      expect(output).toEqual({
+        nested: {
+          a: 2,
+          b: 5,
+        },
+        other: {},
+      })
+      return output
+    }, {
       nested: {
         a: 2,
         b: 3,
       },
-    }
-    const output = using('nested.a').add(input, 'nested.b')
-    expect(output).toEqual({
-      nested: {
-        a: 2,
-        b: 5,
-      },
-    })
+      other: {},
+    }, 'nested.b')
   })
 
   it('should update a prop with several other props', () => {
-    const input = {
+    immutaTest((input, path) => {
+      const output = using('nested.a', 'nested.b').push(input, path, 4)
+      expect(output).toEqual({
+        nested: {
+          a: 2,
+          b: 3,
+          c: [1, 2, 3, 4],
+        },
+        other: {},
+      })
+      return output
+    }, {
       nested: {
         a: 2,
         b: 3,
         c: [1],
       },
-    }
-    const output = using('nested.a', 'nested.b').push(input, 'nested.c', 4)
-    expect(output).toEqual({
-      nested: {
-        a: 2,
-        b: 3,
-        c: [1, 2, 3, 4],
-      },
-    })
+      other: {},
+    }, 'nested.c')
   })
 
   it('should update a prop with another prop and a custom updater', () => {
-    const input = {
+    immutaTest((input, path) => {
+      const output = using(using._, 'nested.b').update(
+        input,
+        path,
+        (a, b, c) => a * b + c,
+        4,
+      )
+      expect(output).toEqual({
+        nested: {
+          a: 10,
+          b: 3,
+        },
+        other: {},
+      })
+      return output
+    }, {
       nested: {
         a: 2,
         b: 3,
       },
-    }
-    const output = using(using._, 'nested.b').update(
-      input,
-      'nested.a',
-      (a, b, c) => a * b + c,
-      4,
-    )
-    expect(output).toEqual({
-      nested: {
-        a: 10,
-        b: 3,
-      },
-    })
+      other: {},
+    }, 'nested.a')
   })
 })

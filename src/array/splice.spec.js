@@ -1,14 +1,20 @@
 /* eslint-env jest */
+import { immutaTest } from 'test.utils'
 import { splice } from './splice'
 
 describe('Splice', () => {
 
   it('should replace two elements', () => {
-    const original = { nested: { prop: [1, 2, 3, 4] } }
-
-    const final = splice(original, 'nested.prop', 1, 2, 5, 6)
-
-    expect(final).toEqual({ nested: { prop: [1, 5, 6, 4] } })
-    expect(original).toEqual({ nested: { prop: [1, 2, 3, 4] } })
+    immutaTest((input, path) => {
+      const output = splice(input, path, 1, 2, 6, 6)
+      expect(output).toEqual({
+        nested: { prop: [1, 6, 6, 4] }, // 🍺
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: [1, 2, 3, 4] },
+      other: {},
+    }, 'nested.prop')
   })
 })

@@ -1,21 +1,43 @@
 /* eslint-env jest */
+import { immutaTest } from 'test.utils'
 import { xor } from './xor'
 
 describe('Xor', () => {
 
-  const withOneAndTwo = { nested: { prop: [1, 2] } }
+  const withOneAndTwo = {
+    nested: { prop: [1, 2] },
+    other: {},
+  }
   const oneAndThree = [1, 3]
-  const withOneAndThree = { nested: { prop: oneAndThree } }
+  const withOneAndThree = {
+    nested: { prop: oneAndThree },
+    other: {},
+  }
   const twoAndThree = [2, 3]
-  const withTwoAndThree = { nested: { prop: twoAndThree } }
+  const withTwoAndThree = {
+    nested: { prop: twoAndThree },
+    other: {},
+  }
 
   it('should xor arrays', () => {
-    expect(xor(withOneAndTwo, 'nested.prop', twoAndThree)).toEqual(withOneAndThree)
-    expect(xor(withOneAndTwo, 'nested.prop', oneAndThree)).toEqual(withTwoAndThree)
+    immutaTest((input, path) => {
+      const output = xor(input, path, twoAndThree)
+      expect(output).toEqual(withOneAndThree)
+      return output
+    }, withOneAndTwo, 'nested.prop')
+
+    immutaTest((input, path) => {
+      const output = xor(input, path, oneAndThree)
+      expect(output).toEqual(withTwoAndThree)
+      return output
+    }, withOneAndTwo, 'nested.prop')
   })
 
   it('should xor deep undefined to array', () => {
-    expect(xor({}, 'nested.prop', oneAndThree)).toEqual(withOneAndThree)
-    expect(xor(undefined, 'nested.prop', oneAndThree)).toEqual(withOneAndThree)
+    immutaTest((input, path) => {
+      const output = xor(input, path, oneAndThree)
+      expect(output).toEqual({ nested: { prop: oneAndThree } })
+      return output
+    }, undefined, 'nested.prop')
   })
 })

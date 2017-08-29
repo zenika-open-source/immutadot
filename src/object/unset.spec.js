@@ -1,16 +1,20 @@
 /* eslint-env jest */
+import { immutaTest } from 'test.utils'
 import { unset } from './unset'
 
 describe('Unset', () => {
 
   it('should unset a prop', () => {
-    const nested = { prop: 'initial' }
-    const input = { nested }
-
-    const output = unset(input, 'nested.prop')
-
-    expect(input).toEqual({ nested: { prop: 'initial' } })
-    expect(input.nested).toBe(nested)
-    expect(output).toEqual({ nested: {} })
+    immutaTest((input, path) => {
+      const output = unset(input, path)
+      expect(output).toEqual({
+        nested: {},
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: 'initial' },
+      other: {},
+    }, 'nested.prop')
   })
 })

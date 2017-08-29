@@ -1,5 +1,6 @@
 /* eslint-env jest */
 import { convert } from './convert'
+import { immutaTest } from 'test.utils'
 
 describe('Convert', () => {
 
@@ -8,7 +9,28 @@ describe('Convert', () => {
   it('should wrap a function', () => {
     const immutableInc = convert(inc)
 
-    expect(immutableInc({ nested: { prop: 5 } }, 'nested.prop')).toEqual({ nested: { prop: 6 } })
-    expect(immutableInc({ nested: { prop: 5 } }, 'nested.prop', 2)).toEqual({ nested: { prop: 7 } })
+    immutaTest((input, path) => {
+      const output = immutableInc(input, path)
+      expect(output).toEqual({
+        nested: { prop: 6 },
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: 5 },
+      other: {},
+    }, 'nested.prop')
+
+    immutaTest((input, path) => {
+      const output = immutableInc(input, path, 2)
+      expect(output).toEqual({
+        nested: { prop: 7 },
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: 5 },
+      other: {},
+    }, 'nested.prop')
   })
 })

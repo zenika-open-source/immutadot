@@ -1,22 +1,42 @@
 /* eslint-env jest */
+import { immutaTest } from 'test.utils'
 import { push } from './push'
 
 describe('Push', () => {
 
   it('should add one element', () => {
-    const original = { nested: { prop: [1, 2] } }
-
-    const final = push(original, 'nested.prop', 3)
-
-    expect(final).toEqual({ nested: { prop: [1, 2, 3] } })
-    expect(original).toEqual({ nested: { prop: [1, 2] } })
+    immutaTest((input, path) => {
+      const output = push(input, path, 3)
+      expect(output).toEqual({
+        nested: { prop: [1, 2, 3] },
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: [1, 2] },
+      other: {},
+    }, 'nested.prop')
   })
 
   it('should add several elements', () => {
-    expect(push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)).toEqual({ nested: { prop: [1, 2, 3, 4] } })
+    immutaTest((input, path) => {
+      const output = push(input, path, 3, 4)
+      expect(output).toEqual({
+        nested: { prop: [1, 2, 3, 4] },
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: [1, 2] },
+      other: {},
+    }, 'nested.prop')
   })
 
   it('should replace deep undefined with array', () => {
-    expect(push(undefined, 'nested.prop', 1)).toEqual({ nested: { prop: [1] } })
+    immutaTest((input, path) => {
+      const output = push(input, path, 1)
+      expect(output).toEqual({ nested: { prop: [1] } })
+      return output
+    }, undefined, 'nested.prop')
   })
 })

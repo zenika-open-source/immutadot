@@ -1,4 +1,4 @@
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 import isArray from 'lodash/isArray'
 import toArray from 'lodash/toArray'
 

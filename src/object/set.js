@@ -1,5 +1,5 @@
 import _set from 'lodash/fp/set'
-import { lodashFpConvert } from '../util/lodashFpConvert'
+import { lodashFpConvert } from 'util/lodashFpConvert'
 
 /**
  * Sets the value at <code>path</code> of <code>object</code>.

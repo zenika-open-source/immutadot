@@ -1,5 +1,5 @@
 import _takeWhile from 'lodash/takeWhile'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * Creates a slice of array with elements taken from the beginning.
