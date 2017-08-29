@@ -18,12 +18,12 @@ export const toRefs = object => {
   return refs
 }
 
-export const immutaTest = (cb, input, path) => {
+export const immutaTest = (cb, input, ...paths) => {
   const inputRefs = toRefs(input)
 
-  const output = cb(input, path)
+  const output = cb(input, ...paths)
 
   expect(input).toBeDeep(inputRefs)
-  expect(output).toBeDeep(inputRefs, { exclude: path })
-  expect(output).not.toBeDeep(inputRefs, { include: path })
+  expect(output).toBeDeep(inputRefs, { exclude: paths })
+  expect(output).not.toBeDeep(inputRefs, { include: paths })
 }
