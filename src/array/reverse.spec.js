@@ -7,8 +7,14 @@ describe('Reverse', () => {
   it('should reverse the elements', () => {
     immutaTest((input, path) => {
       const output = reverse(input, path)
-      expect(output).toEqual({ nested: { prop: [3, 2, 1] } })
+      expect(output).toEqual({
+        nested: { prop: [3, 2, 1] },
+        other: {},
+      })
       return output
-    }, { nested: { prop: [1, 2, 3] } }, 'nested.prop')
+    }, {
+      nested: { prop: [1, 2, 3] },
+      other: {},
+    }, 'nested.prop')
   })
 })

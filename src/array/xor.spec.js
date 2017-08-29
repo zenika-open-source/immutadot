@@ -4,11 +4,20 @@ import { xor } from './xor'
 
 describe('Xor', () => {
 
-  const withOneAndTwo = { nested: { prop: [1, 2] } }
+  const withOneAndTwo = {
+    nested: { prop: [1, 2] },
+    other: {},
+  }
   const oneAndThree = [1, 3]
-  const withOneAndThree = { nested: { prop: oneAndThree } }
+  const withOneAndThree = {
+    nested: { prop: oneAndThree },
+    other: {},
+  }
   const twoAndThree = [2, 3]
-  const withTwoAndThree = { nested: { prop: twoAndThree } }
+  const withTwoAndThree = {
+    nested: { prop: twoAndThree },
+    other: {},
+  }
 
   it('should xor arrays', () => {
     immutaTest((input, path) => {
@@ -27,7 +36,7 @@ describe('Xor', () => {
   it('should xor deep undefined to array', () => {
     immutaTest((input, path) => {
       const output = xor(input, path, oneAndThree)
-      expect(output).toEqual(withOneAndThree)
+      expect(output).toEqual({ nested: { prop: oneAndThree } })
       return output
     }, undefined, 'nested.prop')
   })

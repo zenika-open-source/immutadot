@@ -1,20 +1,28 @@
 /* eslint-env jest */
+import { immutaTest } from 'test.utils'
 import { set } from './set'
 
 describe('Set', () => {
 
   it('should set a prop', () => {
-    const nested = { prop: 'initial' }
-    const input = { nested }
-
-    const output = set(input, 'nested.prop', 'final')
-
-    expect(input).toEqual({ nested: { prop: 'initial' } })
-    expect(input.nested).toBe(nested)
-    expect(output).toEqual({ nested: { prop: 'final' } })
+    immutaTest((input, path) => {
+      const output = set(input, path, 'final')
+      expect(output).toEqual({
+        nested: { prop: 'final' },
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: 'initial' },
+      other: {},
+    }, 'nested.prop')
   })
 
   it('should set a deep undefined prop', () => {
-    expect(set(undefined, 'nested.prop', 'final')).toEqual({ nested: { prop: 'final' } })
+    immutaTest((input, path) => {
+      const output = set(input, path, 'final')
+      expect(output).toEqual({ nested: { prop: 'final' } })
+      return output
+    }, undefined, 'nested.prop')
   })
 })

@@ -7,9 +7,15 @@ describe('TakeRightWhile', () => {
   it('should take one element at the end of the array', () => {
     immutaTest((input, path) => {
       const output = takeRightWhile(input, path, v => v > 2)
-      expect(output).toEqual({ nested: { prop: [3] } })
+      expect(output).toEqual({
+        nested: { prop: [3] },
+        other: {},
+      })
       return output
-    }, { nested: { prop: [1, 2, 3] } }, 'nested.prop')
+    }, {
+      nested: { prop: [1, 2, 3] },
+      other: {},
+    }, 'nested.prop')
   })
 
   it('should replace deep undefined with array', () => {

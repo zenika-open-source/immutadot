@@ -1,27 +1,34 @@
 /* eslint-env jest */
 import { assign } from './assign'
+import { immutaTest } from 'test.utils'
 
 describe('Assign', () => {
 
-  const objectOne = {
-    nested: {
-      a: 1,
-      b: 2,
-    },
-  }
-  const objectTwo = {
-    b: 3,
-    c: 4,
-  }
-  const output = {
-    nested: {
-      a: 1,
-      b: 3,
-      c: 4,
-    },
-  }
-
   it('should assign objects', () => {
-    expect(assign(objectOne, 'nested', objectTwo)).toEqual(output)
+    immutaTest((input, path) => {
+      const output = assign(input, path, {
+        b: 3,
+        c: 4,
+      })
+      expect(output).toEqual({
+        nested: {
+          prop: {
+            a: 1,
+            b: 3,
+            c: 4,
+          },
+        },
+        other: {},
+      })
+      return output
+    }, {
+      nested: {
+        prop: {
+          a: 1,
+          b: 2,
+        },
+      },
+      other: {},
+    }, 'nested.prop')
   })
 })

@@ -7,8 +7,14 @@ describe('IntersectionBy', () => {
   it('should replace by intersection of arrays', () => {
     immutaTest((input, path) => {
       const output = intersectionBy(input, path, [2.3, 3.2], Math.floor)
-      expect(output).toEqual({ nested: { prop: [2.1] } })
+      expect(output).toEqual({
+        nested: { prop: [2.1] },
+        other: {},
+      })
       return output
-    }, { nested: { prop: [1.2, 2.1] } }, 'nested.prop')
+    }, {
+      nested: { prop: [1.2, 2.1] },
+      other: {},
+    }, 'nested.prop')
   })
 })
