@@ -1,5 +1,6 @@
 import { filter } from './filter'
 import { map } from './map'
+import { orderBy } from './orderBy'
 
 /**
  * Collection functions.
@@ -8,4 +9,5 @@ import { map } from './map'
 export {
   filter,
   map,
+  orderBy,
 }
