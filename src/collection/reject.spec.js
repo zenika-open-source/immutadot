@@ -3,7 +3,7 @@ import { immutaTest } from 'test.utils'
 import { reject } from './reject'
 
 describe('Reject', () => {
-  it('should reject an array', () => {
+  it('should reject elements of an array', () => {
     immutaTest((input, path) => {
       const output = reject(input, path, v => v % 2)
       expect(output).toEqual({
