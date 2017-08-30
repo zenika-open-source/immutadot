@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+
 yarn docs
 VERSION_TO_MINOR=$(echo $CIRCLE_TAG | sed -E 's/\.[0-9]+$//')
 rm -rf docs/immutadot/$VERSION_TO_MINOR
