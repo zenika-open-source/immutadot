@@ -1,3 +1,4 @@
+import { filter } from './filter'
 import { map } from './map'
 
 /**
@@ -5,5 +6,6 @@ import { map } from './map'
  * @namespace collection
  */
 export {
+  filter,
   map,
 }
