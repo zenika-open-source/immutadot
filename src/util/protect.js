@@ -23,6 +23,11 @@ class ProtectHandler {
     return true
   }
 
+  deleteProperty(target, property) {
+    this.chainWrapperRef.chainWrapper = this.chainWrapperRef.chainWrapper.unset(concat(this.path, property))
+    return true
+  }
+
   _peek() {
     let peeked
     this.chainWrapperRef.chainWrapper = this.chainWrapperRef.chainWrapper.peek(_peeked => { peeked = _peeked })
