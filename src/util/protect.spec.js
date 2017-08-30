@@ -10,7 +10,7 @@ describe('Protect', () => {
         protectedInput.d = '666'
         protectedInput.b.c = `🍺 ${protectedInput.d} 🍺`
         delete protectedInput.e
-      }).value()
+      })
       expect(output).toEqual({
         a: 2,
         b: { c: '🍺 666 🍺' },
