@@ -1,4 +1,5 @@
 import { add } from './add'
+import { divide } from './divide'
 
 /**
  * Math functions.
@@ -7,4 +8,5 @@ import { add } from './add'
  */
 export {
   add,
+  divide,
 }
