@@ -1,4 +1,5 @@
 import { assign } from './assign'
+import { defaults } from './defaults'
 import { mapValues } from './mapValues'
 import { pickBy } from './pickBy'
 import { set } from './set'
@@ -12,6 +13,7 @@ import { update } from './update'
  */
 export {
   assign,
+  defaults,
   mapValues,
   pickBy,
   set,
