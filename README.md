@@ -68,6 +68,10 @@ $ npm install immutadot
 
 or you can directly download [sources](https://github.com/Zenika/immutadot/releases).
 
+### `node-sass` + Windows troubleshooting
+
+If you encounter trouble in the post-install phase involving `node-sass`, make sure you are building with VC++ 2013: `npm config set msvs_version 2013`.
+
 ## Usage
 
 in browser:
