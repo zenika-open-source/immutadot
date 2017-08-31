@@ -8,7 +8,7 @@ describe('Multiply', () => {
     immutaTest((input, path) => {
       const output = multiply(input, path, 2)
       expect(output).toEqual({
-        nested: { prop: 666 },
+        nested: { prop: 666 }, // 😈
         other: {},
       })
       return output

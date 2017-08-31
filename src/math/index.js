@@ -1,6 +1,7 @@
 import { add } from './add'
 import { divide } from './divide'
 import { multiply } from './multiply'
+import { subtract } from './subtract'
 
 /**
  * Math functions.
@@ -11,4 +12,5 @@ export {
   add,
   divide,
   multiply,
+  subtract,
 }
