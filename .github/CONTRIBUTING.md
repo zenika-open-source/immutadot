@@ -18,6 +18,7 @@ As immutad●t is still a very young project, we are also open to enhancement su
 #### Installation :package:
 We use [yarn](https://yarnpkg.com/) but you are free to use [npm](https://www.npmjs.com/) if you prefer.<br />
 Once you have cloned the project, run `yarn` or `npm install` to install all the dependencies.
+If you encounter trouble in the post-install phase involving `node-sass`, make sure you are building with VC++ 2013: `npm config set msvs_version 2013`.
 
 #### Architecture :house:
 We have only one peer dependency on [lodash](https://lodash.com/) and we intend to keep it that way.<br />
