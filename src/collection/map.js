@@ -11,8 +11,7 @@ import { convert } from 'util/convert'
  * @param {function} [iteratee={@link https://lodash.com/docs#identity|lodash.identity}] The function invoked per iteration.
  * @return {Object} Returns the updated object.
  * @see {@link https://lodash.com/docs#map|lodash.map} for more information.
- * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
- * @see {@link object.update|update} for more information.
+ * @example map({ nested: { prop: [1, 2, 3] } }, 'nested.prop', v => v * 2) // => { nested: { prop: [2, 4, 6] } }
  * @since 0.1.8
  */
 const map = convert(_map)
