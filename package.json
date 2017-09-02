@@ -27,6 +27,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-2": "^6.24.1",
     "codecov": "^2.3.0",
+    "cross-env": "^5.0.5",
     "eslint": "^4.4.1",
     "hotdoc": "^0.7.2",
     "jest": "^20.0.4",
@@ -36,7 +37,7 @@
     "lodash": "^4.17.4"
   },
   "scripts": {
-    "build": "BABEL_ENV=production babel src -d .",
+    "build": "cross-env BABEL_ENV=production babel src -d .",
     "lint": "eslint src misc",
     "test": "jest",
     "test:coverage": "jest --coverage && codecov",
