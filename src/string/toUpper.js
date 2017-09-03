@@ -4,7 +4,7 @@ import { convert } from 'util/convert'
 /**
  * Converts string, as a whole, to upper case just like String#toUpperCase.
  * @function
- * @memberof object
+ * @memberof string
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
  * @return {Object} Returns the updated object.
