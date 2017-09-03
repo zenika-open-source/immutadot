@@ -29,7 +29,6 @@ export { convert, convert as default }
  * @return {function} Returns the wrapped function.
  * @see {@link util.convert|convert} for more information.
  * @since 0.2.0
- * @deprecated Unused since 0.3.0 and {@link fix #72|https://github.com/Zenika/immutadot/issues/72}, to be removed ?
  * @private
  */
 export const convertLodashFp = fn => convert(lodashFpConvert(fn))

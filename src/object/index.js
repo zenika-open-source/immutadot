@@ -2,6 +2,7 @@ import { assign } from './assign'
 import { defaults } from './defaults'
 import { mapKeys } from './mapKeys'
 import { mapValues } from './mapValues'
+import { merge } from './merge'
 import { pickBy } from './pickBy'
 import { set } from './set'
 import { unset } from './unset'
@@ -17,6 +18,7 @@ export {
   defaults,
   mapKeys,
   mapValues,
+  merge,
   pickBy,
   set,
   unset,
