@@ -5,6 +5,7 @@ import { mapValues } from './mapValues'
 import { merge } from './merge'
 import { omit } from './omit'
 import { omitBy } from './omitBy'
+import { pick } from './pick'
 import { pickBy } from './pickBy'
 import { set } from './set'
 import { unset } from './unset'
@@ -23,6 +24,7 @@ export {
   merge,
   omit,
   omitBy,
+  pick,
   pickBy,
   set,
   unset,
