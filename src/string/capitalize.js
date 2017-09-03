@@ -10,7 +10,6 @@ import { convert } from 'util/convert'
  * @return {Object} Returns the updated object.
  * @example capitalize({ nested: { a: "a string" } }, 'nested.a') // => { nested: { a: "A string" } }
  * @see {@link https://lodash.com/docs#capitalize|lodash.capitalize} for more information.
- * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
  * @since 0.3.0
  */
 const capitalize = convert(_capitalize)

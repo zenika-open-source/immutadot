@@ -4,7 +4,7 @@ import { toUpper } from './toUpper'
 
 describe('toUpper', () => {
 
-  it('should converts string, as a whole, to upper case just like String#toUpperCase', () => {
+  it('should convert string, as a whole, to upper case just like String#toUpperCase', () => {
     immutaTest((input, path) => {
       const output = toUpper(input, path)
       expect(output).toEqual({ nested: { prop: 'A STRING' } })

@@ -10,7 +10,7 @@ import { convert } from 'util/convert'
  * @return {Object} Returns the updated object.
  * @example toLower({ nested: { a: "A STRING" } }, 'nested.a') // => { nested: { a: "a string" } }
  * @see {@link https://lodash.com/docs#toLower|lodash.toLower} for more information.
- * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
+ * @see {@link https://mdn.io/String/toLowerCase|String.toLowerCase} for more information.
  * @since 0.3.0
  */
 const toLower = convert(_toLower)

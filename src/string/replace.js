@@ -12,7 +12,6 @@ import { convert } from 'util/convert'
  * @return {Object} Returns the updated object.
  * @example replace({ nested: { a: "Hi Nico" } }, 'nested.a', 'Nico', 'Yvo') // => { nested: { a: "Hi Yvo" } }
  * @see {@link https://lodash.com/docs#replace|lodash.replace} for more information.
- * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
  * @since 0.3.0
  */
 const replace = convert(_replace)

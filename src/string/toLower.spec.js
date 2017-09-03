@@ -4,7 +4,7 @@ import { toLower } from './toLower'
 
 describe('toLower', () => {
 
-  it('should converts string, as a whole, to lower case just like String#toLowerCase', () => {
+  it('should convert string, as a whole, to lower case just like String#toLowerCase', () => {
     immutaTest((input, path) => {
       const output = toLower(input, path)
       expect(output).toEqual({ nested: { prop: 'a string' } })

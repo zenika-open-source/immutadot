@@ -10,7 +10,7 @@ import { convert } from 'util/convert'
  * @return {Object} Returns the updated object.
  * @example toUpper({ nested: { a: "a string" } }, 'nested.a') // => { nested: { a: "A STRING" } }
  * @see {@link https://lodash.com/docs#toUpper|lodash.toUpper} for more information.
- * @see {@link https://lodash.com/docs#identity|lodash.identity} for more information.
+ * @see {@link https://mdn.io/String/toUpperCase|String.toUpperCase} for more information.
  * @since 0.3.0
  */
 const toUpper = convert(_toUpper)
