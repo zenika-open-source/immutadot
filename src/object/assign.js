@@ -2,9 +2,8 @@ import _assign from 'lodash/assign'
 import { convert } from 'util/convert'
 
 /**
- * Assigns own enumerable string keyed properties of source objects to the
- * destination object. Source objects are applied from left to right.
- * Subsequent sources overwrite property assignments of previous sources.
+ * Replaces by an object assigning own enumerable string keyed properties of source objects to the destination object.<br />
+ * Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
  * @function
  * @memberof object
  * @param {Object} object The object to modify.
