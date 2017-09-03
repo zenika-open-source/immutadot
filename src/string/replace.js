@@ -4,7 +4,7 @@ import { convert } from 'util/convert'
 /**
  * Replaces matches for pattern in string with replacement.
  * @function
- * @memberof object
+ * @memberof string
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
  * @param {RegExp|string} pattern The pattern to replace.
