@@ -12,7 +12,7 @@ import { unset } from './unset'
 import { update } from './update'
 
 /**
- * Array functions.
+ * Object functions.
  * @namespace object
  * @since 0.1.12
  */
