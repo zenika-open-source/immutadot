@@ -31,4 +31,5 @@ deployment:
     tag: /\d+\.\d+\.\d+/
     commands:
       - npm publish
-      - ./publish-docs.sh
+# To be fixed, see https://github.com/Zenika/immutadot/issues/89
+#      - ./publish-docs.sh
