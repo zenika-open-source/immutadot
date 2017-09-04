@@ -1,4 +1,4 @@
-import { capizalize } from './capizalize'
+import { capitalize } from './capitalize'
 import { replace } from './replace'
 import { toLower } from './toLower'
 import { toUpper } from './toUpper'
@@ -9,7 +9,7 @@ import { toUpper } from './toUpper'
  * @since 0.3.0
  */
 export {
-  capizalize,
+  capitalize,
   replace,
   toLower,
   toUpper,
