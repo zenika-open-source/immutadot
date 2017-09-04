@@ -30,7 +30,7 @@
     "cross-env": "^5.0.5",
     "eslint": "^4.4.1",
     "hotdoc": "^0.7.2",
-    "jest": "^20.0.4",
+    "jest": "^21.0.0",
     "jsdoc": "^3.5.4"
   },
   "peerDependencies": {
