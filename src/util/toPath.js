@@ -26,22 +26,19 @@ const toPath = arg => {
       break
     }
 
-    let endIndex, nextIndex
     if (nextPoint !== -1 && (nextBracket === -1 || nextPoint < nextBracket)) {
-      endIndex = nextPoint
-      nextIndex = nextPoint + 1
+      path.push(str.substring(index, nextPoint))
+      index = nextPoint + 1
       if (nextBracket === nextPoint + 1) {
         arrayNotation = true
-        nextIndex = nextBracket + 1
+        index = nextBracket + 1
       }
     } else if (nextBracket !== -1) {
       arrayNotation = true
-      endIndex = nextBracket
-      nextIndex = nextBracket + 1
+      if (nextBracket !== index)
+        path.push(str.substring(index, nextBracket))
+      index = nextBracket + 1
     }
-
-    path.push(str.substring(index, endIndex))
-    index = nextIndex
 
     if (arrayNotation) {
       // TODO

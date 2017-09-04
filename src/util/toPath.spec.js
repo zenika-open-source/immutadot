@@ -6,6 +6,7 @@ describe('ToPath', () => {
   it('should convert basic path', () => {
     expect(toPath('a.bb.ccc')).toEqual(['a', 'bb', 'ccc'])
     expect(toPath('.')).toEqual(['', ''])
+    expect(toPath('..')).toEqual(['', '', ''])
     expect(toPath('1.22.333')).toEqual(['1', '22', '333'])
     expect(toPath('\']"\\')).toEqual(['\']"\\'])
   })
