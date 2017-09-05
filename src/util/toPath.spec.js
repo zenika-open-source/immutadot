@@ -35,6 +35,8 @@ describe('ToPath', () => {
   it('should convert mixed path', () => {
     expect(toPath('a[0]["b.c"].666')).toEqual(['a', 0, 'b.c', '666'])
     expect(toPath('a.[0]["b.c"].666')).toEqual(['a', 0, 'b.c', '666'])
+    // TODO add slices
+    // TODO add erroneous (missing dot)
   })
 
   it('should not convert array path', () => {
