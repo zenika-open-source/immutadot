@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { toPath } from 'util/toPath'
+import { toPath } from 'util'
 
 describe('ToPath', () => {
 
@@ -34,12 +34,13 @@ describe('ToPath', () => {
 
   it('should convert mixed path', () => {
     expect(toPath('a[0]["b.c"].666')).toEqual(['a', 0, 'b.c', '666'])
-    expect(toPath('a.[0]["b.c"].666')).toEqual(['a', 0, 'b.c', '666'])
+    expect(toPath('a.[0].["b.c"].666')).toEqual(['a', 0, 'b.c', '666'])
     // TODO add slices
     // TODO add erroneous (missing dot)
   })
 
   it('should not convert array path', () => {
     expect(toPath([666, Symbol.for('🍺'), true, 'test'])).toEqual([666, Symbol.for('🍺'), 'true', 'test'])
+    // TODO add slices
   })
 })
