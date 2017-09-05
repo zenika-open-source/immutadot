@@ -1,5 +1,6 @@
 import { convert } from './convert'
 import { protect } from './protect'
+import { toPath } from './toPath'
 import { using } from './using'
 
 /**
@@ -9,6 +10,7 @@ import { using } from './using'
  */
 export {
   convert,
+  toPath,
   using,
   protect,
 }

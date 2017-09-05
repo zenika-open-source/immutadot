@@ -23,11 +23,13 @@ for (const delimiter of delimiters)
 
 const unescapeDelimiters = (str, delimiter) => str.replace(escapedDelimsRegexps[delimiter], delimiter)
 
-const toPath = arg => {
+const allowingArrays = fn => arg => {
   if (Array.isArray(arg)) return arg.map(toKey)
 
-  const str = toString(arg)
+  return fn(toString(arg))
+}
 
+const stringToPath = str => {
   const path = []
   let index = 0
   let arrayNotation = false
@@ -82,6 +84,7 @@ const toPath = arg => {
         }
         const arrayIndex = str.substring(index, closingBracket)
         index = closingBracket + 1
+        if (str.charAt(index) === '.') index++
         if (arrayIndex === ':')
           path.push([undefined, undefined])
         else {
@@ -104,4 +107,20 @@ const toPath = arg => {
   return path
 }
 
-export { toPath }
+// TODO improve and limit size
+const memoized = {}
+const memoizedStringToPath = str => {
+  if (memoized[str]) return memoized[str]
+
+  const path = stringToPath(str)
+
+  memoized[str] = path
+
+  return path
+}
+
+const toPath = allowingArrays(str => [...memoizedStringToPath(str)])
+
+const unsafeToPath = allowingArrays(memoizedStringToPath)
+
+export { toPath, unsafeToPath }
