@@ -14,8 +14,22 @@ describe('ToPath', () => {
   it('should convert array notation path', () => {
     expect(toPath('[0][1][2]')).toEqual([0, 1, 2])
     expect(toPath('[0]["1.2"]')).toEqual([0, '1.2'])
-    expect(toPath('[0]["[1.2]"]')).toEqual([0, '[1.2]'])
+    expect(toPath('[0][\'[1.2]\']')).toEqual([0, '[1.2]'])
     expect(toPath('[0]["[\\"1.2\\"]"]')).toEqual([0, '["1.2"]'])
+    // TODO add erroneous
+    // TODO add unterminated brackets
+    // TODO add unterminated escaped
+  })
+
+  it('should convert slice notation path', () => {
+    expect(toPath('[:][1:][:2][3:4]')).toEqual([
+      [undefined, undefined],
+      [1, undefined],
+      [undefined, 2],
+      [3, 4],
+    ])
+    // TODO add negative
+    // TODO add erroneous
   })
 
   it('should convert mixed path', () => {

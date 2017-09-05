@@ -5,10 +5,20 @@ const isIndex = arg => Number.isSafeInteger(arg) && arg >= 0
 
 const toKey = arg => isIndex(arg) || isSymbol(arg) ? arg : toString(arg)
 
+const delimiterChars = ['"', '\'']
+const isDelimiterChar = (str, index) => {
+  const char = str.charAt(index)
+  const delimiterChar = delimiterChars.find(c => c === char)
+  return {
+    delimited: Boolean(delimiterChar),
+    delimiterChar,
+  }
+}
+
+const toSliceIndex = str => str === '' ? undefined : Number.parseInt(str)
+
 const toPath = arg => {
   if (Array.isArray(arg)) return arg.map(toKey)
-
-  if (isIndex(arg)) return [arg]
 
   const str = toString(arg)
 
@@ -41,8 +51,34 @@ const toPath = arg => {
     }
 
     if (arrayNotation) {
-      // TODO
+      const { delimited, delimiterChar } = isDelimiterChar(str, index)
+      if (delimited) {
+        // TODO
+      } else {
+        const closingBracket = str.indexOf(']', index)
+        if (closingBracket === -1) {
+          path.push(str.substring(index))
+          break
+        }
+        const arrayIndex = str.substring(index, closingBracket)
+        index = closingBracket + 1
+        if (arrayIndex === ':')
+          path.push([undefined, undefined])
+        else {
+          const sliceDelimIndex = arrayIndex.indexOf(':')
+          if (sliceDelimIndex === -1) {
+            const nArrayIndex = Number.parseInt(arrayIndex)
+            path.push(Number.isNaN(nArrayIndex) ? arrayIndex : nArrayIndex)
+          } else {
+            const sliceStart = arrayIndex.substring(0, sliceDelimIndex), sliceEnd = arrayIndex.substring(sliceDelimIndex + 1)
+            const nSliceStart = toSliceIndex(sliceStart), nSliceEnd = toSliceIndex(sliceEnd)
+            path.push(Number.isNaN(nSliceStart) || Number.isNaN(nSliceEnd) ? arrayIndex : [nSliceStart, nSliceEnd])
+          }
+        }
+        if (index === str.length) break
+      }
     }
+
   }
 
   return path
