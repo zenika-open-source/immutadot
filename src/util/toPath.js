@@ -5,17 +5,23 @@ const isIndex = arg => Number.isSafeInteger(arg) && arg >= 0
 
 const toKey = arg => isIndex(arg) || isSymbol(arg) ? arg : toString(arg)
 
-const delimiterChars = ['"', '\'']
+const delimiters = ['"', '\'']
 const isDelimiterChar = (str, index) => {
   const char = str.charAt(index)
-  const delimiterChar = delimiterChars.find(c => c === char)
+  const delimiter = delimiters.find(c => c === char)
   return {
-    delimited: Boolean(delimiterChar),
-    delimiterChar,
+    delimited: Boolean(delimiter),
+    delimiter,
   }
 }
 
 const toSliceIndex = str => str === '' ? undefined : Number.parseInt(str)
+
+const escapedDelimsRegexps = {}
+for (const delimiter of delimiters)
+  escapedDelimsRegexps[delimiter] = new RegExp(`\\\\${delimiter}`, 'g')
+
+const unescapeDelimiters = (str, delimiter) => str.replace(escapedDelimsRegexps[delimiter], delimiter)
 
 const toPath = arg => {
   if (Array.isArray(arg)) return arg.map(toKey)
@@ -51,9 +57,23 @@ const toPath = arg => {
     }
 
     if (arrayNotation) {
-      const { delimited, delimiterChar } = isDelimiterChar(str, index)
+      const { delimited, delimiter } = isDelimiterChar(str, index)
       if (delimited) {
-        // TODO
+        index++
+        let endDelimiter, escapedIndex = index
+        do {
+          endDelimiter = str.indexOf(delimiter, escapedIndex)
+          escapedIndex = endDelimiter + 1
+        } while (endDelimiter !== -1 && str.charAt(endDelimiter - 1) === '\\')
+        if (endDelimiter === -1) {
+          path.push(unescapeDelimiters(str.substring(index), delimiter))
+          break
+        }
+        path.push(unescapeDelimiters(str.substring(index, endDelimiter), delimiter))
+        index = endDelimiter + 1
+        if (str.charAt(index) === ']') index++
+        if (index === str.length) break
+        if (str.charAt(index) === '.') index++
       } else {
         const closingBracket = str.indexOf(']', index)
         if (closingBracket === -1) {
