@@ -15,4 +15,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const xorWith = convert(_xorWith)
-export { xorWith, xorWith as default }
+export { xorWith }

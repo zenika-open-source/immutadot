@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const toUpper = convert(_toUpper)
-export { toUpper, toUpper as default }
+export { toUpper }

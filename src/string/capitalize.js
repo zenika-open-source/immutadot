@@ -13,4 +13,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const capitalize = convert(_capitalize)
-export { capitalize, capitalize as default }
+export { capitalize }

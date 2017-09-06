@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const reject = convert(_reject)
-export { reject, reject as default }
+export { reject }

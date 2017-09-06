@@ -19,4 +19,4 @@ const convertArrayMethod = method => convert((array, ...args) => {
   return newArray
 })
 
-export { convertArrayMethod, convertArrayMethod as default }
+export { convertArrayMethod }

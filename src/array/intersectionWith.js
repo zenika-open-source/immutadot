@@ -15,4 +15,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const intersectionWith = convert(_intersectionWith)
-export { intersectionWith, intersectionWith as default }
+export { intersectionWith }

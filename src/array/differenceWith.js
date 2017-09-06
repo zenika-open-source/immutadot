@@ -15,4 +15,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const differenceWith = convert(_differenceWith)
-export { differenceWith, differenceWith as default }
+export { differenceWith }

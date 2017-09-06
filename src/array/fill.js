@@ -16,4 +16,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const fill = convert(_fill)
-export { fill, fill as default }
+export { fill }

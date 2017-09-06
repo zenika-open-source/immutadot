@@ -23,4 +23,4 @@ const convertedUpdate = lodashFpConvert(_update)
  * @since 0.1.5
  */
 const update = (object, path, updater, ...args) => convertedUpdate(object, path, v => updater(v, ...args))
-export { update, update as default }
+export { update }

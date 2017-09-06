@@ -16,4 +16,4 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @since 0.1.7
  */
 const unshift = convertArrayMethod('unshift')
-export { unshift, unshift as default }
+export { unshift }

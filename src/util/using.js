@@ -26,5 +26,4 @@ export {
   placeholder,
   placeholder as _,
   using,
-  using as default,
 }

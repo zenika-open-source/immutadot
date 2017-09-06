@@ -13,4 +13,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const shuffle = convert(_shuffle)
-export { shuffle, shuffle as default }
+export { shuffle }

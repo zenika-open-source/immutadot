@@ -15,4 +15,4 @@ import { convert } from 'util/convert'
  * @since 0.1.8
  */
 const map = convert(_map)
-export { map, map as default }
+export { map }

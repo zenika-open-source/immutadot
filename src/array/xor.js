@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.1.6
  */
 const xor = convert(_xor)
-export { xor, xor as default }
+export { xor }

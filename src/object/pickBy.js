@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.1.12
  */
 const pickBy = convert(_pickBy)
-export { pickBy, pickBy as default }
+export { pickBy }

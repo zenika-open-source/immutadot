@@ -15,4 +15,4 @@ import { lodashFpConvert } from 'util/lodashFpConvert'
  * @since 0.1.5
  */
 const set = lodashFpConvert(_set)
-export { set, set as default }
+export { set }

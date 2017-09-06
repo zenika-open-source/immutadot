@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const divide = convert(_divide)
-export { divide, divide as default }
+export { divide }

@@ -23,4 +23,4 @@ import { ChainWrapper } from './ChainWrapper'
  * @since 0.1.8
  */
 const chain = (object, path) => new ChainWrapper(object, path)
-export { chain, chain as default }
+export { chain }

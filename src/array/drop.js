@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.2.0
  */
 const drop = convert(_drop)
-export { drop, drop as default }
+export { drop }

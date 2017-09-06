@@ -16,4 +16,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const sortBy = convert(_sortBy)
-export { sortBy, sortBy as default }
+export { sortBy }

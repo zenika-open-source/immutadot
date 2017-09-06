@@ -15,4 +15,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const mapKeys = convert(_mapKeys)
-export { mapKeys, mapKeys as default }
+export { mapKeys }

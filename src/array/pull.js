@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.2.0
  */
 const pull = convert(_pull)
-export { pull, pull as default }
+export { pull }

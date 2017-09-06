@@ -8,4 +8,4 @@ import { pull } from './pull'
  */
 const without = pull
 
-export { without, without as default }
+export { without }

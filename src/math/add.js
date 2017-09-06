@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.1.7
  */
 const add = convert(_add)
-export { add, add as default }
+export { add }

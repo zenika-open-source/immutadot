@@ -15,4 +15,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const unionWith = convert(_unionWith)
-export { unionWith, unionWith as default }
+export { unionWith }

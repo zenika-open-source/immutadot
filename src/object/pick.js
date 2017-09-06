@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const pick = convert(_pick)
-export { pick, pick as default }
+export { pick }

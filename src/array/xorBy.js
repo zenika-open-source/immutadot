@@ -15,4 +15,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const xorBy = convert(_xorBy)
-export { xorBy, xorBy as default }
+export { xorBy }

@@ -19,7 +19,7 @@ import { update } from 'object/update'
  * @since 0.2.0
  */
 const convert = updater => (obj, path, ...rest) => update(obj, path, updater, ...rest)
-export { convert, convert as default }
+export { convert }
 
 /**
  * Converts and wraps a lodash/fp function.

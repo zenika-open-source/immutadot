@@ -15,4 +15,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const replace = convert(_replace)
-export { replace, replace as default }
+export { replace }
