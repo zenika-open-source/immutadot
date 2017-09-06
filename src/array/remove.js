@@ -17,4 +17,4 @@ const remove = convert((array, predicate) => {
   _remove(array, predicate)
   return array
 })
-export { remove, remove as default }
+export { remove }

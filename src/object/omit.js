@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const omit = convert(_omit)
-export { omit, omit as default }
+export { omit }

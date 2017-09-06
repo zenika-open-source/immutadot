@@ -15,4 +15,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const pullAllWith = convert(_pullAllWith)
-export { pullAllWith, pullAllWith as default }
+export { pullAllWith }

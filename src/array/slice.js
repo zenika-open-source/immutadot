@@ -15,4 +15,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const slice = convert(_slice)
-export { slice, slice as default }
+export { slice }

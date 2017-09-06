@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const subtract = convert(_subtract)
-export { subtract, subtract as default }
+export { subtract }

@@ -16,4 +16,4 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @since 0.1.7
  */
 const push = convertArrayMethod('push')
-export { push, push as default }
+export { push }

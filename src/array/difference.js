@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.2.0
  */
 const difference = convert(_difference)
-export { difference, difference as default }
+export { difference }

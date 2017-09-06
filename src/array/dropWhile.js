@@ -14,4 +14,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const dropWhile = convert(_dropWhile)
-export { dropWhile, dropWhile as default }
+export { dropWhile }

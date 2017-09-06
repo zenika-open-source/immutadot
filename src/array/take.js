@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const take = convert(_take)
-export { take, take as default }
+export { take }

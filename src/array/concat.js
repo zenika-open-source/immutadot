@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.2.0
  */
 const concat = convert(_concat)
-export { concat, concat as default }
+export { concat }

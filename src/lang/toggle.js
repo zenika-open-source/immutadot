@@ -11,4 +11,4 @@ import { convert } from 'util/convert'
  * @since 0.1.5
  */
 const toggle = convert(v => !v)
-export { toggle, toggle as default }
+export { toggle }

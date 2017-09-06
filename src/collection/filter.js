@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const filter = convert(_filter)
-export { filter, filter as default }
+export { filter }

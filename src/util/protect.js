@@ -1,4 +1,4 @@
-import chain from 'seq/chain'
+import { chain } from 'seq/chain'
 import concat from 'lodash/concat'
 import get from 'lodash/get'
 import isEmpty from 'lodash/isEmpty'
@@ -99,4 +99,4 @@ const protect = reference => {
   }
 }
 
-export default protect
+export { protect }

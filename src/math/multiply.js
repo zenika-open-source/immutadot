@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const multiply = convert(_multiply)
-export { multiply, multiply as default }
+export { multiply }

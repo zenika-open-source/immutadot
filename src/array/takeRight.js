@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const takeRight = convert(_takeRight)
-export { takeRight, takeRight as default }
+export { takeRight }

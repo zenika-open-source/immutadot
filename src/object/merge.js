@@ -15,4 +15,4 @@ import { convertLodashFp } from 'util/convert'
  * @since 0.3.0
  */
 const merge = convertLodashFp(_merge)
-export { merge, merge as default }
+export { merge }

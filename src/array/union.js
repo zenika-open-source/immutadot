@@ -14,4 +14,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const union = convert(_union)
-export { union, union as default }
+export { union }

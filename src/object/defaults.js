@@ -15,4 +15,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const defaults = convert(_defaults)
-export { defaults, defaults as default }
+export { defaults }

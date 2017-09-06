@@ -14,4 +14,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const dropRightWhile = convert(_dropRightWhile)
-export { dropRightWhile, dropRightWhile as default }
+export { dropRightWhile }

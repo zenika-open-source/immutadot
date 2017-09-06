@@ -14,4 +14,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const dropRight = convert(_dropRight)
-export { dropRight, dropRight as default }
+export { dropRight }

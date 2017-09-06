@@ -17,4 +17,4 @@ const pullAt = convert((array, predicate) => {
   _pullAt(array, predicate)
   return array
 })
-export { pullAt, pullAt as default }
+export { pullAt }

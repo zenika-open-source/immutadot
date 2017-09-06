@@ -13,4 +13,4 @@ import { convert } from '../util/convert'
  * @since 0.3.0
  */
 const reverse = convert(_reverse)
-export { reverse, reverse as default }
+export { reverse }

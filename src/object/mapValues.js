@@ -16,4 +16,4 @@ import { convert } from 'util/convert'
  * @since 0.1.12
  */
 const mapValues = convert(_mapValues)
-export { mapValues, mapValues as default }
+export { mapValues }

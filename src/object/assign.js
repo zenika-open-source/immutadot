@@ -15,4 +15,4 @@ import { convert } from 'util/convert'
  * @since 0.1.12
  */
 const assign = convert(_assign)
-export { assign, assign as default }
+export { assign }

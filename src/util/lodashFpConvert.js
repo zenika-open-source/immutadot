@@ -20,4 +20,4 @@ const lodashFpConvertOptions = {
  * @private
  */
 const lodashFpConvert = fn => fn.convert(lodashFpConvertOptions)
-export { lodashFpConvert, lodashFpConvert as default }
+export { lodashFpConvert }

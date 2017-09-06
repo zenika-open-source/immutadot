@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import dropWhile from './dropWhile'
+import { dropWhile } from './dropWhile'
 import { immutaTest } from 'test.utils'
 
 describe('DropWhile', () => {

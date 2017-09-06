@@ -84,4 +84,4 @@ class UsingWrapper {
   ),
 ))
 
-export { UsingWrapper, UsingWrapper as default }
+export { UsingWrapper }

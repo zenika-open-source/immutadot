@@ -16,4 +16,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const takeWhile = convert(_takeWhile)
-export { takeWhile, takeWhile as default }
+export { takeWhile }

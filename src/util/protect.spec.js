@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import protect from './protect'
+import { protect } from './protect'
 
 describe('Protect', () => {
   it('should return properties value', () => {

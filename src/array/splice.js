@@ -15,4 +15,4 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @since 0.2.0
  */
 const splice = convertArrayMethod('splice')
-export { splice, splice as default }
+export { splice }

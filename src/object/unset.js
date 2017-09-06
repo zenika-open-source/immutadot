@@ -14,4 +14,4 @@ import { lodashFpConvert } from 'util/lodashFpConvert'
  * @since 0.1.5
  */
 const unset = lodashFpConvert(_unset)
-export { unset, unset as default }
+export { unset }

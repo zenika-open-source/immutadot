@@ -14,4 +14,4 @@ import { convert } from 'util/convert'
  * @since 0.3.0
  */
 const toLower = convert(_toLower)
-export { toLower, toLower as default }
+export { toLower }
