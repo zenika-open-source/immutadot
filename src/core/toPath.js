@@ -199,6 +199,7 @@ const memoizedStringToPath = str => {
  * @return {(string|number)[]} The path represented as an array of keys
  * @memberof core
  * @since 0.4.0
+ * @example toPath('a.b[1]["."][1:-1]') // => ['a', 'b', 1, '.', [1, -1]]
  */
 const toPath = allowingArrays(arg => [...memoizedStringToPath(arg)])
 
