@@ -125,10 +125,11 @@ const stringToPath = str => {
           endDelimiter = str.indexOf(delimiter, escapedIndex)
           escapedIndex = endDelimiter + 1
         } while (endDelimiter !== -1 && str.charAt(endDelimiter - 1) === '\\')
-        if (endDelimiter === -1) {
-          path.push(unescapeDelimiters(str.substring(index), delimiter))
-          break
-        }
+        if (endDelimiter === -1)
+          if (index === str.length)
+            break
+          else
+            continue
         path.push(unescapeDelimiters(str.substring(index, endDelimiter), delimiter))
         index = endDelimiter + 1
         if (str.charAt(index) === ']') index++
@@ -136,10 +137,11 @@ const stringToPath = str => {
         if (str.charAt(index) === '.') index++
       } else {
         const closingBracket = str.indexOf(']', index)
-        if (closingBracket === -1) {
-          path.push(str.substring(index))
-          break
-        }
+        if (closingBracket === -1)
+          if (index === str.length)
+            break
+          else
+            continue
         const arrayIndex = str.substring(index, closingBracket)
         index = closingBracket + 1
         if (str.charAt(index) === '.') index++

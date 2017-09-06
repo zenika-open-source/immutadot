@@ -16,8 +16,11 @@ describe('ToPath', () => {
     expect(toPath('[0]["1.2"]')).toEqual([0, '1.2'])
     expect(toPath('[0][\'[1.2]\']')).toEqual([0, '[1.2]'])
     expect(toPath('[0]["[\\"1.2\\"]"]')).toEqual([0, '["1.2"]'])
+    expect(toPath('[0][1.2')).toEqual([0, '1', '2'])
+    expect(toPath('[0][')).toEqual([0])
+    expect(toPath('[0][ ')).toEqual([0, ' '])
+    expect(toPath('[0][.')).toEqual([0, ''])
     // TODO add erroneous
-    // TODO add unterminated brackets
     // TODO add unterminated escaped
   })
 
