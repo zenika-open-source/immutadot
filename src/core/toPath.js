@@ -1,5 +1,7 @@
-import { isSymbol } from 'util/isSymbol'
-import { toString } from 'util/toString'
+import {
+  isSymbol,
+  toString,
+} from 'util/lang'
 
 const isIndex = arg => Number.isSafeInteger(arg) && arg >= 0
 
