@@ -17,7 +17,8 @@
   "author": "Nicolas Lepage (https://github.com/nlepage)",
   "contributors": [
     "Yvonnick FRIN (https://github.com/frinyvonnick)",
-    "Valentin COCAUD (https://github.com/EmrysMyrddin)"
+    "Valentin COCAUD (https://github.com/EmrysMyrddin)",
+    "Hugo WOOD (https://github.com/hgwood)"
   ],
   "main": "index.js",
   "devDependencies": {
