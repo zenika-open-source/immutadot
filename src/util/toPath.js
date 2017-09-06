@@ -107,14 +107,15 @@ const stringToPath = str => {
   return path
 }
 
-// TODO improve and limit size
-const memoized = {}
+const MAX_CACHE_SIZE = 1000
+const cache = new Map()
 const memoizedStringToPath = str => {
-  if (memoized[str]) return memoized[str]
+  if (cache.has(str)) return cache.get(str)
 
   const path = stringToPath(str)
 
-  memoized[str] = path
+  if (cache.size === MAX_CACHE_SIZE) cache.clear()
+  cache.set(str, path)
 
   return path
 }
