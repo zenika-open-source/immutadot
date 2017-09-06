@@ -1,4 +1,5 @@
 import { convert } from './convert'
+import { toPath } from './toPath'
 import { using } from './using'
 
 /**
@@ -8,5 +9,6 @@ import { using } from './using'
  */
 export {
   convert,
+  toPath,
   using,
 }
