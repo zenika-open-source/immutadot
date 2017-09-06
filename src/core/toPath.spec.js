@@ -16,10 +16,8 @@ describe('ToPath', () => {
     expect(toPath('[0]["1.2"]')).toEqual([0, '1.2'])
     expect(toPath('[0][\'[1.2]\']')).toEqual([0, '[1.2]'])
     expect(toPath('[0]["[\\"1.2\\"]"]')).toEqual([0, '["1.2"]'])
-    expect(toPath('[0][1.2')).toEqual([0, '1', '2'])
+    expect(toPath('[0][1')).toEqual([0, '1'])
     expect(toPath('[0][')).toEqual([0])
-    expect(toPath('[0][ ')).toEqual([0, ' '])
-    expect(toPath('[0][.')).toEqual([0, ''])
     // TODO add erroneous
     // TODO add unterminated escaped
   })
@@ -40,6 +38,7 @@ describe('ToPath', () => {
     expect(toPath('a.[0].["b.c"].666')).toEqual(['a', 0, 'b.c', '666'])
     // TODO add slices
     // TODO add erroneous (missing dot)
+    // TODO add unterminated (with mixed after)
   })
 
   it('should not convert array path', () => {
