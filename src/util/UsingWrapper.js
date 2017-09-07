@@ -3,6 +3,7 @@ import * as collection from 'collection'
 import * as lang from 'lang'
 import * as math from 'math'
 import * as object from 'object'
+import * as string from 'string'
 
 import concat from 'lodash/concat'
 import drop from 'lodash/drop'
@@ -74,6 +75,7 @@ class UsingWrapper {
   lang,
   math,
   object,
+  string,
 ].forEach(namespace => Object.assign(
   UsingWrapper.prototype,
   mapValues(
