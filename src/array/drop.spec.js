@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { drop } from './drop'
+import { drop } from 'array'
 import { immutaTest } from 'test.utils'
 
 describe('Drop', () => {

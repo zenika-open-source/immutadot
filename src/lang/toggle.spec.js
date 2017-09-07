@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { toggle } from './toggle'
+import { toggle } from 'lang'
 
 describe('Toggle', () => {
 

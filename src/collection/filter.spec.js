@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { filter } from './filter'
+import { filter } from 'collection'
 import { immutaTest } from 'test.utils'
 
 describe('Filter', () => {

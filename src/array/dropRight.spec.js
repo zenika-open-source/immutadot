@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { dropRight } from './dropRight'
+import { dropRight } from 'array'
 import { immutaTest } from 'test.utils'
 
 describe('DropRight', () => {

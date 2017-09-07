@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { assign } from './assign'
+import { assign } from 'object'
 import { immutaTest } from 'test.utils'
 
 describe('Assign', () => {

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { push } from './push'
+import { push } from 'array'
 
 describe('Push', () => {
 

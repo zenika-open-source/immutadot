@@ -1,5 +1,5 @@
 import _union from 'lodash/union'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * Replaces an array by an array of unique values, in order, from the former array and the given arrays.

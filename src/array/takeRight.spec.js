@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { takeRight } from './takeRight'
+import { takeRight } from 'array'
 
 describe('TakeRight', () => {
 

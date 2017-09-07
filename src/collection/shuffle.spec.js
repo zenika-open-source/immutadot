@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { shuffle } from './shuffle'
+import { shuffle } from 'collection'
 
 describe('Shuffle', () => {
   it('should shuffle an array', () => {

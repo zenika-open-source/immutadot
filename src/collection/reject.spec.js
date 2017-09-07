@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { reject } from './reject'
+import { reject } from 'collection'
 
 describe('Reject', () => {
   it('should reject elements of an array', () => {

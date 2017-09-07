@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { update } from './update'
+import { update } from 'object'
 
 describe('Update', () => {
 

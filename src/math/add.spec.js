@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { add } from './add'
+import { add } from 'math'
 import { immutaTest } from 'test.utils'
 
 describe('Add', () => {

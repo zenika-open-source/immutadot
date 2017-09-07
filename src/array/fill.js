@@ -1,5 +1,5 @@
 import _fill from 'lodash/fill.js'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * Replaces by an array filled with value from start up to, but not including, end.

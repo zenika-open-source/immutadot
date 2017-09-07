@@ -1,5 +1,5 @@
 import _differenceBy from 'lodash/differenceBy'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * This method is like {@link array.difference} except that it uses <code>iteratee</code> to generate the value to be compared for each element.
