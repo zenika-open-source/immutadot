@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { capitalize } from './capitalize'
+import { capitalize } from 'string'
 import { immutaTest } from 'test.utils'
 
 describe('Capitalize', () => {

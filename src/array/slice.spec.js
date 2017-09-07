@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { slice } from './slice'
+import { slice } from 'array'
 
 describe('Slice', () => {
 

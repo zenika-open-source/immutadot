@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { without } from './without'
+import { without } from 'array'
 
 describe('Without', () => {
 

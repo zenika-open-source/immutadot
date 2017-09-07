@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { xorBy } from './xorBy'
+import { xorBy } from 'array'
 
 describe('XorBy', () => {
 

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { unset } from './unset'
+import { unset } from 'object'
 
 describe('Unset', () => {
 

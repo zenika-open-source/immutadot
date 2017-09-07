@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { toLower } from './toLower'
+import { toLower } from 'string'
 
 describe('toLower', () => {
 

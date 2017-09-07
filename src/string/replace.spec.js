@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { replace } from './replace'
+import { replace } from 'string'
 
 describe('Replace', () => {
 

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { toUpper } from './toUpper'
+import { toUpper } from 'string'
 
 describe('toUpper', () => {
 

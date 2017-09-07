@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { intersection } from './intersection'
+import { intersection } from 'array'
 
 describe('Intersection', () => {
 

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { mapKeys } from './mapKeys'
+import { mapKeys } from 'object'
 
 describe('MapKeys', () => {
   it('should replace the keys of object', () => {

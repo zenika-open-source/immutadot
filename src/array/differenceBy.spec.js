@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { differenceBy } from './differenceBy'
+import { differenceBy } from 'array'
 import { immutaTest } from 'test.utils'
 
 describe('DifferenceBy', () => {

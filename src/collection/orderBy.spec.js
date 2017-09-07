@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { orderBy } from './orderBy'
+import { orderBy } from 'collection'
 
 describe('OrderBy', () => {
   it('should sort array by name asc and age desc', () => {

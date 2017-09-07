@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { multiply } from './multiply'
+import { multiply } from 'math'
 
 describe('Multiply', () => {
 
