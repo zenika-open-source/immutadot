@@ -60,7 +60,16 @@ const unescapeDelimiters = (str, delimiter) => str.replace(escapedDelimsRegexps[
  * @private
  * @since 0.4.0
  */
-const toSliceIndex = str => str === '' ? undefined : Number.parseInt(str)
+const toSliceIndex = str => str === '' ? undefined : Number(str)
+
+/**
+ * Tests whether <code>arg</code> is a valid slice index, that is <code>undefined</code> or a valid int.
+ * @param {*} arg The value to test
+ * @return {boolean} True if <code>arg</code> is a valid slice index, false otherwise.
+ * @private
+ * @since 0.4.0
+ */
+const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
 
 /**
  * Wraps <code>fn</code> allowing to call it with an array instead of a string.<br />
@@ -90,17 +99,19 @@ const allowingArrays = fn => arg => {
 const stringToPath = str => {
   const path = []
   let index = 0
-  let arrayNotation = false
 
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
+  while (true) { // eslint-disable-line no-constant-condition
+    // Look for new dot or opening square bracket
     const nextPoint = str.indexOf('.', index)
     const nextBracket = str.indexOf('[', index)
 
+    // If neither one is found push the last part of the path and stop
     if (nextPoint === -1 && nextBracket === -1) {
       path.push(str.substring(index))
       break
     }
+
+    let arrayNotation = false
 
     if (nextPoint !== -1 && (nextBracket === -1 || nextPoint < nextBracket)) {
       path.push(str.substring(index, nextPoint))
@@ -150,12 +161,12 @@ const stringToPath = str => {
         else {
           const sliceDelimIndex = arrayIndex.indexOf(':')
           if (sliceDelimIndex === -1) {
-            const nArrayIndex = Number.parseInt(arrayIndex)
-            path.push(Number.isNaN(nArrayIndex) ? arrayIndex : nArrayIndex)
+            const nArrayIndex = Number(arrayIndex)
+            path.push(isIndex(nArrayIndex) ? nArrayIndex : arrayIndex)
           } else {
             const sliceStart = arrayIndex.substring(0, sliceDelimIndex), sliceEnd = arrayIndex.substring(sliceDelimIndex + 1)
             const nSliceStart = toSliceIndex(sliceStart), nSliceEnd = toSliceIndex(sliceEnd)
-            path.push(Number.isNaN(nSliceStart) || Number.isNaN(nSliceEnd) ? arrayIndex : [nSliceStart, nSliceEnd])
+            path.push(isSliceIndex(nSliceStart) && isSliceIndex(nSliceEnd) ? [nSliceStart, nSliceEnd] : arrayIndex)
           }
         }
         if (index === str.length) break
