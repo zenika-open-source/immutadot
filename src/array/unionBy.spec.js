@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { unionBy } from './unionBy'
+import { unionBy } from 'array'
 
 describe('UnionBy', () => {
 

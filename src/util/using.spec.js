@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { using } from './using'
+import { using } from 'util'
 
 describe('Using', () => {
 

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { merge } from './merge'
+import { merge } from 'object'
 
 describe('Merge', () => {
 

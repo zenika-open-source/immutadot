@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { reverse } from './reverse'
+import { reverse } from 'array'
 
 describe('Reverse', () => {
 

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { map } from './map'
+import { map } from 'collection'
 
 describe('Map', () => {
 

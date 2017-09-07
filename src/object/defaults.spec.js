@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { defaults } from './defaults'
+import { defaults } from 'object'
 import { immutaTest } from 'test.utils'
 
 describe('Defaults', () => {

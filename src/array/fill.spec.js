@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { fill } from './fill'
+import { fill } from 'array'
 import { immutaTest } from 'test.utils'
 
 describe('Fill', () => {

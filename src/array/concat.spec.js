@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { concat } from './concat'
+import { concat } from 'array'
 import { immutaTest } from 'test.utils'
 
 describe('Concat', () => {

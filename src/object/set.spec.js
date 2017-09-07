@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { set } from './set'
+import { set } from 'object'
 
 describe('Set', () => {
 

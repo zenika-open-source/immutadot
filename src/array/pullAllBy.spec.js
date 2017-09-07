@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { pullAllBy } from './pullAllBy'
+import { pullAllBy } from 'array'
 
 describe('PullAllBy', () => {
 

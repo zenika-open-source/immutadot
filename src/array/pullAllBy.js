@@ -1,5 +1,5 @@
 import _pullAllBy from 'lodash/pullAllBy'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * This method is like {@link array.pullAll} except that it accepts <code>iteratee</code> to generate the criterion by which each element is compared.

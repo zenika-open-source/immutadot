@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { remove } from './remove'
+import { remove } from 'array'
 
 describe('Remove', () => {
 

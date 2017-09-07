@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { unshift } from './unshift'
+import { unshift } from 'array'
 
 describe('Unshift', () => {
 

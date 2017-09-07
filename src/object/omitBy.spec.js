@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { omitBy } from './omitBy'
+import { omitBy } from 'object'
 
 describe('OmitBy', () => {
 

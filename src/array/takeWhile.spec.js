@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { takeWhile } from './takeWhile'
+import { takeWhile } from 'array'
 
 describe('TakeWhile', () => {
 

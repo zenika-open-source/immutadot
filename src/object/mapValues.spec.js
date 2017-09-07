@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { mapValues } from './mapValues'
+import { mapValues } from 'object'
 
 describe('MapValues', () => {
   it('should map over each values of an object', () => {

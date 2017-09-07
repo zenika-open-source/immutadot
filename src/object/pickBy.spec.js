@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { pickBy } from './pickBy'
+import { pickBy } from 'object'
 
 describe('PickBy', () => {
 

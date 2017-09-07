@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { xorWith } from './xorWith'
+import { xorWith } from 'array'
 
 describe('XorWith', () => {
 

@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { subtract } from './subtract'
+import { subtract } from 'math'
 
 describe('Subtract', () => {
 

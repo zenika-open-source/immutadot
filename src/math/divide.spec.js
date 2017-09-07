@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { divide } from './divide'
+import { divide } from 'math'
 import { immutaTest } from 'test.utils'
 
 describe('Divide', () => {

@@ -1,5 +1,5 @@
 import _reverse from 'lodash/reverse'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * Replaces an array reversing the elements from the former array.
