@@ -105,7 +105,7 @@ const stringToPath = str => {
     const nextPoint = str.indexOf('.', index)
     const nextBracket = str.indexOf('[', index)
 
-    // If neither one is found push the last part of the path and stop
+    // If neither one is found add the end of str to the path and stop
     if (nextPoint === -1 && nextBracket === -1) {
       path.push(str.substring(index))
       break
@@ -113,62 +113,119 @@ const stringToPath = str => {
 
     let arrayNotation = false
 
+    // If a dot is found before an opening square bracket
     if (nextPoint !== -1 && (nextBracket === -1 || nextPoint < nextBracket)) {
+      // Add the text preceding the dot to the path and move index after the dot
       path.push(str.substring(index, nextPoint))
       index = nextPoint + 1
+
+      // If an opening square bracket follows the dot,
+      // enable array notation and move index after the bracket
       if (nextBracket === nextPoint + 1) {
         arrayNotation = true
         index = nextBracket + 1
       }
+
+    // If an opening square bracket is found before a dot
     } else if (nextBracket !== -1) {
+      // Enable array notation
       arrayNotation = true
+
+      // If any text precedes the bracket, add it to the path
       if (nextBracket !== index)
         path.push(str.substring(index, nextBracket))
+
+      // Move index after the bracket
       index = nextBracket + 1
     }
 
+    // If array notation is enabled
     if (arrayNotation) {
+      // Check if next character is a string delimiter
       const { delimited, delimiter } = isDelimiterChar(str, index)
+
+      // If array index is a delimited string
       if (delimited) {
+        // Move index after the string delimiter
         index++
+
+        // Look for the next unescaped matching string delimiter
         let endDelimiter, escapedIndex = index
         do {
           endDelimiter = str.indexOf(delimiter, escapedIndex)
           escapedIndex = endDelimiter + 1
         } while (endDelimiter !== -1 && str.charAt(endDelimiter - 1) === '\\')
+
+        // If no end delimiter found, stop if end of str is reached, or continue to next iteration
         if (endDelimiter === -1)
           if (index === str.length)
             break
           else
             continue
+
+        // Add the content of delimiters to the path, unescaping escaped delimiters
         path.push(unescapeDelimiters(str.substring(index, endDelimiter), delimiter))
+
+        // Move index after end delimiter
         index = endDelimiter + 1
+
+        // If next character is a closing square bracket, move index after it
         if (str.charAt(index) === ']') index++
+
+        // Stop if end of str has been reached
         if (index === str.length) break
+
+        // If next character is a dot, move index after it (skip it)
         if (str.charAt(index) === '.') index++
-      } else {
+
+      } else { // If array index is not a delimited string
+
+        // Look for the closing square bracket
         const closingBracket = str.indexOf(']', index)
+
+        // If no closing bracket found, stop if end of str is reached, or continue to next iteration
         if (closingBracket === -1)
           if (index === str.length)
             break
           else
             continue
+
+        // Fetch the content of brackets and move index after closing bracket
         const arrayIndex = str.substring(index, closingBracket)
         index = closingBracket + 1
+
+        // If next character is a dot, move index after it (skip it)
         if (str.charAt(index) === '.') index++
+
+        // Shorthand: if array index is the whole slice add it to path
         if (arrayIndex === ':')
           path.push([undefined, undefined])
-        else {
+
+        else { // Otherwise
+
+          // Look for a slice delimiter
           const sliceDelimIndex = arrayIndex.indexOf(':')
+
+          // If no slice delimiter found
           if (sliceDelimIndex === -1) {
+            // Parse array index as a number
             const nArrayIndex = Number(arrayIndex)
+
+            // Add array index to path, either as a valid index (positive int), or as a string
             path.push(isIndex(nArrayIndex) ? nArrayIndex : arrayIndex)
-          } else {
+
+          } else { // If a slice delimiter is found
+
+            // Fetch slice start and end, and parse them as slice indexes (empty or valid int)
             const sliceStart = arrayIndex.substring(0, sliceDelimIndex), sliceEnd = arrayIndex.substring(sliceDelimIndex + 1)
             const nSliceStart = toSliceIndex(sliceStart), nSliceEnd = toSliceIndex(sliceEnd)
+
+            // Add array index to path, as a slice if both slice indexes are valid (undefined or int), or as a string
             path.push(isSliceIndex(nSliceStart) && isSliceIndex(nSliceEnd) ? [nSliceStart, nSliceEnd] : arrayIndex)
           }
         }
+
+        // Stop if end of string has been reached
         if (index === str.length) break
       }
     }
