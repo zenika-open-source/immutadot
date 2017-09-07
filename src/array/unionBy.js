@@ -1,5 +1,5 @@
 import _unionBy from 'lodash/unionBy'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * This method is like {@link array.union} except that it accepts <code>iteratee</code> to generate the criterion by which elements are compared.

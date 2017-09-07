@@ -1,5 +1,5 @@
 import _dropWhile from 'lodash/dropWhile'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * Replaces an array excluding elements dropped from the beginning. Elements are dropped until <code>predicate</code> returns falsey.

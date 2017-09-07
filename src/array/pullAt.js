@@ -1,5 +1,5 @@
 import _pullAt from 'lodash/pullAt'
-import { convert } from '../util/convert'
+import { convert } from 'util/convert'
 
 /**
  * Replaces an array removing the specified indexes from the former array.
