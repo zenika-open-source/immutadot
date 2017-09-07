@@ -3,6 +3,7 @@ import * as collection from 'collection'
 import * as lang from 'lang'
 import * as math from 'math'
 import * as object from 'object'
+import * as string from 'string'
 
 import concat from 'lodash/concat'
 import flow from 'lodash/flow'
@@ -125,6 +126,7 @@ class ChainWrapper {
   lang,
   math,
   object,
+  string,
 ].forEach(namespace => Object.assign(
   ChainWrapper.prototype,
   mapValues(
