@@ -13,7 +13,12 @@ import {
  * @private
  * @since 0.4.0
  */
-const toKey = arg => isIndex(arg) || isSymbol(arg) ? arg : toString(arg)
+const toKey = arg => {
+  if (isIndex(arg)) return arg
+  if (isSymbol(arg)) return arg
+  if (Array.isArray(arg) && arg.length === 2 && isSliceIndex(arg[0]) && isSliceIndex(arg[0])) return arg
+  return toString(arg)
+}
 
 const delimiters = ['"', '\'']
 
