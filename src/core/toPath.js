@@ -267,7 +267,8 @@ const memoizedStringToPath = str => {
  * Converts <code>arg</code> to a path represented as an array of keys.<br />
  * <code>arg</code> may be a string, in which case it will be parsed.<br />
  * It may also be an Array, in which case a copy of the array with values converted to path keys will be returned.<br />
- * If <code>arg</code> is neither a string nor an Array, its string representation will be parsed.
+ * If <code>arg</code> is neither a string nor an Array, its string representation will be parsed.<br />
+ * This function is failsafe, it will never throw an error.
  * @param {string|Array|*} arg The value to convert
  * @return {(string|number)[]} The path represented as an array of keys
  * @memberof core
