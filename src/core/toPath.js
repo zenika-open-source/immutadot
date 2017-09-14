@@ -20,42 +20,42 @@ const toKey = arg => {
   return toString(arg)
 }
 
-const delimiters = ['"', '\'']
+const quotes = ['"', '\'']
 
 /**
- * Tests whether <code>index</code>th char of <code>str</code> is a delimiter.<br />
- * Delimiters are <code>"</code> and <code>'</code>.
+ * Tests whether <code>index</code>th char of <code>str</code> is a quote.<br />
+ * Quotes are <code>"</code> and <code>'</code>.
  * @param {string} str The string
  * @param {number} index Index of the char to test
- * @return {{ delimited: boolean, delimiter: string }} A boolean <code>delimited</code>, true if <code>str.charAt(index)</code> is a delimiter and the <code>delimiter</code>.
+ * @return {{ quoted: boolean, quote: string }} A boolean <code>quoted</code>, true if <code>str.charAt(index)</code> is a quote and the <code>quote</code>.
  * @memberof core
  * @private
  * @since 0.4.0
  */
-const isDelimiterChar = (str, index) => {
+const isQuoteChar = (str, index) => {
   const char = str.charAt(index)
-  const delimiter = delimiters.find(c => c === char)
+  const quote = quotes.find(c => c === char)
   return {
-    delimited: Boolean(delimiter),
-    delimiter,
+    quoted: Boolean(quote),
+    quote,
   }
 }
 
-const escapedDelimsRegexps = {}
-for (const delimiter of delimiters)
-  escapedDelimsRegexps[delimiter] = new RegExp(`\\\\${delimiter}`, 'g')
+const escapedQuotesRegexps = {}
+for (const quote of quotes)
+  escapedQuotesRegexps[quote] = new RegExp(`\\\\${quote}`, 'g')
 
   /**
-   * Strip slashes preceding occurences of <code>delimiter</code> from <code>str</code><br />
-   * Possible delimiters are <code>"</code> and <code>'</code>.
+   * Strip slashes preceding occurences of <code>quote</code> from <code>str</code><br />
+   * Possible quotes are <code>"</code> and <code>'</code>.
    * @param {string} str The string
-   * @param {string} delimiter The delimiter to unescape
+   * @param {string} quote The quote to unescape
    * @return {string} The unescaped string
    * @memberof core
    * @private
    * @since 0.4.0
    */
-const unescapeDelimiters = (str, delimiter) => str.replace(escapedDelimsRegexps[delimiter], delimiter)
+const unescapeQuotes = (str, quote) => str.replace(escapedQuotesRegexps[quote], quote)
 
 /**
  * Converts <code>str</code> to a slice index.
@@ -107,72 +107,73 @@ const stringToPath = str => {
 
   while (true) { // eslint-disable-line no-constant-condition
     // Look for new dot or opening square bracket
-    const nextPoint = str.indexOf('.', index)
-    const nextBracket = str.indexOf('[', index)
+    const nextPointIndex = str.indexOf('.', index)
+    const nextBracketIndex = str.indexOf('[', index)
 
     // If neither one is found add the end of str to the path and stop
-    if (nextPoint === -1 && nextBracket === -1) {
+    if (nextPointIndex === -1 && nextBracketIndex === -1) {
       path.push(str.substring(index))
       break
     }
 
-    let arrayNotation = false
+    let isArrayNotation = false
 
     // If a dot is found before an opening square bracket
-    if (nextPoint !== -1 && (nextBracket === -1 || nextPoint < nextBracket)) {
+    if (nextPointIndex !== -1 && (nextBracketIndex === -1 || nextPointIndex < nextBracketIndex)) {
       // Add the text preceding the dot to the path and move index after the dot
-      path.push(str.substring(index, nextPoint))
-      index = nextPoint + 1
+      path.push(str.substring(index, nextPointIndex))
+      index = nextPointIndex + 1
 
       // If an opening square bracket follows the dot,
       // enable array notation and move index after the bracket
-      if (nextBracket === nextPoint + 1) {
-        arrayNotation = true
-        index = nextBracket + 1
+      if (nextBracketIndex === nextPointIndex + 1) {
+        isArrayNotation = true
+        index = nextBracketIndex + 1
       }
 
     // If an opening square bracket is found before a dot
-    } else if (nextBracket !== -1) {
+    } else if (nextBracketIndex !== -1) {
       // Enable array notation
-      arrayNotation = true
+      isArrayNotation = true
 
       // If any text precedes the bracket, add it to the path
-      if (nextBracket !== index)
-        path.push(str.substring(index, nextBracket))
+      if (nextBracketIndex !== index)
+        path.push(str.substring(index, nextBracketIndex))
 
       // Move index after the bracket
-      index = nextBracket + 1
+      index = nextBracketIndex + 1
     }
 
     // If array notation is enabled
-    if (arrayNotation) {
-      // Check if next character is a string delimiter
-      const { delimited, delimiter } = isDelimiterChar(str, index)
+    if (isArrayNotation) {
+      // Check if next character is a string quote
+      const { quoted, quote } = isQuoteChar(str, index)
 
-      // If array index is a delimited string
-      if (delimited) {
-        // Move index after the string delimiter
+      // If array index is a quoted string
+      if (quoted) {
+        // Move index after the string quote
         index++
 
-        // Look for the next unescaped matching string delimiter
-        let endDelimiter, escapedIndex = index
+        // Look for the next unescaped matching string quote
+        let endQuoteIndex, quotedIndex = index
         do {
-          endDelimiter = str.indexOf(delimiter, escapedIndex)
-          escapedIndex = endDelimiter + 1
-        } while (endDelimiter !== -1 && str.charAt(endDelimiter - 1) === '\\')
+          endQuoteIndex = str.indexOf(quote, quotedIndex)
+          quotedIndex = endQuoteIndex + 1
+        } while (endQuoteIndex !== -1 && str.charAt(endQuoteIndex - 1) === '\\')
 
-        // If no end delimiter found, stop if end of str is reached, or continue to next iteration
-        if (endDelimiter === -1)
+        // If no end quote found, stop if end of str is reached, or continue to next iteration
+        if (endQuoteIndex === -1) {
           if (index === str.length)
             break
           else
             continue
+        }
 
-        // Add the content of delimiters to the path, unescaping escaped delimiters
-        path.push(unescapeDelimiters(str.substring(index, endDelimiter), delimiter))
+        // Add the content of quotes to the path, unescaping escaped quotes
+        path.push(unescapeQuotes(str.substring(index, endQuoteIndex), quote))
 
-        // Move index after end delimiter
-        index = endDelimiter + 1
+        // Move index after end quote
+        index = endQuoteIndex + 1
 
         // If next character is a closing square bracket, move index after it
         if (str.charAt(index) === ']') index++
@@ -183,50 +184,50 @@ const stringToPath = str => {
         // If next character is a dot, move index after it (skip it)
         if (str.charAt(index) === '.') index++
 
-      } else { // If array index is not a delimited string
+      } else { // If array index is not a quoted string
 
         // Look for the closing square bracket
-        const closingBracket = str.indexOf(']', index)
+        const closingBracketIndex = str.indexOf(']', index)
 
         // If no closing bracket found, stop if end of str is reached, or continue to next iteration
-        if (closingBracket === -1)
+        if (closingBracketIndex === -1) {
           if (index === str.length)
             break
           else
             continue
+        }
 
         // Fetch the content of brackets and move index after closing bracket
-        const arrayIndex = str.substring(index, closingBracket)
-        index = closingBracket + 1
+        const arrayIndexValue = str.substring(index, closingBracketIndex)
+        index = closingBracketIndex + 1
 
         // If next character is a dot, move index after it (skip it)
         if (str.charAt(index) === '.') index++
 
         // Shorthand: if array index is the whole slice add it to path
-        if (arrayIndex === ':')
+        if (arrayIndexValue === ':') {
           path.push([undefined, undefined])
+        } else {
 
-        else { // Otherwise
+          // Look for a slice quote
+          const sliceDelimIndex = arrayIndexValue.indexOf(':')
 
-          // Look for a slice delimiter
-          const sliceDelimIndex = arrayIndex.indexOf(':')
-
-          // If no slice delimiter found
+          // If no slice quote found
           if (sliceDelimIndex === -1) {
             // Parse array index as a number
-            const nArrayIndex = Number(arrayIndex)
+            const nArrayIndexValue = Number(arrayIndexValue)
 
             // Add array index to path, either as a valid index (positive int), or as a string
-            path.push(isIndex(nArrayIndex) ? nArrayIndex : arrayIndex)
+            path.push(isIndex(nArrayIndexValue) ? nArrayIndexValue : arrayIndexValue)
 
-          } else { // If a slice delimiter is found
+          } else { // If a slice quote is found
 
             // Fetch slice start and end, and parse them as slice indexes (empty or valid int)
-            const sliceStart = arrayIndex.substring(0, sliceDelimIndex), sliceEnd = arrayIndex.substring(sliceDelimIndex + 1)
+            const sliceStart = arrayIndexValue.substring(0, sliceDelimIndex), sliceEnd = arrayIndexValue.substring(sliceDelimIndex + 1)
             const nSliceStart = toSliceIndex(sliceStart), nSliceEnd = toSliceIndex(sliceEnd)
 
             // Add array index to path, as a slice if both slice indexes are valid (undefined or int), or as a string
-            path.push(isSliceIndex(nSliceStart) && isSliceIndex(nSliceEnd) ? [nSliceStart, nSliceEnd] : arrayIndex)
+            path.push(isSliceIndex(nSliceStart) && isSliceIndex(nSliceEnd) ? [nSliceStart, nSliceEnd] : arrayIndexValue)
           }
         }
 

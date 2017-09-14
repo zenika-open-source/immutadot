@@ -41,12 +41,12 @@ expect.extend({
     const diff = (this.isNot ? intersectionWith : xorWith)(refs, receivedRefs, (ref, receivedRef) => ref[0] === receivedRef[0] && ref[1] === receivedRef[1])
     const pass = Boolean(this.isNot ^ !diff.length)
     let message
-    if (pass)
+    if (pass) {
       message = () => {
         const formattedDiff = map(diff, ([path, ref]) => `  "${path}": ${this.utils.printReceived(ref)}`).join('\n')
         return `${this.utils.matcherHint('.not.toBeDeep')} expected values not to have the same deep references, same references at paths :\n${formattedDiff}`
       }
-    else
+    } else {
       message = () => {
         const formattedDiff = map(
           groupBy(diff, ref => ref[0]),
@@ -54,6 +54,7 @@ expect.extend({
         ).join('\n')
         return `${this.utils.matcherHint('.toBeDeep')} expected values to have the same deep references, different references at paths :\n${formattedDiff}`
       }
+    }
 
     return {
       message,

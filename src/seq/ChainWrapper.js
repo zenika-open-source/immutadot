@@ -71,11 +71,12 @@ class ChainWrapper {
   commit() {
     if (this._flow.length === 0) return this
 
-    if (this._commited === null)
+    if (this._commited === null) {
       this._commited = new ChainWrapper(
         flow(this._flow)(this._wrapped),
         this._path,
       )
+    }
 
     return this._commited
   }
