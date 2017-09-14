@@ -163,10 +163,8 @@ const stringToPath = str => {
 
         // If no end quote found, stop if end of str is reached, or continue to next iteration
         if (endQuoteIndex === -1) {
-          if (index === str.length)
-            break
-          else
-            continue
+          if (index !== str.length) path.push(str.substring(index))
+          break
         }
 
         // Add the content of quotes to the path, unescaping escaped quotes
@@ -191,10 +189,8 @@ const stringToPath = str => {
 
         // If no closing bracket found, stop if end of str is reached, or continue to next iteration
         if (closingBracketIndex === -1) {
-          if (index === str.length)
-            break
-          else
-            continue
+          if (index !== str.length) path.push(str.substring(index))
+          break
         }
 
         // Fetch the content of brackets and move index after closing bracket

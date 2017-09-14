@@ -17,10 +17,11 @@ describe('ToPath', () => {
     // Empty unterminated array notation should be discarded
     expect(toPath('[0][')).toEqual([0])
     expect(toPath('[0]["')).toEqual([0])
-    // Unterminated array notation should be kept as string
-    expect(toPath('[0][1')).toEqual([0, '1'])
-    // Unterminated quoted array notation should be kept
-    expect(toPath('[0]["1')).toEqual([0, '1'])
+    // Unterminated array notation should run to end of path as string
+    expect(toPath('[0][123')).toEqual([0, '123'])
+    expect(toPath('[0][1.a[2')).toEqual([0, '1.a[2'])
+    // Unterminated quoted array notation should run to end of path
+    expect(toPath('[0]["1[2].a')).toEqual([0, '1[2].a'])
   })
 
   it('should convert slice notation path', () => {
@@ -30,12 +31,12 @@ describe('ToPath', () => {
       [undefined, -2],
       [3, 4],
     ])
-    expect(toPath('[1:2:3][1:a]')).toEqual(['1:2:3', '1:a'])
+    expect(toPath('[1:2:3][1:a][1:2')).toEqual(['1:2:3', '1:a', '1:2'])
   })
 
   it('should convert mixed path', () => {
     expect(toPath('a[0]["b.c"].666[1:]')).toEqual(['a', 0, 'b.c', '666', [1, undefined]])
-    expect(toPath('a.[0].["b.c"]666[0.a[1')).toEqual(['a', 0, 'b.c', '666', '0', 'a', '1'])
+    expect(toPath('a.[0].["b.c"]666[1:2:3]')).toEqual(['a', 0, 'b.c', '666', '1:2:3'])
   })
 
   it('should not convert array path', () => {
