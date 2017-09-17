@@ -5,7 +5,6 @@ import { update } from 'object/update'
  * Wraps an <code>updater</code> function, returning a new function taking <code>object</code>, <code>path</code> and <code>…args</code> as parameters.<br/>
  * The <code>updater</code> function is invoked with <code>value</code> and <code>…args</code>.<br/>
  * Be carefull, the <code>updater</code> function must not mutate its <code>value</code> argument.
- * @function
  * @memberof util
  * @param {function} updater The updater function.
  * @return {function} Returns the wrapped function.
@@ -19,11 +18,9 @@ import { update } from 'object/update'
  * @since 0.2.0
  */
 const convert = updater => (obj, path, ...rest) => update(obj, path, updater, ...rest)
-export { convert }
 
 /**
  * Converts and wraps a lodash/fp function.
- * @function
  * @memberof util
  * @param {function} fn The lodash/fp function.
  * @return {function} Returns the wrapped function.
@@ -31,4 +28,6 @@ export { convert }
  * @since 0.2.0
  * @private
  */
-export const convertLodashFp = fn => convert(lodashFpConvert(fn))
+const convertLodashFp = fn => convert(lodashFpConvert(fn))
+
+export { convert, convertLodashFp }

@@ -16,9 +16,9 @@ import omit from 'lodash/omit'
 
 /**
  * Wrapper allowing to specify one or several paths to use as arguments for an immutadot function call.<br/>
- * Instances are created by calling {@link object.using}.
+ * Instances are created by calling {@link util.using}.
  * @memberof util
- * @see {@link object.using} for more information.
+ * @see {@link util.using} for more information.
  * @private
  * @since 0.1.12
  */
@@ -26,9 +26,9 @@ class UsingWrapper {
 
   /**
    * This constructor should not be called directly.<br/>
-   * Instances are created by calling {@link object.using}.
+   * Instances are created by calling {@link util.using}.
    * @param {...(Array|string)} paths The paths to use as arguments.
-   * @see {@link object.using} for more information.
+   * @see {@link util.using} for more information.
    * @since 0.1.12
    */
   constructor(...paths) {
