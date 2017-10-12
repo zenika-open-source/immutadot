@@ -124,32 +124,21 @@ const splitAtFirstOccurence = (str, separators) => {
   return [str.substring(0, partitionIndex), str.substr(partitionIndex, 1), str.substring(partitionIndex + 1)]
 }
 
+/**
+ * 
+ * @param {string} str string to parse, expected to start with an opening square bracket followed by a quote char
+ * @param {*} quote the quote char
+ * @returns {[string, string]} a tuple of the dequoted path segment and the rest of the input string
+ * @example parseQuotedBracketNotation('["abc"].def', '"') // ['abc', 'def']
+ * @example parseQuotedBracketNotation('["abc', '"') // ['abc', '']
+ * @example parseQuotedBracketNotation('abc', '"') // ['c', '']
+ * @example parseQuotedBracketNotation('ab', '"') // [undefined, '']
+ */
 const parseQuotedBracketNotation = (str, quote) => {
-  // Look for the next unescaped matching quote
-  let endQuoteIndex, quotedIndex = 2
-  do {
-    endQuoteIndex = str.indexOf(quote, quotedIndex)
-    quotedIndex = endQuoteIndex + 1
-  } while (endQuoteIndex !== -1 && str.charAt(endQuoteIndex - 1) === '\\')
-
-  // If no end delimiter found, stop if end of str is reached, or continue to next iteration
-  if (endQuoteIndex === -1)
-    return str.length > 2 ? [str.substring(2), ''] : [undefined, '']
-
-    // Move index after end delimiter
-  let index = endQuoteIndex + 1
-
-  // If next character is a closing square bracket, move index after it
-  if (str.charAt(index) === ']') index++
-
-  // Stop if end of str has been reached
-  // if (index === str.length) break
-
-  // If next character is a dot, move index after it (skip it)
-  if (str.charAt(index) === '.') index++
-
-  // Add the content of delimiters to the path, unescaping escaped delimiters
-  return [unescapeQuotes(str.substring(2, endQuoteIndex), quote), str.substring(index)]
+  const [match, pathSegment, remainingStr] = str.match(new RegExp(`^\\[${quote}(.*?[^\\\\])${quote}\\]?\\.?(.*)$`)) || []
+  if (!match)
+    return [str.substring(2) || undefined, '']
+  return [unescapeQuotes(pathSegment, quote), remainingStr]
 }
 
 const parseBareBracketNotation = str => {
