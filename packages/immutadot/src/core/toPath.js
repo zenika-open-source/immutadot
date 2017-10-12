@@ -135,51 +135,24 @@ const splitAtFirstOccurence = (str, separators) => {
  * @example parseQuotedBracketNotation('ab', '"') // [undefined, '']
  */
 const parseQuotedBracketNotation = (str, quote) => {
-  const [match, pathSegment, remainingStr] = str.match(new RegExp(`^\\[${quote}(.*?[^\\\\])${quote}\\]?\\.?(.*)$`)) || []
+  const [match, prop, remainingStr] = str.match(new RegExp(`^\\[${quote}(.*?[^\\\\])${quote}\\]?\\.?(.*)$`)) || []
   if (!match)
     return [str.substring(2) || undefined, '']
-  return [unescapeQuotes(pathSegment, quote), remainingStr]
+  return [unescapeQuotes(prop, quote), remainingStr]
 }
 
 const parseBareBracketNotation = str => {
-  // Look for the closing square bracket
-  const closingBracket = str.indexOf(']')
-
-  // If no closing bracket found, stop if end of str is reached, or continue to next iteration
-  if (closingBracket === -1)
-    return str.length > 1 ? [str.substring(1), ''] : [undefined, '']
-
-    // Fetch the content of brackets and move index after closing bracket
-  const arrayIndex = str.substring(1, closingBracket)
-
-  let index = closingBracket + 1
-
-  // If next character is a dot, move index after it (skip it)
-  if (str.charAt(index) === '.') index++
-
-  // Shorthand: if array index is the whole slice add it to path
-  if (arrayIndex === ':')
-    return [[undefined, undefined], str.substring(index)]
-
-  // Look for a slice delimiter
-  const sliceDelimIndex = arrayIndex.indexOf(':')
-
-  // If no slice delimiter found
-  if (sliceDelimIndex === -1) {
-    // Parse array index as a number
-    const nArrayIndex = Number(arrayIndex)
-
-    // Add array index to path, either as a valid index (positive int), or as a string
-    return [isIndex(nArrayIndex) ? nArrayIndex : arrayIndex, str.substring(index)]
-
-  } // If a slice delimiter is found
-
-  // Fetch slice start and end, and parse them as slice indexes (empty or valid int)
-  const sliceStart = arrayIndex.substring(0, sliceDelimIndex), sliceEnd = arrayIndex.substring(sliceDelimIndex + 1)
-  const nSliceStart = toSliceIndex(sliceStart), nSliceEnd = toSliceIndex(sliceEnd)
-
-  // Add array index to path, as a slice if both slice indexes are valid (undefined or int), or as a string
-  return [isSliceIndex(nSliceStart) && isSliceIndex(nSliceEnd) ? [nSliceStart, nSliceEnd] : arrayIndex, str.substring(index)]
+  const [match, prop, sliceStart, sliceEnd, simpleProp, remainingStr] = str.match(/^\[(([^:\]]*):([^:\]]*)|([^\]]*))\]\.?(.*)$/) || []
+  if (!match)
+    return [str.substring(1) || undefined, '']
+  if (isIndex(Number(simpleProp)))
+    return [Number(simpleProp), remainingStr]
+  if (simpleProp)
+    return [simpleProp, remainingStr]
+  const isSliceIndexString = s => isSliceIndex(s ? Number(s) : undefined)
+  if (isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd))
+    return [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], remainingStr]
+  return [prop, remainingStr]
 }
 
 const parseBracketNotation = str => {
