@@ -116,14 +116,6 @@ const stringToPath = str => {
   return str[0] === '.' ? ['', ...path] : path
 }
 
-const splitAtFirstOccurence = (str, separators) => {
-  const partitionIndex = separators
-    .map(separator => str.indexOf(separator))
-    .filter(index => index >= 0)
-    .reduce((minIndex, index) => Math.min(minIndex, index), str.length)
-  return [str.substring(0, partitionIndex), str.substr(partitionIndex, 1), str.substring(partitionIndex + 1)]
-}
-
 /**
  * 
  * @param {string} str string to parse, expected to start with an opening square bracket followed by a quote char
@@ -191,7 +183,8 @@ const stringToPath2 = str => {
       ? [bracketedPathSegment, ...restOfPath]
       : [...restOfPath]
   }
-  const [beforeSeparator, separator, afterSeparator] = splitAtFirstOccurence(str, ['.', '['])
+  const [, beforeSeparator = str, separator = '', afterSeparator = ''] =
+    str.match(/^([^.[]*?)([.[])(.*)/) || []
   return separator === '.'
     ? [beforeSeparator, ...stringToPath2(afterSeparator)]
     : [beforeSeparator, ...stringToPath2(separator + afterSeparator)]
