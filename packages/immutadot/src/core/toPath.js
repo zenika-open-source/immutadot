@@ -119,8 +119,8 @@ const stringToPath = str => {
 const splitAtFirstOccurence = (str, separators) => {
   const partitionIndex = separators
     .map(separator => str.indexOf(separator))
-    .map(index => index >= 0 ? index : str.length)
-    .reduce((minIndex, index) => Math.min(minIndex, index))
+    .filter(index => index >= 0)
+    .reduce((minIndex, index) => Math.min(minIndex, index), str.length)
   return [str.substring(0, partitionIndex), str.substr(partitionIndex, 1), str.substring(partitionIndex + 1)]
 }
 
