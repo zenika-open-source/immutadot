@@ -85,6 +85,14 @@ const toSliceIndex = str => str === '' ? undefined : Number(str)
 const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
 
 /**
+ * Tests whether <code>arg</code> is a valid slice index once converted to a number.
+ * @param {*} arg The value to test
+ * @return {boolean} True if <code>arg</code> is a valid slice index once converted to a number, false otherwise.
+ * @private
+ */
+const isSliceIndexString = arg => isSliceIndex(arg ? Number(arg) : undefined)
+
+/**
  * Wraps <code>fn</code> allowing to call it with an array instead of a string.<br />
  * The returned function behaviour is :<br />
  *  - If called with an array, returns a copy of the array with values converted to path keys<br />
@@ -116,78 +124,44 @@ const stringToPath = str => {
   return str[0] === '.' ? ['', ...path] : path
 }
 
-/**
- * 
- * @param {string} str string to parse, expected to start with an opening square bracket followed by a quote char
- * @param {string} quote the quote char
- * @returns {[string, string]} a tuple of the dequoted path segment and the rest of the input string
- * @example parseQuotedBracketNotation('["abc"].def', '"') // ['abc', 'def']
- * @example parseQuotedBracketNotation('["abc', '"') // ['abc', '']
- * @example parseQuotedBracketNotation('abc', '"') // ['c', '']
- * @example parseQuotedBracketNotation('ab', '"') // [undefined, '']
- */
-const parseQuotedBracketNotation = (str, quote) => {
-  const [match, prop, remainingStr] =
-    str.match(new RegExp(`^\\[${quote}(.*?[^\\\\])${quote}\\]?\\.?(.*)$`)) || []
-  if (!match)
-    return [str.substring(2) || undefined, '']
-  return [unescapeQuotes(prop, quote), remainingStr]
-}
-
-/**
- * @typedef {number|undefined} SliceIndex
- * @typedef {[SliceIndex,SliceIndex]} Slice
- * @param {string} str string to parse, expected to start with an opening square bracket
- * @returns {[(string|number|Slice),string]} a tuple of the path segment and the rest of the input string
- * @example parseBareBracketNotation('[123].def') // [123, 'def']
- * @example parseBareBracketNotation('[123]def') // [123, 'def']
- * @example parseBareBracketNotation('[12a].def') // ['12a', 'def']
- * @example parseBareBracketNotation('[3.4].def') // ['3.4', 'def']
- * @example parseBareBracketNotation('[:].def') // [[undefined, undefined], 'def']
- * @example parseBareBracketNotation('[14:].def') // [[14, undefined], 'def']
- * @example parseBareBracketNotation('[:190].def') // [[undefined, 190], 'def']
- * @example parseBareBracketNotation('[14:190].def') // [[14, 190], 'def']
- * @example parseBareBracketNotation('[14:190.def') // ['14:190.def', '']
- * @example parseBareBracketNotation('14:190.def') // ['4:190.def', '']
- * @example parseBareBracketNotation('a') // [undefined, '']
- */
-const parseBareBracketNotation = str => {
-  const [match, prop, sliceStart, sliceEnd, simpleProp, remainingStr] =
-    str.match(/^\[(([^:\]]*):([^:\]]*)|([^\]]*))\]\.?(.*)$/) || []
-  if (!match)
-    return [str.substring(1) || undefined, '']
-  if (isIndex(Number(simpleProp)))
-    return [Number(simpleProp), remainingStr]
-  if (simpleProp)
-    return [simpleProp, remainingStr]
-  const isSliceIndexString = s => isSliceIndex(s ? Number(s) : undefined)
-  if (isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd))
-    return [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], remainingStr]
-  return [prop, remainingStr]
-}
-
-const parseBracketNotation = str => {
-  const { quoted, quote } = isQuoteChar(str, 1)
-  if (quoted)
-    return parseQuotedBracketNotation(str, quote)
-  return parseBareBracketNotation(str)
-}
-
 const stringToPath2 = str => {
   if (str.length === 0)
     return []
-  if (str[0] === '[') {
-    const [bracketedPathSegment, rest] = parseBracketNotation(str)
-    const restOfPath = stringToPath2(rest)
-    return bracketedPathSegment !== undefined
-      ? [bracketedPathSegment, ...restOfPath]
-      : [...restOfPath]
+  const [isQuotedBracketNotation, quote, property, rest] =
+    str.match(/^\[(['"])(.*?[^\\])\1\]?\.?(.*)$/) || []
+  if (isQuotedBracketNotation)
+    return [unescapeQuotes(property, quote), ...stringToPath2(rest)]
+  const [isIncompleteQuotedBracketNotation, rest4] =
+    str.match(/^\[["'](.*)$/) || []
+  if (isIncompleteQuotedBracketNotation) {
+    if (rest4) return [rest4]
+    return []
   }
-  const [, beforeSeparator = str, separator = '', afterSeparator = ''] =
-    str.match(/^([^.[]*?)([.[])(.*)/) || []
-  return separator === '.'
-    ? [beforeSeparator, ...stringToPath2(afterSeparator)]
-    : [beforeSeparator, ...stringToPath2(separator + afterSeparator)]
+  const [isSliceNotation, , sliceStart, sliceEnd, rest2] =
+    str.match(/^\[(([^:\]]*):([^:\]]*))\]\.?(.*)$/) || []
+  if (isSliceNotation && isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd))
+    return [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], ...stringToPath2(rest2)]
+  const [isBareBracketNotation, property2, rest3] =
+    str.match(/^\[([^\]]*)\]\.?(.*)$/) || []
+  if (isBareBracketNotation) {
+    if (isIndex(Number(property2))) return [Number(property2), ...stringToPath2(rest3)]
+    return [property2, ...stringToPath2(rest3)]
+  }
+  const [isIncompleteBareBracketNotation, rest5] =
+    str.match(/^\[(.*)$/) || []
+  if (isIncompleteBareBracketNotation) {
+    if (rest5) return [rest5]
+    return []
+  }
+  const [isPathSegmentEndedByDot, beforeDot, afterDot] =
+    str.match(/^([^.[]*?)\.(.*)$/) || []
+  if (isPathSegmentEndedByDot)
+    return [beforeDot, ...stringToPath2(afterDot)]
+  const [isPathSegmentEndedByBracket, beforeBracket, atBracket] =
+    str.match(/^([^.[]*?)(\[.*)$/) || []
+  if (isPathSegmentEndedByBracket)
+    return [beforeBracket, ...stringToPath2(atBracket)]
+  return [str]
 }
 
 const MAX_CACHE_SIZE = 1000
