@@ -127,7 +127,7 @@ const splitAtFirstOccurence = (str, separators) => {
 /**
  * 
  * @param {string} str string to parse, expected to start with an opening square bracket followed by a quote char
- * @param {*} quote the quote char
+ * @param {string} quote the quote char
  * @returns {[string, string]} a tuple of the dequoted path segment and the rest of the input string
  * @example parseQuotedBracketNotation('["abc"].def', '"') // ['abc', 'def']
  * @example parseQuotedBracketNotation('["abc', '"') // ['abc', '']
@@ -135,14 +135,33 @@ const splitAtFirstOccurence = (str, separators) => {
  * @example parseQuotedBracketNotation('ab', '"') // [undefined, '']
  */
 const parseQuotedBracketNotation = (str, quote) => {
-  const [match, prop, remainingStr] = str.match(new RegExp(`^\\[${quote}(.*?[^\\\\])${quote}\\]?\\.?(.*)$`)) || []
+  const [match, prop, remainingStr] =
+    str.match(new RegExp(`^\\[${quote}(.*?[^\\\\])${quote}\\]?\\.?(.*)$`)) || []
   if (!match)
     return [str.substring(2) || undefined, '']
   return [unescapeQuotes(prop, quote), remainingStr]
 }
 
+/**
+ * @typedef {number|undefined} SliceIndex
+ * @typedef {[SliceIndex,SliceIndex]} Slice
+ * @param {string} str string to parse, expected to start with an opening square bracket
+ * @returns {[(string|number|Slice),string]} a tuple of the path segment and the rest of the input string
+ * @example parseBareBracketNotation('[123].def') // [123, 'def']
+ * @example parseBareBracketNotation('[123]def') // [123, 'def']
+ * @example parseBareBracketNotation('[12a].def') // ['12a', 'def']
+ * @example parseBareBracketNotation('[3.4].def') // ['3.4', 'def']
+ * @example parseBareBracketNotation('[:].def') // [[undefined, undefined], 'def']
+ * @example parseBareBracketNotation('[14:].def') // [[14, undefined], 'def']
+ * @example parseBareBracketNotation('[:190].def') // [[undefined, 190], 'def']
+ * @example parseBareBracketNotation('[14:190].def') // [[14, 190], 'def']
+ * @example parseBareBracketNotation('[14:190.def') // ['14:190.def', '']
+ * @example parseBareBracketNotation('14:190.def') // ['4:190.def', '']
+ * @example parseBareBracketNotation('a') // [undefined, '']
+ */
 const parseBareBracketNotation = str => {
-  const [match, prop, sliceStart, sliceEnd, simpleProp, remainingStr] = str.match(/^\[(([^:\]]*):([^:\]]*)|([^\]]*))\]\.?(.*)$/) || []
+  const [match, prop, sliceStart, sliceEnd, simpleProp, remainingStr] =
+    str.match(/^\[(([^:\]]*):([^:\]]*)|([^\]]*))\]\.?(.*)$/) || []
   if (!match)
     return [str.substring(1) || undefined, '']
   if (isIndex(Number(simpleProp)))
