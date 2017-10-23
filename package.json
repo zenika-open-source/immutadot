@@ -27,7 +27,7 @@
     "babel-plugin-module-resolver": "^2.7.1",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-2": "^6.24.1",
-    "codecov": "^2.3.0",
+    "codecov": "^3.0.0",
     "cross-env": "^5.0.5",
     "eslint": "^4.6.1",
     "hotdoc": "^0.7.2",
