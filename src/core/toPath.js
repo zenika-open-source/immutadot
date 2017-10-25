@@ -1,8 +1,11 @@
 import {
-  isIndex,
   isSymbol,
   toString,
 } from 'util/lang'
+
+import {
+  isIndex,
+} from './path.utils'
 
 /**
  * Converts a value to a valid path key.<br />
