@@ -1,9 +1,6 @@
 import {
-  isIndex,
+  isArrayProp,
 } from './path.utils'
-
-// FIXME mutualize ? replace Array.isArray by isSliceIndex ?
-const isArrayProp = prop => isIndex(prop) || Array.isArray(prop)
 
 const copy = (value, asArray) => {
   if (value === undefined || value === null) {
