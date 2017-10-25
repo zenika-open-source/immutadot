@@ -1,9 +1,24 @@
-const copy = value => {
+import {
+  isIndex,
+} from 'util/lang'
+
+// FIXME mutualize ? replace Array.isArray by isSliceIndex ?
+const isArrayProp = prop => isIndex(prop) || Array.isArray(prop)
+
+const copy = (value, asArray) => {
+  if (value === undefined || value === null) {
+    if (asArray)
+      return []
+    return {}
+  }
   if (Array.isArray(value)) return [...value]
   return { ...value }
 }
 
-const callback = (obj, prop) => obj[prop]
+const callback = (obj, prop) => {
+  if (obj === undefined || obj === null) return undefined
+  return obj[prop]
+}
 
 const apply = (obj, path, operation) => {
   const walkPath = (curObj, curPath) => {
@@ -15,7 +30,7 @@ const apply = (obj, path, operation) => {
 
     const newValue = walkPath(value, curPath.slice(1))
 
-    const newObj = copy(curObj)
+    const newObj = copy(curObj, isArrayProp(prop))
     newObj[prop] = newValue
 
     return newObj
