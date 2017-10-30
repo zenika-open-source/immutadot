@@ -31,7 +31,9 @@ const callback = (obj, prop) => {
  * Operation to apply on a nested property of an object, to be called by {@link core.apply|apply}.
  * @memberof core
  * @callback operation
- * @param {*} value The resolved unwrapped object
+ * @param {*} obj The last nested object
+ * @param {string|number|Array<number>} prop The prop of the last nested object
+ * @param {*} value The value of the prop
  * @returns {*} Result of the operation
  * @private
  * @since 0.4.0
@@ -50,16 +52,18 @@ const callback = (obj, prop) => {
  */
 const apply = (obj, path, operation) => {
   const walkPath = (curObj, curPath) => {
-    if (curPath.length === 0) return operation(curObj)
-
-    const [prop] = curPath
+    const [prop, ...pathRest] = curPath
 
     const value = callback(curObj, prop)
 
-    const newValue = walkPath(value, curPath.slice(1))
-
     const newObj = copy(curObj, isArrayProp(prop))
-    newObj[prop] = newValue
+
+    if (curPath.length === 1) {
+      operation(newObj, prop, value)
+      return newObj
+    }
+
+    newObj[prop] = walkPath(value, pathRest)
 
     return newObj
   }

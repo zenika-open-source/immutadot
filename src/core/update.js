@@ -1,6 +1,8 @@
 import { apply } from './apply'
 import { unsafeToPath } from './toPath'
 
+const makeUpdateOperation = (updater, args) => (obj, prop, value) => { obj[prop] = updater(value, ...args) }
+
 /**
  * Updates the value at <code>path</code> of <code>object</code> using the <code>updater</code> function.<br/>
  * The updater is invoked with <code>value</code> and <code>…args</code>.<br/>
@@ -22,7 +24,7 @@ import { unsafeToPath } from './toPath'
 const update = (obj, path, updater, ...args) => apply(
   obj,
   unsafeToPath(path),
-  curObj => updater(curObj, ...args),
+  makeUpdateOperation(updater, args),
 )
 
 export { update }
