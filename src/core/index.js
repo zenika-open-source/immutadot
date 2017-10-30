@@ -1,5 +1,6 @@
 import { set } from './set'
 import { toPath } from './toPath'
+import { update } from './update'
 
 /**
  * Core functions.
@@ -9,4 +10,5 @@ import { toPath } from './toPath'
 export {
   set,
   toPath,
+  update,
 }

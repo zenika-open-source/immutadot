@@ -1,5 +1,5 @@
+import { formerUpdate } from 'object/update'
 import { lodashFpConvert } from './lodashFpConvert'
-import { update } from 'object/update'
 
 /**
  * Wraps an <code>updater</code> function, returning a new function taking <code>object</code>, <code>path</code> and <code>…args</code> as parameters.<br/>
@@ -17,7 +17,7 @@ import { update } from 'object/update'
  * @see {@link object.update|update} for more information.
  * @since 0.2.0
  */
-const convert = updater => (obj, path, ...rest) => update(obj, path, updater, ...rest)
+const convert = updater => (obj, path, ...rest) => formerUpdate(obj, path, updater, ...rest)
 
 /**
  * Converts and wraps a lodash/fp function.
