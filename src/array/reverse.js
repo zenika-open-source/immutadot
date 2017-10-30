@@ -1,5 +1,5 @@
-import _reverse from 'lodash/reverse'
-import { convert } from 'util/convert'
+import _reverse from 'lodash/fp/reverse'
+import { convertLodashFp } from 'util/convert'
 
 /**
  * Replaces an array reversing the elements from the former array.
@@ -12,5 +12,5 @@ import { convert } from 'util/convert'
  * @see {@link https://lodash.com/docs#reverse|lodash.reverse} for more information.
  * @since 0.3.0
  */
-const reverse = convert(_reverse)
+const reverse = convertLodashFp(_reverse)
 export { reverse }

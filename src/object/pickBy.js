@@ -1,5 +1,5 @@
 import _pickBy from 'lodash/pickBy'
-import { convert } from 'util/convert'
+import { convert } from 'core/convert'
 
 /**
  * Replaces by an object picking properties that <code>predicate</code> returns truthy for.

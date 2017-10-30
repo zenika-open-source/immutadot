@@ -1,6 +1,7 @@
 const lodashFpConvertOptions = {
-  rearg: false,
   curry: false,
+  fixed: false,
+  rearg: false,
 }
 
 /**

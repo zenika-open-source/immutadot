@@ -1,5 +1,5 @@
-import _pull from 'lodash/pull'
-import { convert } from 'util/convert'
+import _pull from 'lodash/fp/pull'
+import { convertLodashFp } from 'util/convert'
 
 /**
  * Replaces an array removing all given values from the former array.
@@ -13,5 +13,5 @@ import { convert } from 'util/convert'
  * @see {@link https://lodash.com/docs#pull|lodash.pull} for more information.
  * @since 0.2.0
  */
-const pull = convert(_pull)
+const pull = convertLodashFp(_pull)
 export { pull }

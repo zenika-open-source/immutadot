@@ -1,5 +1,5 @@
-import _assign from 'lodash/assign'
-import { convert } from 'util/convert'
+import _assign from 'lodash/fp/assign'
+import { convertLodashFp } from 'util/convert'
 
 /**
  * Replaces by an object assigning own enumerable string keyed properties of source objects to the destination object.<br />
@@ -14,5 +14,5 @@ import { convert } from 'util/convert'
  * @see {@link https://lodash.com/docs#assign|lodash.assign} for more information.
  * @since 0.1.12
  */
-const assign = convert(_assign)
+const assign = convertLodashFp(_assign)
 export { assign }

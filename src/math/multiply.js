@@ -1,5 +1,5 @@
 import _multiply from 'lodash/multiply'
-import { convert } from 'util/convert'
+import { convert } from 'core/convert'
 
 /**
  * Replaces by the multiplication of the former number and the given number.

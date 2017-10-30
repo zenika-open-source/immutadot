@@ -1,5 +1,5 @@
-import _pullAt from 'lodash/pullAt'
-import { convert } from 'util/convert'
+import _pullAt from 'lodash/fp/pullAt'
+import { convertLodashFp } from 'util/convert'
 
 /**
  * Replaces an array removing the specified indexes from the former array.
@@ -13,8 +13,5 @@ import { convert } from 'util/convert'
  * @see {@link https://lodash.com/docs#pullAt|lodash.pullAt} for more information.
  * @since 0.3.0
  */
-const pullAt = convert((array, predicate) => {
-  _pullAt(array, predicate)
-  return array
-})
+const pullAt = convertLodashFp(_pullAt)
 export { pullAt }

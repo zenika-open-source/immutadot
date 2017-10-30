@@ -1,5 +1,5 @@
 import _subtract from 'lodash/subtract'
-import { convert } from 'util/convert'
+import { convert } from 'core/convert'
 
 /**
  * Replaces by the subtraction of the former number by the given number.

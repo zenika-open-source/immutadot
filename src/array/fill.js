@@ -1,5 +1,5 @@
-import _fill from 'lodash/fill.js'
-import { convert } from 'util/convert'
+import _fill from 'lodash/fp/fill'
+import { convertLodashFp } from 'util/convert'
 
 /**
  * Replaces by an array filled with value from start up to, but not including, end.
@@ -15,5 +15,5 @@ import { convert } from 'util/convert'
  * @see {@link https://lodash.com/docs#fill|lodash.fill} for more information.
  * @since 0.3.0
  */
-const fill = convert(_fill)
+const fill = convertLodashFp(_fill)
 export { fill }

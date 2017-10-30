@@ -1,5 +1,5 @@
 import _drop from 'lodash/drop'
-import { convert } from 'util/convert'
+import { convert } from 'core/convert'
 
 /**
  * Replaces an array dropping one or several elements at the start of the former array.

@@ -1,5 +1,5 @@
 import _reject from 'lodash/reject'
-import { convert } from 'util/convert'
+import { convert } from 'core/convert'
 
 /**
  * Replaces by an array of elements <code>predicate</code> returns falsy for.

@@ -1,5 +1,5 @@
 import _omit from 'lodash/omit'
-import { convert } from 'util/convert'
+import { convert } from 'core/convert'
 
 /**
  * Replaces by an object omitting specified properties.

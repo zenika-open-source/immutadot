@@ -1,5 +1,5 @@
 import _replace from 'lodash/replace'
-import { convert } from 'util/convert'
+import { convert } from 'core/convert'
 
 /**
  * Replaces matches for pattern in string with replacement.

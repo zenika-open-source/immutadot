@@ -19,10 +19,10 @@ import { unsafeToPath } from './toPath'
  * update(object, 'nested.prop', inc, 2) // => { nested: { prop: 6 } }
  * @since 0.4.0
  */
-const update = (obj, path, updater, ...param) => apply(
+const update = (obj, path, updater, ...args) => apply(
   obj,
   unsafeToPath(path),
-  curObj => updater(curObj, ...param),
+  curObj => updater(curObj, ...args),
 )
 
 export { update }

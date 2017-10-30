@@ -1,5 +1,5 @@
 import _dropRight from 'lodash/dropRight'
-import { convert } from 'util/convert'
+import { convert } from 'core/convert'
 
 /**
  * Replaces an array dropping one or several elements at the end of the former array.
