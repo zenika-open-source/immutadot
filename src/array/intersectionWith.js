@@ -1,5 +1,5 @@
 import _intersectionWith from 'lodash/intersectionWith'
-import { convert } from 'util/convert'
+import { convert } from 'core'
 
 /**
  * This method is like {@link array.intersection} except that it uses <code>comparator</code> to compare elements of the former array to <code>arrays</code>.

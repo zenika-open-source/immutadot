@@ -1,5 +1,5 @@
 import _capitalize from 'lodash/capitalize'
-import { convert } from 'util/convert'
+import { convert } from 'core'
 
 /**
  * Converts the first character of string to upper case and the remaining to lower case.

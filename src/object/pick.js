@@ -1,5 +1,5 @@
 import _pick from 'lodash/pick'
-import { convert } from 'util/convert'
+import { convert } from 'core'
 
 /**
  * Replaces by an object picking specified properties.

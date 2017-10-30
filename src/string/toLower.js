@@ -1,5 +1,5 @@
 import _toLower from 'lodash/toLower'
-import { convert } from 'util/convert'
+import { convert } from 'core'
 
 /**
  * Converts string, as a whole, to lower case just like String#toLowerCase.

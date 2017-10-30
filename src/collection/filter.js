@@ -1,5 +1,5 @@
 import _filter from 'lodash/filter'
-import { convert } from 'util/convert'
+import { convert } from 'core'
 
 /**
  * Replaces by an array of elements <code>predicate</code> returns truthy for.

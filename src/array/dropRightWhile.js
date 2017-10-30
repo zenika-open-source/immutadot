@@ -1,5 +1,5 @@
 import _dropRightWhile from 'lodash/dropRightWhile'
-import { convert } from 'util/convert'
+import { convert } from 'core'
 
 /**
  * Replaces an array excluding elements dropped from the end. Elements are dropped until <code>predicate</code> returns falsey.
