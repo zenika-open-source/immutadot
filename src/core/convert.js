@@ -1,4 +1,4 @@
-import { update } from 'core'
+import { update } from 'core/update'
 
 /**
  * Wraps an <code>updater</code> function, returning a new function taking <code>object</code>, <code>path</code> and <code>…args</code> as parameters.<br/>
