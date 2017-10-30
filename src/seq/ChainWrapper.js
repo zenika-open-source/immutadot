@@ -129,7 +129,7 @@ class ChainWrapper {
   omit(core, ['convert', 'toPath']),
   lang,
   math,
-  omit(object, ['set', 'update']),
+  omit(object, ['set', 'unset', 'update']),
   string,
 ].forEach(namespace => Object.assign(
   ChainWrapper.prototype,
