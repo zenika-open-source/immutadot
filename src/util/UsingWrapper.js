@@ -72,11 +72,10 @@ class UsingWrapper {
 [
   array,
   collection,
-  core,
-  { ...omit(object, ['unset']) },
+  omit(core, ['convert', 'toPath']),
   lang,
   math,
-  object,
+  omit(object, ['set', 'unset', 'update']),
   string,
 ].forEach(namespace => Object.assign(
   UsingWrapper.prototype,

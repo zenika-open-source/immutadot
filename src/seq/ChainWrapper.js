@@ -9,6 +9,7 @@ import * as string from 'string'
 import concat from 'lodash/concat'
 import flow from 'lodash/flow'
 import mapValues from 'lodash/mapValues'
+import omit from 'lodash/omit'
 import toPath from 'lodash/toPath'
 
 /**
@@ -125,10 +126,10 @@ class ChainWrapper {
 [
   array,
   collection,
-  core,
+  omit(core, ['convert', 'toPath']),
   lang,
   math,
-  object,
+  omit(object, ['set', 'update']),
   string,
 ].forEach(namespace => Object.assign(
   ChainWrapper.prototype,
