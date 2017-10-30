@@ -4,6 +4,7 @@ import {
 
 /**
  * Makes a copy of value.
+ * @function
  * @param {*} value The value to make a copy of
  * @param {boolean} asArray The value should be copied as an array
  * @returns {Object|Array} A copy of value
@@ -38,6 +39,7 @@ const callback = (obj, prop) => {
 
 /**
  * Applies <code>operation</code> on a nested property of <code>obj</code>.
+ * @function
  * @param {*} obj The object to apply <code>operation</code> on
  * @param {string|Array} path The path of the property to apply <code>operation</code> on
  * @param {core.operation} operation The operation to apply

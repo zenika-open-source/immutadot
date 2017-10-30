@@ -1,5 +1,6 @@
 /**
  * Tests whether <code>arg</code> is a valid index, that is a positive integer.
+ * @function
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is a valid index, false otherwise
  * @memberof core
@@ -10,6 +11,7 @@ const isIndex = arg => Number.isSafeInteger(arg) && arg >= 0
 
 /**
  * Tests whether <code>arg</code> is a valid slice index, that is an integer or <code>undefined</code>.
+ * @function
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is a valid slice index, false otherwise
  * @memberof core
@@ -20,6 +22,7 @@ const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
 
 /**
  * Tests whether <code>arg</code> is a "slice", that is an array containing exactly 2 slice indexes.
+ * @function
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is a slice, false otherwise
  * @memberof core
@@ -34,6 +37,7 @@ const isSlice = arg => {
 
 /**
  * Tests whether <code>arg</code> is either an index or a slice.
+ * @function
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is either an index or a slice, false otherwise
  * @memberof core
