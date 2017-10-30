@@ -1,5 +1,6 @@
 import _update from 'lodash/fp/update'
 import { lodashFpConvert } from 'util/lodashFpConvert'
+import { update } from 'core/update'
 
 const convertedUpdate = lodashFpConvert(_update)
 
@@ -22,5 +23,13 @@ const convertedUpdate = lodashFpConvert(_update)
  * @see {@link https://lodash.com/docs#update|lodash.update} for more information.
  * @since 0.1.5
  */
-const update = (object, path, updater, ...args) => convertedUpdate(object, path, v => updater(v, ...args))
-export { update }
+const formerUpdate = (object, path, updater, ...args) => convertedUpdate(object, path, v => updater(v, ...args))
+
+/**
+ * This is an alias for {@link core.update}.
+ * @function update
+ * @memberof object
+ * @since 0.1.5
+ * @deprecated Use {@link core.update}
+ */
+export { formerUpdate, update }

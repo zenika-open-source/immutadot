@@ -1,14 +1,14 @@
 /* eslint-env jest */
+import { formerUpdate } from './update'
 import { immutaTest } from 'test.utils'
-import { update } from 'object'
 
-describe('Update', () => {
+describe('Former Update', () => {
 
   const inc = (v, i = 1) => v + i
 
   it('should update a prop', () => {
     immutaTest((input, path) => {
-      const output = update(input, path, inc)
+      const output = formerUpdate(input, path, inc)
       expect(output).toEqual({
         nested: { prop: 6 },
         other: {},
@@ -22,7 +22,7 @@ describe('Update', () => {
 
   it('should update a prop with a param', () => {
     immutaTest((input, path) => {
-      const output = update(input, path, inc, 2)
+      const output = formerUpdate(input, path, inc, 2)
       expect(output).toEqual({
         nested: { prop: 7 },
         other: {},
