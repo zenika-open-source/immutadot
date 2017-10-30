@@ -1,5 +1,5 @@
-import _pullAllBy from 'lodash/pullAllBy'
-import { convert } from 'util/convert'
+import _pullAllBy from 'lodash/fp/pullAllBy'
+import { convertLodashFp } from 'util/convert'
 
 /**
  * This method is like {@link array.pullAll} except that it accepts <code>iteratee</code> to generate the criterion by which each element is compared.
@@ -14,5 +14,5 @@ import { convert } from 'util/convert'
  * @see {@link https://lodash.com/docs#pullAllBy|lodash.pullAllBy} for more information.
  * @since 0.3.0
  */
-const pullAllBy = convert(_pullAllBy)
+const pullAllBy = convertLodashFp(_pullAllBy)
 export { pullAllBy }
