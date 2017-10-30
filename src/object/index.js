@@ -9,6 +9,7 @@ import { pick } from './pick'
 import { pickBy } from './pickBy'
 import { set } from './set'
 import { unset } from './unset'
+import { update } from './update'
 
 /**
  * Object functions.
@@ -27,4 +28,5 @@ export {
   pickBy,
   set,
   unset,
+  update,
 }
