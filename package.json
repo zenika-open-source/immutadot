@@ -41,7 +41,7 @@
     "build": "cross-env BABEL_ENV=production babel src -d .",
     "lint": "eslint src misc",
     "test": "jest",
-    "test:coverage": "jest --coverage && codecov",
+    "test:coverage": "jest --maxWorkers=2 --coverage && codecov",
     "docs": "jsdoc -c jsdoc.json",
     "docs:private": "jsdoc -c jsdoc.json -p"
   },
