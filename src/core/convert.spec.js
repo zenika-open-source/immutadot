@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { convert } from 'core/convert'
+import { convert } from 'core'
 import { immutaTest } from 'test.utils'
 
 describe('Convert', () => {
