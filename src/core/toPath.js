@@ -96,7 +96,7 @@ const allowingArrays = fn => arg => {
 /**
  * Converts <code>str</code> to a path represented as an array of keys.
  * @param {string} str The string to convert
- * @return {(string|number)[]} The path represented as an array of keys
+ * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
  * @private
  * @since 0.4.0
@@ -244,7 +244,7 @@ const cache = new Map()
  * Memoized version of {@link core.stringToPath}.<br />
  * The cache has a maximum size of 1000, when overflowing the cache is cleared.
  * @param {string} str The string to convert
- * @return {(string|number)[]} The path represented as an array of keys
+ * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
  * @private
  * @since 0.4.0
@@ -267,7 +267,7 @@ const memoizedStringToPath = str => {
  * If <code>arg</code> is neither a string nor an Array, its string representation will be parsed.<br />
  * This function is failsafe, it will never throw an error.
  * @param {string|Array|*} arg The value to convert
- * @return {(string|number)[]} The path represented as an array of keys
+ * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
  * @since 0.4.0
  * @example toPath('a.b[1]["."][1:-1]') // => ['a', 'b', 1, '.', [1, -1]]
@@ -277,7 +277,7 @@ const toPath = allowingArrays(arg => [...memoizedStringToPath(arg)])
 /**
  * This method is like {@link core.toPath} except it returns memoized arrays which must not be mutated.
  * @param {string|Array|*} arg The value to convert
- * @return {(string|number)[]} The path represented as an array of keys
+ * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
  * @since 0.4.0
  * @private
