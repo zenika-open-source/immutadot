@@ -1,5 +1,6 @@
 import * as array from 'array'
 import * as collection from 'collection'
+import * as core from 'core'
 import * as lang from 'lang'
 import * as math from 'math'
 import * as object from 'object'
@@ -124,6 +125,7 @@ class ChainWrapper {
 [
   array,
   collection,
+  core,
   lang,
   math,
   object,
