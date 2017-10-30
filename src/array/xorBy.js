@@ -1,5 +1,5 @@
 import _xorBy from 'lodash/xorBy'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * This method is like {@link array.xor} except that it accepts <code>iteratee</code> to generate the criterion by which elements are compared.

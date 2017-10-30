@@ -1,5 +1,5 @@
 import _shuffle from 'lodash/shuffle'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * Replaces by an array of shuffled elements.

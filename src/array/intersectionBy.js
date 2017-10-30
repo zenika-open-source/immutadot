@@ -1,5 +1,5 @@
 import _intersectionBy from 'lodash/intersectionBy'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * This method is like {@link array.intersection} except that it uses <code>iteratee</code> to generate the value to be compared for each element.

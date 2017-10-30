@@ -1,4 +1,4 @@
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * Applies <code>!</code> to the property.

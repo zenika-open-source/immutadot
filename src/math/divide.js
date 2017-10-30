@@ -1,5 +1,5 @@
 import _divide from 'lodash/divide'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * Replaces by the division of the former number and the given number.

@@ -1,5 +1,5 @@
 import _add from 'lodash/add'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * Replaces by the addition of the former number and the given number.

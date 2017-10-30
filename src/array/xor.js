@@ -1,5 +1,5 @@
 import _xor from 'lodash/xor'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * Replaces an array by the symmetric difference of the former array and the given arrays.

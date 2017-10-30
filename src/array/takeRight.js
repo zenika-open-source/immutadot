@@ -1,5 +1,5 @@
 import _takeRight from 'lodash/takeRight'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the end.

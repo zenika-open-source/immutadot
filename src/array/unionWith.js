@@ -1,5 +1,5 @@
 import _unionWith from 'lodash/unionWith'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * This method is like {@link array.union} except that it accepts <code>comparator</code> to compare elements.

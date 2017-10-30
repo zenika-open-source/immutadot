@@ -1,5 +1,5 @@
 import _map from 'lodash/map'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * Replaces by an array of values by running each element in the former collection thru iteratee.

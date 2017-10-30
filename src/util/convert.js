@@ -1,4 +1,4 @@
-import { convert } from 'core'
+import { convert } from 'core/convert'
 import { lodashFpConvert } from './lodashFpConvert'
 
 /**

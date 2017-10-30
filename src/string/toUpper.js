@@ -1,5 +1,5 @@
 import _toUpper from 'lodash/toUpper'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * Converts string, as a whole, to upper case just like String#toUpperCase.

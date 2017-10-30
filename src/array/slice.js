@@ -1,5 +1,5 @@
 import _slice from 'lodash/slice'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * Replaces an array by a slice of the former array from <code>start</code> up to, but not including, <code>end</code>.

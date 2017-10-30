@@ -1,5 +1,5 @@
 import _sortBy from 'lodash/sortBy'
-import { convert } from 'core'
+import { convert } from 'core/convert'
 
 /**
  * Replaces by an array of sorted by <code>iteratees</code>.
