@@ -14,7 +14,7 @@ import toArray from 'lodash/toArray'
  * @private
  */
 const convertArrayMethod = method => convert((array, ...args) => {
-  const newArray = isArray(array) ? array : toArray(array)
+  const newArray = isArray(array) ? [...array] : toArray(array)
   newArray[method](...args)
   return newArray
 })
