@@ -20,6 +20,5 @@ const convertLodashFp = fn => convert(lodashFpConvert(fn))
  * @since 0.2.0
  */
 export {
-  convert,
   convertLodashFp,
 }
