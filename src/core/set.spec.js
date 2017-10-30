@@ -3,47 +3,50 @@ import { immutaTest } from 'test.utils'
 import { set } from 'core'
 
 describe('Set', () => {
-  it('should set nested property value', () => {
+  it('should set a prop', () => {
     immutaTest((input, path) => {
-      const output = set(input, path, 'bar')
+      const output = set(input, path, 'final')
       expect(output).toEqual({
-        nested: { prop: 'bar' },
-        nested2: { prop: 123 },
+        nested: { prop: 'final' },
+        other: {},
       })
       return output
     }, {
-      nested: { prop: 'foo' },
-      nested2: { prop: 123 },
+      nested: { prop: 'initial' },
+      other: {},
     }, 'nested.prop')
+  })
 
+  it('should set a value in an array', () => {
     immutaTest(input => {
-      const output = set(input, 'nested.prop[0]', 'qwe')
+      const output = set(input, 'nested.prop[0]', 'final')
       expect(output).toEqual({
-        nested: { prop: ['qwe', 'rty'] },
-        nested2: { prop: 123 },
+        nested: { prop: ['final', 'other'] },
+        other: {},
       })
       return output
     }, {
-      nested: { prop: ['aze', 'rty'] },
-      nested2: { prop: 123 },
+      nested: { prop: ['initial', 'other'] },
+      other: {},
     }, 'nested.prop.0')
+  })
 
+  it('should set a deep undefined prop', () => {
     immutaTest((input, path) => {
-      const output = set(input, path, 'foo')
-      expect(output).toEqual({
-        nested: { prop: 'foo' },
-        nested2: { prop: 123 },
-      })
+      const output = set(input, path, 'final')
+      expect(output).toEqual({ nested: { prop: 'final' } })
       return output
-    }, { nested2: { prop: 123 } }, 'nested.prop')
+    }, undefined, 'nested.prop')
+  })
 
+  it('should set a deep undefined prop within an array', () => {
     immutaTest(input => {
-      const output = set(input, 'nested.prop[0]', 'qwe')
+      const output = set(input, 'nested.prop[0]', 'final')
       expect(output).toEqual({
-        nested: { prop: ['qwe'] },
-        nested2: { prop: 123 },
+        nested: { prop: ['final'] },
+        other: {},
       })
       return output
-    }, { nested2: { prop: 123 } }, 'nested.prop.0')
+    }, { other: {} }, 'nested.prop.0')
   })
 })
