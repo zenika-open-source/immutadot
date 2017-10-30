@@ -6,7 +6,7 @@ describe('Update', () => {
 
   const inc = (v, i = 1) => v + i
 
-  const add = (v, ...additions) => additions.reduce((prev, next) => prev + next, v)
+  const add = (v, ...addends) => addends.reduce((prev, next) => prev + next, v)
 
   it('should update a prop', () => {
     immutaTest((input, path) => {
