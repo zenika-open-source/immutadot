@@ -1,3 +1,4 @@
+import { set } from './set'
 import { toPath } from './toPath'
 
 /**
@@ -6,5 +7,6 @@ import { toPath } from './toPath'
  * @since 0.4.0
  */
 export {
+  set,
   toPath,
 }

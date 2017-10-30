@@ -1,12 +1,16 @@
 import {
-  isIndex,
   isSymbol,
   toString,
 } from 'util/lang'
 
+import {
+  isIndex,
+} from './path.utils'
+
 /**
  * Converts a value to a valid path key.<br />
  * Returns <code>arg</code> if arg is a positive integer or a Symbol, <code>toString(arg)</code> otherwise.
+ * @function
  * @param {*} arg The value to convert
  * @return {string} A valid path key
  * @memberof core
@@ -25,6 +29,7 @@ const quotes = ['"', '\'']
 /**
  * Tests whether <code>index</code>th char of <code>str</code> is a quote.<br />
  * Quotes are <code>"</code> and <code>'</code>.
+ * @function
  * @param {string} str The string
  * @param {number} index Index of the char to test
  * @return {{ quoted: boolean, quote: string }} A boolean <code>quoted</code>, true if <code>str.charAt(index)</code> is a quote and the <code>quote</code>.
@@ -48,6 +53,7 @@ for (const quote of quotes)
   /**
    * Strip slashes preceding occurences of <code>quote</code> from <code>str</code><br />
    * Possible quotes are <code>"</code> and <code>'</code>.
+   * @function
    * @param {string} str The string
    * @param {string} quote The quote to unescape
    * @return {string} The unescaped string
@@ -59,6 +65,7 @@ const unescapeQuotes = (str, quote) => str.replace(escapedQuotesRegexps[quote], 
 
 /**
  * Converts <code>str</code> to a slice index.
+ * @function
  * @param {string} str The string to convert
  * @return {number} <code>undefined</code> if <code>str</code> is empty, otherwise an int (may be NaN)
  * @memberof core
@@ -69,6 +76,7 @@ const toSliceIndex = str => str === '' ? undefined : Number(str)
 
 /**
  * Tests whether <code>arg</code> is a valid slice index, that is <code>undefined</code> or a valid int.
+ * @function
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is a valid slice index, false otherwise.
  * @private
@@ -81,6 +89,7 @@ const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
  * The returned function behaviour is :<br />
  *  - If called with an array, returns a copy of the array with values converted to path keys<br />
  *  - Otherwise, calls <code>fn</code> with the string representation of its argument
+ * @function
  * @param {function} fn The function to wrap
  * @return {function} The wrapper function
  * @memberof core
@@ -95,6 +104,7 @@ const allowingArrays = fn => arg => {
 
 /**
  * Converts <code>str</code> to a path represented as an array of keys.
+ * @function
  * @param {string} str The string to convert
  * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
@@ -243,6 +253,7 @@ const cache = new Map()
 /**
  * Memoized version of {@link core.stringToPath}.<br />
  * The cache has a maximum size of 1000, when overflowing the cache is cleared.
+ * @function
  * @param {string} str The string to convert
  * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
@@ -266,6 +277,7 @@ const memoizedStringToPath = str => {
  * It may also be an Array, in which case a copy of the array with values converted to path keys will be returned.<br />
  * If <code>arg</code> is neither a string nor an Array, its string representation will be parsed.<br />
  * This function is failsafe, it will never throw an error.
+ * @function
  * @param {string|Array|*} arg The value to convert
  * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
@@ -276,6 +288,7 @@ const toPath = allowingArrays(arg => [...memoizedStringToPath(arg)])
 
 /**
  * This method is like {@link core.toPath} except it returns memoized arrays which must not be mutated.
+ * @function
  * @param {string|Array|*} arg The value to convert
  * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
