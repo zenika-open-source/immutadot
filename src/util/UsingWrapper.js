@@ -72,7 +72,7 @@ class UsingWrapper {
 [
   array,
   collection,
-  omit(core, ['convert', 'toPath']),
+  omit(core, ['convert', 'unset', 'toPath']),
   lang,
   math,
   omit(object, ['set', 'unset', 'update']),

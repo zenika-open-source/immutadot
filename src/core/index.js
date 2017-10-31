@@ -1,6 +1,7 @@
 import { convert } from './convert'
 import { set } from './set'
 import { toPath } from './toPath'
+import { unset } from './unset'
 import { update } from './update'
 
 /**
@@ -12,5 +13,6 @@ export {
   convert,
   set,
   toPath,
+  unset,
   update,
 }
