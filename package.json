@@ -23,13 +23,13 @@
   "main": "index.js",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.0.1",
-    "babel-plugin-module-resolver": "^2.7.1",
+    "babel-eslint": "^8.0.2",
+    "babel-plugin-module-resolver": "^3.0.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
     "codecov": "^3.0.0",
-    "cross-env": "^5.1.0",
-    "eslint": "^4.9.0",
+    "cross-env": "^5.1.1",
+    "eslint": "^4.10.0",
     "hotdoc": "^0.7.2",
     "jest": "^21.2.1",
     "jsdoc": "^3.5.5"
