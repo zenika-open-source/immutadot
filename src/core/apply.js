@@ -1,7 +1,13 @@
 import {
-  isArrayProp,
+  isIndex,
+  isSlice,
 } from './path.utils'
 import { unsafeToPath } from './toPath'
+
+import {
+  isNaturalInteger,
+  isNil,
+} from 'util/lang'
 
 /**
  * Makes a copy of value.
@@ -14,17 +20,25 @@ import { unsafeToPath } from './toPath'
  * @since 0.4.0
  */
 const copy = (value, asArray) => {
-  if (value === undefined || value === null) {
-    if (asArray)
-      return []
+  if (isNil(value)) {
+    if (asArray) return []
     return {}
   }
   if (Array.isArray(value)) return [...value]
   return { ...value }
 }
 
+// FIXME move ?
+const getLength = value => {
+  if (isNil(value) || !isNaturalInteger(value.length)) return 0
+  return value.length
+}
+
+// FIXME move ?
+const min = (a, b) => a < b ? a : b
+
 const callback = (obj, prop) => {
-  if (obj === undefined || obj === null) return undefined
+  if (isNil(obj)) return undefined
   return obj[prop]
 }
 
@@ -55,9 +69,20 @@ const apply = (obj, path, operation) => {
   const walkPath = (curObj, curPath) => {
     const [prop, ...pathRest] = curPath
 
+    if (isSlice(prop)) {
+      const length = getLength(curObj)
+      const startIndex = prop[0] === undefined ? 0 : min(prop[0], length)
+      const endIndex = prop[1] === undefined ? length : min(prop[1], length)
+
+      let curSliceObj = curObj
+      for (let i = startIndex; i < endIndex; i++)
+        curSliceObj = walkPath(curSliceObj, [i, ...pathRest])
+      return curSliceObj
+    }
+
     const value = callback(curObj, prop)
 
-    const newObj = copy(curObj, isArrayProp(prop))
+    const newObj = copy(curObj, isIndex(prop))
 
     if (curPath.length === 1) {
       operation(newObj, prop, value)

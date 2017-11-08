@@ -1,13 +1,15 @@
+import {
+  isNaturalInteger,
+} from 'util/lang'
+
 /**
- * Tests whether <code>arg</code> is a valid index, that is a positive integer.
+ * This is an alias for {@link util/isNaturalInteger}.
  * @function
- * @param {*} arg The value to test
- * @return {boolean} True if <code>arg</code> is a valid index, false otherwise
  * @memberof core
  * @private
  * @since 0.4.0
  */
-const isIndex = arg => Number.isSafeInteger(arg) && arg >= 0
+const isIndex = isNaturalInteger
 
 /**
  * Tests whether <code>arg</code> is a valid slice index, that is an integer or <code>undefined</code>.
