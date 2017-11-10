@@ -124,44 +124,80 @@ const stringToPath = str => {
   return str[0] === '.' ? ['', ...path] : path
 }
 
+/**
+ * @typedef {function(string): string[]} Matcher a function that can replace String.prototype.match
+ * @param {string} str string to match against
+ * @param {[(Matcher | RegExp), function(string[]): *]} matchers
+ *   pairs of a regexp to match str against, and a function to transform the resulting match object into the final result
+ * @param {*} defaultResult
+ *   value to return if no matcher matches
+ * @returns {*} output value of the first cond that matches or defaultResult if no cond matches
+ */
+const match = (str, matchers, defaultResult) => {
+  for (const [matcher, mapper] of matchers) {
+    const match = matcher instanceof RegExp ? str.match(matcher) : matcher(str)
+    if (match) return mapper(match.slice(1))
+  }
+  return defaultResult
+}
+
+match.andCheck = (matcher, predicate) => {
+  return str => {
+    const match = str.match(sliceNotation)
+    if (!match) return match
+    return predicate(match.slice(1)) ? match : null
+  }
+}
+
+const quotedBracketNotation = /^\[(['"])(.*?[^\\])\1\]?\.?(.*)$/
+const incompleteQuotedBracketNotation = /^\[["'](.*)$/
+const sliceNotation = /^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/
+const bareBracketNotation = /^\[([^\]]*)\]\.?(.*)$/
+const incompleteBareBracketNotation = /^\[(.*)$/
+const pathSegmentEndedByDot = /^([^.[]*?)\.(.*)$/
+const pathSegmentEndedByBracket = /^([^.[]*?)(\[.*)$/
+
 const stringToPath2 = str => {
-  if (str.length === 0)
-    return []
-  const [isQuotedBracketNotation, quote, property, rest] =
-    str.match(/^\[(['"])(.*?[^\\])\1\]?\.?(.*)$/) || []
-  if (isQuotedBracketNotation)
-    return [unescapeQuotes(property, quote), ...stringToPath2(rest)]
-  const [isIncompleteQuotedBracketNotation, rest4] =
-    str.match(/^\[["'](.*)$/) || []
-  if (isIncompleteQuotedBracketNotation) {
-    if (rest4) return [rest4]
-    return []
-  }
-  const [isSliceNotation, , sliceStart, sliceEnd, rest2] =
-    str.match(/^\[(([^:\]]*):([^:\]]*))\]\.?(.*)$/) || []
-  if (isSliceNotation && isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd))
-    return [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], ...stringToPath2(rest2)]
-  const [isBareBracketNotation, property2, rest3] =
-    str.match(/^\[([^\]]*)\]\.?(.*)$/) || []
-  if (isBareBracketNotation) {
-    if (isIndex(Number(property2))) return [Number(property2), ...stringToPath2(rest3)]
-    return [property2, ...stringToPath2(rest3)]
-  }
-  const [isIncompleteBareBracketNotation, rest5] =
-    str.match(/^\[(.*)$/) || []
-  if (isIncompleteBareBracketNotation) {
-    if (rest5) return [rest5]
-    return []
-  }
-  const [isPathSegmentEndedByDot, beforeDot, afterDot] =
-    str.match(/^([^.[]*?)\.(.*)$/) || []
-  if (isPathSegmentEndedByDot)
-    return [beforeDot, ...stringToPath2(afterDot)]
-  const [isPathSegmentEndedByBracket, beforeBracket, atBracket] =
-    str.match(/^([^.[]*?)(\[.*)$/) || []
-  if (isPathSegmentEndedByBracket)
-    return [beforeBracket, ...stringToPath2(atBracket)]
-  return [str]
+  return match(str, [
+    [
+      str => str.length === 0 ? [] : null,
+      () => [],
+    ],
+    [
+      quotedBracketNotation,
+      ([quote, property, rest]) => [unescapeQuotes(property, quote), ...stringToPath2(rest)],
+    ],
+    [
+      incompleteQuotedBracketNotation,
+      ([rest]) => rest ? [rest] : [],
+    ],
+    [
+      match.andCheck(
+        sliceNotation,
+        ([sliceStart, sliceEnd]) => isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd),
+      ),
+      ([sliceStart, sliceEnd, rest]) => [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], ...stringToPath2(rest)],
+    ],
+    [
+      bareBracketNotation,
+      ([property, rest]) =>
+        isIndex(Number(property))
+          ? [Number(property), ...stringToPath2(rest)]
+          : [property, ...stringToPath2(rest)],
+    ],
+    [
+      incompleteBareBracketNotation,
+      ([rest]) => rest ? [rest] : [],
+    ],
+    [
+      pathSegmentEndedByDot,
+      ([beforeDot, afterDot]) => [beforeDot, ...stringToPath2(afterDot)],
+    ],
+    [
+      pathSegmentEndedByBracket,
+      ([beforeBracket, atBracket]) => [beforeBracket, ...stringToPath2(atBracket)],
+    ],
+  ], [str])
 }
 
 const MAX_CACHE_SIZE = 1000
