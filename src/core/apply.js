@@ -34,13 +34,21 @@ const getLength = value => {
   return value.length
 }
 
-// FIXME move ?
-const min = (a, b) => a < b ? a : b
-
 const callback = (obj, prop) => {
   if (isNil(obj)) return undefined
   return obj[prop]
 }
+
+const getSliceBound = (value, defaultValue, length) => {
+  if (value === undefined) return defaultValue
+  if (value < 0) return Math.max(length + value, 0)
+  return Math.min(value, length)
+}
+
+const getSliceBounds = ([start, end], length) => ([
+  getSliceBound(start, 0, length),
+  getSliceBound(end, length, length),
+])
 
 /**
  * Operation to apply on a nested property of an object, to be called by {@link core.apply|apply}.
@@ -70,12 +78,10 @@ const apply = (obj, path, operation) => {
     const [prop, ...pathRest] = curPath
 
     if (isSlice(prop)) {
-      const length = getLength(curObj)
-      const startIndex = prop[0] === undefined ? 0 : min(prop[0], length)
-      const endIndex = prop[1] === undefined ? length : min(prop[1], length)
+      const [start, end] = getSliceBounds(prop, getLength(curObj))
 
       let curSliceObj = curObj
-      for (let i = startIndex; i < endIndex; i++)
+      for (let i = start; i < end; i++)
         curSliceObj = walkPath(curSliceObj, [i, ...pathRest])
       return curSliceObj
     }

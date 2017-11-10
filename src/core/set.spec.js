@@ -55,6 +55,18 @@ describe('Set', () => {
       nested: { prop: [{ val: 'a' }, { val: 'b' }, { val: 'c' }, { val: 'd' }] },
       other: {},
     }, 'nested.prop')
+
+    immutaTest(input => {
+      const output = set(input, 'nested.prop[-3:-1].val', 'final')
+      expect(output).toEqual({
+        nested: { prop: [{ val: 'a' }, { val: 'final' }, { val: 'final' }, { val: 'd' }] },
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: [{ val: 'a' }, { val: 'b' }, { val: 'c' }, { val: 'd' }] },
+      other: {},
+    }, 'nested.prop')
   })
 
   it('should set a deep undefined prop', () => {
