@@ -13,28 +13,41 @@ describe('Apply', () => {
   const inc = (obj, path, ...args) => apply(obj, path, (obj, prop) => { obj[prop] = _inc(obj[prop], ...args) })
 
   it('should inc in all an array', () => {
-    immutaTest(input => {
-      const output = inc(input, 'nested.prop[:].val', 2)
-      expect(output).toEqual({
+    immutaTest(
+      input => {
+        const output = inc(input, 'nested.prop[:].val', 2)
+        expect(output).toEqual({
+          nested: {
+            prop: [
+              {
+                val: 6,
+                other: {},
+              },
+              { val: -6 },
+              { val: 2 },
+              { val: 2 },
+            ],
+          },
+        })
+        return output
+      },
+      {
         nested: {
           prop: [
-            { val: 6 },
-            { val: -6 },
-            { val: 2 },
-            { val: 2 },
+            {
+              val: 4,
+              other: {},
+            },
+            { val: -8 },
+            { val: 'a' },
+            {},
           ],
         },
-      })
-      return output
-    }, {
-      nested: {
-        prop: [
-          { val: 4 },
-          { val: -8 },
-          { val: 'a' },
-          {},
-        ],
       },
-    }, 'nested.prop')
+      'nested.prop.0.val',
+      'nested.prop.1.val',
+      'nested.prop.2.val',
+      'nested.prop.3.val',
+    )
   })
 })
