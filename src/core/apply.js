@@ -1,12 +1,13 @@
 import {
+  getSliceBounds,
   isIndex,
   isSlice,
 } from './path.utils'
 import { unsafeToPath } from './toPath'
 
 import {
-  isNaturalInteger,
   isNil,
+  length,
 } from 'util/lang'
 
 /**
@@ -27,28 +28,6 @@ const copy = (value, asArray) => {
   if (Array.isArray(value)) return [...value]
   return { ...value }
 }
-
-// FIXME move ?
-const getLength = value => {
-  if (isNil(value) || !isNaturalInteger(value.length)) return 0
-  return value.length
-}
-
-const callback = (obj, prop) => {
-  if (isNil(obj)) return undefined
-  return obj[prop]
-}
-
-const getSliceBound = (value, defaultValue, length) => {
-  if (value === undefined) return defaultValue
-  if (value < 0) return Math.max(length + value, 0)
-  return value
-}
-
-const getSliceBounds = ([start, end], length) => ([
-  getSliceBound(start, 0, length),
-  getSliceBound(end, length, length),
-])
 
 /**
  * Operation to apply on a nested property of an object, to be called by {@link core.apply|apply}.
@@ -78,15 +57,17 @@ const apply = (obj, path, operation) => {
     const [prop, ...pathRest] = curPath
 
     if (isSlice(prop)) {
-      const [start, end] = getSliceBounds(prop, getLength(curObj))
+      const [start, end] = getSliceBounds(prop, length(curObj))
 
       const newArr = copy(curObj, true)
+
       for (let i = start; i < end; i++)
         walkPath(newArr, [i, ...pathRest], false)
+
       return newArr
     }
 
-    const value = callback(curObj, prop)
+    const value = isNil(curObj) ? undefined : curObj[prop]
 
     let newObj = curObj
     if (doCopy) newObj = copy(curObj, isIndex(prop))

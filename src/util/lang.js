@@ -32,6 +32,18 @@ const isNil = arg => arg === undefined || arg === null
 const isSymbol = arg => typeof arg === 'symbol'
 
 /**
+ * Returns the length of <code>arg</code>.
+ * @param {*} arg The value of which length must be returned
+ * @returns {number} The length of <code>arg</code>
+ * @private
+ * @since 0.4.0
+ */
+const length = arg => {
+  if (isNil(arg) || !isNaturalInteger(arg.length)) return 0
+  return arg.length
+}
+
+/**
  * Converts <code>arg</code> to a string using string interpolation.
  * @param {*} arg The value to convert
  * @return {string} The string representation of <code>arg</code>
@@ -45,5 +57,6 @@ export {
   isNaturalInteger,
   isNil,
   isSymbol,
+  length,
   toString,
 }

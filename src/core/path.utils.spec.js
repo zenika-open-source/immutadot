@@ -1,10 +1,23 @@
 /* eslint-env jest */
 import {
+  getSliceBounds,
   isSlice,
   isSliceIndex,
 } from './path.utils'
 
 describe('Path Utils', () => {
+  describe('GetSliceBounds', () => {
+    it('should return actual slice bounds', () => {
+      expect(getSliceBounds([undefined, undefined], 0)).toEqual([0, 0])
+      expect(getSliceBounds([-2, -1], 0)).toEqual([0, 0])
+      expect(getSliceBounds([1, 2], 0)).toEqual([1, 2])
+
+      expect(getSliceBounds([undefined, undefined], 6)).toEqual([0, 6])
+      expect(getSliceBounds([1, -1], 6)).toEqual([1, 5])
+      expect(getSliceBounds([7, 8], 6)).toEqual([7, 8])
+    })
+  })
+
   describe('IsSliceIndex', () => {
     it('should return true for any integer or undefined', () => {
       expect(isSliceIndex(0)).toBe(true)

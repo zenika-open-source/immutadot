@@ -3,6 +3,7 @@ import {
   isNaturalInteger,
   isNil,
   isSymbol,
+  length,
   toString,
 } from 'util/lang'
 
@@ -60,6 +61,21 @@ describe('Lang utils', () => {
       expect(isSymbol('🍺')).toBe(false)
       expect(isSymbol(666)).toBe(false)
       expect(isSymbol({})).toBe(false)
+    })
+  })
+
+  describe('Length', () => {
+    it('should return length of array', () => {
+      expect(length(Array(666))).toBe(666)
+      expect(length([])).toBe(0)
+      expect(length([1, 2, 3])).toBe(3)
+    })
+
+    it('should return zero if arg has no length', () => {
+      expect(length({})).toBe(0)
+      expect(length(666)).toBe(0)
+      expect(length()).toBe(0)
+      expect(length(null)).toBe(0)
     })
   })
 
