@@ -105,4 +105,21 @@ describe('Apply', () => {
     )
   })
 
+  immutaTest(
+    input => {
+      const output = inc(input, 'nested.prop[3:5].val', 6)
+      expect(output).toEqual({
+        nested: { prop: [{ val: 0 }, { val: 1 }, undefined, { val: 6 }, { val: 6 }] },
+        other: {},
+      })
+      return output
+    },
+    {
+      nested: { prop: [{ val: 0 }, { val: 1 }] },
+      other: {},
+    },
+    'nested.prop.2',
+    'nested.prop.3.val',
+    'nested.prop.4.val',
+  )
 })
