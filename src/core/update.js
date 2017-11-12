@@ -1,5 +1,4 @@
 import { apply } from './apply'
-import { unsafeToPath } from './toPath'
 
 const makeUpdateOperation = (updater, args) => (obj, prop, value) => { obj[prop] = updater(value, ...args) }
 
@@ -23,7 +22,7 @@ const makeUpdateOperation = (updater, args) => (obj, prop, value) => { obj[prop]
  */
 const update = (obj, path, updater, ...args) => apply(
   obj,
-  unsafeToPath(path),
+  path,
   makeUpdateOperation(updater, args),
 )
 

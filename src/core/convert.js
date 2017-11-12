@@ -1,5 +1,4 @@
 import { apply } from './apply'
-import { unsafeToPath } from './toPath'
 
 const makeOperation = (updater, args) => (obj, prop, value) => { obj[prop] = updater(value, ...args) }
 
@@ -19,6 +18,6 @@ const makeOperation = (updater, args) => (obj, prop, value) => { obj[prop] = upd
  * @see {@link core.update|update} for more information.
  * @since 0.4.0
  */
-const convert = updater => (obj, path, ...args) => apply(obj, unsafeToPath(path), makeOperation(updater, args))
+const convert = updater => (obj, path, ...args) => apply(obj, path, makeOperation(updater, args))
 
 export { convert }

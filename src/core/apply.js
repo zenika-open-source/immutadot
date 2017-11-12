@@ -1,6 +1,7 @@
 import {
   isArrayProp,
 } from './path.utils'
+import { unsafeToPath } from './toPath'
 
 /**
  * Makes a copy of value.
@@ -68,7 +69,7 @@ const apply = (obj, path, operation) => {
     return newObj
   }
 
-  return walkPath(obj, path)
+  return walkPath(obj, unsafeToPath(path))
 }
 
 export { apply }
