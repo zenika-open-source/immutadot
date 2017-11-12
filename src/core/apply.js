@@ -3,12 +3,13 @@ import {
   isIndex,
   isSlice,
 } from './path.utils'
-import { unsafeToPath } from './toPath'
 
 import {
   isNil,
   length,
 } from 'util/lang'
+
+import { unsafeToPath } from './toPath'
 
 /**
  * Makes a copy of value.
