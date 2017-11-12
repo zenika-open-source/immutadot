@@ -1,4 +1,7 @@
-import { update } from 'core/update'
+import { apply } from './apply'
+import { unsafeToPath } from './toPath'
+
+const makeOperation = (updater, args) => (obj, prop, value) => { obj[prop] = updater(value, ...args) }
 
 /**
  * Wraps an <code>updater</code> function, returning a new function taking <code>object</code>, <code>path</code> and <code>…args</code> as parameters.<br/>
@@ -16,6 +19,6 @@ import { update } from 'core/update'
  * @see {@link core.update|update} for more information.
  * @since 0.4.0
  */
-const convert = updater => (obj, path, ...rest) => update(obj, path, updater, ...rest)
+const convert = updater => (obj, path, ...args) => apply(obj, unsafeToPath(path), makeOperation(updater, args))
 
 export { convert }
