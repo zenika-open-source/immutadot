@@ -42,7 +42,7 @@ const callback = (obj, prop) => {
 const getSliceBound = (value, defaultValue, length) => {
   if (value === undefined) return defaultValue
   if (value < 0) return Math.max(length + value, 0)
-  return Math.min(value, length)
+  return value
 }
 
 const getSliceBounds = ([start, end], length) => ([
