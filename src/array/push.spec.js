@@ -47,28 +47,4 @@ describe('Push', () => {
       return output
     }, { nested: { prop: 1 } }, 'nested.prop')
   })
-
-  it('should push in several arrays', () => {
-    immutaTest(input => {
-      const output = push(input, 'nested.prop[:].arr', 2)
-      expect(output).toEqual({
-        nested: {
-          prop: [
-            { arr: [1, 2] },
-            { arr: [1, 2] },
-            { arr: [2] },
-          ],
-        },
-      })
-      return output
-    }, {
-      nested: {
-        prop: [
-          { arr: [1] },
-          { arr: 1 },
-          {},
-        ],
-      },
-    }, 'nested.prop')
-  })
 })
