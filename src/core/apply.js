@@ -55,7 +55,7 @@ const getSliceBounds = ([start, end], length) => ([
  * @memberof core
  * @callback operation
  * @param {*} obj The last nested object
- * @param {string|number|Array<number>} prop The prop of the last nested object
+ * @param {string|number} prop The prop of the last nested object
  * @param {*} value The value of the prop
  * @returns {*} Result of the operation
  * @private
