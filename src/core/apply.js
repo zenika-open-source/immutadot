@@ -74,21 +74,22 @@ const getSliceBounds = ([start, end], length) => ([
  * @since 0.4.0
  */
 const apply = (obj, path, operation) => {
-  const walkPath = (curObj, curPath) => {
+  const walkPath = (curObj, curPath, doCopy = true) => {
     const [prop, ...pathRest] = curPath
 
     if (isSlice(prop)) {
       const [start, end] = getSliceBounds(prop, getLength(curObj))
 
-      let curSliceObj = curObj
+      const newArr = copy(curObj, true)
       for (let i = start; i < end; i++)
-        curSliceObj = walkPath(curSliceObj, [i, ...pathRest])
-      return curSliceObj
+        walkPath(newArr, [i, ...pathRest], false)
+      return newArr
     }
 
     const value = callback(curObj, prop)
 
-    const newObj = copy(curObj, isIndex(prop))
+    let newObj = curObj
+    if (doCopy) newObj = copy(curObj, isIndex(prop))
 
     if (curPath.length === 1) {
       operation(newObj, prop, value)
