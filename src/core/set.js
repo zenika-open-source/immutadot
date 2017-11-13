@@ -11,7 +11,7 @@ const makeSetOperation = value => (obj, prop) => { obj[prop] = value }
  * @param {*} value The value to set.
  * @return {*} Returns the updated object.
  * @example set({ nested: { prop: 'old' } }, 'nested.prop', 'new') // => { nested: { prop: 'new' } }
- * @since 0.4.0
+ * @since 1.0.0
  */
 const set = (obj, path, value) => apply(obj, path, makeSetOperation(value))
 

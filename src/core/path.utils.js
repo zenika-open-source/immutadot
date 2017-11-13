@@ -14,7 +14,7 @@ const getSliceBound = (value, defaultValue, length) => {
  * @param {number} length The length of the actual array
  * @returns {Array<number>} The actual bounds of the slice
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const getSliceBounds = ([start, end], length) => ([
   getSliceBound(start, 0, length),
@@ -26,7 +26,7 @@ const getSliceBounds = ([start, end], length) => ([
  * @function
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const isIndex = isNaturalInteger
 
@@ -37,7 +37,7 @@ const isIndex = isNaturalInteger
  * @return {boolean} True if <code>arg</code> is a valid slice index, false otherwise
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
 
@@ -48,7 +48,7 @@ const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
  * @return {boolean} True if <code>arg</code> is a slice, false otherwise
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const isSlice = arg => {
   if (!Array.isArray(arg)) return false

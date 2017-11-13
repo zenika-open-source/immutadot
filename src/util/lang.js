@@ -5,7 +5,7 @@
  * @return {boolean} True if <code>arg</code> is a natural integer, false otherwise
  * @memberof util
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const isNaturalInteger = arg => Number.isSafeInteger(arg) && arg >= 0
 
@@ -16,7 +16,7 @@ const isNaturalInteger = arg => Number.isSafeInteger(arg) && arg >= 0
  * @return {boolean} True if <code>arg</code> is <code>undefined</code> or <code>null</code>, false otherwise
  * @memberof util
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const isNil = arg => arg === undefined || arg === null
 
@@ -26,7 +26,7 @@ const isNil = arg => arg === undefined || arg === null
  * @return {boolean} True if <code>arg</code> is a Symbol, false otherwise
  * @memberof util
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  * @see {@link https://mdn.io/Symbol|Symbol} for more information.
  */
 const isSymbol = arg => typeof arg === 'symbol'
@@ -36,7 +36,7 @@ const isSymbol = arg => typeof arg === 'symbol'
  * @param {*} arg The value of which length must be returned
  * @returns {number} The length of <code>arg</code>
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const length = arg => {
   if (isNil(arg) || !isNaturalInteger(arg.length)) return 0
@@ -49,7 +49,7 @@ const length = arg => {
  * @return {string} The string representation of <code>arg</code>
  * @memberof util
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const toString = arg => typeof arg === 'string' ? arg : `${arg}`
 

@@ -18,7 +18,7 @@ const makeUpdateOperation = (updater, args) => (obj, prop, value) => { obj[prop]
  * const object = { nested: { prop: 4 } }
  * update(object, 'nested.prop', inc) // => { nested: { prop: 5 } }
  * update(object, 'nested.prop', inc, 2) // => { nested: { prop: 6 } }
- * @since 0.4.0
+ * @since 1.0.0
  */
 const update = (obj, path, updater, ...args) => apply(
   obj,

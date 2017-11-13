@@ -15,7 +15,7 @@ import {
  * @return {string} A valid path key
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const toKey = arg => {
   if (isIndex(arg)) return arg
@@ -35,7 +35,7 @@ const quotes = ['"', '\'']
  * @return {{ quoted: boolean, quote: string }} A boolean <code>quoted</code>, true if <code>str.charAt(index)</code> is a quote and the <code>quote</code>.
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const isQuoteChar = (str, index) => {
   const char = str.charAt(index)
@@ -59,7 +59,7 @@ for (const quote of quotes)
    * @return {string} The unescaped string
    * @memberof core
    * @private
-   * @since 0.4.0
+   * @since 1.0.0
    */
 const unescapeQuotes = (str, quote) => str.replace(escapedQuotesRegexps[quote], quote)
 
@@ -70,7 +70,7 @@ const unescapeQuotes = (str, quote) => str.replace(escapedQuotesRegexps[quote], 
  * @return {number} <code>undefined</code> if <code>str</code> is empty, otherwise an int (may be NaN)
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const toSliceIndex = str => str === '' ? undefined : Number(str)
 
@@ -80,7 +80,7 @@ const toSliceIndex = str => str === '' ? undefined : Number(str)
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is a valid slice index, false otherwise.
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
 
@@ -94,7 +94,7 @@ const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
  * @return {function} The wrapper function
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const allowingArrays = fn => arg => {
   if (Array.isArray(arg)) return arg.map(toKey)
@@ -109,7 +109,7 @@ const allowingArrays = fn => arg => {
  * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const stringToPath = str => {
   const path = []
@@ -258,7 +258,7 @@ const cache = new Map()
  * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const memoizedStringToPath = str => {
   if (cache.has(str)) return cache.get(str)
@@ -281,7 +281,7 @@ const memoizedStringToPath = str => {
  * @param {string|Array|*} arg The value to convert
  * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
- * @since 0.4.0
+ * @since 1.0.0
  * @example toPath('a.b[1]["."][1:-1]') // => ['a', 'b', 1, '.', [1, -1]]
  */
 const toPath = allowingArrays(arg => [...memoizedStringToPath(arg)])
@@ -292,7 +292,7 @@ const toPath = allowingArrays(arg => [...memoizedStringToPath(arg)])
  * @param {string|Array|*} arg The value to convert
  * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
- * @since 0.4.0
+ * @since 1.0.0
  * @private
  */
 const unsafeToPath = allowingArrays(memoizedStringToPath)

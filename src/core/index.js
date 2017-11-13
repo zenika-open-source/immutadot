@@ -7,7 +7,7 @@ import { update } from './update'
 /**
  * Core functions.
  * @namespace core
- * @since 0.4.0
+ * @since 1.0.0
  */
 export {
   convert,

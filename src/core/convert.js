@@ -16,7 +16,7 @@ const makeOperation = (updater, args) => (obj, prop, value) => { obj[prop] = upd
  * incProp(object, 'nested.prop') // => { nested: { prop: 5 } }
  * incProp(object, 'nested.prop', 2) // => { nested: { prop: 6 } }
  * @see {@link core.update|update} for more information.
- * @since 0.4.0
+ * @since 1.0.0
  */
 const convert = updater => (obj, path, ...args) => apply(obj, path, makeOperation(updater, args))
 

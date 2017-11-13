@@ -19,7 +19,7 @@ import { unsafeToPath } from './toPath'
  * @returns {Object|Array} A copy of value
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const copy = (value, asArray) => {
   if (isNil(value)) {
@@ -39,7 +39,7 @@ const copy = (value, asArray) => {
  * @param {*} value The value of the prop
  * @returns {*} Result of the operation
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 
 /**
@@ -51,7 +51,7 @@ const copy = (value, asArray) => {
  * @returns {*} The new object, result of the applied operation
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const apply = (obj, path, operation) => {
   const walkPath = (curObj, curPath, doCopy = true) => {
