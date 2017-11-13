@@ -1,7 +1,11 @@
 import { convert } from 'core/convert'
 
+import {
+  isNil,
+} from 'util/lang'
+
 const copyArray = array => {
-  if (array === undefined || array === null) return []
+  if (isNil(array)) return []
   if (Array.isArray(array)) return [...array]
   return [array]
 }

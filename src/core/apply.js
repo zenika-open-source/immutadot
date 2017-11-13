@@ -1,6 +1,14 @@
 import {
-  isArrayProp,
+  getSliceBounds,
+  isIndex,
+  isSlice,
 } from './path.utils'
+
+import {
+  isNil,
+  length,
+} from 'util/lang'
+
 import { unsafeToPath } from './toPath'
 
 /**
@@ -14,18 +22,12 @@ import { unsafeToPath } from './toPath'
  * @since 0.4.0
  */
 const copy = (value, asArray) => {
-  if (value === undefined || value === null) {
-    if (asArray)
-      return []
+  if (isNil(value)) {
+    if (asArray) return []
     return {}
   }
   if (Array.isArray(value)) return [...value]
   return { ...value }
-}
-
-const callback = (obj, prop) => {
-  if (obj === undefined || obj === null) return undefined
-  return obj[prop]
 }
 
 /**
@@ -33,7 +35,7 @@ const callback = (obj, prop) => {
  * @memberof core
  * @callback operation
  * @param {*} obj The last nested object
- * @param {string|number|Array<number>} prop The prop of the last nested object
+ * @param {string|number} prop The prop of the last nested object
  * @param {*} value The value of the prop
  * @returns {*} Result of the operation
  * @private
@@ -52,12 +54,24 @@ const callback = (obj, prop) => {
  * @since 0.4.0
  */
 const apply = (obj, path, operation) => {
-  const walkPath = (curObj, curPath) => {
+  const walkPath = (curObj, curPath, doCopy = true) => {
     const [prop, ...pathRest] = curPath
 
-    const value = callback(curObj, prop)
+    if (isSlice(prop)) {
+      const [start, end] = getSliceBounds(prop, length(curObj))
 
-    const newObj = copy(curObj, isArrayProp(prop))
+      const newArr = copy(curObj, true)
+
+      for (let i = start; i < end; i++)
+        walkPath(newArr, [i, ...pathRest], false)
+
+      return newArr
+    }
+
+    const value = isNil(curObj) ? undefined : curObj[prop]
+
+    let newObj = curObj
+    if (doCopy) newObj = copy(curObj, isIndex(prop))
 
     if (curPath.length === 1) {
       operation(newObj, prop, value)

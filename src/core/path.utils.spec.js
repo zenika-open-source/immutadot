@@ -1,33 +1,20 @@
 /* eslint-env jest */
 import {
-  isIndex,
+  getSliceBounds,
   isSlice,
   isSliceIndex,
 } from './path.utils'
 
 describe('Path Utils', () => {
-  describe('IsIndex', () => {
-    it('should return true for any non negative integer', () => {
-      expect(isIndex(0)).toBe(true)
-      expect(isIndex(1)).toBe(true)
-      expect(isIndex(6)).toBe(true)
-      expect(isIndex(100000000000)).toBe(true)
-    })
+  describe('GetSliceBounds', () => {
+    it('should return actual slice bounds', () => {
+      expect(getSliceBounds([undefined, undefined], 0)).toEqual([0, 0])
+      expect(getSliceBounds([-2, -1], 0)).toEqual([0, 0])
+      expect(getSliceBounds([1, 2], 0)).toEqual([1, 2])
 
-    it('should return false for any negative integer', () => {
-      expect(isIndex(-1)).toBe(false)
-      expect(isIndex(-6)).toBe(false)
-      expect(isIndex(-100000000000)).toBe(false)
-    })
-
-    it('should return false for any non integer', () => {
-      expect(isIndex(undefined)).toBe(false)
-      expect(isIndex(null)).toBe(false)
-      expect(isIndex(true)).toBe(false)
-      expect(isIndex({})).toBe(false)
-      expect(isIndex([])).toBe(false)
-      expect(isIndex('')).toBe(false)
-      expect(isIndex(.6)).toBe(false)
+      expect(getSliceBounds([undefined, undefined], 6)).toEqual([0, 6])
+      expect(getSliceBounds([1, -1], 6)).toEqual([1, 5])
+      expect(getSliceBounds([7, 8], 6)).toEqual([7, 8])
     })
   })
 

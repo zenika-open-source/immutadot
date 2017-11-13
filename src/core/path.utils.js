@@ -1,13 +1,34 @@
+import {
+  isNaturalInteger,
+} from 'util/lang'
+
+const getSliceBound = (value, defaultValue, length) => {
+  if (value === undefined) return defaultValue
+  if (value < 0) return Math.max(length + value, 0)
+  return value
+}
+
 /**
- * Tests whether <code>arg</code> is a valid index, that is a positive integer.
+ * Get the actual bounds of a slice.
+ * @param {Array<number>} bounds The bounds of the slice
+ * @param {number} length The length of the actual array
+ * @returns {Array<number>} The actual bounds of the slice
+ * @private
+ * @since 0.4.0
+ */
+const getSliceBounds = ([start, end], length) => ([
+  getSliceBound(start, 0, length),
+  getSliceBound(end, length, length),
+])
+
+/**
+ * This is an alias for {@link util/isNaturalInteger}.
  * @function
- * @param {*} arg The value to test
- * @return {boolean} True if <code>arg</code> is a valid index, false otherwise
  * @memberof core
  * @private
  * @since 0.4.0
  */
-const isIndex = arg => Number.isSafeInteger(arg) && arg >= 0
+const isIndex = isNaturalInteger
 
 /**
  * Tests whether <code>arg</code> is a valid slice index, that is an integer or <code>undefined</code>.
@@ -35,19 +56,8 @@ const isSlice = arg => {
   return isSliceIndex(arg[0]) && isSliceIndex(arg[1])
 }
 
-/**
- * Tests whether <code>arg</code> is either an index or a slice.
- * @function
- * @param {*} arg The value to test
- * @return {boolean} True if <code>arg</code> is either an index or a slice, false otherwise
- * @memberof core
- * @private
- * @since 0.4.0
- */
-const isArrayProp = arg => isIndex(arg) || isSlice(arg)
-
 export {
-  isArrayProp,
+  getSliceBounds,
   isIndex,
   isSlice,
   isSliceIndex,
