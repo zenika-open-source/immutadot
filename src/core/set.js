@@ -1,5 +1,4 @@
 import { apply } from './apply'
-import { unsafeToPath } from './toPath'
 
 const makeSetOperation = value => (obj, prop) => { obj[prop] = value }
 
@@ -14,6 +13,6 @@ const makeSetOperation = value => (obj, prop) => { obj[prop] = value }
  * @example set({ nested: { prop: 'old' } }, 'nested.prop', 'new') // => { nested: { prop: 'new' } }
  * @since 0.4.0
  */
-const set = (obj, path, value) => apply(obj, unsafeToPath(path), makeSetOperation(value))
+const set = (obj, path, value) => apply(obj, path, makeSetOperation(value))
 
 export { set }

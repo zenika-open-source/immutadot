@@ -1,5 +1,4 @@
 import { apply } from './apply'
-import { unsafeToPath } from './toPath'
 
 const unsetOperation = (obj, prop) => { delete obj[prop] }
 
@@ -14,6 +13,6 @@ const unsetOperation = (obj, prop) => { delete obj[prop] }
  * @example unset({ nested: { prop: 'value' } }, 'nested.prop') // => { nested: {} }
  * @since 0.4.0
  */
-const unset = (obj, path) => apply(obj, unsafeToPath(path), unsetOperation)
+const unset = (obj, path) => apply(obj, path, unsetOperation)
 
 export { unset }
