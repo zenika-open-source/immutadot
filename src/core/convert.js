@@ -1,6 +1,6 @@
 import { apply } from './apply'
 
-const makeOperation = (updater, args) => (obj, prop, value) => { obj[prop] = updater(value, ...args) }
+const makeOperation = updater => (obj, prop, value, ...args) => { obj[prop] = updater(value, ...args) }
 
 /**
  * Wraps an <code>updater</code> function, returning a new function taking <code>object</code>, <code>path</code> and <code>…args</code> as parameters.<br/>
@@ -18,6 +18,6 @@ const makeOperation = (updater, args) => (obj, prop, value) => { obj[prop] = upd
  * @see {@link core.update|update} for more information.
  * @since 1.0.0
  */
-const convert = updater => (obj, path, ...args) => apply(obj, path, makeOperation(updater, args))
+const convert = updater => apply(makeOperation(updater))
 
 export { convert }

@@ -37,23 +37,33 @@ const copy = (value, asArray) => {
  * @param {*} obj The last nested object
  * @param {string|number} prop The prop of the last nested object
  * @param {*} value The value of the prop
+ * @param {...*} args The remaining args (passed to the {@link core.appliedOperation|appliedOperation})
+ * @private
+ * @since 1.0.0
+ */
+
+/**
+ * A function able to apply an {@link core.operation|operation} on a nested property of an object, returned by {@link core.apply|apply}.
+ * @memberof core
+ * @callback appliedOperation
+ * @param {*} obj The last nested object
+ * @param {string} path The prop of the last nested object
+ * @param {...*} args The remaining args (to be passed to the {@link core.operation|operation})
  * @returns {*} Result of the operation
  * @private
  * @since 1.0.0
  */
 
 /**
- * Applies <code>operation</code> on a nested property of <code>obj</code>.
- * @function
- * @param {*} obj The object to apply <code>operation</code> on
- * @param {string|Array} path The path of the property to apply <code>operation</code> on
- * @param {core.operation} operation The operation to apply
- * @returns {*} The new object, result of the applied operation
+ * Creates a function able to apply <code>operation</code> on a nested property.
  * @memberof core
+ * @function
+ * @param {core.operation} operation The operation to apply
+ * @returns {core.appliedOperation} A function able to apply <code>operation</code>
  * @private
  * @since 1.0.0
  */
-const apply = (obj, path, operation) => {
+const apply = operation => (obj, path, ...args) => {
   const walkPath = (curObj, curPath, doCopy = true) => {
     const [prop, ...pathRest] = curPath
 
@@ -74,7 +84,7 @@ const apply = (obj, path, operation) => {
     if (doCopy) newObj = copy(curObj, isIndex(prop))
 
     if (curPath.length === 1) {
-      operation(newObj, prop, value)
+      operation(newObj, prop, value, ...args)
       return newObj
     }
 

@@ -13,6 +13,6 @@ const unsetOperation = (obj, prop) => { delete obj[prop] }
  * @example unset({ nested: { prop: 'value' } }, 'nested.prop') // => { nested: {} }
  * @since 1.0.0
  */
-const unset = (obj, path) => apply(obj, path, unsetOperation)
+const unset = apply(unsetOperation)
 
 export { unset }
