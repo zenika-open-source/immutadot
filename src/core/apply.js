@@ -63,37 +63,45 @@ const copy = (value, asArray) => {
  * @private
  * @since 1.0.0
  */
-const apply = operation => (obj, path, ...args) => {
-  const walkPath = (curObj, curPath, doCopy = true) => {
-    const [prop, ...pathRest] = curPath
+const apply = operation => {
+  const curried = (path, ...args) => obj => {
+    const walkPath = (curObj, curPath, doCopy = true) => {
+      const [prop, ...pathRest] = curPath
 
-    if (isSlice(prop)) {
-      const [start, end] = getSliceBounds(prop, length(curObj))
+      if (isSlice(prop)) {
+        const [start, end] = getSliceBounds(prop, length(curObj))
 
-      const newArr = copy(curObj, true)
+        const newArr = copy(curObj, true)
 
-      for (let i = start; i < end; i++)
-        walkPath(newArr, [i, ...pathRest], false)
+        for (let i = start; i < end; i++)
+          walkPath(newArr, [i, ...pathRest], false)
 
-      return newArr
-    }
+        return newArr
+      }
 
-    const value = isNil(curObj) ? undefined : curObj[prop]
+      const value = isNil(curObj) ? undefined : curObj[prop]
 
-    let newObj = curObj
-    if (doCopy) newObj = copy(curObj, isIndex(prop))
+      let newObj = curObj
+      if (doCopy) newObj = copy(curObj, isIndex(prop))
 
-    if (curPath.length === 1) {
-      operation(newObj, prop, value, ...args)
+      if (curPath.length === 1) {
+        operation(newObj, prop, value, ...args)
+        return newObj
+      }
+
+      newObj[prop] = walkPath(value, pathRest)
+
       return newObj
     }
 
-    newObj[prop] = walkPath(value, pathRest)
-
-    return newObj
+    return walkPath(obj, unsafeToPath(path))
   }
 
-  return walkPath(obj, unsafeToPath(path))
+  const uncurried = (obj, path, ...args) => curried(path, ...args)(obj)
+
+  uncurried.curried = curried
+
+  return uncurried
 }
 
 export { apply }
