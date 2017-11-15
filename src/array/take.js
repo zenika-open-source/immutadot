@@ -9,7 +9,10 @@ import { convert } from 'core/convert'
  * @param {Array|string} path The path of the property to set.
  * @param {number} [n=1] Number of elements to take from the beginning of the array.
  * @return {Object} Returns the updated object.
- * @example take({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 2) // => { nested: { prop: [1, 2] } }
+ * @playground
+ * require("lodash/package.json")
+ * const { take } = require("immutadot")
+ * take({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 2) // => { nested: { prop: [1, 2] } }
  * @see {@link https://lodash.com/docs#take|lodash.take} for more information.
  * @since 0.3.0
  * @flow

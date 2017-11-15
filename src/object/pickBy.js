@@ -9,7 +9,10 @@ import { convert } from 'core/convert'
  * @param {Array|string} path The path of the property to set.
  * @param {function} [predicate={@link https://lodash.com/docs#identity|lodash.identity}] The function invoked per iteration.
  * @return {Object} Returns the updated object.
- * @example pickBy({ nested: { a: 1, b: 2, c: 3, d: 4 } }, 'nested', v => v < 3) // => { nested: { a: 1, b: 2 } }
+ * @playground
+ * require("lodash/package.json")
+ * const { pickBy } = require("immutadot")
+ * pickBy({ nested: { a: 1, b: 2, c: 3, d: 4 } }, 'nested', v => v < 3) // => { nested: { a: 1, b: 2 } }
  * @see {@link https://lodash.com/docs#pickBy|lodash.pickBy} for more information.
  * @since 0.1.12
  * @flow

@@ -10,8 +10,11 @@ import { convert } from 'core/convert'
  * @param {Array|string} path The path of the property to set.
  * @param {function} [iteratee={@link https://lodash.com/docs#identity|lodash.identity}] The function invoked per iteration.
  * @return {Object} Returns the updated object.
- * @example mapValues({ nested: { a: 1, b: 2, c: 3 } }, 'nested', v => v * v) // => { nested: { a: 1, b: 4, c: 9 } }
- * @example mapValues({ nested: { a: { age: 40, name: 'John' }, b: { age: 30, name: 'Alice' } } }, 'nested', 'age') // => { nested: { a: 40, b: 30 } }
+ * @playground
+ * require("lodash/package.json")
+ * const { mapValues } = require("immutadot")
+ * mapValues({ nested: { a: 1, b: 2, c: 3 } }, ²'nested', v => v * v) // => { nested: { a: 1, b: 4, c: 9 } }
+ * mapValues({ nested: { a: { age: 40, name: 'John' }, b: { age: 30, name: 'Alice' } } }, 'nested', 'age') // => { nested: { a: 40, b: 30 } }
  * @see {@link https://lodash.com/docs#mapValues|lodash.mapValues} for more information.
  * @since 0.1.12
  * @flow

@@ -10,7 +10,10 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @param {number} [deleteCount] The number of old array elements to remove.
  * @param {...*} values The values to add.
  * @return {Object} Returns the updated object.
- * @example splice({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 1, 2, 5, 6) // => { nested: { prop: [1, 5, 6, 4] } }
+ * @playground
+ * require("lodash/package.json")
+ * const { splice } = require("immutadot")
+ * splice({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 1, 2, 5, 6) // => { nested: { prop: [1, 5, 6, 4] } }
  * @see {@link https://mdn.io/Array.prototype.splice|Array.prototype.splice} for more information.
  * @since 0.2.0
  * @flow

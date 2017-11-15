@@ -6,6 +6,7 @@
 /src/
 .babelrc
 .codecov.yml
+.doclets.yml
 .eslintrc.json
 circle.yml
 jsdoc.json

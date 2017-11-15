@@ -10,7 +10,10 @@ import { convertLodashFp } from 'util/convert'
  * @param {Array|string} path The path of the property to set.
  * @param {...Object} [sources] The source objects.
  * @return {Object} Returns the updated object.
- * @example assign({ nested: { a: 1, b: 2 } }, 'nested', { b: 3, c: 4 }) // => { nested: { a:1, b: 3, c: 4 } }
+ * @playground
+ * require("lodash/package.json")
+ * const { assign } = require("immutadot")
+ * assign({ nested: { a: 1, b: 2 } }, 'nested', { b: 3, c: 4 }) // => { nested: { a:1, b: 3, c: 4 } }
  * @see {@link https://lodash.com/docs#assign|lodash.assign} for more information.
  * @since 0.1.12
  * @flow

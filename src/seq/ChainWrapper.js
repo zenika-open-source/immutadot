@@ -101,7 +101,9 @@ class ChainWrapper {
   /**
    * Executes the chain sequence and returns the unwrapped object.
    * @returns {Object} Returns the resolved unwrapped object.
-   * @example
+   * @playground
+   * require("lodash/package.json")
+   * const { chain } = require("immutadot")
    * chain({ nested1: { prop: 'old' }, nested2: { prop: 1 } })
    *   .set('nested1.prop', 'new')
    *   .unset('nested2.prop')

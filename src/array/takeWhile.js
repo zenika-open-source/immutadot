@@ -11,7 +11,10 @@ import { convert } from 'core/convert'
  * @param {Array|string} path The path of the property to set.
  * @param {Function} [predicate={@link https://lodash.com/docs#identity|lodash.identity}] The function invoked per iteration.
  * @return {Object} Returns the updated object.
- * @example takeWhile({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v < 2) // => { nested: { prop: [1] } }
+ * @playground
+ * require("lodash/package.json")
+ * const { takeWhile } = require("immutadot")
+ * takeWhile({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v < 2) // => { nested: { prop: [1] } }
  * @see {@link https://lodash.com/docs#takeWhile|lodash.takeWhile} for more information.
  * @since 0.3.0
  * @flow
