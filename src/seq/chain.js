@@ -9,12 +9,15 @@ import { ChainWrapper } from './ChainWrapper'
  * @param {Object} object The object to wrap.
  * @param {Array|string} [path] The path of the object on which functions are called.
  * @return {Object} Returns the new immutadot wrapper instance.
- * @example <caption>Chain several operations</caption>
+ * @playground
+ * require("lodash/package.json")
+ * const { chain } = require("immutadot")
+ * // Chain several operations
  * chain({ nested1: { prop: 'old' }, nested2: { prop: 1 } })
  *   .set('nested1.prop', 'new')
  *   .unset('nested2.prop')
  *   .value() // => { nested1: { prop: 'new' }, nested2: {} }
- * @example <caption>Chain on a path</caption>
+ * // Chain on a path
  * chain({ nested: { prop1: 'old', prop2: 1 } }, 'nested')
  *   .set('prop1', 'new')
  *   .unset('prop2')

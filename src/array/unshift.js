@@ -8,9 +8,12 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @param {Array|string} path The path of the property to set.
  * @param {...*} values The values to add.
  * @return {Object} Returns the updated object.
- * @example <caption>Add one element.</caption>
+ * @playground
+ * require("lodash/package.json")
+ * const { unshift } = require("immutadot")
+ * // Add one element
  * unshift({ nested: { prop: [1, 2] } }, 'nested.prop', 3) // => { nested: { prop: [3, 1, 2] } }
- * @example <caption>Add several elements.</caption>
+ * // Add several elements
  * unshift({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4) // => { nested: { prop: [3, 4, 1, 2] } }
  * @see {@link https://mdn.io/Array.prototype.unshift|Array.prototype.unshift} for more information.
  * @since 0.1.7
