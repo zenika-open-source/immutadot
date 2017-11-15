@@ -9,7 +9,10 @@ import { convert } from 'core/convert'
  * @param {Array|string} path The path of the property to set.
  * @param {...Array} arrays The arrays to concatenate.
  * @return {Object} Returns the updated object.
- * @playground concat({ nested: { prop: [1, 2] } }, 'nested.prop', [3, 4]) // => { nested: { prop: [1, 2, 3, 4] } }
+ * @playground
+ * require("lodash/package.json")
+ * const { concat } = require("immutadot")
+ * concat({ nested: { prop: [1, 2] } }, 'nested.prop', [3, 4]) // => { nested: { prop: [1, 2, 3, 4] } }
  * @see {@link https://lodash.com/docs#concat|lodash.concat} for more information.
  * @since 0.2.0
  * @flow
