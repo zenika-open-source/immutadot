@@ -13,6 +13,7 @@ import { convert } from 'core/convert'
  * @see {@link https://lodash.com/docs#map|lodash.map} for more information.
  * @example map({ nested: { prop: [1, 2, 3] } }, 'nested.prop', v => v * 2) // => { nested: { prop: [2, 4, 6] } }
  * @since 0.1.8
+ * @flow
  */
 const map = convert(_map)
 export { map }

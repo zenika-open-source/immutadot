@@ -11,6 +11,7 @@ import { convertLodashFp } from 'util/convert'
  * @example reverse({ nested: { prop: [1, 2, 3] } }, 'nested.prop') // => { nested: { prop: [3, 2, 1] } }
  * @see {@link https://lodash.com/docs#reverse|lodash.reverse} for more information.
  * @since 0.3.0
+ * @flow
  */
 const reverse = convertLodashFp(_reverse)
 export { reverse }

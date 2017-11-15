@@ -13,6 +13,7 @@ import { convert } from 'core/convert'
  * @example xorBy({ nested: { prop: [{ x: 1 }, { x: 2 }] } }, 'nested.prop', [{ x: 2 }, { x: 3 }], 'x') // => { nested: { prop: [{ x: 1 }, { x: 3 }] } }
  * @see {@link https://lodash.com/docs#xorBy|lodash.xorBy} for more information.
  * @since 0.3.0
+ * @flow
  */
 const xorBy = convert(_xorBy)
 export { xorBy }

@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example xor({ nested: { prop: [1, 2] } }, 'nested.prop', [2, 3]) // => { nested: { prop: [1, 3] } }
  * @see {@link https://lodash.com/docs#xor|lodash.xor} for more information.
  * @since 0.1.6
+ * @flow
  */
 const xor = convert(_xor)
 export { xor }

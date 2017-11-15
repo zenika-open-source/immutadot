@@ -14,6 +14,7 @@ import { convert } from 'core/convert'
  * @example takeRightWhile({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v > 3) // => { nested: { prop: [4] } }
  * @see {@link https://lodash.com/docs#takeRightWhile|lodash.takeRightWhile} for more information.
  * @since 0.3.0
+ * @flow
  */
 const takeRightWhile = convert(_takeRightWhile)
 export { takeRightWhile }

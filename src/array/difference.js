@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example difference({ nested: { prop: [1, 2] } }, 'nested.prop', [2, 3]) // => { nested: { prop: [1] } }
  * @see {@link https://lodash.com/docs#difference|lodash.difference} for more information.
  * @since 0.2.0
+ * @flow
  */
 const difference = convert(_difference)
 export { difference }

@@ -9,4 +9,5 @@ export {
   flow,
 }
 
-export * from './core'
+// Export all generated flow functions
+export * from 'flow/exports'

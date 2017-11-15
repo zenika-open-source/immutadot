@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example pickBy({ nested: { a: 1, b: 2, c: 3, d: 4 } }, 'nested', v => v < 3) // => { nested: { a: 1, b: 2 } }
  * @see {@link https://lodash.com/docs#pickBy|lodash.pickBy} for more information.
  * @since 0.1.12
+ * @flow
  */
 const pickBy = convert(_pickBy)
 export { pickBy }

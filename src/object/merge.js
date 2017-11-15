@@ -13,6 +13,7 @@ import { convertLodashFp } from 'util/convert'
  * @example merge({ nested: { prop: { a: 1 } } }, 'nested', { prop: { a: 2, b: 3 } }) // => { nested: { prop: { a: 2, b: 3 } } }
  * @see {@link https://lodash.com/docs#merge|lodash.merge} for more information.
  * @since 0.3.0
+ * @flow
  */
 const merge = convertLodashFp(_merge)
 export { merge }

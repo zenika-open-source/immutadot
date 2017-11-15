@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example multiply({ nested: { prop: 333 } }, 'nested.prop', 2) // => { nested: { prop: 666 } }
  * @see {@link https://lodash.com/docs#multiply|lodash.multiply} for more information.
  * @since 0.3.0
+ * @flow
  */
 const multiply = convert(_multiply)
 export { multiply }

@@ -13,6 +13,7 @@ import { convert } from 'core/convert'
  * @example slice({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 1, 3) // => { nested: { prop: [2, 3] } }
  * @see {@link https://lodash.com/docs#slice|lodash.slice} for more information.
  * @since 0.3.0
+ * @flow
  */
 const slice = convert(_slice)
 export { slice }

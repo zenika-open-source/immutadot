@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example subtract({ nested: { prop: 2000 } }, 'nested.prop', 336) // => { nested: { prop: 1664 } }
  * @see {@link https://lodash.com/docs#subtract|lodash.subtract} for more information.
  * @since 0.3.0
+ * @flow
  */
 const subtract = convert(_subtract)
 export { subtract }

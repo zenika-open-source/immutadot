@@ -5,6 +5,7 @@ import { pull } from './pull'
  * @function
  * @memberof array
  * @since 0.3.0
+ * @flow
  */
 const without = pull
 
