@@ -45,11 +45,7 @@ export { curried as ${name} }
 
       await writeFile(
         path.resolve(nsDir, 'index.js'),
-        `${nsItems.map(({ name }) => `import { ${name} } from './${name}'`).join('\n')}
-
-export {
-${nsItems.map(({ name }) => `  ${name},`).join('\n')}
-}
+        `${nsItems.map(({ name }) => `export * from './${name}'`).join('\n')}
 `,
       )
     }))
