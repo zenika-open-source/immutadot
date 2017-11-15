@@ -9,6 +9,7 @@ import { convert } from 'core/convert'
  * @return {Object} Returns the updated object.
  * @example toggle({ nested: { prop: true } }, 'nested.prop') // { nested: { prop: false } }
  * @since 0.1.5
+ * @flow
  */
 const toggle = convert(v => !v)
 export { toggle }

@@ -13,6 +13,7 @@ import { convert } from 'core/convert'
  * @example unionWith({ nested: { prop: [{ x: 1 }, { x: 2 }] } }, 'nested.prop', [{ x: 2 }, { x: 3 }], (a, b) => a.x === b.x) // => { nested: { prop: [{ x: 1 }, { x: 2 }, { x: 3 }] } }
  * @see {@link https://lodash.com/docs#unionWith|lodash.unionWith} for more information.
  * @since 0.3.0
+ * @flow
  */
 const unionWith = convert(_unionWith)
 export { unionWith }

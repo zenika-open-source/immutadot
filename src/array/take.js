@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example take({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 2) // => { nested: { prop: [1, 2] } }
  * @see {@link https://lodash.com/docs#take|lodash.take} for more information.
  * @since 0.3.0
+ * @flow
  */
 const take = convert(_take)
 export { take }

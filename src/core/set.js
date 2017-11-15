@@ -1,6 +1,6 @@
 import { apply } from './apply'
 
-const makeSetOperation = value => (obj, prop) => { obj[prop] = value }
+const setOperation = (obj, prop, _, value) => { obj[prop] = value }
 
 /**
  * Sets the value at <code>path</code> of <code>object</code>.
@@ -12,7 +12,8 @@ const makeSetOperation = value => (obj, prop) => { obj[prop] = value }
  * @return {*} Returns the updated object.
  * @example set({ nested: { prop: 'old' } }, 'nested.prop', 'new') // => { nested: { prop: 'new' } }
  * @since 1.0.0
+ * @flow
  */
-const set = (obj, path, value) => apply(obj, path, makeSetOperation(value))
+const set = apply(setOperation)
 
 export { set }

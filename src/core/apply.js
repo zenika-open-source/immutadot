@@ -37,53 +37,71 @@ const copy = (value, asArray) => {
  * @param {*} obj The last nested object
  * @param {string|number} prop The prop of the last nested object
  * @param {*} value The value of the prop
+ * @param {...*} args The remaining args (passed to the {@link core.appliedOperation|appliedOperation})
+ * @private
+ * @since 1.0.0
+ */
+
+/**
+ * A function able to apply an {@link core.operation|operation} on a nested property of an object, returned by {@link core.apply|apply}.
+ * @memberof core
+ * @callback appliedOperation
+ * @param {*} obj The last nested object
+ * @param {string} path The prop of the last nested object
+ * @param {...*} args The remaining args (to be passed to the {@link core.operation|operation})
  * @returns {*} Result of the operation
  * @private
  * @since 1.0.0
  */
 
 /**
- * Applies <code>operation</code> on a nested property of <code>obj</code>.
- * @function
- * @param {*} obj The object to apply <code>operation</code> on
- * @param {string|Array} path The path of the property to apply <code>operation</code> on
- * @param {core.operation} operation The operation to apply
- * @returns {*} The new object, result of the applied operation
+ * Creates a function able to apply <code>operation</code> on a nested property.
  * @memberof core
+ * @function
+ * @param {core.operation} operation The operation to apply
+ * @returns {core.appliedOperation} A function able to apply <code>operation</code>
  * @private
  * @since 1.0.0
  */
-const apply = (obj, path, operation) => {
-  const walkPath = (curObj, curPath, doCopy = true) => {
-    const [prop, ...pathRest] = curPath
+const apply = operation => {
+  const curried = (path, ...args) => obj => {
+    const walkPath = (curObj, curPath, doCopy = true) => {
+      const [prop, ...pathRest] = curPath
 
-    if (isSlice(prop)) {
-      const [start, end] = getSliceBounds(prop, length(curObj))
+      if (isSlice(prop)) {
+        const [start, end] = getSliceBounds(prop, length(curObj))
 
-      const newArr = copy(curObj, true)
+        const newArr = copy(curObj, true)
 
-      for (let i = start; i < end; i++)
-        walkPath(newArr, [i, ...pathRest], false)
+        for (let i = start; i < end; i++)
+          walkPath(newArr, [i, ...pathRest], false)
 
-      return newArr
-    }
+        return newArr
+      }
 
-    const value = isNil(curObj) ? undefined : curObj[prop]
+      const value = isNil(curObj) ? undefined : curObj[prop]
 
-    let newObj = curObj
-    if (doCopy) newObj = copy(curObj, isIndex(prop))
+      let newObj = curObj
+      if (doCopy) newObj = copy(curObj, isIndex(prop))
 
-    if (curPath.length === 1) {
-      operation(newObj, prop, value)
+      if (curPath.length === 1) {
+        operation(newObj, prop, value, ...args)
+        return newObj
+      }
+
+      newObj[prop] = walkPath(value, pathRest)
+
       return newObj
     }
 
-    newObj[prop] = walkPath(value, pathRest)
-
-    return newObj
+    return walkPath(obj, unsafeToPath(path))
   }
 
-  return walkPath(obj, unsafeToPath(path))
+  const uncurried = (obj, path, ...args) => curried(path, ...args)(obj)
+
+  uncurried.curried = curried
+
+  return uncurried
 }
 
 export { apply }

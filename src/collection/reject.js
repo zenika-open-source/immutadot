@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @see {@link https://lodash.com/docs#reject|lodash.reject} for more information.
  * @example reject({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v % 2) // => { nested: { prop: [2, 4] } }
  * @since 0.3.0
+ * @flow
  */
 const reject = convert(_reject)
 export { reject }

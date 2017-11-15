@@ -10,7 +10,9 @@ describe('Apply', () => {
     return r + i
   }
 
-  const inc = (obj, path, ...args) => apply(obj, path, (obj, prop) => { obj[prop] = _inc(obj[prop], ...args) })
+  const incOperation = (obj, prop, value, ...args) => { obj[prop] = _inc(obj[prop], ...args) }
+
+  const inc = apply(incOperation)
 
   it('should inc in an array slice', () => {
     immutaTest(

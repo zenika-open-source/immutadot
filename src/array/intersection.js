@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example intersection({ nested: { prop: [1, 2] } }, 'nested.prop', [2, 3]) // => { nested: { prop: [2] } }
  * @see {@link https://lodash.com/docs#intersection|lodash.intersection} for more information.
  * @since 0.3.0
+ * @flow
  */
 const intersection = convert(_intersection)
 export { intersection }

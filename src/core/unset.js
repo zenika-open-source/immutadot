@@ -12,7 +12,8 @@ const unsetOperation = (obj, prop) => { delete obj[prop] }
  * @return {Object} Returns the updated object.
  * @example unset({ nested: { prop: 'value' } }, 'nested.prop') // => { nested: {} }
  * @since 1.0.0
+ * @flow
  */
-const unset = (obj, path) => apply(obj, path, unsetOperation)
+const unset = apply(unsetOperation)
 
 export { unset }

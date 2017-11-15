@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example dropRightWhile({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v > 2) // => { nested: { prop: [1, 2] } }
  * @see {@link https://lodash.com/docs#dropRightWhile|lodash.dropRightWhile} for more information.
  * @since 0.3.0
+ * @flow
  */
 const dropRightWhile = convert(_dropRightWhile)
 export { dropRightWhile }

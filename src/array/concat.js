@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example concat({ nested: { prop: [1, 2] } }, 'nested.prop', [3, 4]) // => { nested: { prop: [1, 2, 3, 4] } }
  * @see {@link https://lodash.com/docs#concat|lodash.concat} for more information.
  * @since 0.2.0
+ * @flow
  */
 const concat = convert(_concat)
 export { concat }

@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @see {@link https://lodash.com/docs#toLower|lodash.toLower} for more information.
  * @see {@link https://mdn.io/String/toLowerCase|String.toLowerCase} for more information.
  * @since 0.3.0
+ * @flow
  */
 const toLower = convert(_toLower)
 export { toLower }

@@ -14,6 +14,7 @@ import { convert } from 'core/convert'
  * sortBy({ nested: { prop: [{ name: 'Yvo', age: 2 }, { name: 'Nico', age: 666 }, { name: 'Nico', age: 30 }] } }, 'nested.prop', ['name', 'age'])
  * // => { nested: { prop: [{ name: 'Nico', age: 30 }, { name: 'Nico', age: 666 }, { name: 'Yvo', age: 2 }] } }
  * @since 0.3.0
+ * @flow
  */
 const sortBy = convert(_sortBy)
 export { sortBy }

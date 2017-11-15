@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example takeRight({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 2) // => { nested: { prop: [3, 4] } }
  * @see {@link https://lodash.com/docs#takeRight|lodash.takeRight} for more information.
  * @since 0.3.0
+ * @flow
  */
 const takeRight = convert(_takeRight)
 export { takeRight }

@@ -12,6 +12,7 @@ import { convertLodashFp } from 'util/convert'
  * @example remove({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v > 2) // => { nested: { prop: [1, 2] } }
  * @see {@link https://lodash.com/docs#remove|lodash.remove} for more information.
  * @since 0.2.0
+ * @flow
  */
 const remove = convertLodashFp(_remove)
 export { remove }

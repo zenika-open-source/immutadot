@@ -1,12 +1,13 @@
 /.github/
 /coverage/
 /docs/
+/generated/
+/misc/
 /src/
 .babelrc
 .codecov.yml
 .eslintrc.json
 circle.yml
 jsdoc.json
-package-lock.json
 publish-docs.sh
 yarn.lock

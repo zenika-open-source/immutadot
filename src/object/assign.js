@@ -13,6 +13,7 @@ import { convertLodashFp } from 'util/convert'
  * @example assign({ nested: { a: 1, b: 2 } }, 'nested', { b: 3, c: 4 }) // => { nested: { a:1, b: 3, c: 4 } }
  * @see {@link https://lodash.com/docs#assign|lodash.assign} for more information.
  * @since 0.1.12
+ * @flow
  */
 const assign = convertLodashFp(_assign)
 export { assign }

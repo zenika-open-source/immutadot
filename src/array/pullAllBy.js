@@ -13,6 +13,7 @@ import { convertLodashFp } from 'util/convert'
  * @example pullAllBy({ nested: { prop: [{ x: 1 }, { x: 2 }, { x: 3 }, { x: 1 }, { x: 2 }, { x: 3 }] } }, 'nested.prop', [{ x: 1 }, { x: 3 }], 'x') // => { nested: { prop: [{ x: 2 }, { x: 2 }] } }
  * @see {@link https://lodash.com/docs#pullAllBy|lodash.pullAllBy} for more information.
  * @since 0.3.0
+ * @flow
  */
 const pullAllBy = convertLodashFp(_pullAllBy)
 export { pullAllBy }

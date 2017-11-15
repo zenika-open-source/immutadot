@@ -13,6 +13,7 @@ import { convertLodashFp } from 'util/convert'
  * @example defaults({ nested: { a: 1, b: 2 } }, 'nested', { b: 3, c: 4 }) // => { nested: { a:1, b: 2, c: 4 } }
  * @see {@link https://lodash.com/docs#defaults|lodash.defaults} for more information.
  * @since 0.3.0
+ * @flow
  */
 const defaults = convertLodashFp(_defaults)
 export { defaults }

@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example omitBy({ nested: { a: 1, b: 2, c: 3 } }, 'nested', v => v === 2) // => { nested: { a:1, c: 3 } }
  * @see {@link https://lodash.com/docs#omitBy|lodash.omitBy} for more information.
  * @since 0.3.0
+ * @flow
  */
 const omitBy = convert(_omitBy)
 export { omitBy }

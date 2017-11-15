@@ -13,6 +13,7 @@ import { convert } from 'core/convert'
  * @example replace({ nested: { a: "Hi Nico" } }, 'nested.a', 'Nico', 'Yvo') // => { nested: { a: "Hi Yvo" } }
  * @see {@link https://lodash.com/docs#replace|lodash.replace} for more information.
  * @since 0.3.0
+ * @flow
  */
 const replace = convert(_replace)
 export { replace }

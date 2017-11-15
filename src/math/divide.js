@@ -12,6 +12,7 @@ import { convert } from 'core/convert'
  * @example divide({ nested: { prop: 1332 } }, 'nested.prop', 2) // => { nested: { prop: 666 } }
  * @see {@link https://lodash.com/docs#divide|lodash.divide} for more information.
  * @since 0.3.0
+ * @flow
  */
 const divide = convert(_divide)
 export { divide }
