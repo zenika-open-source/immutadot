@@ -1,4 +1,4 @@
-![immutadot logo](./misc/otter.svg)
+![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg)
 =================
 
 A JavaScript library to deal with nested immutable structures.
