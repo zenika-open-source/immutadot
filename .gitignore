@@ -1,7 +1,7 @@
-/coverage/
-/node_modules/
+coverage/
+node_modules/
 package-lock.json
 yarn-error.log
 **/*.js
 !/misc/**/*.js
-!/src/**/*.js
+!/packages/*/src/**/*.js

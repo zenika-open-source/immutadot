@@ -10,15 +10,16 @@ const writeFile = util.promisify(fs.writeFile)
 
 const generateFlow = async () => {
   try {
-    const rootDir = path.resolve(__dirname, '..')
-    const generatedDir = path.resolve(rootDir, 'generated')
+    const packageDir = process.cwd()
+    const rootDir = path.resolve(packageDir, '../..')
+    const generatedDir = path.resolve(packageDir, 'generated')
     const flowDir = path.resolve(generatedDir, 'flow')
     await remove(generatedDir)
     await ensureDir(flowDir)
 
     const items = await jsdoc.explain({
       configure: path.resolve(rootDir, 'jsdoc.json'),
-      files: path.resolve(rootDir, 'src'), // Workaround while this hasn't been merged : https://github.com/jsdoc2md/jsdoc-api/pull/9
+      files: path.resolve(packageDir, 'src'), // Workaround while this hasn't been merged : https://github.com/jsdoc2md/jsdoc-api/pull/9
     })
 
     const itemsByNamespace = _.chain(items)

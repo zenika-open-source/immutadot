@@ -12,7 +12,7 @@
     "test": {
       "plugins": [
         ["module-resolver", {
-          "root": ["./src", "./misc", "./generated"]
+          "root": ["./src", "../../misc", "./generated"]
         }]
       ]
     }
