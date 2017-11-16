@@ -21,7 +21,13 @@
     "Hugo WOOD (https://github.com/hgwood)"
   ],
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "cross-env": "^5.1.1",
+    "eslint": "^4.11.0",
+    "jest": "^21.2.1",
+    "jsdoc": "^3.5.5"
+  },
   "dependencies": {},
   "peerDependencies": {
     "lodash": "^4.17.4"
@@ -32,10 +38,13 @@
     "build": "cross-env BABEL_ENV=production babel src generated -d .",
     "lint": "eslint src generated",
     "pretest": "yarn generate:flow",
-    "test": "jest --config ../../jest.config.json",
-    "test:coverage": "jest --config ../../jest.config.json --maxWorkers=2 --coverage && codecov",
+    "test": "jest",
+    "test:coverage": "jest --maxWorkers=2 --coverage && codecov",
     "docs": "jsdoc -c ../../jsdoc.json",
     "docs:private": "jsdoc -c ../../jsdoc.json -p"
   },
-  "runkitExample": "require('lodash')\nconst immutadot = require('immutadot')\n\nimmutadot.push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)\n// → { nested: { prop: [1, 2, 3, 4] } }\n\nimmutadot.pickBy({ nested: [{ a: 1, b: 2, c: 3, d: 4 }, { e: 6 }] }, 'nested.0', v => v < 3)\n// → { nested: [{ a: 1, b: 2 }, { e: 6 }] }"
+  "runkitExample": "require('lodash')\nconst immutadot = require('immutadot')\n\nimmutadot.push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)\n// → { nested: { prop: [1, 2, 3, 4] } }\n\nimmutadot.pickBy({ nested: [{ a: 1, b: 2, c: 3, d: 4 }, { e: 6 }] }, 'nested.0', v => v < 3)\n// → { nested: [{ a: 1, b: 2 }, { e: 6 }] }",
+  "jest": {
+    "setupTestFrameworkScriptFile": "../../misc/test.setup.js"
+  }
 }

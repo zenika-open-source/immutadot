@@ -1,0 +1,32 @@
+{
+  "name": "immutadot-lodash",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "immutadot": "^0.3.2",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "cross-env": "^5.1.1",
+    "eslint": "^4.11.0",
+    "jest": "^21.2.1",
+    "jsdoc": "^3.5.5"
+  },
+  "peerDependencies": {},
+  "scripts": {
+    "generate:flow": "node ../../misc/generate-flow.js",
+    "prebuild": "yarn generate:flow",
+    "build": "cross-env BABEL_ENV=production babel src generated -d .",
+    "lint": "eslint src generated",
+    "pretest": "yarn generate:flow",
+    "test": "jest",
+    "test:coverage": "jest --maxWorkers=2 --coverage && codecov",
+    "docs": "jsdoc -c ../../jsdoc.json",
+    "docs:private": "jsdoc -c ../../jsdoc.json -p"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "../../misc/test.setup.js"
+  }
+}

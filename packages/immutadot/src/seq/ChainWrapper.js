@@ -1,5 +1,4 @@
 import * as array from 'array'
-import * as collection from 'collection'
 import * as core from 'core'
 import * as lang from 'lang'
 import * as math from 'math'
@@ -125,7 +124,6 @@ class ChainWrapper {
 // Add namespaces functions to the ChainWrapper prototype
 [
   array,
-  collection,
   omit(core, ['convert', 'toPath']),
   lang,
   math,
