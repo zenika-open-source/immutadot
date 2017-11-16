@@ -1,0 +1,3 @@
+{
+  "setupTestFrameworkScriptFile": "./misc/test.setup.js"
+}

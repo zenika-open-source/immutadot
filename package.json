@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "build": "lerna run --stream build",
+    "lint": "lerna run --stream lint",
+    "test": "lerna run --stream test",
+    "test:coverage": "lerna run --stream test:coverage",
+    "docs": "lerna run --stream docs",
+    "docs:private": "lerna run --stream docs:private"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.2",
