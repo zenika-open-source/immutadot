@@ -25,7 +25,8 @@
     "jest": "^21.2.1",
     "jsdoc": "^3.5.5",
     "jsdoc-api": "^4.0.0",
-    "lerna": "^2.5.1"
+    "lerna": "^2.5.1",
+    "lodash": "^4.17.4"
   },
   "workspaces": [
     "packages/*"
