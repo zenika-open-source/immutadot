@@ -3,6 +3,7 @@ import { fill } from './fill'
 import { push } from './push'
 import { reverse } from './reverse'
 import { slice } from './slice'
+import { splice } from './splice'
 import { unshift } from './unshift'
 
 /**
@@ -16,5 +17,6 @@ export {
   push,
   reverse,
   slice,
+  splice,
   unshift,
 }

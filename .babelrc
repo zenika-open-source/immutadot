@@ -5,6 +5,11 @@
     }],
     ["stage-2"],
   ],
+  "plugins": [
+    ["module-resolver", {
+      "root": ["./src"]
+    }]
+  ],
   "env": {
     "production": {
       "ignore": ".spec.js"
