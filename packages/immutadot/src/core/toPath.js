@@ -122,7 +122,7 @@ const allowingArrays = fn => arg => {
 const match = (str, matchers, defaultResult) => {
   for (const [matcher, mapper] of matchers) {
     const matchResult = matcher instanceof RegExp ? str.match(matcher) : matcher(str)
-    if (matchResult) return mapper(matchResult.slice(1))
+    if (matchResult) return mapper(...matchResult.slice(1))
   }
   return defaultResult
 }
@@ -131,7 +131,7 @@ match.andCheck = (matcher, predicate) => {
   return str => {
     const matchResult = str.match(sliceNotation)
     if (!matchResult) return matchResult
-    return predicate(matchResult.slice(1)) ? matchResult : null
+    return predicate(...matchResult.slice(1)) ? matchResult : null
   }
 }
 
@@ -159,37 +159,37 @@ const stringToPath = str => {
     ],
     [
       quotedBracketNotation,
-      ([quote, property, rest]) => [unescapeQuotes(property, quote), ...stringToPath(rest)],
+      (quote, property, rest) => [unescapeQuotes(property, quote), ...stringToPath(rest)],
     ],
     [
       incompleteQuotedBracketNotation,
-      ([rest]) => rest ? [rest] : [],
+      (rest) => rest ? [rest] : [],
     ],
     [
       match.andCheck(
         sliceNotation,
-        ([sliceStart, sliceEnd]) => isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd),
+        (sliceStart, sliceEnd) => isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd),
       ),
-      ([sliceStart, sliceEnd, rest]) => [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], ...stringToPath(rest)],
+      (sliceStart, sliceEnd, rest) => [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], ...stringToPath(rest)],
     ],
     [
       bareBracketNotation,
-      ([property, rest]) =>
+      (property, rest) =>
         isIndex(Number(property))
           ? [Number(property), ...stringToPath(rest)]
           : [property, ...stringToPath(rest)],
     ],
     [
       incompleteBareBracketNotation,
-      ([rest]) => rest ? [rest] : [],
+      (rest) => rest ? [rest] : [],
     ],
     [
       pathSegmentEndedByDot,
-      ([beforeDot, afterDot]) => [beforeDot, ...stringToPath(afterDot)],
+      (beforeDot, afterDot) => [beforeDot, ...stringToPath(afterDot)],
     ],
     [
       pathSegmentEndedByBracket,
-      ([beforeBracket, atBracket]) => [beforeBracket, ...stringToPath(atBracket)],
+      (beforeBracket, atBracket) => [beforeBracket, ...stringToPath(atBracket)],
     ],
   ], [str])
 }
