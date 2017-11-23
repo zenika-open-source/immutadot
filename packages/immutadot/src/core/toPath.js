@@ -111,20 +111,6 @@ const allowingArrays = fn => arg => {
 }
 
 /**
- * Converts <code>str</code> to a path represented as an array of keys.
- * @function
- * @param {string} str The string to convert
- * @return {Array<string|number|Array>} The path represented as an array of keys
- * @memberof core
- * @private
- * @since 1.0.0
- */
-const stringToPath = str => {
-  const path = stringToPath2(str)
-  return str[0] === '.' ? ['', ...path] : path
-}
-
-/**
  * @typedef {function(string): string[]} Matcher a function that can replace String.prototype.match
  * @param {string} str string to match against
  * @param {[(Matcher | RegExp), function(string[]): *]} matchers
@@ -157,7 +143,15 @@ const incompleteBareBracketNotation = /^\[(.*)$/
 const pathSegmentEndedByDot = /^([^.[]*?)\.(.*)$/
 const pathSegmentEndedByBracket = /^([^.[]*?)(\[.*)$/
 
-const stringToPath2 = str => {
+/**
+ * Converts <code>str</code> to a path represented as an array of keys.
+ * @param {string} str The string to convert
+ * @return {(string|number)[]} The path represented as an array of keys
+ * @memberof core
+ * @private
+ * @since 0.4.0
+ */
+const stringToPath = str => {
   return match(str, [
     [
       str => str.length === 0 ? [] : null,
@@ -165,7 +159,7 @@ const stringToPath2 = str => {
     ],
     [
       quotedBracketNotation,
-      ([quote, property, rest]) => [unescapeQuotes(property, quote), ...stringToPath2(rest)],
+      ([quote, property, rest]) => [unescapeQuotes(property, quote), ...stringToPath(rest)],
     ],
     [
       incompleteQuotedBracketNotation,
@@ -176,14 +170,14 @@ const stringToPath2 = str => {
         sliceNotation,
         ([sliceStart, sliceEnd]) => isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd),
       ),
-      ([sliceStart, sliceEnd, rest]) => [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], ...stringToPath2(rest)],
+      ([sliceStart, sliceEnd, rest]) => [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], ...stringToPath(rest)],
     ],
     [
       bareBracketNotation,
       ([property, rest]) =>
         isIndex(Number(property))
-          ? [Number(property), ...stringToPath2(rest)]
-          : [property, ...stringToPath2(rest)],
+          ? [Number(property), ...stringToPath(rest)]
+          : [property, ...stringToPath(rest)],
     ],
     [
       incompleteBareBracketNotation,
@@ -191,11 +185,11 @@ const stringToPath2 = str => {
     ],
     [
       pathSegmentEndedByDot,
-      ([beforeDot, afterDot]) => [beforeDot, ...stringToPath2(afterDot)],
+      ([beforeDot, afterDot]) => [beforeDot, ...stringToPath(afterDot)],
     ],
     [
       pathSegmentEndedByBracket,
-      ([beforeBracket, atBracket]) => [beforeBracket, ...stringToPath2(atBracket)],
+      ([beforeBracket, atBracket]) => [beforeBracket, ...stringToPath(atBracket)],
     ],
   ], [str])
 }

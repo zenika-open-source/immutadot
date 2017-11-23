@@ -6,8 +6,8 @@ describe('ToPath', () => {
   it('should convert basic path', () => {
     expect(toPath('a.22.ccc')).toEqual(['a', '22', 'ccc'])
     // Empty properties should be kept
-    expect(toPath('.')).toEqual(['', ''])
-    expect(toPath('..')).toEqual(['', '', ''])
+    expect(toPath('.')).toEqual([''])
+    expect(toPath('..')).toEqual(['', ''])
     // If no separators, path should be interpreted as one property
     expect(toPath('\']"\\')).toEqual(['\']"\\'])
   })
