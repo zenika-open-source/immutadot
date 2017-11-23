@@ -121,17 +121,17 @@ const allowingArrays = fn => arg => {
  */
 const match = (str, matchers, defaultResult) => {
   for (const [matcher, mapper] of matchers) {
-    const match = matcher instanceof RegExp ? str.match(matcher) : matcher(str)
-    if (match) return mapper(match.slice(1))
+    const matchResult = matcher instanceof RegExp ? str.match(matcher) : matcher(str)
+    if (matchResult) return mapper(matchResult.slice(1))
   }
   return defaultResult
 }
 
 match.andCheck = (matcher, predicate) => {
   return str => {
-    const match = str.match(sliceNotation)
-    if (!match) return match
-    return predicate(match.slice(1)) ? match : null
+    const matchResult = str.match(sliceNotation)
+    if (!matchResult) return matchResult
+    return predicate(matchResult.slice(1)) ? matchResult : null
   }
 }
 
