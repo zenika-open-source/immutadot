@@ -1,6 +1,0 @@
-coverage:
-  range: "100..100"
-ignore:
-  - misc
-fixes:
-  - "::packages/immutadot/"

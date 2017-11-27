@@ -38,13 +38,10 @@
     "build": "cross-env BABEL_ENV=production babel src generated -d .",
     "lint": "eslint src generated",
     "pretest": "yarn generate:flow",
-    "test": "jest",
-    "test:coverage": "jest --maxWorkers=2 --coverage && codecov",
+    "test": "jest -c ../../jest.config.js",
+    "test:coverage": "jest -c ../../jest.config.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../jsdoc.json",
     "docs:private": "jsdoc -c ../../jsdoc.json -p"
   },
-  "runkitExample": "require('lodash')\nconst immutadot = require('immutadot')\n\nimmutadot.push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)\n// → { nested: { prop: [1, 2, 3, 4] } }\n\nimmutadot.pickBy({ nested: [{ a: 1, b: 2, c: 3, d: 4 }, { e: 6 }] }, 'nested.0', v => v < 3)\n// → { nested: [{ a: 1, b: 2 }, { e: 6 }] }",
-  "jest": {
-    "setupTestFrameworkScriptFile": "../../misc/test.setup.js"
-  }
+  "runkitExample": "require('lodash')\nconst immutadot = require('immutadot')\n\nimmutadot.push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)\n// → { nested: { prop: [1, 2, 3, 4] } }\n\nimmutadot.pickBy({ nested: [{ a: 1, b: 2, c: 3, d: 4 }, { e: 6 }] }, 'nested.0', v => v < 3)\n// → { nested: [{ a: 1, b: 2 }, { e: 6 }] }"
 }

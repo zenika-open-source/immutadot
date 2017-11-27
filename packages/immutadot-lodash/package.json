@@ -21,12 +21,9 @@
     "build": "cross-env BABEL_ENV=production babel src generated -d .",
     "lint": "eslint src generated",
     "pretest": "yarn generate:flow",
-    "test": "jest",
-    "test:coverage": "jest --maxWorkers=2 --coverage && codecov",
+    "test": "jest -c ../../jest.config.js",
+    "test:coverage": "jest -c ../../jest.config.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../jsdoc.json",
     "docs:private": "jsdoc -c ../../jsdoc.json -p"
-  },
-  "jest": {
-    "setupTestFrameworkScriptFile": "../../misc/test.setup.js"
   }
 }
