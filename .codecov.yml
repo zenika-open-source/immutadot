@@ -1,7 +1,7 @@
 coverage:
   range: "100..100"
 ignore:
-  - misc/
+  - "misc/.*"
 flags:
   immutadot:
     paths:
