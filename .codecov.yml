@@ -1,2 +1,9 @@
 coverage:
   range: "100..100"
+flags:
+  immutadot:
+    paths:
+      - packages/immutadot/
+  immutadot-lodash:
+    paths:
+      - packages/immutadot-lodash/
