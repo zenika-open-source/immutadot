@@ -1,4 +1,3 @@
-import _add from 'lodash/add'
 import { convert } from 'core/convert'
 
 /**
@@ -14,5 +13,5 @@ import { convert } from 'core/convert'
  * @since 0.1.7
  * @flow
  */
-const add = convert(_add)
+const add = convert((value, addition) => value + addition)
 export { add }
