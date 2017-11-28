@@ -1,0 +1,4 @@
+coverage:
+  range: "100..100"
+fixes:
+  - ::packages/immutadot-lodash/
