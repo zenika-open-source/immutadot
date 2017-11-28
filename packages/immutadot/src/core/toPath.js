@@ -138,11 +138,12 @@ const pathSegmentEndedByBracketParser = map(
 
 /**
  * Converts <code>str</code> to a path represented as an array of keys.
+ * @function
  * @param {string} str The string to convert
- * @return {Array<(string|number)>} The path represented as an array of keys
+ * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
  * @private
- * @since 0.4.0
+ * @since 1.0.0
  */
 const stringToPath = race([
   emptyStringParser,
