@@ -1,4 +1,3 @@
-import _divide from 'lodash/divide'
 import { convert } from 'core/convert'
 
 /**
@@ -14,5 +13,5 @@ import { convert } from 'core/convert'
  * @since 0.3.0
  * @flow
  */
-const divide = convert(_divide)
+const divide = convert((value, divider) => value / divider)
 export { divide }
