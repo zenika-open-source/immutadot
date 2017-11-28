@@ -22,7 +22,7 @@
     "lint": "eslint src generated",
     "pretest": "yarn generate:flow",
     "test": "jest -c ../../jest.config.js",
-    "test:coverage": "jest -c ../../jest.config.js --maxWorkers=2 --coverage && codecov -C --disable=gcov -F immutadot_lodash -p ../..",
+    "test:coverage": "jest -c ../../jest.config.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../jsdoc.json",
     "docs:private": "jsdoc -c ../../jsdoc.json -p"
   }
