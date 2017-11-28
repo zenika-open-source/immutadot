@@ -1,4 +1,3 @@
-import _concat from 'lodash/concat'
 import { convert } from 'core/convert'
 
 /**
@@ -14,5 +13,9 @@ import { convert } from 'core/convert'
  * @since 0.2.0
  * @flow
  */
-const concat = convert(_concat)
+const concat = convert((array, ...args) => {
+  if (Array.isArray(array))
+    return array.concat(...args)
+  return [array].concat(...args)
+})
 export { concat }
