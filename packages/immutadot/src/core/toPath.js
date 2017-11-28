@@ -91,13 +91,34 @@ const allowingArrays = fn => arg => {
 }
 
 /**
- * @typedef {function(string): string[]} Matcher a function that can replace String.prototype.match
+ * A function that can replace {@link https://mdn.io/String/match|String.prototype.match}.
+ * @memberof core
+ * @callback matcher
+ * @param {string} str The string to be tested
+ * @returns Result similar to String.prototype.match's one
+ * @private
+ * @since 1.0.0
+ */
+
+/**
+ * FIXME
+ * @memberof core
+ * @callback mapper
+ * @private
+ * @since 1.0.0
+ */
+
+/**
+ * FIXME
+ * @function
  * @param {string} str string to match against
- * @param {[(Matcher | RegExp), function(string[]): *]} matchers
+ * @param {Array<(core.matcher|RegExp), core.mapper>} matchers
  *   pairs of a regexp to match str against, and a function to transform the resulting match object into the final result
  * @param {*} defaultResult
  *   value to return if no matcher matches
  * @returns {*} output value of the first cond that matches or defaultResult if no cond matches
+ * @private
+ * @since 1.0.0
  */
 const match = (str, matchers, defaultResult) => {
   for (const [matcher, mapper] of matchers) {
@@ -126,7 +147,7 @@ const pathSegmentEndedByBracket = /^([^.[]*?)(\[.*)$/
 /**
  * Converts <code>str</code> to a path represented as an array of keys.
  * @param {string} str The string to convert
- * @return {(string|number)[]} The path represented as an array of keys
+ * @return {Array<(string|number)>} The path represented as an array of keys
  * @memberof core
  * @private
  * @since 0.4.0
