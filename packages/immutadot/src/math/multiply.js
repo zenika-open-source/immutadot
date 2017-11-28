@@ -1,4 +1,3 @@
-import _multiply from 'lodash/multiply'
 import { convert } from 'core/convert'
 
 /**
@@ -14,5 +13,5 @@ import { convert } from 'core/convert'
  * @since 0.3.0
  * @flow
  */
-const multiply = convert(_multiply)
+const multiply = convert((value, multiplier) => value * multiplier)
 export { multiply }
