@@ -26,26 +26,6 @@ const toKey = arg => {
 
 const quotes = ['"', '\'']
 
-/**
- * Tests whether <code>index</code>th char of <code>str</code> is a quote.<br />
- * Quotes are <code>"</code> and <code>'</code>.
- * @function
- * @param {string} str The string
- * @param {number} index Index of the char to test
- * @return {{ quoted: boolean, quote: string }} A boolean <code>quoted</code>, true if <code>str.charAt(index)</code> is a quote and the <code>quote</code>.
- * @memberof core
- * @private
- * @since 1.0.0
- */
-const isQuoteChar = (str, index) => {
-  const char = str.charAt(index)
-  const quote = quotes.find(c => c === char)
-  return {
-    quoted: Boolean(quote),
-    quote,
-  }
-}
-
 const escapedQuotesRegexps = {}
 for (const quote of quotes)
   escapedQuotesRegexps[quote] = new RegExp(`\\\\${quote}`, 'g')
