@@ -1,4 +1,3 @@
-import _slice from 'lodash/slice'
 import { convert } from 'core/convert'
 
 /**
@@ -15,5 +14,5 @@ import { convert } from 'core/convert'
  * @since 0.3.0
  * @flow
  */
-const slice = convert(_slice)
+const slice = convert((array, ...args) => array.slice(...args))
 export { slice }
