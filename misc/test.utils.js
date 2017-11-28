@@ -25,5 +25,6 @@ export const immutaTest = (cb, input, ...paths) => {
 
   expect(input).toBeDeep(inputRefs)
   expect(output).toBeDeep(inputRefs, { exclude: paths })
-  expect(output).not.toBeDeep(inputRefs, { include: paths })
+  if (paths.length !== 0)
+    expect(output).not.toBeDeep(inputRefs, { include: paths })
 }

@@ -30,6 +30,11 @@ const copy = (value, asArray) => {
   return { ...value }
 }
 
+const getNewObj = (obj, prop, doCopy) => {
+  if (!doCopy) return obj
+  return copy(obj, isIndex(prop))
+}
+
 /**
  * Operation to apply on a nested property of an object, to be called by {@link core.apply|apply}.
  * @memberof core
@@ -72,29 +77,38 @@ const apply = operation => {
         const [start, end] = getSliceBounds(prop, length(curObj))
 
         const newArr = copy(curObj, true)
+        let noop = true
 
-        for (let i = start; i < end; i++)
-          walkPath(newArr, [i, ...pathRest], false)
+        for (let i = start; i < end; i++) {
+          const [iNoop] = walkPath(newArr, [i, ...pathRest], false)
+          noop = noop && iNoop
+        }
 
-        return newArr
+        if (noop) return [true, curObj]
+
+        return [false, newArr]
       }
 
       const value = isNil(curObj) ? undefined : curObj[prop]
 
-      let newObj = curObj
-      if (doCopy) newObj = copy(curObj, isIndex(prop))
-
       if (curPath.length === 1) {
+        const newObj = getNewObj(curObj, prop, doCopy)
         operation(newObj, prop, value, ...args)
-        return newObj
+        return [false, newObj]
       }
 
-      newObj[prop] = walkPath(value, pathRest)
+      const [noop, newValue] = walkPath(value, pathRest)
+      if (noop) return [true, curObj]
 
-      return newObj
+      const newObj = getNewObj(curObj, prop, doCopy)
+
+      newObj[prop] = newValue
+
+      return [false, newObj]
     }
 
-    return walkPath(obj, unsafeToPath(path))
+    const [, result] = walkPath(obj, unsafeToPath(path))
+    return result
   }
 
   const uncurried = (obj, path, ...args) => curried(path, ...args)(obj)

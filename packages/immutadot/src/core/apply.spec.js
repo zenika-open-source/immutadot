@@ -105,23 +105,57 @@ describe('Apply', () => {
       'nested.prop.1.val',
       'nested.prop.2.val',
     )
+
+    immutaTest(
+      input => {
+        const output = inc(input, 'nested.prop[3:5].val', 6)
+        expect(output).toEqual({
+          nested: { prop: [{ val: 0 }, { val: 1 }, undefined, { val: 6 }, { val: 6 }] },
+          other: {},
+        })
+        return output
+      },
+      {
+        nested: { prop: [{ val: 0 }, { val: 1 }] },
+        other: {},
+      },
+      'nested.prop.2',
+      'nested.prop.3.val',
+      'nested.prop.4.val',
+    )
   })
 
-  immutaTest(
-    input => {
-      const output = inc(input, 'nested.prop[3:5].val', 6)
-      expect(output).toEqual({
-        nested: { prop: [{ val: 0 }, { val: 1 }, undefined, { val: 6 }, { val: 6 }] },
+  it('should avoid unnecessary mutations', () => {
+    immutaTest(
+      input => inc(input, 'nested.prop[0:0].val', 6),
+      {
+        nested: { prop: [{ val: 0 }, { val: 1 }] },
         other: {},
-      })
-      return output
-    },
-    {
-      nested: { prop: [{ val: 0 }, { val: 1 }] },
-      other: {},
-    },
-    'nested.prop.2',
-    'nested.prop.3.val',
-    'nested.prop.4.val',
-  )
+      },
+    )
+
+    immutaTest(
+      input => inc(input, 'nested.prop[:].arr[0:0].val', 6),
+      {
+        nested: { prop: [{ arr: [{ val: 0 }, { val: 1 }] }, { arr: [{ val: 2 }] }] },
+        other: {},
+      },
+    )
+
+    immutaTest(
+      input => {
+        const output = inc(input, 'nested.prop[:].arr[1:].val', 6)
+        expect(output).toEqual({
+          nested: { prop: [{ arr: [{ val: 0 }, { val: 7 }] }, { arr: [{ val: 2 }] }] },
+          other: {},
+        })
+        return output
+      },
+      {
+        nested: { prop: [{ arr: [{ val: 0 }, { val: 1 }] }, { arr: [{ val: 2 }] }] },
+        other: {},
+      },
+      'nested.prop.0.arr.1.val',
+    )
+  })
 })
