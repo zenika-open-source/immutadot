@@ -1,4 +1,11 @@
 import {
+  filter,
+  map,
+  race,
+  regexp,
+} from 'core/parser'
+
+import {
   isSymbol,
   toString,
 } from 'util/lang'
@@ -24,24 +31,18 @@ const toKey = arg => {
   return toString(arg)
 }
 
-const quotes = ['"', '\'']
-
-const escapedQuotesRegexps = {}
-for (const quote of quotes)
-  escapedQuotesRegexps[quote] = new RegExp(`\\\\${quote}`, 'g')
-
-  /**
-   * Strip slashes preceding occurences of <code>quote</code> from <code>str</code><br />
-   * Possible quotes are <code>"</code> and <code>'</code>.
-   * @function
-   * @param {string} str The string
-   * @param {string} quote The quote to unescape
-   * @return {string} The unescaped string
-   * @memberof core
-   * @private
-   * @since 1.0.0
-   */
-const unescapeQuotes = (str, quote) => str.replace(escapedQuotesRegexps[quote], quote)
+/**
+ * Strip slashes preceding occurences of <code>quote</code> from <code>str</code><br />
+ * Possible quotes are <code>"</code> and <code>'</code>.
+ * @function
+ * @param {string} str The string
+ * @param {string} quote The quote to unescape
+ * @return {string} The unescaped string
+ * @memberof core
+ * @private
+ * @since 1.0.0
+ */
+const unescapeQuotes = (str, quote) => str.replace(new RegExp(`\\\\${quote}`, 'g'), quote)
 
 /**
  * Converts <code>str</code> to a slice index.
@@ -90,112 +91,48 @@ const allowingArrays = fn => arg => {
   return fn(toString(arg))
 }
 
-/**
- * Returns the result of the first parser to match from a list of parsers.
- * 
- * @param {Parser[]} parsers a list of parsers to try in order
- * @param {function(string): *} onNoneMatch a function to produce a result when no parser matches
- * @return {Parser} the result of the first parser to match or the result of onNoneMatch
- */
-const firstMatching = (parsers, onNoneMatch) => {
-  return str => {
-    for (const parser of parsers) {
-      const parserResult = parser(str)
-      if (parserResult) return parserResult
-    }
-    return onNoneMatch(str)
-  }
-}
+const emptyStringParser = str => str.length === 0 ? [] : null
 
-/**
- * Constructs a matcher from a regular expression.
- * 
- * @param {RegExp} regexp a RegExp
- * @return {Matcher} a matcher that matches its input string using the given RegExp 
- */
-const regexp = regexp => str => str.match(regexp)
-
-const matchThenCheck = (matcher, predicate) => {
-  return str => {
-    const matchResult = matcher(str)
-    if (!matchResult) return matchResult
-    return predicate(...matchResult.slice(1)) ? matchResult : null
-  }
-}
-
-/**
- * Constructs a parser from a matcher function and a mapper function.
- * 
- * @typedef {function(string): *} Parser
- * @typedef {function(string): string[] | null} Matcher
- * @typedef {function(...string): *} Mapper
- * 
- * A parser is a function that takes in a string and returns a value. Parsers
- * are built by this function using two components: a matcher and a mapper.
- * The matcher is a function that returns an input string and returns pieces of
- * that string that are interesting. Matchers have the same signature as
- * RegExp.prototype[Symbol.match]. The result of the matcher, if it is
- * non-null, is stripped from its first element then spread into the arguments
- * of the mapper. The mapper applies some post-pr
- * 
- * 
- * @param {Matcher} matcher a
- * @param {Mapper} mapper transforms the result of the matcher into the final result
- * @return {Parser} constructed parser
- */
-const parser = (matcher, mapper) => {
-  return str => {
-    const matchResult = matcher(str)
-    if (!matchResult) return matchResult
-    return mapper(...matchResult.slice(1))
-  }
-}
-
-const emptyStringParser = parser(
-  str => str.length === 0 ? [] : null,
-  () => [],
-)
-
-const quotedBracketNotationParser = parser(
+const quotedBracketNotationParser = map(
   regexp(/^\[(['"])(.*?[^\\])\1\]?\.?(.*)$/),
-  (quote, property, rest) => [unescapeQuotes(property, quote), ...stringToPath(rest)],
+  ([quote, property, rest]) => [unescapeQuotes(property, quote), ...stringToPath(rest)],
 )
 
-const incompleteQuotedBracketNotationParser = parser(
+const incompleteQuotedBracketNotationParser = map(
   regexp(/^\[["'](.*)$/),
-  (rest) => rest ? [rest] : [],
+  ([rest]) => rest ? [rest] : [],
 )
 
-const bareBracketNotationParser = parser(
+const bareBracketNotationParser = map(
   regexp(/^\[([^\]]*)\]\.?(.*)$/),
-  (property, rest) => {
+  ([property, rest]) => {
     return isIndex(Number(property))
       ? [Number(property), ...stringToPath(rest)]
       : [property, ...stringToPath(rest)]
   },
 )
 
-const incompleteBareBracketNotationParser = parser(
+const incompleteBareBracketNotationParser = map(
   regexp(/^\[(.*)$/),
-  (rest) => rest ? [rest] : [],
+  ([rest]) => rest ? [rest] : [],
 )
 
-const sliceNotationParser = parser(
-  matchThenCheck(
+const sliceNotationParser = map(
+  filter(
     regexp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/),
-    (sliceStart, sliceEnd) => isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd),
+    ([sliceStart, sliceEnd]) => isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd),
   ),
-  (sliceStart, sliceEnd, rest) => [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], ...stringToPath(rest)],
+  ([sliceStart, sliceEnd, rest]) => [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], ...stringToPath(rest)],
 )
 
-const pathSegmentEndedByDotParser = parser(
+const pathSegmentEndedByDotParser = map(
   regexp(/^([^.[]*?)\.(.*)$/),
-  (beforeDot, afterDot) => [beforeDot, ...stringToPath(afterDot)],
+  ([beforeDot, afterDot]) => [beforeDot, ...stringToPath(afterDot)],
 )
 
-const pathSegmentEndedByBracketParser = parser(
+const pathSegmentEndedByBracketParser = map(
   regexp(/^([^.[]*?)(\[.*)$/),
-  (beforeBracket, atBracket) => [beforeBracket, ...stringToPath(atBracket)],
+  ([beforeBracket, atBracket]) => [beforeBracket, ...stringToPath(atBracket)],
 )
 
 /**
@@ -206,7 +143,7 @@ const pathSegmentEndedByBracketParser = parser(
  * @private
  * @since 0.4.0
  */
-const stringToPath = firstMatching([
+const stringToPath = race([
   emptyStringParser,
   quotedBracketNotationParser,
   incompleteQuotedBracketNotationParser,
@@ -215,7 +152,8 @@ const stringToPath = firstMatching([
   incompleteBareBracketNotationParser,
   pathSegmentEndedByDotParser,
   pathSegmentEndedByBracketParser,
-], str => [str])
+  str => [str],
+])
 
 const MAX_CACHE_SIZE = 1000
 const cache = new Map()
