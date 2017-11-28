@@ -1,5 +1,5 @@
 import _pullAt from 'lodash/fp/pullAt'
-import { convertLodashFp } from 'immutadot/util/convert'
+import { convertLodashFp } from '../util/convert'
 
 /**
  * Replaces an array removing the specified indexes from the former array.

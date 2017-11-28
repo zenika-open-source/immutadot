@@ -1,5 +1,5 @@
 import _pullAllWith from 'lodash/fp/pullAllWith'
-import { convertLodashFp } from 'immutadot/util/convert'
+import { convertLodashFp } from '../util/convert'
 
 /**
  * This method is like {@link array.pullAll} except that it accepts <code>comparator</code> to compare elements.
