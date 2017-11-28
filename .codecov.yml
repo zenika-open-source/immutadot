@@ -1,16 +1,2 @@
 coverage:
   range: "100..100"
-  status:
-    project:
-      default: off
-      immutadot:
-        flags: immutadot
-      immutadot-lodash:
-        flags: immutadot-lodash
-flags:
-  immutadot:
-    paths:
-      - packages/immutadot/
-  immutadot-lodash:
-    paths:
-      - packages/immutadot-lodash/
