@@ -1,5 +1,4 @@
-import _assign from 'lodash/fp/assign'
-import { convertLodashFp } from 'util/convert'
+import { convert } from 'core/convert'
 
 /**
  * Replaces by an object assigning own enumerable string keyed properties of source objects to the destination object.<br />
@@ -15,5 +14,5 @@ import { convertLodashFp } from 'util/convert'
  * @since 0.1.12
  * @flow
  */
-const assign = convertLodashFp(_assign)
+const assign = convert((obj, ...args) => Object.assign({ ...obj }, ...args))
 export { assign }
