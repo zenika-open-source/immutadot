@@ -30,9 +30,19 @@ const copy = (value, asArray) => {
   return { ...value }
 }
 
-const getNewObj = (obj, prop, doCopy) => {
-  if (!doCopy) return obj
-  return copy(obj, isIndex(prop))
+/**
+ * Makes a copy of <code>value</code> if necessary.
+ * @function
+ * @param {*} value The value to make a copy of
+ * @param {string} prop The accessed property in <code>value</code>
+ * @param {boolean} doCopy Whether to make a copy or not
+ * @returns {Object|Array} A copy of value, or not ;)
+ * @private
+ * @since 1.0.0
+ */
+const copyIfNecessary = (value, prop, doCopy) => {
+  if (!doCopy) return value
+  return copy(value, isIndex(prop))
 }
 
 /**
@@ -85,14 +95,13 @@ const apply = operation => {
         }
 
         if (noop) return [true, curObj]
-
         return [false, newArr]
       }
 
       const value = isNil(curObj) ? undefined : curObj[prop]
 
       if (curPath.length === 1) {
-        const newObj = getNewObj(curObj, prop, doCopy)
+        const newObj = copyIfNecessary(curObj, prop, doCopy)
         operation(newObj, prop, value, ...args)
         return [false, newObj]
       }
@@ -100,10 +109,8 @@ const apply = operation => {
       const [noop, newValue] = walkPath(value, pathRest)
       if (noop) return [true, curObj]
 
-      const newObj = getNewObj(curObj, prop, doCopy)
-
+      const newObj = copyIfNecessary(curObj, prop, doCopy)
       newObj[prop] = newValue
-
       return [false, newObj]
     }
 
