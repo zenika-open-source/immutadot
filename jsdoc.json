@@ -1,18 +1,18 @@
 {
   "source": {
-    "include": ["src", "package.json", "README.md"]
+    "include": ["src", "package.json", "../../README.md"]
   },
   "plugins": [
-    "misc/jsdoc-flow-plugin.js"
+    "../../misc/jsdoc-flow-plugin.js"
   ],
   "opts": {
     "template": "node_modules/hotdoc/template",
-    "destination": "docs",
+    "destination": "../../docs",
     "recurse": true
   },
   "hotdoc": {
     "github": "https://github.com/Zenika/immutadot",
     "home": "immutad●t",
-    "customOverrides": "docs/hotdoc-overrides.scss"
+    "customOverrides": "../../docs/hotdoc-overrides.scss"
   }
 }
