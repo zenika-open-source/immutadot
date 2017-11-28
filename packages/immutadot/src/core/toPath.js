@@ -3,7 +3,7 @@ import {
   map,
   race,
   regexp,
-} from 'core/parser'
+} from './parser.utils'
 
 import {
   isSymbol,
@@ -67,6 +67,7 @@ const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
 
 /**
  * Tests whether <code>arg</code> is a valid slice index once converted to a number.
+ * @function
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is a valid slice index once converted to a number, false otherwise.
  * @private
