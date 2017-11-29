@@ -33,6 +33,8 @@ const isSymbol = arg => typeof arg === 'symbol'
 
 /**
  * Returns the length of <code>arg</code>.
+ * @function
+ * @memberof util
  * @param {*} arg The value of which length must be returned
  * @returns {number} The length of <code>arg</code>
  * @private

@@ -58,6 +58,7 @@ const toSliceIndex = str => str === '' ? undefined : Number(str)
 /**
  * Tests whether <code>arg</code> is a valid slice index, that is <code>undefined</code> or a valid int.
  * @function
+ * @memberof core
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is a valid slice index, false otherwise.
  * @private
@@ -68,9 +69,11 @@ const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
 /**
  * Tests whether <code>arg</code> is a valid slice index once converted to a number.
  * @function
+ * @memberof core
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is a valid slice index once converted to a number, false otherwise.
  * @private
+ * @since 1.0.0
  */
 const isSliceIndexString = arg => isSliceIndex(arg ? Number(arg) : undefined)
 
