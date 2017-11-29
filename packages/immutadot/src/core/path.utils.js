@@ -10,6 +10,8 @@ const getSliceBound = (value, defaultValue, length) => {
 
 /**
  * Get the actual bounds of a slice.
+ * @function
+ * @memberof core
  * @param {Array<number>} bounds The bounds of the slice
  * @param {number} length The length of the actual array
  * @returns {Array<number>} The actual bounds of the slice
