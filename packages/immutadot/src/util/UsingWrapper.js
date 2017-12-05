@@ -5,10 +5,17 @@ import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
-import get from 'lodash/get'
 import isSymbol from 'lodash/isSymbol'
 import mapValues from 'lodash/mapValues'
 import omit from 'lodash/omit'
+
+const get = (obj, key, defaultValue) => {
+  const paths = key.split('.')
+  let target = obj[paths[0]]
+  for (let i = 1; i < paths.length; i++)
+    target = target[paths[i]]
+  return target ? target : defaultValue
+}
 
 const head = arr => arr[0]
 
