@@ -106,6 +106,7 @@ const apply = operation => {
         if (isSlice(prop)) {
           const [start, end] = getSliceBounds(prop, length(curObj))
 
+          // FIXME Avoid unnecessary copies with appliedPaths
           const newArr = copy(curObj, true)
           let noop = true
 
