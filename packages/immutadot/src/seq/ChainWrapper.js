@@ -5,7 +5,6 @@ import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
-import concat from 'lodash/concat'
 import flow from 'lodash/flow'
 import mapValues from 'lodash/mapValues'
 import omit from 'lodash/omit'
@@ -45,7 +44,7 @@ class ChainWrapper {
    * @since 0.1.11
    */
   _absolutePath(path) {
-    return concat(toPath(this._path), toPath(path))
+    return [].concat(toPath(this._path), toPath(path))
   }
 
   /**
@@ -60,7 +59,7 @@ class ChainWrapper {
     return new ChainWrapper(
       this._wrapped,
       this._path,
-      concat(this._flow, object => fn(object, this._absolutePath(path), ...args)),
+      [].concat(this._flow, object => fn(object, this._absolutePath(path), ...args)),
     )
   }
 
