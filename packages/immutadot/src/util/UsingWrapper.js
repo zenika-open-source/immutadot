@@ -5,13 +5,14 @@ import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
-import drop from 'lodash/drop'
 import get from 'lodash/get'
 import isSymbol from 'lodash/isSymbol'
 import mapValues from 'lodash/mapValues'
 import omit from 'lodash/omit'
 
 const head = arr => arr[0]
+
+const drop = (arr, n = 1) => arr.slice(n)
 
 /**
  * Wrapper allowing to specify one or several paths to use as arguments for an immutadot function call.<br/>
