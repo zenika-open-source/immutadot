@@ -7,8 +7,12 @@ import * as string from 'string'
 
 import flow from 'lodash/flow'
 import mapValues from 'lodash/mapValues'
-import omit from 'lodash/omit'
 import toPath from 'lodash/toPath'
+
+const omit = (obj, without) => without.reduce((obj, key) => {
+  delete obj[key]
+  return obj
+}, obj)
 
 /**
  * Wrapper allowing to make sequences of immutadot functions calls on an object.<br/>
