@@ -6,13 +6,17 @@ import * as object from 'object'
 import * as string from 'string'
 
 import flow from 'lodash/flow'
-import mapValues from 'lodash/mapValues'
 import toPath from 'lodash/toPath'
 
 const omit = (obj, without) => without.reduce((obj, key) => {
   delete obj[key]
   return obj
 }, obj)
+
+const mapValues = (pObj, fn) => Object.keys(pObj).reduce((obj, key) => {
+  obj[key] = fn(pObj[key])
+  return obj
+}, {})
 
 /**
  * Wrapper allowing to make sequences of immutadot functions calls on an object.<br/>
