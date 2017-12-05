@@ -6,7 +6,11 @@ import * as object from 'object'
 import * as string from 'string'
 
 import isSymbol from 'lodash/isSymbol'
-import omit from 'lodash/omit'
+
+const omit = (obj, without) => without.reduce((obj, key) => {
+  delete obj[key]
+  return obj
+}, obj)
 
 const mapValues = (pObj, fn) => Object.keys(pObj).reduce((obj, key) => {
   obj[key] = fn(pObj[key])
