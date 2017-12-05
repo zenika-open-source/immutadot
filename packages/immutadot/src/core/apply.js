@@ -11,6 +11,23 @@ import {
 
 import { unsafeToPath } from './toPath'
 
+const pathAlreadyApplied = (path, appliedPaths) => {
+  if (appliedPaths.length === 0) return false
+  if (path.length === 0 && appliedPaths.length !== 0) return true
+  return appliedPaths.some(appliedPath => pathIncludes(appliedPath, path))
+}
+
+const pathIncludes = (path, otherPath) => {
+  if (otherPath.length > path.length) return false
+  return otherPath.every((otherProp, i) => {
+    const prop = path[i]
+    // TODO after fixing #148 use a switch her
+    if (!isSlice(prop)) return prop === otherProp
+    // FIXME manage slices
+    return false
+  })
+}
+
 /**
  * Makes a copy of value.
  * @function
@@ -82,8 +99,8 @@ const apply = operation => {
   const curried = (pPath, ...args) => {
     const path = unsafeToPath(pPath)
 
-    const applier = obj => {
-      const walkPath = (curObj, curPath, remPath, doCopy = true) => {
+    const applier = (obj, appliedPaths = []) => {
+      const walkPath = (curObj, curPath, remPath, isCopy = false) => {
         const [prop, ...pathRest] = remPath
 
         if (isSlice(prop)) {
@@ -93,7 +110,7 @@ const apply = operation => {
           let noop = true
 
           for (let i = start; i < end; i++) {
-            const [iNoop] = walkPath(newArr, curPath, [i, ...pathRest], false)
+            const [iNoop] = walkPath(newArr, curPath, [i, ...pathRest], true)
             noop = noop && iNoop
           }
 
@@ -102,6 +119,7 @@ const apply = operation => {
         }
 
         const value = isNil(curObj) ? undefined : curObj[prop]
+        const doCopy = !isCopy && !pathAlreadyApplied(curPath, appliedPaths)
 
         if (remPath.length === 1) {
           const newObj = copyIfNecessary(curObj, prop, doCopy)
@@ -109,7 +127,7 @@ const apply = operation => {
           return [false, newObj]
         }
 
-        const [noop, newValue] = walkPath(value, [curPath, prop], pathRest)
+        const [noop, newValue] = walkPath(value, [...curPath, prop], pathRest)
         if (noop) return [true, curObj]
 
         const newObj = copyIfNecessary(curObj, prop, doCopy)
