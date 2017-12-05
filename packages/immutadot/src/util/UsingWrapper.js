@@ -8,10 +8,11 @@ import * as string from 'string'
 import concat from 'lodash/concat'
 import drop from 'lodash/drop'
 import get from 'lodash/get'
-import head from 'lodash/head'
 import isSymbol from 'lodash/isSymbol'
 import mapValues from 'lodash/mapValues'
 import omit from 'lodash/omit'
+
+const head = arr => arr[0]
 
 /**
  * Wrapper allowing to specify one or several paths to use as arguments for an immutadot function call.<br/>
