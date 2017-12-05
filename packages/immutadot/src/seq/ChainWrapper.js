@@ -5,8 +5,9 @@ import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
-import flow from 'lodash/flow'
 import toPath from 'lodash/toPath'
+
+const flow = (fns) => pObj => fns.reduce((obj, fn) => fn(obj), pObj)
 
 const omit = (obj, without) => without.reduce((obj, key) => {
   delete obj[key]
