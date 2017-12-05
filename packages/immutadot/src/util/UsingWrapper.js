@@ -6,8 +6,12 @@ import * as object from 'object'
 import * as string from 'string'
 
 import isSymbol from 'lodash/isSymbol'
-import mapValues from 'lodash/mapValues'
 import omit from 'lodash/omit'
+
+const mapValues = (pObj, fn) => Object.keys(pObj).reduce((obj, key) => {
+  obj[key] = fn(pObj[key])
+  return obj
+}, {})
 
 const get = (obj, key, defaultValue) => {
   const paths = key.split('.')
