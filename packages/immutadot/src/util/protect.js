@@ -1,7 +1,8 @@
 import { chain } from 'seq/chain'
-import get from 'lodash/get'
 import isEmpty from 'lodash/isEmpty'
 import isObject from 'lodash/isObject'
+
+const get = (obj, key, defaultValue) => obj[key] ? obj[key] : defaultValue
 
 /**
 * Proxy handler to protect object from mutations.
