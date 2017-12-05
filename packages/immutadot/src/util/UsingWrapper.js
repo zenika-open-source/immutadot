@@ -5,7 +5,6 @@ import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
-import concat from 'lodash/concat'
 import drop from 'lodash/drop'
 import get from 'lodash/get'
 import isSymbol from 'lodash/isSymbol'
@@ -52,7 +51,7 @@ class UsingWrapper {
    */
   _call(fn, object, path, pArgs) {
     let callArgs = pArgs
-    const args = concat(
+    const args = [].concat(
       this._paths.map(usingPath => {
         if (isSymbol(usingPath)) {
           const arg = head(callArgs)
