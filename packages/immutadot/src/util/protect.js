@@ -1,9 +1,10 @@
 import { chain } from 'seq/chain'
-import isEmpty from 'lodash/isEmpty'
 
 const get = (obj, key, defaultValue) => obj[key] ? obj[key] : defaultValue
 
 const isObject = obj => typeof obj === 'object'
+
+const isEmpty = arr => !arr.length
 
 /**
 * Proxy handler to protect object from mutations.
