@@ -10,7 +10,6 @@ import drop from 'lodash/drop'
 import get from 'lodash/get'
 import head from 'lodash/head'
 import isSymbol from 'lodash/isSymbol'
-import map from 'lodash/map'
 import mapValues from 'lodash/mapValues'
 import omit from 'lodash/omit'
 
@@ -53,7 +52,7 @@ class UsingWrapper {
   _call(fn, object, path, pArgs) {
     let callArgs = pArgs
     const args = concat(
-      map(this._paths, usingPath => {
+      this._paths.map(usingPath => {
         if (isSymbol(usingPath)) {
           const arg = head(callArgs)
           callArgs = drop(callArgs)
