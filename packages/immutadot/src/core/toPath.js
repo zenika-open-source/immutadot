@@ -6,6 +6,7 @@ import {
 } from './parser.utils'
 
 import {
+  isNil,
   isSymbol,
   toString,
 } from 'util/lang'
@@ -91,8 +92,8 @@ const isSliceIndexString = arg => isSliceIndex(arg ? Number(arg) : undefined)
  */
 const allowingArrays = fn => arg => {
   if (Array.isArray(arg)) return arg.map(toKey)
-
-  return fn(toString(arg))
+  const str = isNil(arg) ? arg : toString(arg)
+  return fn(str)
 }
 
 const emptyStringParser = str => str.length === 0 ? [] : null
@@ -139,16 +140,7 @@ const pathSegmentEndedByBracketParser = map(
   ([beforeBracket, atBracket]) => [beforeBracket, ...stringToPath(atBracket)],
 )
 
-/**
- * Converts <code>str</code> to a path represented as an array of keys.
- * @function
- * @param {string} str The string to convert
- * @return {Array<string|number|Array>} The path represented as an array of keys
- * @memberof core
- * @private
- * @since 1.0.0
- */
-const stringToPath = race([
+const applyParsers = race([
   emptyStringParser,
   quotedBracketNotationParser,
   incompleteQuotedBracketNotationParser,
@@ -159,6 +151,20 @@ const stringToPath = race([
   pathSegmentEndedByBracketParser,
   str => [str],
 ])
+
+/**
+ * Converts <code>arg</code> to a path represented as an array of keys.
+ * @function
+ * @param {string} arg The value to convert
+ * @return {Array<string|number|Array>} The path represented as an array of keys
+ * @memberof core
+ * @private
+ * @since 1.0.0
+ */
+const stringToPath = arg => {
+  if (isNil(arg)) return []
+  return applyParsers(toString(arg))
+}
 
 const MAX_CACHE_SIZE = 1000
 const cache = new Map()
