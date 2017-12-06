@@ -5,7 +5,7 @@ import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
-import toPath from 'lodash/toPath'
+import { unsafeToPath } from 'core/toPath'
 
 const flow = (fns) => pObj => fns.reduce((obj, fn) => fn(obj), pObj)
 
@@ -53,7 +53,7 @@ class ChainWrapper {
    * @since 0.1.11
    */
   _absolutePath(path) {
-    return [].concat(toPath(this._path), toPath(path))
+    return [].concat(unsafeToPath(this._path), unsafeToPath(path))
   }
 
   /**
