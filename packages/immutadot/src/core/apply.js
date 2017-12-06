@@ -11,7 +11,8 @@ import {
 
 import { unsafeToPath } from './toPath'
 
-const pathAlreadyApplied = (path, appliedPaths) => {
+const pathAlreadyApplied = (path, pAppliedPaths) => {
+  const appliedPaths = pAppliedPaths.filter(appliedPath => !appliedPath.some(isSlice))
   if (appliedPaths.length === 0) return false
   if (path.length === 0 && appliedPaths.length !== 0) return true
   return appliedPaths.some(appliedPath => pathIncludes(appliedPath, path))
@@ -21,9 +22,8 @@ const pathIncludes = (path, otherPath) => {
   if (otherPath.length > path.length) return false
   return otherPath.every((otherProp, i) => {
     const prop = path[i]
-    // TODO after fixing #148 use a switch her
+    // TODO after fixing #148 use a switch here
     if (!isSlice(prop)) return prop === otherProp
-    // FIXME manage slices
     return false
   })
 }
@@ -106,7 +106,6 @@ const apply = operation => {
         if (isSlice(prop)) {
           const [start, end] = getSliceBounds(prop, length(curObj))
 
-          // FIXME Avoid unnecessary copies with appliedPaths
           const newArr = copy(curObj, true)
           let noop = true
 
