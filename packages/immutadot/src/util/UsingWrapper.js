@@ -5,7 +5,7 @@ import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
-const isSymbol = sym => typeof sym === 'symbol'
+import { isSymbol } from 'util/lang'
 
 const omit = (obj, without) => without.reduce((obj, key) => {
   delete obj[key]
