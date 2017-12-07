@@ -158,4 +158,8 @@ describe('Apply', () => {
       'nested.prop.0.arr.1.val',
     )
   })
+
+  it('should throw an explicit error when en empty path is given as parameter', () => {
+    expect(() => inc({}, '')).toThrowError('path should not be empty')
+  })
 })

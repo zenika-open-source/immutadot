@@ -83,6 +83,8 @@ const apply = operation => {
   const curried = (pPath, ...args) => {
     const path = unsafeToPath(pPath)
 
+    if (path.length === 0) throw new TypeError('path should not be empty')
+
     const applier = (obj, appliedPaths = []) => {
       const walkPath = (curObj, curPath, remPath, isCopy = false) => {
         const [prop, ...pathRest] = remPath
