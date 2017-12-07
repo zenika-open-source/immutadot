@@ -25,4 +25,8 @@ describe('Get', () => {
     expect(get(obj, 'nested3.val', 'defaultValue')).toBe('defaultValue')
     expect(get(obj, 'nested2.arr[1].val', 'defaultValue')).toBe('defaultValue')
   })
+
+  it('should throw an error if path includes something else than props and indexes', () => {
+    expect(() => get({}, 'foo[1:2]')).toThrowError('get supports only properties and array indexes in path')
+  })
 })

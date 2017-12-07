@@ -6,31 +6,19 @@ import {
 } from './parser.utils'
 
 import {
+  index,
+  prop,
+  slice,
+} from './consts'
+
+import {
   isNil,
-  isSymbol,
   toString,
 } from 'util/lang'
 
 import {
   isIndex,
-} from './path.utils'
-
-/**
- * Converts a value to a valid path key.<br />
- * Returns <code>arg</code> if arg is a positive integer or a Symbol, <code>toString(arg)</code> otherwise.
- * @function
- * @param {*} arg The value to convert
- * @return {string} A valid path key
- * @memberof path
- * @private
- * @since 1.0.0
- */
-const toKey = arg => {
-  if (isIndex(arg)) return arg
-  if (isSymbol(arg)) return arg
-  if (Array.isArray(arg) && arg.length === 2 && isSliceIndex(arg[0]) && isSliceIndex(arg[0])) return arg
-  return toString(arg)
-}
+} from './utils'
 
 /**
  * Strip slashes preceding occurences of <code>quote</code> from <code>str</code><br />
@@ -91,7 +79,7 @@ const isSliceIndexString = arg => isSliceIndex(arg ? Number(arg) : undefined)
  * @since 1.0.0
  */
 const allowingArrays = fn => arg => {
-  if (Array.isArray(arg)) return arg.map(toKey)
+  if (Array.isArray(arg)) return arg
   return fn(arg)
 }
 
@@ -99,26 +87,26 @@ const emptyStringParser = str => str.length === 0 ? [] : null
 
 const quotedBracketNotationParser = map(
   regexp(/^\[(['"])(.*?[^\\])\1\]?\.?(.*)$/),
-  ([quote, property, rest]) => [unescapeQuotes(property, quote), ...stringToPath(rest)],
+  ([quote, property, rest]) => [[prop, unescapeQuotes(property, quote)], ...stringToPath(rest)],
 )
 
 const incompleteQuotedBracketNotationParser = map(
   regexp(/^\[["'](.*)$/),
-  ([rest]) => rest ? [rest] : [],
+  ([rest]) => rest ? [[prop, rest]] : [],
 )
 
 const bareBracketNotationParser = map(
   regexp(/^\[([^\]]*)\]\.?(.*)$/),
   ([property, rest]) => {
     return isIndex(Number(property))
-      ? [Number(property), ...stringToPath(rest)]
-      : [property, ...stringToPath(rest)]
+      ? [[index, Number(property)], ...stringToPath(rest)]
+      : [[prop, property], ...stringToPath(rest)]
   },
 )
 
 const incompleteBareBracketNotationParser = map(
   regexp(/^\[(.*)$/),
-  ([rest]) => rest ? [rest] : [],
+  ([rest]) => rest ? [[prop, rest]] : [],
 )
 
 const sliceNotationParser = map(
@@ -126,17 +114,17 @@ const sliceNotationParser = map(
     regexp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/),
     ([sliceStart, sliceEnd]) => isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd),
   ),
-  ([sliceStart, sliceEnd, rest]) => [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], ...stringToPath(rest)],
+  ([sliceStart, sliceEnd, rest]) => [[slice, [toSliceIndex(sliceStart), toSliceIndex(sliceEnd)]], ...stringToPath(rest)],
 )
 
 const pathSegmentEndedByDotParser = map(
   regexp(/^([^.[]*?)\.(.*)$/),
-  ([beforeDot, afterDot]) => [beforeDot, ...stringToPath(afterDot)],
+  ([beforeDot, afterDot]) => [[prop, beforeDot], ...stringToPath(afterDot)],
 )
 
 const pathSegmentEndedByBracketParser = map(
   regexp(/^([^.[]*?)(\[.*)$/),
-  ([beforeBracket, atBracket]) => [beforeBracket, ...stringToPath(atBracket)],
+  ([beforeBracket, atBracket]) => [[prop, beforeBracket], ...stringToPath(atBracket)],
 )
 
 const applyParsers = race([
@@ -148,7 +136,7 @@ const applyParsers = race([
   incompleteBareBracketNotationParser,
   pathSegmentEndedByDotParser,
   pathSegmentEndedByBracketParser,
-  str => [str],
+  str => [[prop, str]],
 ])
 
 /**
@@ -197,10 +185,10 @@ const memoizedStringToPath = str => {
  * This function is failsafe, it will never throw an error.
  * @function
  * @param {string|Array|*} arg The value to convert
- * @return {Array<string|number|Array>} The path represented as an array of keys
+ * @returns {Array<Array<Symbol,...*>>} The path represented as an array of keys
  * @memberof path
  * @since 1.0.0
- * @example toPath('a.b[1]["."][1:-1]') // => ['a', 'b', 1, '.', [1, -1]]
+ * @example toPath('a.b[1]["."][1:-1]') // => [[prop, 'a'], [prop, 'b'], [index, 1], [prop, '.'], [slice, [1, -1]]]
  */
 const toPath = allowingArrays(arg => [...memoizedStringToPath(arg)])
 
@@ -208,7 +196,7 @@ const toPath = allowingArrays(arg => [...memoizedStringToPath(arg)])
  * This method is like {@link core.toPath} except it returns memoized arrays which must not be mutated.
  * @function
  * @param {string|Array|*} arg The value to convert
- * @return {Array<string|number|Array>} The path represented as an array of keys
+ * @returns {Array<Array<Symbol,...*>>} The path represented as an array of keys
  * @memberof path
  * @since 1.0.0
  * @private
