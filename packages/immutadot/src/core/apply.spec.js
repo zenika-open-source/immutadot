@@ -125,7 +125,7 @@ describe('Apply', () => {
     )
   })
 
-  it('should avoid unnecessary mutations', () => {
+  it('should avoid unnecessary copies with slice operator', () => {
     immutaTest(
       input => inc(input, 'nested.prop[0:0].val', 6),
       {

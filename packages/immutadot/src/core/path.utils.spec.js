@@ -3,6 +3,7 @@ import {
   getSliceBounds,
   isSlice,
   isSliceIndex,
+  pathAlreadyApplied,
 } from './path.utils'
 
 describe('Path Utils', () => {
@@ -71,6 +72,25 @@ describe('Path Utils', () => {
       expect(isSlice([0, []])).toBe(false)
       expect(isSlice([0, {}])).toBe(false)
       expect(isSlice([0, ''])).toBe(false)
+    })
+  })
+
+  describe('PathAlreadyApplied', () => {
+    it('should return true if path is included in already applied paths', () => {
+      expect(pathAlreadyApplied(['foo', 123, 'bar'], [['foo', 123, 'bar']])).toBe(true)
+      expect(pathAlreadyApplied(['foo', 123, 'bar'], [['foo', 123, 'bar', 'baz']])).toBe(true)
+      expect(pathAlreadyApplied(['foo', 123, 'bar'], [[], ['bar'], ['foo', 123, 'bar', 'baz']])).toBe(true)
+      expect(pathAlreadyApplied([], [['foo']])).toBe(true)
+    })
+
+    it('should return false if path isn\'t included in already applied paths', () => {
+      expect(pathAlreadyApplied(['foo', 123, 'bar'], [])).toBe(false)
+      expect(pathAlreadyApplied(['foo', 123, 'bar'], [['foo', 123]])).toBe(false)
+      expect(pathAlreadyApplied(['foo', 123, 'bar'], [['foo', 123, 'baz']])).toBe(false)
+    })
+
+    it('should return false if already applied paths contain slices', () => {
+      expect(pathAlreadyApplied(['foo', 123, 'bar'], [['foo', 123, 'bar', 'baz', [0, 10]]])).toBe(false)
     })
   })
 })

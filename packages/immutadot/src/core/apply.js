@@ -2,6 +2,7 @@ import {
   getSliceBounds,
   isIndex,
   isSlice,
+  pathAlreadyApplied,
 } from './path.utils'
 
 import {
@@ -10,23 +11,6 @@ import {
 } from 'util/lang'
 
 import { unsafeToPath } from './toPath'
-
-const pathAlreadyApplied = (path, pAppliedPaths) => {
-  const appliedPaths = pAppliedPaths.filter(appliedPath => !appliedPath.some(isSlice))
-  if (appliedPaths.length === 0) return false
-  if (path.length === 0 && appliedPaths.length !== 0) return true
-  return appliedPaths.some(appliedPath => pathIncludes(appliedPath, path))
-}
-
-const pathIncludes = (path, otherPath) => {
-  if (otherPath.length > path.length) return false
-  return otherPath.every((otherProp, i) => {
-    const prop = path[i]
-    // TODO after fixing #148 use a switch here
-    if (!isSlice(prop)) return prop === otherProp
-    return false
-  })
-}
 
 /**
  * Makes a copy of value.
