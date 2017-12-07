@@ -92,8 +92,7 @@ const isSliceIndexString = arg => isSliceIndex(arg ? Number(arg) : undefined)
  */
 const allowingArrays = fn => arg => {
   if (Array.isArray(arg)) return arg.map(toKey)
-  const str = isNil(arg) ? arg : toString(arg)
-  return fn(str)
+  return fn(arg)
 }
 
 const emptyStringParser = str => str.length === 0 ? [] : null
@@ -155,7 +154,7 @@ const applyParsers = race([
 /**
  * Converts <code>arg</code> to a path represented as an array of keys.
  * @function
- * @param {string} arg The value to convert
+ * @param {*} arg The value to convert
  * @return {Array<string|number|Array>} The path represented as an array of keys
  * @memberof core
  * @private
