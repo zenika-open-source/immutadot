@@ -1,6 +1,5 @@
 import { chain } from 'seq/chain'
-
-const isObject = obj => typeof obj === 'object'
+import { isObject } from 'util/lang'
 
 /**
 * Proxy handler to protect object from mutations.
