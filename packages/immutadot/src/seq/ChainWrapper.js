@@ -7,7 +7,7 @@ import * as string from 'string'
 
 import { unsafeToPath } from 'core/toPath'
 
-const flow = (fns) => pObj => fns.reduce((obj, fn) => fn(obj), pObj)
+const flow = fns => pObj => fns.reduce((obj, fn) => fn(obj), pObj)
 
 const omit = (obj, without) => without.reduce((obj, key) => {
   delete obj[key]
