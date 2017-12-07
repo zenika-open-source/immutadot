@@ -7,11 +7,6 @@ import * as string from 'string'
 
 import { unsafeToPath } from 'core/toPath'
 
-const mapValues = (pObj, fn) => Object.keys(pObj).reduce((obj, key) => {
-  obj[key] = fn(pObj[key])
-  return obj
-}, {})
-
 /**
  * Wrapper allowing to make sequences of immutadot functions calls on an object.<br/>
  * Instances are created by calling {@link seq.chain}.<br/>
@@ -133,14 +128,13 @@ const namespaces = [
   filteredObject,
   string,
 ]
-namespaces.forEach(namespace => Object.assign(
-  ChainWrapper.prototype,
-  mapValues(
-    namespace,
-    fn => function(path, ...args) {
-      return this._call(fn, path, args) // eslint-disable-line no-invalid-this
-    },
-  ),
-))
+namespaces.forEach(namespace => {
+  for (const fnName in namespace) {
+    const fn = namespace[fnName]
+    ChainWrapper.prototype[fnName] = function(path, ...args) {
+      return this._call(fn, path, args)
+    }
+  }
+})
 
 export { ChainWrapper }
