@@ -1,4 +1,4 @@
-import { convert } from 'core/convert'
+import { convertArrayMethod } from './convertArrayMethod'
 
 /**
  * Replaces an array by a slice of the former array from <code>start</code> up to, but not including, <code>end</code>.
@@ -14,5 +14,5 @@ import { convert } from 'core/convert'
  * @since 0.3.0
  * @flow
  */
-const slice = convert((array, ...args) => array.slice(...args))
+const slice = convertArrayMethod('slice', false, true)
 export { slice }
