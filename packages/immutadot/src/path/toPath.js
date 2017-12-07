@@ -6,6 +6,12 @@ import {
 } from './parser.utils'
 
 import {
+  index,
+  prop,
+  slice,
+} from './consts'
+
+import {
   isNil,
   isSymbol,
   toString,
@@ -99,26 +105,26 @@ const emptyStringParser = str => str.length === 0 ? [] : null
 
 const quotedBracketNotationParser = map(
   regexp(/^\[(['"])(.*?[^\\])\1\]?\.?(.*)$/),
-  ([quote, property, rest]) => [unescapeQuotes(property, quote), ...stringToPath(rest)],
+  ([quote, property, rest]) => [[prop, unescapeQuotes(property, quote)], ...stringToPath(rest)],
 )
 
 const incompleteQuotedBracketNotationParser = map(
   regexp(/^\[["'](.*)$/),
-  ([rest]) => rest ? [rest] : [],
+  ([rest]) => rest ? [[prop, rest]] : [],
 )
 
 const bareBracketNotationParser = map(
   regexp(/^\[([^\]]*)\]\.?(.*)$/),
   ([property, rest]) => {
     return isIndex(Number(property))
-      ? [Number(property), ...stringToPath(rest)]
-      : [property, ...stringToPath(rest)]
+      ? [[index, Number(property)], ...stringToPath(rest)]
+      : [[prop, property], ...stringToPath(rest)]
   },
 )
 
 const incompleteBareBracketNotationParser = map(
   regexp(/^\[(.*)$/),
-  ([rest]) => rest ? [rest] : [],
+  ([rest]) => rest ? [[prop, rest]] : [],
 )
 
 const sliceNotationParser = map(
@@ -126,17 +132,17 @@ const sliceNotationParser = map(
     regexp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/),
     ([sliceStart, sliceEnd]) => isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd),
   ),
-  ([sliceStart, sliceEnd, rest]) => [[toSliceIndex(sliceStart), toSliceIndex(sliceEnd)], ...stringToPath(rest)],
+  ([sliceStart, sliceEnd, rest]) => [[slice, [toSliceIndex(sliceStart), toSliceIndex(sliceEnd)]], ...stringToPath(rest)],
 )
 
 const pathSegmentEndedByDotParser = map(
   regexp(/^([^.[]*?)\.(.*)$/),
-  ([beforeDot, afterDot]) => [beforeDot, ...stringToPath(afterDot)],
+  ([beforeDot, afterDot]) => [[prop, beforeDot], ...stringToPath(afterDot)],
 )
 
 const pathSegmentEndedByBracketParser = map(
   regexp(/^([^.[]*?)(\[.*)$/),
-  ([beforeBracket, atBracket]) => [beforeBracket, ...stringToPath(atBracket)],
+  ([beforeBracket, atBracket]) => [[prop, beforeBracket], ...stringToPath(atBracket)],
 )
 
 const applyParsers = race([
@@ -148,7 +154,7 @@ const applyParsers = race([
   incompleteBareBracketNotationParser,
   pathSegmentEndedByDotParser,
   pathSegmentEndedByBracketParser,
-  str => [str],
+  str => [[prop, str]],
 ])
 
 /**
