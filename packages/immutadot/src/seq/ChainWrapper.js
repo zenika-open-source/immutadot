@@ -53,7 +53,7 @@ class ChainWrapper {
    * @since 0.1.11
    */
   _absolutePath(path) {
-    return [].concat(unsafeToPath(this._path), unsafeToPath(path))
+    return unsafeToPath(this._path).concat(unsafeToPath(path))
   }
 
   /**
@@ -68,7 +68,7 @@ class ChainWrapper {
     return new ChainWrapper(
       this._wrapped,
       this._path,
-      [].concat(this._flow, object => fn(object, this._absolutePath(path), ...args)),
+      this._flow.concat(object => fn(object, this._absolutePath(path), ...args)),
     )
   }
 

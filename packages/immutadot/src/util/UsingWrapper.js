@@ -67,17 +67,14 @@ class UsingWrapper {
    */
   _call(fn, object, path, pArgs) {
     let callArgs = pArgs
-    const args = [].concat(
-      this._paths.map(usingPath => {
-        if (isSymbol(usingPath)) {
-          const arg = head(callArgs)
-          callArgs = drop(callArgs)
-          return arg
-        }
-        return get(object, usingPath)
-      }),
-      callArgs,
-    )
+    const args = this._paths.map(usingPath => {
+      if (isSymbol(usingPath)) {
+        const arg = head(callArgs)
+        callArgs = drop(callArgs)
+        return arg
+      }
+      return get(object, usingPath)
+    }).concat(callArgs)
     return fn(object, path, ...args)
   }
 }
