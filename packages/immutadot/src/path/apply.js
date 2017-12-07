@@ -3,7 +3,7 @@ import {
   isIndex,
   isSlice,
   pathAlreadyApplied,
-} from './path.utils'
+} from './utils'
 
 import {
   isNil,

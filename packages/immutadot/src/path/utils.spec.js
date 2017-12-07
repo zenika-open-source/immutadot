@@ -4,7 +4,7 @@ import {
   isSlice,
   isSliceIndex,
   pathAlreadyApplied,
-} from './path.utils'
+} from './utils'
 
 describe('Path Utils', () => {
   describe('GetSliceBounds', () => {

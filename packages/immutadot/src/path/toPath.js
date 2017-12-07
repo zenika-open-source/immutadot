@@ -13,7 +13,7 @@ import {
 
 import {
   isIndex,
-} from './path.utils'
+} from './utils'
 
 /**
  * Converts a value to a valid path key.<br />
