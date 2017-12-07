@@ -13,30 +13,12 @@ import {
 
 import {
   isNil,
-  isSymbol,
   toString,
 } from 'util/lang'
 
 import {
   isIndex,
 } from './utils'
-
-/**
- * Converts a value to a valid path key.<br />
- * Returns <code>arg</code> if arg is a positive integer or a Symbol, <code>toString(arg)</code> otherwise.
- * @function
- * @param {*} arg The value to convert
- * @return {string} A valid path key
- * @memberof path
- * @private
- * @since 1.0.0
- */
-const toKey = arg => {
-  if (isIndex(arg)) return arg
-  if (isSymbol(arg)) return arg
-  if (Array.isArray(arg) && arg.length === 2 && isSliceIndex(arg[0]) && isSliceIndex(arg[0])) return arg
-  return toString(arg)
-}
 
 /**
  * Strip slashes preceding occurences of <code>quote</code> from <code>str</code><br />
@@ -97,7 +79,7 @@ const isSliceIndexString = arg => isSliceIndex(arg ? Number(arg) : undefined)
  * @since 1.0.0
  */
 const allowingArrays = fn => arg => {
-  if (Array.isArray(arg)) return arg.map(toKey)
+  if (Array.isArray(arg)) return arg
   return fn(arg)
 }
 

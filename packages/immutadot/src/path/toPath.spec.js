@@ -46,25 +46,17 @@ describe('ToPath', () => {
 
   it('should not convert array path', () => {
     expect(toPath([
-      666,
-      -666,
-      Symbol.for('🍺'),
-      true,
-      'test',
-      [1, undefined],
-      [0, -2],
-      [1, 2, 3],
-      ['1', 2],
+      [index, 666],
+      [prop, Symbol.for('🍺')],
+      [prop, 'test'],
+      [slice, [1, undefined]],
+      [slice, [0, -2]],
     ])).toEqual([
-      666,
-      '-666',
-      Symbol.for('🍺'),
-      'true',
-      'test',
-      [1, undefined],
-      [0, -2],
-      '1,2,3',
-      '1,2',
+      [index, 666],
+      [prop, Symbol.for('🍺')],
+      [prop, 'test'],
+      [slice, [1, undefined]],
+      [slice, [0, -2]],
     ])
   })
 
