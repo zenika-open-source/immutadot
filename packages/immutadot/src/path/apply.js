@@ -18,7 +18,7 @@ import { unsafeToPath } from './toPath'
  * @param {*} value The value to make a copy of
  * @param {boolean} asArray The value should be copied as an array
  * @returns {Object|Array} A copy of value
- * @memberof core
+ * @memberof path
  * @private
  * @since 1.0.0
  */
@@ -48,7 +48,7 @@ const copyIfNecessary = (value, prop, doCopy) => {
 
 /**
  * Operation to apply on a nested property of an object, to be called by {@link core.apply|apply}.
- * @memberof core
+ * @memberof path
  * @callback operation
  * @param {*} obj The last nested object
  * @param {string|number} prop The prop of the last nested object
@@ -60,7 +60,7 @@ const copyIfNecessary = (value, prop, doCopy) => {
 
 /**
  * A function able to apply an {@link core.operation|operation} on a nested property of an object, returned by {@link core.apply|apply}.
- * @memberof core
+ * @memberof path
  * @callback appliedOperation
  * @param {*} obj The last nested object
  * @param {string} path The prop of the last nested object
@@ -72,7 +72,7 @@ const copyIfNecessary = (value, prop, doCopy) => {
 
 /**
  * Creates a function able to apply <code>operation</code> on a nested property.
- * @memberof core
+ * @memberof path
  * @function
  * @param {core.operation} operation The operation to apply
  * @returns {core.appliedOperation} A function able to apply <code>operation</code>

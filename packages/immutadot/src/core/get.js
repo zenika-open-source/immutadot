@@ -1,5 +1,5 @@
 import { isNil } from 'util/lang'
-import { unsafeToPath } from './toPath'
+import { unsafeToPath } from 'path/toPath'
 
 /**
 * Gets the value at <code>path</code> of <code>obj</code>.

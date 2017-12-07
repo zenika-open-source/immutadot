@@ -1,4 +1,4 @@
-import { apply } from './apply'
+import { apply } from 'path/apply'
 
 const updateOperation = (obj, prop, value, updater, ...args) => { obj[prop] = updater(value, ...args) }
 
