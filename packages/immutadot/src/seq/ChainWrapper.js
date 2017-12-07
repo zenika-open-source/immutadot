@@ -5,11 +5,7 @@ import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
-import concat from 'lodash/concat'
-import flow from 'lodash/flow'
-import mapValues from 'lodash/mapValues'
-import omit from 'lodash/omit'
-import toPath from 'lodash/toPath'
+import { unsafeToPath } from 'core/toPath'
 
 /**
  * Wrapper allowing to make sequences of immutadot functions calls on an object.<br/>
@@ -45,7 +41,7 @@ class ChainWrapper {
    * @since 0.1.11
    */
   _absolutePath(path) {
-    return concat(toPath(this._path), toPath(path))
+    return unsafeToPath(this._path).concat(unsafeToPath(path))
   }
 
   /**
@@ -60,7 +56,7 @@ class ChainWrapper {
     return new ChainWrapper(
       this._wrapped,
       this._path,
-      concat(this._flow, object => fn(object, this._absolutePath(path), ...args)),
+      [...this._flow, object => fn(object, this._absolutePath(path), ...args)],
     )
   }
 
@@ -74,7 +70,7 @@ class ChainWrapper {
 
     if (this._commited === null) {
       this._commited = new ChainWrapper(
-        flow(this._flow)(this._wrapped),
+        this._flow.reduce((obj, fn) => fn(obj), this._wrapped),
         this._path,
       )
     }
@@ -122,21 +118,23 @@ class ChainWrapper {
  */
 
 // Add namespaces functions to the ChainWrapper prototype
-[
+const { convert, toPath, ...filteredCore } = core // eslint-disable-line no-unused-vars
+const { set, unset, update, ...filteredObject } = object // eslint-disable-line no-unused-vars
+const namespaces = [
   array,
-  omit(core, ['convert', 'toPath']),
+  filteredCore,
   lang,
   math,
-  omit(object, ['set', 'unset', 'update']),
+  filteredObject,
   string,
-].forEach(namespace => Object.assign(
-  ChainWrapper.prototype,
-  mapValues(
-    namespace,
-    fn => function(path, ...args) {
-      return this._call(fn, path, args) // eslint-disable-line no-invalid-this
-    },
-  ),
-))
+]
+namespaces.forEach(namespace => {
+  for (const fnName in namespace) {
+    const fn = namespace[fnName]
+    ChainWrapper.prototype[fnName] = function(path, ...args) {
+      return this._call(fn, path, args)
+    }
+  }
+})
 
 export { ChainWrapper }

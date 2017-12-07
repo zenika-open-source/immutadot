@@ -2,6 +2,7 @@
 import {
   isNaturalInteger,
   isNil,
+  isObject,
   isSymbol,
   length,
   toString,
@@ -85,6 +86,37 @@ describe('Lang utils', () => {
       expect(toString(null)).toBe('null')
       expect(toString('🍺')).toBe('🍺')
       expect(toString(666)).toBe('666')
+    })
+  })
+
+  describe('isObject', () => {
+    it('should return true for object', () => {
+      expect(isObject({})).toBe(true)
+    })
+
+    it('should return true for array', () => {
+      expect(isObject([])).toBe(true)
+    })
+
+    it('should return true for function', () => {
+      const func = () => 1
+      expect(isObject(func)).toBe(true)
+    })
+
+    it('should return true for string', () => {
+      expect(isObject('')).toBe(false)
+    })
+
+    it('should return true for number', () => {
+      expect(isObject(1)).toBe(false)
+    })
+
+    it('should return true for instance of wrappers', () => {
+      /* eslint-disable no-new-wrappers */
+      expect(isObject(new Number(1))).toBe(true)
+      expect(isObject(new String(''))).toBe(true)
+      expect(isObject(new Boolean(true))).toBe(true)
+      /* eslint-enable no-new-wrappers */
     })
   })
 })

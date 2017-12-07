@@ -1,18 +1,12 @@
-import { convert } from './convert'
-import { set } from './set'
-import { toPath } from './toPath'
-import { unset } from './unset'
-import { update } from './update'
-
 /**
- * Core functions.
- * @namespace core
- * @since 1.0.0
- */
-export {
-  convert,
-  set,
-  toPath,
-  unset,
-  update,
-}
+* Core functions.
+* @namespace core
+* @since 1.0.0
+*/
+
+export { convert } from './convert'
+export { get } from './get'
+export { set } from './set'
+export { toPath } from './toPath'
+export { unset } from './unset'
+export { update } from './update'

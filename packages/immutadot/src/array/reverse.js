@@ -1,5 +1,4 @@
-import _reverse from 'lodash/fp/reverse'
-import { convertLodashFp } from 'util/convert'
+import { convertArrayMethod } from './convertArrayMethod'
 
 /**
  * Replaces an array reversing the elements from the former array.
@@ -13,5 +12,5 @@ import { convertLodashFp } from 'util/convert'
  * @since 0.3.0
  * @flow
  */
-const reverse = convertLodashFp(_reverse)
+const reverse = convertArrayMethod('reverse')
 export { reverse }

@@ -1,8 +1,5 @@
 import { chain } from 'seq/chain'
-import concat from 'lodash/concat'
-import get from 'lodash/get'
-import isEmpty from 'lodash/isEmpty'
-import isObject from 'lodash/isObject'
+import { isObject } from 'util/lang'
 
 /**
 * Proxy handler to protect object from mutations.
@@ -34,7 +31,7 @@ class ProtectHandler {
   get(target, property) {
     const reference = this._peek()[property]
     if (!isObject(reference)) return reference
-    return new Proxy(reference, new ProtectHandler(this.chainWrapperRef, concat(this.path, property)))
+    return new Proxy(reference, new ProtectHandler(this.chainWrapperRef, [...this.path, property]))
   }
 
   /**
@@ -46,7 +43,7 @@ class ProtectHandler {
    * @since 0.3.0
    */
   set(target, property, value) {
-    this.chainWrapperRef.chainWrapper = this.chainWrapperRef.chainWrapper.set(concat(this.path, property), value)
+    this.chainWrapperRef.chainWrapper = this.chainWrapperRef.chainWrapper.set([...this.path, property], value)
     return true
   }
 
@@ -58,7 +55,7 @@ class ProtectHandler {
    * @since 0.3.0
    */
   deleteProperty(target, property) {
-    this.chainWrapperRef.chainWrapper = this.chainWrapperRef.chainWrapper.unset(concat(this.path, property))
+    this.chainWrapperRef.chainWrapper = this.chainWrapperRef.chainWrapper.unset([...this.path, property])
     return true
   }
 
@@ -70,7 +67,7 @@ class ProtectHandler {
   _peek() {
     let peeked
     this.chainWrapperRef.chainWrapper = this.chainWrapperRef.chainWrapper.peek(_peeked => { peeked = _peeked })
-    return isEmpty(this.path) ? peeked : get(peeked, this.path)
+    return !this.path.length ? peeked : peeked[this.path]
   }
 }
 

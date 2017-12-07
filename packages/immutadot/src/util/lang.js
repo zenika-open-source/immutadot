@@ -55,9 +55,20 @@ const length = arg => {
  */
 const toString = arg => typeof arg === 'string' ? arg : `${arg}`
 
+/**
+ * Tests whether <code>arg</code> is a object.
+ * @param {*} arg The value to test
+ * @return {boolean} True if <code>arg</code> is an <code>Object</code>, false otherwise
+ * @memberof util
+ * @private
+ * @since 1.0.0
+ */
+const isObject = arg => arg instanceof Object
+
 export {
   isNaturalInteger,
   isNil,
+  isObject,
   isSymbol,
   length,
   toString,

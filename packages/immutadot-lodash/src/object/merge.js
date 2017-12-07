@@ -1,5 +1,5 @@
 import _merge from 'lodash/fp/merge'
-import { convertLodashFp } from 'immutadot/util/convert'
+import { convertLodashFp } from 'util/convertLodashFp'
 
 /**
  * Replaces by an object deeply merging own enumerable string keyed properties of source objects to the former object.<br />

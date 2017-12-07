@@ -3,7 +3,7 @@ import { apply } from './apply'
 const setOperation = (obj, prop, _, value) => { obj[prop] = value }
 
 /**
- * Sets the value at <code>path</code> of <code>object</code>.
+ * Sets the value at <code>path</code> of <code>obj</code>.
  * @function
  * @memberof core
  * @param {*} obj The object to modify.

@@ -1,5 +1,4 @@
-import _concat from 'lodash/concat'
-import { convert } from 'core/convert'
+import { convertArrayMethod } from './convertArrayMethod'
 
 /**
  * Replaces an array concatenating the former array with additional arrays and/or values.
@@ -14,5 +13,5 @@ import { convert } from 'core/convert'
  * @since 0.2.0
  * @flow
  */
-const concat = convert(_concat)
+const concat = convertArrayMethod('concat', false, true)
 export { concat }

@@ -1,4 +1,3 @@
-import _subtract from 'lodash/subtract'
 import { convert } from 'core/convert'
 
 /**
@@ -14,5 +13,5 @@ import { convert } from 'core/convert'
  * @since 0.3.0
  * @flow
  */
-const subtract = convert(_subtract)
+const subtract = convert((value, subtraction) => value - subtraction)
 export { subtract }

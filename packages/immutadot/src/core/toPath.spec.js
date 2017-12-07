@@ -62,4 +62,9 @@ describe('ToPath', () => {
       '1,2',
     ])
   })
+
+  it('should give empty path for nil values', () => {
+    expect(toPath(null)).toEqual([])
+    expect(toPath(undefined)).toEqual([])
+  })
 })

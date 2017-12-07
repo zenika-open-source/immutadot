@@ -1,5 +1,4 @@
-import _fill from 'lodash/fp/fill'
-import { convertLodashFp } from 'util/convert'
+import { convertArrayMethod } from './convertArrayMethod'
 
 /**
  * Replaces by an array filled with value from start up to, but not including, end.
@@ -16,5 +15,5 @@ import { convertLodashFp } from 'util/convert'
  * @since 0.3.0
  * @flow
  */
-const fill = convertLodashFp(_fill)
+const fill = convertArrayMethod('fill')
 export { fill }

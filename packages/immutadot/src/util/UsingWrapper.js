@@ -5,14 +5,11 @@ import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
-import concat from 'lodash/concat'
-import drop from 'lodash/drop'
-import get from 'lodash/get'
-import head from 'lodash/head'
-import isSymbol from 'lodash/isSymbol'
-import map from 'lodash/map'
-import mapValues from 'lodash/mapValues'
-import omit from 'lodash/omit'
+import { isSymbol } from 'util/lang'
+
+const { get } = core
+
+const head = arr => arr[0]
 
 /**
  * Wrapper allowing to specify one or several paths to use as arguments for an immutadot function call.<br/>
@@ -52,37 +49,36 @@ class UsingWrapper {
    */
   _call(fn, object, path, pArgs) {
     let callArgs = pArgs
-    const args = concat(
-      map(this._paths, usingPath => {
-        if (isSymbol(usingPath)) {
-          const arg = head(callArgs)
-          callArgs = drop(callArgs)
-          return arg
-        }
-        return get(object, usingPath)
-      }),
-      callArgs,
-    )
+    const args = this._paths.map(usingPath => {
+      if (isSymbol(usingPath)) {
+        const arg = head(callArgs)
+        callArgs = callArgs.slice(1)
+        return arg
+      }
+      return get(object, usingPath)
+    }).concat(callArgs)
     return fn(object, path, ...args)
   }
 }
 
 // Add namespaces functions to the UsingWrapper prototype
-[
+const { convert, unset, toPath, ...filteredCore } = core // eslint-disable-line no-unused-vars
+const { get: _get, set, unset: _unset, update, ...filteredObject } = object // eslint-disable-line no-unused-vars
+const namespaces = [
   array,
-  omit(core, ['convert', 'unset', 'toPath']),
+  filteredCore,
   lang,
   math,
-  omit(object, ['set', 'unset', 'update']),
+  filteredObject,
   string,
-].forEach(namespace => Object.assign(
-  UsingWrapper.prototype,
-  mapValues(
-    namespace,
-    fn => function(object, path, ...args) {
-      return this._call(fn, object, path, args) // eslint-disable-line no-invalid-this
-    },
-  ),
-))
+]
+namespaces.forEach(namespace => {
+  for (const fnName in namespace) {
+    const fn = namespace[fnName]
+    UsingWrapper.prototype[fnName] = function(object, path, ...args) {
+      return this._call(fn, object, path, args)
+    }
+  }
+})
 
 export { UsingWrapper }

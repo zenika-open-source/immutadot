@@ -1,4 +1,3 @@
-import _replace from 'lodash/replace'
 import { convert } from 'core/convert'
 
 /**
@@ -15,5 +14,5 @@ import { convert } from 'core/convert'
  * @since 0.3.0
  * @flow
  */
-const replace = convert(_replace)
+const replace = convert((str, ...args) => str.replace(...args))
 export { replace }
