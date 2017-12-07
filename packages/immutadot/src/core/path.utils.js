@@ -2,7 +2,7 @@ import {
   isNaturalInteger,
 } from 'util/lang'
 
-const getSliceBound = (value, defaultValue, length) => {
+export const getSliceBound = (value, defaultValue, length) => {
   if (value === undefined) return defaultValue
   if (value < 0) return Math.max(length + value, 0)
   return value
@@ -18,7 +18,7 @@ const getSliceBound = (value, defaultValue, length) => {
  * @private
  * @since 1.0.0
  */
-const getSliceBounds = ([start, end], length) => ([
+export const getSliceBounds = ([start, end], length) => ([
   getSliceBound(start, 0, length),
   getSliceBound(end, length, length),
 ])
@@ -30,7 +30,7 @@ const getSliceBounds = ([start, end], length) => ([
  * @private
  * @since 1.0.0
  */
-const isIndex = isNaturalInteger
+export const isIndex = isNaturalInteger
 
 /**
  * Tests whether <code>arg</code> is a valid slice index, that is an integer or <code>undefined</code>.
@@ -41,7 +41,7 @@ const isIndex = isNaturalInteger
  * @private
  * @since 1.0.0
  */
-const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
+export const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
 
 /**
  * Tests whether <code>arg</code> is a "slice", that is an array containing exactly 2 slice indexes.
@@ -52,15 +52,29 @@ const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
  * @private
  * @since 1.0.0
  */
-const isSlice = arg => {
+export const isSlice = arg => {
   if (!Array.isArray(arg)) return false
   if (arg.length !== 2) return false
   return isSliceIndex(arg[0]) && isSliceIndex(arg[1])
 }
 
-export {
-  getSliceBounds,
-  isIndex,
-  isSlice,
-  isSliceIndex,
+/**
+ * Tests whether <code>path</code> has already been applied using a list of already applied paths.
+ * @param {Array} path The path to test.
+ * @param {Array} pAppliedPaths Already applied paths.
+ * @returns {boolean} <code>true></code> if <code>path</code> has already been applied, <code>false</code> otherwise.
+ * @memberof core
+ * @private
+ * @since 1.0.0
+ */
+export function pathAlreadyApplied(path, pAppliedPaths) {
+  const appliedPaths = pAppliedPaths.filter(appliedPath => !appliedPath.some(isSlice))
+  if (appliedPaths.length === 0) return false
+  if (path.length === 0 && appliedPaths.length !== 0) return true
+  return appliedPaths.some(appliedPath => pathIncludes(appliedPath, path))
+}
+
+function pathIncludes(path, otherPath) {
+  if (otherPath.length > path.length) return false
+  return otherPath.every((otherProp, i) => path[i] === otherProp)
 }

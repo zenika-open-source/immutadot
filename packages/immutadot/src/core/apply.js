@@ -2,6 +2,7 @@ import {
   getSliceBounds,
   isIndex,
   isSlice,
+  pathAlreadyApplied,
 } from './path.utils'
 
 import {
@@ -79,43 +80,52 @@ const copyIfNecessary = (value, prop, doCopy) => {
  * @since 1.0.0
  */
 const apply = operation => {
-  const curried = (path, ...args) => obj => {
-    const walkPath = (curObj, curPath, doCopy = true) => {
-      const [prop, ...pathRest] = curPath
+  const curried = (pPath, ...args) => {
+    const path = unsafeToPath(pPath)
 
-      if (isSlice(prop)) {
-        const [start, end] = getSliceBounds(prop, length(curObj))
+    const applier = (obj, appliedPaths = []) => {
+      const walkPath = (curObj, curPath, remPath, isCopy = false) => {
+        const [prop, ...pathRest] = remPath
 
-        const newArr = copy(curObj, true)
-        let noop = true
+        if (isSlice(prop)) {
+          const [start, end] = getSliceBounds(prop, length(curObj))
 
-        for (let i = start; i < end; i++) {
-          const [iNoop] = walkPath(newArr, [i, ...pathRest], false)
-          noop = noop && iNoop
+          const newArr = copy(curObj, true)
+          let noop = true
+
+          for (let i = start; i < end; i++) {
+            const [iNoop] = walkPath(newArr, curPath, [i, ...pathRest], true)
+            noop = noop && iNoop
+          }
+
+          if (noop) return [true, curObj]
+          return [false, newArr]
         }
 
+        const value = isNil(curObj) ? undefined : curObj[prop]
+        const doCopy = !isCopy && !pathAlreadyApplied(curPath, appliedPaths)
+
+        if (remPath.length === 1) {
+          const newObj = copyIfNecessary(curObj, prop, doCopy)
+          operation(newObj, prop, value, ...args)
+          return [false, newObj]
+        }
+
+        const [noop, newValue] = walkPath(value, [...curPath, prop], pathRest)
         if (noop) return [true, curObj]
-        return [false, newArr]
-      }
 
-      const value = isNil(curObj) ? undefined : curObj[prop]
-
-      if (curPath.length === 1) {
         const newObj = copyIfNecessary(curObj, prop, doCopy)
-        operation(newObj, prop, value, ...args)
+        newObj[prop] = newValue
         return [false, newObj]
       }
 
-      const [noop, newValue] = walkPath(value, pathRest)
-      if (noop) return [true, curObj]
-
-      const newObj = copyIfNecessary(curObj, prop, doCopy)
-      newObj[prop] = newValue
-      return [false, newObj]
+      const [, result] = walkPath(obj, [], path)
+      return result
     }
 
-    const [, result] = walkPath(obj, unsafeToPath(path))
-    return result
+    applier.path = path
+
+    return applier
   }
 
   const uncurried = (obj, path, ...args) => curried(path, ...args)(obj)
