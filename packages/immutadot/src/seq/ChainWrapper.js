@@ -7,11 +7,6 @@ import * as string from 'string'
 
 import { unsafeToPath } from 'core/toPath'
 
-const omit = (obj, without) => without.reduce((obj, key) => {
-  delete obj[key]
-  return obj
-}, obj)
-
 const mapValues = (pObj, fn) => Object.keys(pObj).reduce((obj, key) => {
   obj[key] = fn(pObj[key])
   return obj
@@ -128,14 +123,17 @@ class ChainWrapper {
  */
 
 // Add namespaces functions to the ChainWrapper prototype
-[
+const { convert, toPath, ...filteredCore } = core // eslint-disable-line no-unused-vars
+const { set, unset, update, ...filteredObject } = object // eslint-disable-line no-unused-vars
+const namespaces = [
   array,
-  omit(core, ['convert', 'toPath']),
+  filteredCore,
   lang,
   math,
-  omit(object, ['set', 'unset', 'update']),
+  filteredObject,
   string,
-].forEach(namespace => Object.assign(
+]
+namespaces.forEach(namespace => Object.assign(
   ChainWrapper.prototype,
   mapValues(
     namespace,
