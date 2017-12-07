@@ -1,3 +1,7 @@
+import {
+  index,
+  prop,
+} from 'path/consts'
 import { isNil } from 'util/lang'
 import { unsafeToPath } from 'path/toPath'
 
@@ -19,5 +23,8 @@ export function get(obj, path, defaultValue) {
     const [[undefined, prop], ...pathRest] = remPath
     return walkPath(curObj[prop], pathRest)
   }
-  return walkPath(obj, unsafeToPath(path))
+  const parsedPath = unsafeToPath(path)
+  if (parsedPath.some(([propType]) => propType !== prop && propType !== index))
+    throw TypeError('get supports only properties and array indexes in path')
+  return walkPath(obj, parsedPath)
 }
