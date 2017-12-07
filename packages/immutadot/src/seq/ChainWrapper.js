@@ -7,8 +7,6 @@ import * as string from 'string'
 
 import { unsafeToPath } from 'core/toPath'
 
-const flow = fns => pObj => fns.reduce((obj, fn) => fn(obj), pObj)
-
 const omit = (obj, without) => without.reduce((obj, key) => {
   delete obj[key]
   return obj
@@ -82,7 +80,7 @@ class ChainWrapper {
 
     if (this._commited === null) {
       this._commited = new ChainWrapper(
-        flow(this._flow)(this._wrapped),
+        this._flow.reduce((obj, fn) => fn(obj), this._wrapped),
         this._path,
       )
     }
