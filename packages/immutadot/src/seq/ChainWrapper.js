@@ -68,7 +68,7 @@ class ChainWrapper {
     return new ChainWrapper(
       this._wrapped,
       this._path,
-      this._flow.concat(object => fn(object, this._absolutePath(path), ...args)),
+      [...this._flow, object => fn(object, this._absolutePath(path), ...args)],
     )
   }
 

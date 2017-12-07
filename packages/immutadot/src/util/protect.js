@@ -36,7 +36,7 @@ class ProtectHandler {
   get(target, property) {
     const reference = this._peek()[property]
     if (!isObject(reference)) return reference
-    return new Proxy(reference, new ProtectHandler(this.chainWrapperRef, this.path.concat(property)))
+    return new Proxy(reference, new ProtectHandler(this.chainWrapperRef, [...this.path, property]))
   }
 
   /**
@@ -48,7 +48,7 @@ class ProtectHandler {
    * @since 0.3.0
    */
   set(target, property, value) {
-    this.chainWrapperRef.chainWrapper = this.chainWrapperRef.chainWrapper.set(this.path.concat(property), value)
+    this.chainWrapperRef.chainWrapper = this.chainWrapperRef.chainWrapper.set([...this.path, property], value)
     return true
   }
 
@@ -60,7 +60,7 @@ class ProtectHandler {
    * @since 0.3.0
    */
   deleteProperty(target, property) {
-    this.chainWrapperRef.chainWrapper = this.chainWrapperRef.chainWrapper.unset(this.path.concat(property))
+    this.chainWrapperRef.chainWrapper = this.chainWrapperRef.chainWrapper.unset([...this.path, property])
     return true
   }
 
