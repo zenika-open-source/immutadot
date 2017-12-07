@@ -7,18 +7,7 @@ import * as string from 'string'
 
 import { isSymbol } from 'util/lang'
 
-const mapValues = (pObj, fn) => Object.keys(pObj).reduce((obj, key) => {
-  obj[key] = fn(pObj[key])
-  return obj
-}, {})
-
-const get = (obj, key, defaultValue) => {
-  const paths = key.split('.')
-  let target = obj[paths[0]]
-  for (let i = 1; i < paths.length; i++)
-    target = target[paths[i]]
-  return target ? target : defaultValue
-}
+const { get } = core
 
 const head = arr => arr[0]
 
@@ -74,7 +63,7 @@ class UsingWrapper {
 
 // Add namespaces functions to the UsingWrapper prototype
 const { convert, unset, toPath, ...filteredCore } = core // eslint-disable-line no-unused-vars
-const { set, unset: _unset, update, ...filteredObject } = object // eslint-disable-line no-unused-vars
+const { get: _get, set, unset: _unset, update, ...filteredObject } = object // eslint-disable-line no-unused-vars
 const namespaces = [
   array,
   filteredCore,
@@ -83,14 +72,13 @@ const namespaces = [
   filteredObject,
   string,
 ]
-namespaces.forEach(namespace => Object.assign(
-  UsingWrapper.prototype,
-  mapValues(
-    namespace,
-    fn => function(object, path, ...args) {
-      return this._call(fn, object, path, args) // eslint-disable-line no-invalid-this
-    },
-  ),
-))
+namespaces.forEach(namespace => {
+  for (const fnName in namespace) {
+    const fn = namespace[fnName]
+    UsingWrapper.prototype[fnName] = function(object, path, ...args) {
+      return this._call(fn, object, path, args)
+    }
+  }
+})
 
 export { UsingWrapper }
