@@ -5,7 +5,7 @@ import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
-import { unsafeToPath } from 'core/toPath'
+import { unsafeToPath } from 'path/toPath'
 
 /**
  * Wrapper allowing to make sequences of immutadot functions calls on an object.<br/>
@@ -118,7 +118,7 @@ class ChainWrapper {
  */
 
 // Add namespaces functions to the ChainWrapper prototype
-const { convert, toPath, ...filteredCore } = core // eslint-disable-line no-unused-vars
+const { convert, ...filteredCore } = core // eslint-disable-line no-unused-vars
 const { set, unset, update, ...filteredObject } = object // eslint-disable-line no-unused-vars
 const namespaces = [
   array,

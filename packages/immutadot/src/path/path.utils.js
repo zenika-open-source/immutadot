@@ -11,7 +11,7 @@ export const getSliceBound = (value, defaultValue, length) => {
 /**
  * Get the actual bounds of a slice.
  * @function
- * @memberof core
+ * @memberof path
  * @param {Array<number>} bounds The bounds of the slice
  * @param {number} length The length of the actual array
  * @returns {Array<number>} The actual bounds of the slice
@@ -26,7 +26,7 @@ export const getSliceBounds = ([start, end], length) => ([
 /**
  * This is an alias for {@link util/isNaturalInteger}.
  * @function
- * @memberof core
+ * @memberof path
  * @private
  * @since 1.0.0
  */
@@ -37,7 +37,7 @@ export const isIndex = isNaturalInteger
  * @function
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is a valid slice index, false otherwise
- * @memberof core
+ * @memberof path
  * @private
  * @since 1.0.0
  */
@@ -48,7 +48,7 @@ export const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg
  * @function
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is a slice, false otherwise
- * @memberof core
+ * @memberof path
  * @private
  * @since 1.0.0
  */
@@ -63,7 +63,7 @@ export const isSlice = arg => {
  * @param {Array} path The path to test.
  * @param {Array} pAppliedPaths Already applied paths.
  * @returns {boolean} <code>true></code> if <code>path</code> has already been applied, <code>false</code> otherwise.
- * @memberof core
+ * @memberof path
  * @private
  * @since 1.0.0
  */

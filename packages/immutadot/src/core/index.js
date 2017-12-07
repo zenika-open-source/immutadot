@@ -7,6 +7,5 @@
 export { convert } from './convert'
 export { get } from './get'
 export { set } from './set'
-export { toPath } from './toPath'
 export { unset } from './unset'
 export { update } from './update'

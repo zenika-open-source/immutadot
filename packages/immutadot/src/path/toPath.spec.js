@@ -1,5 +1,5 @@
 /* eslint-env jest */
-import { toPath } from 'core'
+import { toPath } from 'path'
 
 describe('ToPath', () => {
 

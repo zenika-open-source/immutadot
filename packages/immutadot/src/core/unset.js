@@ -1,4 +1,4 @@
-import { apply } from './apply'
+import { apply } from 'path/apply'
 
 const unsetOperation = (obj, prop) => { delete obj[prop] }
 

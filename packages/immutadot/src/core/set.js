@@ -1,4 +1,4 @@
-import { apply } from './apply'
+import { apply } from 'path/apply'
 
 const setOperation = (obj, prop, _, value) => { obj[prop] = value }
 
