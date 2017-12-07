@@ -1,5 +1,5 @@
 import _pullAll from 'lodash/fp/pullAll'
-import { convertLodashFp } from 'util/convert'
+import { convertLodashFp } from 'util/convertLodashFp'
 
 /**
  * This method is like {@link array.pull} except that it accepts an array of values to remove.

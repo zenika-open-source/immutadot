@@ -1,5 +1,5 @@
 import _pull from 'lodash/fp/pull'
-import { convertLodashFp } from 'util/convert'
+import { convertLodashFp } from 'util/convertLodashFp'
 
 /**
  * Replaces an array removing all given values from the former array.
