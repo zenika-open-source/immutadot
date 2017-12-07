@@ -12,6 +12,7 @@
   "rules": {
     "array-bracket-spacing": "error",
     "array-callback-return": "error",
+    "arrow-parens": ["error", "as-needed"],
     "arrow-spacing": "error",
     "block-scoped-var": "error",
     "block-spacing": "error",
