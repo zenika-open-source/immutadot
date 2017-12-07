@@ -27,8 +27,6 @@ const get = (obj, key, defaultValue) => {
 
 const head = arr => arr[0]
 
-const drop = (arr, n = 1) => arr.slice(n)
-
 /**
  * Wrapper allowing to specify one or several paths to use as arguments for an immutadot function call.<br/>
  * Instances are created by calling {@link util.using}.
@@ -70,7 +68,7 @@ class UsingWrapper {
     const args = this._paths.map(usingPath => {
       if (isSymbol(usingPath)) {
         const arg = head(callArgs)
-        callArgs = drop(callArgs)
+        callArgs = callArgs.slice(1)
         return arg
       }
       return get(object, usingPath)
