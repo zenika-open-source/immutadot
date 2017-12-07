@@ -63,7 +63,7 @@ const toString = arg => typeof arg === 'string' ? arg : `${arg}`
  * @private
  * @since 1.0.0
  */
-const isObject = arg => typeof arg === 'object'
+const isObject = arg => arg instanceof Object
 
 export {
   isNaturalInteger,
