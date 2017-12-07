@@ -185,10 +185,10 @@ const memoizedStringToPath = str => {
  * This function is failsafe, it will never throw an error.
  * @function
  * @param {string|Array|*} arg The value to convert
- * @return {Array<string|number|Array>} The path represented as an array of keys
+ * @returns {Array<Array<Symbol,...*>>} The path represented as an array of keys
  * @memberof path
  * @since 1.0.0
- * @example toPath('a.b[1]["."][1:-1]') // => ['a', 'b', 1, '.', [1, -1]]
+ * @example toPath('a.b[1]["."][1:-1]') // => [[prop, 'a'], [prop, 'b'], [index, 1], [prop, '.'], [slice, [1, -1]]]
  */
 const toPath = allowingArrays(arg => [...memoizedStringToPath(arg)])
 
@@ -196,7 +196,7 @@ const toPath = allowingArrays(arg => [...memoizedStringToPath(arg)])
  * This method is like {@link core.toPath} except it returns memoized arrays which must not be mutated.
  * @function
  * @param {string|Array|*} arg The value to convert
- * @return {Array<string|number|Array>} The path represented as an array of keys
+ * @returns {Array<Array<Symbol,...*>>} The path represented as an array of keys
  * @memberof path
  * @since 1.0.0
  * @private
