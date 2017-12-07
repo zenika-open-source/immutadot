@@ -16,7 +16,7 @@ export function get(obj, path, defaultValue) {
   function walkPath(curObj, remPath) {
     if (remPath.length === 0) return curObj === undefined ? defaultValue : curObj
     if (isNil(curObj)) return defaultValue
-    const [prop, ...pathRest] = remPath
+    const [[undefined, prop], ...pathRest] = remPath
     return walkPath(curObj[prop], pathRest)
   }
   return walkPath(obj, unsafeToPath(path))
