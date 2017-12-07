@@ -1,9 +1,12 @@
 import {
   getSliceBounds,
-  isIndex,
-  isSlice,
   pathAlreadyApplied,
 } from './utils'
+
+import {
+  index,
+  slice,
+} from './consts'
 
 import {
   isNil,
@@ -35,15 +38,15 @@ const copy = (value, asArray) => {
  * Makes a copy of <code>value</code> if necessary.
  * @function
  * @param {*} value The value to make a copy of
- * @param {string} prop The accessed property in <code>value</code>
+ * @param {string} propType The type of the accessed property in <code>value</code>
  * @param {boolean} doCopy Whether to make a copy or not
  * @returns {Object|Array} A copy of value, or not ;)
  * @private
  * @since 1.0.0
  */
-const copyIfNecessary = (value, prop, doCopy) => {
+const copyIfNecessary = (value, propType, doCopy) => {
   if (!doCopy) return value
-  return copy(value, isIndex(prop))
+  return copy(value, propType === index)
 }
 
 /**
@@ -88,15 +91,16 @@ const apply = operation => {
     const applier = (obj, appliedPaths = []) => {
       const walkPath = (curObj, curPath, remPath, isCopy = false) => {
         const [prop, ...pathRest] = remPath
+        const [propType, propValue] = prop
 
-        if (isSlice(prop)) {
-          const [start, end] = getSliceBounds(prop, length(curObj))
+        if (propType === slice) {
+          const [start, end] = getSliceBounds(propValue, length(curObj))
 
           const newArr = copy(curObj, true)
           let noop = true
 
           for (let i = start; i < end; i++) {
-            const [iNoop] = walkPath(newArr, curPath, [i, ...pathRest], true)
+            const [iNoop] = walkPath(newArr, curPath, [[index, i], ...pathRest], true)
             noop = noop && iNoop
           }
 
@@ -104,20 +108,20 @@ const apply = operation => {
           return [false, newArr]
         }
 
-        const value = isNil(curObj) ? undefined : curObj[prop]
+        const value = isNil(curObj) ? undefined : curObj[propValue]
         const doCopy = !isCopy && !pathAlreadyApplied(curPath, appliedPaths)
 
         if (remPath.length === 1) {
-          const newObj = copyIfNecessary(curObj, prop, doCopy)
-          operation(newObj, prop, value, ...args)
+          const newObj = copyIfNecessary(curObj, propType, doCopy)
+          operation(newObj, propValue, value, ...args)
           return [false, newObj]
         }
 
         const [noop, newValue] = walkPath(value, [...curPath, prop], pathRest)
         if (noop) return [true, curObj]
 
-        const newObj = copyIfNecessary(curObj, prop, doCopy)
-        newObj[prop] = newValue
+        const newObj = copyIfNecessary(curObj, propType, doCopy)
+        newObj[propValue] = newValue
         return [false, newObj]
       }
 

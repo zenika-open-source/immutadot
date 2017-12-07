@@ -2,6 +2,10 @@ import {
   isNaturalInteger,
 } from 'util/lang'
 
+import {
+  slice,
+} from './consts'
+
 export const getSliceBound = (value, defaultValue, length) => {
   if (value === undefined) return defaultValue
   if (value < 0) return Math.max(length + value, 0)
@@ -44,21 +48,6 @@ export const isIndex = isNaturalInteger
 export const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
 
 /**
- * Tests whether <code>arg</code> is a "slice", that is an array containing exactly 2 slice indexes.
- * @function
- * @param {*} arg The value to test
- * @return {boolean} True if <code>arg</code> is a slice, false otherwise
- * @memberof path
- * @private
- * @since 1.0.0
- */
-export const isSlice = arg => {
-  if (!Array.isArray(arg)) return false
-  if (arg.length !== 2) return false
-  return isSliceIndex(arg[0]) && isSliceIndex(arg[1])
-}
-
-/**
  * Tests whether <code>path</code> has already been applied using a list of already applied paths.
  * @param {Array} path The path to test.
  * @param {Array} pAppliedPaths Already applied paths.
@@ -68,7 +57,7 @@ export const isSlice = arg => {
  * @since 1.0.0
  */
 export function pathAlreadyApplied(path, pAppliedPaths) {
-  const appliedPaths = pAppliedPaths.filter(appliedPath => !appliedPath.some(isSlice))
+  const appliedPaths = pAppliedPaths.filter(appliedPath => !appliedPath.some(([propType]) => propType === slice))
   if (appliedPaths.length === 0) return false
   if (path.length === 0 && appliedPaths.length !== 0) return true
   return appliedPaths.some(appliedPath => pathIncludes(appliedPath, path))
