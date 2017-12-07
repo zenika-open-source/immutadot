@@ -29,9 +29,6 @@
     "jsdoc": "^3.5.5"
   },
   "dependencies": {},
-  "peerDependencies": {
-    "lodash": "^4.17.4"
-  },
   "scripts": {
     "generate:flow": "node ../../misc/generate-flow.js",
     "prebuild": "yarn generate:flow",
