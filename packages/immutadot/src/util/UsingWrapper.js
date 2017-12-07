@@ -7,11 +7,6 @@ import * as string from 'string'
 
 import { isSymbol } from 'util/lang'
 
-const omit = (obj, without) => without.reduce((obj, key) => {
-  delete obj[key]
-  return obj
-}, obj)
-
 const mapValues = (pObj, fn) => Object.keys(pObj).reduce((obj, key) => {
   obj[key] = fn(pObj[key])
   return obj
@@ -78,14 +73,17 @@ class UsingWrapper {
 }
 
 // Add namespaces functions to the UsingWrapper prototype
-[
+const { convert, unset, toPath, ...filteredCore } = core // eslint-disable-line no-unused-vars
+const { set, unset: _unset, update, ...filteredObject } = object // eslint-disable-line no-unused-vars
+const namespaces = [
   array,
-  omit(core, ['convert', 'unset', 'toPath']),
+  filteredCore,
   lang,
   math,
-  omit(object, ['set', 'unset', 'update']),
+  filteredObject,
   string,
-].forEach(namespace => Object.assign(
+]
+namespaces.forEach(namespace => Object.assign(
   UsingWrapper.prototype,
   mapValues(
     namespace,
