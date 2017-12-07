@@ -65,5 +65,8 @@ export function pathAlreadyApplied(path, pAppliedPaths) {
 
 function pathIncludes(path, otherPath) {
   if (otherPath.length > path.length) return false
-  return otherPath.every((otherProp, i) => path[i] === otherProp)
+  return otherPath.every(([, otherProp], i) => {
+    const [, prop] = path[i]
+    return prop === otherProp
+  })
 }
