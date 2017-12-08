@@ -6,8 +6,7 @@ import {
   slice,
 } from './consts'
 
-export const getSliceBound = (value, defaultValue, length) => {
-  if (value === undefined) return defaultValue
+export const getSliceBound = (value, length) => {
   if (value < 0) return Math.max(length + value, 0)
   return value
 }
@@ -23,8 +22,8 @@ export const getSliceBound = (value, defaultValue, length) => {
  * @since 1.0.0
  */
 export const getSliceBounds = ([start, end], length) => ([
-  getSliceBound(start, 0, length),
-  getSliceBound(end, length, length),
+  getSliceBound(start, length),
+  getSliceBound(end === undefined ? length : end, length),
 ])
 
 /**

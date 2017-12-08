@@ -12,13 +12,14 @@ import {
 } from './consts'
 
 import {
+  isIndex,
+  isSliceIndex,
+} from './utils'
+
+import {
   isNil,
   toString,
 } from 'util/lang'
-
-import {
-  isIndex,
-} from './utils'
 
 /**
  * Strip slashes preceding occurences of <code>quote</code> from <code>str</code><br />
@@ -37,23 +38,13 @@ const unescapeQuotes = (str, quote) => str.replace(new RegExp(`\\\\${quote}`, 'g
  * Converts <code>str</code> to a slice index.
  * @function
  * @param {string} str The string to convert
+ * @param {number?} defaultValue The default value if <code>str</code> is empty
  * @return {number} <code>undefined</code> if <code>str</code> is empty, otherwise an int (may be NaN)
  * @memberof path
  * @private
  * @since 1.0.0
  */
-const toSliceIndex = str => str === '' ? undefined : Number(str)
-
-/**
- * Tests whether <code>arg</code> is a valid slice index, that is <code>undefined</code> or a valid int.
- * @function
- * @memberof path
- * @param {*} arg The value to test
- * @return {boolean} True if <code>arg</code> is a valid slice index, false otherwise.
- * @private
- * @since 1.0.0
- */
-const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
+const toSliceIndex = (str, defaultValue) => str === '' ? defaultValue : Number(str)
 
 /**
  * Tests whether <code>arg</code> is a valid slice index once converted to a number.
@@ -114,7 +105,7 @@ const sliceNotationParser = map(
     regexp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/),
     ([sliceStart, sliceEnd]) => isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd),
   ),
-  ([sliceStart, sliceEnd, rest]) => [[slice, [toSliceIndex(sliceStart), toSliceIndex(sliceEnd)]], ...stringToPath(rest)],
+  ([sliceStart, sliceEnd, rest]) => [[slice, [toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)]], ...stringToPath(rest)],
 )
 
 const pathSegmentEndedByDotParser = map(
