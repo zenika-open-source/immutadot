@@ -112,11 +112,9 @@ const sliceNotationParser = map(
 const bareListNotationParser = map(
   regexp(/^\{([^,}]*)((,[^,}]*)*)\}\.?(.*)$/),
   ([firstProp, propsRest, , rest]) => {
-    let props = firstProp === undefined ? [] : [firstProp]
-    if (propsRest !== undefined) props = props.concat(propsRest.split(/,+/))
-    props = props.filter(prop => prop !== '')
-    if (props.length === 1) return [[prop, props[0]], ...stringToPath(rest)]
-    return [[list, props], ...stringToPath(rest)]
+    return (propsRest === undefined || propsRest === '')
+      ? [[prop, firstProp === undefined ? '' : firstProp], ...stringToPath(rest)]
+      : [[list, [firstProp === undefined ? '' : firstProp, ...propsRest.substr(1).split(',')]], ...stringToPath(rest)]
   },
 )
 
