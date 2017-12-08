@@ -43,6 +43,10 @@ describe('ToPath', () => {
   it('should convert list notation path', () => {
     expect(toPath('{abc,defg}.{123,4567,89}.{foo}')).toEqual([[list, ['abc', 'defg']], [list, ['123', '4567', '89']], [prop, 'foo']])
     expect(toPath('{"abc,defg",foo}.{\'123,4567,89\'}')).toEqual([[list, ['abc,defg', 'foo']], [prop, '123,4567,89']])
+    // Empty unterminated array notation should be discarded
+    expect(toPath('abc.{')).toEqual([[prop, 'abc']])
+    expect(toPath('abc.{a,b,c')).toEqual([[prop, 'abc'], [slice, ['a', 'b', 'c']]])
+    expect(toPath('abc.{"')).toEqual([[prop, 'abc']])
     // Unterminated list notation should run to end of path as string
     expect(toPath('{abc,defg[0].foo{bar')).toEqual([[list, ['abc', 'defg[0].foo{bar']]])
     // Unterminated quoted list notation should run to end of path

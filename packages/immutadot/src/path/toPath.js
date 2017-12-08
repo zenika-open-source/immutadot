@@ -118,6 +118,17 @@ const bareListNotationParser = map(
   },
 )
 
+const incompleteBareListNotationParser = map(
+  regexp(/^\{(.*)$/),
+  ([props]) => {
+    if (props === '') return []
+    const propsSplit = props.split(',')
+    return propsSplit.length === 0
+      ? [[prop, propsSplit[0]]]
+      : [[slice, propsSplit]]
+  },
+)
+
 const pathSegmentEndedByDotParser = map(
   regexp(/^([^.[{]*?)\.(.*)$/),
   ([beforeDot, afterDot]) => [[prop, beforeDot], ...stringToPath(afterDot)],
@@ -141,6 +152,7 @@ const applyParsers = race([
   bareBracketNotationParser,
   incompleteBareBracketNotationParser,
   bareListNotationParser,
+  incompleteBareListNotationParser,
   pathSegmentEndedByDotParser,
   pathSegmentEndedByBracketParser,
   pathSegmentEndedByCurlyParser,
