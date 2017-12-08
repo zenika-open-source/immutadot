@@ -7,6 +7,7 @@ import {
 
 import {
   index,
+  list,
   prop,
   slice,
 } from './consts'
@@ -108,14 +109,30 @@ const sliceNotationParser = map(
   ([sliceStart, sliceEnd, rest]) => [[slice, [toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)]], ...stringToPath(rest)],
 )
 
+const bareListNotationParser = map(
+  regexp(/^\{([^,}]*)((,[^,}]*)*)\}\.?(.*)$/),
+  ([firstProp, propsRest, , rest]) => {
+    let props = firstProp === undefined ? [] : [firstProp]
+    if (propsRest !== undefined) props = props.concat(propsRest.split(/,+/))
+    props = props.filter(prop => prop !== '')
+    if (props.length === 1) return [[prop, props[0]], ...stringToPath(rest)]
+    return [[list, props], ...stringToPath(rest)]
+  },
+)
+
 const pathSegmentEndedByDotParser = map(
-  regexp(/^([^.[]*?)\.(.*)$/),
+  regexp(/^([^.[{]*?)\.(.*)$/),
   ([beforeDot, afterDot]) => [[prop, beforeDot], ...stringToPath(afterDot)],
 )
 
 const pathSegmentEndedByBracketParser = map(
-  regexp(/^([^.[]*?)(\[.*)$/),
+  regexp(/^([^.[{]*?)(\[.*)$/),
   ([beforeBracket, atBracket]) => [[prop, beforeBracket], ...stringToPath(atBracket)],
+)
+
+const pathSegmentEndedByCurlyParser = map(
+  regexp(/^([^.[{]*?)(\{.*)$/),
+  ([beforeCurly, atCurly]) => [[prop, beforeCurly], ...stringToPath(atCurly)],
 )
 
 const applyParsers = race([
@@ -125,8 +142,10 @@ const applyParsers = race([
   sliceNotationParser,
   bareBracketNotationParser,
   incompleteBareBracketNotationParser,
+  bareListNotationParser,
   pathSegmentEndedByDotParser,
   pathSegmentEndedByBracketParser,
+  pathSegmentEndedByCurlyParser,
   str => [[prop, str]],
 ])
 
@@ -172,8 +191,7 @@ const memoizedStringToPath = str => {
  * Converts <code>arg</code> to a path represented as an array of keys.<br />
  * <code>arg</code> may be a string, in which case it will be parsed.<br />
  * It may also be an Array, in which case a copy of the array with values converted to path keys will be returned.<br />
- * If <code>arg</code> is neither a string nor an Array, its string representation will be parsed.<br />
- * This function is failsafe, it will never throw an error.
+ * If <code>arg</code> is neither a string nor an Array, its string representation will be parsed.
  * @function
  * @param {string|Array|*} arg The value to convert
  * @returns {Array<Array<Symbol,...*>>} The path represented as an array of keys
