@@ -6,7 +6,7 @@ import {
   isSymbol,
   length,
   toString,
-} from 'util/lang'
+} from './lang'
 
 describe('Lang utils', () => {
   describe('IsNaturalInteger', () => {
