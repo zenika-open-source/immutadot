@@ -128,14 +128,9 @@ const incompleteListNotationParser = map(
   },
 )
 
-const pathSegmentEndedByDotParser = map(
-  regexp(/^([^.[{]*?)\.(.*)$/),
-  ([beforeDot, afterDot]) => [[prop, beforeDot], ...stringToPath(afterDot)],
-)
-
-const pathSegmentEndedByBracketOrCurlyParser = map(
-  regexp(/^([^.[{]*?)([[{].*)$/),
-  ([beforeBracketOrCurly, atBracketOrCurly]) => [[prop, beforeBracketOrCurly], ...stringToPath(atBracketOrCurly)],
+const pathSegmentEndedByNewSegment = map(
+  regexp(/^([^.[{]*)\.?([[{]?.*)$/),
+  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...stringToPath(rest)],
 )
 
 const applyParsers = race([
@@ -147,8 +142,7 @@ const applyParsers = race([
   incompleteBareBracketNotationParser,
   listNotationParser,
   incompleteListNotationParser,
-  pathSegmentEndedByDotParser,
-  pathSegmentEndedByBracketOrCurlyParser,
+  pathSegmentEndedByNewSegment,
   str => [[prop, str]],
 ])
 
