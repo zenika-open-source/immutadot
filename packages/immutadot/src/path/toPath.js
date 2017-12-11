@@ -143,7 +143,6 @@ const applyParsers = race([
   listNotationParser,
   incompleteListNotationParser,
   pathSegmentEndedByNewSegment,
-  str => [[prop, str]],
 ])
 
 /**
