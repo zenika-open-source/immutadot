@@ -28,7 +28,7 @@ import {
  * @function
  * @param {string} str The string
  * @param {string} quote The quote to unescape
- * @return {string} The unescaped string
+ * @returns {string} The unescaped string
  * @memberof path
  * @private
  * @since 1.0.0
@@ -40,7 +40,7 @@ const unescapeQuotes = (str, quote) => str.replace(new RegExp(`\\\\${quote}`, 'g
  * @function
  * @param {string} str The string to convert
  * @param {number?} defaultValue The default value if <code>str</code> is empty
- * @return {number} <code>undefined</code> if <code>str</code> is empty, otherwise an int (may be NaN)
+ * @returns {number} <code>undefined</code> if <code>str</code> is empty, otherwise an int (may be NaN)
  * @memberof path
  * @private
  * @since 1.0.0
@@ -52,7 +52,7 @@ const toSliceIndex = (str, defaultValue) => str === '' ? defaultValue : Number(s
  * @function
  * @memberof path
  * @param {*} arg The value to test
- * @return {boolean} True if <code>arg</code> is a valid slice index once converted to a number, false otherwise.
+ * @returns {boolean} True if <code>arg</code> is a valid slice index once converted to a number, false otherwise.
  * @private
  * @since 1.0.0
  */
@@ -65,7 +65,7 @@ const isSliceIndexString = arg => isSliceIndex(arg ? Number(arg) : undefined)
  *  - Otherwise, calls <code>fn</code> with the string representation of its argument
  * @function
  * @param {function} fn The function to wrap
- * @return {function} The wrapper function
+ * @returns {function} The wrapper function
  * @memberof path
  * @private
  * @since 1.0.0
@@ -109,23 +109,22 @@ const sliceNotationParser = map(
   ([sliceStart, sliceEnd, rest]) => [[slice, [toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)]], ...stringToPath(rest)],
 )
 
-const bareListNotationParser = map(
-  regexp(/^\{([^,}]*)((,[^,}]*)*)\}\.?(.*)$/),
-  ([firstProp, propsRest, , rest]) => {
-    return (propsRest === undefined || propsRest === '')
-      ? [[prop, firstProp === undefined ? '' : firstProp], ...stringToPath(rest)]
-      : [[list, [firstProp === undefined ? '' : firstProp, ...propsRest.substr(1).split(',')]], ...stringToPath(rest)]
+const listPropRegexp = /^,?((?!["'])([^,]*)|(["'])(.*?[^\\])\3)(.*)/
+const listNotationParser = map(
+  regexp(/^\{(((?!["'])[^,}]*|(["']).*?[^\\]\2)(,((?!["'])[^,}]*|(["']).*?[^\\]\6))*)\}\.?(.*)$/),
+  ([rawProps, , , , , , rest]) => {
+    const props = []
+    if (rawProps.startsWith(',')) props.push('')
+    for (let propMatch = rawProps.match(listPropRegexp); propMatch !== undefined; propMatch = propMatch[5] === '' ? undefined : propMatch[5].match(listPropRegexp))
+      props.push(propMatch[2] === undefined ? propMatch[4] : propMatch[2])
+    return props.length === 1 ? [[prop, props[0]], ...stringToPath(rest)] : [[list, props], ...stringToPath(rest)]
   },
 )
 
-const incompleteBareListNotationParser = map(
-  regexp(/^\{(.*)$/),
-  ([props]) => {
-    if (props === '') return []
-    const propsSplit = props.split(',')
-    return propsSplit.length === 0
-      ? [[prop, propsSplit[0]]]
-      : [[slice, propsSplit]]
+const incompleteListNotationParser = map(
+  regexp(/^(\{[^.[{]*)(.*)$/),
+  ([beforeNewSegment, rest]) => {
+    return [[prop, beforeNewSegment], ...stringToPath(rest)]
   },
 )
 
@@ -134,14 +133,9 @@ const pathSegmentEndedByDotParser = map(
   ([beforeDot, afterDot]) => [[prop, beforeDot], ...stringToPath(afterDot)],
 )
 
-const pathSegmentEndedByBracketParser = map(
-  regexp(/^([^.[{]*?)(\[.*)$/),
-  ([beforeBracket, atBracket]) => [[prop, beforeBracket], ...stringToPath(atBracket)],
-)
-
-const pathSegmentEndedByCurlyParser = map(
-  regexp(/^([^.[{]*?)(\{.*)$/),
-  ([beforeCurly, atCurly]) => [[prop, beforeCurly], ...stringToPath(atCurly)],
+const pathSegmentEndedByBracketOrCurlyParser = map(
+  regexp(/^([^.[{]*?)([[{].*)$/),
+  ([beforeBracketOrCurly, atBracketOrCurly]) => [[prop, beforeBracketOrCurly], ...stringToPath(atBracketOrCurly)],
 )
 
 const applyParsers = race([
@@ -151,11 +145,10 @@ const applyParsers = race([
   sliceNotationParser,
   bareBracketNotationParser,
   incompleteBareBracketNotationParser,
-  bareListNotationParser,
-  incompleteBareListNotationParser,
+  listNotationParser,
+  incompleteListNotationParser,
   pathSegmentEndedByDotParser,
-  pathSegmentEndedByBracketParser,
-  pathSegmentEndedByCurlyParser,
+  pathSegmentEndedByBracketOrCurlyParser,
   str => [[prop, str]],
 ])
 
@@ -163,7 +156,7 @@ const applyParsers = race([
  * Converts <code>arg</code> to a path represented as an array of keys.
  * @function
  * @param {*} arg The value to convert
- * @return {Array<string|number|Array>} The path represented as an array of keys
+ * @returns {Array<string|number|Array>} The path represented as an array of keys
  * @memberof path
  * @private
  * @since 1.0.0
@@ -181,7 +174,7 @@ const cache = new Map()
  * The cache has a maximum size of 1000, when overflowing the cache is cleared.
  * @function
  * @param {string} str The string to convert
- * @return {Array<string|number|Array>} The path represented as an array of keys
+ * @returns {Array<string|number|Array>} The path represented as an array of keys
  * @memberof path
  * @private
  * @since 1.0.0
