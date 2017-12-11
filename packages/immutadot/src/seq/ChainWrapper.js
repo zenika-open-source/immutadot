@@ -118,8 +118,8 @@ class ChainWrapper {
  */
 
 // Add namespaces functions to the ChainWrapper prototype
-const { convert, ...filteredCore } = core // eslint-disable-line no-unused-vars
-const { set, unset, update, ...filteredObject } = object // eslint-disable-line no-unused-vars
+const { convert, ...filteredCore } = core
+const { set, unset, update, ...filteredObject } = object
 const namespaces = [
   array,
   filteredCore,
