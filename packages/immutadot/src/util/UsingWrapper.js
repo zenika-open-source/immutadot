@@ -62,14 +62,8 @@ class UsingWrapper {
 }
 
 // Add namespaces functions to the UsingWrapper prototype
-const {
-  convert: _0, unset: _1, toPath: _2, // eslint-disable-line no-unused-vars
-  ...filteredCore
-} = core
-const {
-  get: _3, set: _4, unset: _5, update: _6, // eslint-disable-line no-unused-vars
-  ...filteredObject
-} = object
+const { convert, unset, toPath, ...filteredCore } = core
+const { get: _0, set, unset: _1, update, ...filteredObject } = object
 const namespaces = [
   array,
   filteredCore,
