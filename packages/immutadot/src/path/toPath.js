@@ -123,9 +123,7 @@ const listNotationParser = map(
 
 const incompleteListNotationParser = map(
   regexp(/^(\{[^.[{]*)(.*)$/),
-  ([beforeNewSegment, rest]) => {
-    return [[prop, beforeNewSegment], ...stringToPath(rest)]
-  },
+  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...stringToPath(rest)],
 )
 
 const pathSegmentEndedByNewSegment = map(
