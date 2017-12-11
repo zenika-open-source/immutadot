@@ -110,13 +110,20 @@ const sliceNotationParser = map(
 )
 
 const listPropRegexp = /^,?((?!["'])([^,]*)|(["'])(.*?[^\\])\3)(.*)/
+function* extractListProps(rawProps) {
+  if (rawProps.startsWith(',')) yield ''
+  let remProps = rawProps
+  while (remProps !== '') {
+    const [, , bareProp, , quotedProp, rest] = listPropRegexp.exec(remProps)
+    yield bareProp === undefined ? quotedProp : bareProp
+    remProps = rest
+  }
+}
+
 const listNotationParser = map(
   regexp(/^\{(((?!["'])[^,}]*|(["']).*?[^\\]\2)(,((?!["'])[^,}]*|(["']).*?[^\\]\6))*)\}\.?(.*)$/),
   ([rawProps, , , , , , rest]) => {
-    const props = []
-    if (rawProps.startsWith(',')) props.push('')
-    for (let propMatch = rawProps.match(listPropRegexp); propMatch !== undefined; propMatch = propMatch[5] === '' ? undefined : propMatch[5].match(listPropRegexp))
-      props.push(propMatch[2] === undefined ? propMatch[4] : propMatch[2])
+    const props = [...extractListProps(rawProps)]
     return props.length === 1 ? [[prop, props[0]], ...stringToPath(rest)] : [[list, props], ...stringToPath(rest)]
   },
 )
