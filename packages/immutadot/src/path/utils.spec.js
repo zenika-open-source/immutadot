@@ -6,6 +6,7 @@ import {
 } from './utils'
 import {
   index,
+  list,
   prop,
   slice,
 } from './consts'
@@ -61,6 +62,7 @@ describe('Path Utils', () => {
 
     it('should return false if already applied paths contain slices', () => {
       expect(pathAlreadyApplied([[prop, 'foo'], [index, 123], [prop, 'bar']], [[[prop, 'foo'], [index, 123], [prop, 'bar'], [prop, 'baz'], [slice, [0, 10]]]])).toBe(false)
+      expect(pathAlreadyApplied([[prop, 'foo'], [index, 123], [prop, 'bar']], [[[prop, 'foo'], [index, 123], [list, ['bar', 'baz']]]])).toBe(false)
     })
   })
 })
