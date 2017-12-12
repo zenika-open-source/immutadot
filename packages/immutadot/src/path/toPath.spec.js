@@ -43,6 +43,7 @@ describe('ToPath', () => {
   it('should convert list notation path', () => {
     expect(toPath('{abc,defg}.{123,4567,89}.{foo}')).toEqual([[list, ['abc', 'defg']], [list, ['123', '4567', '89']], [prop, 'foo']])
     expect(toPath('{"abc,defg",foo}.{\'123,4567,89\'}')).toEqual([[list, ['abc,defg', 'foo']], [prop, '123,4567,89']])
+    expect(toPath('{,1,2,3}')).toEqual([[list, ['', '1', '2', '3']]])
     // Unterminated list notation should give a prop
     expect(toPath('abc.{')).toEqual([[prop, 'abc'], [prop, '{']])
     expect(toPath('abc.{"')).toEqual([[prop, 'abc'], [prop, '{"']])
