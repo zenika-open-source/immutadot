@@ -1,6 +1,7 @@
 /* eslint-env jest */
 import {
   index,
+  list,
   prop,
   slice,
 } from './consts'
@@ -39,9 +40,22 @@ describe('ToPath', () => {
     expect(toPath('[1:2:3][1:a][1:2')).toEqual([[prop, '1:2:3'], [prop, '1:a'], [prop, '1:2']])
   })
 
+  it('should convert list notation path', () => {
+    expect(toPath('{abc,defg}.{123,4567,89}.{foo}')).toEqual([[list, ['abc', 'defg']], [list, ['123', '4567', '89']], [prop, 'foo']])
+    expect(toPath('{"abc,defg",foo}.{\'123,4567,89\'}')).toEqual([[list, ['abc,defg', 'foo']], [prop, '123,4567,89']])
+    expect(toPath('{,1,2,3}')).toEqual([[list, ['', '1', '2', '3']]])
+    // Unterminated list notation should give a prop
+    expect(toPath('abc.{')).toEqual([[prop, 'abc'], [prop, '{']])
+    expect(toPath('abc.{"')).toEqual([[prop, 'abc'], [prop, '{"']])
+    expect(toPath('abc.{a,b,c')).toEqual([[prop, 'abc'], [prop, '{a,b,c']])
+    expect(toPath('{abc,defg[0].foo{bar')).toEqual([[prop, '{abc,defg'], [index, 0], [prop, 'foo'], [prop, '{bar']])
+    // Unterminated quoted list notation should run to end of path
+    expect(toPath('{abc,"defg[0]}.foo{\'bar')).toEqual([[prop, '{abc,"defg'], [index, 0], [prop, '}'], [prop, 'foo'], [prop, '{\'bar']])
+  })
+
   it('should convert mixed path', () => {
-    expect(toPath('a[0]["b.c"].666[1:]')).toEqual([[prop, 'a'], [index, 0], [prop, 'b.c'], [prop, '666'], [slice, [1, undefined]]])
-    expect(toPath('a.[0].["b.c"]666[1:2:3]')).toEqual([[prop, 'a'], [index, 0], [prop, 'b.c'], [prop, '666'], [prop, '1:2:3']])
+    expect(toPath('a[0]["b.c"].666[1:].{1a,2b,3c}')).toEqual([[prop, 'a'], [index, 0], [prop, 'b.c'], [prop, '666'], [slice, [1, undefined]], [list, ['1a', '2b', '3c']]])
+    expect(toPath('a.[0].["b.c"]666[1:2:3]{1a}{"2b",\'3c\'}')).toEqual([[prop, 'a'], [index, 0], [prop, 'b.c'], [prop, '666'], [prop, '1:2:3'], [prop, '1a'], [list, ['2b', '3c']]])
   })
 
   it('should not convert array path', () => {
@@ -51,12 +65,14 @@ describe('ToPath', () => {
       [prop, 'test'],
       [slice, [1, undefined]],
       [slice, [0, -2]],
+      [list, ['1a', '2b', '3c']],
     ])).toEqual([
       [index, 666],
       [prop, Symbol.for('🍺')],
       [prop, 'test'],
       [slice, [1, undefined]],
       [slice, [0, -2]],
+      [list, ['1a', '2b', '3c']],
     ])
   })
 

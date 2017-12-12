@@ -7,6 +7,7 @@ import {
 
 import {
   index,
+  list,
   prop,
   slice,
 } from './consts'
@@ -27,7 +28,7 @@ import {
  * @function
  * @param {string} str The string
  * @param {string} quote The quote to unescape
- * @return {string} The unescaped string
+ * @returns {string} The unescaped string
  * @memberof path
  * @private
  * @since 1.0.0
@@ -39,7 +40,7 @@ const unescapeQuotes = (str, quote) => str.replace(new RegExp(`\\\\${quote}`, 'g
  * @function
  * @param {string} str The string to convert
  * @param {number?} defaultValue The default value if <code>str</code> is empty
- * @return {number} <code>undefined</code> if <code>str</code> is empty, otherwise an int (may be NaN)
+ * @returns {number} <code>undefined</code> if <code>str</code> is empty, otherwise an int (may be NaN)
  * @memberof path
  * @private
  * @since 1.0.0
@@ -51,7 +52,7 @@ const toSliceIndex = (str, defaultValue) => str === '' ? defaultValue : Number(s
  * @function
  * @memberof path
  * @param {*} arg The value to test
- * @return {boolean} True if <code>arg</code> is a valid slice index once converted to a number, false otherwise.
+ * @returns {boolean} True if <code>arg</code> is a valid slice index once converted to a number, false otherwise.
  * @private
  * @since 1.0.0
  */
@@ -64,7 +65,7 @@ const isSliceIndexString = arg => isSliceIndex(arg ? Number(arg) : undefined)
  *  - Otherwise, calls <code>fn</code> with the string representation of its argument
  * @function
  * @param {function} fn The function to wrap
- * @return {function} The wrapper function
+ * @returns {function} The wrapper function
  * @memberof path
  * @private
  * @since 1.0.0
@@ -108,14 +109,33 @@ const sliceNotationParser = map(
   ([sliceStart, sliceEnd, rest]) => [[slice, [toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)]], ...stringToPath(rest)],
 )
 
-const pathSegmentEndedByDotParser = map(
-  regexp(/^([^.[]*?)\.(.*)$/),
-  ([beforeDot, afterDot]) => [[prop, beforeDot], ...stringToPath(afterDot)],
+const listPropRegexp = /^,?((?!["'])([^,]*)|(["'])(.*?[^\\])\3)(.*)/
+function* extractListProps(rawProps) {
+  if (rawProps.startsWith(',')) yield ''
+  let remProps = rawProps
+  while (remProps !== '') {
+    const [, , bareProp, , quotedProp, rest] = listPropRegexp.exec(remProps)
+    yield bareProp === undefined ? quotedProp : bareProp
+    remProps = rest
+  }
+}
+
+const listNotationParser = map(
+  regexp(/^\{(((?!["'])[^,}]*|(["']).*?[^\\]\2)(,((?!["'])[^,}]*|(["']).*?[^\\]\6))*)\}\.?(.*)$/),
+  ([rawProps, , , , , , rest]) => {
+    const props = [...extractListProps(rawProps)]
+    return props.length === 1 ? [[prop, props[0]], ...stringToPath(rest)] : [[list, props], ...stringToPath(rest)]
+  },
 )
 
-const pathSegmentEndedByBracketParser = map(
-  regexp(/^([^.[]*?)(\[.*)$/),
-  ([beforeBracket, atBracket]) => [[prop, beforeBracket], ...stringToPath(atBracket)],
+const incompleteListNotationParser = map(
+  regexp(/^(\{[^.[{]*)(.*)$/),
+  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...stringToPath(rest)],
+)
+
+const pathSegmentEndedByNewSegment = map(
+  regexp(/^([^.[{]*)\.?([[{]?.*)$/),
+  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...stringToPath(rest)],
 )
 
 const applyParsers = race([
@@ -125,16 +145,16 @@ const applyParsers = race([
   sliceNotationParser,
   bareBracketNotationParser,
   incompleteBareBracketNotationParser,
-  pathSegmentEndedByDotParser,
-  pathSegmentEndedByBracketParser,
-  str => [[prop, str]],
+  listNotationParser,
+  incompleteListNotationParser,
+  pathSegmentEndedByNewSegment,
 ])
 
 /**
  * Converts <code>arg</code> to a path represented as an array of keys.
  * @function
  * @param {*} arg The value to convert
- * @return {Array<string|number|Array>} The path represented as an array of keys
+ * @returns {Array<string|number|Array>} The path represented as an array of keys
  * @memberof path
  * @private
  * @since 1.0.0
@@ -152,7 +172,7 @@ const cache = new Map()
  * The cache has a maximum size of 1000, when overflowing the cache is cleared.
  * @function
  * @param {string} str The string to convert
- * @return {Array<string|number|Array>} The path represented as an array of keys
+ * @returns {Array<string|number|Array>} The path represented as an array of keys
  * @memberof path
  * @private
  * @since 1.0.0
@@ -172,8 +192,7 @@ const memoizedStringToPath = str => {
  * Converts <code>arg</code> to a path represented as an array of keys.<br />
  * <code>arg</code> may be a string, in which case it will be parsed.<br />
  * It may also be an Array, in which case a copy of the array with values converted to path keys will be returned.<br />
- * If <code>arg</code> is neither a string nor an Array, its string representation will be parsed.<br />
- * This function is failsafe, it will never throw an error.
+ * If <code>arg</code> is neither a string nor an Array, its string representation will be parsed.
  * @function
  * @param {string|Array|*} arg The value to convert
  * @returns {Array<Array<Symbol,...*>>} The path represented as an array of keys
