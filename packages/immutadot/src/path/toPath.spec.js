@@ -31,9 +31,9 @@ describe('ToPath', () => {
 
   it('should convert slice notation path', () => {
     expect(toPath('[:][1:][:-2][3:4]')).toEqual([
-      [slice, [undefined, undefined]],
+      [slice, [0, undefined]],
       [slice, [1, undefined]],
-      [slice, [undefined, -2]],
+      [slice, [0, -2]],
       [slice, [3, 4]],
     ])
     expect(toPath('[1:2:3][1:a][1:2')).toEqual([[prop, '1:2:3'], [prop, '1:a'], [prop, '1:2']])
