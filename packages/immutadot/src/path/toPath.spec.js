@@ -5,6 +5,7 @@ import {
   prop,
   slice,
 } from './consts'
+
 import { toPath } from 'path'
 
 describe('ToPath', () => {
@@ -21,13 +22,13 @@ describe('ToPath', () => {
   it('should convert array notation path', () => {
     expect(toPath('[0]["1.2"][\'[1.2]\']["[\\"1.2\\"]"][1a][1[2]')).toEqual([[index, 0], [prop, '1.2'], [prop, '[1.2]'], [prop, '["1.2"]'], [prop, '1a'], [prop, '1[2']])
     // Empty unterminated array notation should be discarded
-    expect(toPath('[0][')).toEqual([[index, 0]])
-    expect(toPath('[0]["')).toEqual([[index, 0]])
+    expect(toPath('[0][')).toEqual([[index, 0], [prop, '[']])
+    expect(toPath('[0]["')).toEqual([[index, 0], [prop, '["']])
     // Unterminated array notation should run to end of path as string
-    expect(toPath('[0][123')).toEqual([[index, 0], [prop, '123']])
-    expect(toPath('[0][1.a[2')).toEqual([[index, 0], [prop, '1.a[2']])
+    expect(toPath('[0][123')).toEqual([[index, 0], [prop, '[123']])
+    expect(toPath('[0][1.a[2')).toEqual([[index, 0], [prop, '[1'], [prop, 'a'], [prop, '[2']])
     // Unterminated quoted array notation should run to end of path
-    expect(toPath('[0]["1[2].a')).toEqual([[index, 0], [prop, '1[2].a']])
+    expect(toPath('[0]["1[2].a')).toEqual([[index, 0], [prop, '["1'], [index, 2], [prop, 'a']])
   })
 
   it('should convert slice notation path', () => {
@@ -37,7 +38,7 @@ describe('ToPath', () => {
       [slice, [0, -2]],
       [slice, [3, 4]],
     ])
-    expect(toPath('[1:2:3][1:a][1:2')).toEqual([[prop, '1:2:3'], [prop, '1:a'], [prop, '1:2']])
+    expect(toPath('[1:2:3][1:a][1:2')).toEqual([[prop, '1:2:3'], [prop, '1:a'], [prop, '[1:2']])
   })
 
   it('should convert list notation path', () => {
