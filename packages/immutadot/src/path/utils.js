@@ -1,10 +1,11 @@
 import {
-  isNaturalInteger,
-} from 'util/lang'
-
-import {
+  list,
   slice,
 } from './consts'
+
+import {
+  isNaturalInteger,
+} from 'util/lang'
 
 export const getSliceBound = (value, length) => {
   if (value < 0) return Math.max(length + value, 0)
@@ -56,7 +57,9 @@ export const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg
  * @since 1.0.0
  */
 export function pathAlreadyApplied(path, pAppliedPaths) {
-  const appliedPaths = pAppliedPaths.filter(appliedPath => !appliedPath.some(([propType]) => propType === slice))
+  const appliedPaths = pAppliedPaths.filter(
+    appliedPath => !appliedPath.some(([propType]) => propType === slice || propType === list),
+  )
   if (appliedPaths.length === 0) return false
   if (path.length === 0 && appliedPaths.length !== 0) return true
   return appliedPaths.some(appliedPath => pathIncludes(appliedPath, path))

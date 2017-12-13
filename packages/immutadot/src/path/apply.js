@@ -5,6 +5,8 @@ import {
 
 import {
   index,
+  list,
+  prop,
   slice,
 } from './consts'
 
@@ -90,8 +92,8 @@ const apply = operation => {
 
     const applier = (obj, appliedPaths = []) => {
       const walkPath = (curObj, curPath, remPath, isCopy = false) => {
-        const [prop, ...pathRest] = remPath
-        const [propType, propValue] = prop
+        const [curProp, ...pathRest] = remPath
+        const [propType, propValue] = curProp
 
         if (propType === slice) {
           const [start, end] = getSliceBounds(propValue, length(curObj))
@@ -108,6 +110,19 @@ const apply = operation => {
           return [false, newArr]
         }
 
+        if (propType === list) {
+          const newObj = copy(curObj, false)
+          let noop = true
+
+          for (const listProp of propValue) {
+            const [iNoop] = walkPath(newObj, curPath, [[prop, listProp], ...pathRest], true)
+            noop = noop && iNoop
+          }
+
+          if (noop) return [true, curObj]
+          return [false, newObj]
+        }
+
         const value = isNil(curObj) ? undefined : curObj[propValue]
         const doCopy = !isCopy && !pathAlreadyApplied(curPath, appliedPaths)
 
@@ -117,7 +132,7 @@ const apply = operation => {
           return [false, newObj]
         }
 
-        const [noop, newValue] = walkPath(value, [...curPath, prop], pathRest)
+        const [noop, newValue] = walkPath(value, [...curPath, curProp], pathRest)
         if (noop) return [true, curObj]
 
         const newObj = copyIfNecessary(curObj, propType, doCopy)
