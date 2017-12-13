@@ -9,7 +9,9 @@
     "test": "lerna run --stream test",
     "test:coverage": "lerna run --stream test:coverage && codecov --disable=gcov",
     "docs": "lerna run --stream docs",
-    "docs:private": "lerna run --stream docs:private"
+    "docs:private": "lerna run --stream docs:private",
+    "dist": "export NODE_ENV=production && rollup -c",
+    "dist:dev": "export NODE_ENV=development && rollup -c -w"
   },
   "devDependencies": {
     "babel-cli": "~6.26.0",
@@ -27,6 +29,15 @@
     "jsdoc": "~3.5.5",
     "lerna": "~2.7.0",
     "lodash": "~4.17.4"
+    "lerna": "~2.6.0",
+    "lodash": "~4.17.4",
+    "rollup": "^0.52.1",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-eslint": "^4.0.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "rollup-watch": "^4.3.1"
   },
   "workspaces": [
     "packages/*"
