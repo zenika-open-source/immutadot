@@ -83,8 +83,8 @@ const quotedBracketNotationParser = map(
 )
 
 const incompleteQuotedBracketNotationParser = map(
-  regexp(/^\[["'](.*)$/),
-  ([rest]) => rest ? [[prop, rest]] : [],
+  regexp(/^(\[["'][^.[{]*)\.?(.*)$/),
+  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...stringToPath(rest)],
 )
 
 const bareBracketNotationParser = map(
@@ -97,8 +97,8 @@ const bareBracketNotationParser = map(
 )
 
 const incompleteBareBracketNotationParser = map(
-  regexp(/^\[(.*)$/),
-  ([rest]) => rest ? [[prop, rest]] : [],
+  regexp(/^(\[[^.[{]*)\.?(.*)$/),
+  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...stringToPath(rest)],
 )
 
 const sliceNotationParser = map(
@@ -129,7 +129,7 @@ const listNotationParser = map(
 )
 
 const incompleteListNotationParser = map(
-  regexp(/^(\{[^.[{]*)(.*)$/),
+  regexp(/^(\{[^.[{]*)\.?(.*)$/),
   ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...stringToPath(rest)],
 )
 

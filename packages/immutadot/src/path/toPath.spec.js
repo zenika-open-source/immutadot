@@ -51,7 +51,7 @@ describe('ToPath', () => {
     expect(toPath('abc.{a,b,c')).toEqual([[prop, 'abc'], [prop, '{a,b,c']])
     expect(toPath('{abc,defg[0].foo{bar')).toEqual([[prop, '{abc,defg'], [index, 0], [prop, 'foo'], [prop, '{bar']])
     // Unterminated quoted list notation should run to end of path
-    expect(toPath('{abc,"defg[0]}.foo{\'bar')).toEqual([[prop, '{abc,"defg'], [index, 0], [prop, '}'], [prop, 'foo'], [prop, '{\'bar']])
+    expect(toPath('{abc,"defg[0]}.foo.{\'bar')).toEqual([[prop, '{abc,"defg'], [index, 0], [prop, '}'], [prop, 'foo'], [prop, '{\'bar']])
   })
 
   it('should convert mixed path', () => {
