@@ -1,7 +1,7 @@
 import { convertStringMethod } from './convertStringMethod'
 
 /**
- * Replaces matches by former string concatenated with <code>strings</code>.
+ * Replaces by former string concatenated with <code>strings</code>.
  * @function
  * @memberof string
  * @param {Object} object The object to modify.

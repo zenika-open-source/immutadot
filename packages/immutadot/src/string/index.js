@@ -5,4 +5,5 @@
  */
 
 export { concat } from './concat'
+export { padEnd } from './padEnd'
 export { replace } from './replace'
