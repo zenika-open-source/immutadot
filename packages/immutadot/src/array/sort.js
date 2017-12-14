@@ -15,4 +15,5 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @flow
  */
 const sort = convertArrayMethod('sort')
+
 export { sort }
