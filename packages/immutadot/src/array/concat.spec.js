@@ -2,7 +2,7 @@
 import { concat } from 'array'
 import { immutaTest } from 'test.utils'
 
-describe('Concat', () => {
+describe('array.concat', () => {
 
   it('should concat an array', () => {
     immutaTest((input, path) => {

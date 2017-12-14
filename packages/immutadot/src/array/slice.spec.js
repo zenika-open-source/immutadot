@@ -2,7 +2,7 @@
 import { immutaTest } from 'test.utils'
 import { slice } from 'array'
 
-describe('Slice', () => {
+describe('array.slice', () => {
 
   it('should replace by a slice', () => {
     immutaTest((input, path) => {

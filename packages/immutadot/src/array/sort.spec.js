@@ -2,7 +2,7 @@
 import { immutaTest } from 'test.utils'
 import { sort } from 'array'
 
-describe('Reverse', () => {
+describe('array.sort', () => {
 
   it('should sort elements', () => {
     immutaTest((input, path) => {
