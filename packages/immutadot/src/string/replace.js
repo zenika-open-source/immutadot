@@ -1,4 +1,4 @@
-import { convert } from 'core/convert'
+import { convertStringMethod } from './convertStringMethod'
 
 /**
  * Replaces matches for pattern in string with replacement.
@@ -14,6 +14,6 @@ import { convert } from 'core/convert'
  * @since 0.3.0
  * @flow
  */
-const replace = convert((str, ...args) => str.replace(...args))
+const replace = convertStringMethod('replace')
 
 export { replace }
