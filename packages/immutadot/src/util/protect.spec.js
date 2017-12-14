@@ -2,7 +2,7 @@
 import { immutaTest } from 'test.utils'
 import { protect } from 'util'
 
-describe('Protect', () => {
+describe('util.protect', () => {
   it('should return properties value', () => {
     immutaTest(input => {
       const output = protect(input)(protectedInput => {

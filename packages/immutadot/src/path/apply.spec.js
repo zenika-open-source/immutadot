@@ -2,7 +2,7 @@
 import { apply } from './apply'
 import { immutaTest } from 'test.utils'
 
-describe('Apply', () => {
+describe('path.apply', () => {
 
   const _inc = (v, i = 1) => {
     let r = Number(v)

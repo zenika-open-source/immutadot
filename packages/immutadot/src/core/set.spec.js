@@ -2,7 +2,7 @@
 import { immutaTest } from 'test.utils'
 import { set } from 'core'
 
-describe('Set', () => {
+describe('core.set', () => {
   it('should set a prop', () => {
     immutaTest((input, path) => {
       const output = set(input, path, 'final')

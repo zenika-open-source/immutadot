@@ -2,7 +2,7 @@
 import { chain } from 'seq'
 import { immutaTest } from 'test.utils'
 
-describe('Chain', () => {
+describe('seq.chain', () => {
 
   const object = {
     nested1: {

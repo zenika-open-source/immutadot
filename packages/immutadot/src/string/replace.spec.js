@@ -2,7 +2,7 @@
 import { immutaTest } from 'test.utils'
 import { replace } from 'string'
 
-describe('Replace', () => {
+describe('string.replace', () => {
 
   it('should replace matches for pattern in string with replacement', () => {
     immutaTest((input, path) => {

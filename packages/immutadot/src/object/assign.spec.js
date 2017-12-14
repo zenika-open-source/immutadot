@@ -2,7 +2,7 @@
 import { assign } from 'object'
 import { immutaTest } from 'test.utils'
 
-describe('Assign', () => {
+describe('object.assign', () => {
 
   it('should assign objects', () => {
     immutaTest((input, path) => {
