@@ -4,7 +4,6 @@ const unsetOperation = (obj, prop) => { delete obj[prop] }
 
 /**
  * Removes the property at <code>path</code> of <code>object</code>.
- * This is the <code>lodash/fp</code> <code>unset</code>, with no arguments rearranging and no currying.
  * @function
  * @memberof core
  * @param {Object} obj The object to modify.

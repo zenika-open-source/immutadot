@@ -10,9 +10,10 @@ import { convert } from 'core/convert'
  * @param {Function|string} replacement The match replacement.
  * @return {Object} Returns the updated object.
  * @example replace({ nested: { a: "Hi Nico" } }, 'nested.a', 'Nico', 'Yvo') // => { nested: { a: "Hi Yvo" } }
- * @see {@link https://lodash.com/docs#replace|lodash.replace} for more information.
+ * @see {@link https://mdn.io/String.prototype.replace|String.prototype.replace} for more information.
  * @since 0.3.0
  * @flow
  */
 const replace = convert((str, ...args) => str.replace(...args))
+
 export { replace }
