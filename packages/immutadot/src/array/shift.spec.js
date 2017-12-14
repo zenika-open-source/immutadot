@@ -1,14 +1,14 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { pop } from 'array'
+import { shift } from 'array'
 
-describe('array.pop', () => {
+describe('array.shift', () => {
 
-  it('should remove last element', () => {
+  it('should remove first element', () => {
     immutaTest((input, path) => {
-      const output = pop(input, path)
+      const output = shift(input, path)
       expect(output).toEqual({
-        nested: { prop: [1, 2, 3] },
+        nested: { prop: [2, 3, 4] },
         other: {},
       })
       return output
@@ -20,7 +20,7 @@ describe('array.pop', () => {
 
   it('should replace deep undefined with array', () => {
     immutaTest((input, path) => {
-      const output = pop(input, path, () => true)
+      const output = shift(input, path, () => true)
       expect(output).toEqual({ nested: { prop: [] } })
       return output
     }, undefined, 'nested.prop')
@@ -28,7 +28,7 @@ describe('array.pop', () => {
 
   it('should wrap value in array and remove it', () => {
     immutaTest((input, path) => {
-      const output = pop(input, path)
+      const output = shift(input, path)
       expect(output).toEqual({
         nested: { prop: [] },
         other: {},
