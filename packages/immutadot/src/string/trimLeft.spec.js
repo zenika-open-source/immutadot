@@ -4,7 +4,7 @@ import { trimLeft } from 'string'
 
 describe('string.trimLeft', () => {
 
-  it('should strip whitespaces at start and end', () => {
+  it('should strip whitespaces at start', () => {
     immutaTest((input, path) => {
       const output = trimLeft(input, path)
       expect(output).toEqual({ nested: { prop: 'Hello World !   ' } })
