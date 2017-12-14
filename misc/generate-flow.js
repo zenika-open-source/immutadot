@@ -65,9 +65,9 @@ export { curried as ${name} }
         return `export {
 ${nsItems.map(({ name }) => `  ${name},`).join('\n')}
 } from './${namespace}'`
-        /* eslint-enable */
       }).join('\n\n')}
-      `,
+`,
+      /* eslint-enable */
     )
   } catch (e) {
     console.error(e) // eslint-disable-line no-console
