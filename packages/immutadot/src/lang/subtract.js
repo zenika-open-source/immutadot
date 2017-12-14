@@ -12,6 +12,6 @@ import { convert } from 'core/convert'
  * @since 1.0.0
  * @flow
  */
-const subtract = convert((value, subtraction) => value - subtraction)
+const subtract = convert((value, subtraction) => Number(value) - Number(subtraction))
 
 export { subtract }

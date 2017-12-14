@@ -12,6 +12,6 @@ import { convert } from 'core/convert'
  * @since 1.0.0
  * @flow
  */
-const multiply = convert((value, multiplier) => value * multiplier)
+const multiply = convert((value, multiplier) => Number(value) * Number(multiplier))
 
 export { multiply }

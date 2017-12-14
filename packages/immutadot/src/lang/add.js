@@ -12,6 +12,6 @@ import { convert } from 'core/convert'
  * @since 1.0.0
  * @flow
  */
-const add = convert((value, addition) => value + addition)
+const add = convert((value, addition) => Number(value) + Number(addition))
 
 export { add }

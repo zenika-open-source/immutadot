@@ -12,6 +12,6 @@ import { convert } from 'core/convert'
  * @since 1.0.0
  * @flow
  */
-const divide = convert((value, divider) => value / divider)
+const divide = convert((value, divider) => Number(value) / Number(divider))
 
 export { divide }
