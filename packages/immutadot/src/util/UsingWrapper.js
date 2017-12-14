@@ -62,12 +62,11 @@ class UsingWrapper {
 
 // Add namespaces functions to the UsingWrapper prototype
 const { convert, unset, toPath, ...filteredCore } = core
-const { get: _0, set, unset: _1, update, ...filteredObject } = object
 const namespaces = [
   array,
   filteredCore,
   lang,
-  filteredObject,
+  object,
   string,
 ]
 namespaces.forEach(namespace => {

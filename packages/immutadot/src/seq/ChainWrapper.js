@@ -118,12 +118,11 @@ class ChainWrapper {
 
 // Add namespaces functions to the ChainWrapper prototype
 const { convert, ...filteredCore } = core
-const { set, unset, update, ...filteredObject } = object
 const namespaces = [
   array,
   filteredCore,
   lang,
-  filteredObject,
+  object,
   string,
 ]
 namespaces.forEach(namespace => {
