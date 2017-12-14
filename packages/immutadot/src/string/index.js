@@ -6,4 +6,5 @@
 
 export { concat } from './concat'
 export { padEnd } from './padEnd'
+export { padStart } from './padStart'
 export { replace } from './replace'

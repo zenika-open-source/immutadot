@@ -8,7 +8,7 @@ import { convertStringMethod } from './convertStringMethod'
  * @param {Array|string} path The path of the property to set.
  * @param {...string} strings Strings to concatenate.
  * @return {Object} Returns the updated object.
- * @example concat({ nested: { a: "Hello" } }, 'nested.a', ' world', ' !') // => { nested: { a: "Hello world !" } }
+ * @example concat({ nested: { a: 'Hello' } }, 'nested.a', ' world', ' !') // => { nested: { a: 'Hello world !' } }
  * @see {@link https://mdn.io/String.prototype.concat|String.prototype.concat} for more information.
  * @since 1.0.0
  * @flow

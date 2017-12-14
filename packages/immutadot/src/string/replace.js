@@ -9,7 +9,7 @@ import { convertStringMethod } from './convertStringMethod'
  * @param {RegExp|string} pattern The pattern to replace.
  * @param {Function|string} replacement The match replacement.
  * @return {Object} Returns the updated object.
- * @example replace({ nested: { a: "Hi Nico" } }, 'nested.a', 'Nico', 'Yvo') // => { nested: { a: "Hi Yvo" } }
+ * @example replace({ nested: { a: 'Hi Nico' } }, 'nested.a', 'Nico', 'Yvo') // => { nested: { a: 'Hi Yvo' } }
  * @see {@link https://mdn.io/String.prototype.replace|String.prototype.replace} for more information.
  * @since 0.3.0
  * @flow
