@@ -1,16 +1,17 @@
 import {
-  filter,
-  map,
-  race,
-  regexp,
-} from './parser.utils'
-
-import {
+  allProps,
   index,
   list,
   prop,
   slice,
 } from './consts'
+
+import {
+  filter,
+  map,
+  race,
+  regexp,
+} from './parser.utils'
 
 import {
   isIndex,
@@ -109,6 +110,11 @@ const sliceNotationParser = map(
   ([sliceStart, sliceEnd, rest]) => [[slice, [toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)]], ...stringToPath(rest)],
 )
 
+const listWildCardParser = map(
+  regexp(/^{\*}\.?(.*)$/),
+  ([rest]) => [[allProps], ...stringToPath(rest)],
+)
+
 const listPropRegexp = /^,?((?!["'])([^,]*)|(["'])(.*?[^\\])\3)(.*)/
 function* extractListProps(rawProps) {
   if (rawProps.startsWith(',')) yield ''
@@ -145,6 +151,7 @@ const applyParsers = race([
   sliceNotationParser,
   bareBracketNotationParser,
   incompleteBareBracketNotationParser,
+  listWildCardParser,
   listNotationParser,
   incompleteListNotationParser,
   pathSegmentEndedByNewSegment,

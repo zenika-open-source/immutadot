@@ -190,6 +190,37 @@ describe('path.apply', () => {
     )
   })
 
+  it('should inc in all props', () => {
+    immutaTest(
+      input => {
+        const output = inc(input, 'nested.{*}.val')
+        expect(output).toEqual({
+          nested: {
+            'prop1': { val: 1 },
+            'prop2': { val: 6 },
+            'prop{3}': { val: 6 },
+            '"prop4"': { val: 4 },
+          },
+          other: {},
+        })
+        return output
+      },
+      {
+        nested: {
+          'prop1': { val: 0 },
+          'prop2': { val: 5 },
+          'prop{3}': { val: 5 },
+          '"prop4"': { val: 3 },
+        },
+        other: {},
+      },
+      'nested.prop1.val',
+      'nested.prop2.val',
+      'nested.prop{3}.val',
+      'nested."prop4".val',
+    )
+  })
+
   it('should throw an explicit error when en empty path is given as parameter', () => {
     expect(() => inc({}, '')).toThrowError('path should not be empty')
   })
