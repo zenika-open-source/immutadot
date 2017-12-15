@@ -1,4 +1,5 @@
 /* eslint-env jest */
+import 'seq/core'
 import { chain } from 'seq'
 import { immutaTest } from 'test.utils'
 

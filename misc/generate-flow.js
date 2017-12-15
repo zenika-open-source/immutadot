@@ -14,8 +14,10 @@ const generateFlow = async () => {
     const rootDir = path.resolve(packageDir, '../..')
     const generatedDir = path.resolve(packageDir, 'generated')
     const flowDir = path.resolve(generatedDir, 'flow')
+    const seqDir = path.resolve(generatedDir, 'seq')
     await remove(generatedDir)
     await ensureDir(flowDir)
+    await ensureDir(seqDir)
 
     const items = await jsdoc.explain({
       configure: path.resolve(rootDir, 'jsdoc.json'),
@@ -28,6 +30,7 @@ const generateFlow = async () => {
       .value()
 
     const namespaces = _.keys(itemsByNamespace)
+
     await Promise.all(namespaces.map(async namespace => {
       const nsDir = path.resolve(flowDir, namespace)
       await ensureDir(nsDir)
@@ -66,6 +69,44 @@ export { curried as ${name} }
 ${nsItems.map(({ name }) => `  ${name},`).join('\n')}
 } from './${namespace}'`
       }).join('\n\n')}
+`, /* eslint-enable */
+    )
+
+    await Promise.all(namespaces.map(async namespace => {
+      const nsDir = path.resolve(seqDir, namespace)
+      await ensureDir(nsDir)
+
+      const nsItems = itemsByNamespace[namespace]
+
+      await (async () => {
+        for (const { name } of nsItems) {
+          await writeFile(
+            path.resolve(nsDir, `${name}.js`),
+            /* eslint-disable indent */
+`import { ChainWrapper } from 'seq/ChainWrapper'
+
+import { ${name} } from 'core/${name}'
+
+ChainWrapper.prototype.${name} = function(path, ...args) {
+  return this._call(${name}, path, args)
+}
+`, /* eslint-enable */
+          )
+        }
+      })()
+
+      await writeFile(
+        path.resolve(nsDir, 'index.js'),
+        /* eslint-disable indent */
+`${nsItems.map(({ name }) => `import './${name}'`).join('\n')}
+`, /* eslint-enable */
+      )
+    }))
+
+    await writeFile(
+      path.resolve(seqDir, 'all.js'),
+      /* eslint-disable indent */
+      `${namespaces.map(namespace => `import './${namespace}'`).join('\n')}
 `, /* eslint-enable */
     )
   } catch (e) {
