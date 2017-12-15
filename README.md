@@ -90,6 +90,41 @@ in node:
 
 Feel free to [try immutad●t on runkit](https://npm.runkit.com/immutadot).
 
+## Dot notation
+
+immutad●t brings a few improvements to the classic dot notation:
+
+### Slice notation
+
+The slice notation let you go trough arrays to apply operations without having to map arrays at each level of imbrication.
+
+```js
+add({ nested: { prop: [{ val: 1 }, { val: 2 }] } }, 'nested.prop[:].val', 1)
+// → { nested: { prop: [{ val: 2 }, { val: 3}] } }
+
+divide({ nested: { prop: [{ val: 1 }, { val: 2 }] } }, 'nested.prop[1:].val', 2)
+// → { nested: { prop: [{ val: 1 }, { val: 1}] } }
+
+multiply({ nested: { prop: [{ val: 1 }, { val: 2 }, { val: 3 }, { val: 4 }] } }, 'nested.prop[1:2].val', 2)
+// → { nested: { prop: [{ val: 1 }, { val: 4 }, { val: 6 }, { val: 4 }] } }
+```
+
+### List notation
+
+The list notation let you go trough each keys of objects used as collection or map to apply operations.
+
+```js
+toggle({ nested: { prop: { 1: { active: true }, 2: { active: false } } } }, 'nested.prop{*}.active')
+// { nested: { prop: { 1: { active: false }, 2: { active: true }] } }
+
+toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg: 'Good morning' } } } }, 'nested.prop{2, 3}.active')
+// { nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'hi' }, 3: { msg: 'good morning' } } } }
+```
+
+### Performances
+
+When appling operations on a path we create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
+
 ## Documentation
 
 The full list of immutad●t's features is available in our [documentation](https://zenika.github.io/immutadot).
