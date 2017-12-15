@@ -1,9 +1,3 @@
-import * as array from 'array'
-import * as core from 'core'
-import * as lang from 'lang'
-import * as object from 'object'
-import * as string from 'string'
-
 import { unsafeToPath } from 'path/toPath'
 
 /**
@@ -78,6 +72,14 @@ class ChainWrapper {
   }
 
   /**
+   * Function to be called by {@link seq.peek|peek} with the resolved unwrapped value.
+   * @memberof seq
+   * @callback peekCallback
+   * @param {Object} unwrapped The resolved unwrapped object
+   * @since 0.3.0
+   */
+
+  /**
    * Executes the chain sequence and calls <code>callback</code> with the unwrapped object.
    * @param {seq.peekCallback} callback Function to be called with the resolved unwrapped value.
    * @returns {seq.ChainWrapper} The new wrapper instance.
@@ -107,31 +109,5 @@ class ChainWrapper {
     return this.commit()._wrapped
   }
 }
-
-/**
- * Function to be called by {@link seq.peek|peek} with the resolved unwrapped value.
- * @memberof seq
- * @callback peekCallback
- * @param {Object} unwrapped The resolved unwrapped object
- * @since 0.3.0
- */
-
-// Add namespaces functions to the ChainWrapper prototype
-const { convert, ...filteredCore } = core
-const namespaces = [
-  array,
-  filteredCore,
-  lang,
-  object,
-  string,
-]
-namespaces.forEach(namespace => {
-  for (const fnName in namespace) {
-    const fn = namespace[fnName]
-    ChainWrapper.prototype[fnName] = function(path, ...args) {
-      return this._call(fn, path, args)
-    }
-  }
-})
 
 export { ChainWrapper }

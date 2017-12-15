@@ -1,5 +1,9 @@
+import 'seq/core'
+
 import { chain } from 'seq/chain'
+
 import { isObject } from 'util/lang'
+
 import {
   prop,
 } from 'path/consts'
