@@ -44,11 +44,11 @@ immutad●t uses plain JavaScript objects so you can access your data using stan
 
 ### Exhaustive and yet extensible
 
-immutad●t comes with a large set of built-in utilities, mostly based on [lodash](https://lodash.com/). You haven't found what you're looking for? Do it yourself with the `convert` feature.
+immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux). You can also found a package called [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the `convert` feature.
 
 ### Learning curve
 
-If you are already familiar with [lodash](https://lodash.com/) and [ES2015+](https://github.com/tc39/ecma262#ecmascript) then you should be able to use immutad●t quickly.
+If you are already familiar with [ES2015+](https://github.com/tc39/ecma262#ecmascript) and [lodash](https://lodash.com/) then you should be able to use immutad●t quickly.
 
 ## Installation
 
