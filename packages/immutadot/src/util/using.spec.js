@@ -2,7 +2,7 @@
 import { immutaTest } from 'test.utils'
 import { using } from 'util'
 
-describe('Using', () => {
+describe('util.using', () => {
 
   it('should set a prop with another prop', () => {
     immutaTest((input, path) => {

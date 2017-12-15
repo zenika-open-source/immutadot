@@ -11,8 +11,8 @@ import {
   slice,
 } from './consts'
 
-describe('Path Utils', () => {
-  describe('GetSliceBounds', () => {
+describe('path utils', () => {
+  describe('path.getSliceBounds', () => {
     it('should return actual slice bounds', () => {
       expect(getSliceBounds([0, undefined], 0)).toEqual([0, 0])
       expect(getSliceBounds([-2, -1], 0)).toEqual([0, 0])
@@ -24,7 +24,7 @@ describe('Path Utils', () => {
     })
   })
 
-  describe('IsSliceIndex', () => {
+  describe('path.isSliceIndex', () => {
     it('should return true for any integer or undefined', () => {
       expect(isSliceIndex(0)).toBe(true)
       expect(isSliceIndex(1)).toBe(true)
@@ -46,7 +46,7 @@ describe('Path Utils', () => {
     })
   })
 
-  describe('PathAlreadyApplied', () => {
+  describe('path.pathAlreadyApplied', () => {
     it('should return true if path is included in already applied paths', () => {
       expect(pathAlreadyApplied([[prop, 'foo'], [index, 123], [prop, 'bar']], [[[prop, 'foo'], [index, 123], [prop, 'bar']]])).toBe(true)
       expect(pathAlreadyApplied([[prop, 'foo'], [index, 123], [prop, 'bar']], [[[prop, 'foo'], [index, 123], [prop, 'bar'], [prop, 'baz']]])).toBe(true)

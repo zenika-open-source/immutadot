@@ -4,7 +4,7 @@ import {
 } from './array'
 
 describe('Array utils', () => {
-  describe('Flatten', () => {
+  describe('util.flatten', () => {
     it('should flatten array', () => {
       expect(flatten([['a', 'b'], 'c', ['d', 'e']])).toEqual(['a', 'b', 'c', 'd', 'e'])
     })

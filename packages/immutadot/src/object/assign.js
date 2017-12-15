@@ -10,9 +10,10 @@ import { convert } from 'core/convert'
  * @param {...Object} [sources] The source objects.
  * @return {Object} Returns the updated object.
  * @example assign({ nested: { a: 1, b: 2 } }, 'nested', { b: 3, c: 4 }) // => { nested: { a:1, b: 3, c: 4 } }
- * @see {@link https://lodash.com/docs#assign|lodash.assign} for more information.
+ * @see {@link https://mdn.io/Object.prototype.assign|Object.prototype.assign} for more information.
  * @since 0.1.12
  * @flow
  */
 const assign = convert((obj, ...args) => Object.assign({ ...obj }, ...args))
+
 export { assign }

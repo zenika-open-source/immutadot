@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import { get } from 'core'
 
-describe('Get', () => {
+describe('core.get', () => {
   const obj = {
     nested1: { prop: 'val' },
     nested2: { arr: [{ val: 'arrVal' }] },

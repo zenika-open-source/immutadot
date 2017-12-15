@@ -1,7 +1,6 @@
 import * as array from 'array'
 import * as core from 'core'
 import * as lang from 'lang'
-import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
@@ -119,13 +118,11 @@ class ChainWrapper {
 
 // Add namespaces functions to the ChainWrapper prototype
 const { convert, ...filteredCore } = core
-const { set, unset, update, ...filteredObject } = object
 const namespaces = [
   array,
   filteredCore,
   lang,
-  math,
-  filteredObject,
+  object,
   string,
 ]
 namespaces.forEach(namespace => {

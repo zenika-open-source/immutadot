@@ -2,7 +2,7 @@
 import { immutaTest } from 'test.utils'
 import { toggle } from 'lang'
 
-describe('Toggle', () => {
+describe('lang.toggle', () => {
 
   const withTrue = {
     nested: { prop: true },

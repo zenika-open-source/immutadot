@@ -17,4 +17,5 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @flow
  */
 const unshift = convertArrayMethod('unshift')
+
 export { unshift }

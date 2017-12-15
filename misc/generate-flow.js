@@ -34,15 +34,19 @@ const generateFlow = async () => {
 
       const nsItems = itemsByNamespace[namespace]
 
-      nsItems.forEach(async ({ name }) => await writeFile(
-        path.resolve(nsDir, `${name}.js`),
-        `import { ${name} } from '${namespace}/${name}'
+      await (async () => {
+        for (const { name } of nsItems) {
+          await writeFile(
+            path.resolve(nsDir, `${name}.js`),
+            `import { ${name} } from '${namespace}/${name}'
 
 const { curried } = ${name}
 
 export { curried as ${name} }
 `,
-      ))
+          )
+        }
+      })()
 
       await writeFile(
         path.resolve(nsDir, 'index.js'),
@@ -51,10 +55,19 @@ export { curried as ${name} }
       )
     }))
 
+    const exportedNames = new Set()
     await writeFile(
       path.resolve(flowDir, 'exports.js'),
-      `${namespaces.map(namespace => `export * from './${namespace}'`).join('\n')}
+      `${namespaces.map(namespace => {
+        const nsItems = itemsByNamespace[namespace].filter(({ name }) => !exportedNames.has(name))
+        nsItems.forEach(({ name }) => exportedNames.add(name))
+        /* eslint-disable */
+        return `export {
+${nsItems.map(({ name }) => `  ${name},`).join('\n')}
+} from './${namespace}'`
+      }).join('\n\n')}
 `,
+      /* eslint-enable */
     )
   } catch (e) {
     console.error(e) // eslint-disable-line no-console

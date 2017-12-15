@@ -1,8 +1,8 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { multiply } from 'math'
+import { multiply } from 'lang'
 
-describe('Multiply', () => {
+describe('lang.multiply', () => {
 
   it('should multiply two numbers', () => {
     immutaTest((input, path) => {

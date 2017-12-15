@@ -2,7 +2,7 @@
 import { immutaTest } from 'test.utils'
 import { push } from 'array'
 
-describe('Push', () => {
+describe('array.push', () => {
 
   it('should add one element', () => {
     immutaTest((input, path) => {

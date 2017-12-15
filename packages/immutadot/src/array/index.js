@@ -1,22 +1,18 @@
-import { concat } from './concat'
-import { fill } from './fill'
-import { push } from './push'
-import { reverse } from './reverse'
-import { slice } from './slice'
-import { splice } from './splice'
-import { unshift } from './unshift'
-
 /**
  * Array functions.
  * @namespace array
  * @since 0.1.6
  */
-export {
-  concat,
-  fill,
-  push,
-  reverse,
-  slice,
-  splice,
-  unshift,
-}
+
+export { filter } from './filter'
+export { concat } from './concat'
+export { fill } from './fill'
+export { map } from './map'
+export { pop } from './pop'
+export { push } from './push'
+export { reverse } from './reverse'
+export { shift } from './shift'
+export { slice } from './slice'
+export { splice } from './splice'
+export { sort } from './sort'
+export { unshift } from './unshift'

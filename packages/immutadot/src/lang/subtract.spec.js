@@ -1,8 +1,8 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
-import { subtract } from 'math'
+import { subtract } from 'lang'
 
-describe('Subtract', () => {
+describe('lang.subtract', () => {
 
   it('should subtract two numbers', () => {
     immutaTest((input, path) => {

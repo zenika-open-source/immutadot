@@ -1,7 +1,6 @@
 import * as array from 'array'
 import * as core from 'core'
 import * as lang from 'lang'
-import * as math from 'math'
 import * as object from 'object'
 import * as string from 'string'
 
@@ -63,13 +62,11 @@ class UsingWrapper {
 
 // Add namespaces functions to the UsingWrapper prototype
 const { convert, unset, toPath, ...filteredCore } = core
-const { get: _0, set, unset: _1, update, ...filteredObject } = object
 const namespaces = [
   array,
   filteredCore,
   lang,
-  math,
-  filteredObject,
+  object,
   string,
 ]
 namespaces.forEach(namespace => {

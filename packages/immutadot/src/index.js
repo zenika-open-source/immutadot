@@ -1,7 +1,6 @@
 export * from './array'
 export * from './core'
 export * from './lang'
-export * from './math'
 export * from './object'
 export * from './seq'
 export * from './string'

@@ -1,5 +1,3 @@
-import { chain } from './chain'
-
 /**
  * Sequence functions.
  * @namespace seq
@@ -8,6 +6,5 @@ import { chain } from './chain'
  * @borrows seq.ChainWrapper#value as #value
  * @since 0.1.8
  */
-export {
-  chain,
-}
+
+export { chain } from './chain'

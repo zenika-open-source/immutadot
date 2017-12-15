@@ -2,7 +2,7 @@
 import { convert } from 'core'
 import { immutaTest } from 'test.utils'
 
-describe('Convert', () => {
+describe('core.convert', () => {
 
   const inc = (v, i = 1) => v + i
 

@@ -2,7 +2,7 @@
 import { immutaTest } from 'test.utils'
 import { unshift } from 'array'
 
-describe('Unshift', () => {
+describe('array.unshift', () => {
 
   it('should add one element', () => {
     immutaTest((input, path) => {

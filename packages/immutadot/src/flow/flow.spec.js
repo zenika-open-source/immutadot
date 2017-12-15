@@ -7,7 +7,7 @@ import {
 } from 'flow'
 import { immutaTest } from 'test.utils'
 
-describe('Flow', () => {
+describe('flow.flow', () => {
   const object = {
     nested1: {
       prop1: 'value1',

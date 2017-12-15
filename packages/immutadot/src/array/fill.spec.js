@@ -2,7 +2,7 @@
 import { fill } from 'array'
 import { immutaTest } from 'test.utils'
 
-describe('Fill', () => {
+describe('array.fill', () => {
 
   it('should fill array with 6 from 1 to 3 excluded', () => {
     immutaTest((input, path) => {

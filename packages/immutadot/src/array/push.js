@@ -17,4 +17,5 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @flow
  */
 const push = convertArrayMethod('push')
+
 export { push }

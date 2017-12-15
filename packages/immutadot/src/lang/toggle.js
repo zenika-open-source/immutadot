@@ -12,4 +12,5 @@ import { convert } from 'core/convert'
  * @flow
  */
 const toggle = convert(v => !v)
+
 export { toggle }

@@ -1,8 +1,8 @@
 /* eslint-env jest */
-import { divide } from 'math'
+import { divide } from 'lang'
 import { immutaTest } from 'test.utils'
 
-describe('Divide', () => {
+describe('lang.divide', () => {
 
   it('should divide two numbers', () => {
     immutaTest((input, path) => {

@@ -9,7 +9,7 @@ import {
 } from './lang'
 
 describe('Lang utils', () => {
-  describe('IsNaturalInteger', () => {
+  describe('util.isNaturalInteger', () => {
     it('should return true for any non negative integer', () => {
       expect(isNaturalInteger(0)).toBe(true)
       expect(isNaturalInteger(1)).toBe(true)
@@ -34,7 +34,7 @@ describe('Lang utils', () => {
     })
   })
 
-  describe('IsNil', () => {
+  describe('util.isNil', () => {
     it('should return true for undefined and null', () => {
       expect(isNil(undefined)).toBe(true)
       expect(isNil(null)).toBe(true)
@@ -51,7 +51,7 @@ describe('Lang utils', () => {
     })
   })
 
-  describe('IsSymbol', () => {
+  describe('util.isSymbol', () => {
     it('should return true for symbols', () => {
       expect(isSymbol(Symbol())).toBe(true)
       expect(isSymbol(Symbol('🍺'))).toBe(true)
@@ -65,7 +65,7 @@ describe('Lang utils', () => {
     })
   })
 
-  describe('Length', () => {
+  describe('util.length', () => {
     it('should return length of array', () => {
       expect(length(Array(666))).toBe(666)
       expect(length([])).toBe(0)
@@ -80,7 +80,7 @@ describe('Lang utils', () => {
     })
   })
 
-  describe('ToString', () => {
+  describe('util.toString', () => {
     it('should return string representation', () => {
       expect(toString()).toBe('undefined')
       expect(toString(null)).toBe('null')
@@ -89,7 +89,7 @@ describe('Lang utils', () => {
     })
   })
 
-  describe('isObject', () => {
+  describe('util.isObject', () => {
     it('should return true for object', () => {
       expect(isObject({})).toBe(true)
     })

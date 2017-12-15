@@ -2,7 +2,7 @@
 import { immutaTest } from 'test.utils'
 import { splice } from 'array'
 
-describe('Splice', () => {
+describe('array.splice', () => {
 
   it('should replace two elements', () => {
     immutaTest((input, path) => {

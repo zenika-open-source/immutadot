@@ -8,7 +8,7 @@ import {
 
 import { toPath } from 'path'
 
-describe('ToPath', () => {
+describe('path.toPath', () => {
 
   it('should convert basic path', () => {
     expect(toPath('a.22.ccc')).toEqual([[prop, 'a'], [prop, '22'], [prop, 'ccc']])

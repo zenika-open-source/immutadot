@@ -2,7 +2,7 @@
 import { immutaTest } from 'test.utils'
 import { unset } from 'core'
 
-describe('Unset', () => {
+describe('core.unset', () => {
 
   it('should unset a prop', () => {
     immutaTest((input, path) => {
