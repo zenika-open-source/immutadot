@@ -1,14 +1,15 @@
 import {
-  getSliceBounds,
-  pathAlreadyApplied,
-} from './utils'
-
-import {
+  allProps,
   index,
   list,
   prop,
   slice,
 } from './consts'
+
+import {
+  getSliceBounds,
+  pathAlreadyApplied,
+} from './utils'
 
 import {
   isNil,
@@ -110,11 +111,13 @@ const apply = operation => {
           return [false, newArr]
         }
 
-        if (propType === list) {
+        if (propType === list || propType === allProps) {
           const newObj = copy(curObj, false)
           let noop = true
 
-          for (const listProp of propValue) {
+          const listProps = allProps ? Object.keys(newObj) : propValue
+
+          for (const listProp of listProps) {
             const [iNoop] = walkPath(newObj, curPath, [[prop, listProp], ...pathRest], true)
             noop = noop && iNoop
           }
