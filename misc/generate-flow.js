@@ -61,13 +61,12 @@ export { curried as ${name} }
       `${namespaces.map(namespace => {
         const nsItems = itemsByNamespace[namespace].filter(({ name }) => !exportedNames.has(name))
         nsItems.forEach(({ name }) => exportedNames.add(name))
-        /* eslint-disable */
+        /* eslint-disable comma-spacing,indent */
         return `export {
 ${nsItems.map(({ name }) => `  ${name},`).join('\n')}
 } from './${namespace}'`
       }).join('\n\n')}
-`,
-      /* eslint-enable */
+`, /* eslint-enable */
     )
   } catch (e) {
     console.error(e) // eslint-disable-line no-console
