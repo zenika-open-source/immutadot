@@ -1,5 +1,6 @@
 /* eslint-env jest */
 import {
+  allProps,
   index,
   list,
   prop,
@@ -52,6 +53,10 @@ describe('path.toPath', () => {
     expect(toPath('{abc,defg[0].foo{bar')).toEqual([[prop, '{abc,defg'], [index, 0], [prop, 'foo'], [prop, '{bar']])
     // Unterminated quoted list notation should run to end of path
     expect(toPath('{abc,"defg[0]}.foo.{\'bar')).toEqual([[prop, '{abc,"defg'], [index, 0], [prop, '}'], [prop, 'foo'], [prop, '{\'bar']])
+  })
+
+  it('should convert list wildcard notation path', () => {
+    expect(toPath('{*}')).toEqual([[allProps]])
   })
 
   it('should convert mixed path', () => {
