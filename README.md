@@ -44,7 +44,7 @@ immutad●t uses plain JavaScript objects so you can access your data using stan
 
 ### Exhaustive and yet extensible
 
-immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux). You can also found a package called [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the `convert` feature.
+immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux). You can also find a package called [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the `convert` feature.
 
 ### Learning curve
 
@@ -114,7 +114,7 @@ multiply({ nested: { prop: [{ val: 1 }, { val: 2 }, { val: 3 }, { val: 4 }] } }
 The list notation let you go trough each keys of objects used as collection or map to apply operations.
 
 ```js
-toggle({ nested: { prop: { 1: { active: true }, 2: { active: false } } } }, 'nested.prop{*}.active')
+toggle({ nested: { prop: { 1: { active: true }, 2: { active: false } } } }, 'nested.prop.{*}.active')
 // { nested: { prop: { 1: { active: false }, 2: { active: true }] } }
 
 toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg: 'Good morning' } } } }, 'nested.prop{2, 3}.active')
@@ -123,7 +123,7 @@ toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg
 
 ### Performances
 
-When appling operations on a path we create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
+When appling operations on a path immutad●t create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
 
 ## Documentation
 
