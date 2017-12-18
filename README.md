@@ -123,7 +123,7 @@ toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg
 
 ### Performances
 
-When appling operations on a path immutad●t create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
+When appling operations on a path immutad●t creates the minimum of objects or arrays needed to guarantee your data structure to be immutable.
 
 ## Documentation
 
