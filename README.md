@@ -70,22 +70,74 @@ or you can directly download [sources](https://github.com/Zenika/immutadot/relea
 
 ## Usage
 
-in browser:
+ES modules:
 
 ```js
-  import { push } from 'immutadot'
-
-  push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)
-  // → { nested: { prop: [1, 2, 3, 4] } }
+import { set } from 'immutadot'
 ```
 
-in node:
+CommonJS:  
 
 ```js
-  const { push } = require('immutadot')
+const { set } = require('immutadot')
+```
 
-  push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)
-  // → { nested: { prop: [1, 2, 3, 4] } }
+### Example
+
+Object used in the following example:
+
+```js
+const animals = {
+  weasel: [
+    {
+      vernacularName: 'badger',
+      scientificName: 'Meles meles'
+    },
+    {
+      vernacularName: 'otter',
+      scientificName: ''
+    }
+  ]
+}
+```
+
+We forgot to write down otter's scientific name. Let's set this property with the right name ```Lutrinae```.
+
+using ES2015+:
+
+```js
+const newAnimals = {
+  ...animals,
+  weasel: [...animals.weasel]
+}
+
+newAnimals.weasel[1] = {
+  ...newAnimals.weasel[1],
+  scientificName: 'Lutrinae'
+}
+```
+
+using immutad●t:
+
+```js
+set(animals, 'animals.weasel[1].scientificName', 'Lutrinae')
+```
+
+result:
+
+```js
+{
+  weasel: [
+    {
+      vernacularName: 'Badger',
+      scientificName: 'Meles meles'
+    },
+    {
+      vernacularName: 'Otter',
+      scientificName: 'Lutrinae'
+    }
+  ]
+}
 ```
 
 Feel free to [try immutad●t on runkit](https://npm.runkit.com/immutadot).
