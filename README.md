@@ -36,7 +36,7 @@ An immutable object is an object that cannot be changed once created. It brings 
 
 ### Concise
 
-[ES2015+](https://github.com/tc39/ecma262#ecmascript) new features are great to deal with arrays and objects. As data structures expand, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
+[ES2015+](https://mdn.io/JavaScript/Reference) new features are great to deal with arrays and objects. As data structures expand, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
 
 ### Interoperability
 
@@ -44,11 +44,11 @@ immutad●t uses plain JavaScript objects so you can access your data using stan
 
 ### Exhaustive and yet extensible
 
-immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux). You can also find a package called [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the `convert` feature.
+immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the `convert` feature.
 
 ### Learning curve
 
-If you are already familiar with [ES2015+](https://github.com/tc39/ecma262#ecmascript) and [lodash](https://lodash.com/) then you should be able to use immutad●t quickly.
+If you are already familiar with [ES2015+](https://mdn.io/JavaScript/Reference) and [lodash](https://lodash.com/) then you should be able to use immutad●t quickly.
 
 ## Installation
 
@@ -96,7 +96,7 @@ immutad●t brings a few improvements to the classic dot notation:
 
 ### Slice notation
 
-The slice notation let you go trough arrays to apply operations without having to map arrays at each level of imbrication.
+The slice notation lets you iterate over arrays to apply operations without having to map arrays at each level of imbrication.
 
 ```js
 add({ nested: { prop: [{ val: 1 }, { val: 2 }] } }, 'nested.prop[:].val', 1)
@@ -111,7 +111,7 @@ multiply({ nested: { prop: [{ val: 1 }, { val: 2 }, { val: 3 }, { val: 4 }] } }
 
 ### List notation
 
-The list notation let you go trough each keys of objects used as collection or map to apply operations.
+The list notation lets you iterate over the keys of objects used as collection or map to apply operations.
 
 ```js
 toggle({ nested: { prop: { 1: { active: true }, 2: { active: false } } } }, 'nested.prop.{*}.active')
@@ -123,7 +123,7 @@ toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg
 
 ### Performances
 
-When appling operations on a path immutad●t creates the minimum of objects or arrays needed to guarantee your data structure to be immutable.
+When applying operations on a path immutad●t tries to create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
 
 ## Documentation
 

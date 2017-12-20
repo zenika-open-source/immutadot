@@ -22,7 +22,7 @@ Once you have cloned the project, run `yarn` to install all the dependencies.
 If you encounter trouble in the post-install phase involving `node-sass`, make sure you are building with VC++ 2013: `yarn config set msvs_version 2013`.
 
 #### Architecture :house:
-immutad●t is managed as a [monorepo](https://medium.com/netscape/the-case-for-monorepos-907c1361708a) using [lerna](https://lernajs.io/)
+immutad●t is managed as a [monorepo](https://medium.com/netscape/the-case-for-monorepos-907c1361708a) using [yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) and [lerna](https://lernajs.io/)
 
 The main package has no peer dependency and we intend to keep it that way.
 
