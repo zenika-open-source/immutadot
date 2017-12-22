@@ -20,9 +20,11 @@
     "generate:flow": "node ../../misc/generate-flow.js",
     "prebuild": "yarn generate:flow",
     "build": "cross-env BABEL_ENV=production babel src generated -d .",
+    "prelint": "yarn generate:flow",
     "lint": "eslint src generated",
     "pretest": "lerna run --scope immutadot build && yarn generate:flow",
     "test": "jest -c ../../config/jest.js",
+    "pretest:coverage": "lerna run --scope immutadot build && yarn generate:flow",
     "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../config/jsdoc.json",
     "docs:private": "jsdoc -c ../../config/jsdoc.json -p"
