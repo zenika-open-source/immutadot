@@ -52,10 +52,3 @@ workflows:
     jobs:
       - lint
       - test
-
-# deployment:
-#   release:
-#     tag: /\d+\.\d+\.\d+/
-#     commands:
-#       - npm publish
-#       - ./publish-docs.sh
