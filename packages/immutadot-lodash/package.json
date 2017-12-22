@@ -22,8 +22,8 @@
     "build": "cross-env BABEL_ENV=production babel src generated -d .",
     "lint": "eslint src generated",
     "pretest": "lerna run --scope immutadot build && yarn generate:flow",
-    "test": "jest -c ../../jest.config.js",
-    "test:coverage": "jest -c ../../jest.config.js --maxWorkers=2 --coverage",
+    "test": "jest -c ../../config/jest.js",
+    "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../jsdoc.json",
     "docs:private": "jsdoc -c ../../jsdoc.json -p"
   }

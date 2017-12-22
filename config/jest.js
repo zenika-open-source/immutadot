@@ -1,9 +1,11 @@
 const { resolve } = require('path')
 
-const coverageDirectory = resolve(process.cwd(), 'coverage')
+const rootDir = process.cwd()
+
+const coverageDirectory = resolve(rootDir, 'coverage')
 const coveragePathIgnorePatterns = ['<rootDir>/misc/', '/node_modules/']
-const roots = [process.cwd()]
-const setupTestFrameworkScriptFile = resolve(__dirname, 'misc/test.setup.js')
+const roots = [rootDir]
+const setupTestFrameworkScriptFile = resolve(__dirname, 'test.setup.js')
 
 module.exports = {
   coverageDirectory,
