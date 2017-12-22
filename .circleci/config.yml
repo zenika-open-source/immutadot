@@ -1,0 +1,44 @@
+version: 2
+
+jobs:
+
+  build:
+    docker:
+      - image: circleci/node:9
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn build
+
+  lint:
+    docker:
+      - image: circleci/node:9
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn lint
+
+  test:
+    docker:
+      - image: circleci/node:9
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn run greenkeeper-lockfile-update
+      - run: yarn test:coverage
+      - run: yarn run greenkeeper-lockfile-upload
+
+workflows:
+  version: 2
+  build_validate:
+    jobs:
+      - build
+      - lint
+      - test
+
+# deployment:
+#   release:
+#     tag: /\d+\.\d+\.\d+/
+#     commands:
+#       - npm publish
+#       - ./publish-docs.sh

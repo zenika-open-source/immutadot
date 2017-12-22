@@ -21,6 +21,7 @@
     "cross-env": "~5.1.1",
     "eslint": "~4.11.0",
     "fs-extra": "~5.0.0",
+    "greenkeeper-lockfile": "1",
     "hotdoc": "~0.7.2",
     "jest": "~21.2.1",
     "jsdoc": "~3.5.5",
