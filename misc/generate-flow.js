@@ -20,7 +20,7 @@ const generateFlow = async () => {
     await ensureDir(seqDir)
 
     const items = await jsdoc.explain({
-      configure: path.resolve(rootDir, 'jsdoc.json'),
+      configure: path.resolve(rootDir, 'config/jsdoc.json'),
       files: path.resolve(packageDir, 'src'), // Workaround while this hasn't been merged : https://github.com/jsdoc2md/jsdoc-api/pull/9
     })
 

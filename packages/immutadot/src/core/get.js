@@ -16,7 +16,7 @@ import { unsafeToPath } from 'path/toPath'
 * @example get({ nested: { prop: 'val' } }, 'nested.unknown', 'default') // => 'default'
 * @since 1.0.0
  */
-export function get(obj, path, defaultValue) {
+function get(obj, path, defaultValue) {
   function walkPath(curObj, remPath) {
     if (remPath.length === 0) return curObj === undefined ? defaultValue : curObj
     if (isNil(curObj)) return defaultValue
@@ -28,3 +28,5 @@ export function get(obj, path, defaultValue) {
     throw TypeError('get supports only properties and array indexes in path')
   return walkPath(obj, parsedPath)
 }
+
+export { get }

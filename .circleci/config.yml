@@ -1,0 +1,61 @@
+version: 2
+
+jobs:
+
+  lint:
+    docker:
+      - image: circleci/node:9
+    steps:
+      - checkout
+      - restore_cache:
+          key: node_modules-{{ checksum "yarn.lock" }}
+      - run: yarn
+      - save_cache:
+          key: node_modules-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - run: yarn lint
+
+  test:
+    docker:
+      - image: circleci/node:9
+    steps:
+      - checkout
+      - restore_cache:
+          key: node_modules-{{ checksum "yarn.lock" }}
+      - run: yarn
+      - save_cache:
+          key: node_modules-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - run: yarn run greenkeeper-lockfile-update
+      - run: yarn test:coverage
+      - run: yarn run greenkeeper-lockfile-upload
+
+  build:
+    docker:
+      - image: circleci/node:9
+    steps:
+      - checkout
+      - restore_cache:
+          key: node_modules-{{ checksum "yarn.lock" }}
+      - run: yarn
+      - save_cache:
+          key: node_modules-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - run: yarn build
+
+workflows:
+  version: 2
+  validate:
+    jobs:
+      - lint
+      - test
+
+# deployment:
+#   release:
+#     tag: /\d+\.\d+\.\d+/
+#     commands:
+#       - npm publish
+#       - ./publish-docs.sh

@@ -22,23 +22,24 @@
   ],
   "main": "index.js",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "cross-env": "^5.1.1",
-    "eslint": "^4.11.0",
-    "jest": "^21.2.1",
-    "jsdoc": "^3.5.5"
+    "babel-cli": "~6.26.0",
+    "cross-env": "~5.1.1",
+    "eslint": "~4.13.1",
+    "jest": "~21.2.1",
+    "jsdoc": "~3.5.5"
   },
-  "dependencies": {},
   "scripts": {
     "generate:flow": "node ../../misc/generate-flow.js",
     "prebuild": "yarn generate:flow",
     "build": "cross-env BABEL_ENV=production babel src generated -d .",
+    "prelint": "yarn generate:flow",
     "lint": "eslint src generated",
     "pretest": "yarn generate:flow",
-    "test": "jest -c ../../jest.config.js",
-    "test:coverage": "jest -c ../../jest.config.js --maxWorkers=2 --coverage",
-    "docs": "jsdoc -c ../../jsdoc.json",
-    "docs:private": "jsdoc -c ../../jsdoc.json -p"
+    "test": "jest -c ../../config/jest.js",
+    "pretest:coverage": "yarn generate:flow",
+    "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
+    "docs": "jsdoc -c ../../config/jsdoc.json",
+    "docs:private": "jsdoc -c ../../config/jsdoc.json -p"
   },
   "runkitExample": "require('lodash')\nconst immutadot = require('immutadot')\n\nimmutadot.push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)\n// → { nested: { prop: [1, 2, 3, 4] } }\n\nimmutadot.pickBy({ nested: [{ a: 1, b: 2, c: 3, d: 4 }, { e: 6 }] }, 'nested.0', v => v < 3)\n// → { nested: [{ a: 1, b: 2 }, { e: 6 }] }"
 }

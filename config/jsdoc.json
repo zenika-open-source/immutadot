@@ -6,7 +6,7 @@
     "../../misc/jsdoc-flow-plugin.js"
   ],
   "opts": {
-    "template": "node_modules/hotdoc/template",
+    "template": "../node_modules/hotdoc/template",
     "destination": "../../docs",
     "recurse": true
   },

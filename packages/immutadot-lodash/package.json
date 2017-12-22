@@ -4,27 +4,29 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "immutadot": "^0.3.2",
-    "lodash": "^4.17.4"
+    "immutadot": "~0.3.2",
+    "lodash": "~4.17.4"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "cross-env": "^5.1.1",
-    "eslint": "^4.11.0",
-    "jest": "^21.2.1",
-    "jsdoc": "^3.5.5",
-    "lerna": "^2.5.1"
+    "babel-cli": "~6.26.0",
+    "cross-env": "~5.1.1",
+    "eslint": "~4.13.1",
+    "jest": "~21.2.1",
+    "jsdoc": "~3.5.5",
+    "lerna": "~2.5.1"
   },
   "peerDependencies": {},
   "scripts": {
     "generate:flow": "node ../../misc/generate-flow.js",
     "prebuild": "yarn generate:flow",
     "build": "cross-env BABEL_ENV=production babel src generated -d .",
+    "prelint": "yarn generate:flow",
     "lint": "eslint src generated",
     "pretest": "lerna run --scope immutadot build && yarn generate:flow",
-    "test": "jest -c ../../jest.config.js",
-    "test:coverage": "jest -c ../../jest.config.js --maxWorkers=2 --coverage",
-    "docs": "jsdoc -c ../../jsdoc.json",
-    "docs:private": "jsdoc -c ../../jsdoc.json -p"
+    "test": "jest -c ../../config/jest.js",
+    "pretest:coverage": "lerna run --scope immutadot build && yarn generate:flow",
+    "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
+    "docs": "jsdoc -c ../../config/jsdoc.json",
+    "docs:private": "jsdoc -c ../../config/jsdoc.json -p"
   }
 }

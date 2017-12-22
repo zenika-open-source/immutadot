@@ -17,7 +17,7 @@ import { flatten } from 'util/array'
  * @returns {flow.flowFunction} A function successively calling <code>fns</code>
  * @since 1.0.0
  */
-export function flow(...args) {
+function flow(...args) {
   const fns = flatten(args)
   return pObj => {
     const [result] = fns.reduce(
@@ -30,3 +30,5 @@ export function flow(...args) {
     return result
   }
 }
+
+export { flow }
