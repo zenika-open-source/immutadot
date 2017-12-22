@@ -20,6 +20,23 @@ immutad●t gives you a short and meaningful syntax to apply operations on immut
 [![codecov](https://codecov.io/gh/Zenika/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/Zenika/immutadot)
 [![Greenkeeper](https://badges.greenkeeper.io/Zenika/immutadot.svg)](https://greenkeeper.io/)
 
+## 1.0.0-rc.1 is out :tada:
+
+We are still writing the documentation, you can already find out about the [updated API](https://zenika.github.io/immutadot/immutadot/1.0) and our new package [immutadot-lodash](https://zenika.github.io/immutadot/immutadot-lodash/1.0).
+
+If you would like to try out 1.0 before its official release, install it with :
+
+```shell
+yarn add immutadot@next
+```
+
+or
+
+
+```shell
+npm install immutadot@next
+```
+
 ## Immutability
 
 In the last few years one of our biggest challenge has been to find an efficient way to detect changes in our data to determine when to re-render our interfaces.
