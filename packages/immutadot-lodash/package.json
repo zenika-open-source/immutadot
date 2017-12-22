@@ -24,7 +24,7 @@
     "pretest": "lerna run --scope immutadot build && yarn generate:flow",
     "test": "jest -c ../../config/jest.js",
     "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
-    "docs": "jsdoc -c ../../jsdoc.json",
-    "docs:private": "jsdoc -c ../../jsdoc.json -p"
+    "docs": "jsdoc -c ../../config/jsdoc.json",
+    "docs:private": "jsdoc -c ../../config/jsdoc.json -p"
   }
 }
