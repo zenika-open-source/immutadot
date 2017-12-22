@@ -2,14 +2,6 @@ version: 2
 
 jobs:
 
-  build:
-    docker:
-      - image: circleci/node:9
-    steps:
-      - checkout
-      - run: yarn
-      - run: yarn build
-
   lint:
     docker:
       - image: circleci/node:9
@@ -28,11 +20,18 @@ jobs:
       - run: yarn test:coverage
       - run: yarn run greenkeeper-lockfile-upload
 
+  build:
+    docker:
+      - image: circleci/node:9
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn build
+
 workflows:
   version: 2
-  build_validate:
+  validate:
     jobs:
-      - build
       - lint
       - test
 
