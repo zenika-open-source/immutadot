@@ -1,0 +1,3854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>string - Documentation</title>
+
+    <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2 class="home-link"><a href="index.html">immutad●t</a></h2><h3>Namespaces</h3><ul><li><details open><summary><a href="array.html">array</a></summary><ul class='methods'><li data-type='method'><a href="array.html#.concat">concat</a></li><li data-type='method'><a href="array.html#.fill">fill</a></li><li data-type='method'><a href="array.html#.filter">filter</a></li><li data-type='method'><a href="array.html#.map">map</a></li><li data-type='method'><a href="array.html#.pop">pop</a></li><li data-type='method'><a href="array.html#.push">push</a></li><li data-type='method'><a href="array.html#.reverse">reverse</a></li><li data-type='method'><a href="array.html#.shift">shift</a></li><li data-type='method'><a href="array.html#.slice">slice</a></li><li data-type='method'><a href="array.html#.sort">sort</a></li><li data-type='method'><a href="array.html#.splice">splice</a></li><li data-type='method'><a href="array.html#.unshift">unshift</a></li></ul></details></li><li><details open><summary><a href="core.html">core</a></summary><ul class='methods'><li data-type='method'><a href="core.html#.convert">convert</a></li><li data-type='method'><a href="core.html#.get">get</a></li><li data-type='method'><a href="core.html#.set">set</a></li><li data-type='method'><a href="core.html#.unset">unset</a></li><li data-type='method'><a href="core.html#.update">update</a></li></ul></details></li><li><details open><summary><a href="flow.html">flow</a></summary><ul class='methods'><li data-type='method'><a href="flow.html#.flow">flow</a></li></ul></details></li><li><details open><summary><a href="lang.html">lang</a></summary><ul class='methods'><li data-type='method'><a href="lang.html#.add">add</a></li><li data-type='method'><a href="lang.html#.divide">divide</a></li><li data-type='method'><a href="lang.html#.multiply">multiply</a></li><li data-type='method'><a href="lang.html#.subtract">subtract</a></li><li data-type='method'><a href="lang.html#.toggle">toggle</a></li></ul></details></li><li><details open><summary><a href="object.html">object</a></summary><ul class='methods'><li data-type='method'><a href="object.html#.assign">assign</a></li></ul></details></li><li><details open><summary><a href="path.html">path</a></summary><ul class='methods'><li data-type='method'><a href="path.html#.toPath">toPath</a></li></ul></details></li><li><details open><summary><a href="seq.html">seq</a></summary><ul class='methods'><li data-type='method'><a href="seq.html#.chain">chain</a></li><li data-type='method'><a href="seq.html#commit">commit</a></li><li data-type='method'><a href="seq.html#peek">peek</a></li><li data-type='method'><a href="seq.html#value">value</a></li></ul></details></li><li><details open><summary><a href="string.html">string</a></summary><ul class='methods'><li data-type='method'><a href="string.html#.concat">concat</a></li><li data-type='method'><a href="string.html#.padEnd">padEnd</a></li><li data-type='method'><a href="string.html#.padStart">padStart</a></li><li data-type='method'><a href="string.html#.replace">replace</a></li><li data-type='method'><a href="string.html#.slice">slice</a></li><li data-type='method'><a href="string.html#.substr">substr</a></li><li data-type='method'><a href="string.html#.substring">substring</a></li><li data-type='method'><a href="string.html#.toLocaleLowerCase">toLocaleLowerCase</a></li><li data-type='method'><a href="string.html#.toLocaleUpperCase">toLocaleUpperCase</a></li><li data-type='method'><a href="string.html#.toLowerCase">toLowerCase</a></li><li data-type='method'><a href="string.html#.toUpperCase">toUpperCase</a></li><li data-type='method'><a href="string.html#.trim">trim</a></li><li data-type='method'><a href="string.html#.trimLeft">trimLeft</a></li><li data-type='method'><a href="string.html#.trimRight">trimRight</a></li></ul></details></li><li><details open><summary><a href="util.html">util</a></summary><ul class='methods'><li data-type='method'><a href="util.html#.protect">protect</a></li><li data-type='method'><a href="util.html#.using">using</a></li></ul></details></li></ul>
+</nav>
+
+<div id="main" class="main-container">
+    
+        <h1 class="page-title">string</h1>
+    
+
+    
+
+
+
+
+<section class="page-container">
+
+    <header class="page-header">
+        
+            <h2>
+            string
+            </h2>
+            
+        
+    </header>
+
+    <section class="page-content">
+        <article class="container-overview">
+            
+                
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_index.js.html">string/index.js</a>, <a href="string_index.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.3.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+                
+                    <div class="description">String functions.</div>
+                
+
+                
+            
+        </article>
+
+        
+
+        
+
+        
+
+         
+
+        
+
+        
+
+        
+            <article class="container-methods">
+                <h3 class="subsection-title">Methods</h3>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".concat"><span class="signature-type">(static) </span>concat<span class="signature">(object, path, &hellip;strings)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_concat.js.html">string/concat.js</a>, <a href="string_concat.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.concat">String.prototype.concat</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by former string concatenated with <code>strings</code>.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>concat({ nested: { a: 'Hello' } }, 'nested.a', ' world', ' !') // => { nested: { a: 'Hello world !' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>strings</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Strings to concatenate.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".padEnd"><span class="signature-type">(static) </span>padEnd<span class="signature">(object, path, targetLength, <span class="optional">[padString]</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_padEnd.js.html">string/padEnd.js</a>, <a href="string_padEnd.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.padEnd">String.prototype.padEnd</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by former string padded at the end with <code>padString</code> to the given <code>length</code>.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+    <pre class="prettyprint"><code>padEnd({ nested: { a: 'Hellow' } }, 10) // => { nested: { a: 'Hellow    ' } }</code></pre>
+
+    <pre class="prettyprint"><code>padEnd({ nested: { a: 'Hellow' } }, 10, '?!') // => { nested: { a: 'Hellow?!?!' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+            <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>targetLength</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The length to pad to.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>padString</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+                <code>' '</code>
+            
+        </td>
+    
+
+    <td class="description last">String to add.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".padStart"><span class="signature-type">(static) </span>padStart<span class="signature">(object, path, targetLength, <span class="optional">[padString]</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_padStart.js.html">string/padStart.js</a>, <a href="string_padStart.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.padStart">String.prototype.padStart</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by former string padded at the start with <code>padString</code> to the given <code>length</code>.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+    <pre class="prettyprint"><code>padStart({ nested: { a: 'Hellow' } }, 10) // => { nested: { a: '    Hellow' } }</code></pre>
+
+    <pre class="prettyprint"><code>padStart({ nested: { a: 'Hellow' } }, 10, '?!') // => { nested: { a: '?!?!Hellow' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+            <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>targetLength</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The length to pad to.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>padString</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+                <code>' '</code>
+            
+        </td>
+    
+
+    <td class="description last">String to add.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".replace"><span class="signature-type">(static) </span>replace<span class="signature">(object, path, pattern, replacement)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_replace.js.html">string/replace.js</a>, <a href="string_replace.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.3.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.replace">String.prototype.replace</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces matches for pattern in string with replacement.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>replace({ nested: { a: 'Hi Nico' } }, 'nested.a', 'Nico', 'Yvo') // => { nested: { a: 'Hi Yvo' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>pattern</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">RegExp</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The pattern to replace.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>replacement</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">function</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The match replacement.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".slice"><span class="signature-type">(static) </span>slice<span class="signature">(object, path, beginIndex, endIndex<span class="signature-attributes">nullable</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_slice.js.html">string/slice.js</a>, <a href="string_slice.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.slice">String.prototype.slice</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by a slice of former string starting at <code>beginIndex</code> and ending at <code>endIndex</code> or end of the string.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+    <pre class="prettyprint"><code>slice({ nested: { a: 'Hello World !' } }, 6) // => { nested: { a: 'World !' } }</code></pre>
+
+    <pre class="prettyprint"><code>slice({ nested: { a: 'Hello World !' } }, 6, 11) // => { nested: { a: 'World' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>beginIndex</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Beginning index of slice.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>endIndex</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+                <div class="attribute nullable">nullable</div>
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Ending index of slice.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".substr"><span class="signature-type">(static) </span>substr<span class="signature">(object, path, beginIndex, length<span class="signature-attributes">nullable</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_substr.js.html">string/substr.js</a>, <a href="string_substr.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.substr">String.prototype.substr</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by a slice of former string starting at <code>beginIndex</code>.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+    <pre class="prettyprint"><code>substr({ nested: { a: 'Hello World !' } }, 6) // => { nested: { a: 'World !' } }</code></pre>
+
+    <pre class="prettyprint"><code>substr({ nested: { a: 'Hello World !' } }, 6, 5) // => { nested: { a: 'World' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>beginIndex</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Beginning index of slice.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>length</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+                <div class="attribute nullable">nullable</div>
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Length of slice.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".substring"><span class="signature-type">(static) </span>substring<span class="signature">(object, path, beginIndex, endIndex<span class="signature-attributes">nullable</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_substring.js.html">string/substring.js</a>, <a href="string_substring.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.substring">String.prototype.substring</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by a slice of former string starting at <code>beginIndex</code> and ending at <code>endIndex</code> or end of the string.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+    <pre class="prettyprint"><code>substring({ nested: { a: 'Hello World !' } }, 6) // => { nested: { a: 'World !' } }</code></pre>
+
+    <pre class="prettyprint"><code>substring({ nested: { a: 'Hello World !' } }, 6, 11) // => { nested: { a: 'World' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>beginIndex</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Beginning index of slice.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>endIndex</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+                <div class="attribute nullable">nullable</div>
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Ending index of slice.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".toLocaleLowerCase"><span class="signature-type">(static) </span>toLocaleLowerCase<span class="signature">(object, path, locale<span class="signature-attributes">nullable</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_toLocaleLowerCase.js.html">string/toLocaleLowerCase.js</a>, <a href="string_toLocaleLowerCase.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.toLocaleLowerCase">String.prototype.toLocaleLowerCase</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by former string in lower case.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>toLocaleLowerCase({ nested: { a: 'ÇA vA Bien ?' } }, 'fr_fr') // => { nested: { a: 'ça va bien ?' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>locale</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+                <div class="attribute nullable">nullable</div>
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Locale.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".toLocaleUpperCase"><span class="signature-type">(static) </span>toLocaleUpperCase<span class="signature">(object, path, locale<span class="signature-attributes">nullable</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_toLocaleUpperCase.js.html">string/toLocaleUpperCase.js</a>, <a href="string_toLocaleUpperCase.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.toLocaleUpperCase">String.prototype.toLocaleUpperCase</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by former string in upper case.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>toLocaleUpperCase({ nested: { a: 'çA vA Bien ?' } }, 'fr_fr') // => { nested: { a: 'ÇA VA BIEN ?' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>locale</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+                <div class="attribute nullable">nullable</div>
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Locale.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".toLowerCase"><span class="signature-type">(static) </span>toLowerCase<span class="signature">(object, path)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_toLowerCase.js.html">string/toLowerCase.js</a>, <a href="string_toLowerCase.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.toLowerCase">String.prototype.toLowerCase</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by former string in lower case.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>toLowerCase({ nested: { a: 'Hello WORLD !' } }, 'fr_fr') // => { nested: { a: 'hello world !' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".toUpperCase"><span class="signature-type">(static) </span>toUpperCase<span class="signature">(object, path)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_toUpperCase.js.html">string/toUpperCase.js</a>, <a href="string_toUpperCase.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.toUpperCase">String.prototype.toUpperCase</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by former string in upper case.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>toUpperCase({ nested: { a: 'Hello world !' } }, 'fr_fr') // => { nested: { a: 'HELLO WORLD !' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".trim"><span class="signature-type">(static) </span>trim<span class="signature">(object, path)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_trim.js.html">string/trim.js</a>, <a href="string_trim.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.trim">String.prototype.trim</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by former string stripped of whitespaces at start and end.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>trim({ nested: { a: '   Hello world !   ' } }) // => { nested: { a: 'Hello world !' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".trimLeft"><span class="signature-type">(static) </span>trimLeft<span class="signature">(object, path)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_trimLeft.js.html">string/trimLeft.js</a>, <a href="string_trimLeft.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.trimLeft">String.prototype.trimLeft</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by former string stripped of whitespaces at start.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>trimLeft({ nested: { a: '   Hello world !   ' } }) // => { nested: { a: 'Hello world !   ' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".trimRight"><span class="signature-type">(static) </span>trimRight<span class="signature">(object, path)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="string_trimRight.js.html">string/trimRight.js</a>, <a href="string_trimRight.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/String.prototype.trimRight">String.prototype.trimRight</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by former string stripped of whitespaces at end.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>trimRight({ nested: { a: '   Hello world !   ' } }) // => { nested: { a: '   Hello world !' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+            </article>
+        
+
+        
+
+        
+    </section>
+
+</section>
+
+
+
+
+</div>
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script src="scripts/main.js"></script>
+</body>
+</html>
