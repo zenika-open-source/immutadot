@@ -1,0 +1,3388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>array - Documentation</title>
+
+    <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2 class="home-link"><a href="index.html">immutad●t</a></h2><h3>Namespaces</h3><ul><li><details open><summary><a href="array.html">array</a></summary><ul class='methods'><li data-type='method'><a href="array.html#.concat">concat</a></li><li data-type='method'><a href="array.html#.fill">fill</a></li><li data-type='method'><a href="array.html#.filter">filter</a></li><li data-type='method'><a href="array.html#.map">map</a></li><li data-type='method'><a href="array.html#.pop">pop</a></li><li data-type='method'><a href="array.html#.push">push</a></li><li data-type='method'><a href="array.html#.reverse">reverse</a></li><li data-type='method'><a href="array.html#.shift">shift</a></li><li data-type='method'><a href="array.html#.slice">slice</a></li><li data-type='method'><a href="array.html#.sort">sort</a></li><li data-type='method'><a href="array.html#.splice">splice</a></li><li data-type='method'><a href="array.html#.unshift">unshift</a></li></ul></details></li><li><details open><summary><a href="core.html">core</a></summary><ul class='methods'><li data-type='method'><a href="core.html#.convert">convert</a></li><li data-type='method'><a href="core.html#.get">get</a></li><li data-type='method'><a href="core.html#.set">set</a></li><li data-type='method'><a href="core.html#.unset">unset</a></li><li data-type='method'><a href="core.html#.update">update</a></li></ul></details></li><li><details open><summary><a href="flow.html">flow</a></summary><ul class='methods'><li data-type='method'><a href="flow.html#.flow">flow</a></li></ul></details></li><li><details open><summary><a href="lang.html">lang</a></summary><ul class='methods'><li data-type='method'><a href="lang.html#.add">add</a></li><li data-type='method'><a href="lang.html#.divide">divide</a></li><li data-type='method'><a href="lang.html#.multiply">multiply</a></li><li data-type='method'><a href="lang.html#.subtract">subtract</a></li><li data-type='method'><a href="lang.html#.toggle">toggle</a></li></ul></details></li><li><details open><summary><a href="object.html">object</a></summary><ul class='methods'><li data-type='method'><a href="object.html#.assign">assign</a></li></ul></details></li><li><details open><summary><a href="path.html">path</a></summary><ul class='methods'><li data-type='method'><a href="path.html#.toPath">toPath</a></li></ul></details></li><li><details open><summary><a href="seq.html">seq</a></summary><ul class='methods'><li data-type='method'><a href="seq.html#.chain">chain</a></li><li data-type='method'><a href="seq.html#commit">commit</a></li><li data-type='method'><a href="seq.html#peek">peek</a></li><li data-type='method'><a href="seq.html#value">value</a></li></ul></details></li><li><details open><summary><a href="string.html">string</a></summary><ul class='methods'><li data-type='method'><a href="string.html#.concat">concat</a></li><li data-type='method'><a href="string.html#.padEnd">padEnd</a></li><li data-type='method'><a href="string.html#.padStart">padStart</a></li><li data-type='method'><a href="string.html#.replace">replace</a></li><li data-type='method'><a href="string.html#.slice">slice</a></li><li data-type='method'><a href="string.html#.substr">substr</a></li><li data-type='method'><a href="string.html#.substring">substring</a></li><li data-type='method'><a href="string.html#.toLocaleLowerCase">toLocaleLowerCase</a></li><li data-type='method'><a href="string.html#.toLocaleUpperCase">toLocaleUpperCase</a></li><li data-type='method'><a href="string.html#.toLowerCase">toLowerCase</a></li><li data-type='method'><a href="string.html#.toUpperCase">toUpperCase</a></li><li data-type='method'><a href="string.html#.trim">trim</a></li><li data-type='method'><a href="string.html#.trimLeft">trimLeft</a></li><li data-type='method'><a href="string.html#.trimRight">trimRight</a></li></ul></details></li><li><details open><summary><a href="util.html">util</a></summary><ul class='methods'><li data-type='method'><a href="util.html#.protect">protect</a></li><li data-type='method'><a href="util.html#.using">using</a></li></ul></details></li></ul>
+</nav>
+
+<div id="main" class="main-container">
+    
+        <h1 class="page-title">array</h1>
+    
+
+    
+
+
+
+
+<section class="page-container">
+
+    <header class="page-header">
+        
+            <h2>
+            array
+            </h2>
+            
+        
+    </header>
+
+    <section class="page-content">
+        <article class="container-overview">
+            
+                
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_index.js.html">array/index.js</a>, <a href="array_index.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.1.6</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+                
+                    <div class="description">Array functions.</div>
+                
+
+                
+            
+        </article>
+
+        
+
+        
+
+        
+
+         
+
+        
+
+        
+
+        
+            <article class="container-methods">
+                <h3 class="subsection-title">Methods</h3>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".concat"><span class="signature-type">(static) </span>concat<span class="signature">(object, path, &hellip;arrays)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_concat.js.html">array/concat.js</a>, <a href="array_concat.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.2.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.concat">Array.prototype.concat</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array concatenating the former array with additional arrays and/or values.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>concat({ nested: { prop: [1, 2] } }, 'nested.prop', [3, 4]) // => { nested: { prop: [1, 2, 3, 4] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>arrays</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The arrays to concatenate.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".fill"><span class="signature-type">(static) </span>fill<span class="signature">(object, path, value, <span class="optional">[start]</span>, <span class="optional">[end]</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_fill.js.html">array/fill.js</a>, <a href="array_fill.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.3.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.fill">Array.prototype.fill</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by an array filled with value from start up to, but not including, end.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>fill({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 6, 1, 3) // => { nested: { prop: [1, 6, 6, 4] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+            <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>value</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The value to fill array with.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>start</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+                <code>0</code>
+            
+        </td>
+    
+
+    <td class="description last"></td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>end</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+                <code>array.length</code>
+            
+        </td>
+    
+
+    <td class="description last"></td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".filter"><span class="signature-type">(static) </span>filter<span class="signature">(object, path, predicate)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_filter.js.html">array/filter.js</a>, <a href="array_filter.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.filter">Array.prototype.filter</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by an array of elements <code>predicate</code> returns truthy for.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>filter({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v % 2) // => { nested: { prop: [1, 3] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>predicate</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">function</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The function invoked per iteration.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".map"><span class="signature-type">(static) </span>map<span class="signature">(object, path, callback)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_map.js.html">array/map.js</a>, <a href="array_map.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.map">Array.prototype.map</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by an array of values by running each element in the former collection thru callback.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>map({ nested: { prop: [1, 2, 3] } }, 'nested.prop', v => v * 2) // => { nested: { prop: [2, 4, 6] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>callback</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">function</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The function invoked per iteration.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".pop"><span class="signature-type">(static) </span>pop<span class="signature">(object, path)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_pop.js.html">array/pop.js</a>, <a href="array_pop.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.pop">Array.prototype.pop</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by an array of elements with last element removed.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>pop({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop') // => { nested: { prop: [1, 2, 3] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".push"><span class="signature-type">(static) </span>push<span class="signature">(object, path, &hellip;values)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_push.js.html">array/push.js</a>, <a href="array_push.js.html#line19">line 19</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.1.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.push">Array.prototype.push</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array adding one or more elements to the end of the former array.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+        <p class="code-caption">Add one element.</p>
+    
+    <pre class="prettyprint"><code>push({ nested: { prop: [1, 2] } }, 'nested.prop', 3) // => { nested: { prop: [1, 2, 3] } }</code></pre>
+
+        <p class="code-caption">Add several elements.</p>
+    
+    <pre class="prettyprint"><code>push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4) // => { nested: { prop: [1, 2, 3, 4] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>values</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The values to add.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".reverse"><span class="signature-type">(static) </span>reverse<span class="signature">(object, path)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_reverse.js.html">array/reverse.js</a>, <a href="array_reverse.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.3.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.reverse">Array.prototype.reverse</a> for more information..</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array reversing the elements from the former array.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>reverse({ nested: { prop: [1, 2, 3] } }, 'nested.prop') // => { nested: { prop: [3, 2, 1] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".shift"><span class="signature-type">(static) </span>shift<span class="signature">(object, path)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_shift.js.html">array/shift.js</a>, <a href="array_shift.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.shift">Array.prototype.shift</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by an array of elements with first element removed.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>shift({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop') // => { nested: { prop: [2, 3, 4] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".slice"><span class="signature-type">(static) </span>slice<span class="signature">(object, path, <span class="optional">[start]</span>, <span class="optional">[end]</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_slice.js.html">array/slice.js</a>, <a href="array_slice.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.3.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.slice">Array.prototype.slice</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array by a slice of the former array from <code>start</code> up to, but not including, <code>end</code>.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>slice({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 1, 3) // => { nested: { prop: [2, 3] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+            <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+        </td>
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>start</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+                <code>0</code>
+            
+        </td>
+    
+
+    <td class="description last">The start position.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>end</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+        </td>
+    
+
+    
+        <td class="default">
+            
+                <code>array.length</code>
+            
+        </td>
+    
+
+    <td class="description last">The end position.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".sort"><span class="signature-type">(static) </span>sort<span class="signature">(object, path, comparator<span class="signature-attributes">nullable</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_sort.js.html">array/sort.js</a>, <a href="array_sort.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.sort">Array.prototype.sort</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by a sorted array, in natural order or according to the optional <code>comparator</code>.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+    <pre class="prettyprint"><code>sort({ nested: { prop: [2, 4, 3, 1] } }, 'nested.prop') // => { nested: { prop: [1, 2, 3, 4] } }</code></pre>
+
+    <pre class="prettyprint"><code>sort({ nested: { prop: [2, 4, 3, 1] } }, 'nested.prop', (a, b) => b - a) // => { nested: { prop: [4, 3, 2, 1] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>comparator</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">function</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+                <div class="attribute nullable">nullable</div>
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The comparator function.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".splice"><span class="signature-type">(static) </span>splice<span class="signature">(object, path, start, <span class="optional">[deleteCount]</span>, &hellip;values)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_splice.js.html">array/splice.js</a>, <a href="array_splice.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.2.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.splice">Array.prototype.splice</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array removing and/or adding elements at <code>index</code> in the former array.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>splice({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 1, 2, 5, 6) // => { nested: { prop: [1, 5, 6, 4] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>start</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Index at which to start changing the array.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>deleteCount</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The number of old array elements to remove.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>values</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The values to add.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".unshift"><span class="signature-type">(static) </span>unshift<span class="signature">(object, path, &hellip;values)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="array_unshift.js.html">array/unshift.js</a>, <a href="array_unshift.js.html#line19">line 19</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.1.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://mdn.io/Array.prototype.unshift">Array.prototype.unshift</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces an array adding elements at the start of the former array.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+        <p class="code-caption">Add one element.</p>
+    
+    <pre class="prettyprint"><code>unshift({ nested: { prop: [1, 2] } }, 'nested.prop', 3) // => { nested: { prop: [3, 1, 2] } }</code></pre>
+
+        <p class="code-caption">Add several elements.</p>
+    
+    <pre class="prettyprint"><code>unshift({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4) // => { nested: { prop: [3, 4, 1, 2] } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>values</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The values to add.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+            </article>
+        
+
+        
+
+        
+    </section>
+
+</section>
+
+
+
+
+</div>
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script src="scripts/main.js"></script>
+</body>
+</html>
