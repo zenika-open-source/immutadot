@@ -1,10 +1,10 @@
 {
   "name": "immutadot-lodash",
-  "version": "1.0.0",
+  "version": "1.0.0-rc.1",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "immutadot": "~0.3.2",
+    "immutadot": "^1.0.0-rc.1",
     "lodash": "~4.17.4"
   },
   "devDependencies": {
@@ -15,7 +15,6 @@
     "jsdoc": "~3.5.5",
     "lerna": "~2.5.1"
   },
-  "peerDependencies": {},
   "scripts": {
     "generate:flow": "node ../../misc/generate-flow.js",
     "prebuild": "yarn generate:flow",
