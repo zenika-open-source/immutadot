@@ -4,11 +4,11 @@
 A JavaScript library to deal with nested immutable structures.
 
 ```js
-push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)
-// → { nested: { prop: [1, 2, 3, 4] } }
+set({ english: { greeting: 'Hi' } }, 'nested.prop', 'Hello')
+// → { english: { greeting: 'Hello' } }
 
-pickBy({ nested: [{ a: 1, b: 2, c: 3, d: 4 }, { e: 6 }] }, 'nested.0', v => v < 3)
-// → { nested: [{ a: 1, b: 2 }, { e: 6 }] }
+push({ i18n: { languages: ['English', 'French'] } }, 'nested.prop', 'German', 'Spanish')
+// → { i18n: { languages: ['English', 'French', 'German', 'Spanish'] } }
 ```
 immutad●t gives you a short and meaningful syntax to apply operations on immutable structures.
 
