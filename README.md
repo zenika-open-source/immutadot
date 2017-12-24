@@ -206,7 +206,9 @@ When applying operations on a path immutad●t tries to create the minimum of ob
 
 ## Documentation
 
-Latest API documentation for our different packages are available here:
+Get started quickly with our [Getting started](https://github.com/Zenika/immutadot/blob/master/docs/GETTING_STARTED.md) guide or dig into the full list of immutad●t's features available in the documentation of our different packages.
+
+Latest API documentation are available here:
 - [immutadot](https://zenika.github.io/immutadot/immutadot)
 - [immutadot-lodash](https://zenika.github.io/immutadot/immutadot-lodash/)
 
