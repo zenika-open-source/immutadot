@@ -90,11 +90,11 @@ Object used in the following example:
 const animals = {
   weasels: [
     {
-      vernacularName: 'Badger',
+      vernacularName: 'badger',
       scientificName: 'Meles meles'
     },
     {
-      vernacularName: 'Otter',
+      vernacularName: 'otter',
     }
   ]
 }
@@ -133,15 +133,28 @@ immutad●t brings a few improvements to the classic dot notation:
 
 The slice notation lets you iterate over arrays to apply operations without having to map arrays at each level of imbrication.
 
+We forgot to capitalize vernacular names in the [input](#Example).
+
+using ES2015+:
+
 ```js
-add({ nested: { prop: [{ val: 1 }, { val: 2 }] } }, 'nested.prop[:].val', 1)
-// → { nested: { prop: [{ val: 2 }, { val: 3}] } }
+import { capitalize } from 'lodash'
+const newAnimals = {
+  ...animals,
+  weasels: animals.weasels.map(weasel => {
+    return {
+      ...weasel,
+      vernacularName: capitalize(weasel.vernacularName),
+    }
+  }),
+}
+```
 
-divide({ nested: { prop: [{ val: 1 }, { val: 2 }] } }, 'nested.prop[1:].val', 2)
-// → { nested: { prop: [{ val: 1 }, { val: 1}] } }
+using immutad●t-lodash:
 
-multiply({ nested: { prop: [{ val: 1 }, { val: 2 }, { val: 3 }, { val: 4 }] } }, 'nested.prop[1:2].val', 2)
-// → { nested: { prop: [{ val: 1 }, { val: 4 }, { val: 6 }, { val: 4 }] } }
+```js
+import { capitalize } from 'immutadot-lodash'
+const newAnimals = capitalize(animals, 'weasel[:].vernacularName')
 ```
 
 ### List notation
