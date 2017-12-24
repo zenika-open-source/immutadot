@@ -88,31 +88,30 @@ Object used in the following example:
 
 ```js
 const animals = {
-  weasel: [
+  weasels: [
     {
-      vernacularName: 'badger',
+      vernacularName: 'Badger',
       scientificName: 'Meles meles'
     },
     {
-      vernacularName: 'otter',
-      scientificName: ''
+      vernacularName: 'Otter',
     }
   ]
 }
 ```
 
-We forgot to write down otter's scientific name. Let's set this property with the right name ```Lutrinae```.
+Let's add the otter's scientific name without mutating the original object structure.
 
 using ES2015+:
 
 ```js
 const newAnimals = {
   ...animals,
-  weasel: [...animals.weasel]
+  weasels: [...animals.weasel]
 }
 
-newAnimals.weasel[1] = {
-  ...newAnimals.weasel[1],
+newAnimals.weasels[1] = {
+  ...newAnimals.weasels[1],
   scientificName: 'Lutrinae'
 }
 ```
@@ -120,29 +119,13 @@ newAnimals.weasel[1] = {
 using immutad●t:
 
 ```js
-set(animals, 'animals.weasel[1].scientificName', 'Lutrinae')
+const newAnimals = set(animals, 'animals.weasels[1].scientificName', 'Lutrinae')
 ```
 
-result:
-
-```js
-{
-  weasel: [
-    {
-      vernacularName: 'Badger',
-      scientificName: 'Meles meles'
-    },
-    {
-      vernacularName: 'Otter',
-      scientificName: 'Lutrinae'
-    }
-  ]
-}
-```
 
 Feel free to [try immutad●t on runkit](https://npm.runkit.com/immutadot).
 
-## Dot notation
+## Path notation
 
 immutad●t brings a few improvements to the classic dot notation:
 
