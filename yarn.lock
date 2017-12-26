@@ -209,7 +209,7 @@ arr-flatten@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/arr-flatten/-/arr-flatten-1.1.0.tgz#36048bbff4e7b47e136644316c99669ea5ae91f1"
 
-array-back@^1.0.2, array-back@^1.0.3:
+array-back@^1.0.2, array-back@^1.0.3, array-back@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/array-back/-/array-back-1.0.4.tgz#644ba7f095f7ffcf7c43b5f0dc39d3c1f03c063b"
   dependencies:
@@ -1342,6 +1342,14 @@ command-join@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/command-join/-/command-join-2.0.0.tgz#52e8b984f4872d952ff1bdc8b98397d27c7144cf"
 
+command-line-args@^4.0.7:
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/command-line-args/-/command-line-args-4.0.7.tgz#f8d1916ecb90e9e121eda6428e41300bfb64cc46"
+  dependencies:
+    array-back "^2.0.0"
+    find-replace "^1.0.3"
+    typical "^2.6.1"
+
 commander@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
@@ -2115,6 +2123,13 @@ find-babel-config@^1.1.0:
   dependencies:
     json5 "^0.5.1"
     path-exists "^3.0.0"
+
+find-replace@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/find-replace/-/find-replace-1.0.3.tgz#b88e7364d2d9c959559f388c66670d6130441fa0"
+  dependencies:
+    array-back "^1.0.4"
+    test-value "^2.1.0"
 
 find-up@^1.0.0:
   version "1.1.2"
@@ -5155,6 +5170,13 @@ test-exclude@^4.1.1:
     object-assign "^4.1.0"
     read-pkg-up "^1.0.1"
     require-main-filename "^1.0.1"
+
+test-value@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/test-value/-/test-value-2.1.0.tgz#11da6ff670f3471a73b625ca4f3fdcf7bb748291"
+  dependencies:
+    array-back "^1.0.3"
+    typical "^2.6.0"
 
 text-extensions@^1.0.0:
   version "1.7.0"

@@ -16,7 +16,7 @@
     "lerna": "~2.5.1"
   },
   "scripts": {
-    "generate:flow": "node ../../misc/generate-flow.js",
+    "generate:flow": "node ../../misc/generate-flow.js --external",
     "prebuild": "yarn generate:flow && rm -rf tmpsrc && mkdir tmpsrc && cp -r src/* generated/* tmpsrc",
     "build": "cross-env BABEL_ENV=production babel tmpsrc -d .",
     "postbuild": "rm -rf tmpsrc",

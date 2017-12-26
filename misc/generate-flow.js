@@ -3,6 +3,14 @@ const path = require('path')
 const util = require('util')
 const _ = require('lodash')
 const jsdoc = require('jsdoc-api')
+const cla = require('command-line-args')
+
+const { external } = cla([
+  {
+    name: 'external',
+    type: Boolean,
+  },
+])
 
 const ensureDir = util.promisify(fs.ensureDir)
 const remove = util.promisify(fs.remove)
@@ -83,7 +91,7 @@ ${nsItems.map(({ name }) => `  ${name},`).join('\n')}
           await writeFile(
             path.resolve(nsDir, `${name}.js`),
             /* eslint-disable indent */
-`import { ChainWrapper } from 'seq/ChainWrapper'
+`import { ChainWrapper } from '${external ? 'immutadot/' : ''}seq/ChainWrapper'
 
 import { ${name} } from '${namespace}/${name}'
 
