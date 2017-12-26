@@ -30,8 +30,9 @@
   },
   "scripts": {
     "generate:flow": "node ../../misc/generate-flow.js",
-    "prebuild": "yarn generate:flow",
-    "build": "cross-env BABEL_ENV=production babel src generated -d .",
+    "prebuild": "yarn generate:flow && rm -rf tmpsrc && mkdir tmpsrc && cp -r src/* generated/* tmpsrc",
+    "build": "cross-env BABEL_ENV=production babel tmpsrc -d .",
+    "postbuild": "rm -rf tmpsrc",
     "prelint": "yarn generate:flow",
     "lint": "eslint src generated",
     "pretest": "yarn generate:flow",
