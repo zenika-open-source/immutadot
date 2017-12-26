@@ -7,7 +7,7 @@
   ],
   "plugins": [
     ["module-resolver", {
-      "root": ["./src"]
+      "root": ["./src", "./generated"]
     }]
   ],
   "env": {
@@ -17,7 +17,7 @@
     "test": {
       "plugins": [
         ["module-resolver", {
-          "root": ["./src", "../../misc", "./generated"]
+          "root": ["./src", "./generated", "../../misc"]
         }]
       ]
     }
