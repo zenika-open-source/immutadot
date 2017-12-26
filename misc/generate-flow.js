@@ -85,7 +85,7 @@ ${nsItems.map(({ name }) => `  ${name},`).join('\n')}
             /* eslint-disable indent */
 `import { ChainWrapper } from 'seq/ChainWrapper'
 
-import { ${name} } from 'core/${name}'
+import { ${name} } from '${namespace}/${name}'
 
 ChainWrapper.prototype.${name} = function(path, ...args) {
   return this._call(${name}, path, args)
