@@ -1,10 +1,10 @@
 {
   "name": "immutadot-lodash",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "main": "index.js",
   "license": "MIT",
   "peerDependencies": {
-    "immutadot": "^1.0.0-rc.1",
+    "immutadot": "^1.0.0-rc.3",
     "lodash": "^4.6.0"
   },
   "devDependencies": {
