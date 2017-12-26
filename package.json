@@ -19,7 +19,7 @@
     "babel-preset-stage-2": "~6.24.1",
     "codecov": "~3.0.0",
     "cross-env": "~5.1.1",
-    "eslint": "~4.13.1",
+    "eslint": "~4.14.0",
     "fs-extra": "~5.0.0",
     "greenkeeper-lockfile": "1",
     "hotdoc": "~0.7.2",
