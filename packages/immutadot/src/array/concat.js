@@ -1,7 +1,8 @@
 import { convertArrayMethod } from './convertArrayMethod'
 
 /**
- * Replaces an array concatenating the former array with additional arrays and/or values.
+ * Replaces an array concatenating the former array with additional arrays and/or values.<br/>
+ * ⚠ Due to name conflicts, this function is named <code>arrayConcat</code> when imported from top level (<code>import { arrayConcat } from 'immutadot'</code>).
  * @function
  * @memberof array
  * @param {Object} object The object to modify.

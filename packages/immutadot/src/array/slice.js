@@ -1,7 +1,8 @@
 import { convertArrayMethod } from './convertArrayMethod'
 
 /**
- * Replaces an array by a slice of the former array from <code>start</code> up to, but not including, <code>end</code>.
+ * Replaces an array by a slice of the former array from <code>start</code> up to, but not including, <code>end</code>.<br/>
+ * ⚠ Due to name conflicts, this function is named <code>arraySlice</code> when imported from top level (<code>import { arraySlice } from 'immutadot'</code>).
  * @function
  * @memberof array
  * @param {Object} object The object to modify.

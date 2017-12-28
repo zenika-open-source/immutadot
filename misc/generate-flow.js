@@ -39,6 +39,16 @@ const generateFlow = async () => {
 
     const namespaces = _.keys(itemsByNamespace)
 
+    const conflicts = _.chain(items)
+      .filter('flow')
+      .reduce((acc, { name }) => ({
+        ...acc,
+        [name]: acc[name] !== undefined,
+      }), {})
+      .pickBy()
+      .keys()
+      .value()
+
     await Promise.all(namespaces.map(async namespace => {
       const nsDir = path.resolve(flowDir, namespace)
       await ensureDir(nsDir)
@@ -66,15 +76,13 @@ export { curried as ${name} }
       )
     }))
 
-    const exportedNames = new Set()
     await writeFile(
       path.resolve(flowDir, 'exports.js'),
       `${namespaces.map(namespace => {
-        const nsItems = itemsByNamespace[namespace].filter(({ name }) => !exportedNames.has(name))
-        nsItems.forEach(({ name }) => exportedNames.add(name))
+        const nsItems = itemsByNamespace[namespace]
         /* eslint-disable comma-spacing,indent */
         return `export {
-${nsItems.map(({ name }) => `  ${name},`).join('\n')}
+${nsItems.map(({ name }) => `  ${name}${conflicts.includes(name) ? ` as ${namespace}${_.capitalize(name)}` : ''},`).join('\n')}
 } from './${namespace}'`
       }).join('\n\n')}
 `, /* eslint-enable */
@@ -100,6 +108,21 @@ ChainWrapper.prototype.${name} = function(path, ...args) {
 }
 `, /* eslint-enable */
           )
+
+          if (conflicts.includes(name)) {
+            await writeFile(
+              path.resolve(nsDir, `${name}.ns.js`),
+              /* eslint-disable indent */
+`import { ChainWrapper } from '${external ? 'immutadot/' : ''}seq/ChainWrapper'
+
+import { ${name} } from '${namespace}/${name}'
+
+ChainWrapper.prototype.${namespace}${_.capitalize(name)} = function(path, ...args) {
+  return this._call(${name}, path, args)
+}
+`, /* eslint-enable */
+            )
+          }
         }
       })()
 
@@ -109,12 +132,19 @@ ChainWrapper.prototype.${name} = function(path, ...args) {
 `${nsItems.map(({ name }) => `import './${name}'`).join('\n')}
 `, /* eslint-enable */
       )
+
+      await writeFile(
+        path.resolve(nsDir, 'ns.js'),
+        /* eslint-disable indent */
+`${nsItems.map(({ name }) => `import './${name}${conflicts.includes(name) ? '.ns' : ''}'`).join('\n')}
+`, /* eslint-enable */
+      )
     }))
 
     await writeFile(
       path.resolve(seqDir, 'all.js'),
       /* eslint-disable indent */
-      `${namespaces.map(namespace => `import './${namespace}'`).join('\n')}
+      `${namespaces.map(namespace => `import './${namespace}/ns'`).join('\n')}
 `, /* eslint-enable */
     )
   } catch (e) {

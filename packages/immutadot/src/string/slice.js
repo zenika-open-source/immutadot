@@ -1,7 +1,8 @@
 import { convertStringMethod } from './convertStringMethod'
 
 /**
- * Replaces by a slice of former string starting at <code>beginIndex</code> and ending at <code>endIndex</code> or end of the string.
+ * Replaces by a slice of former string starting at <code>beginIndex</code> and ending at <code>endIndex</code> or end of the string.<br/>
+ * ⚠ Due to name conflicts, this function is named <code>stringSlice</code> when imported from top level (<code>import { stringSlice } from 'immutadot'</code>).
  * @function
  * @memberof string
  * @param {Object} object The object to modify.

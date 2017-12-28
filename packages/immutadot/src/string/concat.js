@@ -1,7 +1,8 @@
 import { convertStringMethod } from './convertStringMethod'
 
 /**
- * Replaces by former string concatenated with <code>strings</code>.
+ * Replaces by former string concatenated with <code>strings</code>.<br/>
+ * ⚠ Due to name conflicts, this function is named <code>stringConcat</code> when imported from top level (<code>import { stringConcat } from 'immutadot'</code>).
  * @function
  * @memberof string
  * @param {Object} object The object to modify.
