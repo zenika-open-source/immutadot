@@ -108,6 +108,21 @@ ChainWrapper.prototype.${name} = function(path, ...args) {
 }
 `, /* eslint-enable */
           )
+
+          if (conflicts.includes(name)) {
+            await writeFile(
+              path.resolve(nsDir, `${name}.ns.js`),
+              /* eslint-disable indent */
+`import { ChainWrapper } from '${external ? 'immutadot/' : ''}seq/ChainWrapper'
+
+import { ${name} } from '${namespace}/${name}'
+
+ChainWrapper.prototype.${namespace}${_.capitalize(name)} = function(path, ...args) {
+  return this._call(${name}, path, args)
+}
+`, /* eslint-enable */
+            )
+          }
         }
       })()
 
@@ -117,12 +132,19 @@ ChainWrapper.prototype.${name} = function(path, ...args) {
 `${nsItems.map(({ name }) => `import './${name}'`).join('\n')}
 `, /* eslint-enable */
       )
+
+      await writeFile(
+        path.resolve(nsDir, 'ns.js'),
+        /* eslint-disable indent */
+`${nsItems.map(({ name }) => `import './${name}${conflicts.includes(name) ? '.ns' : ''}'`).join('\n')}
+`, /* eslint-enable */
+      )
     }))
 
     await writeFile(
       path.resolve(seqDir, 'all.js'),
       /* eslint-disable indent */
-      `${namespaces.map(namespace => `import './${namespace}'`).join('\n')}
+      `${namespaces.map(namespace => `import './${namespace}/ns'`).join('\n')}
 `, /* eslint-enable */
     )
   } catch (e) {
