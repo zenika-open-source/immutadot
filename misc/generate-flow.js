@@ -39,6 +39,16 @@ const generateFlow = async () => {
 
     const namespaces = _.keys(itemsByNamespace)
 
+    const conflicts = _.chain(items)
+      .filter('flow')
+      .reduce((acc, { name }) => ({
+        ...acc,
+        [name]: acc[name] !== undefined,
+      }), {})
+      .pickBy()
+      .keys()
+      .value()
+
     await Promise.all(namespaces.map(async namespace => {
       const nsDir = path.resolve(flowDir, namespace)
       await ensureDir(nsDir)
@@ -66,15 +76,13 @@ export { curried as ${name} }
       )
     }))
 
-    const exportedNames = new Set()
     await writeFile(
       path.resolve(flowDir, 'exports.js'),
       `${namespaces.map(namespace => {
-        const nsItems = itemsByNamespace[namespace].filter(({ name }) => !exportedNames.has(name))
-        nsItems.forEach(({ name }) => exportedNames.add(name))
+        const nsItems = itemsByNamespace[namespace]
         /* eslint-disable comma-spacing,indent */
         return `export {
-${nsItems.map(({ name }) => `  ${name},`).join('\n')}
+${nsItems.map(({ name }) => `  ${name}${conflicts.includes(name) ? ` as ${namespace}${_.capitalize(name)}` : ''},`).join('\n')}
 } from './${namespace}'`
       }).join('\n\n')}
 `, /* eslint-enable */
