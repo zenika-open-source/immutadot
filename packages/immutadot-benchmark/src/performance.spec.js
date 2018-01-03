@@ -59,7 +59,7 @@ describe('performance', () => {
   it('lodash/fp', () => {
     let draft = baseState
     for (let i = 0; i < MAX * MODIFY_FACTOR; i++)
-      draft = fpSet(true, `[${i}].done`)(draft)
+      draft = fpSet(`[${i}].done`, true, draft)
   })
 
   it('handcrafted reducer', () => {
