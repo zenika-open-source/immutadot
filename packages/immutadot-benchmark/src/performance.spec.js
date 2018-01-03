@@ -8,6 +8,7 @@ import {
 } from 'immutable'
 import immer, { setAutoFreeze } from 'immer'
 import cloneDeep from 'lodash.clonedeep'
+import fpSet from 'lodash/fp/set'
 import { set } from 'immutadot/core'
 
 describe('performance', () => {
@@ -53,6 +54,12 @@ describe('performance', () => {
     const draft = cloneDeep(baseState)
     for (let i = 0; i < MAX * MODIFY_FACTOR; i++)
       draft[i].done = true
+  })
+
+  it('lodash/fp', () => {
+    let draft = baseState
+    for (let i = 0; i < MAX * MODIFY_FACTOR; i++)
+      draft = fpSet(true, `[${i}].done`)(draft)
   })
 
   it('handcrafted reducer', () => {
