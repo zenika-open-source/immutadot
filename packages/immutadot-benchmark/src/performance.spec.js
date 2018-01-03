@@ -81,15 +81,7 @@ describe('performance', () => {
     })
   })
 
-  it('immer - with autofreeze', () => {
-    setAutoFreeze(true)
-    immer(frozenBazeState, draft => {
-      for (let i = 0; i < MAX * MODIFY_FACTOR; i++)
-        draft[i].done = true
-    })
-  })
-
-  it('immer - without autofreeze', () => {
+  it('immer', () => {
     setAutoFreeze(false)
     immer(baseState, draft => {
       for (let i = 0; i < MAX * MODIFY_FACTOR; i++)
