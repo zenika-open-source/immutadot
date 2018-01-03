@@ -188,9 +188,7 @@ toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg
 
 ### Performances
 
-When applying operations on a path immutad●t tries to create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
-
-[mweststrate](https://github.com/mweststrate) made a [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/performance.spec.js) on the performance of [immer](https://github.com/mweststrate/immer) and other methods for setting a property on multiple items of a todo list and keep it immutable. Here are the results with immutad●t in addition:
+[mweststrate](https://github.com/mweststrate) made a [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/performance.spec.js) on the performance of [immer](https://github.com/mweststrate/immer) and other methods for setting a property on multiple items of a todo list and keep it immutable. Here are the results with immutad●t in addition, these tests were executed on Node 8.4.0 with a MacBook Pro:
 
 ```shell
 performance
@@ -201,6 +199,8 @@ performance
     ✓ immer (221ms)
     ✓ immutadot (98ms)
 ```
+
+When applying operations on a path immutad●t tries to create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
 
 ## Documentation
 
