@@ -15,7 +15,6 @@ export {
 export * from './core'
 export * from './lang'
 export * from './object'
-export * from './seq'
 export {
   concat as stringConcat,
   padEnd,

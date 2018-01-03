@@ -3,7 +3,7 @@ import { immutaTest } from 'test.utils'
 import { protect } from 'util'
 
 describe('util.protect', () => {
-  it('should return properties value', () => {
+  it.skip('should return properties value', () => {
     immutaTest(input => {
       const output = protect(input)(protectedInput => {
         protectedInput.a++
@@ -26,7 +26,7 @@ describe('util.protect', () => {
     }, 'a', 'd', 'b.c', 'e')
   })
 
-  it('should not proxy non object values', () => {
+  it.skip('should not proxy non object values', () => {
     expect(() => protect(undefined)).toThrow(TypeError)
   })
 })
