@@ -136,7 +136,7 @@ newAnimals.weasels[1] = {
 using immutad●t:
 
 ```js
-const newAnimals = set(animals, 'animals.weasels[1].scientificName', 'Lutrinae')
+const newAnimals = set(animals, 'weasels[1].scientificName', 'Lutrinae')
 ```
 
 
@@ -171,7 +171,7 @@ using immutad●t-lodash:
 
 ```js
 import { capitalize } from 'immutadot-lodash'
-const newAnimals = capitalize(animals, 'weasel[:].vernacularName')
+const newAnimals = capitalize(animals, 'weasels[:].vernacularName')
 ```
 
 ### List notation
@@ -182,7 +182,7 @@ The list notation lets you iterate over the keys of objects used as collection o
 toggle({ nested: { prop: { 1: { active: true }, 2: { active: false } } } }, 'nested.prop.{*}.active')
 // { nested: { prop: { 1: { active: false }, 2: { active: true }] } }
 
-toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg: 'Good morning' } } } }, 'nested.prop{2, 3}.active')
+toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg: 'Good morning' } } } }, 'nested.prop{2, 3}.msg')
 // { nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'hi' }, 3: { msg: 'good morning' } } } }
 ```
 
