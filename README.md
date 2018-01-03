@@ -194,13 +194,12 @@ When applying operations on a path immutad●t tries to create the minimum of ob
 
 ```shell
 performance
-    ✓ just mutate (20ms)
-    ✓ deepclone, then mutate (485ms)
-    ✓ handcrafted reducer (21ms)
-    ✓ immutableJS (59ms)
-    ✓ immer - with autofreeze (365ms)
-    ✓ immer - without autofreeze (181ms)
-    ✓ immutadot (78ms)
+    ✓ just mutate (3ms)
+    ✓ deepclone, then mutate (478ms)
+    ✓ handcrafted reducer (11ms)
+    ✓ immutableJS (76ms)
+    ✓ immer (221ms)
+    ✓ immutadot (98ms)
 ```
 
 ## Documentation
