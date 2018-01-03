@@ -4,11 +4,11 @@
 A JavaScript library to deal with nested immutable structures.
 
 ```js
-push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)
-// → { nested: { prop: [1, 2, 3, 4] } }
+set({ english: { greeting: 'Hi' } }, 'english.greeting', 'Hello')
+// → { english: { greeting: 'Hello' } }
 
-pickBy({ nested: [{ a: 1, b: 2, c: 3, d: 4 }, { e: 6 }] }, 'nested.0', v => v < 3)
-// → { nested: [{ a: 1, b: 2 }, { e: 6 }] }
+push({ i18n: { languages: ['English', 'French'] } }, 'i18n.languages', 'German', 'Spanish')
+// → { i18n: { languages: ['English', 'French', 'German', 'Spanish'] } }
 ```
 immutad●t gives you a short and meaningful syntax to apply operations on immutable structures.
 
@@ -53,7 +53,7 @@ An immutable object is an object that cannot be changed once created. It brings 
 
 ### Concise
 
-[ES2015+](https://github.com/tc39/ecma262#ecmascript) new features are great to deal with arrays and objects. As data structures expand, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
+[ES2015+](https://mdn.io/JavaScript/Reference) new features are great to deal with arrays and objects. As data structures expand, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
 
 ### Interoperability
 
@@ -61,11 +61,11 @@ immutad●t uses plain JavaScript objects so you can access your data using stan
 
 ### Exhaustive and yet extensible
 
-immutad●t comes with a large set of built-in utilities, mostly based on [lodash](https://lodash.com/). You haven't found what you're looking for? Do it yourself with the `convert` feature.
+immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the [`convert`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.convert) feature.
 
 ### Learning curve
 
-If you are already familiar with [lodash](https://lodash.com/) and [ES2015+](https://github.com/tc39/ecma262#ecmascript) then you should be able to use immutad●t quickly.
+If you are already familiar with [ES2015+](https://mdn.io/JavaScript/Reference) and [lodash](https://lodash.com/) then you should be able to use immutad●t quickly.
 
 ## Installation
 
@@ -87,25 +87,108 @@ or you can directly download [sources](https://github.com/Zenika/immutadot/relea
 
 ## Usage
 
-in browser:
+ES modules:
 
 ```js
-  import { push } from 'immutadot'
-
-  push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)
-  // → { nested: { prop: [1, 2, 3, 4] } }
+import { set } from 'immutadot'
 ```
 
-in node:
+CommonJS:  
 
 ```js
-  const { push } = require('immutadot')
-
-  push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4)
-  // → { nested: { prop: [1, 2, 3, 4] } }
+const { set } = require('immutadot')
 ```
+
+### Example
+
+Object used in the following example:
+
+```js
+const animals = {
+  weasels: [
+    {
+      vernacularName: 'badger',
+      scientificName: 'Meles meles'
+    },
+    {
+      vernacularName: 'otter',
+    }
+  ]
+}
+```
+
+Let's add the otter's scientific name without mutating the original object structure.
+
+using ES2015+:
+
+```js
+const newAnimals = {
+  ...animals,
+  weasels: [...animals.weasel]
+}
+
+newAnimals.weasels[1] = {
+  ...newAnimals.weasels[1],
+  scientificName: 'Lutrinae'
+}
+```
+
+using immutad●t:
+
+```js
+const newAnimals = set(animals, 'animals.weasels[1].scientificName', 'Lutrinae')
+```
+
 
 Feel free to [try immutad●t on runkit](https://npm.runkit.com/immutadot).
+
+## Path notation
+
+immutad●t brings a few improvements to the classic dot notation:
+
+### Slice notation
+
+The slice notation lets you iterate over arrays to apply operations without having to map arrays at each level of imbrication.
+
+We forgot to capitalize vernacular names in the [input](#Example).
+
+using ES2015+:
+
+```js
+import { capitalize } from 'lodash'
+const newAnimals = {
+  ...animals,
+  weasels: animals.weasels.map(weasel => {
+    return {
+      ...weasel,
+      vernacularName: capitalize(weasel.vernacularName),
+    }
+  }),
+}
+```
+
+using immutad●t-lodash:
+
+```js
+import { capitalize } from 'immutadot-lodash'
+const newAnimals = capitalize(animals, 'weasel[:].vernacularName')
+```
+
+### List notation
+
+The list notation lets you iterate over the keys of objects used as collection or map to apply operations.
+
+```js
+toggle({ nested: { prop: { 1: { active: true }, 2: { active: false } } } }, 'nested.prop.{*}.active')
+// { nested: { prop: { 1: { active: false }, 2: { active: true }] } }
+
+toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg: 'Good morning' } } } }, 'nested.prop{2, 3}.active')
+// { nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'hi' }, 3: { msg: 'good morning' } } } }
+```
+
+### Performances
+
+When applying operations on a path immutad●t tries to create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
 
 ## Documentation
 

@@ -1,1 +1,3 @@
-Latest documentation is available at [zenika.github.io/immutadot](https://zenika.github.io/immutadot).
+Latest documentation for our different packages are available at the following links:
+- [immutadot](https://zenika.github.io/immutadot)
+- [immutadot-lodash](https://zenika.github.io/immutadot/immutadot-lodash/)

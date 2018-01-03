@@ -22,8 +22,9 @@ Once you have cloned the project, run `yarn` to install all the dependencies.
 If you encounter trouble in the post-install phase involving `node-sass`, make sure you are building with VC++ 2013: `yarn config set msvs_version 2013`.
 
 #### Architecture :house:
-We have only one peer dependency on [lodash](https://lodash.com/) and we intend to keep it that way.<br />
-immutad●t is organized in namespaces (array, collection, lang, etc.), a lot like lodash, please try to respect this organization; if you are not sure where to put your code, ask for the right place in your issue or PR.
+immutad●t is managed as a [monorepo](https://medium.com/netscape/the-case-for-monorepos-907c1361708a) using [yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) and [lerna](https://lernajs.io/)
+
+Each package of immutad●t is organized in namespaces (array, collection, lang, etc.), a lot like lodash. Please try to respect this organization; if you are not sure where to put your code, ask for the right place in your issue or PR.
 
 #### Tests and Code style :policeman:
 If you write any code, be sure to write the test that goes with it in a file located at the same place and named `<something>.spec.js`; we have a coverage of a :100: percent and we would like to keep it :wink:.<br />
