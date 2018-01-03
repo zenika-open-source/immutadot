@@ -2601,11 +2601,11 @@ ignore@^3.3.3:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
-immer@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-0.1.2.tgz#f51283b76306866232a65cfaff3dbce5c5884ab4"
+immer@~0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-0.2.0.tgz#a871923e7bfdfaff0796ba3f9a98c3aec665f389"
 
-immutable@^3.8.2:
+immutable@~3.8.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
 

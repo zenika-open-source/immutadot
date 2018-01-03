@@ -3,13 +3,12 @@
   "version": "1.0.0-rc.4",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "~4.14.0",
-    "immer": "^0.1.2",
-    "immutable": "^3.8.2",
-    "immutadot": "^1.0.0-rc.4",
+    "immer": "~0.2.0",
+    "immutable": "~3.8.2",
+    "immutadot": "~1.0.0-rc.4",
     "jest": "~21.2.1"
   },
   "scripts": {
-    "benchmark": "jest -v performance"
+    "benchmark": "jest -v -i"
   }
 }
