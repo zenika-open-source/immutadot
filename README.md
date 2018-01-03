@@ -4,10 +4,10 @@
 A JavaScript library to deal with nested immutable structures.
 
 ```js
-set({ english: { greeting: 'Hi' } }, 'nested.prop', 'Hello')
+set({ english: { greeting: 'Hi' } }, 'english.greeting', 'Hello')
 // → { english: { greeting: 'Hello' } }
 
-push({ i18n: { languages: ['English', 'French'] } }, 'nested.prop', 'German', 'Spanish')
+push({ i18n: { languages: ['English', 'French'] } }, 'i18n.languages', 'German', 'Spanish')
 // → { i18n: { languages: ['English', 'French', 'German', 'Spanish'] } }
 ```
 immutad●t gives you a short and meaningful syntax to apply operations on immutable structures.
@@ -44,7 +44,7 @@ immutad●t uses plain JavaScript objects so you can access your data using stan
 
 ### Exhaustive and yet extensible
 
-immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the `convert` feature.
+immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the [`convert`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.convert) feature.
 
 ### Learning curve
 

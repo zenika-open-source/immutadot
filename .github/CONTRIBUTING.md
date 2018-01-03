@@ -24,8 +24,6 @@ If you encounter trouble in the post-install phase involving `node-sass`, make s
 #### Architecture :house:
 immutad●t is managed as a [monorepo](https://medium.com/netscape/the-case-for-monorepos-907c1361708a) using [yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) and [lerna](https://lernajs.io/)
 
-The main package has no peer dependency and we intend to keep it that way.
-
 Each package of immutad●t is organized in namespaces (array, collection, lang, etc.), a lot like lodash. Please try to respect this organization; if you are not sure where to put your code, ask for the right place in your issue or PR.
 
 #### Tests and Code style :policeman:
