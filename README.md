@@ -191,13 +191,14 @@ toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg
 [mweststrate](https://github.com/mweststrate) made a [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/performance.spec.js) on the performance of [immer](https://github.com/mweststrate/immer) and other methods for setting a property on multiple items of a todo list and keep it immutable. Here are the results with immutad●t in addition, these tests were executed on Node 8.4.0 with a MacBook Pro:
 
 ```shell
-performance
-    ✓ just mutate (3ms)
-    ✓ deepclone, then mutate (478ms)
-    ✓ handcrafted reducer (11ms)
-    ✓ immutableJS (76ms)
-    ✓ immer (221ms)
-    ✓ immutadot (98ms)
+Update todos list
+    ✓ with mutation (2ms)
+    ✓ with deep cloning, then mutation (628ms)
+    ✓ with ES2015 destructuring (46ms)
+    ✓ with immutable (w/o conversion to plain JS objects) (99ms)
+    ✓ with immutable (w/ conversion to plain JS objects) (858ms)
+    ✓ with immer (353ms)
+    ✓ with immutad●t (137ms)
 ```
 
 When applying operations on a path immutad●t tries to create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
