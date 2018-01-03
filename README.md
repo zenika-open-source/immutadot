@@ -188,7 +188,7 @@ toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg
 
 ## Performances
 
-We reused a [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/benchmark.spec.js) originnaly made by [mweststrate](https://github.com/mweststrate) for [immer](https://github.com/mweststrate/immer).
+We reused a [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/benchmark.spec.js) originally made by [mweststrate](https://github.com/mweststrate) for [immer](https://github.com/mweststrate/immer).
 It updates 10.000 items out of list of 100.000 todos items, these tests were executed on Node 8.4.0 with a MacBook Pro 2015:
 
 ```shell
