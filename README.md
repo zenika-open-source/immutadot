@@ -186,9 +186,10 @@ toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg
 // { nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'hi' }, 3: { msg: 'good morning' } } } }
 ```
 
-### Performances
+## Performances
 
-[mweststrate](https://github.com/mweststrate) made a [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/performance.spec.js) on the performance of [immer](https://github.com/mweststrate/immer) and other methods for setting a property on multiple items of a todo list and keep it immutable. Here are the results with immutad●t in addition, these tests were executed on Node 8.4.0 with a MacBook Pro:
+We reused a [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/benchmark.spec.js) originnaly made by [mweststrate](https://github.com/mweststrate) for [immer](https://github.com/mweststrate/immer).
+It updates 10.000 items out of list of 100.000 todos items, these tests were executed on Node 8.4.0 with a MacBook Pro 2015:
 
 ```shell
 Update todos list
