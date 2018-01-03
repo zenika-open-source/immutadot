@@ -190,6 +190,19 @@ toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg
 
 When applying operations on a path immutad●t tries to create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
 
+@mweststrate made a [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/performance.spec.js) on the performance of [immer](https://github.com/mweststrate/immer) and other methods for setting a property on multiple items of a todo list and keep it immutable. Here are the results with immutad●t in addition:
+
+```shell
+performance
+    ✓ just mutate (20ms)
+    ✓ deepclone, then mutate (485ms)
+    ✓ handcrafted reducer (21ms)
+    ✓ immutableJS (59ms)
+    ✓ immer - with autofreeze (365ms)
+    ✓ immer - without autofreeze (181ms)
+    ✓ immutadot (78ms)
+```
+
 ## Documentation
 
 The full list of immutad●t's features is available in our [documentation](https://zenika.github.io/immutadot).
