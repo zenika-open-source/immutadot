@@ -1,6 +1,6 @@
 {
   "name": "immutadot",
-  "version": "1.0.0-rc.4",
+  "version": "1.0.0-rc.5",
   "description": "immutad●t (pronounced immutadot) is a set of immutable functions using dot notation.",
   "keywords": [
     "immutable",
