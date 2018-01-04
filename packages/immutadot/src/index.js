@@ -32,4 +32,3 @@ export {
   trimLeft,
   trimRight,
 } from './string'
-export * from './util'
