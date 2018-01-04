@@ -189,17 +189,17 @@ toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg
 ## Performances
 
 We reused a [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/benchmark.spec.js) originally made by [mweststrate](https://github.com/mweststrate) for [immer](https://github.com/mweststrate/immer).
-It updates 10.000 items out of list of 100.000 todos items, these tests were executed on Node 8.4.0 with a MacBook Pro 2015:
+It updates 10.000 items out of list of 100.000 todos items, these tests were ran with Node 8.4.0 on an Intel® Core™ i7-6560U CPU @ 2.20GHz:
 
 ```shell
 Update todos list
-    ✓ with mutation (2ms)
-    ✓ with deep cloning, then mutation (628ms)
-    ✓ with ES2015 destructuring (46ms)
-    ✓ with immutable (w/o conversion to plain JS objects) (99ms)
-    ✓ with immutable (w/ conversion to plain JS objects) (858ms)
-    ✓ with immer (default implementation without autofreeze) (353ms)
-    ✓ with immutad●t (137ms)
+  ✓ with mutation (2ms)
+  ✓ with deep cloning, then mutation (689ms)
+  ✓ with ES2015 destructuring (42ms)
+  ✓ with immutable (w/o conversion to plain JS objects) (50ms)
+  ✓ with immutable (w/ conversion to plain JS objects) (1011ms)
+  ✓ with immer (proxy implementation w/o autofreeze) (259ms)
+  ✓ with immutad●t (77ms)
 ```
 
 When applying operations on a path immutad●t tries to create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
