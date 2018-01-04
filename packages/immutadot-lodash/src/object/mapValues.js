@@ -14,7 +14,6 @@ import { convert } from 'immutadot/core/convert'
  * @example mapValues({ nested: { a: { age: 40, name: 'John' }, b: { age: 30, name: 'Alice' } } }, 'nested', 'age') // => { nested: { a: 40, b: 30 } }
  * @see {@link https://lodash.com/docs#mapValues|lodash.mapValues} for more information.
  * @since 1.0.0
- * @flow
  */
 const mapValues = convert(_mapValues)
 export { mapValues }

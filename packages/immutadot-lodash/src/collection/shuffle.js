@@ -11,7 +11,6 @@ import { convert } from 'immutadot/core/convert'
  * @see {@link https://lodash.com/docs#shuffle|lodash.shuffle} for more information.
  * @example shuffle({ nested: { prop: [1, 2, 3, 4, 5, 6, 7, 8, 9] } }, 'nested.prop') // => { nested: { prop: [7, 3, 9, 1, 4, 5, 6, 8, 2] } }
  * @since 1.0.0
- * @flow
  */
 const shuffle = convert(_shuffle)
 export { shuffle }

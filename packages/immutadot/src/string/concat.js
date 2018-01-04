@@ -12,7 +12,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @example concat({ nested: { a: 'Hello' } }, 'nested.a', ' world', ' !') // => { nested: { a: 'Hello world !' } }
  * @see {@link https://mdn.io/String.prototype.concat|String.prototype.concat} for more information.
  * @since 1.0.0
- * @flow
  */
 const concat = convertStringMethod('concat')
 

@@ -14,7 +14,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @example slice({ nested: { a: 'Hello World !' } }, 6, 11) // => { nested: { a: 'World' } }
  * @see {@link https://mdn.io/String.prototype.slice|String.prototype.slice} for more information.
  * @since 1.0.0
- * @flow
  */
 const slice = convertStringMethod('slice')
 

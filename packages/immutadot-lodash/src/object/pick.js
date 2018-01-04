@@ -12,7 +12,6 @@ import { convert } from 'immutadot/core/convert'
  * @example pick({ nested: { a: 1, b: 2, c: 3 } }, 'nested', 'b') // => { nested: { b: 2 } }
  * @see {@link https://lodash.com/docs#pick|lodash.pick} for more information.
  * @since 1.0.0
- * @flow
  */
 const pick = convert(_pick)
 export { pick }

@@ -12,7 +12,6 @@ import { convert } from 'immutadot/core/convert'
  * @see {@link https://lodash.com/docs#filter|lodash.filter} for more information.
  * @example filter({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v % 2) // => { nested: { prop: [1, 3] } }
  * @since 1.0.0
- * @flow
  */
 const filter = convert(_filter)
 export { filter }

@@ -10,7 +10,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @example toUpperCase({ nested: { a: 'Hello world !' } }, 'fr_fr') // => { nested: { a: 'HELLO WORLD !' } }
  * @see {@link https://mdn.io/String.prototype.toUpperCase|String.prototype.toUpperCase} for more information.
  * @since 1.0.0
- * @flow
  */
 const toUpperCase = convertStringMethod('toUpperCase')
 

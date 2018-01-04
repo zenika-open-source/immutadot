@@ -13,7 +13,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @example slice({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 1, 3) // => { nested: { prop: [2, 3] } }
  * @see {@link https://mdn.io/Array.prototype.slice|Array.prototype.slice} for more information.
  * @since 0.3.0
- * @flow
  */
 const slice = convertArrayMethod('slice', false)
 

@@ -11,7 +11,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @example map({ nested: { prop: [1, 2, 3] } }, 'nested.prop', v => v * 2) // => { nested: { prop: [2, 4, 6] } }
  * @see {@link https://mdn.io/Array.prototype.map|Array.prototype.map} for more information.
  * @since 1.0.0
- * @flow
  */
 const map = convertArrayMethod('map', false)
 

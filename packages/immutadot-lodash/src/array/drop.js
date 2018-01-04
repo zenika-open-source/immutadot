@@ -12,7 +12,6 @@ import { convert } from 'immutadot/core/convert'
  * @example drop({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', 2) // => { nested: { prop: [3, 4] } }
  * @see {@link https://lodash.com/docs#drop|lodash.drop} for more information.
  * @since 1.0.0
- * @flow
  */
 const drop = convert(_drop)
 export { drop }

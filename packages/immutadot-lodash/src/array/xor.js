@@ -12,7 +12,6 @@ import { convert } from 'immutadot/core/convert'
  * @example xor({ nested: { prop: [1, 2] } }, 'nested.prop', [2, 3]) // => { nested: { prop: [1, 3] } }
  * @see {@link https://lodash.com/docs#xor|lodash.xor} for more information.
  * @since 1.0.0
- * @flow
  */
 const xor = convert(_xor)
 export { xor }

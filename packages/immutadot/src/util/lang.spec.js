@@ -3,6 +3,7 @@ import {
   isNaturalInteger,
   isNil,
   isObject,
+  isString,
   isSymbol,
   length,
   toString,
@@ -48,6 +49,21 @@ describe('Lang utils', () => {
       expect(isNil(.6)).toBe(false)
       expect(isNil('null')).toBe(false)
       expect(isNil('undefined')).toBe(false)
+    })
+  })
+
+  describe('util.isString', () => {
+    it('should return true for strings', () => {
+      expect(isString('')).toBe(true)
+      expect(isString('🍺')).toBe(true)
+    })
+
+    it('should return false for non strings', () => {
+      expect(isString([])).toBe(false)
+      expect(isString(666)).toBe(false)
+      expect(isString({})).toBe(false)
+      expect(isString(undefined)).toBe(false)
+      expect(isString(null)).toBe(false)
     })
   })
 

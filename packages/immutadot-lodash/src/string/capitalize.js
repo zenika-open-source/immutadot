@@ -11,7 +11,6 @@ import { convert } from 'immutadot/core/convert'
  * @example capitalize({ nested: { a: "a string" } }, 'nested.a') // => { nested: { a: "A string" } }
  * @see {@link https://lodash.com/docs#capitalize|lodash.capitalize} for more information.
  * @since 1.0.0
- * @flow
  */
 const capitalize = convert(_capitalize)
 export { capitalize }

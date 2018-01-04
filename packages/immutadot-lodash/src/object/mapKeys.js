@@ -13,7 +13,6 @@ import { convert } from 'immutadot/core/convert'
  * @example mapKeys({ nested: { a: 1, b: 2, c: 3 } }, 'nested', (v, k) => '_' + k) // => { nested: { _a: 1, _b: 2, _c: 3 } }
  * @see {@link https://lodash.com/docs#mapKeys|lodash.mapKeys} for more information.
  * @since 1.0.0
- * @flow
  */
 const mapKeys = convert(_mapKeys)
 export { mapKeys }

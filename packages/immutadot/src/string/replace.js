@@ -12,7 +12,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @example replace({ nested: { a: 'Hi Nico' } }, 'nested.a', 'Nico', 'Yvo') // => { nested: { a: 'Hi Yvo' } }
  * @see {@link https://mdn.io/String.prototype.replace|String.prototype.replace} for more information.
  * @since 0.3.0
- * @flow
  */
 const replace = convertStringMethod('replace')
 

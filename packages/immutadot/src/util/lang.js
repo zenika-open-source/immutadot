@@ -21,6 +21,17 @@ const isNaturalInteger = arg => Number.isSafeInteger(arg) && arg >= 0
 const isNil = arg => arg === undefined || arg === null
 
 /**
+ * Tests whether <code>arg</code> is a string.
+ * @function
+ * @param {*} arg The value to test
+ * @return {boolean} True if <code>arg</code> is a string, false otherwise
+ * @memberof util
+ * @private
+ * @since 1.0.0
+ */
+const isString = arg => typeof arg === 'string'
+
+/**
  * Tests whether <code>arg</code> is a Symbol.
  * @param {*} arg The value to test
  * @return {boolean} True if <code>arg</code> is a Symbol, false otherwise
@@ -69,6 +80,7 @@ export {
   isNaturalInteger,
   isNil,
   isObject,
+  isString,
   isSymbol,
   length,
   toString,

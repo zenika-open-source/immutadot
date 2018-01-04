@@ -1,12 +1,10 @@
-import 'seq/core'
-
-import { chain } from 'seq/chain'
-
 import { isObject } from 'util/lang'
 
 import {
   prop,
 } from 'path/consts'
+
+const chain = undefined
 
 /**
 * Proxy handler to protect object from mutations.
@@ -85,6 +83,7 @@ class ProtectHandler {
  * @return {function} Function to be called with a callback accepting the protected reference, returning the result of the mutations performed by the callback.
  * @memberof util
  * @since 0.3.0
+ * @private
  * @example
  * protect({ a: 1, b: { c: 3 } })(protectedRef => {
  *   protectedRef.a++

@@ -10,7 +10,6 @@ import { convert } from 'core/convert'
  * @return {Object} Returns the updated object.
  * @example divide({ nested: { prop: 1332 } }, 'nested.prop', 2) // => { nested: { prop: 666 } }
  * @since 1.0.0
- * @flow
  */
 const divide = convert((value, divider) => Number(value) / Number(divider))
 

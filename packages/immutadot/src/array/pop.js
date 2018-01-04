@@ -10,7 +10,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @example pop({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop') // => { nested: { prop: [1, 2, 3] } }
  * @see {@link https://mdn.io/Array.prototype.pop|Array.prototype.pop} for more information.
  * @since 1.0.0
- * @flow
  */
 const pop = convertArrayMethod('pop')
 

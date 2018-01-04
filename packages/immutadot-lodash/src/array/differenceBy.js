@@ -13,7 +13,6 @@ import { convert } from 'immutadot/core/convert'
  * @example differenceBy({ nested: { prop: [1.2, 3.4, 5.6] } }, 'nested.prop', [5.4, 2.1], Math.floor) // => { nested: { prop: [1.2, 3.4] } }
  * @see {@link https://lodash.com/docs#differenceBy|lodash.differenceBy} for more information.
  * @since 1.0.0
- * @flow
  */
 const differenceBy = convert(_differenceBy)
 export { differenceBy }

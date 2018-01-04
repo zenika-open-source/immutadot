@@ -13,7 +13,6 @@ import { convert } from 'immutadot/core/convert'
  * @example intersectionWith({ nested: { prop: [{ x: 1 }, { x: 2 }] } }, 'nested.prop', [{ x: 2 }, { x: 3 }], (a, b) => a.x === b.x) // => { nested: { prop: [{ x: 2 }] } }
  * @see {@link https://lodash.com/docs#intersectionWith|lodash.intersectionWith} for more information.
  * @since 1.0.0
- * @flow
  */
 const intersectionWith = convert(_intersectionWith)
 export { intersectionWith }

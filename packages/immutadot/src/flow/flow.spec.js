@@ -1,10 +1,10 @@
 /* eslint-env jest */
 import {
-  flow,
   set,
   unset,
   update,
-} from 'flow'
+} from 'core'
+import { flow } from 'flow'
 import { immutaTest } from 'test.utils'
 
 describe('flow.flow', () => {

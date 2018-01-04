@@ -12,7 +12,6 @@ import { convert } from 'immutadot/core/convert'
  * @see {@link https://lodash.com/docs#toUpper|lodash.toUpper} for more information.
  * @see {@link https://mdn.io/String/toUpperCase|String.toUpperCase} for more information.
  * @since 1.0.0
- * @flow
  */
 const toUpper = convert(_toUpper)
 export { toUpper }

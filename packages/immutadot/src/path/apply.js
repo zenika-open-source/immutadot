@@ -13,6 +13,7 @@ import {
 
 import {
   isNil,
+  isString,
   length,
 } from 'util/lang'
 
@@ -152,11 +153,11 @@ const apply = operation => {
     return applier
   }
 
-  const uncurried = (obj, path, ...args) => curried(path, ...args)(obj)
-
-  uncurried.curried = curried
-
-  return uncurried
+  return (...args) => {
+    const [firstArg, ...argsRest] = args
+    if (isString(firstArg)) return curried(...args)
+    return curried(...argsRest)(firstArg)
+  }
 }
 
 export { apply }
