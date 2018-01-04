@@ -198,7 +198,7 @@ Update todos list
     ✓ with ES2015 destructuring (46ms)
     ✓ with immutable (w/o conversion to plain JS objects) (99ms)
     ✓ with immutable (w/ conversion to plain JS objects) (858ms)
-    ✓ with immer (353ms)
+    ✓ with immer (default implementation without autofreeze) (353ms)
     ✓ with immutad●t (137ms)
 ```
 

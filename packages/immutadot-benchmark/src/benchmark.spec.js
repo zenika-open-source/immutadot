@@ -93,7 +93,7 @@ describe('Benchmarks', () => {
     })
 
     let immerActual
-    it('with immer', () => {
+    it('with immer (default implementation without autofreeze)', () => {
       immerActual = immer(frozenState, draft => {
         for (let i = 0; i < MAX * MODIFY_FACTOR; i++)
           draft[i].done = true
