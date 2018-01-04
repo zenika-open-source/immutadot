@@ -12,7 +12,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @example concat({ nested: { prop: [1, 2] } }, 'nested.prop', [3, 4]) // => { nested: { prop: [1, 2, 3, 4] } }
  * @see {@link https://mdn.io/Array.prototype.concat|Array.prototype.concat} for more information.
  * @since 0.2.0
- * @flow
  */
 const concat = convertArrayMethod('concat', false)
 

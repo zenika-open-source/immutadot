@@ -12,7 +12,6 @@ import { convert } from 'immutadot/core/convert'
  * @example dropWhile({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v < 3) // => { nested: { prop: [3, 4] } }
  * @see {@link https://lodash.com/docs#dropWhile|lodash.dropWhile} for more information.
  * @since 1.0.0
- * @flow
  */
 const dropWhile = convert(_dropWhile)
 export { dropWhile }

@@ -11,7 +11,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @example filter({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v % 2) // => { nested: { prop: [1, 3] } }
  * @see {@link https://mdn.io/Array.prototype.filter|Array.prototype.filter} for more information.
  * @since 1.0.0
- * @flow
  */
 const filter = convertArrayMethod('filter', false)
 

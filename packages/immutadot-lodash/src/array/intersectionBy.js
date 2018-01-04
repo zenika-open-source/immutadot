@@ -13,7 +13,6 @@ import { convert } from 'immutadot/core/convert'
  * @example intersectionBy({ nested: { prop: [1.2, 2.1] } }, 'nested.prop', [2.3, 3.2], Math.floor) // => { nested: { prop: [2.1] } }
  * @see {@link https://lodash.com/docs#intersectionBy|lodash.intersectionBy} for more information.
  * @since 1.0.0
- * @flow
  */
 const intersectionBy = convert(_intersectionBy)
 export { intersectionBy }

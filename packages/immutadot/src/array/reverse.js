@@ -10,7 +10,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @example reverse({ nested: { prop: [1, 2, 3] } }, 'nested.prop') // => { nested: { prop: [3, 2, 1] } }
  * @see {@link https://mdn.io/Array.prototype.reverse|Array.prototype.reverse} for more information..
  * @since 0.3.0
- * @flow
  */
 const reverse = convertArrayMethod('reverse')
 

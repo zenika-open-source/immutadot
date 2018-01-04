@@ -13,7 +13,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @example padEnd({ nested: { a: 'Hellow' } }, 10, '?!') // => { nested: { a: 'Hellow?!?!' } }
  * @see {@link https://mdn.io/String.prototype.padEnd|String.prototype.padEnd} for more information.
  * @since 1.0.0
- * @flow
  */
 const padEnd = convertStringMethod('padEnd')
 

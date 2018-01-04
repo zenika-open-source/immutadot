@@ -11,7 +11,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @example toLocaleUpperCase({ nested: { a: 'çA vA Bien ?' } }, 'fr_fr') // => { nested: { a: 'ÇA VA BIEN ?' } }
  * @see {@link https://mdn.io/String.prototype.toLocaleUpperCase|String.prototype.toLocaleUpperCase} for more information.
  * @since 1.0.0
- * @flow
  */
 const toLocaleUpperCase = convertStringMethod('toLocaleUpperCase')
 

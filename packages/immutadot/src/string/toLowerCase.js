@@ -10,7 +10,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @example toLowerCase({ nested: { a: 'Hello WORLD !' } }, 'fr_fr') // => { nested: { a: 'hello world !' } }
  * @see {@link https://mdn.io/String.prototype.toLowerCase|String.prototype.toLowerCase} for more information.
  * @since 1.0.0
- * @flow
  */
 const toLowerCase = convertStringMethod('toLowerCase')
 

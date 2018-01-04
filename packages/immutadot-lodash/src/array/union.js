@@ -12,7 +12,6 @@ import { convert } from 'immutadot/core/convert'
  * @example union({ nested: { prop: [1, 2] } }, 'nested.prop', [2, 3]) // => { nested: { prop: [1, 2, 3] } }
  * @see {@link https://lodash.com/docs#union|lodash.union} for more information.
  * @since 1.0.0
- * @flow
  */
 const union = convert(_union)
 export { union }

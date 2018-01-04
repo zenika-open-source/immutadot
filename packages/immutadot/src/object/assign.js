@@ -12,7 +12,6 @@ import { convert } from 'core/convert'
  * @example assign({ nested: { a: 1, b: 2 } }, 'nested', { b: 3, c: 4 }) // => { nested: { a:1, b: 3, c: 4 } }
  * @see {@link https://mdn.io/Object.prototype.assign|Object.prototype.assign} for more information.
  * @since 0.1.12
- * @flow
  */
 const assign = convert((obj, ...args) => Object.assign({ ...obj }, ...args))
 

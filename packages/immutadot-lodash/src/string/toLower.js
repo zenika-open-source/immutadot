@@ -12,7 +12,6 @@ import { convert } from 'immutadot/core/convert'
  * @see {@link https://lodash.com/docs#toLower|lodash.toLower} for more information.
  * @see {@link https://mdn.io/String/toLowerCase|String.toLowerCase} for more information.
  * @since 1.0.0
- * @flow
  */
 const toLower = convert(_toLower)
 export { toLower }

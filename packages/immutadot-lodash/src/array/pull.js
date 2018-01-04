@@ -12,7 +12,6 @@ import { convertLodashFp } from 'util/convertLodashFp'
  * @example pull({ nested: { prop: [1, 2, 3, 1, 2, 3] } }, 'nested.prop', 1, 3) // => { nested: { prop: [2, 2] } }
  * @see {@link https://lodash.com/docs#pull|lodash.pull} for more information.
  * @since 1.0.0
- * @flow
  */
 const pull = convertLodashFp(_pull)
 export { pull }

@@ -12,7 +12,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @example sort({ nested: { prop: [2, 4, 3, 1] } }, 'nested.prop', (a, b) => b - a) // => { nested: { prop: [4, 3, 2, 1] } }
  * @see {@link https://mdn.io/Array.prototype.sort|Array.prototype.sort} for more information.
  * @since 1.0.0
- * @flow
  */
 const sort = convertArrayMethod('sort')
 

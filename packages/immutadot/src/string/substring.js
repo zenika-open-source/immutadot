@@ -13,7 +13,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @example substring({ nested: { a: 'Hello World !' } }, 6, 11) // => { nested: { a: 'World' } }
  * @see {@link https://mdn.io/String.prototype.substring|String.prototype.substring} for more information.
  * @since 1.0.0
- * @flow
  */
 const substring = convertStringMethod('substring')
 

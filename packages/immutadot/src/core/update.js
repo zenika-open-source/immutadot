@@ -19,7 +19,6 @@ const updateOperation = (obj, prop, value, updater, ...args) => { obj[prop] = up
  * update(object, 'nested.prop', inc) // => { nested: { prop: 5 } }
  * update(object, 'nested.prop', inc, 2) // => { nested: { prop: 6 } }
  * @since 1.0.0
- * @flow
  */
 const update = apply(updateOperation)
 

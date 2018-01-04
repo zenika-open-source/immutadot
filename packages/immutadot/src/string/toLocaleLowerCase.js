@@ -11,7 +11,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @example toLocaleLowerCase({ nested: { a: 'ÇA vA Bien ?' } }, 'fr_fr') // => { nested: { a: 'ça va bien ?' } }
  * @see {@link https://mdn.io/String.prototype.toLocaleLowerCase|String.prototype.toLocaleLowerCase} for more information.
  * @since 1.0.0
- * @flow
  */
 const toLocaleLowerCase = convertStringMethod('toLocaleLowerCase')
 

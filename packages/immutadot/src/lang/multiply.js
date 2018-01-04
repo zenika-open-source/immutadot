@@ -10,7 +10,6 @@ import { convert } from 'core/convert'
  * @return {Object} Returns the updated object.
  * @example multiply({ nested: { prop: 333 } }, 'nested.prop', 2) // => { nested: { prop: 666 } }
  * @since 1.0.0
- * @flow
  */
 const multiply = convert((value, multiplier) => Number(value) * Number(multiplier))
 

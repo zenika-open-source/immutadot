@@ -12,7 +12,6 @@ const setOperation = (obj, prop, _, value) => { obj[prop] = value }
  * @return {*} Returns the updated object.
  * @example set({ nested: { prop: 'old' } }, 'nested.prop', 'new') // => { nested: { prop: 'new' } }
  * @since 1.0.0
- * @flow
  */
 const set = apply(setOperation)
 

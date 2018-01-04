@@ -10,7 +10,6 @@ import { convert } from 'core/convert'
  * @return {Object} Returns the updated object.
  * @example subtract({ nested: { prop: 2000 } }, 'nested.prop', 336) // => { nested: { prop: 1664 } }
  * @since 1.0.0
- * @flow
  */
 const subtract = convert((value, subtraction) => Number(value) - Number(subtraction))
 

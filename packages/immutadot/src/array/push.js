@@ -14,7 +14,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * push({ nested: { prop: [1, 2] } }, 'nested.prop', 3, 4) // => { nested: { prop: [1, 2, 3, 4] } }
  * @see {@link https://mdn.io/Array.prototype.push|Array.prototype.push} for more information.
  * @since 0.1.7
- * @flow
  */
 const push = convertArrayMethod('push')
 

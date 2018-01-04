@@ -10,7 +10,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @example trim({ nested: { a: '   Hello world !   ' } }) // => { nested: { a: 'Hello world !' } }
  * @see {@link https://mdn.io/String.prototype.trim|String.prototype.trim} for more information.
  * @since 1.0.0
- * @flow
  */
 const trim = convertStringMethod('trim')
 

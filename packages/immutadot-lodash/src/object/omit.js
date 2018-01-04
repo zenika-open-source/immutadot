@@ -12,7 +12,6 @@ import { convert } from 'immutadot/core/convert'
  * @example omit({ nested: { a: 1, b: 2, c: 3 } }, 'nested', 'b') // => { nested: { a:1, c: 3 } }
  * @see {@link https://lodash.com/docs#omit|lodash.omit} for more information.
  * @since 1.0.0
- * @flow
  */
 const omit = convert(_omit)
 export { omit }

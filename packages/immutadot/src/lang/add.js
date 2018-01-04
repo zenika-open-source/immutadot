@@ -10,7 +10,6 @@ import { convert } from 'core/convert'
  * @return {Object} Returns the updated object.
  * @example add({ nested: { prop: 2 } }, 'nested.prop', 4) // => { nested: { prop: 6 } }
  * @since 1.0.0
- * @flow
  */
 const add = convert((value, addition) => Number(value) + Number(addition))
 
