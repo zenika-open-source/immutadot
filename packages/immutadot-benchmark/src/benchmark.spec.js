@@ -6,6 +6,7 @@
 import { List, Record } from 'immutable'
 
 import immer, { setAutoFreeze } from 'immer'
+import immerES5, { setAutoFreeze as setAutoFreezeES5 } from 'immer'
 
 import cloneDeep from 'lodash/cloneDeep'
 
@@ -43,6 +44,7 @@ describe('Benchmarks', () => {
 
     // Disable immer auto freeze
     setAutoFreeze(false)
+    setAutoFreezeES5(false)
 
     // Prepare expectd state
     const expectedState = []
@@ -100,6 +102,14 @@ describe('Benchmarks', () => {
       })
     })
 
+    let immerES5Actual
+    it('with immer (ES5 implementation w/o autofreeze)', () => {
+      immerES5Actual = immerES5(frozenState, draft => {
+        for (let i = 0; i < MAX * MODIFY_FACTOR; i++)
+          draft[i].done = true
+      })
+    })
+
     let immutadotActual
     it('with immutad●t', () => {
       immutadotActual = set(frozenState, `[:${MAX * MODIFY_FACTOR}].done`, true)
@@ -111,6 +121,7 @@ describe('Benchmarks', () => {
       expect(es2015Actual).toEqual(expectedState)
       expect(immutableActual).toEqual(expectedState)
       expect(immerActual).toEqual(expectedState)
+      expect(immerES5Actual).toEqual(expectedState)
       expect(immutadotActual).toEqual(expectedState)
     })
   })
