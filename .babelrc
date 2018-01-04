@@ -11,14 +11,14 @@
       "ignore": ".spec.js",
       "plugins": [
         ["module-resolver", {
-          "root": ["./tmpsrc"]
+          "root": ["./src"]
         }]
       ],
     },
     "test": {
       "plugins": [
         ["module-resolver", {
-          "root": ["./src", "./generated", "../../misc"]
+          "root": ["./src", "../../misc"]
         }]
       ]
     }

@@ -32,15 +32,9 @@
     "jsdoc": "~3.5.5"
   },
   "scripts": {
-    "generate:flow": "node ../../misc/generate-flow.js",
-    "prebuild": "yarn generate:flow && rm -rf tmpsrc && mkdir tmpsrc && cp -r src/* generated/* tmpsrc",
-    "build": "cross-env BABEL_ENV=production babel tmpsrc -d .",
-    "postbuild": "rm -rf tmpsrc",
-    "prelint": "yarn generate:flow",
-    "lint": "eslint src generated",
-    "pretest": "yarn generate:flow",
+    "build": "cross-env BABEL_ENV=production babel src -d .",
+    "lint": "eslint src",
     "test": "jest -c ../../config/jest.js",
-    "pretest:coverage": "yarn generate:flow",
     "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../config/jsdoc.json",
     "docs:private": "jsdoc -c ../../config/jsdoc.json -p"

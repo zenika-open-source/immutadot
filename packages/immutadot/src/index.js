@@ -13,6 +13,7 @@ export {
   unshift,
 } from './array'
 export * from './core'
+export * from './flow'
 export * from './lang'
 export * from './object'
 export {
