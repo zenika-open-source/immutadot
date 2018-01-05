@@ -1,11 +1,11 @@
 {
   "name": "immutadot-benchmark",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.6",
   "license": "MIT",
   "devDependencies": {
     "immer": "~0.2.0",
     "immutable": "~3.8.2",
-    "immutadot": "~1.0.0-rc.5",
+    "immutadot": "~1.0.0-rc.6",
     "jest": "~21.2.1"
   },
   "scripts": {
