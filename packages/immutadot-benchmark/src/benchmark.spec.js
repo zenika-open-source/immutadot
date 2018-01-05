@@ -73,7 +73,6 @@ describe('Benchmarks', () => {
 
     const results = []
 
-    // FIXME add lodash to dependencies
     it('deep cloning', () => {
       results.push(benchmark('lodash deep cloning, then mutation', () => {
         const newState = cloneDeep(baseState)
