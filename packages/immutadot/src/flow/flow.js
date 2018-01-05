@@ -1,4 +1,5 @@
 import { flatten } from 'util/array'
+import { isNil } from 'util/lang'
 
 /**
  * A function successively applying a list of functions.
@@ -11,14 +12,15 @@ import { flatten } from 'util/array'
 
 /**
  * Successively calls <code>fns</code>.<br/>
- * Each function is called with the result of the previous one.
+ * Each function is called with the result of the previous one.<br/>
+ * Falsey functions (<code>null</code>, <code>undefined</code> and <code>false</code>) are tolerated and will be skipped.
  * @memberof flow
  * @param {...(function|Array<function>)} args The functions to apply
  * @returns {flow.flowFunction} A function successively calling <code>fns</code>
  * @since 1.0.0
  */
 function flow(...args) {
-  const fns = flatten(args)
+  const fns = flatten(args).filter(fn => !isNil(fn) && fn !== false)
   return pObj => {
     const [result] = fns.reduce(
       ([obj, appliedPaths], fn) => [

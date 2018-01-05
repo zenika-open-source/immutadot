@@ -74,4 +74,37 @@ describe('flow.flow', () => {
       return output
     }, object, 'nested1.prop2', 'nested2.prop3', 'nested2.prop4')
   })
+
+  it('should skip falsey functions', () => {
+    immutaTest((input, path) => {
+      const output = flow(
+        null,
+        set(path, 'bar'),
+        undefined,
+        false,
+        [
+          null,
+          undefined,
+          false,
+        ],
+      )(input)
+      expect(output).toEqual({
+        nested: { prop: 'bar' },
+        other: {},
+      })
+      return output
+    }, {
+      nested: { prop: 'foo' },
+      other: {},
+    }, 'nested.prop')
+  })
+
+  it('should do nothing if empty flow', () => {
+    const input = {
+      nested: { prop: 'foo' },
+      other: {},
+    }
+    const output = flow()(input)
+    expect(output).toBe(input)
+  })
 })
