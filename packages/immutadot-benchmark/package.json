@@ -9,7 +9,7 @@
     "jest": "~21.2.1"
   },
   "scripts": {
-    "benchmark": "jest -v -i",
+    "benchmark": "jest --verbose -i",
     "test": "echo No tests"
   }
 }
