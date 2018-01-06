@@ -20,14 +20,20 @@ import { isNil } from 'util/lang'
  * @since 1.0.0
  */
 function flow(...args) {
-  const fns = flatten(args).filter(fn => !isNil(fn) && fn !== false)
-  return pObj => {
+  const fns = flatten(args)
+    .filter(fn => !isNil(fn) && fn !== false)
+    .map(fn => fn.applier === undefined ? (
+      ([obj, appliedPaths]) => [fn(obj), appliedPaths]
+    ) : (
+      ([obj, appliedPaths]) => [
+        fn.applier(obj, appliedPaths),
+        [...appliedPaths, fn.applier.path],
+      ]
+    ))
+  return obj => {
     const [result] = fns.reduce(
-      ([obj, appliedPaths], fn) => [
-        fn(obj, appliedPaths),
-        [...appliedPaths, fn.path],
-      ],
-      [pObj, []],
+      (acc, fn) => fn(acc),
+      [obj, []],
     )
     return result
   }
