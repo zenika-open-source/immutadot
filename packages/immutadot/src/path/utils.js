@@ -57,6 +57,7 @@ export const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg
  * @since 1.0.0
  */
 export function pathAlreadyApplied(path, pAppliedPaths) {
+  if (pAppliedPaths === undefined) return false
   const appliedPaths = pAppliedPaths.filter(
     appliedPath => !appliedPath.some(([propType]) => propType === slice || propType === list),
   )

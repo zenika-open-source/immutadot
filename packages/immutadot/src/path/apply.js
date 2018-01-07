@@ -92,7 +92,7 @@ const apply = operation => {
 
     if (path.length === 0) throw new TypeError('path should not be empty')
 
-    const applier = (obj, appliedPaths = []) => {
+    const applier = (obj, appliedPaths) => {
       const walkPath = (curObj, curPath, remPath, isCopy = false) => {
         const [curProp, ...pathRest] = remPath
         const [propType, propValue] = curProp
@@ -150,7 +150,10 @@ const apply = operation => {
 
     applier.path = path
 
-    return applier
+    const unaryApplier = arg => applier(arg)
+    unaryApplier.applier = applier
+
+    return unaryApplier
   }
 
   return (...args) => {
