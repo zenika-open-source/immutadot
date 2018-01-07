@@ -92,7 +92,7 @@ describe('Update todos list', () => {
   })
 
   it('immer ES5', () => {
-    benchmark('immer 0.2.1 (ES5 implementation w/o autofreeze)', () => {
+    benchmark('immer 0.2.2 (ES5 implementation w/o autofreeze)', () => {
       const newState = immerES5(baseState, draft => {
         for (let i = 0; i < modifySize; i++)
           draft[i].done = true
