@@ -107,4 +107,22 @@ describe('flow.flow', () => {
     const output = flow()(input)
     expect(output).toBe(input)
   })
+
+  it('should accept non immutadot functions', () => {
+    expect(flow(
+      obj => ({
+        ...obj,
+        nested: {
+          ...obj.nested,
+          prop: 'bar',
+        },
+      }),
+    )({
+      nested: { prop: 'foo' },
+      other: {},
+    })).toEqual({
+      nested: { prop: 'bar' },
+      other: {},
+    })
+  })
 })
