@@ -224,4 +224,22 @@ describe('path.apply', () => {
   it('should throw an explicit error when en empty path is given as parameter', () => {
     expect(() => inc({}, '')).toThrowError('path should not be empty')
   })
+
+  it('should support curried first arg', () => {
+    immutaTest(
+      (input, path) => {
+        const output = inc(path)(input, { shouldBeDiscarded: true })
+        expect(output).toEqual({
+          nested: { prop: 6 },
+          other: {},
+        })
+        return output
+      },
+      {
+        nested: { prop: 5 },
+        other: {},
+      },
+      'nested.prop',
+    )
+  })
 })
