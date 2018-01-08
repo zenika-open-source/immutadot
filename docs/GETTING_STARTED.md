@@ -73,6 +73,21 @@ It shouldn't desorient you and sound very familiar. There are a few more operati
 
 ## Grouping multiple operations
 
+immutad●t has a functionnal utility called `flow` that helps you compose multiple operations and apply them on an input. What's great about `flow` is that it produces a new function that is easily testable.
+
+We want in our weasels array only those whose scientific names begin with **M** character and we forgot to capitalize their vernacular, let's repair this mistake.
+
+```js
+const filterAndCapitalizeAnimals = flow(
+  filter('weasels', weasel => weasel.scientificName.startsWith('M'))
+  capitalize('weasels[:].scientificName')
+)
+```
+
+const alteredAnimals = filterAndCapitalizeAnimals(updatedAnimals)
+
+With `flow` utility the true power of functional programming will be unleashed in your code!
+
 ## Performing custom updates
 
 ## Creating custom operations
