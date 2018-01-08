@@ -56,6 +56,19 @@ It seems much more clear, no?
 
 ## Basic array operations
 
+immutad●t comes with some built-in operations that makes it easy to manipulate arrays. The most of them are already implemented in [ES2015+](https://mdn.io/Array) immutad●t ensures you their results are immutable.
+
+We are pretty fond of honey badger aka ratel. Let's add it in our weasels array with `push` function.
+
+```js
+const updatedAnimals = push(animals, 'animals.weasels', {
+  vernacularName: 'ratel',
+  scientificName: 'Mellivora capensis'
+})
+```
+
+It shouldn't desorient you and sound very familiar. There are a few more operations you can find out in our [documentation's array section](https://zenika.github.io/immutadot/immutadot/1.0/array.html).
+
 ## Basic collection operations
 
 ## Grouping multiple operations
