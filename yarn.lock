@@ -2492,9 +2492,9 @@ ignore@^3.3.3:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
-immer@~0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-0.2.2.tgz#43005d9fa26c877148a8d678446821eaab88b2a2"
+immer@~0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-0.3.0.tgz#d5a2c38952366d93f81c9cddc2d4e9f3f9f761f6"
 
 immutable@~3.8.2:
   version "3.8.2"

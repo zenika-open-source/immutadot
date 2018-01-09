@@ -82,7 +82,7 @@ describe('Update todos list', () => {
   })
 
   it('immer proxy', () => {
-    benchmark('immer 0.2.1 (proxy implementation w/o autofreeze)', () => {
+    benchmark('immer 0.3.0 (proxy implementation w/o autofreeze)', () => {
       const newState = immer(baseState, draft => {
         for (let i = 0; i < modifySize; i++)
           draft[i].done = true
@@ -92,7 +92,7 @@ describe('Update todos list', () => {
   })
 
   it('immer ES5', () => {
-    benchmark('immer 0.2.2 (ES5 implementation w/o autofreeze)', () => {
+    benchmark('immer 0.3.0 (ES5 implementation w/o autofreeze)', () => {
       const newState = immerES5(baseState, draft => {
         for (let i = 0; i < modifySize; i++)
           draft[i].done = true

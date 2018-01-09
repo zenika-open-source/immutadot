@@ -3,11 +3,11 @@
   "version": "1.0.0-rc.7",
   "license": "MIT",
   "devDependencies": {
-    "immer": "~0.2.2",
+    "immer": "~0.3.0",
     "immutable": "~3.8.2",
     "immutadot": "~1.0.0-rc.7",
     "jest": "~21.2.1",
-    "lerna": "~2.5.1",
+    "lerna": "~2.6.0",
     "lodash": "~4.17.4"
   },
   "scripts": {
