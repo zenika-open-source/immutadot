@@ -7,7 +7,7 @@
     "build": "lerna run --stream build",
     "lint": "lerna run --stream lint",
     "test": "lerna run --stream test",
-    "test:coverage": "lerna run --stream test:coverage && codecov --disable=gcov ",
+    "test:coverage": "lerna run --stream test:coverage && codecov --disable=gcov",
     "docs": "lerna run --stream docs",
     "docs:private": "lerna run --stream docs:private"
   },
@@ -15,7 +15,7 @@
     "babel-cli": "~6.26.0",
     "babel-eslint": "~8.2.1",
     "babel-plugin-module-resolver": "~3.0.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-plugin-transform-runtime": "~6.23.0",
     "babel-preset-env": "~1.6.1",
     "babel-preset-stage-3": "~6.24.1",
     "codecov": "~3.0.0",
