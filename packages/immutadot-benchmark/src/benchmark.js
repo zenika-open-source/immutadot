@@ -1,11 +1,11 @@
-export function createBenchmark(title, pMaxTime = 30, pMaxOperations = 1000) {
+export function createBenchmark(title, testResult, pMaxTime = 30, pMaxOperations = 1000) {
 
   const fast = Boolean(process.env.FAST)
   const maxTime = fast ? pMaxTime / 3 : pMaxTime, maxOperations = fast ? Math.round(pMaxOperations / 3) : pMaxOperations
 
   const runs = []
 
-  function run(opTitle, operation) {
+  function run(key, opTitle, operation) {
     const startTime = Date.now()
     const maxTimeMs = Math.round(maxTime * 1000)
     const maxRunTime = Math.round(maxTimeMs / 10) // Max run time is a tenth of max time
@@ -31,6 +31,8 @@ export function createBenchmark(title, pMaxTime = 30, pMaxOperations = 1000) {
         maxOperations - nbOperations,
       )
     }
+
+    if (typeof testResult === 'function') testResult(key, operation())
 
     runs.push({
       title: opTitle,

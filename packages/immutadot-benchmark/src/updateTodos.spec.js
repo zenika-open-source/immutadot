@@ -37,12 +37,21 @@ describe('Update todos list', () => {
 
   const randomStart = () => Math.floor(Math.random() * 90000)
 
-  const benchmark = createBenchmark('Update todos list')
+  const benchmark = createBenchmark(
+    'Update todos list',
+    (key, result) => {
+      if (key === 'immutable') return
+      let trues = 0, falses = 0
+      result.forEach(todo => todo.done ? trues++ : falses++)
+      expect(trues).toBe(modifySize)
+      expect(falses).toBe(listSize - modifySize)
+    },
+  )
 
   it('ES2015', () => {
-    benchmark('ES2015 destructuring', () => {
+    benchmark('es2015', 'ES2015 destructuring', () => {
       const start = randomStart(), end = start + modifySize
-      const newState = baseState
+      return baseState
         .slice(0, start)
         .concat(
           baseState.slice(start, end)
@@ -52,55 +61,49 @@ describe('Update todos list', () => {
             })),
           baseState.slice(end),
         )
-      expect(newState).not.toBeUndefined()
     })
   })
 
   it('immutable w/o conversion', () => {
-    benchmark('immutable 3.8.2 (w/o conversion to plain JS objects)', () => {
+    benchmark('immutable', 'immutable 3.8.2 (w/o conversion to plain JS objects)', () => {
       const start = randomStart(), end = start + modifySize
-      const newState = immutableState.withMutations(state => {
+      immutableState.withMutations(state => {
         for (let i = start; i < end; i++) state.setIn([i, 'done'], true)
       })
-      expect(newState).not.toBeUndefined()
     })
   })
 
   it('immutable w/ conversion', () => {
-    benchmark('immutable 3.8.2 (w/ conversion to plain JS objects)', () => {
+    benchmark('immutable-toJS', 'immutable 3.8.2 (w/ conversion to plain JS objects)', () => {
       const start = randomStart(), end = start + modifySize
-      const newState = immutableState.withMutations(state => {
+      return immutableState.withMutations(state => {
         for (let i = start; i < end; i++) state.setIn([i, 'done'], true)
       }).toJS()
-      expect(newState).not.toBeUndefined()
     })
   })
 
   it('immer proxy', () => {
-    benchmark('immer 0.6.0 (proxy implementation w/o autofreeze)', () => {
+    benchmark('immer-proxy', 'immer 0.6.0 (proxy implementation w/o autofreeze)', () => {
       const start = randomStart(), end = start + modifySize
-      const newState = immer(baseState, draft => {
+      return immer(baseState, draft => {
         for (let i = start; i < end; i++) draft[i].done = true
       })
-      expect(newState).not.toBeUndefined()
     })
   })
 
   it('immer ES5', () => {
-    benchmark('immer 0.6.0 (ES5 implementation w/o autofreeze)', () => {
+    benchmark('immer-es5', 'immer 0.6.0 (ES5 implementation w/o autofreeze)', () => {
       const start = randomStart(), end = start + modifySize
-      const newState = immerES5(baseState, draft => {
+      return immerES5(baseState, draft => {
         for (let i = start; i < end; i++) draft[i].done = true
       })
-      expect(newState).not.toBeUndefined()
     })
   })
 
   it('immutad●t', () => {
-    benchmark('immutad●t 1.0.0-rc.7', () => {
+    benchmark('immutadot', 'immutad●t 1.0.0-rc.7', () => {
       const start = randomStart(), end = start + modifySize
-      const newState = set(baseState, `[${start}:${end}].done`, true)
-      expect(newState).not.toBeUndefined()
+      return set(baseState, `[${start}:${end}].done`, true)
     })
   })
 
