@@ -1,5 +1,5 @@
 import { flatten } from 'util/array'
-import { isNil } from 'util/lang'
+import { isFunction } from 'util/lang'
 
 /**
  * A function successively applying a list of functions.
@@ -21,7 +21,7 @@ import { isNil } from 'util/lang'
  */
 function flow(...args) {
   const fns = flatten(args)
-    .filter(fn => !isNil(fn) && fn !== false)
+    .filter(fn => isFunction(fn))
     .map(fn => fn.applier === undefined ? (
       ([obj, appliedPaths]) => [fn(obj), appliedPaths]
     ) : (

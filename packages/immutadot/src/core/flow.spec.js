@@ -75,7 +75,7 @@ describe('flow.flow', () => {
     }, object, 'nested1.prop2', 'nested2.prop3', 'nested2.prop4')
   })
 
-  it('should skip falsey functions', () => {
+  it('should skip non functions', () => {
     immutaTest((input, path) => {
       const output = flow(
         null,
