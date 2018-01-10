@@ -35,26 +35,32 @@ describe('Update todos list', () => {
   setAutoFreeze(false)
   setAutoFreezeES5(false)
 
+  const randomStart = () => Math.floor(Math.random() * 90000)
+
   const benchmark = createBenchmark('Update todos list')
 
   it('ES2015', () => {
     benchmark('ES2015 destructuring', () => {
+      const start = randomStart(), end = start + modifySize
       const newState = baseState
-        .slice(0, modifySize)
-        .map(todo => ({
-          ...todo,
-          done: true,
-        }))
-        .concat(baseState.slice(modifySize))
+        .slice(0, start)
+        .concat(
+          baseState.slice(start, end)
+            .map(todo => ({
+              ...todo,
+              done: true,
+            })),
+          baseState.slice(end),
+        )
       expect(newState).not.toBeUndefined()
     })
   })
 
   it('immutable w/o conversion', () => {
     benchmark('immutable 3.8.2 (w/o conversion to plain JS objects)', () => {
+      const start = randomStart(), end = start + modifySize
       const newState = immutableState.withMutations(state => {
-        for (let i = 0; i < modifySize; i++)
-          state.setIn([i, 'done'], true)
+        for (let i = start; i < end; i++) state.setIn([i, 'done'], true)
       })
       expect(newState).not.toBeUndefined()
     })
@@ -62,9 +68,9 @@ describe('Update todos list', () => {
 
   it('immutable w/ conversion', () => {
     benchmark('immutable 3.8.2 (w/ conversion to plain JS objects)', () => {
+      const start = randomStart(), end = start + modifySize
       const newState = immutableState.withMutations(state => {
-        for (let i = 0; i < modifySize; i++)
-          state.setIn([i, 'done'], true)
+        for (let i = start; i < end; i++) state.setIn([i, 'done'], true)
       }).toJS()
       expect(newState).not.toBeUndefined()
     })
@@ -72,9 +78,9 @@ describe('Update todos list', () => {
 
   it('immer proxy', () => {
     benchmark('immer 0.6.0 (proxy implementation w/o autofreeze)', () => {
+      const start = randomStart(), end = start + modifySize
       const newState = immer(baseState, draft => {
-        for (let i = 0; i < modifySize; i++)
-          draft[i].done = true
+        for (let i = start; i < end; i++) draft[i].done = true
       })
       expect(newState).not.toBeUndefined()
     })
@@ -82,9 +88,9 @@ describe('Update todos list', () => {
 
   it('immer ES5', () => {
     benchmark('immer 0.6.0 (ES5 implementation w/o autofreeze)', () => {
+      const start = randomStart(), end = start + modifySize
       const newState = immerES5(baseState, draft => {
-        for (let i = 0; i < modifySize; i++)
-          draft[i].done = true
+        for (let i = start; i < end; i++) draft[i].done = true
       })
       expect(newState).not.toBeUndefined()
     })
@@ -92,7 +98,8 @@ describe('Update todos list', () => {
 
   it('immutad●t', () => {
     benchmark('immutad●t 1.0.0-rc.7', () => {
-      const newState = set(baseState, `[:${modifySize}].done`, true)
+      const start = randomStart(), end = start + modifySize
+      const newState = set(baseState, `[${start}:${end}].done`, true)
       expect(newState).not.toBeUndefined()
     })
   })
