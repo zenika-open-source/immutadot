@@ -14,7 +14,7 @@ import { isNil } from 'util/lang'
  * Successively calls <code>fns</code>.<br/>
  * Each function is called with the result of the previous one.<br/>
  * Falsey functions (<code>null</code>, <code>undefined</code> and <code>false</code>) are tolerated and will be skipped.
- * @memberof flow
+ * @memberof core
  * @param {...(function|Array<function>)} args The functions to apply
  * @returns {flow.flowFunction} A function successively calling <code>fns</code>
  * @since 1.0.0
