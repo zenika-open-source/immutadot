@@ -5,8 +5,6 @@ import { List, Record } from 'immutable'
 import immer, { setAutoFreeze } from 'immer'
 import immerES5, { setAutoFreeze as setAutoFreezeES5 } from 'immer/es5'
 
-import cloneDeep from 'lodash/cloneDeep'
-
 import { createBenchmark } from './benchmark'
 
 import { set } from 'immutadot/core'
@@ -38,15 +36,6 @@ describe('Update todos list', () => {
   setAutoFreezeES5(false)
 
   const benchmark = createBenchmark('Update todos list')
-
-  it('deep cloning', () => {
-    benchmark('lodash 4.17.4 deep cloning, then mutation', () => {
-      const newState = cloneDeep(baseState)
-      for (let i = 0; i < modifySize; i++)
-        newState[i].done = true
-      expect(newState).not.toBeUndefined()
-    })
-  })
 
   it('ES2015', () => {
     benchmark('ES2015 destructuring', () => {

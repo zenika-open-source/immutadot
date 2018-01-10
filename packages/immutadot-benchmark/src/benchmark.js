@@ -1,4 +1,4 @@
-export function createBenchmark(title, maxTime = 30, maxOperations = 1000) {
+export function createBenchmark(title, maxTime = 10, maxOperations = 1000) {
 
   const runs = []
 
