@@ -2,7 +2,7 @@ import { flatten } from 'util/array'
 import { isFunction } from 'util/lang'
 
 /**
- * A function successively applying a list of functions.
+ * A function successively calling a list of functions.
  * @callback flowFunction
  * @memberof flow
  * @param {*} arg The starting value
@@ -11,12 +11,12 @@ import { isFunction } from 'util/lang'
  */
 
 /**
- * Successively calls <code>fns</code>.<br/>
+ * Creates a function that will successively call all functions contained in <code>args</code>.<br/>
  * Each function is called with the result of the previous one.<br/>
- * Falsey functions (<code>null</code>, <code>undefined</code> and <code>false</code>) are tolerated and will be skipped.
+ * Non functions <code>args</code> are tolerated and will be ignored.
  * @memberof core
  * @param {...(function|Array<function>)} args The functions to apply
- * @returns {flow.flowFunction} A function successively calling <code>fns</code>
+ * @returns {flow.flowFunction} A function successively calling function <code>args</code>
  * @since 1.0.0
  */
 function flow(...args) {
