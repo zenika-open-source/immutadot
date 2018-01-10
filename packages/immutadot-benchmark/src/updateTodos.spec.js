@@ -9,10 +9,7 @@ import { createBenchmark } from './benchmark'
 
 import { set } from 'immutadot/core'
 
-describe('Update todos list', () => {
-  const listSize = 100000
-  const modifySize = 10000
-
+function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   // Prepare base state
   const baseState = []
   for (let i = 0; i < listSize; i++) {
@@ -35,17 +32,20 @@ describe('Update todos list', () => {
   setAutoFreeze(false)
   setAutoFreezeES5(false)
 
-  const randomStart = () => Math.floor(Math.random() * 90000)
+  const unmodifiedSize = listSize - modifySize
+  const randomStart = () => Math.floor(Math.random() * unmodifiedSize)
 
   const benchmark = createBenchmark(
-    'Update todos list',
+    title,
     (key, result) => {
       if (key === 'immutable') return
       let trues = 0, falses = 0
       result.forEach(todo => todo.done ? trues++ : falses++)
       expect(trues).toBe(modifySize)
-      expect(falses).toBe(listSize - modifySize)
+      expect(falses).toBe(unmodifiedSize)
     },
+    maxTime,
+    maxOperations,
   )
 
   it('ES2015', () => {
@@ -108,4 +108,8 @@ describe('Update todos list', () => {
   })
 
   afterAll(benchmark.log)
-})
+}
+
+describe('Update small todos list', () => updateTodosList('Update small todos list', 1000, 100, 1, 1000))
+describe('Update medium todos list', () => updateTodosList('Update medium todos list', 10000, 1000, 10, 1000))
+describe('Update large todos list', () => updateTodosList('Update large todos list', 100000, 10000, 30, 1000))
