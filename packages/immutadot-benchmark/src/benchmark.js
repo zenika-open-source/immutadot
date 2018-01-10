@@ -1,14 +1,17 @@
-export function createBenchmark(title, maxTime = 10, maxOperations = 1000) {
+export function createBenchmark(title, pMaxTime = 30, pMaxOperations = 1000) {
+
+  const fast = Boolean(process.env.FAST)
+  const maxTime = fast ? pMaxTime / 3 : pMaxTime, maxOperations = fast ? Math.round(pMaxOperations / 3) : pMaxOperations
 
   const runs = []
 
   function run(opTitle, operation) {
     const startTime = Date.now()
-    const maxTimeMs = maxTime * 1000
-    const maxRunTime = maxTimeMs / 10 // Max run time is a tenth of max time
+    const maxTimeMs = Math.round(maxTime * 1000)
+    const maxRunTime = Math.round(maxTimeMs / 10) // Max run time is a tenth of max time
     const limitEndTime = startTime + maxTimeMs
 
-    let iterations = Math.min(10, maxOperations) // Start 10 iterations
+    let iterations = 1 // Start with 1 iteration
     let nbOperations = 0
     let totalTime = 0
 
@@ -40,7 +43,7 @@ export function createBenchmark(title, maxTime = 10, maxOperations = 1000) {
     console.log( // eslint-disable-line no-console
       `${title}:\n${
         runs
-          .map(({ title, totalTime, nbOperations }) => `  ${title}: ~${(totalTime / nbOperations).toFixed(2)}ms/op on ${nbOperations}ops`)
+          .map(({ title, totalTime, nbOperations }) => `  ${title}: ~${Math.round(nbOperations * 1000 / totalTime)}ops/s (${(totalTime / nbOperations).toFixed(2)}ms/op) on ${nbOperations}ops`)
           .join('\n')
       }`,
     )
