@@ -10,7 +10,7 @@
     "test:coverage": "lerna run --stream test:coverage && codecov --disable=gcov",
     "docs": "lerna run --stream docs",
     "docs:private": "lerna run --stream docs:private",
-    "dist": "rollup -c"
+    "dist": "rollup -c config/rollup.js"
   },
   "devDependencies": {
     "babel-cli": "~6.26.0",

@@ -4,7 +4,6 @@ lerna-debug.log
 package-lock.json
 yarn-error.log
 **/*.js
-!/config/**/.js
+!/config/**/*.js
 !/misc/**/*.js
 !/packages/*/src/**/*.js
-!rollup.config.js

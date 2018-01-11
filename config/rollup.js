@@ -1,31 +1,37 @@
-import babel from 'rollup-plugin-babel'
+import babelPlugin from 'rollup-plugin-babel'
 import fs from 'fs'
-import resolve from 'rollup-plugin-node-resolve'
+import { resolve } from 'path'
+import resolvePlugin from 'rollup-plugin-node-resolve'
 
-const basePath = pkg => `${__dirname}/packages/${pkg}`
-const entryPoint = pkg => `${basePath(pkg)}/src/index.js`
-const distFile = (pkg, min) => `${basePath(pkg)}/dist/${pkg}${min ? '.min' : ''}.js`
+const root = resolve(__dirname, '..')
+
+// FIXME put back uglify and .min
 
 const makeBundle = (name, options = {}) => {
-  const root = basePath(name)
+  const pkgRoot = resolve(root, 'packages', name)
 
-  const pkg = JSON.parse(fs.readFileSync(`${root}/package.json`))
+  const pkg = JSON.parse(fs.readFileSync(resolve(pkgRoot, 'package.json')))
+
+  const srcDir = resolve(pkgRoot, 'src')
+  const entryPoint = resolve(srcDir, 'index.js')
+  const distFile = resolve(pkgRoot, 'dist', `${pkg.name}.js`)
+
   const external = [
     ...Object.keys(pkg.dependencies || {}),
     ...Object.keys(pkg.peerDependencies || {}),
   ]
 
   const config = {
-    input: entryPoint(name),
+    input: entryPoint,
     name: pkg.name,
     output: {
-      file: distFile(name, isProd),
+      file: distFile,
       format: 'umd',
     },
     external,
     plugins: [
-      resolve({ modulesOnly: true }),
-      babel({
+      resolvePlugin({ modulesOnly: true }),
+      babelPlugin({
         babelrc: false,
         presets: [
           ['env', { modules: false }],
@@ -33,7 +39,7 @@ const makeBundle = (name, options = {}) => {
         ],
         plugins: [
           'external-helpers',
-          ['module-resolver', { root: [`${root}/src`] }],
+          ['module-resolver', { root: [srcDir] }],
         ],
       }),
     ],
@@ -60,9 +66,6 @@ const makeBundle = (name, options = {}) => {
     }
   }, config)
 }
-
-const env = process.env.NODE_ENV
-const isProd = env === 'production'
 
 const bundles = [
   ['immutadot'],
