@@ -14,20 +14,6 @@
           "root": ["./src"]
         }]
       ],
-      "presets": [
-        ["env", {
-          "modules": false
-        }],
-        ["stage-2"],
-      ]
-    },
-    "development": {
-      "presets": [
-        ["env", {
-          "modules": false
-        }],
-        ["stage-2"],
-      ]
     },
     "test": {
       "plugins": [

@@ -10,8 +10,7 @@
     "test:coverage": "lerna run --stream test:coverage && codecov --disable=gcov",
     "docs": "lerna run --stream docs",
     "docs:private": "lerna run --stream docs:private",
-    "dist": "export NODE_ENV=production && rollup -c",
-    "dist:dev": "export NODE_ENV=development && rollup -c -w"
+    "dist": "rollup -c"
   },
   "devDependencies": {
     "babel-cli": "~6.26.0",
