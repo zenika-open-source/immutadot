@@ -1,11 +1,11 @@
 import babel from 'rollup-plugin-babel'
 import resolve from 'rollup-plugin-node-resolve'
 
-const basePath = pkg => `packages/${pkg}`
+const basePath = pkg => `${__dirname}/packages/${pkg}`
 const entryPoint = pkg => `${basePath(pkg)}/src/index.js`
 const distFile = (pkg, min) => `${basePath(pkg)}/dist/${pkg}${min ? '.min' : ''}.js`
 
-const makeBundle = name => {
+const makeBundle = (name, options = {}) => {
   const root = basePath(name)
 
   return {
@@ -16,10 +16,9 @@ const makeBundle = name => {
       format: 'umd',
     },
     plugins: [
-      resolve(),
+      resolve({ modulesOnly: true }),
       babel({
         babelrc: false,
-        exclude: `${root}/node_modules/**`,
         presets: [
           ['env', { modules: false }],
           ['stage-3'],
@@ -30,12 +29,22 @@ const makeBundle = name => {
         ],
       }),
     ],
+    ...options,
   }
 }
 
 const env = process.env.NODE_ENV
 const isProd = env === 'production'
 
-const bundles = ['immutadot']
+const bundles = [
+  ['immutadot'],
+  [
+    'immutadot-lodash',
+    {
+      external: ['immutadot', 'lodash'],
+      globals: ['immutadot', 'lodash'],
+    },
+  ],
+]
 
-export default bundles.map(makeBundle)
+export default bundles.map(args => makeBundle(...args))
