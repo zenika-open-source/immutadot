@@ -1,4 +1,5 @@
 import babel from 'rollup-plugin-babel'
+import fs from 'fs'
 import resolve from 'rollup-plugin-node-resolve'
 
 const basePath = pkg => `${__dirname}/packages/${pkg}`
@@ -8,13 +9,20 @@ const distFile = (pkg, min) => `${basePath(pkg)}/dist/${pkg}${min ? '.min' : ''}
 const makeBundle = (name, options = {}) => {
   const root = basePath(name)
 
-  return {
+  const pkg = JSON.parse(fs.readFileSync(`${root}/package.json`))
+  const external = [
+    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {}),
+  ]
+
+  const config = {
     input: entryPoint(name),
-    name,
+    name: pkg.name,
     output: {
       file: distFile(name, isProd),
       format: 'umd',
     },
+    external,
     plugins: [
       resolve({ modulesOnly: true }),
       babel({
@@ -29,8 +37,18 @@ const makeBundle = (name, options = {}) => {
         ],
       }),
     ],
-    ...options,
   }
+
+  Object.keys(options).forEach(key => {
+    if (Array.isArray(config[key]))
+      config[key] = config[key].concat(options[key])
+    else if (typeof config[key] === 'object')
+      config[key] = Object.assign(config[key], options[key])
+    else
+      config[key] = options[key]
+  })
+
+  return config
 }
 
 const env = process.env.NODE_ENV
@@ -40,7 +58,14 @@ const bundles = [
   ['immutadot'],
   [
     'immutadot-lodash',
-    { external: ['immutadot', 'lodash', 'lodash/fp'] },
+    {
+      external: ['lodash/fp'],
+      globals: {
+        'lodash': 'lodash',
+        'lodash/fp': 'fp',
+        'immutadot': 'immutadot',
+      },
+    },
   ],
 ]
 
