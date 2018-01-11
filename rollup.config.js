@@ -40,10 +40,7 @@ const bundles = [
   ['immutadot'],
   [
     'immutadot-lodash',
-    {
-      external: ['immutadot', 'lodash'],
-      globals: ['immutadot', 'lodash'],
-    },
+    { external: ['immutadot', 'lodash', 'lodash/fp'] },
   ],
 ]
 
