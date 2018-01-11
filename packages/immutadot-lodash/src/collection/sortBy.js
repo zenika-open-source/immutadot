@@ -1,5 +1,5 @@
 import _sortBy from 'lodash/sortBy'
-import { convert } from 'immutadot/core/convert'
+import { convert } from 'immutadot'
 
 /**
  * Replaces by an array of sorted by <code>iteratees</code>.

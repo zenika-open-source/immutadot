@@ -1,5 +1,5 @@
 import _intersection from 'lodash/intersection'
-import { convert } from 'immutadot/core/convert'
+import { convert } from 'immutadot'
 
 /**
  * Replaces by an array of unique values that are included in th former array and all given arrays.

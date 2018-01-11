@@ -1,5 +1,5 @@
 import _differenceWith from 'lodash/differenceWith'
-import { convert } from 'immutadot/core/convert'
+import { convert } from 'immutadot'
 
 /**
  * This method is like {@link array.difference} except that it uses <code>comparator</code> to compare elements of the former array to <code>values</code>.

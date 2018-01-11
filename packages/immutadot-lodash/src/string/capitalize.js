@@ -1,5 +1,5 @@
 import _capitalize from 'lodash/capitalize'
-import { convert } from 'immutadot/core/convert'
+import { convert } from 'immutadot'
 
 /**
  * Converts the first character of string to upper case and the remaining to lower case.

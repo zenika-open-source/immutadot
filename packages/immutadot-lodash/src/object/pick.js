@@ -1,5 +1,5 @@
 import _pick from 'lodash/pick'
-import { convert } from 'immutadot/core/convert'
+import { convert } from 'immutadot'
 
 /**
  * Replaces by an object picking specified properties.

@@ -1,5 +1,5 @@
 import _drop from 'lodash/drop'
-import { convert } from 'immutadot/core/convert'
+import { convert } from 'immutadot'
 
 /**
  * Replaces an array dropping one or several elements at the start of the former array.

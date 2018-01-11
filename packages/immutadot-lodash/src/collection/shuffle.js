@@ -1,5 +1,5 @@
 import _shuffle from 'lodash/shuffle'
-import { convert } from 'immutadot/core/convert'
+import { convert } from 'immutadot'
 
 /**
  * Replaces by an array of shuffled elements.

@@ -1,5 +1,5 @@
 import _xorWith from 'lodash/xorWith'
-import { convert } from 'immutadot/core/convert'
+import { convert } from 'immutadot'
 
 /**
  * This method is like {@link array.xor} except that it accepts <code>comparator</code> to compare elements.
