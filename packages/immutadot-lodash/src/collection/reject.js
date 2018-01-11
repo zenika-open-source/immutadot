@@ -1,4 +1,4 @@
-import _reject from 'lodash/reject'
+import { reject as _reject } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

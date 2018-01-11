@@ -1,4 +1,4 @@
-import _shuffle from 'lodash/shuffle'
+import { shuffle as _shuffle } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

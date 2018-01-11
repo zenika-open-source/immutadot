@@ -1,4 +1,4 @@
-import _unionWith from 'lodash/unionWith'
+import { unionWith as _unionWith } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

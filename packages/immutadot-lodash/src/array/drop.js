@@ -1,4 +1,4 @@
-import _drop from 'lodash/drop'
+import { drop as _drop } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

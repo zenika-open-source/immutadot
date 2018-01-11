@@ -1,4 +1,4 @@
-import _toLower from 'lodash/toLower'
+import { toLower as _toLower } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

@@ -1,4 +1,4 @@
-import _takeRightWhile from 'lodash/takeRightWhile'
+import { takeRightWhile as _takeRightWhile } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

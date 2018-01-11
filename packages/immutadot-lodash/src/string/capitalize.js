@@ -1,4 +1,4 @@
-import _capitalize from 'lodash/capitalize'
+import { capitalize as _capitalize } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

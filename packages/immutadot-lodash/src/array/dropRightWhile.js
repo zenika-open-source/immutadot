@@ -1,4 +1,4 @@
-import _dropRightWhile from 'lodash/dropRightWhile'
+import { dropRightWhile as _dropRightWhile } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

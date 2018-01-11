@@ -1,4 +1,4 @@
-import _take from 'lodash/take'
+import { take as _take } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

@@ -1,4 +1,4 @@
-import _difference from 'lodash/difference'
+import { difference as _difference } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

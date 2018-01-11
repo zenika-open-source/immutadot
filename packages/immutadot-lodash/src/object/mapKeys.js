@@ -1,4 +1,4 @@
-import _mapKeys from 'lodash/mapKeys'
+import { mapKeys as _mapKeys } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

@@ -1,4 +1,4 @@
-import _intersection from 'lodash/intersection'
+import { intersection as _intersection } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

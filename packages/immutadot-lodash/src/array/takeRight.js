@@ -1,4 +1,4 @@
-import _takeRight from 'lodash/takeRight'
+import { takeRight as _takeRight } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

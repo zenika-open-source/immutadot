@@ -1,4 +1,4 @@
-import _takeWhile from 'lodash/takeWhile'
+import { takeWhile as _takeWhile } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

@@ -1,4 +1,4 @@
-import _toUpper from 'lodash/toUpper'
+import { toUpper as _toUpper } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

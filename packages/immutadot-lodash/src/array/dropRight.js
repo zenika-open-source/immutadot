@@ -1,4 +1,4 @@
-import _dropRight from 'lodash/dropRight'
+import { dropRight as _dropRight } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

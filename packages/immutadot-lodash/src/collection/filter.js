@@ -1,4 +1,4 @@
-import _filter from 'lodash/filter'
+import { filter as _filter } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

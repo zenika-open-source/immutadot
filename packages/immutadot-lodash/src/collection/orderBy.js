@@ -1,4 +1,4 @@
-import _orderBy from 'lodash/orderBy'
+import { orderBy as _orderBy } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

@@ -1,4 +1,4 @@
-import _unionBy from 'lodash/unionBy'
+import { unionBy as _unionBy } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

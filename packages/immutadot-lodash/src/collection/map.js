@@ -1,4 +1,4 @@
-import _map from 'lodash/map'
+import { map as _map } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

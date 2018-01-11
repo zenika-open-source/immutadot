@@ -1,4 +1,4 @@
-import _xor from 'lodash/xor'
+import { xor as _xor } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

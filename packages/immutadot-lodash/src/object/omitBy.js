@@ -1,4 +1,4 @@
-import _omitBy from 'lodash/omitBy'
+import { omitBy as _omitBy } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

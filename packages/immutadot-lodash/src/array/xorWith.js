@@ -1,4 +1,4 @@
-import _xorWith from 'lodash/xorWith'
+import { xorWith as _xorWith } from 'lodash'
 import { convert } from 'immutadot'
 
 /**

@@ -1,4 +1,4 @@
-import _pickBy from 'lodash/pickBy'
+import { pickBy as _pickBy } from 'lodash'
 import { convert } from 'immutadot'
 
 /**
