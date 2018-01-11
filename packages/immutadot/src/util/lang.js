@@ -1,4 +1,15 @@
 /**
+ * Tests whether <code>arg</code> is a function.
+ * @function
+ * @param {*} arg The value to test
+ * @return {boolean} True if <code>arg</code> is a function, false otherwise
+ * @memberof util
+ * @private
+ * @since 1.0.0
+ */
+const isFunction = arg => typeof arg === 'function'
+
+/**
  * Tests whether <code>arg</code> is a natural integer.
  * @function
  * @param {*} arg The value to test
@@ -77,6 +88,7 @@ const toString = arg => typeof arg === 'string' ? arg : `${arg}`
 const isObject = arg => arg instanceof Object
 
 export {
+  isFunction,
   isNaturalInteger,
   isNil,
   isObject,
