@@ -39,16 +39,26 @@ const makeBundle = (name, options = {}) => {
     ],
   }
 
-  Object.keys(options).forEach(key => {
-    if (Array.isArray(config[key]))
-      config[key] = config[key].concat(options[key])
-    else if (typeof config[key] === 'object')
-      config[key] = Object.assign(config[key], options[key])
-    else
-      config[key] = options[key]
-  })
+  return Object.keys(options).reduce((newConf, key) => {
+    let value = options[key]
 
-  return config
+    if (Array.isArray(newConf[key])) {
+      value = [
+        ...newConf[key],
+        ...options[key],
+      ]
+    } else if (typeof newConf[key] === 'object') {
+      value = {
+        ...newConf[key],
+        ...options[key],
+      }
+    }
+
+    return {
+      ...newConf,
+      [key]: value,
+    }
+  }, config)
 }
 
 const env = process.env.NODE_ENV
