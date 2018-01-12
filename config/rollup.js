@@ -1,22 +1,21 @@
 import babelPlugin from 'rollup-plugin-babel'
 import commonjsPlugin from 'rollup-plugin-commonjs'
-import fs from 'fs'
+import { readFileSync } from 'fs'
 import { resolve } from 'path'
 import resolvePlugin from 'rollup-plugin-node-resolve'
-import uglify from 'rollup-plugin-uglify'
 
 const root = resolve(__dirname, '..')
 const nodeModules = resolve(root, 'node_modules')
+const distDir = resolve(root, 'dist')
 
-const makeBundle = (name, options = {}, minify = false) => {
+const makeBundle = (name, options = {}) => {
   const pkgRoot = resolve(root, 'packages', name)
 
-  const pkg = JSON.parse(fs.readFileSync(resolve(pkgRoot, 'package.json')))
+  const pkg = JSON.parse(readFileSync(resolve(pkgRoot, 'package.json')))
 
   const srcDir = resolve(pkgRoot, 'src')
   const entryPoint = resolve(srcDir, 'index.js')
-  const suffix = minify ? '.min' : ''
-  const distFile = resolve(pkgRoot, 'dist', `${pkg.name}${suffix}.js`)
+  const distFile = resolve(distDir, `${pkg.name}.js`)
 
   const external = Object.keys(pkg.peerDependencies || {})
 
@@ -29,7 +28,7 @@ const makeBundle = (name, options = {}, minify = false) => {
     },
     external,
     plugins: [
-      resolvePlugin({ customResolveOptions: { moduleDirectory: nodeModules } }),
+      resolvePlugin(),
       commonjsPlugin({ include: `${nodeModules}/**` }),
       babelPlugin({
         babelrc: false,
@@ -44,7 +43,6 @@ const makeBundle = (name, options = {}, minify = false) => {
           ['module-resolver', { root: [srcDir] }],
         ],
       }),
-      minify && uglify(),
     ],
   }
 
@@ -70,21 +68,17 @@ const makeBundle = (name, options = {}, minify = false) => {
   }, config)
 }
 
-const bundleOptions = {
-  name: 'immutadot_',
-  external: ['lodash/fp'],
-  globals: {
-    'lodash': '_',
-    'lodash/fp': '_.fp',
-    'immutadot': 'immutadot',
-  },
-}
-
 const bundles = [
   ['immutadot'],
-  ['immutadot', undefined, true],
-  ['immutadot-lodash', bundleOptions],
-  ['immutadot-lodash', bundleOptions, true],
+  ['immutadot-lodash', {
+    name: 'immutadotLodash',
+    external: ['lodash/fp'],
+    globals: {
+      'lodash': '_',
+      'lodash/fp': '_.fp',
+      'immutadot': 'immutadot',
+    },
+  }],
 ]
 
 export default bundles.map(args => makeBundle(...args))
