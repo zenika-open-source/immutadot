@@ -18,10 +18,7 @@ const makeBundle = (name, options = {}) => {
   const entryPoint = resolve(srcDir, 'index.js')
   const distFile = resolve(pkgRoot, 'dist', `${pkg.name}.js`)
 
-  const external = [
-    ...Object.keys(pkg.dependencies || {}),
-    ...Object.keys(pkg.peerDependencies || {}),
-  ]
+  const external = Object.keys(pkg.peerDependencies || {})
 
   const config = {
     input: entryPoint,
