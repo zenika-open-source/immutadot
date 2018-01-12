@@ -1,9 +1,11 @@
 import babelPlugin from 'rollup-plugin-babel'
+import commonjsPlugin from 'rollup-plugin-commonjs'
 import fs from 'fs'
 import { resolve } from 'path'
 import resolvePlugin from 'rollup-plugin-node-resolve'
 
 const root = resolve(__dirname, '..')
+const nodeModules = resolve(root, 'node_modules')
 
 // FIXME put back uglify and .min
 
@@ -30,15 +32,18 @@ const makeBundle = (name, options = {}) => {
     },
     external,
     plugins: [
-      resolvePlugin({ modulesOnly: true }),
+      resolvePlugin({ customResolveOptions: { moduleDirectory: nodeModules } }),
+      commonjsPlugin({ include: `${nodeModules}/**` }),
       babelPlugin({
         babelrc: false,
+        runtimeHelpers: true,
+        exclude: `${nodeModules}/**`,
         presets: [
           ['env', { modules: false }],
           ['stage-3'],
         ],
         plugins: [
-          'external-helpers',
+          'transform-runtime',
           ['module-resolver', { root: [srcDir] }],
         ],
       }),
@@ -72,10 +77,11 @@ const bundles = [
   [
     'immutadot-lodash',
     {
+      name: 'immutadot_',
       external: ['lodash/fp'],
       globals: {
-        'lodash': 'lodash',
-        'lodash/fp': 'fp',
+        'lodash': '_',
+        'lodash/fp': '_.fp',
         'immutadot': 'immutadot',
       },
     },
