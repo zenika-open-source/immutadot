@@ -3,20 +3,22 @@ import commonjsPlugin from 'rollup-plugin-commonjs'
 import fs from 'fs'
 import { resolve } from 'path'
 import resolvePlugin from 'rollup-plugin-node-resolve'
+import uglify from 'rollup-plugin-uglify'
 
 const root = resolve(__dirname, '..')
 const nodeModules = resolve(root, 'node_modules')
 
 // FIXME put back uglify and .min
 
-const makeBundle = (name, options = {}) => {
+const makeBundle = (name, options = {}, minify = false) => {
   const pkgRoot = resolve(root, 'packages', name)
 
   const pkg = JSON.parse(fs.readFileSync(resolve(pkgRoot, 'package.json')))
 
   const srcDir = resolve(pkgRoot, 'src')
   const entryPoint = resolve(srcDir, 'index.js')
-  const distFile = resolve(pkgRoot, 'dist', `${pkg.name}.js`)
+  const suffix = minify ? '.min' : ''
+  const distFile = resolve(pkgRoot, 'dist', `${pkg.name}${suffix}.js`)
 
   const external = Object.keys(pkg.peerDependencies || {})
 
@@ -44,6 +46,7 @@ const makeBundle = (name, options = {}) => {
           ['module-resolver', { root: [srcDir] }],
         ],
       }),
+      minify && uglify(),
     ],
   }
 
@@ -69,20 +72,21 @@ const makeBundle = (name, options = {}) => {
   }, config)
 }
 
+const bundleOptions = {
+  name: 'immutadot_',
+  external: ['lodash/fp'],
+  globals: {
+    'lodash': '_',
+    'lodash/fp': '_.fp',
+    'immutadot': 'immutadot',
+  },
+}
+
 const bundles = [
   ['immutadot'],
-  [
-    'immutadot-lodash',
-    {
-      name: 'immutadot_',
-      external: ['lodash/fp'],
-      globals: {
-        'lodash': '_',
-        'lodash/fp': '_.fp',
-        'immutadot': 'immutadot',
-      },
-    },
-  ],
+  ['immutadot', undefined, true],
+  ['immutadot-lodash', bundleOptions],
+  ['immutadot-lodash', bundleOptions, true],
 ]
 
 export default bundles.map(args => makeBundle(...args))
