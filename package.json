@@ -27,8 +27,6 @@
     "jest": "~21.2.1",
     "jsdoc": "~3.5.5",
     "lerna": "~2.7.0",
-    "lodash": "~4.17.4"
-    "lerna": "~2.6.0",
     "lodash": "~4.17.4",
     "rollup": "^0.52.1",
     "rollup-plugin-babel": "^3.0.2",

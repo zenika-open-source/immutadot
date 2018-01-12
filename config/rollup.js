@@ -8,8 +8,6 @@ import uglify from 'rollup-plugin-uglify'
 const root = resolve(__dirname, '..')
 const nodeModules = resolve(root, 'node_modules')
 
-// FIXME put back uglify and .min
-
 const makeBundle = (name, options = {}, minify = false) => {
   const pkgRoot = resolve(root, 'packages', name)
 
