@@ -1,4 +1,5 @@
 import babelPlugin from 'rollup-plugin-babel'
+import { camelCase } from 'lodash'
 import commonjsPlugin from 'rollup-plugin-commonjs'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
@@ -21,21 +22,21 @@ const makeBundle = (name, options = {}) => {
 
   const config = {
     input: entryPoint,
-    name: pkg.name,
+    name: camelCase(pkg.name),
     output: {
       file: distFile,
       format: 'umd',
     },
     external,
     plugins: [
-      resolvePlugin(),
-      commonjsPlugin({ include: `${nodeModules}/**` }),
+      resolvePlugin(), // Resolves project dependencies
+      commonjsPlugin({ include: `${nodeModules}/**` }), // Includes non external dependencies in the bundle
       babelPlugin({
         babelrc: false,
-        runtimeHelpers: true,
-        exclude: `${nodeModules}/**`,
+        runtimeHelpers: true, // Allows transform-runtime plugin
+        exclude: `${nodeModules}/**`, // node_modules dependencies are handled by commonjsPlugin
         presets: [
-          ['env', { modules: false }],
+          ['env', { modules: false }], // Module format is configured at rollup level
           ['stage-3'],
         ],
         plugins: [
@@ -71,7 +72,6 @@ const makeBundle = (name, options = {}) => {
 const bundles = [
   ['immutadot'],
   ['immutadot-lodash', {
-    name: 'immutadotLodash',
     external: ['lodash/fp'],
     globals: {
       'lodash': '_',
