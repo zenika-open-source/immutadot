@@ -1,4 +1,4 @@
-import _pullAllWith from 'lodash/fp/pullAllWith'
+import { pullAllWith as _pullAllWith } from 'lodash/fp'
 import { convertLodashFp } from 'util/convertLodashFp'
 
 /**

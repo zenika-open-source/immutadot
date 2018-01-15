@@ -1,5 +1,5 @@
-import _takeRight from 'lodash/takeRight'
-import { convert } from 'immutadot/core/convert'
+import { takeRight as _takeRight } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the end.

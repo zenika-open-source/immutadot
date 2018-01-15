@@ -1,4 +1,4 @@
-import _merge from 'lodash/fp/merge'
+import { merge as _merge } from 'lodash/fp'
 import { convertLodashFp } from 'util/convertLodashFp'
 
 /**

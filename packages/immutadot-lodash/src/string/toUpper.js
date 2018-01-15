@@ -1,5 +1,5 @@
-import _toUpper from 'lodash/toUpper'
-import { convert } from 'immutadot/core/convert'
+import { toUpper as _toUpper } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Converts string, as a whole, to upper case just like String#toUpperCase.

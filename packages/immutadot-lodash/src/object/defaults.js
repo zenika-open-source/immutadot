@@ -1,4 +1,4 @@
-import _defaults from 'lodash/fp/defaults'
+import { defaults as _defaults } from 'lodash/fp'
 import { convertLodashFp } from 'util/convertLodashFp'
 
 /**

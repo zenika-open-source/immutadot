@@ -1,5 +1,5 @@
-import _union from 'lodash/union'
-import { convert } from 'immutadot/core/convert'
+import { union as _union } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Replaces an array by an array of unique values, in order, from the former array and the given arrays.

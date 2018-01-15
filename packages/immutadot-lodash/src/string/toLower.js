@@ -1,5 +1,5 @@
-import _toLower from 'lodash/toLower'
-import { convert } from 'immutadot/core/convert'
+import { toLower as _toLower } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Converts string, as a whole, to lower case just like String#toLowerCase.

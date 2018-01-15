@@ -1,5 +1,5 @@
-import _difference from 'lodash/difference'
-import { convert } from 'immutadot/core/convert'
+import { difference as _difference } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Replaces an array removing values in the other given arrays from the former array.

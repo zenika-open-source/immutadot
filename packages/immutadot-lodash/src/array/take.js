@@ -1,5 +1,5 @@
-import _take from 'lodash/take'
-import { convert } from 'immutadot/core/convert'
+import { take as _take } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the beginning.
