@@ -18,7 +18,8 @@
   "contributors": [
     "Yvonnick FRIN (https://github.com/frinyvonnick)",
     "Valentin COCAUD (https://github.com/EmrysMyrddin)",
-    "Hugo WOOD (https://github.com/hgwood)"
+    "Hugo WOOD (https://github.com/hgwood)",
+    "Charles-Henri GUÉRIN (https://github.com/charlyx)"
   ],
   "main": "index.js",
   "dependencies": {
