@@ -116,7 +116,7 @@ const apply = operation => {
           const newObj = copy(curObj, false)
           let noop = true
 
-          const listProps = allProps ? Object.keys(newObj) : propValue
+          const listProps = propType === allProps ? Object.keys(newObj) : propValue
 
           for (const listProp of listProps) {
             const [iNoop] = walkPath(newObj, curPath, [[prop, listProp], ...pathRest], true)

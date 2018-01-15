@@ -169,6 +169,7 @@ describe('path.apply', () => {
             'prop2': { val: 6 },
             'prop{3}': { val: 6 },
             '"prop4"': { val: 4 },
+            'prop5': { val: 5 },
           },
           other: {},
         })
@@ -180,6 +181,7 @@ describe('path.apply', () => {
           'prop2': { val: 5 },
           'prop{3}': { val: 5 },
           '"prop4"': { val: 3 },
+          'prop5': { val: 5 },
         },
         other: {},
       },
