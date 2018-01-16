@@ -5,6 +5,7 @@
  */
 
 export { add } from './add'
+export { and } from './and'
 export { divide } from './divide'
 export { multiply } from './multiply'
 export { subtract } from './subtract'
