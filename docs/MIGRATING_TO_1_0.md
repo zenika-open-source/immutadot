@@ -10,7 +10,7 @@ immutadot module now contains exclusively functions based on [ES2015+ standard l
 
 For a complete list see [immutadot's API documentation](https://zenika.github.io/immutadot/immutadot/1.0/).
 
-immutadot module organization in namespaces has changed a little, see [Namespaces modifications](#namespaces-modifications) for more details.
+immutad●t's organization in namespaces has changed a little, see [Namespaces modifications](#namespaces-modifications) for more details.
 
 ### immutadot-lodash module
 
@@ -142,7 +142,7 @@ immutad●t now has a [`get()`](https://zenika.github.io/immutadot/immutadot/1.0
 get(obj, 'nested.prop', 'valueIfUndefined')
 ```
 
-## Namespace modifications
+## Namespaces modifications
 
 If you were importing or requiring immutad●t functions from the root path `"immutadot"`, this section doesn't affect you.
 
