@@ -2492,9 +2492,9 @@ ignore@^3.3.3:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
-immer@~0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-0.7.0.tgz#926200dcf5453815e477b2470a49137e9201df1b"
+immer@~0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-0.8.1.tgz#44d7d0779947da32eb34314addaac5a82c9ec5ad"
 
 immutable@~3.8.2:
   version "3.8.2"
@@ -3218,7 +3218,7 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-lerna@~2.7.1:
+lerna@~2.7.0, lerna@~2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/lerna/-/lerna-2.7.1.tgz#abd536376eca5e9f41a6d611da5b744534ef906f"
   dependencies:

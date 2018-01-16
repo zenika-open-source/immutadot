@@ -2,8 +2,7 @@
 
 import { List, Record } from 'immutable'
 
-import immer, { setAutoFreeze } from 'immer'
-import immerES5, { setAutoFreeze as setAutoFreezeES5 } from 'immer/es5'
+import immer, { setAutoFreeze, setUseProxies } from 'immer'
 
 import { createBenchmark } from './benchmark'
 
@@ -30,7 +29,6 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
 
   // Disable immer auto freeze
   setAutoFreeze(false)
-  setAutoFreezeES5(false)
 
   const unmodifiedSize = listSize - modifySize
   const randomStart = () => Math.floor(Math.random() * unmodifiedSize)
@@ -83,7 +81,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   })
 
   it('immer proxy', () => {
-    benchmark('immer-proxy', 'immer 0.6.0 (proxy implementation w/o autofreeze)', () => {
+    benchmark('immer-proxy', 'immer 0.8.1 (proxy implementation w/o autofreeze)', () => {
       const start = randomStart(), end = start + modifySize
       return immer(baseState, draft => {
         for (let i = start; i < end; i++) draft[i].done = true
@@ -92,12 +90,14 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   })
 
   it('immer ES5', () => {
-    benchmark('immer-es5', 'immer 0.6.0 (ES5 implementation w/o autofreeze)', () => {
+    setUseProxies(false)
+    benchmark('immer-es5', 'immer 0.8.1 (ES5 implementation w/o autofreeze)', () => {
       const start = randomStart(), end = start + modifySize
-      return immerES5(baseState, draft => {
+      return immer(baseState, draft => {
         for (let i = start; i < end; i++) draft[i].done = true
       })
     })
+    setUseProxies(true)
   })
 
   it('immutad●t', () => {
