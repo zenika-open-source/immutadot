@@ -6,7 +6,7 @@ import { convert } from 'core/convert'
  * @memberof lang
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
- * @param {...boolean} [args] Other operands.
+ * @param {...*} [args] Other operands.
  * @return {Object} Returns the updated object.
  * @example and({ nested: { prop: true } }, 'nested.prop', true) // { nested: { prop: true } }
  * @example and({ nested: { prop: true } }, 'nested.prop', true, false) // { nested: { prop: false } }
