@@ -124,7 +124,7 @@ using ES2015+:
 ```js
 const newAnimals = {
   ...animals,
-  weasels: [...animals.weasel]
+  weasels: [...animals.weasels]
 }
 
 newAnimals.weasels[1] = {
