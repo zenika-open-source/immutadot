@@ -22,10 +22,10 @@ const makeBundle = (name, options = {}) => {
 
   const config = {
     input: entryPoint,
-    name: camelCase(pkg.name),
     output: {
       file: distFile,
       format: 'umd',
+      name: camelCase(pkg.name),
     },
     external,
     plugins: [
@@ -73,10 +73,12 @@ const bundles = [
   ['immutadot'],
   ['immutadot-lodash', {
     external: ['lodash/fp'],
-    globals: {
-      'lodash': '_',
-      'lodash/fp': '_.fp',
-      'immutadot': 'immutadot',
+    output: {
+      globals: {
+        'lodash': '_',
+        'lodash/fp': '_.fp',
+        'immutadot': 'immutadot',
+      },
     },
   }],
 ]

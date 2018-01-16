@@ -969,7 +969,7 @@ braces@^1.8.2:
     preserve "^0.2.0"
     repeat-element "^1.1.2"
 
-browser-resolve@^1.11.0, browser-resolve@^1.11.2:
+browser-resolve@^1.11.2:
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/browser-resolve/-/browser-resolve-1.11.2.tgz#8ff09b0a2c421718a1051c260b32e48f442938ce"
   dependencies:
@@ -3218,9 +3218,9 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-lerna@~2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/lerna/-/lerna-2.7.0.tgz#1df22aebaa82d8134b19303ac3e503146d1e4e9a"
+lerna@~2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/lerna/-/lerna-2.7.1.tgz#abd536376eca5e9f41a6d611da5b744534ef906f"
   dependencies:
     async "^1.5.0"
     chalk "^2.1.0"
@@ -4629,13 +4629,13 @@ ripemd160@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-0.2.0.tgz#2bf198bde167cacfa51c0a928e84b68bbe171fce"
 
-rollup-plugin-babel@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-babel/-/rollup-plugin-babel-3.0.2.tgz#a2765dea0eaa8aece351c983573300d17497495b"
+rollup-plugin-babel@~3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-babel/-/rollup-plugin-babel-3.0.3.tgz#63adedc863130327512a4a9006efc2241c5b7c15"
   dependencies:
     rollup-pluginutils "^1.5.0"
 
-rollup-plugin-commonjs@^8.2.6:
+rollup-plugin-commonjs@~8.2.6:
   version "8.2.6"
   resolved "https://registry.yarnpkg.com/rollup-plugin-commonjs/-/rollup-plugin-commonjs-8.2.6.tgz#27e5b9069ff94005bb01e01bb46a1e4873784677"
   dependencies:
@@ -4645,16 +4645,15 @@ rollup-plugin-commonjs@^8.2.6:
     resolve "^1.4.0"
     rollup-pluginutils "^2.0.1"
 
-rollup-plugin-node-resolve@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-3.0.0.tgz#8b897c4c3030d5001277b0514b25d2ca09683ee0"
+rollup-plugin-node-resolve@~3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-3.0.2.tgz#38babc12fd404cc2ba1ff68648fe43fa3ffee6b0"
   dependencies:
-    browser-resolve "^1.11.0"
     builtin-modules "^1.1.0"
     is-module "^1.0.0"
     resolve "^1.1.6"
 
-rollup-plugin-uglify@^2.0.1:
+rollup-plugin-uglify@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/rollup-plugin-uglify/-/rollup-plugin-uglify-2.0.1.tgz#67b37ad1efdafbd83af4c36b40c189ee4866c969"
   dependencies:
@@ -4674,9 +4673,9 @@ rollup-pluginutils@^2.0.1:
     estree-walker "^0.3.0"
     micromatch "^2.3.11"
 
-rollup@^0.52.1:
-  version "0.52.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.52.1.tgz#610e8e1be432f18fcfbfa865408a1cd7618cd707"
+rollup@~0.54.0:
+  version "0.54.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.54.0.tgz#0641b8154ba02706464285d2ead924c486b48ba9"
 
 run-async@^2.2.0:
   version "2.3.0"

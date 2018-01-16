@@ -14,7 +14,7 @@
     "eslint": "~4.15.0",
     "jest": "~21.2.1",
     "jsdoc": "~3.5.5",
-    "lerna": "~2.7.0"
+    "lerna": "~2.7.1"
   },
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src -d .",
