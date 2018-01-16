@@ -48,12 +48,12 @@ set('nested.prop', 'val')(obj, discarded1, discarded2)
 
 [`chain()`](https://zenika.github.io/immutadot/immutadot/0.3/seq.html#.chain) has been removed in favor of [`flow()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.flow).
 
-The main reasons behind this are that `chain` had some major drawbacks :
+The main reasons behind this are that `chain` had some major drawbacks:
  - Imports the whole of immutad●t
  - Difficult to extend
  - Hard to test
 
-Migrating from `chain` to `flow` is pretty easy :
+Migrating from `chain` to `flow` is pretty easy:
 
 ```diff
 -import { chain } from 'immutadot'
@@ -126,7 +126,7 @@ You might be able to rewrite some of your code like this:
  - Imports the whole of immutad●t
  - Difficult to extend
 
-immutad●t now has a [`get()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.get) function that may allow you to do the same :
+immutad●t now has a [`get()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.get) function that allows you to do the same:
 
 ```diff
 -import { using } from 'immutadot'
