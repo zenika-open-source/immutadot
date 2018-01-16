@@ -101,7 +101,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   })
 
   it('immutad●t', () => {
-    benchmark('immutadot', 'immutad●t 1.0.0-rc.7', () => {
+    benchmark('immutadot', 'immutad●t 1.0.0', () => {
       const start = randomStart(), end = start + modifySize
       return set(baseState, `[${start}:${end}].done`, true)
     })
@@ -110,6 +110,6 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   afterAll(benchmark.log)
 }
 
-describe('Update small todos list', () => updateTodosList('Update small todos list', 1000, 100, 1, 1000))
-describe('Update medium todos list', () => updateTodosList('Update medium todos list', 10000, 1000, 10, 1000))
-describe('Update large todos list', () => updateTodosList('Update large todos list', 100000, 10000, 30, 1000))
+describe('Update small todos list', () => updateTodosList('Update small todos list (1000 items)', 1000, 100, 30, 50000))
+describe('Update medium todos list', () => updateTodosList('Update medium todos list (10000 items)', 10000, 1000, 30, 5000))
+describe('Update large todos list', () => updateTodosList('Update large todos list (100000 items)', 100000, 10000, 30, 500))

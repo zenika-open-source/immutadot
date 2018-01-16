@@ -188,21 +188,33 @@ toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg
 
 ## Performances
 
-We reused a [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/benchmark.spec.js) originally made by [mweststrate](https://github.com/mweststrate) for [immer](https://github.com/mweststrate/immer).
-It updates 10.000 items out of list of 100.000 todos items, these tests were ran with Node 8.4.0 on an Intel® Core™ i7-6560U CPU @ 2.20GHz:
+A [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/updateTodos.spec.js) (freely inspired from one made by [mweststrate](https://github.com/mweststrate) for [immer](https://github.com/mweststrate/immer)) reveals that immutad●t shows good results compared to other libraries.
+
+:warning: The following results should be taken with caution, they may vary depending on the hardware, the JavaScript engine, and the kind of operations performed. This particular test updates 10% out of a list of todos items, and was ran with Node 9.3.0 on an Intel® Core™ i7-6560U CPU @ 2.20GHz.
 
 ```shell
-Update todos list
-  ✓ with mutation (2ms)
-  ✓ with deep cloning, then mutation (689ms)
-  ✓ with ES2015 destructuring (42ms)
-  ✓ with immutable (w/o conversion to plain JS objects) (50ms)
-  ✓ with immutable (w/ conversion to plain JS objects) (1011ms)
-  ✓ with immer (proxy implementation w/o autofreeze) (259ms)
-  ✓ with immutad●t (77ms)
+Update small todos list (1000 items):
+  ES2015 destructuring: ~16961ops/s (0.06ms/op) on 50000ops
+  immutable 3.8.2 (w/o conversion to plain JS objects): ~6538ops/s (0.15ms/op) on 50000ops
+  immutable 3.8.2 (w/ conversion to plain JS objects): ~106ops/s (9.43ms/op) on 3195ops
+  immer 0.8.1 (proxy implementation w/o autofreeze): ~2191ops/s (0.46ms/op) on 50000ops
+  immer 0.8.1 (ES5 implementation w/o autofreeze): ~494ops/s (2.02ms/op) on 14827ops
+  immutad●t 1.0.0: ~2431ops/s (0.41ms/op) on 50000ops
+Update medium todos list (10000 items):
+  ES2015 destructuring: ~1781ops/s (0.56ms/op) on 5000ops
+  immutable 3.8.2 (w/o conversion to plain JS objects): ~587ops/s (1.70ms/op) on 5000ops
+  immutable 3.8.2 (w/ conversion to plain JS objects): ~10ops/s (100.80ms/op) on 299ops
+  immer 0.8.1 (proxy implementation w/o autofreeze): ~185ops/s (5.42ms/op) on 5000ops
+  immer 0.8.1 (ES5 implementation w/o autofreeze): ~47ops/s (21.21ms/op) on 1415ops
+  immutad●t 1.0.0: ~245ops/s (4.08ms/op) on 5000ops
+Update large todos list (100000 items):
+  ES2015 destructuring: ~116ops/s (8.61ms/op) on 500ops
+  immutable 3.8.2 (w/o conversion to plain JS objects): ~56ops/s (17.95ms/op) on 500ops
+  immutable 3.8.2 (w/ conversion to plain JS objects): ~1ops/s (1052.45ms/op) on 29ops
+  immer 0.8.1 (proxy implementation w/o autofreeze): ~21ops/s (47.81ms/op) on 500ops
+  immer 0.8.1 (ES5 implementation w/o autofreeze): ~4ops/s (275.59ms/op) on 110ops
+  immutad●t 1.0.0: ~23ops/s (44.15ms/op) on 500ops
 ```
-
-When applying operations on a path immutad●t tries to create the minimum of objects or arrays needed to guarantee your data structure to be immutable.
 
 ## Documentation
 
