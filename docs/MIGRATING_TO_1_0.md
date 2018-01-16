@@ -9,7 +9,7 @@ TODO
 
 ### immutadot-lodash
 
-All immutad●t functions directly based on lodash utilities (such as [`mapValues()`](https://zenika.github.io/immutadot/immutadot-lodash/1.0/object.html#.mapValues)) have been moved into a second package named [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash).
+All immutad●t functions directly based on lodash utilities (such as [`mapValues()`](https://zenika.github.io/immutadot/immutadot-lodash/1.0/object.html#.mapValues)) have been moved into immutadot-lodash.
 For a complete list see [immutadot-lodash's API documentation](https://zenika.github.io/immutadot/immutadot-lodash/1.0/).
 
 Such cases are easily migrated :
@@ -86,7 +86,7 @@ If you were using `chain()`'s second parameter to avoid repeating a common path 
  - Imports the whole of immutad●t
  - Difficult to extend
 
-immutadot now has a [`get()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.get) function that may allow you to do the same :
+immutad●t now has a [`get()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.get) function that may allow you to do the same :
 
 ```diff
 -import { using } from 'immutadot'
