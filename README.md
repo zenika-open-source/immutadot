@@ -37,6 +37,8 @@ or
 npm install immutadot@next
 ```
 
+If you were using a previous version of immutad●t, check out the [migrating guide](docs/MIGRATING_TO_1_0.md).
+
 ## Immutability
 
 In the last few years one of our biggest challenge has been to find an efficient way to detect changes in our data to determine when to re-render our interfaces.
