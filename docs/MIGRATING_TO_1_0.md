@@ -104,7 +104,7 @@ If your code contains cumbersome or incorrect paths (such as `set(obj, 'a[0.b', 
 
 ### Advandced path notation
 
-immutad●t 1.0 comes with an improved path notation, allowing to iterate over arrays and objects, check out [Path notation documentation](./PATH_NOTATION.md) for more information.
+immutad●t 1.0 comes with an improved path notation, allowing to iterate over arrays and objects, check out the [path notation documentation](./PATH_NOTATION.md) for more information.
 
 You might be able to rewrite some of your code like this:
 
