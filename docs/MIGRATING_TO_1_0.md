@@ -1,4 +1,5 @@
 ![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg?sanitize=true)
+===
 
 # Migrating from 0.3 to 1.0
 
