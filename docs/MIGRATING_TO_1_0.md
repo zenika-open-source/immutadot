@@ -1,20 +1,20 @@
 # Migrating from 0.3 to 1.0
 
-## Split in two modules
+## Split in two packages
 
-The core of immutad●t has been rewritten without [lodash](https://lodash.com/), and immutad●t now has two modules [immutadot](https://www.npmjs.com/package/immutadot) and [immutadot-lodash](https://www.npmjs.com/package/immutadot-lodash).
+The core of immutad●t has been rewritten without [lodash](https://lodash.com/), and immutad●t now has two npm packages [immutadot](https://www.npmjs.com/package/immutadot) and [immutadot-lodash](https://www.npmjs.com/package/immutadot-lodash).
 
-### immutadot module
+### immutadot package
 
-immutadot module now contains exclusively functions based on [ES2015+ standard library](https://mdn.io/JavaScript/Reference).
+immutadot package now contains exclusively functions based on [ES2015+ language and standard library](https://mdn.io/JavaScript/Reference).
 
 For a complete list see [immutadot's API documentation](https://zenika.github.io/immutadot/immutadot/1.0/).
 
 immutad●t's organization in namespaces has changed a little, see [Namespaces modifications](#namespaces-modifications) for more details.
 
-Some functions such as [`filter()`](https://zenika.github.io/immutadot/immutadot/1.0/array.html#.filter) and `map(https://zenika.github.io/immutadot/immutadot/1.0/array.html#.map)` are now available in immutadot and in immutadot-lodash. This is because immutadot's version handles only arrays whereas immutadot-lodash's version handles collections (which includes objects), it is up to you to choose which version suits best your needs.
+Some functions such as [`filter()`](https://zenika.github.io/immutadot/immutadot/1.0/array.html#.filter) and [`map()`](https://zenika.github.io/immutadot/immutadot/1.0/array.html#.map) are now available in immutadot and in immutadot-lodash. This is because immutadot's version handles only arrays whereas immutadot-lodash's version handles collections (which includes objects), it is up to you to choose which version suits best your needs.
 
-### immutadot-lodash module
+### immutadot-lodash package
 
 All immutad●t functions directly based on lodash utilities (such as [`mapValues()`](https://zenika.github.io/immutadot/immutadot-lodash/1.0/object.html#.mapValues)) have been moved into immutadot-lodash.
 
@@ -150,7 +150,7 @@ If you were importing or requiring immutad●t functions from the root path `"im
 
 All immutadot-lodash functions have kept their former namespace, which is their original lodash namespace.
 
-In immutadot core module the `math` and `utility` (and `seq`) namespaces have been removed.
+In immutadot core package the `math` and `utility` (and `seq`) namespaces have been removed.
 
 Here is a summary of namespace changings of functions that might affect you:
  - `add()`: `math` -> `lang`
