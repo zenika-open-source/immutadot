@@ -12,6 +12,8 @@ For a complete list see [immutadot's API documentation](https://zenika.github.io
 
 immutad●t's organization in namespaces has changed a little, see [Namespaces modifications](#namespaces-modifications) for more details.
 
+Some functions such as [`filter()`](https://zenika.github.io/immutadot/immutadot/1.0/array.html#.filter) and `map(https://zenika.github.io/immutadot/immutadot/1.0/array.html#.map)` are now available in immutadot and in immutadot-lodash. This is because immutadot's version handles only arrays whereas immutadot-lodash's version handles collections (which includes objects), it is up to you to choose which version suits best your needs.
+
 ### immutadot-lodash module
 
 All immutad●t functions directly based on lodash utilities (such as [`mapValues()`](https://zenika.github.io/immutadot/immutadot-lodash/1.0/object.html#.mapValues)) have been moved into immutadot-lodash.
