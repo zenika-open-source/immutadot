@@ -1,3 +1,6 @@
+![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg?sanitize=true)
+===
+
 # Path notation
 
 To describe deeply nested properties immutad●t uses standard [property access notation](https://mdn.io/Property_Accessors) and [array access notation](https://mdn.io/Property_Accessors).
