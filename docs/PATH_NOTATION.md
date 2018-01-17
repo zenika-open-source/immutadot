@@ -50,6 +50,18 @@ set({}, 'prop.', 'new value')
 
 In order to access a property with dots in its name, [bracket notation](#bracket-notation-property-access) should be used.
 
+Integer properties will still be considered object properties (for array indexes see [array access notation](#array-access-notation)):
+
+```js
+set({}, 'nested.1', 'new value')
+// Returns:
+// {
+//   "nested": {
+//     "1": "new value"
+//   }
+// }
+```
+
 ## Bracket notation (property access)
 
 ## Array access notation
