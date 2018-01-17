@@ -1,7 +1,8 @@
 export function createBenchmark(title, testResult, pMaxTime = 30, pMaxOperations = 1000) {
 
   const fast = Boolean(process.env.FAST)
-  const maxTime = fast ? pMaxTime / 3 : pMaxTime, maxOperations = fast ? Math.round(pMaxOperations / 3) : pMaxOperations
+  const maxTime = fast ? pMaxTime / 3 : pMaxTime
+  const maxOperations = fast ? Math.round(pMaxOperations / 3) : pMaxOperations
 
   const runs = []
 

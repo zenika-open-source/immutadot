@@ -31,7 +31,10 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   setAutoFreeze(false)
 
   const unmodifiedSize = listSize - modifySize
-  const randomStart = () => Math.floor(Math.random() * unmodifiedSize)
+  const randomBounds = () => {
+    const start = Math.floor(Math.random() * unmodifiedSize)
+    return [start, start + modifySize]
+  }
 
   const benchmark = createBenchmark(
     title,
@@ -48,7 +51,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
 
   it('ES2015', () => {
     benchmark('es2015', 'ES2015 destructuring', () => {
-      const start = randomStart(), end = start + modifySize
+      const [start, end] = randomBounds()
       return baseState
         .slice(0, start)
         .concat(
@@ -64,7 +67,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
 
   it('immutable w/o conversion', () => {
     benchmark('immutable', 'immutable 3.8.2 (w/o conversion to plain JS objects)', () => {
-      const start = randomStart(), end = start + modifySize
+      const [start, end] = randomBounds()
       immutableState.withMutations(state => {
         for (let i = start; i < end; i++) state.setIn([i, 'done'], true)
       })
@@ -73,7 +76,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
 
   it('immutable w/ conversion', () => {
     benchmark('immutable-toJS', 'immutable 3.8.2 (w/ conversion to plain JS objects)', () => {
-      const start = randomStart(), end = start + modifySize
+      const [start, end] = randomBounds()
       return immutableState.withMutations(state => {
         for (let i = start; i < end; i++) state.setIn([i, 'done'], true)
       }).toJS()
@@ -82,7 +85,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
 
   it('immer proxy', () => {
     benchmark('immer-proxy', 'immer 0.8.1 (proxy implementation w/o autofreeze)', () => {
-      const start = randomStart(), end = start + modifySize
+      const [start, end] = randomBounds()
       return immer(baseState, draft => {
         for (let i = start; i < end; i++) draft[i].done = true
       })
@@ -92,7 +95,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   it('immer ES5', () => {
     setUseProxies(false)
     benchmark('immer-es5', 'immer 0.8.1 (ES5 implementation w/o autofreeze)', () => {
-      const start = randomStart(), end = start + modifySize
+      const [start, end] = randomBounds()
       return immer(baseState, draft => {
         for (let i = start; i < end; i++) draft[i].done = true
       })
@@ -102,7 +105,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
 
   it('immutad●t', () => {
     benchmark('immutadot', 'immutad●t 1.0.0', () => {
-      const start = randomStart(), end = start + modifySize
+      const [start, end] = randomBounds()
       return set(baseState, `[${start}:${end}].done`, true)
     })
   })
