@@ -3,7 +3,7 @@ import {
   prop,
 } from 'path/consts'
 import { isNil } from 'util/lang'
-import { unsafeToPath } from 'path/toPath'
+import { toPath } from 'path/toPath'
 
 /**
 * Gets the value at <code>path</code> of <code>obj</code>.
@@ -23,7 +23,7 @@ function get(obj, path, defaultValue) {
     const [[, prop], ...pathRest] = remPath
     return walkPath(curObj[prop], pathRest)
   }
-  const parsedPath = unsafeToPath(path)
+  const parsedPath = toPath(path)
   if (parsedPath.some(([propType]) => propType !== prop && propType !== index))
     throw TypeError('get supports only properties and array indexes in path')
   return walkPath(obj, parsedPath)
