@@ -2,7 +2,7 @@
 
 To describe deeply nested properties immutad●t uses standard [property access notation](https://mdn.io/Property_Accessors) and [array access notation](https://mdn.io/Property_Accessors).
 
-Furthermore immutad●t supports property list and slice notations allowing access to several properties or several array indexes at the same time.
+Furthermore immutad●t supports [property list](#property-list-notation) and [slice](#slice-notation) notations allowing access to several properties or several array indexes at the same time.
 
 ## Dot notation
 
