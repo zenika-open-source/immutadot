@@ -7,14 +7,18 @@ import {
   slice,
 } from './consts'
 
-import { toPath } from 'path'
+import { toPath } from './toPath'
 
 describe('path.toPath', () => {
 
   it('should convert basic path', () => {
     expect(toPath('a.22.ccc')).toEqual([[prop, 'a'], [prop, '22'], [prop, 'ccc']])
+    // Leading dot should be discarded
+    expect(toPath('.a')).toEqual([[prop, 'a']])
     // Empty properties should be kept
     expect(toPath('.')).toEqual([[prop, '']])
+    expect(toPath('..prop')).toEqual([[prop, ''], [prop, 'prop']])
+    expect(toPath('.a.')).toEqual([[prop, 'a'], [prop, '']])
     expect(toPath('..')).toEqual([[prop, ''], [prop, '']])
     // If no separators, path should be interpreted as one property
     expect(toPath('\']"\\')).toEqual([[prop, '\']"\\']])
@@ -62,24 +66,6 @@ describe('path.toPath', () => {
   it('should convert mixed path', () => {
     expect(toPath('a[0]["b.c"].666[1:].{1a,2b,3c}')).toEqual([[prop, 'a'], [index, 0], [prop, 'b.c'], [prop, '666'], [slice, [1, undefined]], [list, ['1a', '2b', '3c']]])
     expect(toPath('a.[0].["b.c"]666[1:2:3]{1a}{"2b",\'3c\'}')).toEqual([[prop, 'a'], [index, 0], [prop, 'b.c'], [prop, '666'], [prop, '1:2:3'], [prop, '1a'], [list, ['2b', '3c']]])
-  })
-
-  it('should not convert array path', () => {
-    expect(toPath([
-      [index, 666],
-      [prop, Symbol.for('🍺')],
-      [prop, 'test'],
-      [slice, [1, undefined]],
-      [slice, [0, -2]],
-      [list, ['1a', '2b', '3c']],
-    ])).toEqual([
-      [index, 666],
-      [prop, Symbol.for('🍺')],
-      [prop, 'test'],
-      [slice, [1, undefined]],
-      [slice, [0, -2]],
-      [list, ['1a', '2b', '3c']],
-    ])
   })
 
   it('should give empty path for nil values', () => {

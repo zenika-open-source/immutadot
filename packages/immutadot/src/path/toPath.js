@@ -59,47 +59,30 @@ const toSliceIndex = (str, defaultValue) => str === '' ? defaultValue : Number(s
  */
 const isSliceIndexString = arg => isSliceIndex(arg ? Number(arg) : undefined)
 
-/**
- * Wraps <code>fn</code> allowing to call it with an array instead of a string.<br />
- * The returned function behaviour is :<br />
- *  - If called with an array, returns a copy of the array with values converted to path keys<br />
- *  - Otherwise, calls <code>fn</code> with the string representation of its argument
- * @function
- * @param {function} fn The function to wrap
- * @returns {function} The wrapper function
- * @memberof path
- * @private
- * @since 1.0.0
- */
-const allowingArrays = fn => arg => {
-  if (Array.isArray(arg)) return arg
-  return fn(arg)
-}
-
 const emptyStringParser = str => str.length === 0 ? [] : null
 
 const quotedBracketNotationParser = map(
   regexp(/^\[(['"])(.*?[^\\])\1\]?\.?(.*)$/),
-  ([quote, property, rest]) => [[prop, unescapeQuotes(property, quote)], ...stringToPath(rest)],
+  ([quote, property, rest]) => [[prop, unescapeQuotes(property, quote)], ...applyParsers(rest)],
 )
 
 const incompleteQuotedBracketNotationParser = map(
   regexp(/^(\[["'][^.[{]*)\.?(.*)$/),
-  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...stringToPath(rest)],
+  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...applyParsers(rest)],
 )
 
 const bareBracketNotationParser = map(
   regexp(/^\[([^\]]*)\]\.?(.*)$/),
   ([property, rest]) => {
     return isIndex(Number(property))
-      ? [[index, Number(property)], ...stringToPath(rest)]
-      : [[prop, property], ...stringToPath(rest)]
+      ? [[index, Number(property)], ...applyParsers(rest)]
+      : [[prop, property], ...applyParsers(rest)]
   },
 )
 
 const incompleteBareBracketNotationParser = map(
   regexp(/^(\[[^.[{]*)\.?(.*)$/),
-  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...stringToPath(rest)],
+  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...applyParsers(rest)],
 )
 
 const sliceNotationParser = map(
@@ -107,12 +90,12 @@ const sliceNotationParser = map(
     regexp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/),
     ([sliceStart, sliceEnd]) => isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd),
   ),
-  ([sliceStart, sliceEnd, rest]) => [[slice, [toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)]], ...stringToPath(rest)],
+  ([sliceStart, sliceEnd, rest]) => [[slice, [toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)]], ...applyParsers(rest)],
 )
 
 const listWildCardParser = map(
   regexp(/^{\*}\.?(.*)$/),
-  ([rest]) => [[allProps], ...stringToPath(rest)],
+  ([rest]) => [[allProps], ...applyParsers(rest)],
 )
 
 const listPropRegexp = /^,?((?!["'])([^,]*)|(["'])(.*?[^\\])\3)(.*)/
@@ -130,18 +113,18 @@ const listNotationParser = map(
   regexp(/^\{(((?!["'])[^,}]*|(["']).*?[^\\]\2)(,((?!["'])[^,}]*|(["']).*?[^\\]\6))*)\}\.?(.*)$/),
   ([rawProps, , , , , , rest]) => {
     const props = [...extractListProps(rawProps)]
-    return props.length === 1 ? [[prop, props[0]], ...stringToPath(rest)] : [[list, props], ...stringToPath(rest)]
+    return props.length === 1 ? [[prop, props[0]], ...applyParsers(rest)] : [[list, props], ...applyParsers(rest)]
   },
 )
 
 const incompleteListNotationParser = map(
   regexp(/^(\{[^.[{]*)\.?(.*)$/),
-  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...stringToPath(rest)],
+  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...applyParsers(rest)],
 )
 
 const pathSegmentEndedByNewSegment = map(
   regexp(/^([^.[{]*)\.?([[{]?.*)$/),
-  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...stringToPath(rest)],
+  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...applyParsers(rest)],
 )
 
 const applyParsers = race([
@@ -157,29 +140,23 @@ const applyParsers = race([
   pathSegmentEndedByNewSegment,
 ])
 
-/**
- * Converts <code>arg</code> to a path represented as an array of keys.
- * @function
- * @param {*} arg The value to convert
- * @returns {Array<string|number|Array>} The path represented as an array of keys
- * @memberof path
- * @private
- * @since 1.0.0
- */
-const stringToPath = arg => {
-  if (isNil(arg)) return []
-  return applyParsers(toString(arg))
-}
-
 const MAX_CACHE_SIZE = 1000
 const cache = new Map()
 
+const stringToPath = pStr => {
+  const str = pStr.startsWith('.') ? pStr.substring(1) : pStr
+
+  const path = applyParsers(str)
+
+  return pStr.endsWith('.') ? [...path, [prop, '']] : path
+}
+
 /**
- * Memoized version of {@link core.stringToPath}.<br />
+ * Memoized version of {@link path.stringToPath}.<br />
  * The cache has a maximum size of 1000, when overflowing the cache is cleared.
  * @function
  * @param {string} str The string to convert
- * @returns {Array<string|number|Array>} The path represented as an array of keys
+ * @returns {Array<Array<Symbol,*>>} The path represented as an array of keys
  * @memberof path
  * @private
  * @since 1.0.0
@@ -202,22 +179,16 @@ const memoizedStringToPath = str => {
  * If <code>arg</code> is neither a string nor an Array, its string representation will be parsed.
  * @function
  * @param {string|Array|*} arg The value to convert
- * @returns {Array<Array<Symbol,...*>>} The path represented as an array of keys
+ * @returns {Array<Array<Symbol,*>>} The path represented as an array of keys
  * @memberof path
  * @since 1.0.0
  * @example toPath('a.b[1]["."][1:-1]') // => [[prop, 'a'], [prop, 'b'], [index, 1], [prop, '.'], [slice, [1, -1]]]
- */
-const toPath = allowingArrays(arg => [...memoizedStringToPath(arg)])
-
-/**
- * This method is like {@link core.toPath} except it returns memoized arrays which must not be mutated.
- * @function
- * @param {string|Array|*} arg The value to convert
- * @returns {Array<Array<Symbol,...*>>} The path represented as an array of keys
- * @memberof path
- * @since 1.0.0
  * @private
  */
-const unsafeToPath = allowingArrays(memoizedStringToPath)
+const toPath = arg => {
+  if (isNil(arg)) return []
 
-export { toPath, unsafeToPath }
+  return memoizedStringToPath(toString(arg))
+}
+
+export { toPath }

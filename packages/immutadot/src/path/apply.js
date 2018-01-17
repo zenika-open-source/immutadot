@@ -17,7 +17,7 @@ import {
   length,
 } from 'util/lang'
 
-import { unsafeToPath } from './toPath'
+import { toPath } from './toPath'
 
 /**
  * Makes a copy of value.
@@ -88,7 +88,7 @@ const copyIfNecessary = (value, propType, doCopy) => {
  */
 const apply = operation => {
   const curried = (pPath, ...args) => {
-    const path = unsafeToPath(pPath)
+    const path = toPath(pPath)
 
     if (path.length === 0) throw new TypeError('path should not be empty')
 
