@@ -192,7 +192,7 @@ A [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/im
 
 :warning: The following results should be taken with caution, they may vary depending on the hardware, the JavaScript engine, and the kind of operations performed. This particular test updates 10% out of a list of todos items, and was ran with Node 9.3.0 on an Intel® Core™ i7-6560U CPU @ 2.20GHz.
 
-```shell
+```
 Update small todos list (1000 items):
   ES2015 destructuring: ~16961ops/s (0.06ms/op) on 50000ops
   immutable 3.8.2 (w/o conversion to plain JS objects): ~6538ops/s (0.15ms/op) on 50000ops
