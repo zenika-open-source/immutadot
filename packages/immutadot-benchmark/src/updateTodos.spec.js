@@ -19,7 +19,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
     })
   }
 
-  // Prepare immutalbe state
+  // Prepare immutable state
   const todoRecord = Record({
     todo: '',
     done: false,
