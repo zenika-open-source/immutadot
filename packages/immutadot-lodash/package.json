@@ -43,6 +43,6 @@
     "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../config/jsdoc.json",
     "docs:private": "jsdoc -c ../../config/jsdoc.json -p"
-  }},
+  },
   "runkitExample": "require('immutadot')\nrequire('lodash')\nconst { mapValues } = require('immutadot-lodash')\n\nmapValues({ nested: { map: { a: 1, b: 2, c: 3 } } }, 'nested.map', v => v * v)\n// => { nested: { map: { a: 1, b: 4, c: 9 } } }\n\norderBy({ nested: { people: [{ name: 'Nico', age: 30 }, { name: 'Yvo', age: 2 }, { name: 'Nico', age: 666 }] } }, 'nested.prop', ['name', 'age'], ['desc', 'desc'])\n// => { nested: { people: [{ name: 'Yvo', age: 2 }, { name: 'Nico', age: 666 }, { name: 'Nico', age: 30 }] } }\n"
 }
