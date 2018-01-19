@@ -1,8 +1,27 @@
 {
   "name": "immutadot-lodash",
   "version": "1.0.0-rc.7",
+  "description": "immutadot-lodash is an extension to immutadot, adding functions based on lodash.",
+  "keywords": [
+    "immutable",
+    "dot-notation",
+    "nested-structures",
+    "react",
+    "redux",
+    "lodash"
+  ],
   "main": "index.js",
   "license": "MIT",
+  "homepage": "https://github.com/Zenika/immutadot/packages/immutadot-lodash",
+  "bugs": "https://github.com/Zenika/immutadot/issues",
+  "repository": "github:Zenika/immutadot",
+  "author": "Nicolas Lepage (https://github.com/nlepage)",
+  "contributors": [
+    "Yvonnick FRIN (https://github.com/frinyvonnick)",
+    "Valentin COCAUD (https://github.com/EmrysMyrddin)",
+    "Charles-Henri GUÉRIN (https://github.com/charlyx)"
+  ],
+  "main": "index.js",
   "peerDependencies": {
     "immutadot": "^1.0.0-rc.7",
     "lodash": "^4.6.0"
@@ -24,5 +43,6 @@
     "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../config/jsdoc.json",
     "docs:private": "jsdoc -c ../../config/jsdoc.json -p"
-  }
+  },
+  "runkitExample": "require('immutadot')\nrequire('lodash')\nconst { mapValues } = require('immutadot-lodash')\n\nmapValues({ nested: { map: { a: 1, b: 2, c: 3 } } }, 'nested.map', v => v * v)\n// => { nested: { map: { a: 1, b: 4, c: 9 } } }\n\norderBy({ nested: { people: [{ name: 'Nico', age: 30 }, { name: 'Yvo', age: 2 }, { name: 'Nico', age: 666 }] } }, 'nested.prop', ['name', 'age'], ['desc', 'desc'])\n// => { nested: { people: [{ name: 'Yvo', age: 2 }, { name: 'Nico', age: 666 }, { name: 'Nico', age: 30 }] } }\n"
 }
