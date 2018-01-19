@@ -9,28 +9,32 @@ describe('core.convert', () => {
   it('should wrap a function', () => {
     const immutableInc = convert(inc)
 
-    immutaTest((input, path) => {
-      const output = immutableInc(input, path)
+    immutaTest({
+      nested: { prop: 5 },
+      other: {},
+    },
+    ['nested.prop'],
+    input => {
+      const output = immutableInc(input, 'nested.prop')
       expect(output).toEqual({
         nested: { prop: 6 },
         other: {},
       })
       return output
-    }, {
+    })
+
+    immutaTest({
       nested: { prop: 5 },
       other: {},
-    }, 'nested.prop')
-
-    immutaTest((input, path) => {
-      const output = immutableInc(input, path, 2)
+    },
+    ['nested.prop'],
+    input => {
+      const output = immutableInc(input, 'nested.prop', 2)
       expect(output).toEqual({
         nested: { prop: 7 },
         other: {},
       })
       return output
-    }, {
-      nested: { prop: 5 },
-      other: {},
-    }, 'nested.prop')
+    })
   })
 })
