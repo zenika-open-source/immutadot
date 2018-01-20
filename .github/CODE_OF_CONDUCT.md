@@ -1,3 +1,6 @@
+![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg?sanitize=true)
+===
+
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge

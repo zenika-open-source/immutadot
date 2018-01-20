@@ -1,3 +1,6 @@
+![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg?sanitize=true)
+===
+
 # Contributing to immutad●t
 First of all thank you for expressing interest in immutad●t! :+1:<br />
 We are very happy to welcome new contributors. :tada:

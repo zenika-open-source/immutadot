@@ -1,5 +1,5 @@
 ![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg?sanitize=true)
-=================
+===
 
 A JavaScript library to deal with nested immutable structures.
 
@@ -220,9 +220,13 @@ Update large todos list (100000 items):
 
 ## Documentation
 
-Get started quickly with our [Getting started](https://github.com/Zenika/immutadot/blob/master/docs/GETTING_STARTED.md) guide or dig into the full list of immutad●t's features available in the documentation of our different packages.
+### Getting started
 
-Latest API documentation are available here:
+A fast overview of immutad●t's features is available in the [Getting started](https://github.com/Zenika/immutadot/blob/master/docs/GETTING_STARTED.md) guide.
+
+### API
+
+The detailed API documentations of the different packages are available here:
 - [immutadot](https://zenika.github.io/immutadot/immutadot)
 - [immutadot-lodash](https://zenika.github.io/immutadot/immutadot-lodash/)
 
