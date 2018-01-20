@@ -1,5 +1,5 @@
-import _dropWhile from 'lodash/dropWhile'
-import { convert } from 'immutadot/core/convert'
+import { dropWhile as _dropWhile } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Replaces an array excluding elements dropped from the beginning. Elements are dropped until <code>predicate</code> returns falsey.

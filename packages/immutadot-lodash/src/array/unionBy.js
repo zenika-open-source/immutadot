@@ -1,5 +1,5 @@
-import _unionBy from 'lodash/unionBy'
-import { convert } from 'immutadot/core/convert'
+import { unionBy as _unionBy } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * This method is like {@link array.union} except that it accepts <code>iteratee</code> to generate the criterion by which elements are compared.

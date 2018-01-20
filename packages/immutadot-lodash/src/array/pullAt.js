@@ -1,4 +1,4 @@
-import _pullAt from 'lodash/fp/pullAt'
+import { pullAt as _pullAt } from 'lodash/fp'
 import { convertLodashFp } from 'util/convertLodashFp'
 
 /**

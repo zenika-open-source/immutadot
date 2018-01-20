@@ -1,5 +1,5 @@
-import _omitBy from 'lodash/omitBy'
-import { convert } from 'immutadot/core/convert'
+import { omitBy as _omitBy } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Replaces by an object omitting properties that <code>predicate</code> doesn't return truthy for.

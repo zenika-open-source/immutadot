@@ -1,5 +1,5 @@
-import _dropRight from 'lodash/dropRight'
-import { convert } from 'immutadot/core/convert'
+import { dropRight as _dropRight } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Replaces an array dropping one or several elements at the end of the former array.

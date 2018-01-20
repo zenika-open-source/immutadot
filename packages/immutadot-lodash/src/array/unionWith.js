@@ -1,5 +1,5 @@
-import _unionWith from 'lodash/unionWith'
-import { convert } from 'immutadot/core/convert'
+import { unionWith as _unionWith } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * This method is like {@link array.union} except that it accepts <code>comparator</code> to compare elements.

@@ -1,5 +1,5 @@
-import _intersectionBy from 'lodash/intersectionBy'
-import { convert } from 'immutadot/core/convert'
+import { intersectionBy as _intersectionBy } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * This method is like {@link array.intersection} except that it uses <code>iteratee</code> to generate the value to be compared for each element.

@@ -1,5 +1,5 @@
-import _takeWhile from 'lodash/takeWhile'
-import { convert } from 'immutadot/core/convert'
+import { takeWhile as _takeWhile } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Creates a slice of array with elements taken from the beginning.

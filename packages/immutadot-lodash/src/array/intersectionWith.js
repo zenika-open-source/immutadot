@@ -1,5 +1,5 @@
-import _intersectionWith from 'lodash/intersectionWith'
-import { convert } from 'immutadot/core/convert'
+import { intersectionWith as _intersectionWith } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * This method is like {@link array.intersection} except that it uses <code>comparator</code> to compare elements of the former array to <code>arrays</code>.

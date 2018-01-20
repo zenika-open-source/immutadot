@@ -1,4 +1,4 @@
-import { convert } from 'immutadot/core/convert'
+import { convert } from 'immutadot'
 import { lodashFpConvert } from './lodashFpConvert'
 
 /**

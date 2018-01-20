@@ -1,5 +1,6 @@
 /* eslint-env jest */
 import {
+  isFunction,
   isNaturalInteger,
   isNil,
   isObject,
@@ -10,6 +11,24 @@ import {
 } from './lang'
 
 describe('Lang utils', () => {
+  describe('util.isFunction', () => {
+    it('should return true for functions', () => {
+      expect(isFunction(() => { /* */ })).toBe(true)
+      function thisIsAFunction() { /* */ }
+      expect(isFunction(thisIsAFunction)).toBe(true)
+    })
+
+    it('should return false for non strings', () => {
+      expect(isFunction('')).toBe(false)
+      expect(isFunction('🍺')).toBe(false)
+      expect(isFunction([])).toBe(false)
+      expect(isFunction(666)).toBe(false)
+      expect(isFunction({})).toBe(false)
+      expect(isFunction(undefined)).toBe(false)
+      expect(isFunction(null)).toBe(false)
+    })
+  })
+
   describe('util.isNaturalInteger', () => {
     it('should return true for any non negative integer', () => {
       expect(isNaturalInteger(0)).toBe(true)

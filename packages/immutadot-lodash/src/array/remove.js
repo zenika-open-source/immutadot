@@ -1,4 +1,4 @@
-import _remove from 'lodash/fp/remove'
+import { remove as _remove } from 'lodash/fp'
 import { convertLodashFp } from 'util/convertLodashFp'
 
 /**

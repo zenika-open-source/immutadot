@@ -1,5 +1,5 @@
-import _filter from 'lodash/filter'
-import { convert } from 'immutadot/core/convert'
+import { filter as _filter } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Replaces by an array of elements <code>predicate</code> returns truthy for.

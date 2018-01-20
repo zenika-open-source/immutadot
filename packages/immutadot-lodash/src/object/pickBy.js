@@ -1,5 +1,5 @@
-import _pickBy from 'lodash/pickBy'
-import { convert } from 'immutadot/core/convert'
+import { pickBy as _pickBy } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Replaces by an object picking properties that <code>predicate</code> returns truthy for.

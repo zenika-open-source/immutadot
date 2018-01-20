@@ -1,5 +1,5 @@
-import _takeRightWhile from 'lodash/takeRightWhile'
-import { convert } from 'immutadot/core/convert'
+import { takeRightWhile as _takeRightWhile } from 'lodash'
+import { convert } from 'immutadot'
 
 /**
  * Creates a slice of array with elements taken from the end.

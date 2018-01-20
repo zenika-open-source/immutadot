@@ -169,6 +169,7 @@ describe('path.apply', () => {
             'prop2': { val: 6 },
             'prop{3}': { val: 6 },
             '"prop4"': { val: 4 },
+            'prop5': { val: 5 },
           },
           other: {},
         })
@@ -180,6 +181,7 @@ describe('path.apply', () => {
           'prop2': { val: 5 },
           'prop{3}': { val: 5 },
           '"prop4"': { val: 3 },
+          'prop5': { val: 5 },
         },
         other: {},
       },
@@ -240,6 +242,28 @@ describe('path.apply', () => {
         other: {},
       },
       'nested.prop',
+    )
+  })
+
+  it('should initialize unknown props in a list', () => {
+    immutaTest(
+      input => {
+        const output = inc(input, 'nested.{prop1,prop2}.val')
+        expect(output).toEqual({
+          nested: {
+            prop1: { val: 6 },
+            prop2: { val: 1 },
+          },
+          other: {},
+        })
+        return output
+      },
+      {
+        nested: { prop1: { val: 5 } },
+        other: {},
+      },
+      'nested.prop1.val',
+      'nested.prop2.val',
     )
   })
 })
