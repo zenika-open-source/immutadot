@@ -21,7 +21,6 @@
     "Valentin COCAUD (https://github.com/EmrysMyrddin)",
     "Charles-Henri GUÉRIN (https://github.com/charlyx)"
   ],
-  "main": "index.js",
   "peerDependencies": {
     "immutadot": "^1.0.0-rc.7",
     "lodash": "^4.6.0"
@@ -32,7 +31,7 @@
     "eslint": "~4.15.0",
     "jest": "~21.2.1",
     "jsdoc": "~3.5.5",
-    "lerna": "~2.7.1"
+    "lerna": "~2.8.0"
   },
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src -d .",
