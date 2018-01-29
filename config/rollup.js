@@ -56,16 +56,10 @@ const makeBundle = (name, options = {}) => {
         ...options[key],
       ]
     } else if (typeof newConf[key] === 'object') {
-      value = {
-        ...newConf[key],
-        ...options[key],
-      }
+      value = Object.assign({}, newConf[key], options[key])
     }
 
-    return {
-      ...newConf,
-      [key]: value,
-    }
+    return Object.assign({}, newConf, { [key]: value })
   }, config)
 }
 
