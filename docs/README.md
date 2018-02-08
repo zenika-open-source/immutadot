@@ -14,4 +14,4 @@ Older API documentations :
 
 Other ressources:
 - [Getting started](./GETTING_STARTED.md)
-- [Migration guide to 1.0](./MIGRATING_TO_1.0.md)
+- [Migration guide to 1.0](./MIGRATING_TO_1_0.md)
