@@ -3,6 +3,19 @@ layout: default
 avatar: true
 permalink: /
 ---
+# immutad●t
+A JavaScript library to deal with nested immutable structures.
+
+```js
+set({ english: { greeting: 'Hi' } }, 'english.greeting', 'Hello')
+// → { english: { greeting: 'Hello' } }
+
+push({ i18n: { languages: ['English', 'French'] } }, 'i18n.languages', 'German', 'Spanish')
+// → { i18n: { languages: ['English', 'French', 'German', 'Spanish'] } }
+```
+immutad●t gives you a short and meaningful syntax to apply operations on immutable structures.
+
+---
 ## Installation
 immutad●t is available on [npm repository](https://www.npmjs.com/package/immutadot).
 
