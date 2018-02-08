@@ -1,8 +1,8 @@
 # Site settings
-title: Emping
+title: immutad●t
 email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
-  Let's Eat!!.
+  is a set of immutable functions using dot notation.
 baseurl: "" # the subpath of your site, e.g. /newpath-for-emping
 url: "http://example.com" # the base hostname & protocol for your site
 twitter_username: jekyllrb
@@ -22,6 +22,7 @@ sass:
 markdown: kramdown
 kramdown:
   parse_block_html: true
+  smart_quotes: ["apos", "apos", "quot", "quot"]
 
 gems:
   - jekyll-redirect-from

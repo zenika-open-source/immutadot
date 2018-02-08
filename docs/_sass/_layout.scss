@@ -6,9 +6,10 @@
     padding: $spacing-unit/2 0;
     // Positioning context for the mobile navigation icon
     position: relative;
-    background: #4db6ac;
+    background: #dc5a1e;
     a{
       color:#fff;
+      padding-right: 10px;
     }
 }
 
@@ -70,6 +71,9 @@
 
       .trigger {
         display: block;
+        a:last-child {
+          padding-right: 0;
+        }
       }
 
       .page-link {
@@ -91,6 +95,12 @@
   amp-sidebar {
     width: 200px;
     padding-right: 10px;
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      padding-left: 10px;
+    }
   }
 
   .amp-close-image {
@@ -131,6 +141,10 @@
     padding: $spacing-unit 0;
     background: #37474F;
     color: #90A4AE;
+
+    .copy {
+      margin-bottom: 0;
+    }
 }
 /**
  * Page content

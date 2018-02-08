@@ -3,10 +3,48 @@ layout: default
 avatar: true
 permalink: /
 ---
-## 🚀 Hello World
-You can use this page to showcase your work, portfolio/project, your Latest post {% for post in site.posts limit: 1 %}<a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>{% endfor %} or another stuff that you love to share to the world.
+## Installation
+immutad●t is available on [npm repository](https://www.npmjs.com/package/immutadot).
+
+using yarn:
+
+```shell
+$ yarn add immutadot
+```
+
+using npm:
+
+```shell
+$ npm install immutadot
+```
+
+or you can directly download [sources](https://github.com/Zenika/immutadot/releases).
 
 ---
+## Usage
+ES modules:
 
-## 🅿️ Edit This Page
-You’ll find this page in your `_pages` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+```js
+import { set } from 'immutadot'
+```
+
+CommonJS:  
+
+```js
+const { set } = require('immutadot')
+```
+---
+## Try it
+<div id="repl">
+const { set } = require('immutadot')
+
+const animals = {
+    weasels: {
+      lutraLutra: {
+        commonNames: ['eurasian otter'],
+      },
+    },
+}
+
+const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutrinae')
+</div>
