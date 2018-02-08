@@ -1,0 +1,8 @@
+---
+permalink: /robots.txt
+---
+User-agent: *
+Disallow: /ngitung/
+
+User-agent: Mediapartners-Google
+Allow: /

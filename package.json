@@ -11,7 +11,9 @@
     "docs": "lerna run --stream docs",
     "docs:private": "lerna run --stream docs:private",
     "dist": "rollup -c config/rollup.js",
-    "benchmark": "lerna run benchmark"
+    "benchmark": "lerna run benchmark",
+    "premini-site": "cd docs && bundle install",
+    "mini-site": "cd docs && bundle exec jekyll serve"
   },
   "devDependencies": {
     "babel-cli": "~6.26.0",
