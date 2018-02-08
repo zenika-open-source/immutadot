@@ -27,16 +27,16 @@ or you can directly download [sources](https://github.com/Zenika/immutadot/relea
 
 ## Setting nested properties
 
-[ES2015+ destructuring](https://mdn.io/destructuring) provides you all necessary tools to keep nested structures immutable. The [spread operator](https://mdn.io/Spread_operator) is a succinct syntax create new arrays and objects using existing ones.
+[ES2015+ destructuring](https://mdn.io/destructuring) provides you all necessary tools to keep nested structures immutable. The [spread operator](https://mdn.io/Spread_operator) is a succinct syntax to create new arrays and objects using existing ones.
 
 ```js
-const otter = {
-  family: 'Mustelidae',
-  order: 'Carnivora'
+const lutraLutra = {
+  commonNames: ['eurasian otter'],
 }
-const updatedOtter = {
-  ...otter,
-  classification: 'Mammalia'
+
+const newLutraLutra = {
+  ...lutraLutra,
+  name: 'Lutra lutra',
 }
 ```
 
@@ -45,12 +45,8 @@ With nested structures this syntax becomes more tedious to write, and harder to 
 ```js
 const animals = {
   weasels: {
-    badger: {
-      vernacularName: 'badger',
-      scientificName: 'Meles meles'
-    },
-    otter: {
-      vernacularName: 'otter',
+    lutraLutra: {
+      commonNames: ['eurasian otter'],
     }
   }
 }
@@ -59,86 +55,205 @@ const newAnimals = {
   ...animals,
   weasels: {
     ...animals.weasels,
-    otter: {
+    lutraLutra: {
       ...animals.weasels.otter,
-      scientificName: 'Lutrinae'
+      name: 'Lutra lutra',
     }
   }
 }
 ```
 
-This can be done nicely with immutadot's [`set()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.set) core utility:
+This can be done nicely with [`set()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.set):
 
 ```js
-const updatedAnimals = set(animals, 'animals.weasels[1].scientificName', 'Lutrinae')
+import { set } from 'immutadot'
+
+const animals = {
+  weasels: {
+    lutraLutra: {
+      commonNames: ['eurasian otter'],
+    }
+  }
+}
+
+const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutrinae')
 ```
 
-It seems much more clear, no?
+Deleting a nested property can be done with [`unset()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.unset).
 
 ## Basic array operations
 
-Assume that our badger object have a property sharingName that is an array of other species with the common name of badger but our favorite one is missing.
-
-We are pretty fond of honey badger aka ratel. Let's add it in our weasels array with [`push()`](https://zenika.github.io/immutadot/immutadot/1.0/array.html#.push) function.
+Values can be added in a nested array with [`push()`](https://zenika.github.io/immutadot/immutadot/1.0/array.html#.push):
 
 ```js
-const updatedAnimals = push(animals, 'animals.weasels.badger.sharingName', 'Honey badger')
-```
+import { push } from 'immutadot'
 
-There are a few more operations you can find out in our [documentation's array section](https://zenika.github.io/immutadot/immutadot/1.0/array.html).
-
-## Basic collection operations
-
-All collection's operations are in immutadot-lodash given that collection is a concept brought by lodash. In our case we want to [`reject()`](https://zenika.github.io/immutadot/immutadot-lodash/1.0/collection.html#.reject) all characteristics that aren't numbers.
-
-```js
-const updatedAnimals = reject(animals, 'animals.weasels.otter.characteristics', characteristic => Number.isInteger(characteristic))
-```
-
-## Path notation
-
-immutad●t comes with an improved path notation, allowing to iterate over arrays and objects, check out the [path notation documentation](./PATH_NOTATION.md) for more information.
-
-We will use improved path notation in the following examples.
-
-## Grouping multiple operations
-
-immutad●t has a functionnal utility called [`flow()`](https://zenika.github.io/immutadot/immutadot/1.0/flow.html#.flow) that helps you compose multiple operations and apply them on an input.
-
-We want in our weasels array only those whose scientific names begin with **M** character and we forgot to capitalize their vernacular, let's repair this mistake.
-
-```js
-const filterAndCapitalizeAnimals = flow(
-  filter('weasels', weasel => weasel.scientificName.startsWith('M'))
-  capitalize('weasels[:].scientificName')
-)
-
-const alteredAnimals = filterAndCapitalizeAnimals(updatedAnimals)
-```
-
-With [`flow()`](https://zenika.github.io/immutadot/immutadot/1.0/flow.html#.flow) utility the true power of functional programming will be unleashed in your code!
-
-## Performing custom updates
-
-You can't found out a function that fits with your needs ? [`update()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.update) take an updater as parameter and let you apply custom updates on your data.
-
-```js
-const incIfNumber = (v, i = 0) => {
-  if (Number.isInteger(v)) {
-    return v + i
-  }
-  return v
+const animals = {
+  weasels: {
+    lutraLutra: {
+      name: 'Lutra lutra',
+      commonNames: ['eurasian otter'],
+    },
+    // Some more weasels...
+  },
 }
 
-const updatedAnimals = update(animals, 'weasels.otter.characteristics{*}', incIfNumber, 2)
+const newAnimals = push(animals, 'weasels.lutraLutra.commonNames', 'european otter', 'common otter')
 ```
 
-## Creating custom operations
+## Updating properties
 
-You want to easily reuse your functions that apply custom updates ? Wraps your updater function with [`convert()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.convert). It returns a function with the same signature as the immutad●t's operations.
+[immutad●t's API](https://zenika.github.io/immutadot/immutadot/) offers basic functions to work with primitive types.
+
+It is possible to perform custom updates with [`update()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.update):
 
 ```js
-const incIfNumberProp = convert(incIfNumber)
+import { update } from 'immutadot'
 
-const updatedAnimals = incIfNumberProp(animals, 'weasels.otter.characteristics{*}', 2)
+const animals = {
+  weasels: {
+    lutraLutra: {
+      name: 'Lutra lutra',
+      commonNames: ['eurasian otter', 'european otter', 'common otter'],
+    },
+    // Some more weasels...
+  },
+}
+
+const newAnimals = update(animals, 'weasels.lutraLutra', lutraLutra => {
+  return {
+    scientificName: lutraLutra.name, // Rename property name to scientificName
+    commonNames: lutraLutra.commonNames,
+  }
+})
+```
+
+immutadot includes all common functions of Array's prototype, see [documentation's array section](https://zenika.github.io/immutadot/immutadot/1.0/array.html).
+
+## Batch operations
+
+### Arrays
+
+Operations can be applied on several elements of an array with the slice notation:
+
+```js
+import { capitalize } from 'immutadot-lodash' // capitalize uses lodash
+
+const animals = {
+  weasels: {
+    lutraLutra: {
+      scientificName: 'Lutra lutra',
+      commonNames: ['eurasian otter', 'european otter', 'common otter'],
+    },
+    // Some more weasels...
+  },
+}
+
+const newAnimals = capitalize(animals, 'weasels.lutraLutra.commonNames[:]')
+```
+
+The slice notation follows the syntax `[start:end]`, `start` and `end` are both optional, `start` defaults to `0` and `end` to `Array.length`.
+
+### Objects
+
+Batch operations are also possible on properties of an object with the list notation:
+
+```js
+import { set } from 'immutadot'
+
+const animals = {
+  weasels: {
+    lutraLutra: {
+      scientificName: 'Lutra lutra',
+      commonNames: ['Eurasian otter', 'European otter', 'Common otter'],
+    },
+    pteronuraBrasiliensis: {
+      scientificName: 'Pteronura brasiliensis',
+      commonNames: ['Giant otter', 'Giant river otter'],
+    },
+    // Some more weasels...
+  },
+}
+
+const newAnimals = set(animals, 'weasels.{*}.family', 'Mustelidae')
+```
+
+The list notation follows the syntax `{*}` to iterate over all the properties of an object.
+It is also possible to pick specific properties with the syntax `{prop1,prop2}`.
+
+### Path notation
+
+For more information on the path notation of immutad●t, see the [path notation documentation](./PATH_NOTATION.md).
+
+## Grouping modifications
+
+Different operations can be grouped with [`flow()`](https://zenika.github.io/immutadot/immutadot/1.0/flow.html#.flow):
+
+```js
+import { flow, push, set } from 'immutadot'
+import { capitalize } from 'immutadot-lodash'
+
+const animals = {
+  weasels: {
+    lutraLutra: {
+      commonNames: ['eurasian otter'],
+    },
+    pteronuraBrasiliensis: {
+      scientificName: 'Pteronura brasiliensis',
+      commonNames: ['Giant otter', 'Giant river otter'],
+    },
+    // Some more weasels...
+  },
+}
+
+const newAnimals = flow(
+  set('weasels.lutraLutra.scientificName', 'Lutrinae'),
+  push('weasels.lutraLutra.commonNames', 'european otter', 'common otter'),
+  capitalize('weasels.lutraLutra.commonNames[:]'),
+  set('weasels.{*}.family', 'Mustelidae'),
+)(animals)
+```
+
+All immutad●t functions support currying the first parameter and can be used without `flow`:
+
+```js
+import { set } from 'immutadot'
+
+const animals = {
+  weasels: {
+    lutraLutra: {
+      commonNames: ['eurasian otter'],
+    }
+  }
+}
+
+const newAnimals = set('weasels.lutraLutra.scientificName', 'Lutrinae')(animals)
+```
+
+## Reusing custom updates
+
+New immutad●t functions can be created with [`convert()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.convert):
+
+```js
+import { convert } from 'immutadot'
+
+const renameProp = convert((obj, prop, newProp) => {
+  const { [prop]: val, ...rest } = obj
+  return {
+    ...rest,
+    [newProp]: val,
+  }
+})
+
+const animals = {
+  weasels: {
+    lutraLutra: {
+      name: 'Lutra lutra',
+      commonNames: ['eurasian otter', 'european otter', 'common otter'],
+    },
+    // Some more weasels...
+  },
+}
+
+const newAnimals = renameProp(animals, 'weasels.lutraLutra', 'name', 'scientificName')
 ```
