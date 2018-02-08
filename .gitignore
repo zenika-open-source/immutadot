@@ -8,3 +8,4 @@ yarn-error.log
 !/dist/**/*.js
 !/misc/**/*.js
 !/packages/*/src/**/*.js
+**/.DS_Store

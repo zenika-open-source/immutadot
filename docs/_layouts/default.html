@@ -1,0 +1,13 @@
+<!doctype html>
+<html ⚡ lang="en">
+  {% include head.html %}
+  <body>
+    {% if page.avatar %}{% include header.html avatar="true" %} {% else %} {% include header.html %} {% endif %}
+    <div class="page-content {% if page.layout == 'default-author' %}default{%endif%}">
+      <div class="wrapper">
+        {{ content | replace: '<img', '<amp-img layout="responsive"' }}
+      </div>
+    </div>
+    {% include footer.html %}
+  </body>
+</html>

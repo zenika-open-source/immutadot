@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>core - Documentation</title>
+
+    <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2 class="home-link"><a href="index.html">immutad●t</a></h2><h3>Namespaces</h3><ul><li><details open><summary><a href="array.html">array</a></summary><ul class='methods'><li data-type='method'><a href="array.html#.concat">concat</a></li><li data-type='method'><a href="array.html#.fill">fill</a></li><li data-type='method'><a href="array.html#.filter">filter</a></li><li data-type='method'><a href="array.html#.map">map</a></li><li data-type='method'><a href="array.html#.pop">pop</a></li><li data-type='method'><a href="array.html#.push">push</a></li><li data-type='method'><a href="array.html#.reverse">reverse</a></li><li data-type='method'><a href="array.html#.shift">shift</a></li><li data-type='method'><a href="array.html#.slice">slice</a></li><li data-type='method'><a href="array.html#.sort">sort</a></li><li data-type='method'><a href="array.html#.splice">splice</a></li><li data-type='method'><a href="array.html#.unshift">unshift</a></li></ul></details></li><li><details open><summary><a href="core.html">core</a></summary><ul class='methods'><li data-type='method'><a href="core.html#.convert">convert</a></li><li data-type='method'><a href="core.html#.get">get</a></li><li data-type='method'><a href="core.html#.set">set</a></li><li data-type='method'><a href="core.html#.unset">unset</a></li><li data-type='method'><a href="core.html#.update">update</a></li></ul></details></li><li><details open><summary><a href="flow.html">flow</a></summary><ul class='methods'><li data-type='method'><a href="flow.html#.flow">flow</a></li></ul></details></li><li><details open><summary><a href="lang.html">lang</a></summary><ul class='methods'><li data-type='method'><a href="lang.html#.add">add</a></li><li data-type='method'><a href="lang.html#.divide">divide</a></li><li data-type='method'><a href="lang.html#.multiply">multiply</a></li><li data-type='method'><a href="lang.html#.subtract">subtract</a></li><li data-type='method'><a href="lang.html#.toggle">toggle</a></li></ul></details></li><li><details open><summary><a href="object.html">object</a></summary><ul class='methods'><li data-type='method'><a href="object.html#.assign">assign</a></li></ul></details></li><li><details open><summary><a href="path.html">path</a></summary><ul class='methods'><li data-type='method'><a href="path.html#.toPath">toPath</a></li></ul></details></li><li><details open><summary><a href="string.html">string</a></summary><ul class='methods'><li data-type='method'><a href="string.html#.concat">concat</a></li><li data-type='method'><a href="string.html#.padEnd">padEnd</a></li><li data-type='method'><a href="string.html#.padStart">padStart</a></li><li data-type='method'><a href="string.html#.replace">replace</a></li><li data-type='method'><a href="string.html#.slice">slice</a></li><li data-type='method'><a href="string.html#.substr">substr</a></li><li data-type='method'><a href="string.html#.substring">substring</a></li><li data-type='method'><a href="string.html#.toLocaleLowerCase">toLocaleLowerCase</a></li><li data-type='method'><a href="string.html#.toLocaleUpperCase">toLocaleUpperCase</a></li><li data-type='method'><a href="string.html#.toLowerCase">toLowerCase</a></li><li data-type='method'><a href="string.html#.toUpperCase">toUpperCase</a></li><li data-type='method'><a href="string.html#.trim">trim</a></li><li data-type='method'><a href="string.html#.trimLeft">trimLeft</a></li><li data-type='method'><a href="string.html#.trimRight">trimRight</a></li></ul></details></li></ul>
+</nav>
+
+<div id="main" class="main-container">
+    
+        <h1 class="page-title">core</h1>
+    
+
+    
+
+
+
+
+<section class="page-container">
+
+    <header class="page-header">
+        
+            <h2>
+            core
+            </h2>
+            
+        
+    </header>
+
+    <section class="page-content">
+        <article class="container-overview">
+            
+                
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="core_index.js.html">core/index.js</a>, <a href="core_index.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+                
+                    <div class="description">Core functions.</div>
+                
+
+                
+            
+        </article>
+
+        
+
+        
+
+        
+
+         
+
+        
+
+        
+
+        
+            <article class="container-methods">
+                <h3 class="subsection-title">Methods</h3>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".convert"><span class="signature-type">(static) </span>convert<span class="signature">(updater)</span><span class="signature-return"> &rarr; {function}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="core_convert.js.html">core/convert.js</a>, <a href="core_convert.js.html#line21">line 21</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="core.html#.update">update</a> for more information.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Wraps an <code>updater</code> function, returning a new function taking <code>object</code>, <code>path</code> and <code>…args</code> as parameters.<br/>
+The <code>updater</code> function is invoked with <code>value</code> and <code>…args</code>.<br/>
+Be carefull, the <code>updater</code> function must not mutate its <code>value</code> argument.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">Wrapping an updater</p>
+    
+    <pre class="prettyprint"><code>const inc = (v, i = 1) => v + i // this function increments a number with an optional value which defaults to 1
+const incProp = convert(inc)
+const object = { nested: { prop: 4 } }
+incProp(object, 'nested.prop') // => { nested: { prop: 5 } }
+incProp(object, 'nested.prop', 2) // => { nested: { prop: 6 } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>updater</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">function</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The updater function.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the wrapped function.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".get"><span class="signature-type">(static) </span>get<span class="signature">(obj, path, defaultValue)</span><span class="signature-return"> &rarr; {*}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="core_get.js.html">core/get.js</a>, <a href="core_get.js.html#line19">line 19</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Gets the value at <code>path</code> of <code>obj</code>.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+    <pre class="prettyprint"><code>get({ nested: { prop: 'val' } }, 'nested.prop') // => 'val'</code></pre>
+
+    <pre class="prettyprint"><code>get({ nested: { prop: 'val' } }, 'nested.unknown', 'default') // => 'default'</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>obj</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type"><a href="string.html">string</a></span>
+|
+
+<span class="param-type">Array</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to get.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>defaultValue</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The default value.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the value or <code>defaultValue</code>.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".set"><span class="signature-type">(static) </span>set<span class="signature">(obj, path, value)</span><span class="signature-return"> &rarr; {*}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="core_set.js.html">core/set.js</a>, <a href="core_set.js.html#line16">line 16</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Sets the value at <code>path</code> of <code>obj</code>.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>set({ nested: { prop: 'old' } }, 'nested.prop', 'new') // => { nested: { prop: 'new' } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>obj</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type"><a href="string.html">string</a></span>
+|
+
+<span class="param-type">Array</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>value</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The value to set.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">*</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".unset"><span class="signature-type">(static) </span>unset<span class="signature">(obj, path)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="core_unset.js.html">core/unset.js</a>, <a href="core_unset.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Removes the property at <code>path</code> of <code>object</code>.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>unset({ nested: { prop: 'value' } }, 'nested.prop') // => { nested: {} }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>obj</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to unset.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".update"><span class="signature-type">(static) </span>update<span class="signature">(obj, path, updater, &hellip;args)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="core_update.js.html">core/update.js</a>, <a href="core_update.js.html#line23">line 23</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Updates the value at <code>path</code> of <code>object</code> using the <code>updater</code> function.<br/>
+The updater is invoked with <code>value</code> and <code>…args</code>.<br/>
+Be carefull, the <code>updater</code> function must not mutate its <code>value</code> argument.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">Updating a prop</p>
+    
+    <pre class="prettyprint"><code>const inc = (v, i = 1) => v + i // this function increments a number with an optional value which defaults to 1
+const object = { nested: { prop: 4 } }
+update(object, 'nested.prop', inc) // => { nested: { prop: 5 } }
+update(object, 'nested.prop', inc, 2) // => { nested: { prop: 6 } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>obj</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>updater</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">function</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The function to produce the updated value.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>args</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The remaining args.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+            </article>
+        
+
+        
+
+        
+    </section>
+
+</section>
+
+
+
+
+</div>
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script src="scripts/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<footer class="site-footer">
+  <div class="wrapper">
+    <p class="copy">&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+  </div>
+</footer>
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "{{ site:GoogleAnalytics }}"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+<amp-install-serviceworker src="{{ site.baseurl | prepend: site.url }}/sw.js" layout="nodisplay"></amp-install-serviceworker>
