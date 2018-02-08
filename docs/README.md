@@ -13,5 +13,5 @@ Older API documentations :
 - [immutadot 0.1](https://zenika.github.io/immutadot/immutadot/0.1)
 
 Other ressources:
-- [Getting started](./GETTING_STARTED)
-- [Migration guide to 1.0](./MIGRATING_TO_1.0)
+- [Getting started](./GETTING_STARTED.md)
+- [Migration guide to 1.0](./MIGRATING_TO_1.0.md)
