@@ -13,7 +13,7 @@
     "dist": "rollup -c config/rollup.js",
     "benchmark": "lerna run benchmark",
     "premini-site": "cd docs && bundle install",
-    "mini-site": "bundle exec jekyll serve"
+    "mini-site": "cd docs && bundle exec jekyll serve"
   },
   "devDependencies": {
     "babel-cli": "~6.26.0",
