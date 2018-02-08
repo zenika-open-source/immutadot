@@ -16,7 +16,7 @@
  * @see {@link https://lodash.com/docs#difference|lodash.difference} for more information.
  * @since 1.0.0
  */
-var difference$1 = immutadot.convert(lodash.difference);
+var difference = immutadot.convert(lodash.difference);
 
 /**
  * This method is like {@link array.difference} except that it uses <code>iteratee</code> to generate the value to be compared for each element.
@@ -31,7 +31,7 @@ var difference$1 = immutadot.convert(lodash.difference);
  * @see {@link https://lodash.com/docs#differenceBy|lodash.differenceBy} for more information.
  * @since 1.0.0
  */
-var differenceBy$1 = immutadot.convert(lodash.differenceBy);
+var differenceBy = immutadot.convert(lodash.differenceBy);
 
 /**
  * This method is like {@link array.difference} except that it uses <code>comparator</code> to compare elements of the former array to <code>values</code>.
@@ -46,7 +46,7 @@ var differenceBy$1 = immutadot.convert(lodash.differenceBy);
  * @see {@link https://lodash.com/docs#differenceWith|lodash.differenceWith} for more information.
  * @since 1.0.0
  */
-var differenceWith$1 = immutadot.convert(lodash.differenceWith);
+var differenceWith = immutadot.convert(lodash.differenceWith);
 
 /**
  * Replaces an array dropping one or several elements at the start of the former array.
@@ -60,7 +60,7 @@ var differenceWith$1 = immutadot.convert(lodash.differenceWith);
  * @see {@link https://lodash.com/docs#drop|lodash.drop} for more information.
  * @since 1.0.0
  */
-var drop$1 = immutadot.convert(lodash.drop);
+var drop = immutadot.convert(lodash.drop);
 
 /**
  * Replaces an array dropping one or several elements at the end of the former array.
@@ -74,7 +74,7 @@ var drop$1 = immutadot.convert(lodash.drop);
  * @see {@link https://lodash.com/docs#dropRight|lodash.dropRight} for more information.
  * @since 1.0.0
  */
-var dropRight$1 = immutadot.convert(lodash.dropRight);
+var dropRight = immutadot.convert(lodash.dropRight);
 
 /**
  * Replaces an array excluding elements dropped from the end. Elements are dropped until <code>predicate</code> returns falsey.
@@ -88,7 +88,7 @@ var dropRight$1 = immutadot.convert(lodash.dropRight);
  * @see {@link https://lodash.com/docs#dropRightWhile|lodash.dropRightWhile} for more information.
  * @since 1.0.0
  */
-var dropRightWhile$1 = immutadot.convert(lodash.dropRightWhile);
+var dropRightWhile = immutadot.convert(lodash.dropRightWhile);
 
 /**
  * Replaces an array excluding elements dropped from the beginning. Elements are dropped until <code>predicate</code> returns falsey.
@@ -102,7 +102,7 @@ var dropRightWhile$1 = immutadot.convert(lodash.dropRightWhile);
  * @see {@link https://lodash.com/docs#dropWhile|lodash.dropWhile} for more information.
  * @since 1.0.0
  */
-var dropWhile$1 = immutadot.convert(lodash.dropWhile);
+var dropWhile = immutadot.convert(lodash.dropWhile);
 
 /**
  * Replaces by an array of unique values that are included in th former array and all given arrays.
@@ -116,7 +116,7 @@ var dropWhile$1 = immutadot.convert(lodash.dropWhile);
  * @see {@link https://lodash.com/docs#intersection|lodash.intersection} for more information.
  * @since 1.0.0
  */
-var intersection$1 = immutadot.convert(lodash.intersection);
+var intersection = immutadot.convert(lodash.intersection);
 
 /**
  * This method is like {@link array.intersection} except that it uses <code>iteratee</code> to generate the value to be compared for each element.
@@ -131,7 +131,7 @@ var intersection$1 = immutadot.convert(lodash.intersection);
  * @see {@link https://lodash.com/docs#intersectionBy|lodash.intersectionBy} for more information.
  * @since 1.0.0
  */
-var intersectionBy$1 = immutadot.convert(lodash.intersectionBy);
+var intersectionBy = immutadot.convert(lodash.intersectionBy);
 
 /**
  * This method is like {@link array.intersection} except that it uses <code>comparator</code> to compare elements of the former array to <code>arrays</code>.
@@ -146,7 +146,7 @@ var intersectionBy$1 = immutadot.convert(lodash.intersectionBy);
  * @see {@link https://lodash.com/docs#intersectionWith|lodash.intersectionWith} for more information.
  * @since 1.0.0
  */
-var intersectionWith$1 = immutadot.convert(lodash.intersectionWith);
+var intersectionWith = immutadot.convert(lodash.intersectionWith);
 
 var lodashFpConvertOptions = {
   curry: false,
@@ -190,7 +190,7 @@ var convertLodashFp = function convertLodashFp(fn) {
  * @see {@link https://lodash.com/docs#pull|lodash.pull} for more information.
  * @since 1.0.0
  */
-var pull$1 = convertLodashFp(fp.pull);
+var pull = convertLodashFp(fp.pull);
 
 /**
  * This method is like {@link array.pull} except that it accepts an array of values to remove.
@@ -204,7 +204,7 @@ var pull$1 = convertLodashFp(fp.pull);
  * @see {@link https://lodash.com/docs#pullAll|lodash.pullAll} for more information.
  * @since 1.0.0
  */
-var pullAll$1 = convertLodashFp(fp.pullAll);
+var pullAll = convertLodashFp(fp.pullAll);
 
 /**
  * This method is like {@link array.pullAll} except that it accepts <code>iteratee</code> to generate the criterion by which each element is compared.
@@ -219,7 +219,7 @@ var pullAll$1 = convertLodashFp(fp.pullAll);
  * @see {@link https://lodash.com/docs#pullAllBy|lodash.pullAllBy} for more information.
  * @since 1.0.0
  */
-var pullAllBy$1 = convertLodashFp(fp.pullAllBy);
+var pullAllBy = convertLodashFp(fp.pullAllBy);
 
 /**
  * This method is like {@link array.pullAll} except that it accepts <code>comparator</code> to compare elements.
@@ -234,7 +234,7 @@ var pullAllBy$1 = convertLodashFp(fp.pullAllBy);
  * @see {@link https://lodash.com/docs#pullAllWith|lodash.pullAllWith} for more information.
  * @since 1.0.0
  */
-var pullAllWith$1 = convertLodashFp(fp.pullAllWith);
+var pullAllWith = convertLodashFp(fp.pullAllWith);
 
 /**
  * Replaces an array removing the specified indexes from the former array.
@@ -248,7 +248,7 @@ var pullAllWith$1 = convertLodashFp(fp.pullAllWith);
  * @see {@link https://lodash.com/docs#pullAt|lodash.pullAt} for more information.
  * @since 1.0.0
  */
-var pullAt$1 = convertLodashFp(fp.pullAt);
+var pullAt = convertLodashFp(fp.pullAt);
 
 /**
  * Replaces an array removing elements that predicate returns truthy for from the former array.
@@ -262,7 +262,7 @@ var pullAt$1 = convertLodashFp(fp.pullAt);
  * @see {@link https://lodash.com/docs#remove|lodash.remove} for more information.
  * @since 1.0.0
  */
-var remove$1 = convertLodashFp(fp.remove);
+var remove = convertLodashFp(fp.remove);
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the beginning.
@@ -276,7 +276,7 @@ var remove$1 = convertLodashFp(fp.remove);
  * @see {@link https://lodash.com/docs#take|lodash.take} for more information.
  * @since 1.0.0
  */
-var take$1 = immutadot.convert(lodash.take);
+var take = immutadot.convert(lodash.take);
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the end.
@@ -290,7 +290,7 @@ var take$1 = immutadot.convert(lodash.take);
  * @see {@link https://lodash.com/docs#takeRight|lodash.takeRight} for more information.
  * @since 1.0.0
  */
-var takeRight$1 = immutadot.convert(lodash.takeRight);
+var takeRight = immutadot.convert(lodash.takeRight);
 
 /**
  * Creates a slice of array with elements taken from the end.
@@ -306,7 +306,7 @@ var takeRight$1 = immutadot.convert(lodash.takeRight);
  * @see {@link https://lodash.com/docs#takeRightWhile|lodash.takeRightWhile} for more information.
  * @since 1.0.0
  */
-var takeRightWhile$1 = immutadot.convert(lodash.takeRightWhile);
+var takeRightWhile = immutadot.convert(lodash.takeRightWhile);
 
 /**
  * Creates a slice of array with elements taken from the beginning.
@@ -322,7 +322,7 @@ var takeRightWhile$1 = immutadot.convert(lodash.takeRightWhile);
  * @see {@link https://lodash.com/docs#takeWhile|lodash.takeWhile} for more information.
  * @since 1.0.0
  */
-var takeWhile$1 = immutadot.convert(lodash.takeWhile);
+var takeWhile = immutadot.convert(lodash.takeWhile);
 
 /**
  * Replaces an array by an array of unique values, in order, from the former array and the given arrays.
@@ -336,7 +336,7 @@ var takeWhile$1 = immutadot.convert(lodash.takeWhile);
  * @see {@link https://lodash.com/docs#union|lodash.union} for more information.
  * @since 1.0.0
  */
-var union$1 = immutadot.convert(lodash.union);
+var union = immutadot.convert(lodash.union);
 
 /**
  * This method is like {@link array.union} except that it accepts <code>iteratee</code> to generate the criterion by which elements are compared.
@@ -351,7 +351,7 @@ var union$1 = immutadot.convert(lodash.union);
  * @see {@link https://lodash.com/docs#unionBy|lodash.unionBy} for more information.
  * @since 1.0.0
  */
-var unionBy$1 = immutadot.convert(lodash.unionBy);
+var unionBy = immutadot.convert(lodash.unionBy);
 
 /**
  * This method is like {@link array.union} except that it accepts <code>comparator</code> to compare elements.
@@ -366,7 +366,7 @@ var unionBy$1 = immutadot.convert(lodash.unionBy);
  * @see {@link https://lodash.com/docs#unionWith|lodash.unionWith} for more information.
  * @since 1.0.0
  */
-var unionWith$1 = immutadot.convert(lodash.unionWith);
+var unionWith = immutadot.convert(lodash.unionWith);
 
 /**
  * This method is an alias of {@link array.pull}.
@@ -374,7 +374,7 @@ var unionWith$1 = immutadot.convert(lodash.unionWith);
  * @memberof array
  * @since 1.0.0
  */
-var without = pull$1;
+var without = pull;
 
 /**
  * Replaces an array by the symmetric difference of the former array and the given arrays.
@@ -388,7 +388,7 @@ var without = pull$1;
  * @see {@link https://lodash.com/docs#xor|lodash.xor} for more information.
  * @since 1.0.0
  */
-var xor$1 = immutadot.convert(lodash.xor);
+var xor = immutadot.convert(lodash.xor);
 
 /**
  * This method is like {@link array.xor} except that it accepts <code>iteratee</code> to generate the criterion by which elements are compared.
@@ -403,7 +403,7 @@ var xor$1 = immutadot.convert(lodash.xor);
  * @see {@link https://lodash.com/docs#xorBy|lodash.xorBy} for more information.
  * @since 1.0.0
  */
-var xorBy$1 = immutadot.convert(lodash.xorBy);
+var xorBy = immutadot.convert(lodash.xorBy);
 
 /**
  * This method is like {@link array.xor} except that it accepts <code>comparator</code> to compare elements.
@@ -418,7 +418,7 @@ var xorBy$1 = immutadot.convert(lodash.xorBy);
  * @see {@link https://lodash.com/docs#xorWith|lodash.xorWith} for more information.
  * @since 1.0.0
  */
-var xorWith$1 = immutadot.convert(lodash.xorWith);
+var xorWith = immutadot.convert(lodash.xorWith);
 
 /**
  * Replaces by an array of elements <code>predicate</code> returns truthy for.
@@ -432,7 +432,7 @@ var xorWith$1 = immutadot.convert(lodash.xorWith);
  * @example filter({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v % 2) // => { nested: { prop: [1, 3] } }
  * @since 1.0.0
  */
-var filter$1 = immutadot.convert(lodash.filter);
+var filter = immutadot.convert(lodash.filter);
 
 /**
  * Replaces by an array of values by running each element in the former collection thru iteratee.
@@ -447,7 +447,7 @@ var filter$1 = immutadot.convert(lodash.filter);
  * @example map({ nested: { prop: [1, 2, 3] } }, 'nested.prop', v => v * 2) // => { nested: { prop: [2, 4, 6] } }
  * @since 1.0.0
  */
-var map$1 = immutadot.convert(lodash.map);
+var map = immutadot.convert(lodash.map);
 
 /**
  * Replaces by an array of sorted by <code>iteratees</code> in specified <code>orders</code>.
@@ -464,7 +464,7 @@ var map$1 = immutadot.convert(lodash.map);
  * // => { nested: { prop: [{ name: 'Nico', age: 666 }, { name: 'Nico', age: 30 }, { name: 'Yvo', age: 2 }] } }
  * @since 1.0.0
  */
-var orderBy$1 = immutadot.convert(lodash.orderBy);
+var orderBy = immutadot.convert(lodash.orderBy);
 
 /**
  * Replaces by an array of elements <code>predicate</code> returns falsy for.
@@ -478,7 +478,7 @@ var orderBy$1 = immutadot.convert(lodash.orderBy);
  * @example reject({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v % 2) // => { nested: { prop: [2, 4] } }
  * @since 1.0.0
  */
-var reject$1 = immutadot.convert(lodash.reject);
+var reject = immutadot.convert(lodash.reject);
 
 /**
  * Replaces by an array of shuffled elements.
@@ -491,7 +491,7 @@ var reject$1 = immutadot.convert(lodash.reject);
  * @example shuffle({ nested: { prop: [1, 2, 3, 4, 5, 6, 7, 8, 9] } }, 'nested.prop') // => { nested: { prop: [7, 3, 9, 1, 4, 5, 6, 8, 2] } }
  * @since 1.0.0
  */
-var shuffle$1 = immutadot.convert(lodash.shuffle);
+var shuffle = immutadot.convert(lodash.shuffle);
 
 /**
  * Replaces by an array of sorted by <code>iteratees</code>.
@@ -507,7 +507,7 @@ var shuffle$1 = immutadot.convert(lodash.shuffle);
  * // => { nested: { prop: [{ name: 'Nico', age: 30 }, { name: 'Nico', age: 666 }, { name: 'Yvo', age: 2 }] } }
  * @since 1.0.0
  */
-var sortBy$1 = immutadot.convert(lodash.sortBy);
+var sortBy = immutadot.convert(lodash.sortBy);
 
 /**
  * Replaces by an object assigning own and inherited enumerable string keyed properties of source objects to the destination object for all destination properties that resolve to <code>undefined</code>.<br >
@@ -522,7 +522,7 @@ var sortBy$1 = immutadot.convert(lodash.sortBy);
  * @see {@link https://lodash.com/docs#defaults|lodash.defaults} for more information.
  * @since 1.0.0
  */
-var defaults$1 = convertLodashFp(fp.defaults);
+var defaults = convertLodashFp(fp.defaults);
 
 /**
  * Replaces by an object with the same values as the former object and values generated by running each own enumerable string keyed property of the former object thru <code>iteratee</code>.
@@ -537,7 +537,7 @@ var defaults$1 = convertLodashFp(fp.defaults);
  * @see {@link https://lodash.com/docs#mapKeys|lodash.mapKeys} for more information.
  * @since 1.0.0
  */
-var mapKeys$1 = immutadot.convert(lodash.mapKeys);
+var mapKeys = immutadot.convert(lodash.mapKeys);
 
 /**
  * Replaces by an object with the same keys as the former object and values generated by running each own enumerable string keyed property of object thru <code>iteratee</code>.
@@ -553,7 +553,7 @@ var mapKeys$1 = immutadot.convert(lodash.mapKeys);
  * @see {@link https://lodash.com/docs#mapValues|lodash.mapValues} for more information.
  * @since 1.0.0
  */
-var mapValues$1 = immutadot.convert(lodash.mapValues);
+var mapValues = immutadot.convert(lodash.mapValues);
 
 /**
  * Replaces by an object deeply merging own enumerable string keyed properties of source objects to the former object.<br />
@@ -568,7 +568,7 @@ var mapValues$1 = immutadot.convert(lodash.mapValues);
  * @see {@link https://lodash.com/docs#merge|lodash.merge} for more information.
  * @since 1.0.0
  */
-var merge$1 = convertLodashFp(fp.merge);
+var merge = convertLodashFp(fp.merge);
 
 /**
  * Replaces by an object omitting specified properties.
@@ -582,7 +582,7 @@ var merge$1 = convertLodashFp(fp.merge);
  * @see {@link https://lodash.com/docs#omit|lodash.omit} for more information.
  * @since 1.0.0
  */
-var omit$1 = immutadot.convert(lodash.omit);
+var omit = immutadot.convert(lodash.omit);
 
 /**
  * Replaces by an object omitting properties that <code>predicate</code> doesn't return truthy for.
@@ -596,7 +596,7 @@ var omit$1 = immutadot.convert(lodash.omit);
  * @see {@link https://lodash.com/docs#omitBy|lodash.omitBy} for more information.
  * @since 1.0.0
  */
-var omitBy$1 = immutadot.convert(lodash.omitBy);
+var omitBy = immutadot.convert(lodash.omitBy);
 
 /**
  * Replaces by an object picking specified properties.
@@ -610,7 +610,7 @@ var omitBy$1 = immutadot.convert(lodash.omitBy);
  * @see {@link https://lodash.com/docs#pick|lodash.pick} for more information.
  * @since 1.0.0
  */
-var pick$1 = immutadot.convert(lodash.pick);
+var pick = immutadot.convert(lodash.pick);
 
 /**
  * Replaces by an object picking properties that <code>predicate</code> returns truthy for.
@@ -624,7 +624,7 @@ var pick$1 = immutadot.convert(lodash.pick);
  * @see {@link https://lodash.com/docs#pickBy|lodash.pickBy} for more information.
  * @since 1.0.0
  */
-var pickBy$1 = immutadot.convert(lodash.pickBy);
+var pickBy = immutadot.convert(lodash.pickBy);
 
 /**
  * Converts the first character of string to upper case and the remaining to lower case.
@@ -637,7 +637,7 @@ var pickBy$1 = immutadot.convert(lodash.pickBy);
  * @see {@link https://lodash.com/docs#capitalize|lodash.capitalize} for more information.
  * @since 1.0.0
  */
-var capitalize$1 = immutadot.convert(lodash.capitalize);
+var capitalize = immutadot.convert(lodash.capitalize);
 
 /**
  * Converts string, as a whole, to lower case just like String#toLowerCase.
@@ -651,7 +651,7 @@ var capitalize$1 = immutadot.convert(lodash.capitalize);
  * @see {@link https://mdn.io/String/toLowerCase|String.toLowerCase} for more information.
  * @since 1.0.0
  */
-var toLower$1 = immutadot.convert(lodash.toLower);
+var toLower = immutadot.convert(lodash.toLower);
 
 /**
  * Converts string, as a whole, to upper case just like String#toUpperCase.
@@ -665,52 +665,52 @@ var toLower$1 = immutadot.convert(lodash.toLower);
  * @see {@link https://mdn.io/String/toUpperCase|String.toUpperCase} for more information.
  * @since 1.0.0
  */
-var toUpper$1 = immutadot.convert(lodash.toUpper);
+var toUpper = immutadot.convert(lodash.toUpper);
 
-exports.difference = difference$1;
-exports.differenceBy = differenceBy$1;
-exports.differenceWith = differenceWith$1;
-exports.drop = drop$1;
-exports.dropRight = dropRight$1;
-exports.dropRightWhile = dropRightWhile$1;
-exports.dropWhile = dropWhile$1;
-exports.intersection = intersection$1;
-exports.intersectionBy = intersectionBy$1;
-exports.intersectionWith = intersectionWith$1;
-exports.pull = pull$1;
-exports.pullAll = pullAll$1;
-exports.pullAllBy = pullAllBy$1;
-exports.pullAllWith = pullAllWith$1;
-exports.pullAt = pullAt$1;
-exports.remove = remove$1;
-exports.take = take$1;
-exports.takeRight = takeRight$1;
-exports.takeRightWhile = takeRightWhile$1;
-exports.takeWhile = takeWhile$1;
-exports.union = union$1;
-exports.unionBy = unionBy$1;
-exports.unionWith = unionWith$1;
+exports.difference = difference;
+exports.differenceBy = differenceBy;
+exports.differenceWith = differenceWith;
+exports.drop = drop;
+exports.dropRight = dropRight;
+exports.dropRightWhile = dropRightWhile;
+exports.dropWhile = dropWhile;
+exports.intersection = intersection;
+exports.intersectionBy = intersectionBy;
+exports.intersectionWith = intersectionWith;
+exports.pull = pull;
+exports.pullAll = pullAll;
+exports.pullAllBy = pullAllBy;
+exports.pullAllWith = pullAllWith;
+exports.pullAt = pullAt;
+exports.remove = remove;
+exports.take = take;
+exports.takeRight = takeRight;
+exports.takeRightWhile = takeRightWhile;
+exports.takeWhile = takeWhile;
+exports.union = union;
+exports.unionBy = unionBy;
+exports.unionWith = unionWith;
 exports.without = without;
-exports.xor = xor$1;
-exports.xorBy = xorBy$1;
-exports.xorWith = xorWith$1;
-exports.filter = filter$1;
-exports.map = map$1;
-exports.orderBy = orderBy$1;
-exports.reject = reject$1;
-exports.shuffle = shuffle$1;
-exports.sortBy = sortBy$1;
-exports.defaults = defaults$1;
-exports.mapKeys = mapKeys$1;
-exports.mapValues = mapValues$1;
-exports.merge = merge$1;
-exports.omit = omit$1;
-exports.omitBy = omitBy$1;
-exports.pick = pick$1;
-exports.pickBy = pickBy$1;
-exports.capitalize = capitalize$1;
-exports.toLower = toLower$1;
-exports.toUpper = toUpper$1;
+exports.xor = xor;
+exports.xorBy = xorBy;
+exports.xorWith = xorWith;
+exports.filter = filter;
+exports.map = map;
+exports.orderBy = orderBy;
+exports.reject = reject;
+exports.shuffle = shuffle;
+exports.sortBy = sortBy;
+exports.defaults = defaults;
+exports.mapKeys = mapKeys;
+exports.mapValues = mapValues;
+exports.merge = merge;
+exports.omit = omit;
+exports.omitBy = omitBy;
+exports.pick = pick;
+exports.pickBy = pickBy;
+exports.capitalize = capitalize;
+exports.toLower = toLower;
+exports.toUpper = toUpper;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -20,54 +20,9 @@ immutad●t gives you a short and meaningful syntax to apply operations on immut
 [![codecov](https://codecov.io/gh/Zenika/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/Zenika/immutadot)
 [![Greenkeeper](https://badges.greenkeeper.io/Zenika/immutadot.svg)](https://greenkeeper.io/)
 
-## [1.0 Release Candidate](https://github.com/Zenika/immutadot/releases) is out 🎉
-
-We are still writing the documentation, you can already find out about the [updated API](https://zenika.github.io/immutadot/immutadot/1.0) and our new package [immutadot-lodash](https://zenika.github.io/immutadot/immutadot-lodash/1.0).
-
-If you would like to try out 1.0 before its official release, install it with :
-
-```shell
-yarn add immutadot@next
-```
-
-or
-
-
-```shell
-npm install immutadot@next
-```
+## [1.0](https://github.com/Zenika/immutadot/releases) is out 🎉
 
 If you were using a previous version of immutad●t, check out the [migrating guide](docs/MIGRATING_TO_1_0.md).
-
-## Immutability
-
-In the last few years one of our biggest challenge has been to find an efficient way to detect changes in our data to determine when to re-render our interfaces.
-
-An immutable object is an object that cannot be changed once created. It brings several benefits<sup>[1](#notes)</sup>:
-
-- Data changes detection made simple (Shallow comparison)
-- Memoization
-- Improve rendering performances
-- Explicit data changes
-- Avoid side effects
-
-## Our approach
-
-### Concise
-
-[ES2015+](https://mdn.io/JavaScript/Reference) new features are great to deal with arrays and objects. As data structures expand, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
-
-### Interoperability
-
-immutad●t uses plain JavaScript objects so you can access your data using standard ways. Moreover, it lets you freely enjoy your favorite libraries.
-
-### Exhaustive and yet extensible
-
-immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the [`convert`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.convert) feature.
-
-### Learning curve
-
-If you are already familiar with [ES2015+](https://mdn.io/JavaScript/Reference) and [lodash](https://lodash.com/) then you should be able to use immutad●t quickly.
 
 ## Installation
 
@@ -103,90 +58,43 @@ const { set } = require('immutadot')
 
 ### Example
 
-Object used in the following example:
+Quickly set nested properties using [set()](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.set)
 
 ```js
+import { set } from 'immutadot'
+
 const animals = {
-  weasels: [
-    {
-      vernacularName: 'badger',
-      scientificName: 'Meles meles'
+  weasels: {
+    lutraLutra: {
+      commonNames: ['eurasian otter'],
     },
-    {
-      vernacularName: 'otter',
-    }
-  ]
-}
-```
-
-Let's add the otter's scientific name without mutating the original object structure.
-
-using ES2015+:
-
-```js
-const newAnimals = {
-  ...animals,
-  weasels: [...animals.weasels]
+  },
 }
 
-newAnimals.weasels[1] = {
-  ...newAnimals.weasels[1],
-  scientificName: 'Lutrinae'
-}
+const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutrinae')
 ```
 
-using immutad●t:
-
-```js
-const newAnimals = set(animals, 'weasels[1].scientificName', 'Lutrinae')
-```
-
+Learn more about what immutad●t can do in the [Getting started](https://github.com/Zenika/immutadot/blob/master/docs/GETTING_STARTED.md).
 
 Feel free to [try immutad●t on runkit](https://npm.runkit.com/immutadot).
 
-## Path notation
+## Documentation
 
-immutad●t brings a few improvements to the classic dot notation:
+### Getting started
 
-### Slice notation
+A fast overview of immutad●t's features is available in the [Getting started](https://github.com/Zenika/immutadot/blob/master/docs/GETTING_STARTED.md) guide.
 
-The slice notation lets you iterate over arrays to apply operations without having to map arrays at each level of imbrication.
+### API
 
-We forgot to capitalize vernacular names in the [input](#Example).
+The detailed API documentations of the different packages are available here:
+- [immutadot](https://zenika.github.io/immutadot/immutadot)
+- [immutadot-lodash](https://zenika.github.io/immutadot/immutadot-lodash/)
 
-using ES2015+:
+Looking for older versions API documentation? Links are available [here](https://github.com/Zenika/immutadot/blob/master/docs/README.md).
 
-```js
-import { capitalize } from 'lodash'
-const newAnimals = {
-  ...animals,
-  weasels: animals.weasels.map(weasel => {
-    return {
-      ...weasel,
-      vernacularName: capitalize(weasel.vernacularName),
-    }
-  }),
-}
-```
+### Migrating from 0.x versions
 
-using immutad●t-lodash:
-
-```js
-import { capitalize } from 'immutadot-lodash'
-const newAnimals = capitalize(animals, 'weasels[:].vernacularName')
-```
-
-### List notation
-
-The list notation lets you iterate over the keys of objects used as collection or map to apply operations.
-
-```js
-toggle({ nested: { prop: { 1: { active: true }, 2: { active: false } } } }, 'nested.prop.{*}.active')
-// { nested: { prop: { 1: { active: false }, 2: { active: true }] } }
-
-toLowerCase({ nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'Hi' }, 3: { msg: 'Good morning' } } } }, 'nested.prop{2, 3}.msg')
-// { nested: { prop: { 1: { msg: 'Hello' }, 2: { msg: 'hi' }, 3: { msg: 'good morning' } } } }
-```
+If you were using a version of immutad●t previous to 1.0, check out the [migrating guide](docs/MIGRATING_TO_1_0.md).
 
 ## Performances
 
@@ -218,19 +126,35 @@ Update large todos list (100000 items):
   immutad●t 1.0.0: ~23ops/s (44.15ms/op) on 500ops
 ```
 
-## Documentation
+## Immutability
 
-### Getting started
+In the last few years one of our biggest challenge has been to find an efficient way to detect changes in our data to determine when to re-render our interfaces.
 
-A fast overview of immutad●t's features is available in the [Getting started](https://github.com/Zenika/immutadot/blob/master/docs/GETTING_STARTED.md) guide.
+An immutable object is an object that cannot be changed once created. It brings several benefits<sup>[1](#notes)</sup>:
 
-### API
+- Data changes detection made simple (Shallow comparison)
+- Memoization
+- Improve rendering performances
+- Explicit data changes
+- Avoid side effects
 
-The detailed API documentations of the different packages are available here:
-- [immutadot](https://zenika.github.io/immutadot/immutadot)
-- [immutadot-lodash](https://zenika.github.io/immutadot/immutadot-lodash/)
+## Our approach
 
-Looking for older versions API documentation? Links are available [here](https://github.com/Zenika/immutadot/blob/master/docs/README.md).
+### Concise
+
+[ES2015+](https://mdn.io/JavaScript/Reference) new features are great to deal with arrays and objects. As data structures expand, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
+
+### Interoperability
+
+immutad●t uses plain JavaScript objects so you can access your data using standard ways. Moreover, it lets you freely enjoy your favorite libraries.
+
+### Exhaustive and yet extensible
+
+immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the [`convert`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.convert) feature.
+
+### Learning curve
+
+If you are already familiar with [ES2015+](https://mdn.io/JavaScript/Reference) and [lodash](https://lodash.com/) then you should be able to use immutad●t quickly.
 
 ## Contributing
 

@@ -1,6 +1,6 @@
 {
   "name": "immutadot-lodash",
-  "version": "1.0.0-rc.7",
+  "version": "1.0.0",
   "description": "immutadot-lodash is an extension to immutadot, adding functions based on lodash.",
   "keywords": [
     "immutable",
@@ -22,7 +22,7 @@
     "Charles-Henri GUÉRIN (https://github.com/charlyx)"
   ],
   "peerDependencies": {
-    "immutadot": "^1.0.0-rc.7",
+    "immutadot": "^1.0.0",
     "lodash": "^4.6.0"
   },
   "devDependencies": {

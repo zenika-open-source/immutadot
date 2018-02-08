@@ -302,21 +302,21 @@ var _uid = function (key) {
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
 
-var shared = _shared('keys');
+var shared$1 = _shared('keys');
 
 var _sharedKey = function (key) {
-  return shared[key] || (shared[key] = _uid(key));
+  return shared$1[key] || (shared$1[key] = _uid(key));
 };
 
 var arrayIndexOf = _arrayIncludes(false);
-var IE_PROTO$1 = _sharedKey('IE_PROTO');
+var IE_PROTO = _sharedKey('IE_PROTO');
 
 var _objectKeysInternal = function (object, names) {
   var O = _toIobject(object);
   var i = 0;
   var result = [];
   var key;
-  for (key in O) if (key != IE_PROTO$1) _has(O, key) && result.push(key);
+  for (key in O) if (key != IE_PROTO) _has(O, key) && result.push(key);
   // Don't enum bug & hidden keys
   while (names.length > i) if (_has(O, key = names[i++])) {
     ~arrayIndexOf(result, key) || result.push(key);
@@ -354,7 +354,7 @@ var _html = document$1 && document$1.documentElement;
 
 
 
-var IE_PROTO = _sharedKey('IE_PROTO');
+var IE_PROTO$1 = _sharedKey('IE_PROTO');
 var Empty = function () { /* empty */ };
 var PROTOTYPE$1 = 'prototype';
 
@@ -387,7 +387,7 @@ var _objectCreate = Object.create || function create(O, Properties) {
     result = new Empty();
     Empty[PROTOTYPE$1] = null;
     // add "__proto__" for Object.getPrototypeOf polyfill
-    result[IE_PROTO] = O;
+    result[IE_PROTO$1] = O;
   } else result = createDict();
   return Properties === undefined ? result : _objectDps(result, Properties);
 };
@@ -632,20 +632,20 @@ _export(_export.S + _export.F * !_iterDetect(function (iter) {  }), 'Array', {
   }
 });
 
-var from$2 = _core.Array.from;
+var from = _core.Array.from;
 
-var from = createCommonjsModule(function (module) {
-module.exports = { "default": from$2, __esModule: true };
+var from$2 = createCommonjsModule(function (module) {
+module.exports = { "default": from, __esModule: true };
 });
 
-unwrapExports(from);
+unwrapExports(from$2);
 
 var toConsumableArray = createCommonjsModule(function (module, exports) {
 exports.__esModule = true;
 
 
 
-var _from2 = _interopRequireDefault(from);
+var _from2 = _interopRequireDefault(from$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -715,13 +715,13 @@ var core_getIterator = _core.getIterator = function (it) {
   return _anObject(iterFn.call(it));
 };
 
-var getIterator$1 = core_getIterator;
+var getIterator = core_getIterator;
 
-var getIterator = createCommonjsModule(function (module) {
-module.exports = { "default": getIterator$1, __esModule: true };
+var getIterator$2 = createCommonjsModule(function (module) {
+module.exports = { "default": getIterator, __esModule: true };
 });
 
-var _getIterator = unwrapExports(getIterator);
+var _getIterator = unwrapExports(getIterator$2);
 
 // most Object methods by ES6 should accept primitives
 
@@ -744,13 +744,13 @@ _objectSap('keys', function () {
   };
 });
 
-var keys$1 = _core.Object.keys;
+var keys = _core.Object.keys;
 
-var keys = createCommonjsModule(function (module) {
-module.exports = { "default": keys$1, __esModule: true };
+var keys$2 = createCommonjsModule(function (module) {
+module.exports = { "default": keys, __esModule: true };
 });
 
-var _Object$keys = unwrapExports(keys);
+var _Object$keys = unwrapExports(keys$2);
 
 var ITERATOR$4 = _wks('iterator');
 
@@ -762,24 +762,24 @@ var core_isIterable = _core.isIterable = function (it) {
     || _iterators.hasOwnProperty(_classof(O));
 };
 
-var isIterable$2 = core_isIterable;
+var isIterable = core_isIterable;
 
-var isIterable = createCommonjsModule(function (module) {
-module.exports = { "default": isIterable$2, __esModule: true };
+var isIterable$2 = createCommonjsModule(function (module) {
+module.exports = { "default": isIterable, __esModule: true };
 });
 
-unwrapExports(isIterable);
+unwrapExports(isIterable$2);
 
 var slicedToArray = createCommonjsModule(function (module, exports) {
 exports.__esModule = true;
 
 
 
-var _isIterable3 = _interopRequireDefault(isIterable);
+var _isIterable3 = _interopRequireDefault(isIterable$2);
 
 
 
-var _getIterator3 = _interopRequireDefault(getIterator);
+var _getIterator3 = _interopRequireDefault(getIterator$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -824,12 +824,12 @@ exports.default = function () {
 
 var _slicedToArray = unwrapExports(slicedToArray);
 
-var toArray$1 = createCommonjsModule(function (module, exports) {
+var toArray = createCommonjsModule(function (module, exports) {
 exports.__esModule = true;
 
 
 
-var _from2 = _interopRequireDefault(from);
+var _from2 = _interopRequireDefault(from$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -838,7 +838,7 @@ exports.default = function (arr) {
 };
 });
 
-var _toArray = unwrapExports(toArray$1);
+var _toArray = unwrapExports(toArray);
 
 var f$1 = Object.getOwnPropertySymbols;
 
@@ -891,20 +891,20 @@ var _objectAssign = !$assign || _fails(function () {
 
 _export(_export.S + _export.F, 'Object', { assign: _objectAssign });
 
-var assign$1 = _core.Object.assign;
+var assign = _core.Object.assign;
 
-var assign = createCommonjsModule(function (module) {
-module.exports = { "default": assign$1, __esModule: true };
+var assign$2 = createCommonjsModule(function (module) {
+module.exports = { "default": assign, __esModule: true };
 });
 
-var _Object$assign = unwrapExports(assign);
+var _Object$assign = unwrapExports(assign$2);
 
 var _extends = createCommonjsModule(function (module, exports) {
 exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(assign);
+var _assign2 = _interopRequireDefault(assign$2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1025,17 +1025,17 @@ var _isArray = Array.isArray || function isArray(arg) {
 
 var hiddenKeys = _enumBugKeys.concat('length', 'prototype');
 
-var f$5 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+var f$4 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return _objectKeysInternal(O, hiddenKeys);
 };
 
 var _objectGopn = {
-	f: f$5
+	f: f$4
 };
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 
-var gOPN$1 = _objectGopn.f;
+var gOPN = _objectGopn.f;
 var toString$1 = {}.toString;
 
 var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
@@ -1043,27 +1043,27 @@ var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNa
 
 var getWindowNames = function (it) {
   try {
-    return gOPN$1(it);
+    return gOPN(it);
   } catch (e) {
     return windowNames.slice();
   }
 };
 
-var f$4 = function getOwnPropertyNames(it) {
-  return windowNames && toString$1.call(it) == '[object Window]' ? getWindowNames(it) : gOPN$1(_toIobject(it));
+var f$5 = function getOwnPropertyNames(it) {
+  return windowNames && toString$1.call(it) == '[object Window]' ? getWindowNames(it) : gOPN(_toIobject(it));
 };
 
 var _objectGopnExt = {
-	f: f$4
+	f: f$5
 };
 
-var gOPD$1 = Object.getOwnPropertyDescriptor;
+var gOPD = Object.getOwnPropertyDescriptor;
 
-var f$6 = _descriptors ? gOPD$1 : function getOwnPropertyDescriptor(O, P) {
+var f$6 = _descriptors ? gOPD : function getOwnPropertyDescriptor(O, P) {
   O = _toIobject(O);
   P = _toPrimitive(P, true);
   if (_ie8DomDefine) try {
-    return gOPD$1(O, P);
+    return gOPD(O, P);
   } catch (e) { /* empty */ }
   if (_has(O, P)) return _propertyDesc(!_objectPie.f.call(O, P), O[P]);
 };
@@ -1097,9 +1097,9 @@ var META = _meta.KEY;
 
 
 
-var gOPD = _objectGopd.f;
+var gOPD$1 = _objectGopd.f;
 var dP$1 = _objectDp.f;
-var gOPN = _objectGopnExt.f;
+var gOPN$1 = _objectGopnExt.f;
 var $Symbol = _global.Symbol;
 var $JSON = _global.JSON;
 var _stringify = $JSON && $JSON.stringify;
@@ -1122,7 +1122,7 @@ var setSymbolDesc = _descriptors && _fails(function () {
     get: function () { return dP$1(this, 'a', { value: 7 }).a; }
   })).a != 7;
 }) ? function (it, key, D) {
-  var protoDesc = gOPD(ObjectProto$1, key);
+  var protoDesc = gOPD$1(ObjectProto$1, key);
   if (protoDesc) delete ObjectProto$1[key];
   dP$1(it, key, D);
   if (protoDesc && it !== ObjectProto$1) dP$1(ObjectProto$1, key, protoDesc);
@@ -1176,12 +1176,12 @@ var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(it, key) {
   it = _toIobject(it);
   key = _toPrimitive(key, true);
   if (it === ObjectProto$1 && _has(AllSymbols, key) && !_has(OPSymbols, key)) return;
-  var D = gOPD(it, key);
+  var D = gOPD$1(it, key);
   if (D && _has(AllSymbols, key) && !(_has(it, HIDDEN) && it[HIDDEN][key])) D.enumerable = true;
   return D;
 };
 var $getOwnPropertyNames = function getOwnPropertyNames(it) {
-  var names = gOPN(_toIobject(it));
+  var names = gOPN$1(_toIobject(it));
   var result = [];
   var i = 0;
   var key;
@@ -1191,7 +1191,7 @@ var $getOwnPropertyNames = function getOwnPropertyNames(it) {
 };
 var $getOwnPropertySymbols = function getOwnPropertySymbols(it) {
   var IS_OP = it === ObjectProto$1;
-  var names = gOPN(IS_OP ? OPSymbols : _toIobject(it));
+  var names = gOPN$1(IS_OP ? OPSymbols : _toIobject(it));
   var result = [];
   var i = 0;
   var key;
@@ -1310,13 +1310,13 @@ _wksDefine('asyncIterator');
 
 _wksDefine('observable');
 
-var symbol$1 = _core.Symbol;
+var symbol = _core.Symbol;
 
-var symbol = createCommonjsModule(function (module) {
-module.exports = { "default": symbol$1, __esModule: true };
+var symbol$2 = createCommonjsModule(function (module) {
+module.exports = { "default": symbol, __esModule: true };
 });
 
-var _Symbol = unwrapExports(symbol);
+var _Symbol = unwrapExports(symbol$2);
 
 var allProps = _Symbol('allProps');
 var index = _Symbol('index');
@@ -1342,32 +1342,32 @@ _export(_export.S, 'Number', {
   }
 });
 
-var isSafeInteger$1 = _core.Number.isSafeInteger;
+var isSafeInteger = _core.Number.isSafeInteger;
 
-var isSafeInteger = createCommonjsModule(function (module) {
-module.exports = { "default": isSafeInteger$1, __esModule: true };
+var isSafeInteger$2 = createCommonjsModule(function (module) {
+module.exports = { "default": isSafeInteger, __esModule: true };
 });
 
-var _Number$isSafeInteger = unwrapExports(isSafeInteger);
+var _Number$isSafeInteger = unwrapExports(isSafeInteger$2);
 
-var iterator$2 = _wksExt.f('iterator');
+var iterator = _wksExt.f('iterator');
 
-var iterator = createCommonjsModule(function (module) {
-module.exports = { "default": iterator$2, __esModule: true };
+var iterator$2 = createCommonjsModule(function (module) {
+module.exports = { "default": iterator, __esModule: true };
 });
 
-unwrapExports(iterator);
+unwrapExports(iterator$2);
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
 exports.__esModule = true;
 
 
 
-var _iterator2 = _interopRequireDefault(iterator);
+var _iterator2 = _interopRequireDefault(iterator$2);
 
 
 
-var _symbol2 = _interopRequireDefault(symbol);
+var _symbol2 = _interopRequireDefault(symbol$2);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -1938,13 +1938,13 @@ var _setCollectionFrom = function (COLLECTION) {
 // https://tc39.github.io/proposal-setmap-offrom/#sec-map.from
 _setCollectionFrom('Map');
 
-var map$1 = _core.Map;
+var map = _core.Map;
 
-var map = createCommonjsModule(function (module) {
-module.exports = { "default": map$1, __esModule: true };
+var map$2 = createCommonjsModule(function (module) {
+module.exports = { "default": map, __esModule: true };
 });
 
-var _Map = unwrapExports(map);
+var _Map = unwrapExports(map$2);
 
 var runtime = createCommonjsModule(function (module) {
 /**
@@ -2749,7 +2749,7 @@ var regexp = function regexp(_regexp) {
  * @private
  * @since 1.0.0
  */
-var filter$1 = function filter(parser, predicate) {
+var filter = function filter(parser, predicate) {
   return function (str) {
     return maybeMap(parser(str), function (parsed) {
       return predicate(parsed) ? parsed : null;
@@ -2851,25 +2851,6 @@ var isSliceIndexString = function isSliceIndexString(arg) {
   return isSliceIndex(arg ? Number(arg) : undefined);
 };
 
-/**
- * Wraps <code>fn</code> allowing to call it with an array instead of a string.<br />
- * The returned function behaviour is :<br />
- *  - If called with an array, returns a copy of the array with values converted to path keys<br />
- *  - Otherwise, calls <code>fn</code> with the string representation of its argument
- * @function
- * @param {function} fn The function to wrap
- * @returns {function} The wrapper function
- * @memberof path
- * @private
- * @since 1.0.0
- */
-var allowingArrays = function allowingArrays(fn) {
-  return function (arg) {
-    if (Array.isArray(arg)) return arg;
-    return fn(arg);
-  };
-};
-
 var emptyStringParser = function emptyStringParser(str) {
   return str.length === 0 ? [] : null;
 };
@@ -2880,7 +2861,7 @@ var quotedBracketNotationParser = map$3(regexp(/^\[(['"])(.*?[^\\])\1\]?\.?(.*)$
       property = _ref2[1],
       rest = _ref2[2];
 
-  return [[prop, unescapeQuotes(property, quote)]].concat(_toConsumableArray(stringToPath(rest)));
+  return [[prop, unescapeQuotes(property, quote)]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
 var incompleteQuotedBracketNotationParser = map$3(regexp(/^(\[["'][^.[{]*)\.?(.*)$/), function (_ref3) {
@@ -2888,7 +2869,7 @@ var incompleteQuotedBracketNotationParser = map$3(regexp(/^(\[["'][^.[{]*)\.?(.*
       beforeNewSegment = _ref4[0],
       rest = _ref4[1];
 
-  return [[prop, beforeNewSegment]].concat(_toConsumableArray(stringToPath(rest)));
+  return [[prop, beforeNewSegment]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
 var bareBracketNotationParser = map$3(regexp(/^\[([^\]]*)\]\.?(.*)$/), function (_ref5) {
@@ -2896,7 +2877,7 @@ var bareBracketNotationParser = map$3(regexp(/^\[([^\]]*)\]\.?(.*)$/), function 
       property = _ref6[0],
       rest = _ref6[1];
 
-  return isIndex(Number(property)) ? [[index, Number(property)]].concat(_toConsumableArray(stringToPath(rest))) : [[prop, property]].concat(_toConsumableArray(stringToPath(rest)));
+  return isIndex(Number(property)) ? [[index, Number(property)]].concat(_toConsumableArray(applyParsers(rest))) : [[prop, property]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
 var incompleteBareBracketNotationParser = map$3(regexp(/^(\[[^.[{]*)\.?(.*)$/), function (_ref7) {
@@ -2904,10 +2885,10 @@ var incompleteBareBracketNotationParser = map$3(regexp(/^(\[[^.[{]*)\.?(.*)$/), 
       beforeNewSegment = _ref8[0],
       rest = _ref8[1];
 
-  return [[prop, beforeNewSegment]].concat(_toConsumableArray(stringToPath(rest)));
+  return [[prop, beforeNewSegment]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
-var sliceNotationParser = map$3(filter$1(regexp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/), function (_ref9) {
+var sliceNotationParser = map$3(filter(regexp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/), function (_ref9) {
   var _ref10 = _slicedToArray(_ref9, 2),
       sliceStart = _ref10[0],
       sliceEnd = _ref10[1];
@@ -2919,14 +2900,14 @@ var sliceNotationParser = map$3(filter$1(regexp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)
       sliceEnd = _ref12[1],
       rest = _ref12[2];
 
-  return [[slice, [toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)]]].concat(_toConsumableArray(stringToPath(rest)));
+  return [[slice, [toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)]]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
 var listWildCardParser = map$3(regexp(/^{\*}\.?(.*)$/), function (_ref13) {
   var _ref14 = _slicedToArray(_ref13, 1),
       rest = _ref14[0];
 
-  return [[allProps]].concat(_toConsumableArray(stringToPath(rest)));
+  return [[allProps]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
 var listPropRegexp = /^,?((?!["'])([^,]*)|(["'])(.*?[^\\])\3)(.*)/;
@@ -2977,7 +2958,7 @@ var listNotationParser = map$3(regexp(/^\{(((?!["'])[^,}]*|(["']).*?[^\\]\2)(,((
       rest = _ref16[6];
 
   var props = [].concat(_toConsumableArray(extractListProps(rawProps)));
-  return props.length === 1 ? [[prop, props[0]]].concat(_toConsumableArray(stringToPath(rest))) : [[list, props]].concat(_toConsumableArray(stringToPath(rest)));
+  return props.length === 1 ? [[prop, props[0]]].concat(_toConsumableArray(applyParsers(rest))) : [[list, props]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
 var incompleteListNotationParser = map$3(regexp(/^(\{[^.[{]*)\.?(.*)$/), function (_ref17) {
@@ -2985,7 +2966,7 @@ var incompleteListNotationParser = map$3(regexp(/^(\{[^.[{]*)\.?(.*)$/), functio
       beforeNewSegment = _ref18[0],
       rest = _ref18[1];
 
-  return [[prop, beforeNewSegment]].concat(_toConsumableArray(stringToPath(rest)));
+  return [[prop, beforeNewSegment]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
 var pathSegmentEndedByNewSegment = map$3(regexp(/^([^.[{]*)\.?([[{]?.*)$/), function (_ref19) {
@@ -2993,34 +2974,28 @@ var pathSegmentEndedByNewSegment = map$3(regexp(/^([^.[{]*)\.?([[{]?.*)$/), func
       beforeNewSegment = _ref20[0],
       rest = _ref20[1];
 
-  return [[prop, beforeNewSegment]].concat(_toConsumableArray(stringToPath(rest)));
+  return [[prop, beforeNewSegment]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
 var applyParsers = race([emptyStringParser, quotedBracketNotationParser, incompleteQuotedBracketNotationParser, sliceNotationParser, bareBracketNotationParser, incompleteBareBracketNotationParser, listWildCardParser, listNotationParser, incompleteListNotationParser, pathSegmentEndedByNewSegment]);
 
-/**
- * Converts <code>arg</code> to a path represented as an array of keys.
- * @function
- * @param {*} arg The value to convert
- * @returns {Array<string|number|Array>} The path represented as an array of keys
- * @memberof path
- * @private
- * @since 1.0.0
- */
-var stringToPath = function stringToPath(arg) {
-  if (isNil(arg)) return [];
-  return applyParsers(toString$2(arg));
-};
-
 var MAX_CACHE_SIZE = 1000;
 var cache = new _Map();
 
+var stringToPath = function stringToPath(pStr) {
+  var str = pStr.startsWith('.') ? pStr.substring(1) : pStr;
+
+  var path = applyParsers(str);
+
+  return pStr.endsWith('.') ? [].concat(_toConsumableArray(path), [[prop, '']]) : path;
+};
+
 /**
- * Memoized version of {@link core.stringToPath}.<br />
+ * Memoized version of {@link path.stringToPath}.<br />
  * The cache has a maximum size of 1000, when overflowing the cache is cleared.
  * @function
  * @param {string} str The string to convert
- * @returns {Array<string|number|Array>} The path represented as an array of keys
+ * @returns {Array<Array<Symbol,*>>} The path represented as an array of keys
  * @memberof path
  * @private
  * @since 1.0.0
@@ -3037,15 +3012,23 @@ var memoizedStringToPath = function memoizedStringToPath(str) {
 };
 
 /**
- * This method is like {@link core.toPath} except it returns memoized arrays which must not be mutated.
+ * Converts <code>arg</code> to a path represented as an array of keys.<br />
+ * <code>arg</code> may be a string, in which case it will be parsed.<br />
+ * It may also be an Array, in which case a copy of the array with values converted to path keys will be returned.<br />
+ * If <code>arg</code> is neither a string nor an Array, its string representation will be parsed.
  * @function
  * @param {string|Array|*} arg The value to convert
- * @returns {Array<Array<Symbol,...*>>} The path represented as an array of keys
+ * @returns {Array<Array<Symbol,*>>} The path represented as an array of keys
  * @memberof path
  * @since 1.0.0
+ * @example toPath('a.b[1]["."][1:-1]') // => [[prop, 'a'], [prop, 'b'], [index, 1], [prop, '.'], [slice, [1, -1]]]
  * @private
  */
-var unsafeToPath = allowingArrays(memoizedStringToPath);
+var toPath = function toPath(arg) {
+  if (isNil(arg)) return [];
+
+  return memoizedStringToPath(toString$2(arg));
+};
 
 /**
  * Makes a copy of value.
@@ -3120,7 +3103,7 @@ var apply = function apply(operation) {
       args[_key - 1] = arguments[_key];
     }
 
-    var path = unsafeToPath(pPath);
+    var path = toPath(pPath);
 
     if (path.length === 0) throw new TypeError('path should not be empty');
 
@@ -3161,7 +3144,7 @@ var apply = function apply(operation) {
           var _newObj = copy(curObj, false);
           var _noop2 = true;
 
-          var listProps = allProps ? _Object$keys(_newObj) : propValue;
+          var listProps = propType === allProps ? _Object$keys(_newObj) : propValue;
 
           var _iteratorNormalCompletion = true;
           var _didIteratorError = false;
@@ -3277,7 +3260,7 @@ var convert = function convert(updater) {
   return apply(makeOperation(updater));
 };
 
-var toArray = function toArray(array) {
+var toArray$1 = function toArray(array) {
   if (isNil(array)) return [];
   if (Array.isArray(array)) return array;
   return [array];
@@ -3311,7 +3294,7 @@ var callMethodReturnArray = function callMethodReturnArray(array, method, args) 
 var convertArrayMethod = function convertArrayMethod(method) {
   var mutating = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
-  var getArray = mutating ? toArrayCopy : toArray;
+  var getArray = mutating ? toArrayCopy : toArray$1;
   var callMethod = mutating ? callMethodReturnArray : callMethodReturnResult;
   return convert(function (value) {
     for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -3334,7 +3317,7 @@ var convertArrayMethod = function convertArrayMethod(method) {
  * @see {@link https://mdn.io/Array.prototype.filter|Array.prototype.filter} for more information.
  * @since 1.0.0
  */
-var filter = convertArrayMethod('filter', false);
+var filter$1 = convertArrayMethod('filter', false);
 
 /**
  * Replaces an array concatenating the former array with additional arrays and/or values.<br/>
@@ -3595,7 +3578,7 @@ function get(obj, path, defaultValue) {
 
     return walkPath(curObj[prop$$1], pathRest);
   }
-  var parsedPath = unsafeToPath(path);
+  var parsedPath = toPath(path);
   if (parsedPath.some(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 1),
         propType = _ref2[0];
@@ -3688,6 +3671,28 @@ var add = convert(function (value, addition) {
 });
 
 /**
+ * Applies <code>&&</code> between the former value and <code>args</code>
+ * @function
+ * @memberof lang
+ * @param {Object} object The object to modify.
+ * @param {Array|string} path The path of the property to set.
+ * @param {...*} [args] Other operands.
+ * @return {Object} Returns the updated object.
+ * @example and({ nested: { prop: true } }, 'nested.prop', true) // { nested: { prop: true } }
+ * @example and({ nested: { prop: true } }, 'nested.prop', true, false) // { nested: { prop: false } }
+ * @since 1.0.0
+ */
+var and = convert(function (v) {
+  for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+
+  return args.reduce(function (acc, arg) {
+    return acc && arg;
+  }, v);
+});
+
+/**
  * Replaces by the division of the former number and the given number.
  * @function
  * @memberof lang
@@ -3715,6 +3720,28 @@ var divide = convert(function (value, divider) {
  */
 var multiply = convert(function (value, multiplier) {
   return Number(value) * Number(multiplier);
+});
+
+/**
+ * Applies <code>||</code> between the former value and <code>args</code>
+ * @function
+ * @memberof lang
+ * @param {Object} object The object to modify.
+ * @param {Array|string} path The path of the property to set.
+ * @param {...*} [args] Other operands.
+ * @return {Object} Returns the updated object.
+ * @example or({ nested: { prop: false } }, 'nested.prop', true) // { nested: { prop: true } }
+ * @example or({ nested: { prop: true } }, 'nested.prop', false, false) // { nested: { prop: true } }
+ * @since 1.0.0
+ */
+var or = convert(function (v) {
+  for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+
+  return args.reduce(function (acc, arg) {
+    return acc || arg;
+  }, v);
 });
 
 /**
@@ -4003,7 +4030,7 @@ var trimRight = convertStringMethod('trimRight');
 
 exports.arrayConcat = concat;
 exports.fill = fill;
-exports.filter = filter;
+exports.filter = filter$1;
 exports.map = map$4;
 exports.pop = pop;
 exports.push = push;
@@ -4034,8 +4061,10 @@ exports.set = set;
 exports.unset = unset;
 exports.update = update;
 exports.add = add;
+exports.and = and;
 exports.divide = divide;
 exports.multiply = multiply;
+exports.or = or;
 exports.subtract = subtract;
 exports.toggle = toggle;
 exports.assign = assign$3;

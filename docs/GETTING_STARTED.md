@@ -47,8 +47,8 @@ const animals = {
   weasels: {
     lutraLutra: {
       commonNames: ['eurasian otter'],
-    }
-  }
+    },
+  },
 }
 
 const newAnimals = {
@@ -58,8 +58,8 @@ const newAnimals = {
     lutraLutra: {
       ...animals.weasels.otter,
       name: 'Lutra lutra',
-    }
-  }
+    },
+  },
 }
 ```
 
@@ -72,8 +72,8 @@ const animals = {
   weasels: {
     lutraLutra: {
       commonNames: ['eurasian otter'],
-    }
-  }
+    },
+  },
 }
 
 const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutrinae')

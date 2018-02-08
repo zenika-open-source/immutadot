@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>core/index.js - Documentation</title>
+    <title>lang/and.js - Documentation</title>
 
     <!--[if lt IE 9]>
         <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -25,7 +25,7 @@
 
 <div id="main" class="main-container">
     
-        <h1 class="page-title">core/index.js</h1>
+        <h1 class="page-title">lang/and.js</h1>
     
 
     
@@ -35,7 +35,7 @@
     
     <section>
         <article>
-            <pre class="source linenums"><code><ol class="lines"><li id="line1" class="line"><span class="hljs-comment">/**</span></li><li id="line2" class="line"><span class="hljs-comment">* Core functions.</span></li><li id="line3" class="line"><span class="hljs-comment">* @namespace core</span></li><li id="line4" class="line"><span class="hljs-comment">* @since 1.0.0</span></li><li id="line5" class="line"><span class="hljs-comment">*/</span></li><li id="line6" class="line"></li><li id="line7" class="line"><span class="hljs-keyword">export</span> { convert } <span class="hljs-keyword">from</span> <span class="hljs-string">'./convert'</span></li><li id="line8" class="line"><span class="hljs-keyword">export</span> { flow } <span class="hljs-keyword">from</span> <span class="hljs-string">'./flow'</span></li><li id="line9" class="line"><span class="hljs-keyword">export</span> { get } <span class="hljs-keyword">from</span> <span class="hljs-string">'./get'</span></li><li id="line10" class="line"><span class="hljs-keyword">export</span> { set } <span class="hljs-keyword">from</span> <span class="hljs-string">'./set'</span></li><li id="line11" class="line"><span class="hljs-keyword">export</span> { unset } <span class="hljs-keyword">from</span> <span class="hljs-string">'./unset'</span></li><li id="line12" class="line"><span class="hljs-keyword">export</span> { update } <span class="hljs-keyword">from</span> <span class="hljs-string">'./update'</span></li><li id="line13" class="line"></li></ol></code></pre>
+            <pre class="source linenums"><code><ol class="lines"><li id="line1" class="line"><span class="hljs-keyword">import</span> { convert } <span class="hljs-keyword">from</span> <span class="hljs-string">'core/convert'</span></li><li id="line2" class="line"></li><li id="line3" class="line"><span class="hljs-comment">/**</span></li><li id="line4" class="line"><span class="hljs-comment"> * Applies &lt;code&gt;&amp;&amp;&lt;/code&gt; between the former value and &lt;code&gt;args&lt;/code&gt;</span></li><li id="line5" class="line"><span class="hljs-comment"> * @function</span></li><li id="line6" class="line"><span class="hljs-comment"> * @memberof lang</span></li><li id="line7" class="line"><span class="hljs-comment"> * @param {Object} object The object to modify.</span></li><li id="line8" class="line"><span class="hljs-comment"> * @param {Array|string} path The path of the property to set.</span></li><li id="line9" class="line"><span class="hljs-comment"> * @param {...*} [args] Other operands.</span></li><li id="line10" class="line"><span class="hljs-comment"> * @return {Object} Returns the updated object.</span></li><li id="line11" class="line"><span class="hljs-comment"> * @example and({ nested: { prop: true } }, 'nested.prop', true) // { nested: { prop: true } }</span></li><li id="line12" class="line"><span class="hljs-comment"> * @example and({ nested: { prop: true } }, 'nested.prop', true, false) // { nested: { prop: false } }</span></li><li id="line13" class="line"><span class="hljs-comment"> * @since 1.0.0</span></li><li id="line14" class="line"><span class="hljs-comment"> */</span></li><li id="line15" class="line"><span class="hljs-keyword">const</span> and = convert(<span class="hljs-function">(<span class="hljs-params">v, ...args</span>) =&gt;</span> args.reduce(<span class="hljs-function">(<span class="hljs-params">acc, arg</span>) =&gt;</span> acc &amp;&amp; arg, v))</li><li id="line16" class="line"></li><li id="line17" class="line"><span class="hljs-keyword">export</span> { and }</li><li id="line18" class="line"></li></ol></code></pre>
         </article>
     </section>
 
