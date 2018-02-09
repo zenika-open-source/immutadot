@@ -65,18 +65,14 @@ set({}, 'nested.1', 'new value')
 // }
 ```
 
+## :construction: This page is still a work in progress, the following sections will be written soon
+
 ## Bracket notation (property access)
-
 ## Array access notation
-
 ## Property list notation
-
 ### Wildcard
-
 ## Slice notation
-
 ### Negative indexes
-
 ## Edge cases
 TODO empty string
 TODO nil
