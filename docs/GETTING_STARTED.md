@@ -76,7 +76,7 @@ const animals = {
   },
 }
 
-const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutrinae')
+const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutra lutra')
 ```
 
 Deleting a nested property can be done with [`unset()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.unset).
@@ -101,11 +101,13 @@ const animals = {
 const newAnimals = push(animals, 'weasels.lutraLutra.commonNames', 'european otter', 'common otter')
 ```
 
+immutadot includes all common functions of Array's prototype, see [documentation's array section](https://zenika.github.io/immutadot/immutadot/1.0/array.html).
+
 ## Updating properties
 
-[immutad●t's API](https://zenika.github.io/immutadot/immutadot/) offers basic functions to work with primitive types.
+immutad●t offers basic functions to work with primitive types such as [`toggle()`](https://zenika.github.io/immutadot/immutadot/1.0/lang.html#.toggle), [`stringConcat()`](https://zenika.github.io/immutadot/immutadot/1.0/string.html#.concat), or [`add()`](https://zenika.github.io/immutadot/immutadot/1.0/lang.html#.add), see [immutad●t's API](https://zenika.github.io/immutadot/immutadot/) for a full list.
 
-It is possible to perform custom updates with [`update()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.update):
+It is also possible to perform custom updates with [`update()`](https://zenika.github.io/immutadot/immutadot/1.0/core.html#.update):
 
 ```js
 import { update } from 'immutadot'
@@ -127,8 +129,6 @@ const newAnimals = update(animals, 'weasels.lutraLutra', lutraLutra => {
   }
 })
 ```
-
-immutadot includes all common functions of Array's prototype, see [documentation's array section](https://zenika.github.io/immutadot/immutadot/1.0/array.html).
 
 ## Batch operations
 
@@ -207,7 +207,7 @@ const animals = {
 }
 
 const newAnimals = flow(
-  set('weasels.lutraLutra.scientificName', 'Lutrinae'),
+  set('weasels.lutraLutra.scientificName', 'Lutra lutra'),
   push('weasels.lutraLutra.commonNames', 'european otter', 'common otter'),
   capitalize('weasels.lutraLutra.commonNames[:]'),
   set('weasels.{*}.family', 'Mustelidae'),
@@ -227,7 +227,7 @@ const animals = {
   }
 }
 
-const newAnimals = set('weasels.lutraLutra.scientificName', 'Lutrinae')(animals)
+const newAnimals = set('weasels.lutraLutra.scientificName', 'Lutra lutra')(animals)
 ```
 
 ## Reusing custom updates
