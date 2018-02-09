@@ -4,7 +4,7 @@ import { isFunction } from 'util/lang'
 /**
  * A function successively calling a list of functions.
  * @callback flowFunction
- * @memberof flow
+ * @memberof core
  * @param {*} arg The starting value
  * @returns {*} The resulting value
  * @since 1.0.0
@@ -16,7 +16,7 @@ import { isFunction } from 'util/lang'
  * Non functions <code>args</code> are tolerated and will be ignored.
  * @memberof core
  * @param {...(function|Array<function>)} args The functions to apply
- * @returns {flow.flowFunction} A function successively calling function <code>args</code>
+ * @returns {core.flowFunction} A function successively calling function <code>args</code>
  * @since 1.0.0
  */
 function flow(...args) {
