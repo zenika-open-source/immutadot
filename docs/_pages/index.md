@@ -61,3 +61,8 @@ const animals = {
 
 const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutrinae')
 </div>
+
+---
+## Getting started
+
+A fast overview of immutad●t's features is available in the [Getting started](https://github.com/Zenika/immutadot/blob/master/docs/GETTING_STARTED.md) guide.
