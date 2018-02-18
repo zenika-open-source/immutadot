@@ -67,6 +67,6 @@ workflows:
       - lint:
           requires:
             - lockfile
-      - test
+      - test:
           requires:
             - lockfile
