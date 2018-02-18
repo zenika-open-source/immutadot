@@ -10,12 +10,12 @@ jobs:
       - restore_cache:
           key: node_modules-{{ checksum "yarn.lock" }}
       - run: yarn
+      - run: yarn run greenkeeper-lockfile-update
+      - run: yarn run greenkeeper-lockfile-upload
       - save_cache:
           key: node_modules-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-      - run: yarn run greenkeeper-lockfile-update
-      - run: yarn run greenkeeper-lockfile-upload
 
   lint:
     docker:
