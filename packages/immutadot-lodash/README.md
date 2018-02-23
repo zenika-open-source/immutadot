@@ -66,7 +66,7 @@ const newObj = mapValues(obj, 'nested.object', v => v * v)
 
 ## Documentation
 
-Latest API documentation is available [here](https://zenika.github.io/immutadot/immutadot-lodash/).
+Latest API documentation is available [here](https://zenika.github.io/immutadot/api/immutadot-lodash/).
 
 ## License
 
