@@ -1,5 +1,6 @@
 /* eslint-env jest */
 import { apply } from './apply'
+import { get } from 'core/get'
 import { immutaTest } from 'test.utils'
 
 describe('path.apply', () => {
@@ -264,6 +265,30 @@ describe('path.apply', () => {
       },
       'nested.prop1.val',
       'nested.prop2.val',
+    )
+  })
+
+  it('should support lazy function args', () => {
+    immutaTest(
+      input => {
+        const output = inc(input, 'nested.prop1.val', get('nested.prop2.val'))
+        expect(output).toEqual({
+          nested: {
+            prop1: { val: 7 },
+            prop2: { val: 4 },
+          },
+          other: {},
+        })
+        return output
+      },
+      {
+        nested: {
+          prop1: { val: 3 },
+          prop2: { val: 4 },
+        },
+        other: {},
+      },
+      'nested.prop1.val',
     )
   })
 })
