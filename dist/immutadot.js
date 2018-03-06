@@ -56,7 +56,6 @@ var _core = createCommonjsModule(function (module) {
 var core = module.exports = { version: '2.5.1' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 });
-
 var _core_1 = _core.version;
 
 var _aFunction = function (it) {
@@ -302,10 +301,10 @@ var _uid = function (key) {
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
 
-var shared$1 = _shared('keys');
+var shared = _shared('keys');
 
 var _sharedKey = function (key) {
-  return shared$1[key] || (shared$1[key] = _uid(key));
+  return shared[key] || (shared[key] = _uid(key));
 };
 
 var arrayIndexOf = _arrayIncludes(false);
@@ -587,8 +586,6 @@ var SAFE_CLOSING = false;
 try {
   var riter = [7][ITERATOR$3]();
   riter['return'] = function () { SAFE_CLOSING = true; };
-  // eslint-disable-next-line no-throw-literal
-  
 } catch (e) { /* empty */ }
 
 var _iterDetect = function (exec, skipClosing) {
@@ -604,7 +601,7 @@ var _iterDetect = function (exec, skipClosing) {
   return safe;
 };
 
-_export(_export.S + _export.F * !_iterDetect(function (iter) {  }), 'Array', {
+_export(_export.S + _export.F * !_iterDetect(function (iter) { }), 'Array', {
   // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
   from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
     var O = _toObject(arrayLike);
@@ -634,18 +631,19 @@ _export(_export.S + _export.F * !_iterDetect(function (iter) {  }), 'Array', {
 
 var from = _core.Array.from;
 
-var from$2 = createCommonjsModule(function (module) {
+var from$1 = createCommonjsModule(function (module) {
 module.exports = { "default": from, __esModule: true };
 });
 
-unwrapExports(from$2);
+unwrapExports(from$1);
 
 var toConsumableArray = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 
 
-var _from2 = _interopRequireDefault(from$2);
+var _from2 = _interopRequireDefault(from$1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -717,11 +715,11 @@ var core_getIterator = _core.getIterator = function (it) {
 
 var getIterator = core_getIterator;
 
-var getIterator$2 = createCommonjsModule(function (module) {
+var getIterator$1 = createCommonjsModule(function (module) {
 module.exports = { "default": getIterator, __esModule: true };
 });
 
-var _getIterator = unwrapExports(getIterator$2);
+var _getIterator = unwrapExports(getIterator$1);
 
 // most Object methods by ES6 should accept primitives
 
@@ -746,11 +744,11 @@ _objectSap('keys', function () {
 
 var keys = _core.Object.keys;
 
-var keys$2 = createCommonjsModule(function (module) {
+var keys$1 = createCommonjsModule(function (module) {
 module.exports = { "default": keys, __esModule: true };
 });
 
-var _Object$keys = unwrapExports(keys$2);
+var _Object$keys = unwrapExports(keys$1);
 
 var ITERATOR$4 = _wks('iterator');
 
@@ -764,22 +762,23 @@ var core_isIterable = _core.isIterable = function (it) {
 
 var isIterable = core_isIterable;
 
-var isIterable$2 = createCommonjsModule(function (module) {
+var isIterable$1 = createCommonjsModule(function (module) {
 module.exports = { "default": isIterable, __esModule: true };
 });
 
-unwrapExports(isIterable$2);
+unwrapExports(isIterable$1);
 
 var slicedToArray = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 
 
-var _isIterable3 = _interopRequireDefault(isIterable$2);
+var _isIterable3 = _interopRequireDefault(isIterable$1);
 
 
 
-var _getIterator3 = _interopRequireDefault(getIterator$2);
+var _getIterator3 = _interopRequireDefault(getIterator$1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -825,11 +824,12 @@ exports.default = function () {
 var _slicedToArray = unwrapExports(slicedToArray);
 
 var toArray = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 
 
-var _from2 = _interopRequireDefault(from$2);
+var _from2 = _interopRequireDefault(from$1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -893,18 +893,19 @@ _export(_export.S + _export.F, 'Object', { assign: _objectAssign });
 
 var assign = _core.Object.assign;
 
-var assign$2 = createCommonjsModule(function (module) {
+var assign$1 = createCommonjsModule(function (module) {
 module.exports = { "default": assign, __esModule: true };
 });
 
-var _Object$assign = unwrapExports(assign$2);
+var _Object$assign = unwrapExports(assign$1);
 
 var _extends = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 
 
-var _assign2 = _interopRequireDefault(assign$2);
+var _assign2 = _interopRequireDefault(assign$1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -980,7 +981,6 @@ var meta = module.exports = {
   onFreeze: onFreeze
 };
 });
-
 var _meta_1 = _meta.KEY;
 var _meta_2 = _meta.NEED;
 var _meta_3 = _meta.fastKey;
@@ -1312,11 +1312,11 @@ _wksDefine('observable');
 
 var symbol = _core.Symbol;
 
-var symbol$2 = createCommonjsModule(function (module) {
+var symbol$1 = createCommonjsModule(function (module) {
 module.exports = { "default": symbol, __esModule: true };
 });
 
-var _Symbol = unwrapExports(symbol$2);
+var _Symbol = unwrapExports(symbol$1);
 
 var allProps = _Symbol('allProps');
 var index = _Symbol('index');
@@ -1344,30 +1344,31 @@ _export(_export.S, 'Number', {
 
 var isSafeInteger = _core.Number.isSafeInteger;
 
-var isSafeInteger$2 = createCommonjsModule(function (module) {
+var isSafeInteger$1 = createCommonjsModule(function (module) {
 module.exports = { "default": isSafeInteger, __esModule: true };
 });
 
-var _Number$isSafeInteger = unwrapExports(isSafeInteger$2);
+var _Number$isSafeInteger = unwrapExports(isSafeInteger$1);
 
 var iterator = _wksExt.f('iterator');
 
-var iterator$2 = createCommonjsModule(function (module) {
+var iterator$1 = createCommonjsModule(function (module) {
 module.exports = { "default": iterator, __esModule: true };
 });
 
-unwrapExports(iterator$2);
+unwrapExports(iterator$1);
 
 var _typeof_1 = createCommonjsModule(function (module, exports) {
+
 exports.__esModule = true;
 
 
 
-var _iterator2 = _interopRequireDefault(iterator$2);
+var _iterator2 = _interopRequireDefault(iterator$1);
 
 
 
-var _symbol2 = _interopRequireDefault(symbol$2);
+var _symbol2 = _interopRequireDefault(symbol$1);
 
 var _typeof = typeof _symbol2.default === "function" && typeof _iterator2.default === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj; };
 
@@ -1940,11 +1941,11 @@ _setCollectionFrom('Map');
 
 var map = _core.Map;
 
-var map$2 = createCommonjsModule(function (module) {
+var map$1 = createCommonjsModule(function (module) {
 module.exports = { "default": map, __esModule: true };
 });
 
-var _Map = unwrapExports(map$2);
+var _Map = unwrapExports(map$1);
 
 var runtime = createCommonjsModule(function (module) {
 /**
@@ -1958,6 +1959,7 @@ var runtime = createCommonjsModule(function (module) {
  */
 
 !(function(global) {
+
   var Op = Object.prototype;
   var hasOwn = Op.hasOwnProperty;
   var undefined; // More compressible than void 0.
@@ -2767,7 +2769,7 @@ var filter = function filter(parser, predicate) {
  * @private
  * @since 1.0.0
  */
-var map$3 = function map(parser, mapper) {
+var map$2 = function map(parser, mapper) {
   return function (str) {
     return maybeMap(parser(str), mapper);
   };
@@ -2855,7 +2857,7 @@ var emptyStringParser = function emptyStringParser(str) {
   return str.length === 0 ? [] : null;
 };
 
-var quotedBracketNotationParser = map$3(regexp(/^\[(['"])(.*?[^\\])\1\]?\.?(.*)$/), function (_ref) {
+var quotedBracketNotationParser = map$2(regexp(/^\[(['"])(.*?[^\\])\1\]?\.?(.*)$/), function (_ref) {
   var _ref2 = _slicedToArray(_ref, 3),
       quote = _ref2[0],
       property = _ref2[1],
@@ -2864,7 +2866,7 @@ var quotedBracketNotationParser = map$3(regexp(/^\[(['"])(.*?[^\\])\1\]?\.?(.*)$
   return [[prop, unescapeQuotes(property, quote)]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
-var incompleteQuotedBracketNotationParser = map$3(regexp(/^(\[["'][^.[{]*)\.?(.*)$/), function (_ref3) {
+var incompleteQuotedBracketNotationParser = map$2(regexp(/^(\[["'][^.[{]*)\.?(.*)$/), function (_ref3) {
   var _ref4 = _slicedToArray(_ref3, 2),
       beforeNewSegment = _ref4[0],
       rest = _ref4[1];
@@ -2872,7 +2874,7 @@ var incompleteQuotedBracketNotationParser = map$3(regexp(/^(\[["'][^.[{]*)\.?(.*
   return [[prop, beforeNewSegment]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
-var bareBracketNotationParser = map$3(regexp(/^\[([^\]]*)\]\.?(.*)$/), function (_ref5) {
+var bareBracketNotationParser = map$2(regexp(/^\[([^\]]*)\]\.?(.*)$/), function (_ref5) {
   var _ref6 = _slicedToArray(_ref5, 2),
       property = _ref6[0],
       rest = _ref6[1];
@@ -2880,7 +2882,7 @@ var bareBracketNotationParser = map$3(regexp(/^\[([^\]]*)\]\.?(.*)$/), function 
   return isIndex(Number(property)) ? [[index, Number(property)]].concat(_toConsumableArray(applyParsers(rest))) : [[prop, property]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
-var incompleteBareBracketNotationParser = map$3(regexp(/^(\[[^.[{]*)\.?(.*)$/), function (_ref7) {
+var incompleteBareBracketNotationParser = map$2(regexp(/^(\[[^.[{]*)\.?(.*)$/), function (_ref7) {
   var _ref8 = _slicedToArray(_ref7, 2),
       beforeNewSegment = _ref8[0],
       rest = _ref8[1];
@@ -2888,7 +2890,7 @@ var incompleteBareBracketNotationParser = map$3(regexp(/^(\[[^.[{]*)\.?(.*)$/), 
   return [[prop, beforeNewSegment]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
-var sliceNotationParser = map$3(filter(regexp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/), function (_ref9) {
+var sliceNotationParser = map$2(filter(regexp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/), function (_ref9) {
   var _ref10 = _slicedToArray(_ref9, 2),
       sliceStart = _ref10[0],
       sliceEnd = _ref10[1];
@@ -2903,7 +2905,7 @@ var sliceNotationParser = map$3(filter(regexp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/
   return [[slice, [toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)]]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
-var listWildCardParser = map$3(regexp(/^{\*}\.?(.*)$/), function (_ref13) {
+var listWildCardParser = map$2(regexp(/^{\*}\.?(.*)$/), function (_ref13) {
   var _ref14 = _slicedToArray(_ref13, 1),
       rest = _ref14[0];
 
@@ -2952,7 +2954,7 @@ function extractListProps(rawProps) {
   }, _marked, this);
 }
 
-var listNotationParser = map$3(regexp(/^\{(((?!["'])[^,}]*|(["']).*?[^\\]\2)(,((?!["'])[^,}]*|(["']).*?[^\\]\6))*)\}\.?(.*)$/), function (_ref15) {
+var listNotationParser = map$2(regexp(/^\{(((?!["'])[^,}]*|(["']).*?[^\\]\2)(,((?!["'])[^,}]*|(["']).*?[^\\]\6))*)\}\.?(.*)$/), function (_ref15) {
   var _ref16 = _slicedToArray(_ref15, 7),
       rawProps = _ref16[0],
       rest = _ref16[6];
@@ -2961,7 +2963,7 @@ var listNotationParser = map$3(regexp(/^\{(((?!["'])[^,}]*|(["']).*?[^\\]\2)(,((
   return props.length === 1 ? [[prop, props[0]]].concat(_toConsumableArray(applyParsers(rest))) : [[list, props]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
-var incompleteListNotationParser = map$3(regexp(/^(\{[^.[{]*)\.?(.*)$/), function (_ref17) {
+var incompleteListNotationParser = map$2(regexp(/^(\{[^.[{]*)\.?(.*)$/), function (_ref17) {
   var _ref18 = _slicedToArray(_ref17, 2),
       beforeNewSegment = _ref18[0],
       rest = _ref18[1];
@@ -2969,7 +2971,7 @@ var incompleteListNotationParser = map$3(regexp(/^(\{[^.[{]*)\.?(.*)$/), functio
   return [[prop, beforeNewSegment]].concat(_toConsumableArray(applyParsers(rest)));
 });
 
-var pathSegmentEndedByNewSegment = map$3(regexp(/^([^.[{]*)\.?([[{]?.*)$/), function (_ref19) {
+var pathSegmentEndedByNewSegment = map$2(regexp(/^([^.[{]*)\.?([[{]?.*)$/), function (_ref19) {
   var _ref20 = _slicedToArray(_ref19, 2),
       beforeNewSegment = _ref20[0],
       rest = _ref20[1];
@@ -3362,7 +3364,7 @@ var fill = convertArrayMethod('fill');
  * @see {@link https://mdn.io/Array.prototype.map|Array.prototype.map} for more information.
  * @since 1.0.0
  */
-var map$4 = convertArrayMethod('map', false);
+var map$3 = convertArrayMethod('map', false);
 
 /**
  * Replaces by an array of elements with last element removed.
@@ -3507,7 +3509,7 @@ function flatten(arr) {
 /**
  * A function successively calling a list of functions.
  * @callback flowFunction
- * @memberof flow
+ * @memberof core
  * @param {*} arg The starting value
  * @returns {*} The resulting value
  * @since 1.0.0
@@ -3519,7 +3521,7 @@ function flatten(arr) {
  * Non functions <code>args</code> are tolerated and will be ignored.
  * @memberof core
  * @param {...(function|Array<function>)} args The functions to apply
- * @returns {flow.flowFunction} A function successively calling function <code>args</code>
+ * @returns {core.flowFunction} A function successively calling function <code>args</code>
  * @since 1.0.0
  */
 function flow() {
@@ -3792,7 +3794,7 @@ var toggle = convert(function (v) {
  * @see {@link https://mdn.io/Object.prototype.assign|Object.prototype.assign} for more information.
  * @since 0.1.12
  */
-var assign$3 = convert(function (obj) {
+var assign$2 = convert(function (obj) {
   for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
     args[_key - 1] = arguments[_key];
   }
@@ -4031,7 +4033,7 @@ var trimRight = convertStringMethod('trimRight');
 exports.arrayConcat = concat;
 exports.fill = fill;
 exports.filter = filter$1;
-exports.map = map$4;
+exports.map = map$3;
 exports.pop = pop;
 exports.push = push;
 exports.reverse = reverse;
@@ -4067,7 +4069,7 @@ exports.multiply = multiply;
 exports.or = or;
 exports.subtract = subtract;
 exports.toggle = toggle;
-exports.assign = assign$3;
+exports.assign = assign$2;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

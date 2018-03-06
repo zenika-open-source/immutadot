@@ -1,7 +1,5 @@
 /* eslint-env jest */
-import {
-  flatten,
-} from './array'
+import { flatten } from './array'
 
 describe('Array utils', () => {
   describe('util.flatten', () => {

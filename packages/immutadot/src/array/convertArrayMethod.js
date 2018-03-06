@@ -1,8 +1,6 @@
 import { convert } from 'core/convert'
 
-import {
-  isNil,
-} from 'util/lang'
+import { isNil } from 'util/lang'
 
 const toArray = array => {
   if (isNil(array)) return []
