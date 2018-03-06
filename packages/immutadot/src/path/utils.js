@@ -3,9 +3,7 @@ import {
   slice,
 } from './consts'
 
-import {
-  isNaturalInteger,
-} from 'util/lang'
+import { isNaturalInteger } from 'util/lang'
 
 export const getSliceBound = (value, length) => {
   if (value < 0) return Math.max(length + value, 0)

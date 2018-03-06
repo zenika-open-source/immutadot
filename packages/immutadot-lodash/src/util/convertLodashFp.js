@@ -19,6 +19,4 @@ const convertLodashFp = fn => convert(lodashFpConvert(fn))
  * @deprecated Use {@link core.convert}
  * @since 0.2.0
  */
-export {
-  convertLodashFp,
-}
+export { convertLodashFp }
