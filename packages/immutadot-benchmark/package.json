@@ -9,7 +9,8 @@
     "immutable": "~3.8.2",
     "immutadot": "~1.0.0",
     "jest": "~21.2.1",
-    "lerna": "~2.9.0"
+    "lerna": "~2.9.0",
+    "qim": "~0.0.52"
   },
   "scripts": {
     "prebenchmark": "lerna run --scope immutadot build",

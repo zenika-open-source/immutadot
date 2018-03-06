@@ -1,4 +1,5 @@
 /* eslint-env jest */
+import { $each, $slice, set as qimSet } from 'qim'
 
 import { List, Record } from 'immutable'
 
@@ -44,6 +45,10 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
       result.forEach(todo => todo.done ? trues++ : falses++)
       expect(trues).toBe(modifySize)
       expect(falses).toBe(unmodifiedSize)
+      trues = falses = 0
+      baseState.forEach(todo => todo.done ? trues++ : falses++)
+      expect(trues).toBe(0)
+      expect(falses).toBe(listSize)
     },
     maxTime,
     maxOperations,
@@ -84,7 +89,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   })
 
   it('immer proxy', () => {
-    benchmark('immer-proxy', 'immer 0.8.1 (proxy implementation w/o autofreeze)', () => {
+    benchmark('immer-proxy', 'immer 1.1.3 (proxy implementation w/o autofreeze)', () => {
       const [start, end] = randomBounds()
       return immer(baseState, draft => {
         for (let i = start; i < end; i++) draft[i].done = true
@@ -94,13 +99,20 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
 
   it('immer ES5', () => {
     setUseProxies(false)
-    benchmark('immer-es5', 'immer 0.8.1 (ES5 implementation w/o autofreeze)', () => {
+    benchmark('immer-es5', 'immer 1.1.3 (ES5 implementation w/o autofreeze)', () => {
       const [start, end] = randomBounds()
       return immer(baseState, draft => {
         for (let i = start; i < end; i++) draft[i].done = true
       })
     })
     setUseProxies(true)
+  })
+
+  it('qim', () => {
+    benchmark('qim', 'qim 0.0.52', () => {
+      const [start, end] = randomBounds()
+      return qimSet([$slice(start, end), $each, 'done'], true, baseState)
+    })
   })
 
   it('immutad●t', () => {
