@@ -8,6 +8,8 @@ import {
 } from 'util/lang'
 import { toPath } from 'path/toPath'
 
+const getter = Symbol('getter')
+
 /**
 * Gets the value at <code>path</code> of <code>obj</code>.
 * @memberof core
@@ -26,7 +28,7 @@ function get(...args) {
 }
 
 function makeGetter(path, defaultValue) {
-  return function(obj) {
+  const getterFn = function(obj) {
     function walkPath(curObj, remPath) {
       if (remPath.length === 0) return curObj === undefined ? defaultValue : curObj
       if (isNil(curObj)) return defaultValue
@@ -38,6 +40,8 @@ function makeGetter(path, defaultValue) {
       throw TypeError('get supports only properties and array indexes in path')
     return walkPath(obj, parsedPath)
   }
+  getterFn[getter] = true
+  return getterFn
 }
 
-export { get }
+export { get, getter }

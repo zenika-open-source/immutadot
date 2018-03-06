@@ -12,11 +12,12 @@ import {
 } from './utils'
 
 import {
-  isFunction,
   isNil,
   isString,
   length,
 } from 'util/lang'
+
+import { getter } from 'core/get'
 
 import { toPath } from './toPath'
 
@@ -133,7 +134,7 @@ const apply = operation => {
 
         if (remPath.length === 1) {
           const newObj = copyIfNecessary(curObj, propType, doCopy)
-          const resolvedArgs = args.map(arg => isFunction(arg) ? arg(obj) : arg)
+          const resolvedArgs = args.map(arg => arg[getter] ? arg(obj) : arg)
           operation(newObj, propValue, value, ...resolvedArgs)
           return [false, newObj]
         }
