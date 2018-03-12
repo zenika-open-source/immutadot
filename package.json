@@ -33,7 +33,7 @@
     "lodash": "~4.17.5",
     "rollup": "~0.56.4",
     "rollup-plugin-babel": "~3.0.3",
-    "rollup-plugin-commonjs": "~9.0.0",
+    "rollup-plugin-commonjs": "~9.1.0",
     "rollup-plugin-node-resolve": "~3.0.3"
   },
   "workspaces": [
