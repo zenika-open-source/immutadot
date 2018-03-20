@@ -89,7 +89,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   })
 
   it('immer proxy', () => {
-    benchmark('immer-proxy', 'immer 1.1.3 (proxy implementation w/o autofreeze)', () => {
+    benchmark('immer-proxy', 'immer 1.2.0 (proxy implementation w/o autofreeze)', () => {
       const [start, end] = randomBounds()
       return immer(baseState, draft => {
         for (let i = start; i < end; i++) draft[i].done = true
@@ -99,7 +99,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
 
   it('immer ES5', () => {
     setUseProxies(false)
-    benchmark('immer-es5', 'immer 1.1.3 (ES5 implementation w/o autofreeze)', () => {
+    benchmark('immer-es5', 'immer 1.2.0 (ES5 implementation w/o autofreeze)', () => {
       const [start, end] = randomBounds()
       return immer(baseState, draft => {
         for (let i = start; i < end; i++) draft[i].done = true
