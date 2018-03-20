@@ -4,7 +4,7 @@
   },
   "opts": {
     "template": "../node_modules/hotdoc/template",
-    "destination": "../../docs",
+    "destination": "../../docs/api",
     "recurse": true
   },
   "hotdoc": {
