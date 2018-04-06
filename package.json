@@ -29,7 +29,7 @@
     "hotdoc": "~0.7.2",
     "jest": "~21.2.1",
     "jsdoc": "~3.5.5",
-    "lerna": "~2.9.0",
+    "lerna": "~2.10.0",
     "lodash": "~4.17.5",
     "rollup": "~0.57.1",
     "rollup-plugin-babel": "~3.0.3",
