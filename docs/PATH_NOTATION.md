@@ -65,14 +65,209 @@ set({}, 'nested.1', 'new value')
 // }
 ```
 
+## Bracket notation (property access)
+
+The bracket notation is the same as JavaScript [bracket notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_Accessors). It gives access to properties with an invalid identifier or dots in it.
+
+```js
+set({}, 'prop.[nested.1]', 'new value')
+// Returns:
+// {
+//   "prop": {
+//     "nested.1": "new value"
+//   }
+// }
+```
+
+## Array access notation
+
+Similar to the JavaScript way to access elements of an array, gives an easy access to deeply nested elements:
+
+```js
+set({}, 'prop.nested[0]', 'new value')
+// Returns:
+// {
+//   "prop": {
+//     "nested": [
+//       "new value"
+//     ]
+//   }
+// }
+``` 
+
+## Property list notation
+
+We will use an initial object for the following examples: 
+
+```js
+// {
+//   "prop": {
+//     "nested": {
+//       "0": 'old value',
+//       "1": 'old value',
+//       "2": 'old value'
+//     }
+//   }
+// }
+```
+
+
+The list notation provides a way to apply operation on multiple properties of an objet:
+
+```js
+set(initial, 'prop.nested{0, 1}', 'new value')
+// Returns:
+// {
+//   "prop": {
+//     "nested": {
+//       "0": 'new value',
+//       "1": 'new value',
+//       "2": 'old value'
+//     }
+//   }
+// }
+``` 
+
+### Wildcard
+
+A wildcard character in list notation will apply operation on all properties of an object:
+
+```js
+set(initial, 'prop.nested{*}', 'new value')
+// Returns:
+// {
+//   "prop": {
+//     "nested": {
+//       "0": 'new value',
+//       "1": 'new value',
+//       "2": 'new value'
+//     }
+//   }
+// }
+``` 
+
+## Slice notation
+
+We will use an initial object for the following examples: 
+
+```js
+// {
+//   "prop": {
+//     "nested": [
+//       'old value',
+//       'old value',
+//       'old value',
+//       'old value'
+//     ]
+//   }
+// }
+```
+
+Inspired from the [golang](https://blog.golang.org/slices) the slice notation gives you access to a chunk of an array. A slice take a starting index and an ending index:
+
+```js
+set(initial, 'prop.nested[1:2]', 'new value')
+// Returns:
+// {
+//   "prop": {
+//     "nested": [
+//       'old value',
+//       'new value',
+//       'new value',
+//       'old value'
+//     ]
+//   }
+// }
+``` 
+
+If you don't provide starting index the slice starts from 0:
+
+```js
+set(initial, 'prop.nested[:2]', 'new value')
+// Returns:
+// {
+//   "prop": {
+//     "nested": [
+//       'new value',
+//       'new value',
+//       'new value',
+//       'old value'
+//     ]
+//   }
+// }
+``` 
+
+If you don't provide ending index the slice goes to the end of the array:
+
+```js
+set(initial, 'prop.nested[1:]', 'new value')
+// Returns:
+// {
+//   "prop": {
+//     "nested": [
+//       'old value',
+//       'new value',
+//       'new value',
+//       'new value'
+//     ]
+//   }
+// }
+``` 
+
+
+If you don't provide indexes at all, the slice is the whole array:
+
+```js
+set(initial, 'prop.nested[:]', 'new value')
+// Returns:
+// {
+//   "prop": {
+//     "nested": [
+//       'new value',
+//       'new value',
+//       'new value',
+//       'new value'
+//     ]
+//   }
+// }
+``` 
+
+### Negative indexes
+
+The slice notation supports negative indexes:
+
+```js
+set(initial, 'prop.nested[1:-1]', 'new value')
+// Returns:
+// {
+//   "prop": {
+//     "nested": [
+//       'old value',
+//       'new value',
+//       'new value',
+//       'old value'
+//     ]
+//   }
+// }
+``` 
+
+```js
+set(initial, 'prop.nested[-1:]', 'new value')
+// Returns:
+// {
+//   "prop": {
+//     "nested": [
+//       'old value',
+//       'old value',
+//       'old value',
+//       'new value'
+//     ]
+//   }
+// }
+``` 
+
 ## :construction: This page is still a work in progress, the following sections will be written soon
 
-## Bracket notation (property access)
-## Array access notation
-## Property list notation
-### Wildcard
-## Slice notation
-### Negative indexes
 ## Edge cases
 TODO empty string
 TODO nil
