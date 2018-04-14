@@ -70,7 +70,7 @@ set({}, 'nested.1', 'new value')
 The bracket notation is the same as JavaScript [bracket notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_Accessors). It gives access to properties with an invalid identifier or dots in it.
 
 ```js
-set({}, 'prop.[nested.1]', 'new value')
+set({}, 'prop[nested.1]', 'new value')
 // Returns:
 // {
 //   "prop": {
@@ -115,14 +115,14 @@ We will use an initial object for the following examples:
 The list notation provides a way to apply operation on multiple properties of an objet:
 
 ```js
-set(initial, 'prop.nested{0, 1}', 'new value')
+set(initial, 'prop.nested{foo,bar}', 'new value')
 // Returns:
 // {
 //   "prop": {
 //     "nested": {
-//       "0": 'new value',
-//       "1": 'new value',
-//       "2": 'old value'
+//       "foo": 'new value',
+//       "bar": 'new value',
+//       "foobar": 'old value'
 //     }
 //   }
 // }
@@ -138,9 +138,9 @@ set(initial, 'prop.nested{*}', 'new value')
 // {
 //   "prop": {
 //     "nested": {
-//       "0": 'new value',
-//       "1": 'new value',
-//       "2": 'new value'
+//       "foo": 'new value',
+//       "bar": 'new value',
+//       "foobar": 'new value'
 //     }
 //   }
 // }
@@ -166,7 +166,7 @@ We will use an initial object for the following examples:
 Inspired from the [golang](https://blog.golang.org/slices) the slice notation gives you access to a chunk of an array. A slice take a starting index and an ending index:
 
 ```js
-set(initial, 'prop.nested[1:2]', 'new value')
+set(initial, 'prop.nested[1:3]', 'new value')
 // Returns:
 // {
 //   "prop": {
@@ -183,7 +183,7 @@ set(initial, 'prop.nested[1:2]', 'new value')
 If you don't provide starting index the slice starts from 0:
 
 ```js
-set(initial, 'prop.nested[:2]', 'new value')
+set(initial, 'prop.nested[:3]', 'new value')
 // Returns:
 // {
 //   "prop": {
