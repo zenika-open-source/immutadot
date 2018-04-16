@@ -22,7 +22,7 @@ immutad●t gives you a short and meaningful syntax to apply operations on immut
 
 ## [1.0](https://github.com/Zenika/immutadot/releases) is out 🎉
 
-If you were using a previous version of immutad●t, check out the [migrating guide](docs/MIGRATING_TO_1_0.md).
+If you were using a previous version of immutad●t, check out the [migrating guide](https://github.com/Zenika/immutadot/blob/master/docs/MIGRATING_TO_1_0.md).
 
 ## Installation
 
