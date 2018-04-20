@@ -1,6 +1,3 @@
-![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg?sanitize=true)
-===
-
 # Path notation
 
 To describe deeply nested properties immutad●t uses standard [property access notation](https://mdn.io/Property_Accessors) and [array access notation](https://mdn.io/Array).
@@ -265,10 +262,3 @@ set(initial, 'prop.nested[-1:]', 'new value')
 //   }
 // }
 ``` 
-
-## :construction: This page is still a work in progress, the following sections will be written soon
-
-## Edge cases
-TODO empty string
-TODO nil
-TODO erroneous
