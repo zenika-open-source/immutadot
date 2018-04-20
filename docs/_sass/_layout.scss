@@ -195,11 +195,29 @@
     }
 }
 
+.page-content,
 .post-content {
     margin-bottom: $spacing-unit;
 
+    h1 {
+      font-size: 36px;
+    }
+
     h2 {
+        position: relative;
         font-size: 28px;
+        margin-top: 60px;
+
+        &::before {
+          content: ' ';
+          position: absolute;
+          top: -20px;
+          right: 0;
+          left: 0;
+          height: 1px;
+          width: 100%;
+          border-top: 1px solid #eee;
+        }
 
         @include media-query($on-laptop) {
             font-size: 32px;
@@ -208,6 +226,7 @@
 
     h3 {
         font-size: 22px;
+        margin-top: 30px;
 
         @include media-query($on-laptop) {
             font-size: 26px;

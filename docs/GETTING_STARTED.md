@@ -1,6 +1,3 @@
-![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg?sanitize=true)
-===
-
 # Getting started
 
 This guide will give you an overview of immutad●t features.
