@@ -1,12 +1,13 @@
 import {
   index,
   prop,
-} from 'path/consts'
+  toPath,
+} from '@immutadot/parser'
+
 import {
   isNil,
   isString,
 } from 'util/lang'
-import { toPath } from 'path/toPath'
 
 const getter = Symbol('getter')
 

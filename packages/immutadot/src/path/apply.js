@@ -4,7 +4,8 @@ import {
   list,
   prop,
   slice,
-} from './consts'
+  toPath,
+} from '@immutadot/parser'
 
 import {
   getSliceBounds,
@@ -18,8 +19,6 @@ import {
 } from 'util/lang'
 
 import { getter } from 'core/get'
-
-import { toPath } from './toPath'
 
 /**
  * Makes a copy of value.

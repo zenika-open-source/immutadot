@@ -1,9 +1,7 @@
 import {
   list,
   slice,
-} from './consts'
-
-import { isNaturalInteger } from 'util/lang'
+} from '@immutadot/parser'
 
 export const getSliceBound = (value, length) => {
   if (value < 0) return Math.max(length + value, 0)
@@ -24,26 +22,6 @@ export const getSliceBounds = ([start, end], length) => ([
   getSliceBound(start, length),
   getSliceBound(end === undefined ? length : end, length),
 ])
-
-/**
- * This is an alias for {@link util/isNaturalInteger}.
- * @function
- * @memberof path
- * @private
- * @since 1.0.0
- */
-export const isIndex = isNaturalInteger
-
-/**
- * Tests whether <code>arg</code> is a valid slice index, that is an integer or <code>undefined</code>.
- * @function
- * @param {*} arg The value to test
- * @return {boolean} True if <code>arg</code> is a valid slice index, false otherwise
- * @memberof path
- * @private
- * @since 1.0.0
- */
-export const isSliceIndex = arg => arg === undefined || Number.isSafeInteger(arg)
 
 /**
  * Tests whether <code>path</code> has already been applied using a list of already applied paths.
