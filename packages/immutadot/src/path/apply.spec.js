@@ -281,26 +281,24 @@ describe('path.apply', () => {
   })
 
   it('should support lazy function args', () => {
-    immutaTest(
-      input => {
-        const output = inc(input, 'nested.prop1.val', get('nested.prop2.val'))
-        expect(output).toEqual({
-          nested: {
-            prop1: { val: 7 },
-            prop2: { val: 4 },
-          },
-          other: {},
-        })
-        return output
+    immutaTest({
+      nested: {
+        prop1: { val: 3 },
+        prop2: { val: 4 },
       },
-      {
+      other: {},
+    },
+    ['nested.prop1.val'],
+    input => {
+      const output = inc(input, 'nested.prop1.val', get('nested.prop2.val'))
+      expect(output).toEqual({
         nested: {
-          prop1: { val: 3 },
+          prop1: { val: 7 },
           prop2: { val: 4 },
         },
         other: {},
-      },
-      'nested.prop1.val',
-    )
+      })
+      return output
+    })
   })
 })
