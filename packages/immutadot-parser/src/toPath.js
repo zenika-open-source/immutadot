@@ -15,13 +15,10 @@ import {
 
 import {
   isIndex,
-  isSliceIndex,
-} from './utils'
-
-import {
   isNil,
+  isSliceIndex,
   toString,
-} from 'util/lang'
+} from './utils'
 
 /**
  * Strip slashes preceding occurences of <code>quote</code> from <code>str</code><br />

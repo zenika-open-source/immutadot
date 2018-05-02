@@ -6,13 +6,12 @@
     "immutable",
     "dot-notation",
     "nested-structures",
-    "react",
     "redux",
     "lodash"
   ],
   "main": "index.js",
   "license": "MIT",
-  "homepage": "https://github.com/Zenika/immutadot/packages/immutadot-lodash",
+  "homepage": "https://immutadot.zenika.com",
   "bugs": "https://github.com/Zenika/immutadot/issues",
   "repository": "github:Zenika/immutadot",
   "author": "Nicolas Lepage (https://github.com/nlepage)",
@@ -36,9 +35,9 @@
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src -d .",
     "lint": "eslint src",
-    "pretest": "lerna run --scope immutadot build",
+    "pretest": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
     "test": "jest -c ../../config/jest.js",
-    "pretest:coverage": "lerna run --scope immutadot build",
+    "pretest:coverage": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
     "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../config/jsdoc.json",
     "docs:private": "jsdoc -c ../../config/jsdoc.json -p"

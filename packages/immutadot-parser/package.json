@@ -1,13 +1,14 @@
 {
-  "name": "immutadot",
+  "name": "@immutadot/parser",
   "version": "2.0.0",
-  "description": "immutad●t (pronounced immutadot) is a set of immutable functions using dot notation.",
+  "description": "@immutadot/parser is the path parser of immutad●t.",
   "keywords": [
     "immutable",
     "dot-notation",
     "nested-structures",
     "redux"
   ],
+  "main": "index.js",
   "license": "MIT",
   "homepage": "https://immutadot.zenika.com",
   "bugs": "https://github.com/Zenika/immutadot/issues",
@@ -15,30 +16,22 @@
   "author": "Nicolas Lepage (https://github.com/nlepage)",
   "contributors": [
     "Yvonnick FRIN (https://github.com/frinyvonnick)",
-    "Hugo WOOD (https://github.com/hgwood)",
-    "Charles-Henri GUÉRIN (https://github.com/charlyx)"
+    "Hugo WOOD (https://github.com/hgwood)"
   ],
-  "main": "index.js",
-  "dependencies": {
-    "babel-runtime": "^6.26.0",
-    "@immutadot/parser": "^2.0.0"
-  },
   "devDependencies": {
     "babel-cli": "~6.26.0",
     "cross-env": "~5.1.4",
     "eslint": "~4.19.1",
     "jest": "~21.2.1",
-    "jsdoc": "~3.5.5"
+    "jsdoc": "~3.5.5",
+    "lerna": "~2.11.0"
   },
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src -d .",
     "lint": "eslint src",
-    "pretest": "lerna run --scope @immutadot/parser build",
     "test": "jest -c ../../config/jest.js",
-    "pretest:coverage": "lerna run --scope @immutadot/parser build",
     "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../config/jsdoc.json",
     "docs:private": "jsdoc -c ../../config/jsdoc.json -p"
-  },
-  "runkitExample": "const { set, push } = require('immutadot')\n\nset({ english: { greeting: 'Hi' } }, 'english.greeting', 'Hello')\n// → { english: { greeting: 'Hello' } }\n\npush({ i18n: { languages: ['English', 'French'] } }, 'i18n.languages', 'German', 'Spanish')\n// → { i18n: { languages: ['English', 'French', 'German', 'Spanish'] } }\n"
+  }
 }
