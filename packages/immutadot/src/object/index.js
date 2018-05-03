@@ -5,3 +5,4 @@
  */
 
 export { assign } from './assign'
+export { init } from './init'
