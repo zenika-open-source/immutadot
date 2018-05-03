@@ -1,11 +1,12 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
 import { merge } from 'object'
-
 describe('Merge', () => {
-
   it('should merge objects', () => {
-    immutaTest((input, path) => {
+    immutaTest({
+      nested: { prop: { a: 1 } },
+      other: {},
+    }, ['nested'], (input, path) => {
       const output = merge(input, path, {
         prop: {
           a: 2,
@@ -22,9 +23,6 @@ describe('Merge', () => {
         other: {},
       })
       return output
-    }, {
-      nested: { prop: { a: 1 } },
-      other: {},
-    }, 'nested')
+    })
   })
 })

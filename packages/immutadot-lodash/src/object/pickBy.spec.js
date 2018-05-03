@@ -1,11 +1,19 @@
 /* eslint-env jest */
 import { immutaTest } from 'test.utils'
 import { pickBy } from 'object'
-
 describe('PickBy', () => {
-
   it('should pick all matching props by value', () => {
-    immutaTest((input, path) => {
+    immutaTest({
+      nested: {
+        prop: {
+          a: 1,
+          b: 2,
+          c: 3,
+          d: 4,
+        },
+      },
+      other: {},
+    }, ['nested.prop'], (input, path) => {
       const output = pickBy(input, path, v => v < 3)
       expect(output).toEqual({
         nested: {
@@ -17,16 +25,6 @@ describe('PickBy', () => {
         other: {},
       })
       return output
-    }, {
-      nested: {
-        prop: {
-          a: 1,
-          b: 2,
-          c: 3,
-          d: 4,
-        },
-      },
-      other: {},
-    }, 'nested.prop')
+    })
   })
 })
