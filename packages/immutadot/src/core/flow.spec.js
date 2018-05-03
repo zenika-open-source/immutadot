@@ -6,7 +6,6 @@ import {
   update,
 } from 'core'
 import { immutaTest } from 'test.utils'
-
 describe('flow.flow', () => {
   const object = {
     nested1: {
@@ -19,14 +18,13 @@ describe('flow.flow', () => {
     },
     other: {},
   }
-
   it('should apply modifications', () => {
-    immutaTest((input, path1, path2, path3) => {
-      const output = flow(
-        set(path1, 'value5'),
-        update(path2, value => value.toUpperCase()),
-        unset(path3),
-      )(input)
+    immutaTest(object, [
+      'nested1.prop2',
+      'nested2.prop3',
+      'nested2.prop4',
+    ], (input, [path1, path2, path3]) => {
+      const output = flow(set(path1, 'value5'), update(path2, value => value.toUpperCase()), unset(path3))(input)
       expect(output).toEqual({
         nested1: {
           prop1: 'value1',
@@ -36,9 +34,12 @@ describe('flow.flow', () => {
         other: {},
       })
       return output
-    }, object, 'nested1.prop2', 'nested2.prop3', 'nested2.prop4')
-
-    immutaTest((input, path1, path2, path3) => {
+    })
+    immutaTest(object, [
+      'nested1.prop2',
+      'nested2.prop3',
+      'nested2.prop4',
+    ], (input, [path1, path2, path3]) => {
       const output = flow([
         set(path1, 'value5'),
         update(path2, value => value.toUpperCase()),
@@ -53,16 +54,16 @@ describe('flow.flow', () => {
         other: {},
       })
       return output
-    }, object, 'nested1.prop2', 'nested2.prop3', 'nested2.prop4')
-
-    immutaTest((input, path1, path2, path3) => {
-      const output = flow(
-        set(path1, 'value5'),
-        [
-          update(path2, value => value.toUpperCase()),
-          unset(path3),
-        ],
-      )(input)
+    })
+    immutaTest(object, [
+      'nested1.prop2',
+      'nested2.prop3',
+      'nested2.prop4',
+    ], (input, [path1, path2, path3]) => {
+      const output = flow(set(path1, 'value5'), [
+        update(path2, value => value.toUpperCase()),
+        unset(path3),
+      ])(input)
       expect(output).toEqual({
         nested1: {
           prop1: 'value1',
@@ -72,33 +73,25 @@ describe('flow.flow', () => {
         other: {},
       })
       return output
-    }, object, 'nested1.prop2', 'nested2.prop3', 'nested2.prop4')
+    })
   })
-
   it('should skip non functions', () => {
-    immutaTest((input, path) => {
-      const output = flow(
+    immutaTest({
+      nested: { prop: 'foo' },
+      other: {},
+    }, ['nested.prop'], (input, [path]) => {
+      const output = flow(null, set(path, 'bar'), undefined, false, [
         null,
-        set(path, 'bar'),
         undefined,
         false,
-        [
-          null,
-          undefined,
-          false,
-        ],
-      )(input)
+      ])(input)
       expect(output).toEqual({
         nested: { prop: 'bar' },
         other: {},
       })
       return output
-    }, {
-      nested: { prop: 'foo' },
-      other: {},
-    }, 'nested.prop')
+    })
   })
-
   it('should do nothing if empty flow', () => {
     const input = {
       nested: { prop: 'foo' },
@@ -107,17 +100,14 @@ describe('flow.flow', () => {
     const output = flow()(input)
     expect(output).toBe(input)
   })
-
   it('should accept non immutadot functions', () => {
-    expect(flow(
-      obj => ({
-        ...obj,
-        nested: {
-          ...obj.nested,
-          prop: 'bar',
-        },
-      }),
-    )({
+    expect(flow(obj => ({
+      ...obj,
+      nested: {
+        ...obj.nested,
+        prop: 'bar',
+      },
+    }))({
       nested: { prop: 'foo' },
       other: {},
     })).toEqual({
