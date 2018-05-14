@@ -2,7 +2,7 @@
 import { create } from 'object'
 import { immutaTest } from 'test.utils'
 describe('object.create', () => {
-  it('should createialize objects', () => {
+  it('should create objects', () => {
     immutaTest(undefined, ['nested.prop'], (input, path) => {
       const output = create(path, 1)
       expect(output).toEqual({ nested: { prop: 1 } })
