@@ -13,6 +13,15 @@ describe('path.apply', () => {
     obj[prop] = _inc(obj[prop], ...args)
   }
   const inc = apply(incOperation)
+  it('should in element at negative position in array', () => {
+    immutaTest({ nested: { prop: [0, 1, 2, 3] } },
+      ['nested.prop.3'],
+      input => {
+        const output = inc(input, 'nested.prop[-1]', 1)
+        expect(output).toEqual({ nested: { prop: [0, 1, 2, 4] } })
+        return output
+      })
+  })
   it('should inc in an array slice', () => {
     immutaTest({
       nested: {

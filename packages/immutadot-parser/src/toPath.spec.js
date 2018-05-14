@@ -76,10 +76,14 @@ describe('path.toPath', () => {
     ])
   })
   it('should convert array notation path', () => {
-    expect(toPath('[0]["1.2"][\'[1.2]\']["[\\"1.2\\"]"][1a][1[2]')).toEqual([
+    expect(toPath('[0][-2]["1.2"][\'[1.2]\']["[\\"1.2\\"]"][1a][1[2]')).toEqual([
       [
         index,
         0,
+      ],
+      [
+        index,
+        -2,
       ],
       [
         prop,

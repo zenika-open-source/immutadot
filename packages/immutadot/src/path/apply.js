@@ -8,6 +8,8 @@ import {
 } from '@immutadot/parser'
 
 import {
+  getArrayIndex,
+  getArrayLength,
   getSliceBounds,
   pathAlreadyApplied,
 } from './utils'
@@ -128,13 +130,14 @@ const apply = operation => {
           return [false, newObj]
         }
 
-        const value = isNil(curObj) ? undefined : curObj[propValue]
+        const computedProp = propType === index ? getArrayIndex(propValue, getArrayLength(curObj)) : propValue
+        const value = isNil(curObj) ? undefined : curObj[computedProp]
         const doCopy = !isCopy && !pathAlreadyApplied(curPath, appliedPaths)
 
         if (remPath.length === 1) {
           const newObj = copyIfNecessary(curObj, propType, doCopy)
           const resolvedArgs = args.map(arg => arg[getter] ? arg(obj) : arg)
-          operation(newObj, propValue, value, ...resolvedArgs)
+          operation(newObj, computedProp, value, ...resolvedArgs)
           return [false, newObj]
         }
 
@@ -142,7 +145,7 @@ const apply = operation => {
         if (noop) return [true, curObj]
 
         const newObj = copyIfNecessary(curObj, propType, doCopy)
-        newObj[propValue] = newValue
+        newObj[computedProp] = newValue
         return [false, newObj]
       }
 

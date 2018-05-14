@@ -3,7 +3,9 @@ import {
   slice,
 } from '@immutadot/parser'
 
-export const getSliceBound = (value, length) => {
+export const getArrayLength = arr => arr ? arr.length : 0
+
+export const getArrayIndex = (value, length) => {
   if (value < 0) return Math.max(length + value, 0)
   return value
 }
@@ -19,8 +21,8 @@ export const getSliceBound = (value, length) => {
  * @since 1.0.0
  */
 export const getSliceBounds = ([start, end], length) => ([
-  getSliceBound(start, length),
-  getSliceBound(end === undefined ? length : end, length),
+  getArrayIndex(start, length),
+  getArrayIndex(end === undefined ? length : end, length),
 ])
 
 /**
