@@ -1,10 +1,10 @@
 /* eslint-env jest */
+import { create } from 'object'
 import { immutaTest } from 'test.utils'
-import { init } from 'object'
-describe('object.init', () => {
-  it('should initialize objects', () => {
+describe('object.create', () => {
+  it('should createialize objects', () => {
     immutaTest(undefined, ['nested.prop'], (input, path) => {
-      const output = init(path, 1)
+      const output = create(path, 1)
       expect(output).toEqual({ nested: { prop: 1 } })
       return output
     })

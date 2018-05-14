@@ -5,4 +5,4 @@
  */
 
 export { assign } from './assign'
-export { init } from './init'
+export { create } from './create'
