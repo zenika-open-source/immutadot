@@ -18,7 +18,6 @@ immutad●t gives you a short and meaningful syntax to apply operations on immut
 
 [![CircleCI](https://circleci.com/gh/Zenika/immutadot.svg?style=shield&circle-token=8b309750f5785783ec9fb4531ba097da60563beb)](https://circleci.com/gh/Zenika/immutadot)
 [![codecov](https://codecov.io/gh/Zenika/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/Zenika/immutadot)
-[![Greenkeeper](https://badges.greenkeeper.io/Zenika/immutadot.svg)](https://greenkeeper.io/)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/immutadot/badge)](https://www.jsdelivr.com/package/npm/immutadot)
 
 ## [1.0](https://github.com/Zenika/immutadot/releases) is out 🎉
