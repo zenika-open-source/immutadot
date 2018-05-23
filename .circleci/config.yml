@@ -2,21 +2,6 @@ version: 2
 
 jobs:
 
-  lockfile:
-    docker:
-      - image: circleci/node:9
-    steps:
-      - checkout
-      - restore_cache:
-          key: node_modules-{{ checksum "yarn.lock" }}
-      - run: yarn
-      - run: yarn run greenkeeper-lockfile-update
-      - run: yarn run greenkeeper-lockfile-upload
-      - save_cache:
-          key: node_modules-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules
-
   lint:
     docker:
       - image: circleci/node:9
@@ -63,10 +48,5 @@ workflows:
   version: 2
   validate:
     jobs:
-      - lockfile
-      - lint:
-          requires:
-            - lockfile
-      - test:
-          requires:
-            - lockfile
+      - lint
+      - test

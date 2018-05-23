@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "babel-cli": "~6.26.0",
-    "cross-env": "~5.1.4",
+    "cross-env": "~5.1.5",
     "eslint": "~4.19.1",
     "jest": "~21.2.1",
     "jsdoc": "~3.5.5"
