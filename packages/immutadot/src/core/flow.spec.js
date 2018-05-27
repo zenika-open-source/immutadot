@@ -120,7 +120,7 @@ describe('flow.flow', () => {
     immutaTest({
       nested: { prop: [{ val: 1 }, { val: 2 }] },
       other: {},
-    }, ['nested.prop.0.val', 'nested.prop.1.val'], input => {
+    }, ['nested.prop.0.val', 'nested.prop.1.val', 'nested.prop.2'], input => {
       const output = flow(
         set('nested.prop[-2].val', 666),
         push('nested.prop', { val: 3 }),

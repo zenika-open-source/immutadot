@@ -129,14 +129,18 @@ const apply = operation => {
           return [false, newObj]
         }
 
-        const computedProp = propType === index ? getArrayIndex(propValue, length(curObj)) : propValue
-        const value = isNil(curObj) ? undefined : curObj[computedProp]
+        if (propType === index && propValue < 0) {
+          const actualIndex = getArrayIndex(propValue, length(curObj))
+          return walkPath(curObj, curPath, [[index, actualIndex], ...pathRest])
+        }
+
+        const value = isNil(curObj) ? undefined : curObj[propValue]
         const doCopy = !isCopy && !pathAlreadyApplied(curPath, appliedPaths)
 
         if (remPath.length === 1) {
           const newObj = copyIfNecessary(curObj, propType, doCopy)
           const resolvedArgs = args.map(arg => arg[getter] ? arg(obj) : arg)
-          operation(newObj, computedProp, value, ...resolvedArgs)
+          operation(newObj, propValue, value, ...resolvedArgs)
           return [false, newObj]
         }
 
@@ -144,7 +148,7 @@ const apply = operation => {
         if (noop) return [true, curObj]
 
         const newObj = copyIfNecessary(curObj, propType, doCopy)
-        newObj[computedProp] = newValue
+        newObj[propValue] = newValue
         return [false, newObj]
       }
 
