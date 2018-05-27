@@ -9,7 +9,6 @@ import {
 
 import {
   getArrayIndex,
-  getArrayLength,
   getSliceBounds,
   pathAlreadyApplied,
 } from './utils'
@@ -130,7 +129,7 @@ const apply = operation => {
           return [false, newObj]
         }
 
-        const computedProp = propType === index ? getArrayIndex(propValue, getArrayLength(curObj)) : propValue
+        const computedProp = propType === index ? getArrayIndex(propValue, length(curObj)) : propValue
         const value = isNil(curObj) ? undefined : curObj[computedProp]
         const doCopy = !isCopy && !pathAlreadyApplied(curPath, appliedPaths)
 

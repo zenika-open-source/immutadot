@@ -3,8 +3,6 @@ import {
   slice,
 } from '@immutadot/parser'
 
-export const getArrayLength = arr => arr ? arr.length : 0
-
 export const getArrayIndex = (value, length) => {
   if (value < 0) return Math.max(length + value, 0)
   return value
