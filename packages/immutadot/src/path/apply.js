@@ -131,6 +131,7 @@ const apply = operation => {
 
         if (propType === index && propValue < 0) {
           const actualIndex = getArrayIndex(propValue, length(curObj))
+          if (actualIndex === undefined) return [true, curObj]
           return walkPath(curObj, curPath, [[index, actualIndex], ...pathRest])
         }
 

@@ -22,6 +22,15 @@ describe('path.apply', () => {
         return output
       })
   })
+  it('should do nothing for out of bounds negative array index', () => {
+    immutaTest({ nested: { prop: [0, 1, 2, 3] } },
+      [],
+      input => {
+        const output = inc(input, 'nested.prop[-5]', 1)
+        expect(output).toEqual({ nested: { prop: [0, 1, 2, 3] } })
+        return output
+      })
+  })
   it('should inc in an array slice', () => {
     immutaTest({
       nested: {

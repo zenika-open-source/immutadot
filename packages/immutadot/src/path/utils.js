@@ -4,6 +4,14 @@ import {
 } from '@immutadot/parser'
 
 export const getArrayIndex = (value, length) => {
+  if (value < 0) {
+    if (-value > length) return undefined
+    return Math.max(length + value, 0)
+  }
+  return value
+}
+
+const getSliceBound = (value, length) => {
   if (value < 0) return Math.max(length + value, 0)
   return value
 }
@@ -19,8 +27,8 @@ export const getArrayIndex = (value, length) => {
  * @since 1.0.0
  */
 export const getSliceBounds = ([start, end], length) => ([
-  getArrayIndex(start, length),
-  getArrayIndex(end === undefined ? length : end, length),
+  getSliceBound(start, length),
+  getSliceBound(end === undefined ? length : end, length),
 ])
 
 /**
