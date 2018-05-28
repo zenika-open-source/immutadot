@@ -3,12 +3,20 @@ import {
   slice,
 } from '@immutadot/parser'
 
-export const getArrayIndex = (value, length) => {
-  if (value < 0) {
-    if (-value > length) return undefined
-    return Math.max(length + value, 0)
-  }
-  return value
+/**
+ * Get the actual array index for negative array indexes.<br/>
+ * If the index is out of bounds <code>undefined</code> is returned.
+ * @function
+ * @memberof path
+ * @param {number} value The negative index
+ * @param {number} length The length of the actual array
+ * @returns {number?} The actual array index or undefined
+ * @private
+ * @since 1.0.0
+ */
+export function getArrayIndex(value, length) {
+  if (-value > length) return undefined
+  return Math.max(length + value, 0)
 }
 
 const getSliceBound = (value, length) => {
