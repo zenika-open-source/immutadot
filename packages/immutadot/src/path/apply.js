@@ -8,6 +8,7 @@ import {
 } from '@immutadot/parser'
 
 import {
+  getArrayIndex,
   getSliceBounds,
   pathAlreadyApplied,
 } from './utils'
@@ -126,6 +127,12 @@ const apply = operation => {
 
           if (noop) return [true, curObj]
           return [false, newObj]
+        }
+
+        if (propType === index && propValue < 0) {
+          const actualIndex = getArrayIndex(propValue, length(curObj))
+          if (actualIndex === undefined) return [true, curObj]
+          return walkPath(curObj, curPath, [[index, actualIndex], ...pathRest])
         }
 
         const value = isNil(curObj) ? undefined : curObj[propValue]
