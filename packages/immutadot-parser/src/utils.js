@@ -20,24 +20,13 @@ const isNil = arg => arg === undefined || arg === null
 const toString = arg => typeof arg === 'string' ? arg : `${arg}`
 
 /**
- * Tests whether <code>arg</code> is a natural integer.
- * @function
- * @param {*} arg The value to test
- * @return {boolean} True if <code>arg</code> is a natural integer, false otherwise
- * @memberof util
- * @private
- * @since 1.0.0
- */
-const isNaturalInteger = arg => Number.isSafeInteger(arg) && arg >= 0
-
-/**
  * This is an alias for {@link util/isNaturalInteger}.
  * @function
  * @memberof path
  * @private
  * @since 1.0.0
  */
-const isIndex = isNaturalInteger
+const isIndex = Number.isSafeInteger
 
 /**
  * Tests whether <code>arg</code> is a valid slice index, that is an integer or <code>undefined</code>.

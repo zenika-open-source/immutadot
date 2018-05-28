@@ -6,6 +6,7 @@ import {
   update,
 } from 'core'
 import { immutaTest } from 'test.utils'
+import { push } from 'array'
 describe('flow.flow', () => {
   const object = {
     nested1: {
@@ -113,6 +114,23 @@ describe('flow.flow', () => {
     })).toEqual({
       nested: { prop: 'bar' },
       other: {},
+    })
+  })
+  it('should update two different array indexes', () => {
+    immutaTest({
+      nested: { prop: [{ val: 1 }, { val: 2 }] },
+      other: {},
+    }, ['nested.prop.0.val', 'nested.prop.1.val', 'nested.prop.2'], input => {
+      const output = flow(
+        set('nested.prop[-2].val', 666),
+        push('nested.prop', { val: 3 }),
+        set('nested.prop[-2].val', 666),
+      )(input)
+      expect(output).toEqual({
+        nested: { prop: [{ val: 666 }, { val: 666 }, { val: 3 }] },
+        other: {},
+      })
+      return output
     })
   })
 })
