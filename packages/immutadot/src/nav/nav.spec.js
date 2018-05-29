@@ -34,4 +34,16 @@ describe('nav.nav', () => {
       },
     )
   })
+
+  it('should create unknown path', () => {
+    immutaTest(
+      {},
+      ['nested.prop.0', 'nested.prop.1'],
+      input => {
+        const output = nav(toPath('nested.prop[1]'))(input)(() => 'foo')
+        expect(output).toEqual({ nested: { prop: [undefined, 'foo'] } })
+        return output
+      },
+    )
+  })
 })
