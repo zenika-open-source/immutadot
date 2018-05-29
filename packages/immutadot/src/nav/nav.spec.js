@@ -4,18 +4,15 @@ import { nav } from './nav'
 import { toPath } from '@immutadot/parser'
 
 describe('nav.nav', () => {
-  const obj = { nested: { prop: 'foo' } }
-  const path = 'nested.prop'
-
-  it('should allow to get a nested prop', () => {
-    expect(nav(toPath(path))(obj)()).toBe('foo')
+  it('should get a nested prop', () => {
+    expect(nav(toPath('nested.prop'))({ nested: { prop: 'foo' } })()).toBe('foo')
   })
 
-  it('should allow to set a nested prop', () => {
+  it('should set a nested prop', () => {
     immutaTest(
-      obj,
-      [path],
-      input => {
+      { nested: { prop: 'foo' } },
+      ['nested.prop'],
+      (input, [path]) => {
         const output = nav(toPath(path))(input)(() => 'bar')
         expect(output).toEqual({ nested: { prop: 'bar' } })
         return output
@@ -23,11 +20,11 @@ describe('nav.nav', () => {
     )
   })
 
-  it('should allow to update a nested prop', () => {
+  it('should update a nested prop', () => {
     immutaTest(
-      obj,
-      [path],
-      input => {
+      { nested: { prop: 'foo' } },
+      ['nested.prop'],
+      (input, [path]) => {
         const output = nav(toPath(path))(input)(value => value.toUpperCase())
         expect(output).toEqual({ nested: { prop: 'FOO' } })
         return output
@@ -46,4 +43,41 @@ describe('nav.nav', () => {
       },
     )
   })
+
+  it('should get a slice', () => {
+    expect(nav(toPath('nested.prop[:].val'))({
+      nested: {
+        prop: [
+          { val: 'foo' },
+          { val: 'bar' },
+        ],
+      },
+    })()).toEqual(['foo', 'bar'])
+  })
+
+  it('should update a slice', () => immutaTest(
+    {
+      nested: {
+        prop: [
+          { val: 'foo' },
+          { val: 'bar' },
+          { val: 'baz' },
+        ],
+      },
+    },
+    ['nested.prop.1.val', 'nested.prop.2.val'],
+    input => {
+      const output = nav(toPath('nested.prop[-2:].val'))(input)(value => value.toUpperCase())
+      expect(output).toEqual({
+        nested: {
+          prop: [
+            { val: 'foo' },
+            { val: 'BAR' },
+            { val: 'BAZ' },
+          ],
+        },
+      })
+      return output
+    },
+  ))
 })
