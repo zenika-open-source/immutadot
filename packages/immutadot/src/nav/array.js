@@ -1,8 +1,24 @@
-import {
-  isNil,
-  length,
-} from 'util/lang'
+import { isNil, length } from 'util/lang'
 import { NONE } from './consts'
+
+function makeCopy(obj) {
+  if (isNil(obj)) return []
+  return Array.isArray(obj) ? [...obj] : { ...obj }
+}
+
+export function index(key) {
+  return next => obj => {
+    const nextValue = isNil(obj) ? next(undefined) : next(obj[key])
+
+    return (updater = NONE) => {
+      if (updater === NONE) return nextValue()
+
+      const copy = makeCopy(obj)
+      copy[key] = nextValue(updater)
+      return copy
+    }
+  }
+}
 
 function getSliceBound(value, length) {
   if (value < 0) return Math.max(length + value, 0)
@@ -14,12 +30,6 @@ function getSliceBounds([start, end], length) {
     getSliceBound(start, length),
     getSliceBound(end === undefined ? length : end, length),
   ]
-}
-
-// FIXME mutualize with index (same file array.js ?)
-function makeCopy(obj) {
-  if (isNil(obj)) return []
-  return Array.isArray(obj) ? [...obj] : { ...obj }
 }
 
 export function slice(bounds) {

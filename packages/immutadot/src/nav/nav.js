@@ -1,8 +1,7 @@
 import * as types from '@immutadot/parser/consts'
+import { index, slice } from './array'
 import { NONE } from './consts'
-import { index } from './_index'
-import { prop } from './prop'
-import { slice } from './slice'
+import { prop } from './object'
 
 export function nav(path) {
   return path.map(toNav).reduceRight((next, nav) => nav(next), finalNav)
