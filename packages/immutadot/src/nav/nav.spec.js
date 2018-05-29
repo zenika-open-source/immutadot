@@ -5,7 +5,7 @@ import { toPath } from '@immutadot/parser'
 
 describe('nav.nav', () => {
   it('should get a nested prop', () => {
-    expect(nav(toPath('nested.prop'))({ nested: { prop: 'foo' } })()).toBe('foo')
+    expect(nav(toPath('nested.prop'))({ nested: { prop: 'foo' } }).get()).toBe('foo')
   })
 
   it('should set a nested prop', () => {
@@ -13,7 +13,7 @@ describe('nav.nav', () => {
       { nested: { prop: 'foo' } },
       ['nested.prop'],
       (input, [path]) => {
-        const output = nav(toPath(path))(input)(() => 'bar')
+        const output = nav(toPath(path))(input).update(() => 'bar')
         expect(output).toEqual({ nested: { prop: 'bar' } })
         return output
       },
@@ -25,7 +25,7 @@ describe('nav.nav', () => {
       { nested: { prop: 'foo' } },
       ['nested.prop'],
       (input, [path]) => {
-        const output = nav(toPath(path))(input)(value => value.toUpperCase())
+        const output = nav(toPath(path))(input).update(value => value.toUpperCase())
         expect(output).toEqual({ nested: { prop: 'FOO' } })
         return output
       },
@@ -37,7 +37,7 @@ describe('nav.nav', () => {
       {},
       ['nested.prop.0', 'nested.prop.1'],
       input => {
-        const output = nav(toPath('nested.prop[1]'))(input)(() => 'foo')
+        const output = nav(toPath('nested.prop[1]'))(input).update(() => 'foo')
         expect(output).toEqual({ nested: { prop: [undefined, 'foo'] } })
         return output
       },
@@ -52,7 +52,7 @@ describe('nav.nav', () => {
           { val: 'bar' },
         ],
       },
-    })()).toEqual(['foo', 'bar'])
+    }).get()).toEqual(['foo', 'bar'])
   })
 
   it('should update a slice', () => immutaTest(
@@ -67,7 +67,7 @@ describe('nav.nav', () => {
     },
     ['nested.prop.1.val', 'nested.prop.2.val'],
     input => {
-      const output = nav(toPath('nested.prop[-2:].val'))(input)(value => value.toUpperCase())
+      const output = nav(toPath('nested.prop[-2:].val'))(input).update(value => value.toUpperCase())
       expect(output).toEqual({
         nested: {
           prop: [

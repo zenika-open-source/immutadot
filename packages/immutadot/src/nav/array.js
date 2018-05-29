@@ -1,59 +1,88 @@
 import { isNil, length } from 'util/lang'
-import { NONE } from './consts'
 
-function makeCopy(obj) {
-  if (isNil(obj)) return []
-  return Array.isArray(obj) ? [...obj] : { ...obj }
-}
+class ArrayNav {
+  constructor(obj, next) {
+    this.obj = obj
+    this.next = next
+  }
 
-export function index(key) {
-  return next => obj => {
-    const nextValue = isNil(obj) ? next(undefined) : next(obj[key])
-
-    return (updater = NONE) => {
-      if (updater === NONE) return nextValue()
-
-      const copy = makeCopy(obj)
-      copy[key] = nextValue(updater)
-      return copy
-    }
+  copy() {
+    if (isNil(this.obj)) return []
+    return Array.isArray(this.obj) ? [...this.obj] : { ...this.obj }
   }
 }
 
-function getSliceBound(value, length) {
-  if (value < 0) return Math.max(length + value, 0)
-  return value
-}
-
-function getSliceBounds([start, end], length) {
-  return [
-    getSliceBound(start, length),
-    getSliceBound(end === undefined ? length : end, length),
-  ]
-}
-
-export function slice(bounds) {
-  return next => obj => {
-    let nextValue
-
-    if (isNil(obj)) {
-      nextValue = () => []
-    } else {
-      const [start, end] = getSliceBounds(bounds, length(obj))
-
-      const nextValues = Array.from(function* () {
-        for (let i = start; i < end; i++) yield [i, next(obj[i])]
-      }())
-
-      nextValue = updater => nextValues.map(([i, nextIndex]) => [i, nextIndex(updater)])
-    }
-
-    return (updater = NONE) => {
-      if (updater === NONE) return nextValue().map(([, value]) => value)
-
-      const copy = makeCopy(obj)
-      for (const [i, value] of nextValue(updater)) copy[i] = value
-      return copy
-    }
+class IndexNav extends ArrayNav {
+  constructor(obj, index, next) {
+    super(obj, next)
+    this.index = index
   }
+
+  get nextValue() {
+    return isNil(this.obj) ? this.next(undefined) : this.next(this.obj[this.index])
+  }
+
+  get() {
+    return this.nextValue.get()
+  }
+
+  update(updater) {
+    const copy = this.copy()
+    copy[this.index] = this.nextValue.update(updater)
+    return copy
+  }
+}
+
+export function indexNav(index) {
+  return next => obj => new IndexNav(obj, index, next)
+}
+
+class SliceNav extends ArrayNav {
+  constructor(obj, bounds, next) {
+    super(obj, next)
+    this.bounds = bounds
+  }
+
+  get length() {
+    if (this._length === undefined) this._length = length(this.obj)
+    return this._length
+  }
+
+  bound(index) {
+    if (index < 0) return Math.max(this.length + index, 0)
+    return index
+  }
+
+  get start() {
+    return this.bound(this.bounds[0])
+  }
+
+  get end() {
+    const [, end] = this.bounds
+    return this.bound(end === undefined ? this.length : end)
+  }
+
+  get range() {
+    const { start, end } = this
+    return (function*() {
+      for (let i = start; i < end; i++) yield i
+    }())
+  }
+
+  get() {
+    if (isNil(this.obj)) return []
+    return Array.from(this.range, index => this.next(this.obj[index]).get())
+  }
+
+  update(updater) {
+    if (isNil(this.obj)) return []
+
+    const copy = this.copy()
+    for (const index of this.range) copy[index] = this.next(this.obj[index]).update(updater)
+    return copy
+  }
+}
+
+export function sliceNav(bounds) {
+  return next => obj => new SliceNav(obj, bounds, next)
 }
