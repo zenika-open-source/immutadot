@@ -26,6 +26,6 @@ class PropNav {
   }
 }
 
-export function propNav(key) {
-  return next => obj => new PropNav(obj, key, next)
+export function propNav(key, next) {
+  return obj => new PropNav(obj, key, next)
 }

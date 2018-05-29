@@ -3,14 +3,14 @@ import { indexNav, sliceNav } from './array'
 import { propNav } from './object'
 
 export function nav(path) {
-  return path.map(toNav).reduceRight((next, nav) => nav(next), finalNav)
+  return path.reduceRight((next, [type, value]) => toNav(type)(value, next), finalNav)
 }
 
-function toNav([type, value]) {
+function toNav(type) {
   switch (type) {
-  case prop: return propNav(value)
-  case index: return indexNav(value)
-  case slice: return sliceNav(value)
+  case prop: return propNav
+  case index: return indexNav
+  case slice: return sliceNav
   default: throw TypeError(type)
   }
 }

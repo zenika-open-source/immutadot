@@ -33,8 +33,8 @@ class IndexNav extends ArrayNav {
   }
 }
 
-export function indexNav(index) {
-  return next => obj => new IndexNav(obj, index, next)
+export function indexNav(index, next) {
+  return obj => new IndexNav(obj, index, next)
 }
 
 class SliceNav extends ArrayNav {
@@ -83,6 +83,6 @@ class SliceNav extends ArrayNav {
   }
 }
 
-export function sliceNav(bounds) {
-  return next => obj => new SliceNav(obj, bounds, next)
+export function sliceNav(bounds, next) {
+  return obj => new SliceNav(obj, bounds, next)
 }
