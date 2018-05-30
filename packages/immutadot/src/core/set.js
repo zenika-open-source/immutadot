@@ -1,3 +1,4 @@
+import { isString } from 'util/lang'
 import { nav } from 'nav/nav'
 import { toPath } from '@immutadot/parser'
 
@@ -15,4 +16,10 @@ function set(obj, path, value) {
   return nav(toPath(path))(obj).update(() => value)
 }
 
-export { set }
+const curried = (path, value) => obj => set(obj, path, value)
+
+function optionallyCurried(...args) {
+  return isString(args[0]) ? curried(...args) : set(...args)
+}
+
+export { optionallyCurried as set }
