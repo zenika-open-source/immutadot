@@ -6,6 +6,11 @@ class ArrayNav {
     this.next = next
   }
 
+  get length() {
+    if (this._length === undefined) this._length = length(this.obj)
+    return this._length
+  }
+
   copy() {
     if (isNil(this.obj)) return []
     return Array.isArray(this.obj) ? [...this.obj] : { ...this.obj }
@@ -15,11 +20,19 @@ class ArrayNav {
 class IndexNav extends ArrayNav {
   constructor(obj, index, next) {
     super(obj, next)
-    this.index = index
+    this._index = index
+  }
+
+  get index() {
+    const { _index, length } = this
+    if (_index >= 0) return _index
+    if (-_index > length) return undefined
+    return Math.max(length + _index, 0)
   }
 
   get nextValue() {
-    return isNil(this.obj) ? this.next(undefined) : this.next(this.obj[this.index])
+    const { index, obj } = this
+    return (isNil(obj) || index === undefined) ? this.next(undefined) : this.next(obj[index])
   }
 
   get() {
@@ -41,11 +54,6 @@ class SliceNav extends ArrayNav {
   constructor(obj, bounds, next) {
     super(obj, next)
     this.bounds = bounds
-  }
-
-  get length() {
-    if (this._length === undefined) this._length = length(this.obj)
-    return this._length
   }
 
   bound(index) {

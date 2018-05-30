@@ -55,6 +55,10 @@ describe('nav.nav', () => {
     }).get()).toEqual(['foo', 'bar'])
   })
 
+  it('should get a negative array index', () => {
+    expect(nav(toPath('nested.prop[-3]'))({ nested: { prop: [0, 1, 2, 3, 4] } }).get()).toBe(2)
+  })
+
   it('should update a slice', () => immutaTest(
     {
       nested: {
