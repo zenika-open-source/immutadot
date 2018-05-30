@@ -5,6 +5,8 @@ import { propsNav } from './propsNav'
 import { sliceNav } from './sliceNav'
 
 export function nav(path) {
+  if (path.length === 0) throw new TypeError('path should not be empty')
+
   return path.reduceRight((next, [type, value]) => toNav(type)(value, next), finalNav)
 }
 
