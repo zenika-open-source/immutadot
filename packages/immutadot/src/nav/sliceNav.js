@@ -2,8 +2,8 @@ import { ArrayNav } from './arrayNav'
 import { isNil } from 'util/lang'
 
 class SliceNav extends ArrayNav {
-  constructor(obj, bounds, next) {
-    super(obj, next)
+  constructor(value, bounds, next) {
+    super(value, next)
     this.bounds = bounds
   }
 
@@ -29,19 +29,22 @@ class SliceNav extends ArrayNav {
   }
 
   get() {
-    if (isNil(this.obj)) return []
-    return Array.from(this.range, index => this.next(this.obj[index]).get())
+    const { _next, value, range } = this
+
+    if (isNil(value)) return []
+
+    return Array.from(range, index => _next(value[index]).get())
   }
 
   update(updater) {
-    if (isNil(this.obj)) return []
+    const { _next, value, range } = this
 
     const copy = this.copy()
-    for (const index of this.range) copy[index] = this.next(this.obj[index]).update(updater)
+    for (const index of range) copy[index] = _next(value[index]).update(updater)
     return copy
   }
 }
 
 export function sliceNav(bounds, next) {
-  return obj => new SliceNav(obj, bounds, next)
+  return value => new SliceNav(value, bounds, next)
 }

@@ -1,4 +1,5 @@
-import { index, prop, slice } from '@immutadot/parser/consts'
+import { allProps, index, prop, slice } from '@immutadot/parser/consts'
+import { allPropsNav } from './allPropsNav'
 import { indexNav } from './indexNav'
 import { propNav } from './propNav'
 import { sliceNav } from './sliceNav'
@@ -9,8 +10,9 @@ export function nav(path) {
 
 function toNav(type) {
   switch (type) {
-  case prop: return propNav
+  case allProps: return allPropsNav
   case index: return indexNav
+  case prop: return propNav
   case slice: return sliceNav
   default: throw TypeError(type)
   }

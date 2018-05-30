@@ -2,8 +2,8 @@ import { ArrayNav } from './arrayNav'
 import { isNil } from 'util/lang'
 
 class IndexNav extends ArrayNav {
-  constructor(obj, index, next) {
-    super(obj, next)
+  constructor(value, index, next) {
+    super(value, next)
     this._index = index
   }
 
@@ -14,22 +14,22 @@ class IndexNav extends ArrayNav {
     return Math.max(length + _index, 0)
   }
 
-  get nextValue() {
-    const { index, obj } = this
-    return (isNil(obj) || index === undefined) ? this.next(undefined) : this.next(obj[index])
+  get next() {
+    const { _next, index, value } = this
+    return (isNil(value) || index === undefined) ? _next(undefined) : _next(value[index])
   }
 
   get() {
-    return this.nextValue.get()
+    return this.next.get()
   }
 
   update(updater) {
     const copy = this.copy()
-    copy[this.index] = this.nextValue.update(updater)
+    copy[this.index] = this.next.update(updater)
     return copy
   }
 }
 
 export function indexNav(index, next) {
-  return obj => new IndexNav(obj, index, next)
+  return value => new IndexNav(value, index, next)
 }

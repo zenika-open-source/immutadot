@@ -1,31 +1,28 @@
+import { ObjectNav } from './objectNav'
 import { isNil } from 'util/lang'
 
-class PropNav {
-  constructor(obj, key, next) {
-    this.obj = obj
+class PropNav extends ObjectNav {
+  constructor(value, key, next) {
+    super(value, next)
     this.key = key
-    this.next = next
   }
 
-  get nextValue() {
-    return isNil(this.obj) ? this.next(undefined) : this.next(this.obj[this.key])
+  get next() {
+    const { _next, key, value } = this
+    return isNil(value) ? _next(undefined) : _next(value[key])
   }
 
   get() {
-    return this.nextValue.get()
-  }
-
-  copy() {
-    return isNil(this.obj) ? {} : { ...this.obj }
+    return this.next.get()
   }
 
   update(updater) {
     const copy = this.copy()
-    copy[this.key] = this.nextValue.update(updater)
+    copy[this.key] = this.next.update(updater)
     return copy
   }
 }
 
 export function propNav(key, next) {
-  return obj => new PropNav(obj, key, next)
+  return value => new PropNav(value, key, next)
 }

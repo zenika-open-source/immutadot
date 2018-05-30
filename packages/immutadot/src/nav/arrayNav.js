@@ -1,18 +1,15 @@
 import { isNil, length } from 'util/lang'
+import { BaseNav } from './baseNav'
 
-export class ArrayNav {
-  constructor(obj, next) {
-    this.obj = obj
-    this.next = next
-  }
-
+export class ArrayNav extends BaseNav {
   get length() {
-    if (this._length === undefined) this._length = length(this.obj)
+    if (this._length === undefined) this._length = length(this.value)
     return this._length
   }
 
   copy() {
-    if (isNil(this.obj)) return []
-    return Array.isArray(this.obj) ? [...this.obj] : { ...this.obj }
+    const { value } = this
+    if (isNil(value)) return []
+    return Array.isArray(value) ? [...value] : { ...value }
   }
 }
