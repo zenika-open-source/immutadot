@@ -1,56 +1,73 @@
-export function createBenchmark(title, testResult, pMaxTime = 30, pMaxOperations = 1000) {
+const fast = Boolean(process.env.FAST)
 
-  const fast = Boolean(process.env.FAST)
-  const maxTime = fast ? pMaxTime / 3 : pMaxTime
-  const maxOperations = fast ? Math.round(pMaxOperations / 3) : pMaxOperations
+export class BenchmarkSuite {
+  constructor(contestants) {
+    this.contestants = contestants
+    this.benchmarks = []
+  }
 
-  const runs = []
+  createBenchmark(title, testResult, pMaxTime = 30, pMaxOperations = 1000) {
+    const benchmark = {
+      title,
+      runs: {},
+    }
+    this.benchmarks.push(benchmark)
 
-  function run(key, opTitle, operation) {
-    const startTime = Date.now()
-    const maxTimeMs = Math.round(maxTime * 1000)
-    const maxRunTime = Math.round(maxTimeMs / 10) // Max run time is a tenth of max time
-    const limitEndTime = startTime + maxTimeMs
+    const maxTime = fast ? pMaxTime / 3 : pMaxTime
+    const maxOperations = fast ? Math.round(pMaxOperations / 3) : pMaxOperations
 
-    let iterations = 1 // Start with 1 iteration
-    let nbOperations = 0
-    let totalTime = 0
+    function run(key, operation) {
+      const startTime = Date.now()
+      const maxTimeMs = Math.round(maxTime * 1000)
+      const maxRunTime = Math.round(maxTimeMs / 10) // Max run time is a tenth of max time
+      const limitEndTime = startTime + maxTimeMs
 
-    while (iterations > 0) {
-      nbOperations += iterations
+      let iterations = 1 // Start with 1 iteration
+      let nbOperations = 0
+      let totalTime = 0
 
-      const runStartTime = Date.now()
-      while (iterations--) operation()
-      totalTime += Date.now() - runStartTime
+      while (iterations > 0) {
+        nbOperations += iterations
 
-      const tempMeanTime = totalTime / nbOperations
+        const runStartTime = Date.now()
+        while (iterations--) operation()
+        totalTime += Date.now() - runStartTime
 
-      iterations = Math.min(
-        // Either enough operations to consume max run time or remaining time
-        Math.ceil(Math.min(maxRunTime, Math.max(limitEndTime - Date.now(), 0)) / tempMeanTime),
-        // Or enough operations to reach max operations
-        maxOperations - nbOperations,
-      )
+        const tempMeanTime = totalTime / nbOperations
+
+        iterations = Math.min(
+          // Either enough operations to consume max run time or remaining time
+          Math.ceil(Math.min(maxRunTime, Math.max(limitEndTime - Date.now(), 0)) / tempMeanTime),
+          // Or enough operations to reach max operations
+          maxOperations - nbOperations,
+        )
+      }
+
+      if (typeof testResult === 'function') testResult(key, operation())
+
+      benchmark.runs[key] = {
+        totalTime,
+        nbOperations,
+      }
     }
 
-    if (typeof testResult === 'function') testResult(key, operation())
-
-    runs.push({
-      title: opTitle,
-      totalTime,
-      nbOperations,
-    })
+    return run
   }
 
-  run.log = function() {
-    console.log( // eslint-disable-line no-console
-      `${title}:\n${
-        runs
-          .map(({ title, totalTime, nbOperations }) => `  ${title}: ~${Math.round(nbOperations * 1000 / totalTime)}ops/s (${(totalTime / nbOperations).toFixed(2)}ms/op) on ${nbOperations}ops`)
-          .join('\n')
-      }`,
-    )
+  printRun({ totalTime, nbOperations }) {
+    return `${Math.round(nbOperations * 1000 / totalTime)}ops/s (${(totalTime / nbOperations).toFixed(2)}ms/op)`
   }
 
-  return run
+  printBenchmark({ title, runs }) {
+    return `| ${title} | ${this.contestants.map(([key]) => runs[key]).map(run => this.printRun(run)).join(' | ')} |`
+  }
+
+  log() {
+    // eslint-disable-next-line
+    console.log([
+      `|  | ${this.contestants.map(([, title]) => title).join(' | ')} |`,
+      `| --- | ${this.contestants.map(() => '---').join(' | ')} |`,
+      this.benchmarks.map(benchmark => this.printBenchmark(benchmark)).join('\n'),
+    ].join('\n'))
+  }
 }
