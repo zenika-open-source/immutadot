@@ -1,7 +1,8 @@
 const fast = Boolean(process.env.FAST)
 
 export class BenchmarkSuite {
-  constructor(contestants) {
+  constructor(reference, contestants) {
+    this.reference = reference
     this.contestants = contestants
     this.benchmarks = []
   }
@@ -58,12 +59,34 @@ export class BenchmarkSuite {
     if (run === undefined) return 'No run'
     const { totalTime, nbOperations } = run
     const opTime = totalTime / nbOperations
-    const formattedOpTime = opTime < 0.01 ? `${(opTime * 1000).toFixed(3)}ns` : `${(opTime).toFixed(3)}ms`
+
+    let formattedOpTime
+    if (opTime < 0.001) {
+      const nanoTime = opTime * 1000000
+      formattedOpTime = `${(nanoTime).toFixed(3 - Math.ceil(Math.log10(nanoTime)))}ns`
+    } else if (opTime < 1) {
+      const microTime = opTime * 1000
+      formattedOpTime = `${(microTime).toFixed(3 - Math.ceil(Math.log10(microTime)))}µs`
+    } else {
+      formattedOpTime = `${(opTime).toFixed(3 - Math.ceil(Math.log10(opTime)))}ms`
+    }
+
     return `${Math.round(nbOperations * 1000 / totalTime)}ops/s (${formattedOpTime}/op)`
   }
 
   printBenchmark({ title, runs }) {
     return `| ${title} | ${this.contestants.map(([key]) => runs[key]).map(run => this.printRun(run)).join(' | ')} |`
+  }
+
+  printScore(key) {
+    if (key === this.reference) return 100
+    const scores = this.benchmarks.map(({ runs }) => {
+      const reference = runs[this.reference]
+      const run = runs[key]
+      if (run === undefined) return undefined
+      return run.nbOperations * 100 * reference.totalTime / run.totalTime / reference.nbOperations
+    }).filter(score => score !== undefined)
+    return Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length)
   }
 
   log() {
@@ -72,6 +95,7 @@ export class BenchmarkSuite {
       `|  | ${this.contestants.map(([, title]) => title).join(' | ')} |`,
       `| --- | ${this.contestants.map(() => '---').join(' | ')} |`,
       this.benchmarks.map(benchmark => this.printBenchmark(benchmark)).join('\n'),
+      `| Final score | ${this.contestants.map(([key]) => this.printScore(key)).join(' | ')} |`,
     ].join('\n'))
   }
 }

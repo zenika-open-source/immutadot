@@ -3,13 +3,16 @@ import { BenchmarkSuite } from './benchmark'
 import { setProp } from './setProp'
 import { updateTodos } from './updateTodos'
 
-const benchmarkSuite = new BenchmarkSuite([
-  ['es2015', 'ES2015 destructuring'],
-  ['immutable', 'immutable 3.8.2'],
-  ['immer', 'immer 1.2.0'],
-  ['qim', 'qim 0.0.52'],
-  ['immutadot', 'immutad●t 2.0.0'],
-])
+const benchmarkSuite = new BenchmarkSuite(
+  'es2015',
+  [
+    ['es2015', 'ES2015 destructuring'],
+    ['immutable', 'immutable 3.8.2'],
+    ['immer', 'immer 1.2.0'],
+    ['qim', 'qim 0.0.52'],
+    ['immutadot', 'immutad●t 2.0.0'],
+  ],
+)
 
 describe('Benchmark suite', () => {
   describe('Set a property', () => setProp(benchmarkSuite))
