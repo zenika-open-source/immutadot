@@ -54,8 +54,12 @@ export class BenchmarkSuite {
     return run
   }
 
-  printRun({ totalTime, nbOperations }) {
-    return `${Math.round(nbOperations * 1000 / totalTime)}ops/s (${(totalTime / nbOperations).toFixed(2)}ms/op)`
+  printRun(run) {
+    if (run === undefined) return 'No run'
+    const { totalTime, nbOperations } = run
+    const opTime = totalTime / nbOperations
+    const formattedOpTime = opTime < 0.01 ? `${(opTime * 1000).toFixed(3)}ns` : `${(opTime).toFixed(3)}ms`
+    return `${Math.round(nbOperations * 1000 / totalTime)}ops/s (${formattedOpTime}/op)`
   }
 
   printBenchmark({ title, runs }) {
