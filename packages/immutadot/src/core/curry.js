@@ -1,29 +1,20 @@
-function call(fn, pArgs, maxArity) {
-  // FIXME should we cap to maxArity ?
-  const args = (maxArity !== undefined && pArgs.length > maxArity) ? pArgs.slice(0, maxArity) : pArgs
-  const objIndex = args.length - 1
-  return fn(args[objIndex], ...args.slice(0, objIndex))
-}
-
 /**
  * Manage a curried call.
  * @returns {function|*} Either a new function or the result of the call to the actual function
  * @this Object
  */
-function curried(...pArgs) {
-  const { fn, last, maxArity, minArity } = this
-  const args = [...this.args, ...pArgs]
-  const { length } = args
-  const isNextLast = length >= minArity - 1
+function curried(...args) {
+  const { fn, last, minArity } = this
 
-  if (last || isNextLast && maxArity !== undefined && length >= maxArity)
-    return call(fn, args, maxArity)
+  if (last) {
+    const obj = args.length === 0 ? undefined : args[0]
+    return fn(obj, ...this.args)
+  }
 
-  return curried.bind({
-    ...this,
-    args,
-    last: isNextLast,
-  })
+  this.args.push(...args)
+  this.last = this.args.length >= minArity - 1
+
+  return curried.bind(this)
 }
 
 /**
@@ -33,19 +24,18 @@ function curried(...pArgs) {
  */
 function maybeCurried(...args) {
   const { fn, minArity } = this
-  // FIXME should we cap to maxArity ?
+
   if (args.length >= minArity) return fn(...args)
-  return curried.bind({
-    ...this,
-    args,
-    last: args.length === minArity - 1,
-  })
+
+  this.last = args.length === minArity - 1
+  this.args = args
+
+  return curried.bind(this)
 }
 
-export function curry(fn, minArity, maxArity) {
+export function curry(fn, minArity = fn.length) {
   return maybeCurried.bind({
     fn,
     minArity,
-    maxArity,
   })
 }
