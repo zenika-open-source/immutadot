@@ -20,9 +20,16 @@ immutad●t gives you a short and meaningful syntax to apply operations on immut
 [![codecov](https://codecov.io/gh/Zenika/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/Zenika/immutadot)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/immutadot/badge)](https://www.jsdelivr.com/package/npm/immutadot)
 
-## [1.0](https://github.com/Zenika/immutadot/releases) is out 🎉
+## [2.0](https://github.com/Zenika/immutadot/milestone/12) is under development :building_construction:
 
-If you were using a previous version of immutad●t, check out the [migrating guide](https://github.com/Zenika/immutadot/blob/master/docs/MIGRATING_TO_1_0.md).
+We are working right now on the second major version of immutad●t ! :construction_worker_woman::construction_worker_man:
+
+One of our main goals is to bring a major performance improvement :zap:, but also some new features :
+ - [Negative array indexes](https://github.com/Zenika/immutadot/issues/169) (already supported in slices)
+ - [Step in slice notation](https://github.com/Zenika/immutadot/issues/295)
+ - [Optional chaining](https://github.com/Zenika/immutadot/issues/116)
+
+Feel free to add feature requests or to join us !
 
 ## Installation
 
