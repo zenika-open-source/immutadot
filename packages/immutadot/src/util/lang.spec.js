@@ -3,12 +3,11 @@ import {
   isFunction,
   isNaturalInteger,
   isNil,
-  isObject,
   isString,
-  isSymbol,
   length,
   toString,
 } from './lang'
+
 describe('Lang utils', () => {
   describe('util.isFunction', () => {
     it('should return true for functions', () => {
@@ -77,18 +76,6 @@ describe('Lang utils', () => {
       expect(isString(null)).toBe(false)
     })
   })
-  describe('util.isSymbol', () => {
-    it('should return true for symbols', () => {
-      expect(isSymbol(Symbol())).toBe(true)
-      expect(isSymbol(Symbol('\uD83C\uDF7A'))).toBe(true)
-      expect(isSymbol(Symbol.for('\uD83C\uDF7A'))).toBe(true)
-    })
-    it('should return false for non symbols', () => {
-      expect(isSymbol('\uD83C\uDF7A')).toBe(false)
-      expect(isSymbol(666)).toBe(false)
-      expect(isSymbol({})).toBe(false)
-    })
-  })
   describe('util.length', () => {
     it('should return length of array', () => {
       expect(length(Array(666))).toBe(666)
@@ -112,30 +99,6 @@ describe('Lang utils', () => {
       expect(toString(null)).toBe('null')
       expect(toString('\uD83C\uDF7A')).toBe('\uD83C\uDF7A')
       expect(toString(666)).toBe('666')
-    })
-  })
-  describe('util.isObject', () => {
-    it('should return true for object', () => {
-      expect(isObject({})).toBe(true)
-    })
-    it('should return true for array', () => {
-      expect(isObject([])).toBe(true)
-    })
-    it('should return true for function', () => {
-      const func = () => 1
-      expect(isObject(func)).toBe(true)
-    })
-    it('should return true for string', () => {
-      expect(isObject('')).toBe(false)
-    })
-    it('should return true for number', () => {
-      expect(isObject(1)).toBe(false)
-    })
-    it('should return true for instance of wrappers', () => {
-      /* eslint-disable no-new-wrappers */
-      expect(isObject(new Number(1))).toBe(true)
-      expect(isObject(new String(''))).toBe(true)
-      expect(isObject(new Boolean(true))).toBe(true) /* eslint-enable no-new-wrappers */
     })
   })
 })

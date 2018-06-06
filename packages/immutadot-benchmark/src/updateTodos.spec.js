@@ -3,7 +3,7 @@ import { $each, $slice, set as qimSet } from 'qim'
 
 import { List, Record } from 'immutable'
 
-import immer, { setAutoFreeze, setUseProxies } from 'immer'
+import immer, { setAutoFreeze } from 'immer'
 
 import { createBenchmark } from './benchmark'
 
@@ -70,21 +70,12 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
     })
   })
 
-  it('immutable w/o conversion', () => {
+  it('immutable', () => {
     benchmark('immutable', 'immutable 4.0.0-rc.12 (w/o conversion to plain JS objects)', () => {
       const [start, end] = randomBounds()
       immutableState.withMutations(state => {
         for (let i = start; i < end; i++) state.setIn([i, 'done'], true)
       })
-    })
-  })
-
-  it('immutable w/ conversion', () => {
-    benchmark('immutable-toJS', 'immutable 4.0.0-rc.12 (w/ conversion to plain JS objects)', () => {
-      const [start, end] = randomBounds()
-      return immutableState.withMutations(state => {
-        for (let i = start; i < end; i++) state.setIn([i, 'done'], true)
-      }).toJS()
     })
   })
 
@@ -97,17 +88,6 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
     })
   })
 
-  it('immer ES5', () => {
-    setUseProxies(false)
-    benchmark('immer-es5', 'immer 1.8.0 (ES5 implementation w/o autofreeze)', () => {
-      const [start, end] = randomBounds()
-      return immer(baseState, draft => {
-        for (let i = start; i < end; i++) draft[i].done = true
-      })
-    })
-    setUseProxies(true)
-  })
-
   it('qim', () => {
     benchmark('qim', 'qim 0.0.52', () => {
       const [start, end] = randomBounds()
@@ -116,7 +96,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   })
 
   it('immutad●t', () => {
-    benchmark('immutadot', 'immutad●t 1.0.0', () => {
+    benchmark('immutadot', 'immutad●t 2.0.0', () => {
       const [start, end] = randomBounds()
       return set(baseState, `[${start}:${end}].done`, true)
     })
