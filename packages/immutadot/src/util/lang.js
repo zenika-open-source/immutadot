@@ -43,17 +43,6 @@ const isNil = arg => arg === undefined || arg === null
 const isString = arg => typeof arg === 'string'
 
 /**
- * Tests whether <code>arg</code> is a Symbol.
- * @param {*} arg The value to test
- * @return {boolean} True if <code>arg</code> is a Symbol, false otherwise
- * @memberof util
- * @private
- * @since 1.0.0
- * @see {@link https://mdn.io/Symbol|Symbol} for more information.
- */
-const isSymbol = arg => typeof arg === 'symbol'
-
-/**
  * Returns the length of <code>arg</code>.
  * @function
  * @memberof util
@@ -77,23 +66,11 @@ const length = arg => {
  */
 const toString = arg => typeof arg === 'string' ? arg : `${arg}`
 
-/**
- * Tests whether <code>arg</code> is a object.
- * @param {*} arg The value to test
- * @return {boolean} True if <code>arg</code> is an <code>Object</code>, false otherwise
- * @memberof util
- * @private
- * @since 1.0.0
- */
-const isObject = arg => arg instanceof Object
-
 export {
   isFunction,
   isNaturalInteger,
   isNil,
-  isObject,
   isString,
-  isSymbol,
   length,
   toString,
 }
