@@ -3,8 +3,7 @@ import { BaseNav } from './baseNav'
 
 export class ArrayNav extends BaseNav {
   get length() {
-    if (this._length === undefined) this._length = length(this.value)
-    return this._length
+    return length(this.value)
   }
 
   copy() {
