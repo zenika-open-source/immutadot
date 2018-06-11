@@ -1,45 +1,7 @@
-/**
- * Manage a curried call.
- * @returns {function|*} Either a new function or the result of the call to the actual function
- * @this Object
- */
-function curried(...newArgs) {
-  const { fn, last, minArity } = this
-
-  if (last) {
-    const [obj] = newArgs
-    return fn(obj, ...this.args)
+export function curry(fn, minArity = fn.length) {
+  function curried(prevArgs) {
+    return (...args) => (prevArgs.length >= minArity - 1) ? fn(args[0], ...prevArgs) : curried(prevArgs.concat(args))
   }
 
-  const args = this.args.concat(newArgs)
-
-  return curried.bind({
-    ...this,
-    args,
-    last: args.length >= minArity - 1,
-  })
-}
-
-/**
- * Manage a maybe curried call.
- * @returns {function|*} Either a new function or the result of the call to the actual function
- * @this Object
- */
-function maybeCurried(...args) {
-  const { fn, minArity } = this
-
-  if (args.length >= minArity) return fn(...args)
-
-  return curried.bind({
-    ...this,
-    last: args.length === minArity - 1,
-    args,
-  })
-}
-
-export function curry(fn, minArity = fn.length) {
-  return maybeCurried.bind({
-    fn,
-    minArity,
-  })
+  return (...args) => (args.length >= minArity) ? fn(...args) : curried(args)
 }
