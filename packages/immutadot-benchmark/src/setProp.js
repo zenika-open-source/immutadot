@@ -5,6 +5,8 @@ import { set as qimSet } from 'qim'
 
 import { set } from 'immutadot/core'
 
+import Seamless from 'seamless-immutable/seamless-immutable.production.min'
+
 export function setProp(benchmarkSuite) {
   // Prepare base state
   const baseState = {
@@ -14,6 +16,8 @@ export function setProp(benchmarkSuite) {
     },
     other: { prop: 'baz' },
   }
+
+  const seamlessBaseState = Seamless.from(baseState)
 
   // Disable immer auto freeze
   setAutoFreeze(false)
@@ -46,6 +50,12 @@ export function setProp(benchmarkSuite) {
   })
 
   // FIXME immutable
+
+  it('seamless', () => {
+    benchmark('seamless', () => {
+      return Seamless.setIn(seamlessBaseState, ['nested', 'prop'], 'bar')
+    })
+  })
 
   it('immer', () => {
     benchmark('immer', () => {
