@@ -3,30 +3,29 @@ import { get } from 'core'
 describe('core.get', () => {
   const obj = {
     nested1: { prop: 'val' },
-    nested2: { arr: [{ val: 'arrVal' }] },
+    nested2: { arr: [{ val: 'arrVal1' }, { val: 'arrVal2' }] },
+    nested3: [[{ val: 1 }, { val: 2 }], [{ val: 3 }, { val: 4 }]],
   }
+
   it('should get a prop', () => {
     expect(get(obj, 'nested1.prop')).toBe('val')
     expect(get(obj, 'nested1.prop.length')).toBe(3)
-    expect(get(obj, 'nested2.arr.length')).toBe(1)
-    expect(get(obj, 'nested2.arr[0].val')).toBe('arrVal')
+    expect(get(obj, 'nested2.arr.length')).toBe(2)
+    expect(get(obj, 'nested2.arr[0].val')).toBe('arrVal1')
   })
+
+  it('should get multiple props', () => {
+    expect(get(obj, 'nested2.arr[:].val')).toEqual(['arrVal1', 'arrVal2'])
+    expect(get(obj, 'nested3[:][:].val')).toEqual([[1, 2], [3, 4]])
+  })
+
   it('should return undefined for unexisting path', () => {
     expect(get(obj, 'nested1.foo')).toBe(undefined)
     expect(get(obj, 'nested3.val')).toBe(undefined)
-    expect(get(obj, 'nested2.arr[1].val')).toBe(undefined)
-  })
-  it('should return defaultValue for unexisting path', () => {
-    expect(get(obj, 'nested1.foo', 'defaultValue')).toBe('defaultValue')
-    expect(get(obj, 'nested3.val', 'defaultValue')).toBe('defaultValue')
-    expect(get(obj, 'nested2.arr[1].val', 'defaultValue')).toBe('defaultValue')
-  })
-  it('should throw an error if path includes something else than props and indexes', () => {
-    expect(() => get({}, 'foo[1:2]')).toThrowError('get supports only properties and array indexes in path')
+    expect(get(obj, 'nested2.arr[2].val')).toBe(undefined)
   })
 
   it('should support currying the object', () => {
-    expect(get('nested2.arr[0].val')(obj)).toBe('arrVal')
-    expect(get('nested2.arr[1].val', 'defaultValue')(obj)).toBe('defaultValue')
+    expect(get('nested2.arr[0].val')(obj)).toBe('arrVal1')
   })
 })
