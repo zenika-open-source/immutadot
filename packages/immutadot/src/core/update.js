@@ -1,6 +1,4 @@
-import { apply } from 'path/apply'
-
-const updateOperation = (obj, prop, value, updater, ...args) => { obj[prop] = updater(value, ...args) }
+import { apply } from './apply'
 
 /**
  * Updates the value at <code>path</code> of <code>object</code> using the <code>updater</code> function.<br/>
@@ -20,6 +18,6 @@ const updateOperation = (obj, prop, value, updater, ...args) => { obj[prop] = up
  * update(object, 'nested.prop', inc, 2) // => { nested: { prop: 6 } }
  * @since 1.0.0
  */
-const update = apply(updateOperation)
+const update = apply((value, fn, ...args) => fn(value, ...args), 1)
 
 export { update }
