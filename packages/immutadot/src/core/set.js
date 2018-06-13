@@ -10,6 +10,6 @@ import { apply } from './apply'
  * @example set({ nested: { prop: 'old' } }, 'nested.prop', 'new') // => { nested: { prop: 'new' } }
  * @since 1.0.0
  */
-const set = apply((_, value) => value, 1)
+const set = apply((_, value) => value)
 
 export { set }

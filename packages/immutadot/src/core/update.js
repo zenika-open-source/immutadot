@@ -18,6 +18,6 @@ import { apply } from './apply'
  * update(object, 'nested.prop', inc, 2) // => { nested: { prop: 6 } }
  * @since 1.0.0
  */
-const update = apply((value, fn, ...args) => fn(value, ...args), 1)
+const update = apply((value, fn, ...args) => fn(value, ...args))
 
 export { update }
