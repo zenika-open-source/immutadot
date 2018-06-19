@@ -19,7 +19,7 @@ import {
   length,
 } from 'util/lang'
 
-import { getter } from 'core/get'
+import { isGetter } from 'core/get'
 
 /**
  * Makes a copy of value.
@@ -140,7 +140,7 @@ const apply = operation => {
 
         if (remPath.length === 1) {
           const newObj = copyIfNecessary(curObj, propType, doCopy)
-          const resolvedArgs = args.map(arg => arg[getter] ? arg(obj) : arg)
+          const resolvedArgs = args.map(arg => arg[isGetter] ? arg(obj) : arg)
           operation(newObj, propValue, value, ...resolvedArgs)
           return [false, newObj]
         }
