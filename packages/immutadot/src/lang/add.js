@@ -1,4 +1,4 @@
-import { convert } from 'core/convert'
+import { apply } from 'core/apply'
 
 /**
  * Replaces by the addition of the former number and the given number.
@@ -11,6 +11,6 @@ import { convert } from 'core/convert'
  * @example add({ nested: { prop: 2 } }, 'nested.prop', 4) // => { nested: { prop: 6 } }
  * @since 1.0.0
  */
-const add = convert((value, addition) => Number(value) + Number(addition))
+const add = apply((value, addition) => Number(value) + Number(addition))
 
 export { add }

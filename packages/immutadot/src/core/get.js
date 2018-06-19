@@ -1,48 +1,29 @@
-import {
-  index,
-  prop,
-  toPath,
-} from '@immutadot/parser'
+import { nav } from 'nav/nav'
+import { toPath } from '@immutadot/parser'
 
-import {
-  isNil,
-  isString,
-} from 'util/lang'
-
-const getter = Symbol('getter')
+const isGetter = Symbol('isGetter')
 
 /**
 * Gets the value at <code>path</code> of <code>obj</code>.
 * @memberof core
 * @param {*} [obj] The object.
 * @param {string|Array} path The path of the property to get.
-* @param {*} defaultValue The default value.
-* @return {*} Returns the value or <code>defaultValue</code>.
+* @return {*} Returns the value
 * @example get({ nested: { prop: 'val' } }, 'nested.prop') // => 'val'
-* @example get({ nested: { prop: 'val' } }, 'nested.unknown', 'default') // => 'default'
 * @since 1.0.0
- */
+*/
 function get(...args) {
-  const [firstArg, ...argsRest] = args
-  if (isString(firstArg)) return makeGetter(...args)
-  return makeGetter(...argsRest)(firstArg)
+  if (args.length >= 2)
+    return _get(...args)
+
+  const getter = obj => _get(obj, ...args)
+  getter[isGetter] = true
+
+  return getter
 }
 
-function makeGetter(path, defaultValue) {
-  const getterFn = function(obj) {
-    function walkPath(curObj, remPath) {
-      if (remPath.length === 0) return curObj === undefined ? defaultValue : curObj
-      if (isNil(curObj)) return defaultValue
-      const [[, prop], ...pathRest] = remPath
-      return walkPath(curObj[prop], pathRest)
-    }
-    const parsedPath = toPath(path)
-    if (parsedPath.some(([propType]) => propType !== prop && propType !== index))
-      throw TypeError('get supports only properties and array indexes in path')
-    return walkPath(obj, parsedPath)
-  }
-  getterFn[getter] = true
-  return getterFn
+function _get(obj, path) {
+  return nav(toPath(path))(obj).get()
 }
 
-export { get, getter }
+export { get, isGetter }
