@@ -1,10 +1,8 @@
 /* eslint-env jest */
-import { $each, $slice, set as qimSet } from 'qim'
-
-import { List, Record } from 'immutable'
-
+import * as qim from 'qim'
 import immer, { setAutoFreeze } from 'immer'
-
+import Immutable from 'immutable'
+import Seamless from 'seamless-immutable/seamless-immutable.production.min'
 import { set } from 'immutadot/core'
 
 export function updateTodos(benchmarkSuite, title, listSize, modifySize, maxTime, maxOperations) {
@@ -19,12 +17,15 @@ export function updateTodos(benchmarkSuite, title, listSize, modifySize, maxTime
   }
 
   // Prepare immutable state
-  const todoRecord = Record({
+  const todoRecord = Immutable.Record({
     todo: '',
     done: false,
     someThingCompletelyIrrelevant: [],
   })
-  const immutableState = List(baseState.map(todo => todoRecord(todo)))
+  const immutableState = Immutable.List(baseState.map(todo => todoRecord(todo)))
+
+  // Prepare seamless state
+  const seamlessState = Seamless.from(baseState)
 
   // Disable immer auto freeze
   setAutoFreeze(false)
@@ -77,6 +78,19 @@ export function updateTodos(benchmarkSuite, title, listSize, modifySize, maxTime
     })
   })
 
+  it('seamless', () => {
+    benchmark('seamless', () => {
+      const [start, end] = randomBounds()
+      return seamlessState
+        .slice(0, start)
+        .concat(
+          seamlessState.slice(start, end)
+            .map(todo => todo.set('done', true)),
+          seamlessState.slice(end),
+        )
+    })
+  })
+
   it('immer', () => {
     benchmark('immer', () => {
       const [start, end] = randomBounds()
@@ -89,7 +103,7 @@ export function updateTodos(benchmarkSuite, title, listSize, modifySize, maxTime
   it('qim', () => {
     benchmark('qim', () => {
       const [start, end] = randomBounds()
-      return qimSet([$slice(start, end), $each, 'done'], true, baseState)
+      return qim.set([qim.$slice(start, end), qim.$each, 'done'], true, baseState)
     })
   })
 

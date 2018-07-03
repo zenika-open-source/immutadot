@@ -1,11 +1,9 @@
 /* eslint-env jest */
+import * as qim from 'qim'
 import immer, { setAutoFreeze } from 'immer'
-
-import { set as qimSet } from 'qim'
-
-import { set } from 'immutadot/core'
-
+import Immutable from 'immutable'
 import Seamless from 'seamless-immutable/seamless-immutable.production.min'
+import { set } from 'immutadot/core'
 
 export function setProp(benchmarkSuite) {
   // Prepare base state
@@ -17,7 +15,11 @@ export function setProp(benchmarkSuite) {
     other: { prop: 'baz' },
   }
 
-  const seamlessBaseState = Seamless.from(baseState)
+  // Prepare immutable state
+  const immutableState = Immutable.fromJS(baseState)
+
+  // Prepare seamless state
+  const seamlessState = Seamless.from(baseState)
 
   // Disable immer auto freeze
   setAutoFreeze(false)
@@ -25,6 +27,7 @@ export function setProp(benchmarkSuite) {
   const benchmark = benchmarkSuite.createBenchmark(
     'Set a property',
     (key, result) => {
+      if (key === 'immutable') return
       expect(result).toEqual({
         nested: {
           prop: 'bar',
@@ -49,11 +52,15 @@ export function setProp(benchmarkSuite) {
     })
   })
 
-  // FIXME immutable
+  it('immutable', () => {
+    benchmark('immutable', () => {
+      immutableState.setIn(['nested', 'prop'], 'bar')
+    })
+  })
 
   it('seamless', () => {
     benchmark('seamless', () => {
-      return Seamless.setIn(seamlessBaseState, ['nested', 'prop'], 'bar')
+      return Seamless.setIn(seamlessState, ['nested', 'prop'], 'bar')
     })
   })
 
@@ -67,7 +74,7 @@ export function setProp(benchmarkSuite) {
 
   it('qim', () => {
     benchmark('qim', () => {
-      return qimSet(['nested', 'prop'], 'bar', baseState)
+      return qim.set(['nested', 'prop'], 'bar', baseState)
     })
   })
 
