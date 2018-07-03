@@ -1,15 +1,11 @@
 /* eslint-env jest */
-import { $each, $slice, set as qimSet } from 'qim'
-
-import { List, Record } from 'immutable'
-
+import * as qim from 'qim'
 import immer, { setAutoFreeze } from 'immer'
-
-import { createBenchmark } from './benchmark'
-
+import Immutable from 'immutable'
+import Seamless from 'seamless-immutable/seamless-immutable.production.min'
 import { set } from 'immutadot/core'
 
-function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
+export function updateTodos(benchmarkSuite, title, listSize, modifySize, maxTime, maxOperations) {
   // Prepare base state
   const baseState = []
   for (let i = 0; i < listSize; i++) {
@@ -21,12 +17,15 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   }
 
   // Prepare immutable state
-  const todoRecord = Record({
+  const todoRecord = Immutable.Record({
     todo: '',
     done: false,
     someThingCompletelyIrrelevant: [],
   })
-  const immutableState = List(baseState.map(todo => todoRecord(todo)))
+  const immutableState = Immutable.List(baseState.map(todo => todoRecord(todo)))
+
+  // Prepare seamless state
+  const seamlessState = Seamless.from(baseState)
 
   // Disable immer auto freeze
   setAutoFreeze(false)
@@ -37,7 +36,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
     return [start, start + modifySize]
   }
 
-  const benchmark = createBenchmark(
+  const benchmark = benchmarkSuite.createBenchmark(
     title,
     (key, result) => {
       if (key === 'immutable') return
@@ -54,8 +53,8 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
     maxOperations,
   )
 
-  it('ES2015', () => {
-    benchmark('es2015', 'ES2015 destructuring', () => {
+  it('es2015', () => {
+    benchmark('es2015', () => {
       const [start, end] = randomBounds()
       return baseState
         .slice(0, start)
@@ -71,7 +70,7 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   })
 
   it('immutable', () => {
-    benchmark('immutable', 'immutable 3.8.2 (w/o conversion to plain JS objects)', () => {
+    benchmark('immutable', () => {
       const [start, end] = randomBounds()
       immutableState.withMutations(state => {
         for (let i = start; i < end; i++) state.setIn([i, 'done'], true)
@@ -79,8 +78,21 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
     })
   })
 
-  it('immer proxy', () => {
-    benchmark('immer-proxy', 'immer 1.2.0 (proxy implementation w/o autofreeze)', () => {
+  it('seamless', () => {
+    benchmark('seamless', () => {
+      const [start, end] = randomBounds()
+      return seamlessState
+        .slice(0, start)
+        .concat(
+          seamlessState.slice(start, end)
+            .map(todo => todo.set('done', true)),
+          seamlessState.slice(end),
+        )
+    })
+  })
+
+  it('immer', () => {
+    benchmark('immer', () => {
       const [start, end] = randomBounds()
       return immer(baseState, draft => {
         for (let i = start; i < end; i++) draft[i].done = true
@@ -89,22 +101,16 @@ function updateTodosList(title, listSize, modifySize, maxTime, maxOperations) {
   })
 
   it('qim', () => {
-    benchmark('qim', 'qim 0.0.52', () => {
+    benchmark('qim', () => {
       const [start, end] = randomBounds()
-      return qimSet([$slice(start, end), $each, 'done'], true, baseState)
+      return qim.set([qim.$slice(start, end), qim.$each, 'done'], true, baseState)
     })
   })
 
   it('immutad●t', () => {
-    benchmark('immutadot', 'immutad●t 2.0.0', () => {
+    benchmark('immutadot', () => {
       const [start, end] = randomBounds()
       return set(baseState, `[${start}:${end}].done`, true)
     })
   })
-
-  afterAll(benchmark.log)
 }
-
-describe('Update small todos list', () => updateTodosList('Update small todos list (1000 items)', 1000, 100, 30, 50000))
-describe('Update medium todos list', () => updateTodosList('Update medium todos list (10000 items)', 10000, 1000, 30, 5000))
-describe('Update large todos list', () => updateTodosList('Update large todos list (100000 items)', 100000, 10000, 30, 500))
