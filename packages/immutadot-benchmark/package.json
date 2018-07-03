@@ -10,13 +10,14 @@
     "immutadot": "~2.0.0",
     "jest": "~21.2.1",
     "lerna": "~3.5.1",
-    "qim": "~0.0.52"
+    "qim": "~0.0.52",
+    "seamless-immutable": "^7.1.3"
   },
   "scripts": {
-    "prebenchmark": "lerna run --scope immutadot build",
-    "benchmark": "jest -i",
-    "prebenchmark:fast": "lerna run --scope immutadot build",
-    "benchmark:fast": "cross-env FAST=true jest -i",
+    "prestart": "lerna run --scope immutadot build",
+    "start": "jest -i",
+    "prefast": "lerna run --scope immutadot build",
+    "fast": "cross-env FAST=true jest -i",
     "test": "echo No tests"
   }
 }
