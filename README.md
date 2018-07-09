@@ -184,4 +184,4 @@ immutad●t is [MIT licensed](https://github.com/Zenika/immutadot/blob/master/LI
 
 ## Notes
 
-- [1](#immutability): You can find more informations about immutability and its benefits in the following article http://reactkungfu.com/2015/08/pros-and-cons-of-using-immutability-with-react-js/
+- [1](#immutability): You can find more information about immutability and its benefits in the following article http://reactkungfu.com/2015/08/pros-and-cons-of-using-immutability-with-react-js/
