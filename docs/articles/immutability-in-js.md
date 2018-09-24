@@ -89,8 +89,20 @@ In the last few years one of our biggest challenge has been to find an efficient
 
 ### Highlighted by modern frameworks/libraries
 
-Modern frontend frameworks and libraries lies on a concept that improve drastically performances. This is the well-know Virtual DOM. This technology has been created from a simple evidence. DOM manipulations are expensive. 
+Modern frontend frameworks and libraries lies on a concept that improve drastically performances. This is the well-know Virtual DOM. This technology has been created from a simple evidence. DOM manipulations are expensive.
 
-For the benefits explained in the previous sections frontend frameworks and libraries choose to use immutability for improving their performances. Nowadays we have to deal with more and more data in our applications, it means more markup. So our browsers need to handle much more computations than 10 years earlier. DOM operations are expensive, mordern ui framework tends to minimize the number of update they make to the DOM. 
+For the benefits explained in the previous sections frontend frameworks and libraries choose to use immutability for improving their performances. Nowadays we have to deal with more and more data in our applications, it means more markup. So our browsers need to handle much more computations than 10 years earlier. DOM operations are expensive, mordern ui framework tends to minimize the number of update they make to the DOM.
 
 ### Why do we need utilities libraries
+
+As we saw it a bit earlier the way to handle immutability in Ecmascript is simple thanks to syntactic sugar brought by ES6 but it finds its limits in nested structures. With the arrival of libraries like redux nested structures have been popularized.
+
+https://gist.github.com/frinyvonnick/67664aa58d4c4f0c73e38c38d6c349a2
+
+As you can see it becomes more tedious to write, and harder to read. Simple use-cases like overriding an index of an array aren't easily achievable.
+
+https://gist.github.com/frinyvonnick/0d883ce1bb07a5494318ec11c2152e92
+
+Theses reasons are sufficient in themselves to start finding out some tool that helps focusing on what really matters. The meaning of your code.
+
+In a further part we will see how we answered these problems with [immutadot](https://immutadot.zenika.com), a library to deal with nested immutable structures.
