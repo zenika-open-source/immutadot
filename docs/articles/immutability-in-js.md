@@ -67,11 +67,11 @@ You found out how to make objects and arrays immutable with JavaScript but we di
 >
 > -- <cite>[Alexander Kondov](https://hackernoon.com/functional-programming-paradigms-in-modern-javascript-immutability-4e9751ca005c)</cite>
 
-It has a declarative approach of programming, which means that you focus on describing what your program must accomplish rather than how it should do it. It gives more meaning to your code so the next developper will understand it more easily. Functional programming brings along other concepts that help reach this goal, such as Immutability.
+It has a declarative approach of programming, which means that you focus on describing what your program must accomplish rather than how it should do it. It gives more meaning to your code so the next developper will understand it more easily. Functional programming brings along other concepts that help reach this goal, such as immutability.
 
 ### What are the benefits?
 
-Does it sound like a hype term to you? Immutability addresses some problems we encounter everyday while programming:
+Does it sound like a hype term to you? Immutabilty brings many solutions to programming matters we ecounter everyday:
 
 - Avoid side effects
 - Data changes detection made simple (shallow comparison)
@@ -85,7 +85,7 @@ Does it sound like a hype term to you? Immutability addresses some problems we e
 >
 > -- <cite>[Ricardo Magalhães](https://hackernoon.com/data-immutability-with-vanilla-javascript-63834a65a6c9)</cite>
 
-In the last few years one of our biggest challenges has been to find an efficient way to detect changes in our data to determine whether or not we should render our interfaces. It's easy to detect changes between primitive values, but it's a completely different issue for objects and arrays. You could compare them by value but you would have to implement recursive algorithms and deal with potential issues like cyclical references. Another method would be to compare object references with the strict equality operator `===`. It's more effective and there isn't any risk to enter in some infinity loop of death. That's why modern frameworks enforce this concept.
+In the last few years one of our biggest challenges has been to find an efficient way to detect changes in our data to determine whether or not we should render our interfaces. It's easy to detect changes between primitive values, but it's a completely different issue for objects and arrays. You could compare them by value but you would have to implement recursive algorithms and deal with potential issues like cyclical references. Another method would be to compare object references with the strict equality operator `===`. It's more effective and there isn't any risk to enter in some deathly infinity loop. That's why modern frameworks enforce this concept.
 
 ### Highlighted by modern frameworks/libraries
 
