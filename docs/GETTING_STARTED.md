@@ -52,8 +52,8 @@ const newAnimals = {
   ...animals,
   weasels: {
     ...animals.weasels,
-    lutraLutra: {
-      ...animals.weasels.otter,
+    otter: {
+      ...animals.weasels.lutraLutra,
       name: 'Lutra lutra',
     },
   },
