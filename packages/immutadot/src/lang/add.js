@@ -11,6 +11,6 @@ import { apply } from 'core/apply'
  * @example add({ nested: { prop: 2 } }, 'nested.prop', 4) // => { nested: { prop: 6 } }
  * @since 1.0.0
  */
-const add = apply((value, addition) => Number(value) + Number(addition))
+const add = apply((value, addend) => Number(value) + Number(addend), { fixedArity: true })
 
 export { add }
