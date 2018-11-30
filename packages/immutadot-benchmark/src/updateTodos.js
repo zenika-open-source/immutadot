@@ -113,4 +113,18 @@ export function updateTodos(benchmarkSuite, title, listSize, modifySize, maxTime
       return set(baseState, `[${start}:${end}].done`, true)
     })
   })
+
+  it('qim curried', () => {
+    benchmark('qim-curried', () => {
+      const [start, end] = randomBounds()
+      return qim.set([qim.$slice(start, end), qim.$each, 'done'])(true)(baseState)
+    })
+  })
+
+  it('immutad●t curried', () => {
+    benchmark('immutadot-curried', () => {
+      const [start, end] = randomBounds()
+      return set(`[${start}:${end}].done`)(true)(baseState)
+    })
+  })
 }
