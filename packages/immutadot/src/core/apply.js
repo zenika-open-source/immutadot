@@ -18,15 +18,15 @@ function apply(fn, { arity = fn.length, fixedArity = false, curried = true, lazy
       break
     case 2:
       appliedFn = (obj, path, arg) => nav(toPath(path))(obj).update(
-        value => fn(value, lazy ? resolveArg(arg, obj) : arg),
+        value => fn(value, resolveArg(arg, obj)),
       )
       break
     case 3:
       appliedFn = (obj, path, arg1, arg2) => nav(toPath(path))(obj).update(
         value => fn(
           value,
-          lazy ? resolveArg(arg1, obj) : arg1,
-          lazy ? resolveArg(arg2, obj) : arg2,
+          resolveArg(arg1, obj),
+          resolveArg(arg2, obj),
         ),
       )
       break
@@ -34,9 +34,9 @@ function apply(fn, { arity = fn.length, fixedArity = false, curried = true, lazy
       appliedFn = (obj, path, arg1, arg2, arg3) => nav(toPath(path))(obj).update(
         value => fn(
           value,
-          lazy ? resolveArg(arg1, obj) : arg1,
-          lazy ? resolveArg(arg2, obj) : arg2,
-          lazy ? resolveArg(arg3, obj) : arg3,
+          resolveArg(arg1, obj),
+          resolveArg(arg2, obj),
+          resolveArg(arg3, obj),
         ),
       )
       break
@@ -44,12 +44,12 @@ function apply(fn, { arity = fn.length, fixedArity = false, curried = true, lazy
   }
 
   if (!appliedFn) {
-    appliedFn = (obj, path, ...args) => {
-      let resolvedArgs = args
-      if (lazy) resolvedArgs = args.map(arg => resolveArg(arg, obj))
-      const updater = value => fn(value, ...resolvedArgs)
-      return nav(toPath(path))(obj).update(updater)
-    }
+    appliedFn = (obj, path, ...args) => nav(toPath(path))(obj).update(
+      value => fn(
+        value,
+        ...args.map(arg => resolveArg(arg, obj)),
+      ),
+    )
   }
 
   if (curried)
