@@ -1,7 +1,4 @@
-import { curry } from './curry'
-import { nav } from 'nav/nav'
-import { resolveGetter } from './get'
-import { toPath } from '@immutadot/parser'
+import { apply } from './apply'
 
 /**
  * Updates the value at <code>path</code> of <code>object</code> using the <code>updater</code> function.<br/>
@@ -21,10 +18,6 @@ import { toPath } from '@immutadot/parser'
  * update(object, 'nested.prop', inc, 2) // => { nested: { prop: 6 } }
  * @since 1.0.0
  */
-const update = curry(
-  (obj, path, fn, ...args) => nav(toPath(path))(obj).update(
-    value => fn(value, ...args.map(resolveGetter)),
-  ),
-)
+const update = apply((value, fn, ...args) => fn(value, ...args))
 
 export { update }

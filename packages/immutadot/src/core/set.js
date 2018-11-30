@@ -1,7 +1,4 @@
-import { curry } from './curry'
-import { nav } from 'nav/nav'
-import { resolveGetter } from './get'
-import { toPath } from '@immutadot/parser'
+import { apply } from './apply'
 
 /**
  * Sets the value at <code>path</code> of <code>obj</code>.
@@ -13,8 +10,6 @@ import { toPath } from '@immutadot/parser'
  * @example set({ nested: { prop: 'old' } }, 'nested.prop', 'new') // => { nested: { prop: 'new' } }
  * @since 1.0.0
  */
-const set = curry(
-  (obj, path, value) => nav(toPath(path))(obj).update(() => resolveGetter(value, obj)),
-)
+const set = apply((_, value) => value, { fixedArity: true })
 
 export { set }
