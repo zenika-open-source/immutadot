@@ -25,4 +25,15 @@ describe('curry.curry', () => {
   it('should discard extra args in last curried call', () => {
     expect(curriedFill('path', 'value')('obj', 'extraArg')).toBe('fill(obj, path, value, 0, -1, undefined)')
   })
+
+  it('should allow reusing partial calls', () => {
+    const partial1 = curriedFill('path')
+    const partial2 = partial1('value1')
+    const partial3 = partial1('value2')
+
+    expect(partial2('obj1')).toBe('fill(obj1, path, value1, 0, -1, undefined)')
+    expect(partial2('obj2')).toBe('fill(obj2, path, value1, 0, -1, undefined)')
+    expect(partial3('obj1')).toBe('fill(obj1, path, value2, 0, -1, undefined)')
+    expect(partial3('obj2')).toBe('fill(obj2, path, value2, 0, -1, undefined)')
+  })
 })
