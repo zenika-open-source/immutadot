@@ -58,6 +58,7 @@ const curriedN = (fn, arity) => (...firstArgs) => {
   return curried(...firstArgs)
 }
 
+// FIXME doc with explanation of fixedArity's purpose and inconsistency
 export function curry(fn, arity = fn.length, fixedArity = false) {
   let curried
 
@@ -78,9 +79,7 @@ export function curry(fn, arity = fn.length, fixedArity = false) {
     }
   }
 
-  // TODO Should we manage fixedArity in curriedN ?
   if (!curried) curried = curriedN(fn, arity)
 
-  // TODO Should we truncate args when fixedArity (when calling fn) ?
   return (...args) => args.length >= arity ? fn(...args) : curried(...args)
 }
