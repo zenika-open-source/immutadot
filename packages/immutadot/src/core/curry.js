@@ -1,17 +1,32 @@
-export function curry(fn, minArity = fn.length) {
-  function curried(prevArgs) {
-    return (...args) => {
-      if (prevArgs.length >= minArity - 1)
-        return fn(args[0], ...prevArgs)
-
-      return curried(prevArgs.concat(args))
-    }
-  }
-
+export function curry(fn, arity = fn.length, fixedArity = false) {
   return (...args) => {
-    if (args.length >= minArity)
-      return fn(...args)
+    if (args.length >= arity) return fn(...args)
 
-    return curried(args)
+    const allArgs = args
+
+    function curried(...args) {
+      if (allArgs.length >= arity - 1) {
+        if (fixedArity) {
+          switch (arity) {
+          case 2:
+            return fn(args[0], allArgs[0])
+          case 3:
+            return fn(args[0], allArgs[0], allArgs[1])
+          case 4:
+            return fn(args[0], allArgs[0], allArgs[1], allArgs[2])
+          case 5:
+            return fn(args[0], allArgs[0], allArgs[1], allArgs[2], allArgs[3])
+          }
+        }
+
+        return fn(args[0], ...allArgs)
+      }
+
+      allArgs.push(...args)
+
+      return curried
+    }
+
+    return curried
   }
 }
