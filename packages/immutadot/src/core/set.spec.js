@@ -15,6 +15,21 @@ describe('core.set', () => {
       return output
     })
   })
+
+  it('should set a prop to undefined', () => {
+    immutaTest({
+      nested: { prop: 'initial' },
+      other: {},
+    }, ['nested.prop'], (input, path) => {
+      const output = set(input, path, undefined)
+      expect(output).toEqual({
+        nested: { prop: undefined },
+        other: {},
+      })
+      return output
+    })
+  })
+
   it('should set a value in an array', () => {
     immutaTest({
       nested: {

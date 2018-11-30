@@ -26,4 +26,10 @@ function _get(obj, path) {
   return nav(toPath(path))(obj).get()
 }
 
-export { get, isGetter }
+function resolveGetter(value, obj) {
+  if (value && value[isGetter]) return value(obj)
+  return value
+}
+
+// FIXME stop exporting isGetter
+export { get, isGetter, resolveGetter }

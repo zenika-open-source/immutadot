@@ -1,4 +1,7 @@
-import { apply } from 'core/apply'
+import { curry } from 'core/curry'
+import { nav } from 'nav/nav'
+import { resolveGetter } from 'core/get'
+import { toPath } from '@immutadot/parser'
 
 /**
  * Replaces by the addition of the former number and the given number.
@@ -11,6 +14,10 @@ import { apply } from 'core/apply'
  * @example add({ nested: { prop: 2 } }, 'nested.prop', 4) // => { nested: { prop: 6 } }
  * @since 1.0.0
  */
-const add = apply((value, addition) => Number(value) + Number(addition))
+const add = curry(
+  (obj, path, addend) => nav(toPath(path))(obj).update(
+    value => Number(value) + Number(resolveGetter(addend)),
+  ),
+)
 
 export { add }
