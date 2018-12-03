@@ -1,4 +1,4 @@
-import { convertStringMethod } from './convertStringMethod'
+import { applyStringMethod } from './applyStringMethod'
 
 /**
  * Replaces matches for pattern in string with replacement.
@@ -13,6 +13,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @see {@link https://mdn.io/String.prototype.replace|String.prototype.replace} for more information.
  * @since 0.3.0
  */
-const replace = convertStringMethod('replace')
+const replace = applyStringMethod(String.prototype.replace, { fixedArity: true })
 
 export { replace }

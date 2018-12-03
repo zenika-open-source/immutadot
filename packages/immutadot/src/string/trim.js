@@ -1,4 +1,4 @@
-import { convertStringMethod } from './convertStringMethod'
+import { applyStringMethod } from './applyStringMethod'
 
 /**
  * Replaces by former string stripped of whitespaces at start and end.
@@ -11,6 +11,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @see {@link https://mdn.io/String.prototype.trim|String.prototype.trim} for more information.
  * @since 1.0.0
  */
-const trim = convertStringMethod('trim')
+const trim = applyStringMethod(String.prototype.trim, { fixedArity: true })
 
 export { trim }

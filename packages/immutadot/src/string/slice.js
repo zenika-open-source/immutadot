@@ -1,4 +1,4 @@
-import { convertStringMethod } from './convertStringMethod'
+import { applyStringMethod } from './applyStringMethod'
 
 /**
  * Replaces by a slice of former string starting at <code>beginIndex</code> and ending at <code>endIndex</code> or end of the string.<br/>
@@ -15,6 +15,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @see {@link https://mdn.io/String.prototype.slice|String.prototype.slice} for more information.
  * @since 1.0.0
  */
-const slice = convertStringMethod('slice')
+const slice = applyStringMethod(String.prototype.slice, { arity: 1 })
 
 export { slice }
