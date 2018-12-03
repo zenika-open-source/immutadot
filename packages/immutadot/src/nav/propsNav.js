@@ -28,6 +28,20 @@ class PropsNav extends ObjectNav {
     for (const key of keys) copy[key] = _next(value[key]).update(updater)
     return copy
   }
+
+  unset() {
+    const { _next, keys, value } = this
+
+    const copy = this.copy()
+    for (const key of keys) {
+      const next = _next(value[key])
+      if (next.final)
+        delete copy[key]
+      else
+        copy[key] = next.unset()
+    }
+    return copy
+  }
 }
 
 export function propsNav(keys, next) {
