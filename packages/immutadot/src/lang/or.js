@@ -1,4 +1,4 @@
-import { convert } from 'core/convert'
+import { apply } from 'core/apply'
 
 /**
  * Applies <code>||</code> between the former value and <code>args</code>
@@ -12,6 +12,6 @@ import { convert } from 'core/convert'
  * @example or({ nested: { prop: true } }, 'nested.prop', false, false) // { nested: { prop: true } }
  * @since 1.0.0
  */
-const or = convert((v, ...args) => args.reduce((acc, arg) => acc || arg, v))
+const or = apply((v, ...args) => args.reduce((acc, arg) => acc || arg, v))
 
 export { or }

@@ -1,4 +1,4 @@
-import { convert } from 'core/convert'
+import { apply } from 'core/apply'
 
 /**
  * Applies <code>!</code> to the property.
@@ -10,6 +10,6 @@ import { convert } from 'core/convert'
  * @example toggle({ nested: { prop: true } }, 'nested.prop') // { nested: { prop: false } }
  * @since 0.1.5
  */
-const toggle = convert(v => !v)
+const toggle = apply(v => !v, { fixedArity: true })
 
 export { toggle }

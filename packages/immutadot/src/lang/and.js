@@ -1,4 +1,4 @@
-import { convert } from 'core/convert'
+import { apply } from 'core/apply'
 
 /**
  * Applies <code>&&</code> between the former value and <code>args</code>
@@ -12,6 +12,6 @@ import { convert } from 'core/convert'
  * @example and({ nested: { prop: true } }, 'nested.prop', true, false) // { nested: { prop: false } }
  * @since 1.0.0
  */
-const and = convert((v, ...args) => args.reduce((acc, arg) => acc && arg, v))
+const and = apply((v, ...args) => args.reduce((acc, arg) => acc && arg, v))
 
 export { and }

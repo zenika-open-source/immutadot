@@ -1,4 +1,4 @@
-import { convert } from 'core/convert'
+import { apply } from 'core/apply'
 
 /**
  * Replaces by the division of the former number and the given number.
@@ -11,6 +11,6 @@ import { convert } from 'core/convert'
  * @example divide({ nested: { prop: 1332 } }, 'nested.prop', 2) // => { nested: { prop: 666 } }
  * @since 1.0.0
  */
-const divide = convert((value, divider) => Number(value) / Number(divider))
+const divide = apply((value, divider) => Number(value) / Number(divider), { fixedArity: true })
 
 export { divide }
