@@ -1,5 +1,5 @@
 import { differenceBy as _differenceBy } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * This method is like {@link array.difference} except that it uses <code>iteratee</code> to generate the value to be compared for each element.
@@ -14,5 +14,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#differenceBy|lodash.differenceBy} for more information.
  * @since 1.0.0
  */
-const differenceBy = convert(_differenceBy)
+const differenceBy = apply(_differenceBy, { arity: 2 })
+
 export { differenceBy }

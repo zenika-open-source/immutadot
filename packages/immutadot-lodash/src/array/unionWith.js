@@ -1,5 +1,5 @@
 import { unionWith as _unionWith } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * This method is like {@link array.union} except that it accepts <code>comparator</code> to compare elements.
@@ -14,5 +14,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#unionWith|lodash.unionWith} for more information.
  * @since 1.0.0
  */
-const unionWith = convert(_unionWith)
+const unionWith = apply(_unionWith, { arity: 2 })
+
 export { unionWith }

@@ -1,5 +1,5 @@
 import { differenceWith as _differenceWith } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * This method is like {@link array.difference} except that it uses <code>comparator</code> to compare elements of the former array to <code>values</code>.
@@ -14,5 +14,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#differenceWith|lodash.differenceWith} for more information.
  * @since 1.0.0
  */
-const differenceWith = convert(_differenceWith)
+const differenceWith = apply(_differenceWith, 2)
+
 export { differenceWith }

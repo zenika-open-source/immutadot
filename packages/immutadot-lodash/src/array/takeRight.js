@@ -1,5 +1,5 @@
 import { takeRight as _takeRight } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the end.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#takeRight|lodash.takeRight} for more information.
  * @since 1.0.0
  */
-const takeRight = convert(_takeRight)
+const takeRight = apply(_takeRight, { arity: 1 })
+
 export { takeRight }

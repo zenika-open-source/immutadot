@@ -1,5 +1,5 @@
 import { unionBy as _unionBy } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * This method is like {@link array.union} except that it accepts <code>iteratee</code> to generate the criterion by which elements are compared.
@@ -14,5 +14,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#unionBy|lodash.unionBy} for more information.
  * @since 1.0.0
  */
-const unionBy = convert(_unionBy)
+const unionBy = apply(_unionBy, { arity: 2 })
+
 export { unionBy }

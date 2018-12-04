@@ -4,6 +4,7 @@
 * @since 1.0.0
 */
 
+export { apply } from './apply'
 export { convert } from './convert'
 export { flow } from './flow'
 export { get } from './get'

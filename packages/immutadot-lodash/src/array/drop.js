@@ -1,5 +1,5 @@
 import { drop as _drop } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces an array dropping one or several elements at the start of the former array.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#drop|lodash.drop} for more information.
  * @since 1.0.0
  */
-const drop = convert(_drop)
+const drop = apply(_drop, { arity: 1 })
+
 export { drop }

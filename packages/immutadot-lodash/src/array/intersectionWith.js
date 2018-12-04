@@ -1,5 +1,5 @@
 import { intersectionWith as _intersectionWith } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * This method is like {@link array.intersection} except that it uses <code>comparator</code> to compare elements of the former array to <code>arrays</code>.
@@ -14,5 +14,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#intersectionWith|lodash.intersectionWith} for more information.
  * @since 1.0.0
  */
-const intersectionWith = convert(_intersectionWith)
+const intersectionWith = apply(_intersectionWith, { arity: 2 })
+
 export { intersectionWith }

@@ -1,5 +1,5 @@
 import { union as _union } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces an array by an array of unique values, in order, from the former array and the given arrays.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#union|lodash.union} for more information.
  * @since 1.0.0
  */
-const union = convert(_union)
+const union = apply(_union, { arity: 2 })
+
 export { union }

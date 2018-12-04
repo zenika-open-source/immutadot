@@ -1,5 +1,5 @@
 import { takeWhile as _takeWhile } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Creates a slice of array with elements taken from the beginning.
@@ -15,5 +15,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#takeWhile|lodash.takeWhile} for more information.
  * @since 1.0.0
  */
-const takeWhile = convert(_takeWhile)
+const takeWhile = apply(_takeWhile, { arity: 1 })
+
 export { takeWhile }
