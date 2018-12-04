@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('lodash'), require('immutadot'), require('lodash/fp')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'lodash', 'immutadot', 'lodash/fp'], factory) :
-  (factory((global.immutadotLodash = {}),global._,global.immutadot,global._.fp));
-}(this, (function (exports,lodash,immutadot,fp) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('lodash/fp'), require('lodash'), require('immutadot')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'lodash/fp', 'lodash', 'immutadot'], factory) :
+  (factory((global.immutadotLodash = {}),global._.fp,global._,global.immutadot));
+}(this, (function (exports,fp,lodash,immutadot) { 'use strict';
 
   /**
    * Replaces an array removing values in the other given arrays from the former array.

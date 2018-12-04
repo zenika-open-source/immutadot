@@ -30,7 +30,7 @@
     "jsdoc": "~3.5.5",
     "lerna": "~3.5.1",
     "lodash": "~4.17.10",
-    "rollup": "~0.59.4",
+    "rollup": "~0.67.4",
     "rollup-plugin-babel": "~3.0.4",
     "rollup-plugin-commonjs": "~9.2.0",
     "rollup-plugin-node-resolve": "~3.4.0"
