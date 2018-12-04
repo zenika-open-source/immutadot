@@ -52,9 +52,13 @@ function apply(fn, { arity = fn.length, fixedArity = false, curried = true, lazy
     )
   }
 
-  if (curried)
-    // Add obj and path but remove value in arity
-    return curry(appliedFn, arity + 1, fixedArity)
+  if (curried) {
+    return curry(appliedFn, {
+      // Add obj and path but remove value in arity
+      arity: arity + 1,
+      fixedArity,
+    })
+  }
 
   return appliedFn
 }

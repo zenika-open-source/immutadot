@@ -59,7 +59,7 @@ const curriedN = (fn, arity) => (...firstArgs) => {
 }
 
 // FIXME doc with explanation of fixedArity's purpose and inconsistency
-export function curry(fn, arity = fn.length, fixedArity = false) {
+export function curry(fn, { arity = fn.length, fixedArity = false } = {}) {
   let curried
 
   if (fixedArity) {

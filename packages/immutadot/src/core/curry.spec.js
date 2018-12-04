@@ -42,15 +42,24 @@ describe('curry.curry', () => {
       return args.map((arg, i) => `arg${i} = ${arg}`).join(', ')
     }
 
-    const printArgs2 = curry(printArgs, 2, true)
+    const printArgs2 = curry(printArgs, {
+      arity: 2,
+      fixedArity: true,
+    })
     expect(printArgs2(1)(2)).toBe('arg0 = 2, arg1 = 1')
 
-    const printArgs3 = curry(printArgs, 3, true)
+    const printArgs3 = curry(printArgs, {
+      arity: 3,
+      fixedArity: true,
+    })
     expect(printArgs3(1, 2)(3)).toBe('arg0 = 3, arg1 = 1, arg2 = 2')
     expect(printArgs3(1)(2, 3)).toBe('arg0 = 3, arg1 = 1, arg2 = 2')
     expect(printArgs3(1)(2)(3)).toBe('arg0 = 3, arg1 = 1, arg2 = 2')
 
-    const printArgs4 = curry(printArgs, 4, true)
+    const printArgs4 = curry(printArgs, {
+      arity: 4,
+      fixedArity: true,
+    })
     expect(printArgs4(1, 2, 3)(4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
     expect(printArgs4(1, 2)(3, 4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
     expect(printArgs4(1, 2)(3)(4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
@@ -59,7 +68,10 @@ describe('curry.curry', () => {
     expect(printArgs4(1)(2)(3, 4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
     expect(printArgs4(1)(2)(3)(4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
 
-    const printArgs5 = curry(printArgs, 5, true)
+    const printArgs5 = curry(printArgs, {
+      arity: 5,
+      fixedArity: true,
+    })
     expect(printArgs5(1, 2, 3, 4)(5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
     expect(printArgs5(1, 2, 3)(4, 5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
     expect(printArgs5(1, 2, 3)(4)(5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
