@@ -5,7 +5,6 @@
 */
 
 export { apply } from './apply'
-export { convert } from './convert'
 export { flow } from './flow'
 export { get } from './get'
 export { set } from './set'
