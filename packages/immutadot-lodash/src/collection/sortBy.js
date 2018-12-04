@@ -1,5 +1,5 @@
 import { sortBy as _sortBy } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces by an array of sorted by <code>iteratees</code>.
@@ -15,5 +15,6 @@ import { convert } from 'immutadot'
  * // => { nested: { prop: [{ name: 'Nico', age: 30 }, { name: 'Nico', age: 666 }, { name: 'Yvo', age: 2 }] } }
  * @since 1.0.0
  */
-const sortBy = convert(_sortBy)
+const sortBy = apply(_sortBy, { arity: 1 })
+
 export { sortBy }
