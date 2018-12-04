@@ -8,7 +8,7 @@
     "immer": "~1.10.5",
     "immutable": "~4.0.0-rc.12",
     "immutadot": "~2.0.0",
-    "jest": "~21.2.1",
+    "jest": "~23.6.0",
     "lerna": "~3.5.1",
     "qim": "~0.0.52",
     "seamless-immutable": "^7.1.3"
