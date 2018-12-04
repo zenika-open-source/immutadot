@@ -1,4 +1,4 @@
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 import { lodashFpConvert } from './lodashFpConvert'
 
 /**
@@ -10,13 +10,14 @@ import { lodashFpConvert } from './lodashFpConvert'
  * @since 0.2.0
  * @private
  */
-const convertLodashFp = fn => convert(lodashFpConvert(fn))
+function applyLodashFp(fn, { arity = fn.length, fixedArity = false } = {}) {
+  return apply(
+    lodashFpConvert(fn),
+    {
+      arity,
+      fixedArity,
+    },
+  )
+}
 
-/**
- * This is an alias for {@link core.convert}.
- * @memberof object
- * @function convert
- * @deprecated Use {@link core.convert}
- * @since 0.2.0
- */
-export { convertLodashFp }
+export { applyLodashFp }

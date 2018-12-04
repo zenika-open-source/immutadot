@@ -5,7 +5,7 @@ const lodashFpConvertOptions = {
 }
 
 /**
- * Converts a lodash/fp function with options <code>{ rearg: false, curry: false }</code>.
+ * Converts a lodash/fp function with options <code>{ curry: false, fixed: false, rearg: false }</code>.
  * @memberof util
  * @param {function} fn The lodash/fp function.
  * @return {function} Returns the converted lodash/fp function.

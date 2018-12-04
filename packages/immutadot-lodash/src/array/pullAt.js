@@ -1,5 +1,5 @@
 import { pullAt as _pullAt } from 'lodash/fp'
-import { convertLodashFp } from 'util/convertLodashFp'
+import { applyLodashFp } from 'util/applyLodashFp'
 
 /**
  * Replaces an array removing the specified indexes from the former array.
@@ -13,5 +13,6 @@ import { convertLodashFp } from 'util/convertLodashFp'
  * @see {@link https://lodash.com/docs#pullAt|lodash.pullAt} for more information.
  * @since 1.0.0
  */
-const pullAt = convertLodashFp(_pullAt)
+const pullAt = applyLodashFp(_pullAt, { arity: 2 })
+
 export { pullAt }

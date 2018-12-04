@@ -1,5 +1,5 @@
 import { pullAll as _pullAll } from 'lodash/fp'
-import { convertLodashFp } from 'util/convertLodashFp'
+import { applyLodashFp } from 'util/applyLodashFp'
 
 /**
  * This method is like {@link array.pull} except that it accepts an array of values to remove.
@@ -13,5 +13,12 @@ import { convertLodashFp } from 'util/convertLodashFp'
  * @see {@link https://lodash.com/docs#pullAll|lodash.pullAll} for more information.
  * @since 1.0.0
  */
-const pullAll = convertLodashFp(_pullAll)
+const pullAll = applyLodashFp(
+  _pullAll,
+  {
+    arity: 2,
+    fixedArity: true,
+  },
+)
+
 export { pullAll }
