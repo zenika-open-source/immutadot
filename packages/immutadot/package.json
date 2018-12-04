@@ -29,8 +29,7 @@
     "cross-env": "~5.2.0",
     "eslint": "~5.9.0",
     "jest": "~23.6.0",
-    "jsdoc": "~3.5.5",
-    "regenerator-runtime": "^0.13.1"
+    "jsdoc": "~3.5.5"
   },
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src -d .",
