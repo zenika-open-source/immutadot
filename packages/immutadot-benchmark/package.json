@@ -1,12 +1,12 @@
 {
   "name": "immutadot-benchmark",
   "version": "1.0.0",
-  "private": "true",
+  "private": true,
   "license": "MIT",
   "devDependencies": {
     "cross-env": "~5.2.0",
     "immer": "~1.8.0",
-    "immutable": "~3.8.2",
+    "immutable": "~4.0.0-rc.12",
     "immutadot": "~1.0.0",
     "jest": "~21.2.1",
     "lerna": "~2.11.0",
