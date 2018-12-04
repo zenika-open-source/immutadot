@@ -1,4 +1,4 @@
-import { convertArrayMethod } from './convertArrayMethod'
+import { applyArrayMethod } from './applyArrayMethod'
 
 /**
  * Replaces by an array of elements <code>predicate</code> returns truthy for.
@@ -12,6 +12,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.filter|Array.prototype.filter} for more information.
  * @since 1.0.0
  */
-const filter = convertArrayMethod('filter', false)
+const filter = applyArrayMethod(Array.prototype.filter, { mutating: false })
 
 export { filter }

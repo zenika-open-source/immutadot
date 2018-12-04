@@ -1,4 +1,4 @@
-import { convertArrayMethod } from './convertArrayMethod'
+import { applyArrayMethod } from './applyArrayMethod'
 
 /**
  * Replaces by a sorted array, in natural order or according to the optional <code>comparator</code>.
@@ -13,6 +13,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.sort|Array.prototype.sort} for more information.
  * @since 1.0.0
  */
-const sort = convertArrayMethod('sort')
+const sort = applyArrayMethod(Array.prototype.sort, { arity: 0 })
 
 export { sort }

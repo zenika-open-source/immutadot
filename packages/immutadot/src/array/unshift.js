@@ -1,4 +1,4 @@
-import { convertArrayMethod } from './convertArrayMethod'
+import { applyArrayMethod } from './applyArrayMethod'
 
 /**
  * Replaces an array adding elements at the start of the former array.
@@ -15,6 +15,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.unshift|Array.prototype.unshift} for more information.
  * @since 0.1.7
  */
-const unshift = convertArrayMethod('unshift')
+const unshift = applyArrayMethod(Array.prototype.unshift)
 
 export { unshift }

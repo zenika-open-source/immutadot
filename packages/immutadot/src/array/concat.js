@@ -1,4 +1,4 @@
-import { convertArrayMethod } from './convertArrayMethod'
+import { applyArrayMethod } from './applyArrayMethod'
 
 /**
  * Replaces an array concatenating the former array with additional arrays and/or values.<br/>
@@ -13,6 +13,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.concat|Array.prototype.concat} for more information.
  * @since 0.2.0
  */
-const concat = convertArrayMethod('concat', false)
+const concat = applyArrayMethod(Array.prototype.concat, { mutating: false })
 
 export { concat }

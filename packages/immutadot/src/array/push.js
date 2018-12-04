@@ -1,4 +1,4 @@
-import { convertArrayMethod } from './convertArrayMethod'
+import { applyArrayMethod } from './applyArrayMethod'
 
 /**
  * Replaces an array adding one or more elements to the end of the former array.
@@ -15,6 +15,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.push|Array.prototype.push} for more information.
  * @since 0.1.7
  */
-const push = convertArrayMethod('push')
+const push = applyArrayMethod(Array.prototype.push)
 
 export { push }

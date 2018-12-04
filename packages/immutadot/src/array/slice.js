@@ -1,4 +1,4 @@
-import { convertArrayMethod } from './convertArrayMethod'
+import { applyArrayMethod } from './applyArrayMethod'
 
 /**
  * Replaces an array by a slice of the former array from <code>start</code> up to, but not including, <code>end</code>.<br/>
@@ -14,6 +14,9 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.slice|Array.prototype.slice} for more information.
  * @since 0.3.0
  */
-const slice = convertArrayMethod('slice', false)
+const slice = applyArrayMethod(Array.prototype.slice, {
+  arity: 0,
+  mutating: false,
+})
 
 export { slice }
