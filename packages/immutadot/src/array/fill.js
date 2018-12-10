@@ -1,4 +1,4 @@
-import { convertArrayMethod } from './convertArrayMethod'
+import { applyArrayMethod } from './applyArrayMethod'
 
 /**
  * Replaces by an array filled with value from start up to, but not including, end.
@@ -14,6 +14,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.fill|Array.prototype.fill} for more information.
  * @since 0.3.0
  */
-const fill = convertArrayMethod('fill')
+const fill = applyArrayMethod(Array.prototype.fill)
 
 export { fill }

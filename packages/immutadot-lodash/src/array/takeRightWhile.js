@@ -1,5 +1,5 @@
 import { takeRightWhile as _takeRightWhile } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Creates a slice of array with elements taken from the end.
@@ -15,5 +15,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#takeRightWhile|lodash.takeRightWhile} for more information.
  * @since 1.0.0
  */
-const takeRightWhile = convert(_takeRightWhile)
+const takeRightWhile = apply(_takeRightWhile, { arity: 1 })
+
 export { takeRightWhile }

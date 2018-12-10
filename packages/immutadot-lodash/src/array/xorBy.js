@@ -1,5 +1,5 @@
 import { xorBy as _xorBy } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * This method is like {@link array.xor} except that it accepts <code>iteratee</code> to generate the criterion by which elements are compared.
@@ -14,5 +14,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#xorBy|lodash.xorBy} for more information.
  * @since 1.0.0
  */
-const xorBy = convert(_xorBy)
+const xorBy = apply(_xorBy, { arity: 2 })
+
 export { xorBy }

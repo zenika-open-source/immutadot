@@ -1,5 +1,5 @@
 import { capitalize as _capitalize } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Converts the first character of string to upper case and the remaining to lower case.
@@ -12,5 +12,12 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#capitalize|lodash.capitalize} for more information.
  * @since 1.0.0
  */
-const capitalize = convert(_capitalize)
+const capitalize = apply(
+  _capitalize,
+  {
+    arity: 1,
+    fixedArity: true,
+  },
+)
+
 export { capitalize }

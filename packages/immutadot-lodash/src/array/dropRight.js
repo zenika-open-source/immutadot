@@ -1,5 +1,5 @@
 import { dropRight as _dropRight } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces an array dropping one or several elements at the end of the former array.
@@ -13,5 +13,5 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#dropRight|lodash.dropRight} for more information.
  * @since 1.0.0
  */
-const dropRight = convert(_dropRight)
+const dropRight = apply(_dropRight, { arity: 1 })
 export { dropRight }

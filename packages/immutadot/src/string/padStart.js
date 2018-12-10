@@ -1,4 +1,4 @@
-import { convertStringMethod } from './convertStringMethod'
+import { applyStringMethod } from './applyStringMethod'
 
 /**
  * Replaces by former string padded at the start with <code>padString</code> to the given <code>length</code>.
@@ -14,6 +14,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @see {@link https://mdn.io/String.prototype.padStart|String.prototype.padStart} for more information.
  * @since 1.0.0
  */
-const padStart = convertStringMethod('padStart')
+const padStart = applyStringMethod(String.prototype.padStart)
 
 export { padStart }

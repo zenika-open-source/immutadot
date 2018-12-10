@@ -1,5 +1,5 @@
 import { intersectionBy as _intersectionBy } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * This method is like {@link array.intersection} except that it uses <code>iteratee</code> to generate the value to be compared for each element.
@@ -14,5 +14,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#intersectionBy|lodash.intersectionBy} for more information.
  * @since 1.0.0
  */
-const intersectionBy = convert(_intersectionBy)
+const intersectionBy = apply(_intersectionBy, { arity: 2 })
+
 export { intersectionBy }

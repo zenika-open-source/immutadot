@@ -1,5 +1,5 @@
 import { pullAllWith as _pullAllWith } from 'lodash/fp'
-import { convertLodashFp } from 'util/convertLodashFp'
+import { applyLodashFp } from 'util/applyLodashFp'
 
 /**
  * This method is like {@link array.pullAll} except that it accepts <code>comparator</code> to compare elements.
@@ -14,5 +14,6 @@ import { convertLodashFp } from 'util/convertLodashFp'
  * @see {@link https://lodash.com/docs#pullAllWith|lodash.pullAllWith} for more information.
  * @since 1.0.0
  */
-const pullAllWith = convertLodashFp(_pullAllWith)
+const pullAllWith = applyLodashFp(_pullAllWith, { arity: 2 })
+
 export { pullAllWith }

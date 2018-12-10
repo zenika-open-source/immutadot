@@ -1,4 +1,4 @@
-import { convert } from 'core/convert'
+import { apply } from 'core/apply'
 
 /**
  * Replaces by the subtraction of the former number by the given number.
@@ -11,6 +11,6 @@ import { convert } from 'core/convert'
  * @example subtract({ nested: { prop: 2000 } }, 'nested.prop', 336) // => { nested: { prop: 1664 } }
  * @since 1.0.0
  */
-const subtract = convert((value, subtraction) => Number(value) - Number(subtraction))
+const subtract = apply((value, subtraction) => Number(value) - Number(subtraction), { fixedArity: true })
 
 export { subtract }

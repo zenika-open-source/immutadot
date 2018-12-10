@@ -1,5 +1,5 @@
 import { filter as _filter } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces by an array of elements <code>predicate</code> returns truthy for.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @example filter({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v % 2) // => { nested: { prop: [1, 3] } }
  * @since 1.0.0
  */
-const filter = convert(_filter)
+const filter = apply(_filter, { arity: 1 })
+
 export { filter }

@@ -1,5 +1,5 @@
 import { pickBy as _pickBy } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces by an object picking properties that <code>predicate</code> returns truthy for.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#pickBy|lodash.pickBy} for more information.
  * @since 1.0.0
  */
-const pickBy = convert(_pickBy)
+const pickBy = apply(_pickBy, { arity: 1 })
+
 export { pickBy }
