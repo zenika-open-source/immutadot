@@ -1,4 +1,4 @@
-import { convertStringMethod } from './convertStringMethod'
+import { applyStringMethod } from './applyStringMethod'
 
 /**
  * Replaces by former string in upper case.
@@ -12,6 +12,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @see {@link https://mdn.io/String.prototype.toLocaleUpperCase|String.prototype.toLocaleUpperCase} for more information.
  * @since 1.0.0
  */
-const toLocaleUpperCase = convertStringMethod('toLocaleUpperCase')
+const toLocaleUpperCase = applyStringMethod(String.prototype.toLocaleUpperCase)
 
 export { toLocaleUpperCase }

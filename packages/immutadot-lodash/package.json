@@ -21,7 +21,7 @@
     "Charles-Henri GUÉRIN (https://github.com/charlyx)"
   ],
   "peerDependencies": {
-    "immutadot": "^1.0.0",
+    "immutadot": "^2.0.0",
     "lodash": "^4.6.0"
   },
   "devDependencies": {

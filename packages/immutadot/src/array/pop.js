@@ -1,4 +1,4 @@
-import { convertArrayMethod } from './convertArrayMethod'
+import { applyArrayMethod } from './applyArrayMethod'
 
 /**
  * Replaces by an array of elements with last element removed.
@@ -11,6 +11,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.pop|Array.prototype.pop} for more information.
  * @since 1.0.0
  */
-const pop = convertArrayMethod('pop')
+const pop = applyArrayMethod(Array.prototype.pop, { fixedArity: true })
 
 export { pop }

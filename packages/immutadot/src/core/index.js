@@ -4,7 +4,7 @@
 * @since 1.0.0
 */
 
-export { convert } from './convert'
+export { apply } from './apply'
 export { flow } from './flow'
 export { get } from './get'
 export { set } from './set'

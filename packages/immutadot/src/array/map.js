@@ -1,4 +1,4 @@
-import { convertArrayMethod } from './convertArrayMethod'
+import { applyArrayMethod } from './applyArrayMethod'
 
 /**
  * Replaces by an array of values by running each element in the former collection thru callback.
@@ -12,6 +12,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.map|Array.prototype.map} for more information.
  * @since 1.0.0
  */
-const map = convertArrayMethod('map', false)
+const map = applyArrayMethod(Array.prototype.map, { mutating: false })
 
 export { map }

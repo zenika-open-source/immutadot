@@ -1,4 +1,4 @@
-import { convertStringMethod } from './convertStringMethod'
+import { applyStringMethod } from './applyStringMethod'
 
 /**
  * Replaces by former string in upper case.
@@ -7,10 +7,10 @@ import { convertStringMethod } from './convertStringMethod'
  * @param {Object} object The object to modify.
  * @param {Array|string} path The path of the property to set.
  * @return {Object} Returns the updated object.
- * @example toUpperCase({ nested: { a: 'Hello world !' } }, 'fr_fr') // => { nested: { a: 'HELLO WORLD !' } }
+ * @example toUpperCase({ nested: { a: 'Hello world !' } }) // => { nested: { a: 'HELLO WORLD !' } }
  * @see {@link https://mdn.io/String.prototype.toUpperCase|String.prototype.toUpperCase} for more information.
  * @since 1.0.0
  */
-const toUpperCase = convertStringMethod('toUpperCase')
+const toUpperCase = applyStringMethod(String.prototype.toUpperCase, { fixedArity: true })
 
 export { toUpperCase }

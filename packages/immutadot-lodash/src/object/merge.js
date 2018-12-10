@@ -1,5 +1,5 @@
 import { merge as _merge } from 'lodash/fp'
-import { convertLodashFp } from 'util/convertLodashFp'
+import { applyLodashFp } from 'util/applyLodashFp'
 
 /**
  * Replaces by an object deeply merging own enumerable string keyed properties of source objects to the former object.<br />
@@ -14,5 +14,6 @@ import { convertLodashFp } from 'util/convertLodashFp'
  * @see {@link https://lodash.com/docs#merge|lodash.merge} for more information.
  * @since 1.0.0
  */
-const merge = convertLodashFp(_merge)
+const merge = applyLodashFp(_merge, { arity: 2 })
+
 export { merge }

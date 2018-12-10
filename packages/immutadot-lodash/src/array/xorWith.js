@@ -1,5 +1,5 @@
 import { xorWith as _xorWith } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * This method is like {@link array.xor} except that it accepts <code>comparator</code> to compare elements.
@@ -14,5 +14,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#xorWith|lodash.xorWith} for more information.
  * @since 1.0.0
  */
-const xorWith = convert(_xorWith)
+const xorWith = apply(_xorWith, { arity: 2 })
+
 export { xorWith }

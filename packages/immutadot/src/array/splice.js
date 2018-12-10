@@ -1,4 +1,4 @@
-import { convertArrayMethod } from './convertArrayMethod'
+import { applyArrayMethod } from './applyArrayMethod'
 
 /**
  * Replaces an array removing and/or adding elements at <code>index</code> in the former array.
@@ -14,6 +14,6 @@ import { convertArrayMethod } from './convertArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.splice|Array.prototype.splice} for more information.
  * @since 0.2.0
  */
-const splice = convertArrayMethod('splice')
+const splice = applyArrayMethod(Array.prototype.splice)
 
 export { splice }

@@ -1,5 +1,5 @@
 import { difference as _difference } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces an array removing values in the other given arrays from the former array.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#difference|lodash.difference} for more information.
  * @since 1.0.0
  */
-const difference = convert(_difference)
+const difference = apply(_difference, { arity: 2 })
+
 export { difference }

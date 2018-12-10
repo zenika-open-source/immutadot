@@ -1,5 +1,5 @@
 import { toUpper as _toUpper } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Converts string, as a whole, to upper case just like String#toUpperCase.
@@ -10,8 +10,14 @@ import { convert } from 'immutadot'
  * @return {Object} Returns the updated object.
  * @example toUpper({ nested: { a: "a string" } }, 'nested.a') // => { nested: { a: "A STRING" } }
  * @see {@link https://lodash.com/docs#toUpper|lodash.toUpper} for more information.
- * @see {@link https://mdn.io/String/toUpperCase|String.toUpperCase} for more information.
  * @since 1.0.0
  */
-const toUpper = convert(_toUpper)
+const toUpper = apply(
+  _toUpper,
+  {
+    arity: 1,
+    fixedArity: true,
+  },
+)
+
 export { toUpper }

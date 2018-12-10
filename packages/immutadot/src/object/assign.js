@@ -1,4 +1,4 @@
-import { convert } from 'core/convert'
+import { apply } from 'core/apply'
 
 /**
  * Replaces by an object assigning own enumerable string keyed properties of source objects to the destination object.<br />
@@ -13,6 +13,6 @@ import { convert } from 'core/convert'
  * @see {@link https://mdn.io/Object.prototype.assign|Object.prototype.assign} for more information.
  * @since 0.1.12
  */
-const assign = convert((obj, ...args) => Object.assign({ ...obj }, ...args))
+const assign = apply((obj, ...args) => Object.assign({ ...obj }, ...args))
 
 export { assign }

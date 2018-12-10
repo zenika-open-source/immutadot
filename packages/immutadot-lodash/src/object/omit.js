@@ -1,5 +1,5 @@
 import { omit as _omit } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces by an object omitting specified properties.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#omit|lodash.omit} for more information.
  * @since 1.0.0
  */
-const omit = convert(_omit)
+const omit = apply(_omit, { arity: 1 })
+
 export { omit }

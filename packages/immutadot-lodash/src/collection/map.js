@@ -1,5 +1,5 @@
 import { map as _map } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces by an array of values by running each element in the former collection thru iteratee.
@@ -14,5 +14,6 @@ import { convert } from 'immutadot'
  * @example map({ nested: { prop: [1, 2, 3] } }, 'nested.prop', v => v * 2) // => { nested: { prop: [2, 4, 6] } }
  * @since 1.0.0
  */
-const map = convert(_map)
+const map = apply(_map, { arity: 1 })
+
 export { map }

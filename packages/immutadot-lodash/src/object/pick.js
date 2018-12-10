@@ -1,5 +1,5 @@
 import { pick as _pick } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces by an object picking specified properties.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#pick|lodash.pick} for more information.
  * @since 1.0.0
  */
-const pick = convert(_pick)
+const pick = apply(_pick, { arity: 1 })
+
 export { pick }

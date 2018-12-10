@@ -1,4 +1,4 @@
-import { convertStringMethod } from './convertStringMethod'
+import { applyStringMethod } from './applyStringMethod'
 
 /**
  * Replaces by former string in lower case.
@@ -12,6 +12,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @see {@link https://mdn.io/String.prototype.toLocaleLowerCase|String.prototype.toLocaleLowerCase} for more information.
  * @since 1.0.0
  */
-const toLocaleLowerCase = convertStringMethod('toLocaleLowerCase')
+const toLocaleLowerCase = applyStringMethod(String.prototype.toLocaleLowerCase)
 
 export { toLocaleLowerCase }

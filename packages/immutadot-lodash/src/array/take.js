@@ -1,5 +1,5 @@
 import { take as _take } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Creates a slice of array with <code>n</code> elements taken from the beginning.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#take|lodash.take} for more information.
  * @since 1.0.0
  */
-const take = convert(_take)
+const take = apply(_take, { arity: 1 })
+
 export { take }

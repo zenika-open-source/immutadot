@@ -1,5 +1,5 @@
 import { omitBy as _omitBy } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces by an object omitting properties that <code>predicate</code> doesn't return truthy for.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#omitBy|lodash.omitBy} for more information.
  * @since 1.0.0
  */
-const omitBy = convert(_omitBy)
+const omitBy = apply(_omitBy, { arity: 1 })
+
 export { omitBy }

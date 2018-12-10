@@ -1,5 +1,5 @@
 import { intersection as _intersection } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces by an array of unique values that are included in th former array and all given arrays.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#intersection|lodash.intersection} for more information.
  * @since 1.0.0
  */
-const intersection = convert(_intersection)
+const intersection = apply(_intersection, { arity: 2 })
+
 export { intersection }

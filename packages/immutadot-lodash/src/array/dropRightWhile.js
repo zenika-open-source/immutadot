@@ -1,5 +1,5 @@
 import { dropRightWhile as _dropRightWhile } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces an array excluding elements dropped from the end. Elements are dropped until <code>predicate</code> returns falsey.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#dropRightWhile|lodash.dropRightWhile} for more information.
  * @since 1.0.0
  */
-const dropRightWhile = convert(_dropRightWhile)
+const dropRightWhile = apply(_dropRightWhile, { arity: 1 })
+
 export { dropRightWhile }

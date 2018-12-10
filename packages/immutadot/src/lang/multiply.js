@@ -1,4 +1,4 @@
-import { convert } from 'core/convert'
+import { apply } from 'core/apply'
 
 /**
  * Replaces by the multiplication of the former number and the given number.
@@ -11,6 +11,6 @@ import { convert } from 'core/convert'
  * @example multiply({ nested: { prop: 333 } }, 'nested.prop', 2) // => { nested: { prop: 666 } }
  * @since 1.0.0
  */
-const multiply = convert((value, multiplier) => Number(value) * Number(multiplier))
+const multiply = apply((value, multiplier) => Number(value) * Number(multiplier), { fixedArity: true })
 
 export { multiply }

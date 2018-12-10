@@ -1,4 +1,4 @@
-import { convertStringMethod } from './convertStringMethod'
+import { applyStringMethod } from './applyStringMethod'
 
 /**
  * Replaces by former string padded at the end with <code>padString</code> to the given <code>length</code>.
@@ -14,6 +14,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @see {@link https://mdn.io/String.prototype.padEnd|String.prototype.padEnd} for more information.
  * @since 1.0.0
  */
-const padEnd = convertStringMethod('padEnd')
+const padEnd = applyStringMethod(String.prototype.padEnd)
 
 export { padEnd }

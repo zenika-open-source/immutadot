@@ -1,4 +1,4 @@
-import { convertStringMethod } from './convertStringMethod'
+import { applyStringMethod } from './applyStringMethod'
 
 /**
  * Replaces by former string concatenated with <code>strings</code>.<br/>
@@ -13,6 +13,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @see {@link https://mdn.io/String.prototype.concat|String.prototype.concat} for more information.
  * @since 1.0.0
  */
-const concat = convertStringMethod('concat')
+const concat = applyStringMethod(String.prototype.concat)
 
 export { concat }

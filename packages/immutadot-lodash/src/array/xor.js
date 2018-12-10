@@ -1,5 +1,5 @@
 import { xor as _xor } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces an array by the symmetric difference of the former array and the given arrays.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @see {@link https://lodash.com/docs#xor|lodash.xor} for more information.
  * @since 1.0.0
  */
-const xor = convert(_xor)
+const xor = apply(_xor, { arity: 2 })
+
 export { xor }

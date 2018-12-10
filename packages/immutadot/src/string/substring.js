@@ -1,4 +1,4 @@
-import { convertStringMethod } from './convertStringMethod'
+import { applyStringMethod } from './applyStringMethod'
 
 /**
  * Replaces by a slice of former string starting at <code>beginIndex</code> and ending at <code>endIndex</code> or end of the string.
@@ -14,6 +14,6 @@ import { convertStringMethod } from './convertStringMethod'
  * @see {@link https://mdn.io/String.prototype.substring|String.prototype.substring} for more information.
  * @since 1.0.0
  */
-const substring = convertStringMethod('substring')
+const substring = applyStringMethod(String.prototype.substring, { arity: 1 })
 
 export { substring }

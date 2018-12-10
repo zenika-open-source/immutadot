@@ -1,5 +1,5 @@
 import { defaults as _defaults } from 'lodash/fp'
-import { convertLodashFp } from 'util/convertLodashFp'
+import { applyLodashFp } from 'util/applyLodashFp'
 
 /**
  * Replaces by an object assigning own and inherited enumerable string keyed properties of source objects to the destination object for all destination properties that resolve to <code>undefined</code>.<br >
@@ -14,5 +14,6 @@ import { convertLodashFp } from 'util/convertLodashFp'
  * @see {@link https://lodash.com/docs#defaults|lodash.defaults} for more information.
  * @since 1.0.0
  */
-const defaults = convertLodashFp(_defaults)
+const defaults = applyLodashFp(_defaults, { arity: 2 })
+
 export { defaults }

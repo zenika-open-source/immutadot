@@ -1,5 +1,5 @@
 import { reject as _reject } from 'lodash'
-import { convert } from 'immutadot'
+import { apply } from 'immutadot/core'
 
 /**
  * Replaces by an array of elements <code>predicate</code> returns falsy for.
@@ -13,5 +13,6 @@ import { convert } from 'immutadot'
  * @example reject({ nested: { prop: [1, 2, 3, 4] } }, 'nested.prop', v => v % 2) // => { nested: { prop: [2, 4] } }
  * @since 1.0.0
  */
-const reject = convert(_reject)
+const reject = apply(_reject, { arity: 1 })
+
 export { reject }
