@@ -3,4 +3,8 @@ export class BaseNav {
     this.value = value
     this._next = next
   }
+
+  get final() {
+    return false
+  }
 }

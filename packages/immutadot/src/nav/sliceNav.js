@@ -43,6 +43,20 @@ class SliceNav extends ArrayNav {
     for (const index of range) copy[index] = _next(value[index]).update(updater)
     return copy
   }
+
+  unset() {
+    const { _next, value, range } = this
+
+    const copy = this.copy()
+    for (const index of range) {
+      const next = _next(value[index])
+      if (next.final)
+        delete copy[index]
+      else
+        copy[index] = next.unset()
+    }
+    return copy
+  }
 }
 
 export function sliceNav(bounds, next) {

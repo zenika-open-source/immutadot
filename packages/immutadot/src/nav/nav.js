@@ -1,4 +1,5 @@
 import { allProps, index, list, prop, slice } from '@immutadot/parser/consts'
+import { finalNav } from './finalNav'
 import { indexNav } from './indexNav'
 import { propNav } from './propNav'
 import { propsNav } from './propsNav'
@@ -20,22 +21,4 @@ function toNav(type) {
   case slice: return sliceNav
   default: throw TypeError(type)
   }
-}
-
-class FinalNav {
-  constructor(value) {
-    this.value = value
-  }
-
-  get() {
-    return this.value
-  }
-
-  update(updater) {
-    return updater(this.value)
-  }
-}
-
-function finalNav(value) {
-  return new FinalNav(value)
 }
