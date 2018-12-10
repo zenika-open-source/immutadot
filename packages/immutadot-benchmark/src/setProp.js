@@ -83,4 +83,16 @@ export function setProp(benchmarkSuite) {
       return set(baseState, 'nested.prop', 'bar')
     })
   })
+
+  it('qim curried', () => {
+    benchmark('qim-curried', () => {
+      return qim.set(['nested', 'prop'])('bar')(baseState)
+    })
+  })
+
+  it('immutad●t curried', () => {
+    benchmark('immutadot-curried', () => {
+      return set('nested.prop')('bar')(baseState)
+    })
+  })
 }
