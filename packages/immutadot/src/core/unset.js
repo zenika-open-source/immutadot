@@ -1,6 +1,6 @@
-import { apply } from 'path/apply'
-
-const unsetOperation = (obj, prop) => { delete obj[prop] }
+import { curry } from './curry'
+import { nav } from 'nav/nav'
+import { toPath } from '@immutadot/parser'
 
 /**
  * Removes the property at <code>path</code> of <code>object</code>.
@@ -12,6 +12,6 @@ const unsetOperation = (obj, prop) => { delete obj[prop] }
  * @example unset({ nested: { prop: 'value' } }, 'nested.prop') // => { nested: {} }
  * @since 1.0.0
  */
-const unset = apply(unsetOperation)
+const unset = curry((obj, path) => nav(toPath(path))(obj).unset(), { fixedArity: true })
 
 export { unset }

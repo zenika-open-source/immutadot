@@ -28,6 +28,15 @@ class IndexNav extends ArrayNav {
     copy[this.index] = this.next.update(updater)
     return copy
   }
+
+  unset() {
+    const copy = this.copy()
+    if (this.next.final)
+      delete copy[this.index]
+    else
+      copy[this.index] = this.next.unset()
+    return copy
+  }
 }
 
 export function indexNav(index, next) {

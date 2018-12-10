@@ -21,6 +21,15 @@ class PropNav extends ObjectNav {
     copy[this.key] = this.next.update(updater)
     return copy
   }
+
+  unset() {
+    const copy = this.copy()
+    if (this.next.final)
+      delete copy[this.key]
+    else
+      copy[this.key] = this.next.unset()
+    return copy
+  }
 }
 
 export function propNav(key, next) {
