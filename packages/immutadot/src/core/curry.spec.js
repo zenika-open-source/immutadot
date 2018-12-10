@@ -25,4 +25,67 @@ describe('curry.curry', () => {
   it('should discard extra args in last curried call', () => {
     expect(curriedFill('path', 'value')('obj', 'extraArg')).toBe('fill(obj, path, value, 0, -1, undefined)')
   })
+
+  it('should allow reusing partial calls', () => {
+    const partial1 = curriedFill('path')
+    const partial2 = partial1('value1')
+    const partial3 = partial1('value2')
+
+    expect(partial2('obj1')).toBe('fill(obj1, path, value1, 0, -1, undefined)')
+    expect(partial2('obj2')).toBe('fill(obj2, path, value1, 0, -1, undefined)')
+    expect(partial3('obj1')).toBe('fill(obj1, path, value2, 0, -1, undefined)')
+    expect(partial3('obj2')).toBe('fill(obj2, path, value2, 0, -1, undefined)')
+  })
+
+  it('should manage fixedArity', () => {
+    function printArgs(...args) {
+      return args.map((arg, i) => `arg${i} = ${arg}`).join(', ')
+    }
+
+    const printArgs2 = curry(printArgs, {
+      arity: 2,
+      fixedArity: true,
+    })
+    expect(printArgs2(1)(2)).toBe('arg0 = 2, arg1 = 1')
+
+    const printArgs3 = curry(printArgs, {
+      arity: 3,
+      fixedArity: true,
+    })
+    expect(printArgs3(1, 2)(3)).toBe('arg0 = 3, arg1 = 1, arg2 = 2')
+    expect(printArgs3(1)(2, 3)).toBe('arg0 = 3, arg1 = 1, arg2 = 2')
+    expect(printArgs3(1)(2)(3)).toBe('arg0 = 3, arg1 = 1, arg2 = 2')
+
+    const printArgs4 = curry(printArgs, {
+      arity: 4,
+      fixedArity: true,
+    })
+    expect(printArgs4(1, 2, 3)(4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
+    expect(printArgs4(1, 2)(3, 4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
+    expect(printArgs4(1, 2)(3)(4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
+    expect(printArgs4(1)(2, 3, 4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
+    expect(printArgs4(1)(2, 3)(4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
+    expect(printArgs4(1)(2)(3, 4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
+    expect(printArgs4(1)(2)(3)(4)).toBe('arg0 = 4, arg1 = 1, arg2 = 2, arg3 = 3')
+
+    const printArgs5 = curry(printArgs, {
+      arity: 5,
+      fixedArity: true,
+    })
+    expect(printArgs5(1, 2, 3, 4)(5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1, 2, 3)(4, 5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1, 2, 3)(4)(5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1, 2)(3, 4, 5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1, 2)(3, 4)(5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1, 2)(3)(4, 5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1, 2)(3)(4)(5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1)(2, 3, 4, 5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1)(2, 3, 4)(5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1)(2, 3)(4, 5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1)(2, 3)(4)(5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1)(2)(3, 4, 5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1)(2)(3, 4)(5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1)(2)(3)(4, 5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+    expect(printArgs5(1)(2)(3)(4)(5)).toBe('arg0 = 5, arg1 = 1, arg2 = 2, arg3 = 3, arg4 = 4')
+  })
 })

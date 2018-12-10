@@ -12,6 +12,8 @@ const benchmarkSuite = new BenchmarkSuite(
     ['immer', 'immer 1.2.0'],
     ['qim', 'qim 0.0.52'],
     ['immutadot', 'immutad●t 2.0.0'],
+    ['qim-curried', 'qim 0.0.52 curried'],
+    ['immutadot-curried', 'immutad●t 2.0.0 curried'],
   ],
 )
 
