@@ -103,4 +103,4 @@ As you can see it becomes more tedious to write and harder to read. Simple use-c
 
 https://gist.github.com/frinyvonnick/0d883ce1bb07a5494318ec11c2152e92
 
-These reasons are sufficient to start finding out some tool that help focusing on what really matters, the meaning of your code. That's why we created [immutadot](https://immutadot.zenika.com/), to help us keep javascript codebase readable and maintenable. [Give it a try]Feel free to make(https://npm.runkit.com/immutadot).
+These reasons are sufficient to start finding out some tool that help focusing on what really matters, the meaning of your code. That's why we created [immutadot](https://immutadot.zenika.com/), to help us keep javascript codebase readable and maintenable. [Give it a try](https://npm.runkit.com/immutadot).
