@@ -36,6 +36,7 @@ export class BenchmarkSuite {
 
         const tempMeanTime = totalTime / nbOperations
 
+        // FIXME log this
         iterations = Math.min(
           // Either enough operations to consume max run time or remaining time
           Math.ceil(Math.min(maxRunTime, Math.max(limitEndTime - Date.now(), 0)) / tempMeanTime),
