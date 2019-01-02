@@ -1,5 +1,6 @@
 export {
   concat as arrayConcat,
+  copyWithin,
   fill,
   filter,
   map,
