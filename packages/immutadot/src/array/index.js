@@ -4,9 +4,10 @@
  * @since 0.1.6
  */
 
-export { filter } from './filter'
 export { concat } from './concat'
+export { copyWithin } from './copyWithin'
 export { fill } from './fill'
+export { filter } from './filter'
 export { map } from './map'
 export { pop } from './pop'
 export { push } from './push'
