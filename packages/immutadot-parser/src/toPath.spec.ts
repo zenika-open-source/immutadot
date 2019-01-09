@@ -1,81 +1,77 @@
-/* eslint-env jest */
-import {
-  allProps,
-  index,
-  list,
-  prop,
-  slice,
-} from './consts'
-import { toPath } from './toPath'
-describe('path.toPath', () => {
-  it('should convert basic path', () => {
-    expect(toPath('a.22.ccc')).toEqual([
+import { NavType } from "./enums";
+import { toPath } from "./toPath";
+
+const { allProps, index, list, prop, slice } = NavType;
+
+describe("path.toPath", () => {
+  it("should convert basic path", () => {
+    expect(toPath("a.22.ccc")).toEqual([
       [
         prop,
-        'a',
+        "a",
       ],
       [
         prop,
-        '22',
+        "22",
       ],
       [
         prop,
-        'ccc',
+        "ccc",
       ],
-    ])
+    ]);
     // Leading dot should be discarded
-    expect(toPath('.a')).toEqual([
+    expect(toPath(".a")).toEqual([
       [
         prop,
-        'a',
+        "a",
       ],
-    ])
+    ]);
     // Empty properties should be kept
-    expect(toPath('.')).toEqual([
+    expect(toPath(".")).toEqual([
       [
         prop,
-        '',
+        "",
       ],
-    ])
-    expect(toPath('..prop')).toEqual([
+    ]);
+    expect(toPath("..prop")).toEqual([
       [
         prop,
-        '',
-      ],
-      [
-        prop,
-        'prop',
-      ],
-    ])
-    expect(toPath('.a.')).toEqual([
-      [
-        prop,
-        'a',
+        "",
       ],
       [
         prop,
-        '',
+        "prop",
       ],
-    ])
-    expect(toPath('..')).toEqual([
+    ]);
+    expect(toPath(".a.")).toEqual([
       [
         prop,
-        '',
+        "a",
       ],
       [
         prop,
-        '',
+        "",
       ],
-    ])
+    ]);
+    expect(toPath("..")).toEqual([
+      [
+        prop,
+        "",
+      ],
+      [
+        prop,
+        "",
+      ],
+    ]);
     // If no separators, path should be interpreted as one property
     expect(toPath('\']"\\')).toEqual([
       [
         prop,
         '\']"\\',
       ],
-    ])
-  })
-  it('should convert array notation path', () => {
+    ]);
+  });
+  it("should convert array notation path", () => {
     expect(toPath('[0][-2]["1.2"][\'[1.2]\']["[\\"1.2\\"]"][1a][1[2]')).toEqual([
       [
         index,
@@ -87,11 +83,11 @@ describe('path.toPath', () => {
       ],
       [
         prop,
-        '1.2',
+        "1.2",
       ],
       [
         prop,
-        '[1.2]',
+        "[1.2]",
       ],
       [
         prop,
@@ -99,24 +95,24 @@ describe('path.toPath', () => {
       ],
       [
         prop,
-        '1a',
+        "1a",
       ],
       [
         prop,
-        '1[2',
+        "1[2",
       ],
-    ])
+    ]);
     // Empty unterminated array notation should be discarded
-    expect(toPath('[0][')).toEqual([
+    expect(toPath("[0][")).toEqual([
       [
         index,
         0,
       ],
       [
         prop,
-        '[',
+        "[",
       ],
-    ])
+    ]);
     expect(toPath('[0]["')).toEqual([
       [
         index,
@@ -126,36 +122,36 @@ describe('path.toPath', () => {
         prop,
         '["',
       ],
-    ])
+    ]);
     // Unterminated array notation should run to end of path as string
-    expect(toPath('[0][123')).toEqual([
+    expect(toPath("[0][123")).toEqual([
       [
         index,
         0,
       ],
       [
         prop,
-        '[123',
+        "[123",
       ],
-    ])
-    expect(toPath('[0][1.a[2')).toEqual([
+    ]);
+    expect(toPath("[0][1.a[2")).toEqual([
       [
         index,
         0,
       ],
       [
         prop,
-        '[1',
+        "[1",
       ],
       [
         prop,
-        'a',
+        "a",
       ],
       [
         prop,
-        '[2',
+        "[2",
       ],
-    ])
+    ]);
     // Unterminated quoted array notation should run to end of path
     expect(toPath('[0]["1[2].a')).toEqual([
       [
@@ -172,12 +168,12 @@ describe('path.toPath', () => {
       ],
       [
         prop,
-        'a',
+        "a",
       ],
-    ])
-  })
-  it('should convert slice notation path', () => {
-    expect(toPath('[:][1:][:-2][3:4]')).toEqual([
+    ]);
+  });
+  it("should convert slice notation path", () => {
+    expect(toPath("[:][1:][:-2][3:4]")).toEqual([
       [
         slice, [
           0,
@@ -201,99 +197,99 @@ describe('path.toPath', () => {
           4,
         ],
       ],
-    ])
-    expect(toPath('[1:2:3][1:a][1:2')).toEqual([
+    ]);
+    expect(toPath("[1:2:3][1:a][1:2")).toEqual([
       [
         prop,
-        '1:2:3',
+        "1:2:3",
       ],
       [
         prop,
-        '1:a',
+        "1:a",
       ],
       [
         prop,
-        '[1:2',
+        "[1:2",
       ],
-    ])
-  })
-  it('should convert list notation path', () => {
-    expect(toPath('{abc,defg}.{123,4567,89}.{foo}')).toEqual([
+    ]);
+  });
+  it("should convert list notation path", () => {
+    expect(toPath("{abc,defg}.{123,4567,89}.{foo}")).toEqual([
       [
         list, [
-          'abc',
-          'defg',
+          "abc",
+          "defg",
         ],
       ],
       [
         list, [
-          '123',
-          '4567',
-          '89',
+          "123",
+          "4567",
+          "89",
         ],
       ],
       [
         prop,
-        'foo',
+        "foo",
       ],
-    ])
+    ]);
     expect(toPath('{"abc,defg",foo}.{\'123,4567,89\'}')).toEqual([
       [
         list, [
-          'abc,defg',
-          'foo',
+          "abc,defg",
+          "foo",
         ],
       ],
       [
         prop,
-        '123,4567,89',
+        "123,4567,89",
       ],
-    ])
-    expect(toPath('{,1,2,3}')).toEqual([
+    ]);
+    expect(toPath("{,1,2,3}")).toEqual([
       [
         list, [
-          '',
-          '1',
-          '2',
-          '3',
+          "",
+          "1",
+          "2",
+          "3",
         ],
       ],
-    ])
+    ]);
     // Unterminated list notation should give a prop
-    expect(toPath('abc.{')).toEqual([
+    expect(toPath("abc.{")).toEqual([
       [
         prop,
-        'abc',
+        "abc",
       ],
       [
         prop,
-        '{',
+        "{",
       ],
-    ])
+    ]);
     expect(toPath('abc.{"')).toEqual([
       [
         prop,
-        'abc',
+        "abc",
       ],
       [
         prop,
         '{"',
       ],
-    ])
-    expect(toPath('abc.{a,b,c')).toEqual([
+    ]);
+    expect(toPath("abc.{a,b,c")).toEqual([
       [
         prop,
-        'abc',
+        "abc",
       ],
       [
         prop,
-        '{a,b,c',
+        "{a,b,c",
       ],
-    ])
-    expect(toPath('{abc,defg[0].foo{bar')).toEqual([
+    ]);
+    expect(toPath("{abc,defg[0].foo{bar")).toEqual([
       [
         prop,
-        '{abc,defg',
+        "{abc,defg",
       ],
       [
         index,
@@ -301,13 +297,13 @@ describe('path.toPath', () => {
       ],
       [
         prop,
-        'foo',
+        "foo",
       ],
       [
         prop,
-        '{bar',
+        "{bar",
       ],
-    ])
+    ]);
     // Unterminated quoted list notation should run to end of path
     expect(toPath('{abc,"defg[0]}.foo.{\'bar')).toEqual([
       [
@@ -320,28 +316,28 @@ describe('path.toPath', () => {
       ],
       [
         prop,
-        '}',
+        "}",
       ],
       [
         prop,
-        'foo',
+        "foo",
       ],
       [
         prop,
-        '{\'bar',
+        "{'bar",
       ],
-    ])
-  })
-  it('should convert list wildcard notation path', () => {
-    expect(toPath('{*}')).toEqual([
+    ]);
+  });
+  it("should convert list wildcard notation path", () => {
+    expect(toPath("{*}")).toEqual([
       [allProps],
-    ])
-  })
-  it('should convert mixed path', () => {
+    ]);
+  });
+  it("should convert mixed path", () => {
     expect(toPath('a[0]["b.c"].666[1:].{1a,2b,3c}')).toEqual([
       [
         prop,
-        'a',
+        "a",
       ],
       [
         index,
@@ -349,11 +345,11 @@ describe('path.toPath', () => {
       ],
       [
         prop,
-        'b.c',
+        "b.c",
       ],
       [
         prop,
-        '666',
+        "666",
       ],
       [
         slice, [
@@ -363,16 +359,16 @@ describe('path.toPath', () => {
       ],
       [
         list, [
-          '1a',
-          '2b',
-          '3c',
+          "1a",
+          "2b",
+          "3c",
         ],
       ],
-    ])
+    ]);
     expect(toPath('a.[0].["b.c"]666[1:2:3]{1a}{"2b",\'3c\'}')).toEqual([
       [
         prop,
-        'a',
+        "a",
       ],
       [
         index,
@@ -380,30 +376,30 @@ describe('path.toPath', () => {
       ],
       [
         prop,
-        'b.c',
+        "b.c",
       ],
       [
         prop,
-        '666',
+        "666",
       ],
       [
         prop,
-        '1:2:3',
+        "1:2:3",
       ],
       [
         prop,
-        '1a',
+        "1a",
       ],
       [
         list, [
-          '2b',
-          '3c',
+          "2b",
+          "3c",
         ],
       ],
-    ])
-  })
-  it('should give empty path for nil values', () => {
-    expect(toPath(null)).toEqual([])
-    expect(toPath(undefined)).toEqual([])
-  })
-})
+    ]);
+  });
+  it("should give empty path for nil values", () => {
+    expect(toPath(null)).toEqual([]);
+    expect(toPath(undefined)).toEqual([]);
+  });
+});
