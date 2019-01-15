@@ -1,17 +1,17 @@
 import { NavType } from "./enums";
 
-const mapIfNotNull = <T, R> (maybe: T, fn: (v: T) => R): R => maybe === null ? null : fn(maybe);
+const mapIfNotNull = <T, R> (maybe: (T | null), fn: (v: T) => R) => maybe === null ? null : fn(maybe);
 
-type Parser = (str: string) => string[];
+type Parser = (str: string) => string[] | null;
 // FIXME name these ?
-type Path = Array<
+export type Path = Array<
   [NavType.allProps] |
   [NavType.index, number] |
   [NavType.list, string[]] |
   [NavType.prop, string] |
-  [NavType.slice, number[]]
+  [NavType.slice, Array<number | undefined>]
 >;
-export type PathParser = (str: string) => Path;
+export type PathParser = (str: string) => Path | null;
 
 /**
  * Creates a parser from a regular expression by matching the input string with
@@ -92,4 +92,12 @@ const fallback = (parser: PathParser, other: PathParser): PathParser => (str) =>
  * @remarks
  * Since 1.0.0
  */
-export const race = (parsers: PathParser[]) => parsers.reduce(fallback);
+export const race = (parsers: PathParser[]) => {
+  const racer = parsers.reduce(fallback);
+
+  return (str: string): Path => {
+    const path = racer(str);
+    if (path === null) { throw TypeError(); }
+    return path;
+  };
+};

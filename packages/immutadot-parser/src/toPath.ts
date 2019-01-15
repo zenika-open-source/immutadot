@@ -3,6 +3,7 @@ import { NavType } from "./enums";
 import {
   filter,
   map,
+  Path,
   PathParser,
   race,
   regexpToParser,
@@ -40,7 +41,8 @@ const unescapeQuotes = (str: string, quote: "'" | '"') => str.replace(new RegExp
  * @remarks
  * Since 1.0.0
  */
-const toSliceIndex = (str: string, defaultValue: number = undefined) => str === "" ? defaultValue : Number(str);
+const toSliceIndex = (str: string, defaultValue: number | undefined = undefined) =>
+  str === "" ? defaultValue : Number(str);
 
 /**
  * Tests whether <code>arg</code> is a valid slice index once converted to a number.
@@ -96,11 +98,12 @@ const listWildCardParser = map(
 );
 
 const listPropRegexp = /^,?((?!["'])([^,]*)|(["'])(.*?[^\\])\3)(.*)/;
-function* extractListProps(rawProps) {
+function* extractListProps(rawProps: string) {
   if (rawProps.startsWith(",")) {  yield ""; }
   let remProps = rawProps;
   while (remProps !== "") {
-    const [, , bareProp, , quotedProp, rest] = listPropRegexp.exec(remProps);
+    // Forcing exec return type as we are sure it matches
+    const [, , bareProp, , quotedProp, rest] = listPropRegexp.exec(remProps) as RegExpExecArray;
     yield bareProp === undefined ? quotedProp : bareProp;
     remProps = rest;
   }
@@ -138,9 +141,9 @@ const applyParsers = race([
 ]);
 
 const MAX_CACHE_SIZE = 1000;
-const cache = new Map();
+const cache = new Map<string, Path>();
 
-const stringToPath = (pStr) => {
+const stringToPath = (pStr: string): Path => {
   const str = pStr.startsWith(".") ? pStr.substring(1) : pStr;
 
   const path = applyParsers(str);
@@ -158,8 +161,8 @@ const stringToPath = (pStr) => {
  * @private
  * @since 1.0.0
  */
-const memoizedStringToPath = (str) => {
-  if (cache.has(str)) {  return cache.get(str); }
+const memoizedStringToPath = (str: string): Path => {
+  if (cache.has(str)) {  return cache.get(str) as Path; }
 
   const path = stringToPath(str);
 
@@ -182,7 +185,7 @@ const memoizedStringToPath = (str) => {
  * @example toPath('a.b[1]["."][1:-1]') // => [[prop, 'a'], [prop, 'b'], [index, 1], [prop, '.'], [slice, [1, -1]]]
  * @private
  */
-const toPath = (arg) => {
+const toPath = (arg: string | undefined | null): Path  => {
   if (isNil(arg)) {  return []; }
 
   return memoizedStringToPath(toString(arg));
