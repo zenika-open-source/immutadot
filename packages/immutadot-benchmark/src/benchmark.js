@@ -20,12 +20,32 @@ export class BenchmarkSuite {
     function run(key, operation) {
       const startTime = Date.now()
       const maxTimeMs = Math.round(maxTime * 1000)
+
+      const startingTime = maxTimeMs / 100 // Starting time is a hundredth of max time
+      let startingIterations = 1
+      let startingOperations = 0
+
+      while (Date.now() - startTime < startingTime) {
+        let iterations = startingIterations
+        startingIterations *= 2
+        startingOperations += iterations
+
+        while (iterations--) operation()
+      }
+
       const maxRunTime = Math.round(maxTimeMs / 10) // Max run time is a tenth of max time
       const limitEndTime = startTime + maxTimeMs
 
-      let iterations = 1 // Start with 1 iteration
+      const getIterations = (measuredOperations, measuredTime) => Math.min(
+        // Either enough operations to consume max run time or remaining time
+        Math.ceil(Math.min(maxRunTime, Math.max(limitEndTime - Date.now(), 0)) / (measuredTime / measuredOperations)),
+        // Or enough operations to reach max operations
+        maxOperations - measuredOperations,
+      )
+
       let nbOperations = 0
       let totalTime = 0
+      let iterations = getIterations(startingOperations, Date.now() - startTime)
 
       while (iterations > 0) {
         nbOperations += iterations
@@ -34,15 +54,7 @@ export class BenchmarkSuite {
         while (iterations--) operation()
         totalTime += Date.now() - runStartTime
 
-        const tempMeanTime = totalTime / nbOperations
-
-        // FIXME log this
-        iterations = Math.min(
-          // Either enough operations to consume max run time or remaining time
-          Math.ceil(Math.min(maxRunTime, Math.max(limitEndTime - Date.now(), 0)) / tempMeanTime),
-          // Or enough operations to reach max operations
-          maxOperations - nbOperations,
-        )
+        iterations = getIterations(nbOperations, totalTime)
       }
 
       if (typeof testResult === 'function') testResult(key, operation())
