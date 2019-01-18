@@ -5,7 +5,7 @@
   "license": "MIT",
   "devDependencies": {
     "cross-env": "~5.2.0",
-    "immer": "~1.8.0",
+    "immer": "~1.10.5",
     "immutable": "~4.0.0-rc.12",
     "immutadot": "~2.0.0",
     "jest": "~21.2.1",
