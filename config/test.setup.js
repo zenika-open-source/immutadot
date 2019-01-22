@@ -1,11 +1,20 @@
 /* eslint-env jest */
-import groupBy from 'lodash/groupBy'
-import intersectionWith from 'lodash/intersectionWith'
-import isArray from 'lodash/isArray'
-import isString from 'lodash/isString'
-import map from 'lodash/map'
-import { toRefs } from 'test.utils'
-import xorWith from 'lodash/xorWith'
+// import groupBy from 'lodash/groupBy'
+// import intersectionWith from 'lodash/intersectionWith'
+// import isArray from 'lodash/isArray'
+// import isString from 'lodash/isString'
+// import map from 'lodash/map'
+// import { toRefs } from 'test.utils'
+// import xorWith from 'lodash/xorWith'
+
+const {
+  groupBy,
+  intersectionWith,
+  isArray,
+  isString,
+  map,
+  xorWith,
+} = require('lodash')
 
 const toFilter = filter => {
   if (isArray(filter)) return filter
