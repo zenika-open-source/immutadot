@@ -20,13 +20,13 @@
   ],
   "main": "index.js",
   "dependencies": {
-    "babel-runtime": "^6.26.0",
-    "@immutadot/parser": "^2.0.0"
+    "@immutadot/parser": "^2.0.0",
+    "babel-runtime": "^6.26.0"
   },
   "devDependencies": {
     "babel-cli": "~6.26.0",
     "cross-env": "~5.2.0",
-    "eslint": "~5.9.0",
+    "eslint": "~5.12.1",
     "jest": "~21.2.1",
     "jsdoc": "~3.5.5"
   },

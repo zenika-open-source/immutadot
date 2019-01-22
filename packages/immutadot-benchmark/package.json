@@ -5,13 +5,13 @@
   "license": "MIT",
   "devDependencies": {
     "cross-env": "~5.2.0",
-    "immer": "~1.10.5",
+    "immer": "~1.12.0",
     "immutable": "~4.0.0-rc.12",
     "immutadot": "~2.0.0",
     "jest": "~21.2.1",
-    "lerna": "~3.5.1",
+    "lerna": "~3.10.6",
     "qim": "~0.0.52",
-    "seamless-immutable": "^7.1.3"
+    "seamless-immutable": "^7.1.4"
   },
   "scripts": {
     "prestart": "lerna run --scope immutadot build",
