@@ -3,20 +3,38 @@ import { NavType } from "./enums";
 import {
   filter,
   map,
-  Path,
-  PathParser,
+  Parser,
   race,
   regexpToParser,
+  succeedOrThrow,
 } from "./parser.utils";
 
 import {
   isIndex,
   isNil,
-  isSliceIndex,
+  isSliceIndexString,
+  SliceIndex,
+  toSliceIndex,
   toString,
 } from "./utils";
 
-const { allProps, index, list, prop, slice } = NavType;
+type AllPropsSegment = [NavType.allProps];
+const allPropsSegment = (): AllPropsSegment => [NavType.allProps];
+
+type IndexSegment = [NavType.index, number];
+const indexSegment = (index: number): IndexSegment => [NavType.index, index];
+
+type PropListSegment = [NavType.list, string[]];
+const propListSegment = (props: string[]): PropListSegment => [NavType.list, props];
+
+type PropSegment = [NavType.prop, string];
+const propSegment = (prop: string): PropSegment => [NavType.prop, prop];
+
+type SliceSegment = [NavType.slice, [SliceIndex, SliceIndex]];
+const sliceSegment = (start: SliceIndex, end: SliceIndex): SliceSegment => [NavType.slice, [start, end]];
+
+type PathSegment = AllPropsSegment | IndexSegment | PropListSegment | PropSegment | SliceSegment;
+type Path = PathSegment[];
 
 /**
  * Strip slashes preceding occurences of <code>quote</code> from <code>str</code><br />
@@ -31,70 +49,46 @@ const { allProps, index, list, prop, slice } = NavType;
  */
 const unescapeQuotes = (str: string, quote: "'" | '"') => str.replace(new RegExp(`\\\\${quote}`, "g"), quote);
 
-/**
- * Converts <code>str</code> to a slice index.
- *
- * @param str The string to convert
- * @param defaultValue The default value if <code>str</code> is empty
- * @returns <code>undefined</code> if <code>str</code> is empty, otherwise an int (may be NaN)
- *
- * @remarks
- * Since 1.0.0
- */
-const toSliceIndex = (str: string, defaultValue: number | undefined = undefined) =>
-  str === "" ? defaultValue : Number(str);
+const emptyStringParser: Parser<Path | null> = (str: string) => str.length === 0 ? [] : null;
 
-/**
- * Tests whether <code>arg</code> is a valid slice index once converted to a number.
- *
- * @param arg The value to test
- * @returns True if <code>arg</code> is a valid slice index once converted to a number, false otherwise.
- *
- * @remarks
- * Since 1.0.0
- */
-const isSliceIndexString = (arg: any) => isSliceIndex(arg ? Number(arg) : undefined);
-
-const emptyStringParser: PathParser = (str: string) => str.length === 0 ? [] : null;
-
-const quotedBracketNotationParser = map(
+const quotedBracketNotationParser: Parser<Path | null> = map(
   regexpToParser(/^\[(['"])(.*?[^\\])\1\]?\.?(.*)$/),
-  ([quote, property, rest]) => [[prop, unescapeQuotes(property, quote as "'" | '"')], ...applyParsers(rest)],
+  ([quote, property, rest]) => [propSegment(unescapeQuotes(property, quote as "'" | '"')), ...applyParsers(rest)],
 );
 
-const incompleteQuotedBracketNotationParser = map(
+const incompleteQuotedBracketNotationParser: Parser<Path | null> = map(
   regexpToParser(/^(\[["'][^.[{]*)\.?(.*)$/),
-  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...applyParsers(rest)],
+  ([beforeNewSegment, rest]) => [propSegment(beforeNewSegment), ...applyParsers(rest)],
 );
 
-const bareBracketNotationParser = map(
+const bareBracketNotationParser: Parser<Path | null> = map(
   regexpToParser(/^\[([^\]]*)\]\.?(.*)$/),
   ([property, rest]) => {
     return isIndex(Number(property))
-      ? [[index, Number(property)], ...applyParsers(rest)]
-      : [[prop, property], ...applyParsers(rest)];
+      ? [indexSegment(Number(property)), ...applyParsers(rest)]
+      : [propSegment(property), ...applyParsers(rest)];
   },
 );
 
-const incompleteBareBracketNotationParser = map(
+const incompleteBareBracketNotationParser: Parser<Path | null> = map(
   regexpToParser(/^(\[[^.[{]*)\.?(.*)$/),
-  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...applyParsers(rest)],
+  ([beforeNewSegment, rest]) => [propSegment(beforeNewSegment), ...applyParsers(rest)],
 );
 
-const sliceNotationParser = map(
+const sliceNotationParser: Parser<Path | null> = map(
   filter(
     regexpToParser(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/),
     ([sliceStart, sliceEnd]) => isSliceIndexString(sliceStart) && isSliceIndexString(sliceEnd),
   ),
   ([sliceStart, sliceEnd, rest]) => [
-    [slice, [toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)]],
+    sliceSegment(toSliceIndex(sliceStart, 0), toSliceIndex(sliceEnd)),
     ...applyParsers(rest),
   ],
 );
 
-const listWildCardParser = map(
+const listWildCardParser: Parser<Path | null> = map(
   regexpToParser(/^{\*}\.?(.*)$/),
-  ([rest]) => [[allProps], ...applyParsers(rest)],
+  ([rest]) => [allPropsSegment(), ...applyParsers(rest)],
 );
 
 const listPropRegexp = /^,?((?!["'])([^,]*)|(["'])(.*?[^\\])\3)(.*)/;
@@ -109,25 +103,27 @@ function* extractListProps(rawProps: string) {
   }
 }
 
-const listNotationParser = map(
+const listNotationParser: Parser<Path | null> = map(
   regexpToParser(/^\{(((?!["'])[^,}]*|(["']).*?[^\\]\2)(,((?!["'])[^,}]*|(["']).*?[^\\]\6))*)\}\.?(.*)$/),
   ([rawProps, , , , , , rest]) => {
     const props = [...extractListProps(rawProps)];
-    return props.length === 1 ? [[prop, props[0]], ...applyParsers(rest)] : [[list, props], ...applyParsers(rest)];
+    return props.length === 1
+      ? [propSegment(props[0]), ...applyParsers(rest)]
+      : [propListSegment(props), ...applyParsers(rest)];
   },
 );
 
-const incompleteListNotationParser = map(
+const incompleteListNotationParser: Parser<Path | null> = map(
   regexpToParser(/^(\{[^.[{]*)\.?(.*)$/),
-  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...applyParsers(rest)],
+  ([beforeNewSegment, rest]) => [propSegment(beforeNewSegment), ...applyParsers(rest)],
 );
 
-const pathSegmentEndedByNewSegment = map(
+const pathSegmentEndedByNewSegment: Parser<Path | null> = map(
   regexpToParser(/^([^.[{]*)\.?([[{]?.*)$/),
-  ([beforeNewSegment, rest]) => [[prop, beforeNewSegment], ...applyParsers(rest)],
+  ([beforeNewSegment, rest]) => [propSegment(beforeNewSegment), ...applyParsers(rest)],
 );
 
-const applyParsers = race([
+const applyParsers: Parser<Path> = succeedOrThrow(race([
   emptyStringParser,
   quotedBracketNotationParser,
   incompleteQuotedBracketNotationParser,
@@ -138,7 +134,7 @@ const applyParsers = race([
   listNotationParser,
   incompleteListNotationParser,
   pathSegmentEndedByNewSegment,
-]);
+]));
 
 const MAX_CACHE_SIZE = 1000;
 const cache = new Map<string, Path>();
@@ -148,7 +144,7 @@ const stringToPath = (pStr: string): Path => {
 
   const path = applyParsers(str);
 
-  return pStr.endsWith(".") ? [...path, [prop, ""]] : path;
+  return pStr.endsWith(".") ? [...path, propSegment("")] : path;
 };
 
 /**

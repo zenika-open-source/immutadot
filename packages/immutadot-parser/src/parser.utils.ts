@@ -1,17 +1,6 @@
-import { NavType } from "./enums";
+const mapIfNotNull = <T, R> (maybe: T | null, fn: (v: T) => R): R | null => maybe === null ? null : fn(maybe);
 
-const mapIfNotNull = <T, R> (maybe: (T | null), fn: (v: T) => R) => maybe === null ? null : fn(maybe);
-
-type Parser = (str: string) => string[] | null;
-// FIXME name these ?
-export type Path = Array<
-  [NavType.allProps] |
-  [NavType.index, number] |
-  [NavType.list, string[]] |
-  [NavType.prop, string] |
-  [NavType.slice, Array<number | undefined>]
->;
-export type PathParser = (str: string) => Path | null;
+export type Parser<T> = (str: string) => T;
 
 /**
  * Creates a parser from a regular expression by matching the input string with
@@ -23,7 +12,7 @@ export type PathParser = (str: string) => Path | null;
  * @remarks
  * Since 1.0.0
  */
-export const regexpToParser = (regexp: RegExp): Parser => (str) => mapIfNotNull(
+export const regexpToParser = (regexp: RegExp): Parser<string[] | null> => (str) => mapIfNotNull(
   str.match(regexp),
   (match) => match.slice(1),
 );
@@ -40,10 +29,10 @@ export const regexpToParser = (regexp: RegExp): Parser => (str) => mapIfNotNull(
  * @remarks
  * Since 1.0.0
  */
-export const filter = (
-  parser: Parser,
-  predicate: (result: string[]) => boolean,
-): Parser => (str) => mapIfNotNull(
+export const filter = <T> (
+  parser: Parser<T | null>,
+  predicate: (result: T) => boolean,
+): Parser<T | null> => (str) => mapIfNotNull(
   parser(str),
   (parsed) => predicate(parsed) ? parsed : null,
 );
@@ -58,10 +47,10 @@ export const filter = (
  * @remarks
  * Since 1.0.0
  */
-export const map = (
-  parser: Parser,
-  mapper: (result: string[]) => Path,
-): PathParser => (str: string) => mapIfNotNull(
+export const map = <T, R> (
+  parser: Parser<T | null>,
+  mapper: (result: T) => R,
+): Parser<R | null> => (str: string) => mapIfNotNull(
   parser(str),
   mapper,
 );
@@ -77,10 +66,16 @@ export const map = (
  * @remarks
  * Since 1.0.0
  */
-const fallback = (parser: PathParser, other: PathParser): PathParser => (str) => {
+const fallback = <T, F> (parser: Parser<T | null>, other: Parser<F>): Parser<T | F> => (str) => {
   const parsed = parser(str);
   if (parsed !== null) { return parsed; }
   return other(str);
+};
+
+export const succeedOrThrow = <T> (parser: Parser<T | null>): Parser<T> => (str) => {
+  const parsed = parser(str);
+  if (parsed !== null) { return parsed; }
+  throw new TypeError("parser failed");
 };
 
 /**
@@ -92,12 +87,4 @@ const fallback = (parser: PathParser, other: PathParser): PathParser => (str) =>
  * @remarks
  * Since 1.0.0
  */
-export const race = (parsers: PathParser[]) => {
-  const racer = parsers.reduce(fallback);
-
-  return (str: string): Path => {
-    const path = racer(str);
-    if (path === null) { throw TypeError(); }
-    return path;
-  };
-};
+export const race = <T> (parsers: Array<Parser<T>>) => parsers.reduce(fallback);
