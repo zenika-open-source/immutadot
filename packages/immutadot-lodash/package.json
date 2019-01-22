@@ -27,10 +27,10 @@
   "devDependencies": {
     "babel-cli": "~6.26.0",
     "cross-env": "~5.2.0",
-    "eslint": "~5.9.0",
+    "eslint": "~5.12.1",
     "jest": "~21.2.1",
     "jsdoc": "~3.5.5",
-    "lerna": "~3.5.1"
+    "lerna": "~3.10.6"
   },
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src -d .",
