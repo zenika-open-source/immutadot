@@ -3,6 +3,7 @@ export {
   copyWithin,
   fill,
   filter,
+  flat,
   flatMap,
   map,
   pop,
