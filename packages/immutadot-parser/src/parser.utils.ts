@@ -72,6 +72,15 @@ const fallback = <T, F> (parser: Parser<T | null>, other: Parser<F>): Parser<T |
   return other(str);
 };
 
+/**
+ * Returns a new parser that throws a TypeError if the given parser returns null.
+ * 
+ * @param parser the parser
+ * @returns resulting parser
+ *
+ * @remarks
+ * Since 2.0.0
+ */
 export const succeedOrThrow = <T> (parser: Parser<T | null>): Parser<T> => (str) => {
   const parsed = parser(str);
   if (parsed !== null) { return parsed; }
