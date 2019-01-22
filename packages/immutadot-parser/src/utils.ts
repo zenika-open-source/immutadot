@@ -7,7 +7,7 @@
  * @param arg The value to test
  * @returns `true` if `arg` is `undefined` or `null`, `false` otherwise
  */
-export const isNil = (arg: any) => arg === undefined || arg === null;
+export const isNil = (arg: unknown): arg is null | undefined => arg === undefined || arg === null;
 
 /**
  * Converts `arg` to a string using string interpolation.
@@ -18,7 +18,7 @@ export const isNil = (arg: any) => arg === undefined || arg === null;
  * @param arg The value to convert
  * @returns The string representation of `arg`
  */
-export const toString = (arg: any) => typeof arg === "string" ? arg : `${arg}`;
+export const toString = (arg: unknown) => typeof arg === "string" ? arg : `${arg}`;
 
 /**
  * This is an alias for {@link https://mdn.io/Number.isInteger | `Number.isInteger`}.
@@ -26,41 +26,20 @@ export const toString = (arg: any) => typeof arg === "string" ? arg : `${arg}`;
  * @remarks
  * Since 1.0.0
  */
-export const isIndex = Number.isInteger;
-
-export type SliceIndex = number | undefined;
-
-/**
- * Tests whether `arg` is a valid slice index, that is an integer or `undefined`.
- *
- * @remarks
- * Since 1.0.0
- *
- * @param arg The value to test
- * @returns `true` if `arg` is a valid slice index, `false` otherwise
- */
-export const isSliceIndex = (arg: any): arg is SliceIndex => arg === undefined || isIndex(arg);
+export const isIndex = (arg: unknown): arg is number =>
+  // Number.isInteger actually accept anything, TypeScript lib is wrong here
+  // so it is safe to assert that arg is a number
+  Number.isInteger(arg as number);
 
 /**
- * Converts <code>str</code> to a slice index.
+ * Strip slashes preceding occurences of <code>quote</code> from <code>str</code><br />
+ * Possible quotes are <code>"</code> and <code>'</code>.
  *
- * @param str The string to convert
- * @param defaultValue The default value if <code>str</code> is empty
- * @returns <code>undefined</code> if <code>str</code> is empty, otherwise an int (may be NaN)
+ * @param str The string
+ * @param quote The quote to unescape
+ * @returns The unescaped string
  *
  * @remarks
  * Since 1.0.0
  */
-export const toSliceIndex = (str: string, defaultValue: SliceIndex = undefined) =>
-  str === "" ? defaultValue : Number(str);
-
-/**
- * Tests whether <code>arg</code> is a valid slice index once converted to a number.
- *
- * @param arg The value to test
- * @returns True if <code>arg</code> is a valid slice index once converted to a number, false otherwise.
- *
- * @remarks
- * Since 1.0.0
- */
-export const isSliceIndexString = (arg: any) => isSliceIndex(arg ? Number(arg) : undefined);
+export const unescapeQuotes = (str: string, quote: string) => str.replace(new RegExp(`\\\\${quote}`, "g"), quote);
