@@ -1,6 +1,6 @@
 import { Maybe } from "./maybe";
 import { Parser } from "./parser";
-import { Path, PathSegment, propSegment } from "./path";
+import { Path, PathSegment } from "./path";
 import { SliceIndex } from "./sliceIndex";
 import { isIndex, unescapeQuotes } from "./utils";
 
@@ -97,7 +97,7 @@ export const parse: Parser<Path> =
   Parser.ignorePrefix(
     Parser.andThen(
       parseSegments,
-      (path, input) => input.endsWith(".") ? [...path, propSegment("")] : path,
+      (path, input) => input.endsWith(".") ? [...path, Path.propSegment("")] : path,
     ),
     ".",
   );
