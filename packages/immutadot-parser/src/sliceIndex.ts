@@ -5,11 +5,11 @@ export type SliceIndex = number | undefined;
 /**
  * Tests whether `arg` is a valid slice index, that is an integer or `undefined`.
  *
- * @remarks
- * Since 1.0.0
- *
  * @param arg The value to test
  * @returns `true` if `arg` is a valid slice index, `false` otherwise
+ *
+ * @remarks
+ * Since 1.0.0
  */
 export const isSliceIndex = (arg: any): arg is SliceIndex => arg === undefined || isIndex(arg);
 
