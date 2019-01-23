@@ -94,12 +94,12 @@ const parseSegments: Parser<PathSegment[]> =
   );
 
 export const parse: Parser<Path> =
-  Parser.ignorePrefix(
-    Parser.andThen(
+  Parser.andThen(
+    Parser.ignorePrefix(
       parseSegments,
-      (path, input) => input.endsWith(".") ? [...path, Path.propSegment("")] : path,
+      ".",
     ),
-    ".",
+    (path, input) => input.endsWith(".") ? [...path, Path.propSegment("")] : path,
   );
 
 export const PathParser = {
