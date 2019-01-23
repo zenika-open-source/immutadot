@@ -33,7 +33,7 @@ const incompleteBareBracketNotationParser: Parser<Maybe<Path>> = Parser.map(
 const sliceNotationParser: Parser<Maybe<Path>> = Parser.map(
   Parser.filter(
     Parser.fromRegExp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/),
-    ([sliceStart, sliceEnd]) => SliceIndex.isValidString(sliceStart) && SliceIndex.isValidString(sliceEnd),
+    ([sliceStart, sliceEnd]) => SliceIndex.isSliceIndexString(sliceStart) && SliceIndex.isSliceIndexString(sliceEnd),
   ),
   ([sliceStart, sliceEnd, rest]) => [
     Path.sliceSegment(SliceIndex.fromString(sliceStart, 0), SliceIndex.fromString(sliceEnd)),

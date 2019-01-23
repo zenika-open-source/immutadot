@@ -14,6 +14,17 @@ export type SliceIndex = number | undefined;
 export const isSliceIndex = (arg: any): arg is SliceIndex => arg === undefined || isIndex(arg);
 
 /**
+ * Tests whether <code>arg</code> is a valid slice index once converted to a number.
+ *
+ * @param arg The value to test
+ * @returns True if <code>arg</code> is a valid slice index once converted to a number, false otherwise.
+ *
+ * @remarks
+ * Since 1.0.0
+ */
+export const isSliceIndexString = (arg: any) => isSliceIndex(arg ? Number(arg) : undefined);
+
+/**
  * Converts <code>str</code> to a slice index.
  *
  * @param str The string to convert
@@ -26,19 +37,8 @@ export const isSliceIndex = (arg: any): arg is SliceIndex => arg === undefined |
 export const fromString = (str: string, defaultValue: SliceIndex = undefined): SliceIndex =>
   str === "" ? defaultValue : Number(str);
 
-/**
- * Tests whether <code>arg</code> is a valid slice index once converted to a number.
- *
- * @param arg The value to test
- * @returns True if <code>arg</code> is a valid slice index once converted to a number, false otherwise.
- *
- * @remarks
- * Since 1.0.0
- */
-export const isValidString = (arg: any) => isSliceIndex(arg ? Number(arg) : undefined);
-
 export const SliceIndex = {
   fromString,
   isSliceIndex,
-  isValidString,
+  isSliceIndexString,
 };
