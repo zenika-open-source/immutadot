@@ -84,7 +84,7 @@ const fallback = <T, F> (parser: Parser<Maybe<T>>, other: Parser<F>): Parser<T |
 export const succeedOrThrow = <T> (parser: Parser<Maybe<T>>): Parser<T> => (str) => {
   const parsed = parser(str);
   if (parsed !== null) { return parsed; }
-  throw new TypeError("parser failed");
+  throw new TypeError(`String could not be parsed: "${str}"`);
 };
 
 /**
