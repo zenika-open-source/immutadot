@@ -142,7 +142,7 @@ describe("path.toPath", () => {
   });
   it("should convert list wildcard notation path", () => {
     expect(toPath("{*}")).toEqual([
-      [allPropsSegment()],
+      allPropsSegment(),
     ]);
   });
   it("should convert mixed path", () => {
