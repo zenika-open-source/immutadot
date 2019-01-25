@@ -34,7 +34,7 @@
   },
   "scripts": {
     "prebuild": "yarn clean",
-    "build": "tsc -b config/tsconfig.json",
+    "build": "tsc -b tsconfig.json",
     "clean": "rm -rf dist/",
     "lint": "tslint src/**/*",
     "test": "jest -c config/jest.js",
