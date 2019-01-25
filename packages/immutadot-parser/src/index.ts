@@ -1,2 +1,2 @@
 export * from "./toPath";
-export { NavType } from './path';
+export { NavType } from "./path";
