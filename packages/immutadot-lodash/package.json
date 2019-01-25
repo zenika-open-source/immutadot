@@ -1,6 +1,6 @@
 {
   "name": "immutadot-lodash",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "immutadot-lodash is an extension to immutadot, adding functions based on lodash.",
   "keywords": [
     "immutable",
