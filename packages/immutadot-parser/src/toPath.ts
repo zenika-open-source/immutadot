@@ -1,9 +1,9 @@
-import { Path } from "./path";
-import { PathParser } from "./pathParser";
-import { isNil, toString } from "./utils";
+import { Path } from "./path"
+import { PathParser } from "./pathParser"
+import { isNil, toString } from "./utils"
 
-const MAX_CACHE_SIZE = 1000;
-const cache = new Map<string, Path>();
+const MAX_CACHE_SIZE = 1000
+const cache = new Map<string, Path>()
 
 /**
  * Memoized call to PathParser.parse().<br />
@@ -16,15 +16,15 @@ const cache = new Map<string, Path>();
  * Since 1.0.0
  */
 const memoizedStringToPath = (str: string): Path => {
-  if (cache.has(str)) {  return cache.get(str)!; }
+  if (cache.has(str)) {  return cache.get(str)! }
 
-  const path = PathParser.parse(str);
+  const path = PathParser.parse(str)
 
-  if (cache.size === MAX_CACHE_SIZE) {  cache.clear(); }
-  cache.set(str, path);
+  if (cache.size === MAX_CACHE_SIZE) {  cache.clear() }
+  cache.set(str, path)
 
-  return path;
-};
+  return path
+}
 
 /**
  * Converts `arg` to a path represented as an array of keys.<br />
@@ -37,9 +37,9 @@ const memoizedStringToPath = (str: string): Path => {
  * Since 1.0.0
  */
 const toPath = (arg: unknown): Path  => {
-  if (isNil(arg)) {  return []; }
+  if (isNil(arg)) {  return [] }
 
-  return memoizedStringToPath(toString(arg));
-};
+  return memoizedStringToPath(toString(arg))
+}
 
-export { toPath };
+export { toPath }

@@ -1,6 +1,6 @@
-import { Maybe } from "./maybe";
+import { Maybe } from "./maybe"
 
-export type Parser<T> = (input: string) => T;
+export type Parser<T> = (input: string) => T
 
 /**
  * Creates a parser from a regular expression by matching the input string with
@@ -15,7 +15,7 @@ export type Parser<T> = (input: string) => T;
 export const fromRegExp = (regexp: RegExp): Parser<Maybe<string[]>> => (str) => Maybe.map(
   str.match(regexp),
   (match) => match.slice(1),
-);
+)
 
 /**
  * Returns a new parser that will return <code>null</code> if a predicate about
@@ -35,7 +35,7 @@ export const filter = <T> (
 ): Parser<Maybe<T>> => (str) => Maybe.map(
   parser(str),
   (parsed) => predicate(parsed) ? parsed : null,
-);
+)
 
 /**
  * Returns a new parser which will post-process the result of another parser.
@@ -53,7 +53,7 @@ export const map = <T, R> (
 ): Parser<Maybe<R>> => (str: string) => Maybe.map(
   parser(str),
   mapper,
-);
+)
 
 /**
  * Returns a new parser that attempts parsing with a first parser then falls
@@ -67,10 +67,10 @@ export const map = <T, R> (
  * Since 1.0.0
  */
 const fallback = <T, F> (parser: Parser<Maybe<T>>, other: Parser<F>): Parser<T | F> => (str) => {
-  const parsed = parser(str);
-  if (parsed !== null) { return parsed; }
-  return other(str);
-};
+  const parsed = parser(str)
+  if (parsed !== null) { return parsed }
+  return other(str)
+}
 
 /**
  * Returns a new parser that throws a TypeError if the given parser returns null.
@@ -82,10 +82,10 @@ const fallback = <T, F> (parser: Parser<Maybe<T>>, other: Parser<F>): Parser<T |
  * Since 2.0.0
  */
 export const succeedOrThrow = <T> (parser: Parser<Maybe<T>>): Parser<T> => (str) => {
-  const parsed = parser(str);
-  if (parsed !== null) { return parsed; }
-  throw new TypeError(`String could not be parsed: "${str}"`);
-};
+  const parsed = parser(str)
+  if (parsed !== null) { return parsed }
+  throw new TypeError(`String could not be parsed: "${str}"`)
+}
 
 /**
  * Chains a list of parsers together using <code>fallback</code>.
@@ -96,7 +96,7 @@ export const succeedOrThrow = <T> (parser: Parser<Maybe<T>>): Parser<T> => (str)
  * @remarks
  * Since 1.0.0
  */
-export const race = <T> (parsers: Array<Parser<T>>) => parsers.reduce(fallback);
+export const race = <T> (parsers: Array<Parser<T>>) => parsers.reduce(fallback)
 
 /**
  * Returns a new parser that strips the given prefix before applying the given parser.
@@ -108,7 +108,7 @@ export const race = <T> (parsers: Array<Parser<T>>) => parsers.reduce(fallback);
  * Since 2.0.0
  */
 export const ignorePrefix = <T> (parser: Parser<T>, prefix: string): Parser<T> => (str) =>
-  parser(str.startsWith(prefix) ? str.substring(prefix.length) : str);
+  parser(str.startsWith(prefix) ? str.substring(prefix.length) : str)
 
 /**
  * Returns a new parser that applies the given parser then transforms its output before returning it.
@@ -118,7 +118,7 @@ export const ignorePrefix = <T> (parser: Parser<T>, prefix: string): Parser<T> =
  * @returns resulting parser
  */
 export const andThen = <T, R> (parser: Parser<T>, fn: (output: T, input: string) => R): Parser<R> => (str) =>
-  fn(parser(str), str);
+  fn(parser(str), str)
 
 export const Parser = {
   andThen,
@@ -129,4 +129,4 @@ export const Parser = {
   map,
   race,
   succeedOrThrow,
-};
+}

@@ -36,7 +36,7 @@
     "prebuild": "yarn clean",
     "build": "tsc -b config/tsconfig.json",
     "clean": "rm -rf dist/",
-    "lint": "tslint -c config/tslint.json src/**/*",
+    "lint": "tslint src/**/*",
     "test": "jest -c config/jest.js",
     "test:coverage": "jest -c config/jest.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../config/jsdoc.json",
