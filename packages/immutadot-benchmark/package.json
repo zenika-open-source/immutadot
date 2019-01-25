@@ -14,9 +14,9 @@
     "seamless-immutable": "^7.1.4"
   },
   "scripts": {
-    "prestart": "lerna run --scope immutadot build",
+    "prestart": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
     "start": "jest -i",
-    "prefast": "lerna run --scope immutadot build",
+    "prefast": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
     "fast": "cross-env FAST=true jest -i",
     "test": "echo No tests"
   }
