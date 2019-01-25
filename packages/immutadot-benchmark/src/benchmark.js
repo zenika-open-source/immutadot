@@ -51,13 +51,16 @@ export class BenchmarkSuite {
         nbOperations += iterations
 
         const runStartTime = Date.now()
-        while (iterations--) operation()
+        while (iterations--) {
+          if (iterations % 100 === 0 && typeof testResult === 'function')
+            testResult(key, operation())
+          else
+            operation()
+        }
         totalTime += Date.now() - runStartTime
 
         iterations = getIterations(nbOperations, totalTime)
       }
-
-      if (typeof testResult === 'function') testResult(key, operation())
 
       benchmark.runs[key] = {
         totalTime,
