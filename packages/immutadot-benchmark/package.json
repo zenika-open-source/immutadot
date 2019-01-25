@@ -11,12 +11,13 @@
     "jest": "~21.2.1",
     "lerna": "~3.10.6",
     "qim": "~0.0.52",
-    "seamless-immutable": "^7.1.4"
+    "seamless-immutable": "~7.1.4"
   },
   "scripts": {
-    "prestart": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
+    "build:deps": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
+    "prestart": "yarn build:deps",
     "start": "jest -i",
-    "prefast": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
+    "prefast": "yarn build:deps",
     "fast": "cross-env FAST=true jest -i",
     "test": "echo No tests"
   }

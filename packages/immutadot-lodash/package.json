@@ -35,9 +35,10 @@
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src -d .",
     "lint": "eslint src",
-    "pretest": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
+    "build:deps": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
+    "pretest": "yarn build:deps",
     "test": "jest -c ../../config/jest.js",
-    "pretest:coverage": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
+    "pretest:coverage": "yarn build:deps",
     "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../config/jsdoc.json",
     "docs:private": "jsdoc -c ../../config/jsdoc.json -p"
