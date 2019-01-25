@@ -38,7 +38,7 @@
     "clean": "rm -r dist/",
     "lint": "tslint -c config/tslint.json src/**/*",
     "test": "jest -c config/jest.js",
-    "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
+    "test:coverage": "jest -c config/jest.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../config/jsdoc.json",
     "docs:private": "jsdoc -c ../../config/jsdoc.json -p"
   }
