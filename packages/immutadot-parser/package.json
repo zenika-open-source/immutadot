@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "@types/jest": "^23.3.12",
-    "eslint": "~5.12.1",
     "jest": "~23.6.0",
     "jsdoc": "~3.5.5",
     "lerna": "~3.10.6",
