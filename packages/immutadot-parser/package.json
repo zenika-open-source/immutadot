@@ -9,6 +9,7 @@
     "redux"
   ],
   "main": "index.js",
+  "module": "dist/index.js",
   "license": "MIT",
   "homepage": "https://immutadot.zenika.com",
   "bugs": "https://github.com/Zenika/immutadot/issues",
@@ -18,19 +19,25 @@
     "Yvonnick FRIN (https://github.com/frinyvonnick)",
     "Hugo WOOD (https://github.com/hgwood)"
   ],
+  "dependencies": {
+    "esm": "^3.1.2"
+  },
   "devDependencies": {
-    "babel-cli": "~6.26.0",
-    "cross-env": "~5.2.0",
-    "eslint": "~5.12.1",
-    "jest": "~21.2.1",
+    "@types/jest": "^23.3.12",
+    "jest": "~23.6.0",
     "jsdoc": "~3.5.5",
-    "lerna": "~3.10.6"
+    "lerna": "~3.10.6",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
   },
   "scripts": {
-    "build": "cross-env BABEL_ENV=production babel src -d .",
-    "lint": "eslint src",
-    "test": "jest -c ../../config/jest.js",
-    "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
+    "prebuild": "yarn clean",
+    "build": "tsc -b tsconfig.json",
+    "clean": "rm -rf dist/",
+    "lint": "tslint src/**/*",
+    "test": "jest -c config/jest.js",
+    "test:coverage": "jest -c config/jest.js --maxWorkers=2 --coverage",
     "docs": "jsdoc -c ../../config/jsdoc.json",
     "docs:private": "jsdoc -c ../../config/jsdoc.json -p"
   }
