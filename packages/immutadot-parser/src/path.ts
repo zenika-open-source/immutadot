@@ -1,6 +1,6 @@
 import { SliceIndex } from "./sliceIndex";
 
-enum NavType {
+export enum NavType {
   allProps = "allProps",
   index = "index",
   list = "list",

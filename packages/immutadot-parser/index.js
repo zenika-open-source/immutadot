@@ -1,2 +1,2 @@
 require = require('esm')(module)
-module.exports = require('./dist/main.js')
+module.exports = require('./dist/index.js')
