@@ -3072,6 +3072,11 @@ eslint@~5.12.1:
     table "^5.0.2"
     text-table "^0.2.0"
 
+esm@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.1.2.tgz#3f33496ab6ff6556fc0a803696229d147b9a8700"
+  integrity sha512-orLuMaPdxYelL1qsM16XUbby4DQX1j5WSsFBg5vHuDJ2gUMMzpcbX82Lu305TjHYacXSuxYz3SuzWjdNFxIDJw==
+
 espree@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/espree/-/espree-5.0.0.tgz#fc7f984b62b36a0f543b13fb9cd7b9f4a7f5b65c"

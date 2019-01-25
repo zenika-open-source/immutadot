@@ -9,6 +9,7 @@
     "redux"
   ],
   "main": "index.js",
+  "module": "dist/index.js",
   "license": "MIT",
   "homepage": "https://immutadot.zenika.com",
   "bugs": "https://github.com/Zenika/immutadot/issues",
@@ -18,6 +19,9 @@
     "Yvonnick FRIN (https://github.com/frinyvonnick)",
     "Hugo WOOD (https://github.com/hgwood)"
   ],
+  "dependencies": {
+    "esm": "^3.1.2"
+  },
   "devDependencies": {
     "@types/jest": "^23.3.12",
     "eslint": "~5.12.1",
@@ -30,6 +34,7 @@
   },
   "scripts": {
     "build": "tsc -b config/tsconfig.json",
+    "clean": "rm -r clean",
     "lint": "tslint -c config/tslint.json src/**/*",
     "test": "jest -c config/jest.js",
     "test:coverage": "jest -c ../../config/jest.js --maxWorkers=2 --coverage",
