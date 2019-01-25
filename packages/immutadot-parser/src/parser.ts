@@ -14,7 +14,7 @@ export type Parser<T> = (input: string) => T
  */
 export const fromRegExp = (regexp: RegExp): Parser<Maybe<string[]>> => (str) => Maybe.map(
   str.match(regexp),
-  (match) => match.slice(1),
+  ([, ...groups]) => groups,
 )
 
 /**
@@ -83,8 +83,8 @@ const fallback = <T, F> (parser: Parser<Maybe<T>>, other: Parser<F>): Parser<T |
  */
 export const succeedOrThrow = <T> (parser: Parser<Maybe<T>>): Parser<T> => (str) => {
   const parsed = parser(str)
-  if (parsed !== null) { return parsed }
-  throw new TypeError(`String could not be parsed: "${str}"`)
+  if (parsed === null) { throw new TypeError(`String could not be parsed: "${str}"`) }
+  return parsed
 }
 
 /**
