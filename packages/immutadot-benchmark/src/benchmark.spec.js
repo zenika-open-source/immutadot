@@ -11,7 +11,7 @@ const benchmarkSuite = new BenchmarkSuite(
     ['es2015', 'ES2015 destructuring'],
     ['immutable', 'immutable 4.0.0-rc.12'],
     ['seamless', 'seamless-immutable 7.1.4'],
-    ['immer', 'immer 1.12.1'],
+    ['immer', 'immer 2.1.1'],
     ['qim', 'qim 0.0.52'],
     ['qim-curried', 'qim 0.0.52 curried'],
     ['immutadot', 'immutadot 2.0.0'],
