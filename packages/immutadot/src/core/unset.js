@@ -1,6 +1,6 @@
 import { curry } from './curry'
 import { nav } from 'nav/nav'
-import { toPath } from '@immutadot/parser'
+import { toPath } from 'immutadot-parser'
 
 /**
  * Removes the property at <code>path</code> of <code>object</code>.

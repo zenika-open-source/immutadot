@@ -1,5 +1,5 @@
 import { nav } from 'nav/nav'
-import { toPath } from '@immutadot/parser'
+import { toPath } from 'immutadot-parser'
 
 const isGetter = Symbol('isGetter')
 

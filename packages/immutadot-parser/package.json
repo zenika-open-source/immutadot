@@ -1,6 +1,6 @@
 {
-  "name": "@immutadot/parser",
-  "version": "2.0.0",
+  "name": "immutadot-parser",
+  "version": "2.0.0-alpha.1",
   "description": "@immutadot/parser is the path parser of immutad●t.",
   "keywords": [
     "immutable",

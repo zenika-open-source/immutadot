@@ -1,6 +1,6 @@
 {
   "name": "immutadot",
-  "version": "2.0.0",
+  "version": "2.0.0-alpha.1",
   "description": "immutad●t (pronounced immutadot) is a set of immutable functions using dot notation.",
   "keywords": [
     "immutable",
@@ -20,7 +20,7 @@
   ],
   "main": "index.js",
   "dependencies": {
-    "@immutadot/parser": "^2.0.0",
+    "immutadot-parser": "^2.0.0-alpha.1",
     "babel-runtime": "^6.26.0"
   },
   "devDependencies": {
@@ -33,7 +33,7 @@
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src -d .",
     "lint": "eslint src",
-    "build:deps": "lerna run --scope @immutadot/parser build",
+    "build:deps": "lerna run --scope immutadot-parser build",
     "pretest": "yarn build:deps",
     "test": "jest -c ../../config/jest.js",
     "pretest:coverage": "yarn build:deps",

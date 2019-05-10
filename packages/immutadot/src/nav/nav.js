@@ -1,4 +1,4 @@
-import { NavType } from '@immutadot/parser'
+import { NavType } from 'immutadot-parser'
 import { finalNav } from './finalNav'
 import { indexNav } from './indexNav'
 import { propNav } from './propNav'

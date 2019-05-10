@@ -1,7 +1,7 @@
 import { curry } from './curry'
 import { nav } from 'nav/nav'
 import { resolveGetter } from './get'
-import { toPath } from '@immutadot/parser'
+import { toPath } from 'immutadot-parser'
 
 const getResolveArg = lazy => lazy ? resolveGetter : arg => arg
 

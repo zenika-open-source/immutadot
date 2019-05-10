@@ -3,7 +3,7 @@ import { get } from 'core'
 import { immutaTest } from 'test.utils'
 import { isString } from 'util/lang'
 import { nav } from './nav'
-import { toPath } from '@immutadot/parser'
+import { toPath } from 'immutadot-parser'
 
 describe('nav.nav', () => {
   function incV(v, i = 1) {

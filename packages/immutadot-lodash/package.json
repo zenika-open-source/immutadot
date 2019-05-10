@@ -1,6 +1,6 @@
 {
   "name": "immutadot-lodash",
-  "version": "2.0.0",
+  "version": "2.0.0-alpha.1",
   "description": "immutadot-lodash is an extension to immutadot, adding functions based on lodash.",
   "keywords": [
     "immutable",
@@ -21,7 +21,7 @@
     "Charles-Henri GUÉRIN (https://github.com/charlyx)"
   ],
   "peerDependencies": {
-    "immutadot": "^2.0.0",
+    "immutadot": "^2.0.0-alpha.1",
     "lodash": "^4.6.0"
   },
   "devDependencies": {
@@ -35,7 +35,7 @@
   "scripts": {
     "build": "cross-env BABEL_ENV=production babel src -d .",
     "lint": "eslint src",
-    "build:deps": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
+    "build:deps": "lerna run --scope immutadot-parser build && lerna run --scope immutadot build",
     "pretest": "yarn build:deps",
     "test": "jest -c ../../config/jest.js",
     "pretest:coverage": "yarn build:deps",
