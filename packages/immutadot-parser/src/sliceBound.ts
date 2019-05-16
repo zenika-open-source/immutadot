@@ -38,8 +38,8 @@ export const isSliceStepString = (arg: any) => isSliceStep(arg ? Number(arg) : u
  * @remarks
  * Since 1.0.0
  */
-export const fromString = (str: string, defaultValue: SliceBound = undefined): SliceBound =>
-  str === undefined || str === "" ? defaultValue : Number(str)
+export const fromString = (str: string): SliceBound =>
+  str === undefined || str === "" ? undefined : Number(str)
 
 export const SliceBound = {
   fromString,

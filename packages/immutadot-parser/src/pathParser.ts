@@ -40,9 +40,9 @@ const sliceNotationParser: Parser<Maybe<Path>> = Parser.map(
   ),
   ([sliceStart, sliceEnd, , sliceStep, rest]) => [
     Path.sliceSegment(
-      SliceBound.fromString(sliceStart, 0),
+      SliceBound.fromString(sliceStart),
       SliceBound.fromString(sliceEnd),
-      SliceBound.fromString(sliceStep, 1),
+      SliceBound.fromString(sliceStep),
     ),
     ...parseSegments(rest),
   ],

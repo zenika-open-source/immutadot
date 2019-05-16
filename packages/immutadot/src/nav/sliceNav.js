@@ -13,7 +13,8 @@ class SliceNav extends ArrayNav {
   }
 
   get start() {
-    return this.bound(this.bounds[0])
+    const [start] = this.bounds
+    return this.bound(start === undefined ? 0 : start)
   }
 
   get end() {

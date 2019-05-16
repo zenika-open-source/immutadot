@@ -72,12 +72,12 @@ describe("path.toPath", () => {
     ])
   })
   it("should convert slice notation path", () => {
-    expect(toPath("[:][1:][:-2][3:4][::666][1:2:3][4::-2]")).toEqual([
-      sliceSegment(0, undefined, 1),
-      sliceSegment(1, undefined, 1),
-      sliceSegment(0, -2, 1),
-      sliceSegment(3, 4, 1),
-      sliceSegment(0, undefined, 666),
+    expect(toPath("[:][1:][0:-2][3:4][::666][1:2:3][4::-2]")).toEqual([
+      sliceSegment(undefined, undefined, undefined),
+      sliceSegment(1, undefined, undefined),
+      sliceSegment(0, -2, undefined),
+      sliceSegment(3, 4, undefined),
+      sliceSegment(undefined, undefined, 666),
       sliceSegment(1, 2, 3),
       sliceSegment(4, undefined, -2),
     ])
@@ -155,7 +155,7 @@ describe("path.toPath", () => {
       indexSegment(0),
       propSegment("b.c"),
       propSegment("666"),
-      sliceSegment(1, undefined, 1),
+      sliceSegment(1, undefined, undefined),
       propListSegment([
           "1a",
           "2b",
