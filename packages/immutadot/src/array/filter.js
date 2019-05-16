@@ -12,6 +12,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.filter|Array.prototype.filter} for more information.
  * @since 1.0.0
  */
-const filter = applyArrayMethod(Array.prototype.filter, { mutating: false })
+const filter = applyArrayMethod('filter', { mutating: false })
 
 export { filter }

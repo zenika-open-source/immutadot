@@ -11,6 +11,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.pop|Array.prototype.pop} for more information.
  * @since 1.0.0
  */
-const pop = applyArrayMethod(Array.prototype.pop, { fixedArity: true })
+const pop = applyArrayMethod('pop', { fixedArity: true })
 
 export { pop }

@@ -13,6 +13,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.concat|Array.prototype.concat} for more information.
  * @since 0.2.0
  */
-const concat = applyArrayMethod(Array.prototype.concat, { mutating: false })
+const concat = applyArrayMethod('concat', { mutating: false })
 
 export { concat }

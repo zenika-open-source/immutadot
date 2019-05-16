@@ -15,6 +15,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.push|Array.prototype.push} for more information.
  * @since 0.1.7
  */
-const push = applyArrayMethod(Array.prototype.push)
+const push = applyArrayMethod('push')
 
 export { push }

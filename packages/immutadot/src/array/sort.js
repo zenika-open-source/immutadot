@@ -13,6 +13,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.sort|Array.prototype.sort} for more information.
  * @since 1.0.0
  */
-const sort = applyArrayMethod(Array.prototype.sort, { arity: 0 })
+const sort = applyArrayMethod('sort', { arity: 0 })
 
 export { sort }

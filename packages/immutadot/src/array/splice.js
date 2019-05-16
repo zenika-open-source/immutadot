@@ -14,6 +14,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.splice|Array.prototype.splice} for more information.
  * @since 0.2.0
  */
-const splice = applyArrayMethod(Array.prototype.splice)
+const splice = applyArrayMethod('splice')
 
 export { splice }

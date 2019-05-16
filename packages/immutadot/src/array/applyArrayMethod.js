@@ -20,7 +20,14 @@ const applyMethodReturnThis = (method, thisArg, args) => {
   return thisArg
 }
 
-const applyArrayMethod = (method, { arity = method.length, fixedArity = false, mutating = true } = {}) => {
+const applyArrayMethod = (name, { method = Array.prototype[name], arity = method && method.length, fixedArity = false, mutating = true } = {}) => {
+  if (!method) {
+    const error = `immutadot: Array.prototype.${name} is not available`
+    // eslint-disable-next-line no-console
+    console.warn(error)
+    return () => { throw TypeError(error) }
+  }
+
   const getArray = mutating ? toArrayCopy : toArray
   const applyMethod = mutating ? applyMethodReturnThis : applyMethodReturnResult
   return apply(

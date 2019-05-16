@@ -14,7 +14,7 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.copyWithin|Array.prototype.copyWithin} for more information.
  * @since 2.0.0
  */
-const copyWithin = applyArrayMethod(Array.prototype.copyWithin, {
+const copyWithin = applyArrayMethod('copyWithin', {
   arity: 1,
   mutating: true,
 })
