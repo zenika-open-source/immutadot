@@ -72,15 +72,19 @@ describe("path.toPath", () => {
     ])
   })
   it("should convert slice notation path", () => {
-    expect(toPath("[:][1:][:-2][3:4]")).toEqual([
-      sliceSegment(0, undefined),
-      sliceSegment(1, undefined),
-      sliceSegment(0, -2),
-      sliceSegment(3, 4),
+    expect(toPath("[:][1:][:-2][3:4][::666][1:2:3][4::-2]")).toEqual([
+      sliceSegment(0, undefined, 1),
+      sliceSegment(1, undefined, 1),
+      sliceSegment(0, -2, 1),
+      sliceSegment(3, 4, 1),
+      sliceSegment(0, undefined, 666),
+      sliceSegment(1, 2, 3),
+      sliceSegment(4, undefined, -2),
     ])
-    expect(toPath("[1:2:3][1:a][1:2")).toEqual([
-      propSegment("1:2:3"),
+    expect(toPath("[1:2:z][1:a][::0][1:2")).toEqual([
+      propSegment("1:2:z"),
       propSegment("1:a"),
+      propSegment("::0"),
       propSegment("[1:2"),
     ])
   })
@@ -151,7 +155,7 @@ describe("path.toPath", () => {
       indexSegment(0),
       propSegment("b.c"),
       propSegment("666"),
-      sliceSegment(1, undefined),
+      sliceSegment(1, undefined, 1),
       propListSegment([
           "1a",
           "2b",
@@ -159,12 +163,12 @@ describe("path.toPath", () => {
         ]),
 
     ])
-    expect(toPath('a.[0].["b.c"]666[1:2:3]{1a}{"2b",\'3c\'}')).toEqual([
+    expect(toPath('a.[0].["b.c"]666[1:2:z]{1a}{"2b",\'3c\'}')).toEqual([
       propSegment("a"),
       indexSegment(0),
       propSegment("b.c"),
       propSegment("666"),
-      propSegment("1:2:3"),
+      propSegment("1:2:z"),
       propSegment("1a"),
       propListSegment([
         "2b",

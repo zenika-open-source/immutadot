@@ -1,4 +1,4 @@
-import { SliceIndex } from "./sliceIndex"
+import { SliceBound } from "./sliceBound"
 
 export enum NavType {
   allProps = "allProps",
@@ -20,8 +20,9 @@ export const propListSegment = (props: string[]): PathSegment => [NavType.list, 
 type PropSegment = [NavType.prop, string]
 export const propSegment = (prop: string): PathSegment => [NavType.prop, prop]
 
-type SliceSegment = [NavType.slice, [SliceIndex, SliceIndex]]
-export const sliceSegment = (start: SliceIndex, end: SliceIndex): PathSegment => [NavType.slice, [start, end]]
+type SliceSegment = [NavType.slice, [SliceBound, SliceBound, SliceBound]]
+export const sliceSegment = (start: SliceBound, end: SliceBound, step: SliceBound): PathSegment =>
+  [NavType.slice, [start, end, step]]
 
 export type PathSegment = AllPropsSegment | IndexSegment | PropListSegment | PropSegment | SliceSegment
 export type Path = PathSegment[]
