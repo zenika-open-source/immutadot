@@ -2,9 +2,9 @@ import { ArrayNav } from './arrayNav'
 import { isNil } from 'util/lang'
 
 class SliceNav extends ArrayNav {
-  constructor(value, bounds, next) {
+  constructor(value, params, next) {
     super(value, next)
-    this.bounds = bounds
+    this.params = params
   }
 
   bound(index) {
@@ -13,19 +13,26 @@ class SliceNav extends ArrayNav {
   }
 
   get start() {
-    const [start] = this.bounds
-    return this.bound(start === undefined ? 0 : start)
+    const [start] = this.params
+    const defaultStart = this.step > 0 ? 0 : this.length - 1
+    return this.bound(start === undefined ? defaultStart : start)
   }
 
   get end() {
-    const [, end] = this.bounds
-    return this.bound(end === undefined ? this.length : end)
+    const [, end] = this.params
+    const defaultEnd = this.step > 0 ? this.length : -1
+    return this.bound(end === undefined ? defaultEnd : end)
+  }
+
+  get step() {
+    const [, , step] = this.params
+    return step === undefined ? 1 : step
   }
 
   get range() {
-    const { start, end } = this
+    const { start, end, step } = this
     return (function*() {
-      for (let i = start; i < end; i++) yield i
+      for (let i = start; i < end; i += step) yield i
     }())
   }
 
@@ -60,6 +67,6 @@ class SliceNav extends ArrayNav {
   }
 }
 
-export function sliceNav(bounds, next) {
-  return value => new SliceNav(value, bounds, next)
+export function sliceNav(params, next) {
+  return value => new SliceNav(value, params, next)
 }
