@@ -12,6 +12,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.map|Array.prototype.map} for more information.
  * @since 1.0.0
  */
-const map = applyArrayMethod(Array.prototype.map, { mutating: false })
+const map = applyArrayMethod('map', { mutating: false })
 
 export { map }

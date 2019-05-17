@@ -14,7 +14,7 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.slice|Array.prototype.slice} for more information.
  * @since 0.3.0
  */
-const slice = applyArrayMethod(Array.prototype.slice, {
+const slice = applyArrayMethod('slice', {
   arity: 0,
   mutating: false,
 })

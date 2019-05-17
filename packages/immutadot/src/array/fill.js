@@ -14,6 +14,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.fill|Array.prototype.fill} for more information.
  * @since 0.3.0
  */
-const fill = applyArrayMethod(Array.prototype.fill)
+const fill = applyArrayMethod('fill')
 
 export { fill }

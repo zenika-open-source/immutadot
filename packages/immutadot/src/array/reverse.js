@@ -11,6 +11,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.reverse|Array.prototype.reverse} for more information..
  * @since 0.3.0
  */
-const reverse = applyArrayMethod(Array.prototype.reverse, { fixedArity: true })
+const reverse = applyArrayMethod('reverse', { fixedArity: true })
 
 export { reverse }

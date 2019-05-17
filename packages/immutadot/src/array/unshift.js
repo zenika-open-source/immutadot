@@ -15,6 +15,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.unshift|Array.prototype.unshift} for more information.
  * @since 0.1.7
  */
-const unshift = applyArrayMethod(Array.prototype.unshift)
+const unshift = applyArrayMethod('unshift')
 
 export { unshift }

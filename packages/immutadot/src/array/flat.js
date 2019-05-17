@@ -11,6 +11,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.flat|Array.prototype.flat} for more information.
  * @since 2.0.0
  */
-const flat = applyArrayMethod(Array.prototype.flat, { mutating: false })
+const flat = applyArrayMethod('flat', { mutating: false })
 
 export { flat }

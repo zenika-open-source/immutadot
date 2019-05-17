@@ -11,6 +11,6 @@ import { applyArrayMethod } from './applyArrayMethod'
  * @see {@link https://mdn.io/Array.prototype.shift|Array.prototype.shift} for more information.
  * @since 1.0.0
  */
-const shift = applyArrayMethod(Array.prototype.shift, { fixedArity: true })
+const shift = applyArrayMethod('shift', { fixedArity: true })
 
 export { shift }
