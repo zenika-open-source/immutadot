@@ -1,27 +1,26 @@
 import { ArrayNav } from './arrayNav'
 import { isNil } from 'util/lang'
 
+const resolveNegativeIndex = (index, length) => index > 0 ? index : Math.max(length + index, 0)
+
 class SliceNav extends ArrayNav {
   constructor(value, params, next) {
     super(value, next)
     this.params = params
   }
 
-  bound(index) {
-    if (index < 0) return Math.max(this.length + index, 0)
-    return index
-  }
-
   get start() {
-    const [start] = this.params
-    const defaultStart = this.step > 0 ? 0 : this.length - 1
-    return this.bound(start === undefined ? defaultStart : start)
+    const { length, params: [start] } = this
+    if (length === 0) return 0
+    if (start !== undefined) return resolveNegativeIndex(start, length)
+    return this.step > 0 ? 0 : length - 1
   }
 
   get end() {
-    const [, end] = this.params
-    const defaultEnd = this.step > 0 ? this.length : -1
-    return this.bound(end === undefined ? defaultEnd : end)
+    const { length, params: [, end] } = this
+    if (length === 0) return 0
+    if (end !== undefined) return resolveNegativeIndex(end, length)
+    return this.step > 0 ? length : -1
   }
 
   get step() {
@@ -31,8 +30,14 @@ class SliceNav extends ArrayNav {
 
   get range() {
     const { start, end, step } = this
+    if (step > 0) {
+      return (function*() {
+        for (let i = start; i < end; i += step) yield i
+      }())
+    }
     return (function*() {
-      for (let i = start; i < end; i += step) yield i
+      // eslint-disable-next-line for-direction
+      for (let i = start; i > end; i += step) yield i
     }())
   }
 
