@@ -1,30 +1,43 @@
 import { ArrayNav } from './arrayNav'
 import { isNil } from 'util/lang'
 
-class SliceNav extends ArrayNav {
-  constructor(value, bounds, next) {
-    super(value, next)
-    this.bounds = bounds
-  }
+const resolveNegativeIndex = (index, length) => index > 0 ? index : Math.max(length + index, 0)
 
-  bound(index) {
-    if (index < 0) return Math.max(this.length + index, 0)
-    return index
+class SliceNav extends ArrayNav {
+  constructor(value, params, next) {
+    super(value, next)
+    this.params = params
   }
 
   get start() {
-    return this.bound(this.bounds[0])
+    const { length, params: [start] } = this
+    if (length === 0) return 0
+    if (start !== undefined) return resolveNegativeIndex(start, length)
+    return this.step > 0 ? 0 : length - 1
   }
 
   get end() {
-    const [, end] = this.bounds
-    return this.bound(end === undefined ? this.length : end)
+    const { length, params: [, end] } = this
+    if (length === 0) return 0
+    if (end !== undefined) return resolveNegativeIndex(end, length)
+    return this.step > 0 ? length : -1
+  }
+
+  get step() {
+    const [, , step] = this.params
+    return step === undefined ? 1 : step
   }
 
   get range() {
-    const { start, end } = this
+    const { start, end, step } = this
+    if (step > 0) {
+      return (function*() {
+        for (let i = start; i < end; i += step) yield i
+      }())
+    }
     return (function*() {
-      for (let i = start; i < end; i++) yield i
+      // eslint-disable-next-line for-direction
+      for (let i = start; i > end; i += step) yield i
     }())
   }
 
@@ -59,6 +72,6 @@ class SliceNav extends ArrayNav {
   }
 }
 
-export function sliceNav(bounds, next) {
-  return value => new SliceNav(value, bounds, next)
+export function sliceNav(params, next) {
+  return value => new SliceNav(value, params, next)
 }

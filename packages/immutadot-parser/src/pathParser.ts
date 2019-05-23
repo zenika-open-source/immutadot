@@ -1,7 +1,8 @@
 import { Maybe } from "./maybe"
 import { Parser } from "./parser"
 import { Path, PathSegment } from "./path"
-import { SliceIndex } from "./sliceIndex"
+import { SliceBound } from "./sliceBound"
+import { SliceStep } from "./sliceStep"
 import { isIndex, unescapeQuotes } from "./utils"
 
 const emptyStringParser: Parser<Maybe<Path>> = (str: string) => str.length === 0 ? [] : null
@@ -32,11 +33,18 @@ const incompleteBareBracketNotationParser: Parser<Maybe<Path>> = Parser.map(
 
 const sliceNotationParser: Parser<Maybe<Path>> = Parser.map(
   Parser.filter(
-    Parser.fromRegExp(/^\[([^:\]]*):([^:\]]*)\]\.?(.*)$/),
-    ([sliceStart, sliceEnd]) => SliceIndex.isSliceIndexString(sliceStart) && SliceIndex.isSliceIndexString(sliceEnd),
+    Parser.fromRegExp(/^\[([^:\]]*):([^:\]]*)(:([^:\]]*))?\]\.?(.*)$/),
+    ([sliceStart, sliceEnd, , sliceStep]) =>
+      SliceBound.isValidString(sliceStart) &&
+      SliceBound.isValidString(sliceEnd) &&
+      SliceStep.isValidString(sliceStep),
   ),
-  ([sliceStart, sliceEnd, rest]) => [
-    Path.sliceSegment(SliceIndex.fromString(sliceStart, 0), SliceIndex.fromString(sliceEnd)),
+  ([sliceStart, sliceEnd, , sliceStep, rest]) => [
+    Path.sliceSegment(
+      SliceBound.fromString(sliceStart),
+      SliceBound.fromString(sliceEnd),
+      SliceStep.fromString(sliceStep),
+    ),
     ...parseSegments(rest),
   ],
 )

@@ -393,6 +393,14 @@ describe('nav.nav', () => {
         ],
       },
     }).get()).toEqual(['foo', 'bar'])
+    expect(nav(toPath('nested.prop[::-1].val'))({
+      nested: {
+        prop: [
+          { val: 'foo' },
+          { val: 'bar' },
+        ],
+      },
+    }).get()).toEqual(['bar', 'foo'])
   })
 
   it('should get a negative array index', () => {
