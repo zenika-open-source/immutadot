@@ -11,7 +11,7 @@ export type SliceBound = number | undefined
  * @remarks
  * Since 1.0.0
  */
-export const isSliceBound = (arg: any): arg is SliceBound => arg === undefined || isIndex(arg)
+export const isValid = (arg: any): arg is SliceBound => arg === undefined || isIndex(arg)
 
 /**
  * Tests whether <code>arg</code> is a valid slice index once converted to a number.
@@ -22,11 +22,7 @@ export const isSliceBound = (arg: any): arg is SliceBound => arg === undefined |
  * @remarks
  * Since 1.0.0
  */
-export const isSliceBoundString = (arg: any) => isSliceBound(arg ? Number(arg) : undefined)
-
-export const isSliceStep = (arg: any): arg is SliceBound => isSliceBound(arg) && arg !== 0
-
-export const isSliceStepString = (arg: any) => isSliceStep(arg ? Number(arg) : undefined)
+export const isValidString = (arg: any) => isValid(arg ? Number(arg) : undefined)
 
 /**
  * Converts <code>str</code> to a slice index.
@@ -43,8 +39,6 @@ export const fromString = (str: string): SliceBound =>
 
 export const SliceBound = {
   fromString,
-  isSliceBound,
-  isSliceBoundString,
-  isSliceStep,
-  isSliceStepString,
+  isValid,
+  isValidString,
 }
