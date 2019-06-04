@@ -10,7 +10,6 @@
     "test:coverage": "lerna run --stream test:coverage && codecov --disable=gcov",
     "docs": "lerna run --stream docs",
     "docs:private": "lerna run --stream docs:private",
-    "dist": "rollup -c config/rollup.js",
     "benchmark": "lerna run benchmark",
     "premini-site": "cd docs && bundle install",
     "mini-site": "cd docs && bundle exec jekyll serve"
@@ -29,11 +28,7 @@
     "jest": "~21.2.1",
     "jsdoc": "~3.5.5",
     "lerna": "~3.10.6",
-    "lodash": "~4.17.10",
-    "rollup": "~0.67.4",
-    "rollup-plugin-babel": "~3.0.4",
-    "rollup-plugin-commonjs": "~9.2.0",
-    "rollup-plugin-node-resolve": "~3.4.0"
+    "lodash": "~4.17.10"
   },
   "workspaces": [
     "packages/*"
