@@ -58,15 +58,24 @@ push({ i18n: { languages: ['English', 'French'] } }, 'i18n.languages', 'German',
 <a href="https://immutadot.zenika.com/api/immutadot"><img src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" alt="Documentation"></a></p>
 <p><a href="https://circleci.com/gh/zenika-open-source/immutadot"><img src="https://circleci.com/gh/zenika-open-source/immutadot.svg?style=shield&amp;circle-token=8b309750f5785783ec9fb4531ba097da60563beb" alt="CircleCI"></a>
 <a href="https://codecov.io/gh/zenika-open-source/immutadot"><img src="https://codecov.io/gh/zenika-open-source/immutadot/branch/master/graph/badge.svg" alt="codecov"></a></p>
-<h2><a href="https://github.com/zenika-open-source/immutadot/milestone/12">2.0</a> is under development :building_construction:</h2>
-<p>We are working right now on the second major version of immutadot ! :construction_worker_woman::construction_worker_man:</p>
-<p>One of our main goals is to bring a major performance improvement :zap:, but also some new features :</p>
+<h2><a href="https://github.com/zenika-open-source/immutadot/milestone/12">2.0</a> is in beta :tada:</h2>
+<p>immutadot 2.0 in a nutshell:</p>
 <ul>
-<li><a href="https://github.com/zenika-open-source/immutadot/issues/169">Negative array indexes</a> (already supported in slices)</li>
-<li><a href="https://github.com/zenika-open-source/immutadot/issues/295">Step in slice notation</a></li>
-<li><a href="https://github.com/zenika-open-source/immutadot/issues/116">Optional chaining</a></li>
+<li>:zap: Performance improvements (immutadot's way of navigating structures has been rewritten)</li>
+<li>:sparkles: <a href="https://github.com/zenika-open-source/immutadot/issues/169">Negative array indexes</a></li>
+<li>:sparkles: <a href="https://github.com/zenika-open-source/immutadot/issues/295">Step in slice notation</a></li>
+<li>:sparkles: <a href="https://immutadot.zenika.com/api/immutadot/2.0/core.html#.get"><code>get()</code></a> now supports all kinds of paths</li>
 </ul>
-<p>Feel free to add feature requests or to join us !</p>
+<p>Test it:</p>
+<pre class="prettyprint source lang-shell"><code>yarn add immutadot@2.0.0-alpha.1
+# or
+npm install immutadot@2.0.0-alpha.1
+</code></pre>
+<p>New documentation is available here:</p>
+<ul>
+<li><a href="https://immutadot.zenika.com/api/immutadot/2.0">immutadot 2.0</a></li>
+<li><a href="https://immutadot.zenika.com/api/immutadot-lodash/2.0">immutadot-lodash 2.0</a></li>
+</ul>
 <h2>Installation</h2>
 <p>immutadot is available on <a href="https://www.npmjs.com/package/immutadot">npm repository</a>.</p>
 <p>using yarn:</p>
@@ -96,20 +105,18 @@ const animals = {
 
 const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutrinae')
 </code></pre>
-<p>Learn more about what immutadot can do in the <a href="https://github.com/zenika-open-source/immutadot/blob/master/docs/GETTING_STARTED.md">Getting started</a>.</p>
+<p>Learn more about what immutadot can do in the <a href="https://immutadot.zenika.com/GETTING_STARTED.html">Getting started</a>.</p>
 <p>Feel free to <a href="https://npm.runkit.com/immutadot">try immutadot on runkit</a>.</p>
 <h2>Documentation</h2>
 <h3>Getting started</h3>
-<p>A fast overview of immutadot's features is available in the <a href="https://github.com/zenika-open-source/immutadot/blob/master/docs/GETTING_STARTED.md">Getting started</a> guide.</p>
+<p>A fast overview of immutadot's features is available in the <a href="https://immutadot.zenika.com/GETTING_STARTED.html">Getting started</a> guide.</p>
 <h3>API</h3>
 <p>The detailed API documentations of the different packages are available here:</p>
 <ul>
-<li><a href="https://immutadot.zenika.com/api/immutadot">immutadot</a></li>
-<li><a href="https://immutadot.zenika.com/api/immutadot-lodash/">immutadot-lodash</a></li>
+<li><a href="https://immutadot.zenika.com/api/immutadot">immutadot 1.0</a></li>
+<li><a href="https://immutadot.zenika.com/api/immutadot-lodash">immutadot-lodash 1.0</a></li>
 </ul>
 <p>Looking for older versions API documentation? Links are available <a href="https://github.com/zenika-open-source/immutadot/blob/master/docs/README.md">here</a>.</p>
-<h3>Migrating from 0.x versions</h3>
-<p>If you were using a version of immutadot previous to 1.0, check out the <a href="docs/MIGRATING_TO_1_0.md">migrating guide</a>.</p>
 <h2>Performances</h2>
 <p>A <a href="https://github.com/zenika-open-source/immutadot/tree/master/packages/immutadot-benchmark/src/updateTodos.spec.js">simple benchmark</a> (freely inspired from one made by <a href="https://github.com/mweststrate">mweststrate</a> for <a href="https://github.com/mweststrate/immer">immer</a>) reveals that immutadot shows good results compared to other libraries.</p>
 <p>:warning: The following results should be taken with caution, they may vary depending on the hardware, the JavaScript engine, and the kind of operations performed. This particular test updates 10% out of a list of todos items, and was ran with Node 9.8.0 on an Intel® Core™ i7-6560U CPU @ 2.20GHz.</p>

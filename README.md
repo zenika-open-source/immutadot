@@ -19,16 +19,25 @@ immutadot gives you a short and meaningful syntax to apply operations on immutab
 [![CircleCI](https://circleci.com/gh/zenika-open-source/immutadot.svg?style=shield&circle-token=8b309750f5785783ec9fb4531ba097da60563beb)](https://circleci.com/gh/zenika-open-source/immutadot)
 [![codecov](https://codecov.io/gh/zenika-open-source/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/zenika-open-source/immutadot)
 
-## [2.0](https://github.com/zenika-open-source/immutadot/milestone/12) is under development :building_construction:
+## [2.0](https://github.com/zenika-open-source/immutadot/milestone/12) is in beta :tada:
 
-We are working right now on the second major version of immutadot ! :construction_worker_woman::construction_worker_man:
+immutadot 2.0 in a nutshell:
+ - :zap: Performance improvements (immutadot's way of navigating structures has been rewritten)
+ - :sparkles: [Negative array indexes](https://github.com/zenika-open-source/immutadot/issues/169)
+ - :sparkles: [Step in slice notation](https://github.com/zenika-open-source/immutadot/issues/295)
+ - :sparkles: [`get()`](https://immutadot.zenika.com/api/immutadot/2.0/core.html#.get) now supports all kinds of paths
 
-One of our main goals is to bring a major performance improvement :zap:, but also some new features :
- - [Negative array indexes](https://github.com/zenika-open-source/immutadot/issues/169) (already supported in slices)
- - [Step in slice notation](https://github.com/zenika-open-source/immutadot/issues/295)
- - [Optional chaining](https://github.com/zenika-open-source/immutadot/issues/116)
+Test it:
 
-Feel free to add feature requests or to join us !
+```shell
+yarn add immutadot@2.0.0-alpha.1
+# or
+npm install immutadot@2.0.0-alpha.1
+```
+
+New documentation is available here:
+- [immutadot 2.0](https://immutadot.zenika.com/api/immutadot/2.0)
+- [immutadot-lodash 2.0](https://immutadot.zenika.com/api/immutadot-lodash/2.0)
 
 ## Installation
 
@@ -78,7 +87,7 @@ const animals = {
 const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutrinae')
 ```
 
-Learn more about what immutadot can do in the [Getting started](https://github.com/zenika-open-source/immutadot/blob/master/docs/GETTING_STARTED.md).
+Learn more about what immutadot can do in the [Getting started](https://immutadot.zenika.com/GETTING_STARTED.html).
 
 Feel free to [try immutadot on runkit](https://npm.runkit.com/immutadot).
 
@@ -86,19 +95,15 @@ Feel free to [try immutadot on runkit](https://npm.runkit.com/immutadot).
 
 ### Getting started
 
-A fast overview of immutadot's features is available in the [Getting started](https://github.com/zenika-open-source/immutadot/blob/master/docs/GETTING_STARTED.md) guide.
+A fast overview of immutadot's features is available in the [Getting started](https://immutadot.zenika.com/GETTING_STARTED.html) guide.
 
 ### API
 
 The detailed API documentations of the different packages are available here:
-- [immutadot](https://immutadot.zenika.com/api/immutadot)
-- [immutadot-lodash](https://immutadot.zenika.com/api/immutadot-lodash/)
+- [immutadot 1.0](https://immutadot.zenika.com/api/immutadot)
+- [immutadot-lodash 1.0](https://immutadot.zenika.com/api/immutadot-lodash)
 
 Looking for older versions API documentation? Links are available [here](https://github.com/zenika-open-source/immutadot/blob/master/docs/README.md).
-
-### Migrating from 0.x versions
-
-If you were using a version of immutadot previous to 1.0, check out the [migrating guide](docs/MIGRATING_TO_1_0.md).
 
 ## Performances
 

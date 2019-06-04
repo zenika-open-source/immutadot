@@ -3,9 +3,13 @@
 
 # Documentation
 
-Latest API documentations for our different packages are available here:
-- [immutadot](https://immutadot.zenika.com/api/immutadot)
-- [immutadot-lodash](https://immutadot.zenika.com/api/immutadot-lodash/)
+2.0 API documentations for our different packages are available here:
+- [immutadot 2.0](https://immutadot.zenika.com/api/immutadot/2.0)
+- [immutadot-lodash 2.0](https://immutadot.zenika.com/api/immutadot-lodash/2.0)
+
+Latest stable API documentations for our different packages are available here:
+- [immutadot 1.0](https://immutadot.zenika.com/api/immutadot)
+- [immutadot-lodash 1.0](https://immutadot.zenika.com/api/immutadot-lodash/)
 
 Older API documentations :
 - [immutadot 0.3](https://immutadot.zenika.com/api/immutadot/0.3)
@@ -14,4 +18,4 @@ Older API documentations :
 
 Other ressources:
 - [Getting started](./GETTING_STARTED.md)
-- [Migration guide to 1.0](./MIGRATING_TO_1_0.md)
+- [Migration to 1.0 guide](./MIGRATING_TO_1_0.md)
