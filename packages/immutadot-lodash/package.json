@@ -12,8 +12,8 @@
   "main": "index.js",
   "license": "MIT",
   "homepage": "https://immutadot.zenika.com",
-  "bugs": "https://github.com/Zenika/immutadot/issues",
-  "repository": "github:Zenika/immutadot",
+  "bugs": "https://github.com/zenika-open-source/immutadot/issues",
+  "repository": "github:zenika-open-source/immutadot",
   "author": "Nicolas Lepage (https://github.com/nlepage)",
   "contributors": [
     "Yvonnick FRIN (https://github.com/frinyvonnick)",

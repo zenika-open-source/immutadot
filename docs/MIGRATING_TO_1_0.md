@@ -1,4 +1,4 @@
-![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg?sanitize=true)
+![immutadot logo](https://raw.githubusercontent.com/zenika-open-source/immutadot/master/misc/otter.svg?sanitize=true)
 ===
 
 # Migrating from 0.3 to 1.0
@@ -11,17 +11,17 @@ The core of immutad●t has been rewritten without [lodash](https://lodash.com/)
 
 immutadot package now contains exclusively functions based on [ES2015+ language and standard library](https://mdn.io/JavaScript/Reference).
 
-For a complete list see [immutadot's API documentation](https://zenika.github.io/immutadot/api/immutadot/1.0/).
+For a complete list see [immutadot's API documentation](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/).
 
 immutad●t's organization in namespaces has changed a little, see [Namespaces modifications](#namespaces-modifications) for more details.
 
-Some functions such as [`filter()`](https://zenika.github.io/immutadot/api/immutadot/1.0/array.html#.filter) and [`map()`](https://zenika.github.io/immutadot/api/immutadot/1.0/array.html#.map) are now available in immutadot and in immutadot-lodash. This is because immutadot's version handles only arrays whereas immutadot-lodash's version handles collections (which includes objects), it is up to you to choose which version suits best your needs.
+Some functions such as [`filter()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/array.html#.filter) and [`map()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/array.html#.map) are now available in immutadot and in immutadot-lodash. This is because immutadot's version handles only arrays whereas immutadot-lodash's version handles collections (which includes objects), it is up to you to choose which version suits best your needs.
 
 ### immutadot-lodash package
 
-All immutad●t functions directly based on lodash utilities (such as [`mapValues()`](https://zenika.github.io/immutadot/api/immutadot-lodash/1.0/object.html#.mapValues)) have been moved into immutadot-lodash.
+All immutad●t functions directly based on lodash utilities (such as [`mapValues()`](https://zenika-open-source.github.io/immutadot/api/immutadot-lodash/1.0/object.html#.mapValues)) have been moved into immutadot-lodash.
 
-For a complete list see [immutadot-lodash's API documentation](https://zenika.github.io/immutadot/api/immutadot-lodash/1.0/).
+For a complete list see [immutadot-lodash's API documentation](https://zenika-open-source.github.io/immutadot/api/immutadot-lodash/1.0/).
 
 Such cases are easily migrated:
 ```diff
@@ -41,7 +41,7 @@ immutad●t functions now support currying the `obj` (leftmost) parameter:
 set('nested.prop', 'val')(obj)
 ```
 
-This allows them to be used in [`flow()`](https://zenika.github.io/immutadot/api/immutadot/1.0/core.html#.flow) (see [Chained operations](#chained-operations)).
+This allows them to be used in [`flow()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.flow) (see [Chained operations](#chained-operations)).
 
 Partial functions returned by calls without `obj` are unary, therefore you may call them with more than one parameter, only the first one will be used:
 
@@ -51,7 +51,7 @@ set('nested.prop', 'val')(obj, discarded1, discarded2)
 
 ## Chained operations
 
-[`chain()`](https://zenika.github.io/immutadot/api/immutadot/0.3/seq.html#.chain) has been removed in favor of [`flow()`](https://zenika.github.io/immutadot/api/immutadot/1.0/core.html#.flow).
+[`chain()`](https://zenika-open-source.github.io/immutadot/api/immutadot/0.3/seq.html#.chain) has been removed in favor of [`flow()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.flow).
 
 The main reasons behind this are that `chain` had some major drawbacks:
  - Imports all of immutad●t's functions
@@ -127,11 +127,11 @@ You might be able to rewrite some of your code like this:
 
 ### `using()` utility
 
-[`using()`](https://zenika.github.io/immutadot/api/immutadot/0.3/util.html#.using) has been removed for the same reasons as `chain()`:
+[`using()`](https://zenika-open-source.github.io/immutadot/api/immutadot/0.3/util.html#.using) has been removed for the same reasons as `chain()`:
  - Imports all of immutad●t's functions
  - Difficult to extend
 
-immutad●t now has a [`get()`](https://zenika.github.io/immutadot/api/immutadot/1.0/core.html#.get) function that allows you to do the same:
+immutad●t now has a [`get()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.get) function that allows you to do the same:
 
 ```diff
 -import { using } from 'immutadot'

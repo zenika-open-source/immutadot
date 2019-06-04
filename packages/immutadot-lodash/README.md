@@ -1,10 +1,10 @@
-![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg?sanitize=true)
+![immutadot logo](https://raw.githubusercontent.com/zenika-open-source/immutadot/master/misc/otter.svg?sanitize=true)
 ===
 
 ## immutad●t-lodash
 immutadot-lodash is an extension to immutad●t, adding functions based on [lodash](https://lodash.com/).
 
-More information on immutad●t is available on the [repository's main page](https://github.com/Zenika/immutadot).
+More information on immutad●t is available on the [repository's main page](https://github.com/zenika-open-source/immutadot).
 
 ## Installation
 
@@ -66,8 +66,8 @@ const newObj = mapValues(obj, 'nested.object', v => v * v)
 
 ## Documentation
 
-Latest API documentation is available [here](https://zenika.github.io/immutadot/api/immutadot-lodash/).
+Latest API documentation is available [here](https://zenika-open-source.github.io/immutadot/api/immutadot-lodash/).
 
 ## License
 
-immutad●t-lodash is [MIT licensed](https://github.com/Zenika/immutadot/blob/master/LICENSE.md).
+immutad●t-lodash is [MIT licensed](https://github.com/zenika-open-source/immutadot/blob/master/LICENSE.md).

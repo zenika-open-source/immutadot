@@ -30,8 +30,6 @@ using npm:
 $ npm install immutadot
 ```
 
-or you can directly download [sources](https://github.com/Zenika/immutadot/releases).
-
 ## Usage
 ES modules:
 

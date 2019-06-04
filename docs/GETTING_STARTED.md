@@ -20,7 +20,7 @@ using npm:
 $ npm install immutadot
 ```
 
-or you can directly download [sources](https://github.com/Zenika/immutadot/releases).
+or you can directly download [sources](https://github.com/zenika-open-source/immutadot/releases).
 
 ## Setting nested properties
 
@@ -60,7 +60,7 @@ const newAnimals = {
 }
 ```
 
-This can be done nicely with [`set()`](https://zenika.github.io/immutadot/api/immutadot/1.0/core.html#.set):
+This can be done nicely with [`set()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.set):
 
 ```js
 import { set } from 'immutadot'
@@ -76,11 +76,11 @@ const animals = {
 const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutra lutra')
 ```
 
-Deleting a nested property can be done with [`unset()`](https://zenika.github.io/immutadot/api/immutadot/1.0/core.html#.unset).
+Deleting a nested property can be done with [`unset()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.unset).
 
 ## Basic array operations
 
-Values can be added in a nested array with [`push()`](https://zenika.github.io/immutadot/api/immutadot/1.0/array.html#.push):
+Values can be added in a nested array with [`push()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/array.html#.push):
 
 ```js
 import { push } from 'immutadot'
@@ -98,13 +98,13 @@ const animals = {
 const newAnimals = push(animals, 'weasels.lutraLutra.commonNames', 'european otter', 'common otter')
 ```
 
-immutadot includes all common functions of Array's prototype, see [documentation's array section](https://zenika.github.io/immutadot/api/immutadot/1.0/array.html).
+immutadot includes all common functions of Array's prototype, see [documentation's array section](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/array.html).
 
 ## Updating properties
 
-immutad●t offers basic functions to work with primitive types such as [`toggle()`](https://zenika.github.io/immutadot/api/immutadot/1.0/lang.html#.toggle), [`stringConcat()`](https://zenika.github.io/immutadot/api/immutadot/1.0/string.html#.concat), or [`add()`](https://zenika.github.io/immutadot/api/immutadot/1.0/lang.html#.add), see [immutad●t's API](https://zenika.github.io/immutadot/api/immutadot/) for a full list.
+immutad●t offers basic functions to work with primitive types such as [`toggle()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/lang.html#.toggle), [`stringConcat()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/string.html#.concat), or [`add()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/lang.html#.add), see [immutad●t's API](https://zenika-open-source.github.io/immutadot/api/immutadot/) for a full list.
 
-It is also possible to perform custom updates with [`update()`](https://zenika.github.io/immutadot/api/immutadot/1.0/core.html#.update):
+It is also possible to perform custom updates with [`update()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.update):
 
 ```js
 import { update } from 'immutadot'
@@ -184,7 +184,7 @@ For more information on the path notation of immutad●t, see the [path notation
 
 ## Grouping modifications
 
-Different operations can be grouped with [`flow()`](https://zenika.github.io/immutadot/api/immutadot/1.0/flow.html#.flow):
+Different operations can be grouped with [`flow()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/flow.html#.flow):
 
 ```js
 import { flow, push, set } from 'immutadot'
@@ -229,7 +229,7 @@ const newAnimals = set('weasels.lutraLutra.scientificName', 'Lutra lutra')(anima
 
 ## Reusing custom updates
 
-New immutad●t functions can be created with [`convert()`](https://zenika.github.io/immutadot/api/immutadot/1.0/core.html#.convert):
+New immutad●t functions can be created with [`convert()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.convert):
 
 ```js
 import { convert } from 'immutadot'

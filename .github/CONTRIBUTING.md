@@ -1,4 +1,4 @@
-![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg?sanitize=true)
+![immutadot logo](https://raw.githubusercontent.com/zenika-open-source/immutadot/master/misc/otter.svg?sanitize=true)
 ===
 
 # Contributing to immutad●t
@@ -49,7 +49,7 @@ Please refer to [the gitmoji guide](https://gitmoji.carloscuesta.me/) to know wh
 If you are not sure whether to report a bug or ask for a new feature, or if you just have a question about anything, please [create an issue][new_issue].
 
 ## Code of conduct :page_facing_up:
-In order to keep a happy and respectful atmosphere around the project, we expect everyone participating in it to follow our [Code of conduct](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md).
+In order to keep a happy and respectful atmosphere around the project, we expect everyone participating in it to follow our [Code of conduct](https://github.com/zenika-open-source/immutadot/blob/master/.github/CODE_OF_CONDUCT.md).
 
-[issues]: https://github.com/Zenika/immutadot/issues
-[new_issue]: https://github.com/Zenika/immutadot/issues/new
+[issues]: https://github.com/zenika-open-source/immutadot/issues
+[new_issue]: https://github.com/zenika-open-source/immutadot/issues/new

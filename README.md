@@ -1,4 +1,4 @@
-![immutadot logo](https://raw.githubusercontent.com/Zenika/immutadot/master/misc/otter.svg?sanitize=true)
+![immutadot logo](https://raw.githubusercontent.com/zenika-open-source/immutadot/master/misc/otter.svg?sanitize=true)
 ===
 
 A JavaScript library to deal with nested immutable structures.
@@ -14,19 +14,19 @@ immutad●t gives you a short and meaningful syntax to apply operations on immut
 
 [![npm version](https://badge.fury.io/js/immutadot.svg)](https://badge.fury.io/js/immutadot)
 [![Try on RunKit](https://badge.runkitcdn.com/immutadot.svg)](https://npm.runkit.com/immutadot)
-[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://zenika.github.io/immutadot/api/immutadot)
+[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://zenika-open-source.github.io/immutadot/api/immutadot)
 
-[![CircleCI](https://circleci.com/gh/Zenika/immutadot.svg?style=shield&circle-token=8b309750f5785783ec9fb4531ba097da60563beb)](https://circleci.com/gh/Zenika/immutadot)
-[![codecov](https://codecov.io/gh/Zenika/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/Zenika/immutadot)
+[![CircleCI](https://circleci.com/gh/zenika-open-source/immutadot.svg?style=shield&circle-token=8b309750f5785783ec9fb4531ba097da60563beb)](https://circleci.com/gh/zenika-open-source/immutadot)
+[![codecov](https://codecov.io/gh/zenika-open-source/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/zenika-open-source/immutadot)
 
-## [2.0](https://github.com/Zenika/immutadot/milestone/12) is under development :building_construction:
+## [2.0](https://github.com/zenika-open-source/immutadot/milestone/12) is under development :building_construction:
 
 We are working right now on the second major version of immutad●t ! :construction_worker_woman::construction_worker_man:
 
 One of our main goals is to bring a major performance improvement :zap:, but also some new features :
- - [Negative array indexes](https://github.com/Zenika/immutadot/issues/169) (already supported in slices)
- - [Step in slice notation](https://github.com/Zenika/immutadot/issues/295)
- - [Optional chaining](https://github.com/Zenika/immutadot/issues/116)
+ - [Negative array indexes](https://github.com/zenika-open-source/immutadot/issues/169) (already supported in slices)
+ - [Step in slice notation](https://github.com/zenika-open-source/immutadot/issues/295)
+ - [Optional chaining](https://github.com/zenika-open-source/immutadot/issues/116)
 
 Feel free to add feature requests or to join us !
 
@@ -62,7 +62,7 @@ const { set } = require('immutadot')
 
 ### Example
 
-Quickly set nested properties using [set()](https://zenika.github.io/immutadot/api/immutadot/1.0/core.html#.set)
+Quickly set nested properties using [set()](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.set)
 
 ```js
 import { set } from 'immutadot'
@@ -78,7 +78,7 @@ const animals = {
 const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutrinae')
 ```
 
-Learn more about what immutad●t can do in the [Getting started](https://github.com/Zenika/immutadot/blob/master/docs/GETTING_STARTED.md).
+Learn more about what immutad●t can do in the [Getting started](https://github.com/zenika-open-source/immutadot/blob/master/docs/GETTING_STARTED.md).
 
 Feel free to [try immutad●t on runkit](https://npm.runkit.com/immutadot).
 
@@ -86,15 +86,15 @@ Feel free to [try immutad●t on runkit](https://npm.runkit.com/immutadot).
 
 ### Getting started
 
-A fast overview of immutad●t's features is available in the [Getting started](https://github.com/Zenika/immutadot/blob/master/docs/GETTING_STARTED.md) guide.
+A fast overview of immutad●t's features is available in the [Getting started](https://github.com/zenika-open-source/immutadot/blob/master/docs/GETTING_STARTED.md) guide.
 
 ### API
 
 The detailed API documentations of the different packages are available here:
-- [immutadot](https://zenika.github.io/immutadot/api/immutadot)
-- [immutadot-lodash](https://zenika.github.io/immutadot/api/immutadot-lodash/)
+- [immutadot](https://zenika-open-source.github.io/immutadot/api/immutadot)
+- [immutadot-lodash](https://zenika-open-source.github.io/immutadot/api/immutadot-lodash/)
 
-Looking for older versions API documentation? Links are available [here](https://github.com/Zenika/immutadot/blob/master/docs/README.md).
+Looking for older versions API documentation? Links are available [here](https://github.com/zenika-open-source/immutadot/blob/master/docs/README.md).
 
 ### Migrating from 0.x versions
 
@@ -102,7 +102,7 @@ If you were using a version of immutad●t previous to 1.0, check out the [migra
 
 ## Performances
 
-A [simple benchmark](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-benchmark/src/updateTodos.spec.js) (freely inspired from one made by [mweststrate](https://github.com/mweststrate) for [immer](https://github.com/mweststrate/immer)) reveals that immutad●t shows good results compared to other libraries.
+A [simple benchmark](https://github.com/zenika-open-source/immutadot/tree/master/packages/immutadot-benchmark/src/updateTodos.spec.js) (freely inspired from one made by [mweststrate](https://github.com/mweststrate) for [immer](https://github.com/mweststrate/immer)) reveals that immutad●t shows good results compared to other libraries.
 
 :warning: The following results should be taken with caution, they may vary depending on the hardware, the JavaScript engine, and the kind of operations performed. This particular test updates 10% out of a list of todos items, and was ran with Node 9.8.0 on an Intel® Core™ i7-6560U CPU @ 2.20GHz.
 
@@ -157,7 +157,7 @@ immutad●t uses plain JavaScript objects so you can access your data using stan
 
 ### Exhaustive and yet extensible
 
-immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/Zenika/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the [`convert`](https://zenika.github.io/immutadot/api/immutadot/1.0/core.html#.convert) feature.
+immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/zenika-open-source/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the [`convert`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.convert) feature.
 
 ### Learning curve
 
@@ -167,17 +167,17 @@ If you are already familiar with [ES2015+](https://mdn.io/JavaScript/Reference) 
 
 We want contributing to immutad●t to be fun, enjoyable, and educational for anyone, and everyone.
 
-### [Code of Conduct](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md)
+### [Code of Conduct](https://github.com/zenika-open-source/immutadot/blob/master/.github/CODE_OF_CONDUCT.md)
 
-In the interest of fostering an open and welcoming environment, we have adopted a Code of Conduct that we expect project participants to commit to. Please read the [full text](https://github.com/Zenika/immutadot/blob/master/.github/CODE_OF_CONDUCT.md) so that you can understand what behavior will and will not be tolerated.
+In the interest of fostering an open and welcoming environment, we have adopted a Code of Conduct that we expect project participants to commit to. Please read the [full text](https://github.com/zenika-open-source/immutadot/blob/master/.github/CODE_OF_CONDUCT.md) so that you can understand what behavior will and will not be tolerated.
 
-### [Contributing guide](https://github.com/Zenika/immutadot/blob/master/.github/CONTRIBUTING.md)
+### [Contributing guide](https://github.com/zenika-open-source/immutadot/blob/master/.github/CONTRIBUTING.md)
 
-If you are interested in contributing to immutad●t, please read our [contributing guide](https://github.com/Zenika/immutadot/blob/master/.github/CONTRIBUTING.md) to learn more about how to suggest bugfixes and improvements.
+If you are interested in contributing to immutad●t, please read our [contributing guide](https://github.com/zenika-open-source/immutadot/blob/master/.github/CONTRIBUTING.md) to learn more about how to suggest bugfixes and improvements.
 
 ## License
 
-immutad●t is [MIT licensed](https://github.com/Zenika/immutadot/blob/master/LICENSE.md).
+immutad●t is [MIT licensed](https://github.com/zenika-open-source/immutadot/blob/master/LICENSE.md).
 
 ## Notes
 
