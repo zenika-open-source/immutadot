@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>lang - Documentation</title>
+
+    <!--[if lt IE 9]>
+        <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="nav">
+    <h2 class="home-link"><a href="index.html">immutadot</a></h2><h3>Namespaces</h3><ul><li><details open><summary><a href="array.html">array</a></summary><ul class='methods'><li data-type='method'><a href="array.html#.concat">concat</a></li><li data-type='method'><a href="array.html#.copyWithin">copyWithin</a></li><li data-type='method'><a href="array.html#.fill">fill</a></li><li data-type='method'><a href="array.html#.filter">filter</a></li><li data-type='method'><a href="array.html#.flat">flat</a></li><li data-type='method'><a href="array.html#.flatMap">flatMap</a></li><li data-type='method'><a href="array.html#.map">map</a></li><li data-type='method'><a href="array.html#.pop">pop</a></li><li data-type='method'><a href="array.html#.push">push</a></li><li data-type='method'><a href="array.html#.reverse">reverse</a></li><li data-type='method'><a href="array.html#.shift">shift</a></li><li data-type='method'><a href="array.html#.slice">slice</a></li><li data-type='method'><a href="array.html#.sort">sort</a></li><li data-type='method'><a href="array.html#.splice">splice</a></li><li data-type='method'><a href="array.html#.unshift">unshift</a></li></ul></details></li><li><details open><summary><a href="core.html">core</a></summary><ul class='members'><li data-type='member'><a href="core.html#.set">set</a></li></ul><ul class='methods'><li data-type='method'><a href="core.html#.flow">flow</a></li><li data-type='method'><a href="core.html#.get">get</a></li><li data-type='method'><a href="core.html#.unset">unset</a></li><li data-type='method'><a href="core.html#.update">update</a></li></ul></details></li><li><details open><summary><a href="lang.html">lang</a></summary><ul class='methods'><li data-type='method'><a href="lang.html#.add">add</a></li><li data-type='method'><a href="lang.html#.and">and</a></li><li data-type='method'><a href="lang.html#.divide">divide</a></li><li data-type='method'><a href="lang.html#.multiply">multiply</a></li><li data-type='method'><a href="lang.html#.or">or</a></li><li data-type='method'><a href="lang.html#.subtract">subtract</a></li><li data-type='method'><a href="lang.html#.toggle">toggle</a></li></ul></details></li><li><details open><summary><a href="object.html">object</a></summary><ul class='methods'><li data-type='method'><a href="object.html#.assign">assign</a></li><li data-type='method'><a href="object.html#.create">create</a></li></ul></details></li><li><details open><summary><a href="string.html">string</a></summary><ul class='methods'><li data-type='method'><a href="string.html#.concat">concat</a></li><li data-type='method'><a href="string.html#.padEnd">padEnd</a></li><li data-type='method'><a href="string.html#.padStart">padStart</a></li><li data-type='method'><a href="string.html#.replace">replace</a></li><li data-type='method'><a href="string.html#.slice">slice</a></li><li data-type='method'><a href="string.html#.substring">substring</a></li><li data-type='method'><a href="string.html#.toLocaleLowerCase">toLocaleLowerCase</a></li><li data-type='method'><a href="string.html#.toLocaleUpperCase">toLocaleUpperCase</a></li><li data-type='method'><a href="string.html#.toLowerCase">toLowerCase</a></li><li data-type='method'><a href="string.html#.toUpperCase">toUpperCase</a></li><li data-type='method'><a href="string.html#.trim">trim</a></li><li data-type='method'><a href="string.html#.trimEnd">trimEnd</a></li><li data-type='method'><a href="string.html#.trimStart">trimStart</a></li></ul></details></li></ul>
+</nav>
+
+<div id="main" class="main-container">
+    
+        <h1 class="page-title">lang</h1>
+    
+
+    
+
+
+
+
+<section class="page-container">
+
+    <header class="page-header">
+        
+            <h2>
+            lang
+            </h2>
+            
+        
+    </header>
+
+    <section class="page-content">
+        <article class="container-overview">
+            
+                
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="lang_index.js.html">lang/index.js</a>, <a href="lang_index.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.1.5</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+                
+                    <div class="description">Lang functions.</div>
+                
+
+                
+            
+        </article>
+
+        
+
+        
+
+        
+
+         
+
+        
+
+        
+
+        
+            <article class="container-methods">
+                <h3 class="subsection-title">Methods</h3>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".add"><span class="signature-type">(static) </span>add<span class="signature">(object, path, addend)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="lang_add.js.html">lang/add.js</a>, <a href="lang_add.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by the addition of the former number and the given number.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>add({ nested: { prop: 2 } }, 'nested.prop', 4) // => { nested: { prop: 6 } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>addend</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The number to add.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".and"><span class="signature-type">(static) </span>and<span class="signature">(object, path, <span class="optional">[&hellip;args]</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="lang_and.js.html">lang/and.js</a>, <a href="lang_and.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Applies <code>&&</code> between the former value and <code>args</code>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+    <pre class="prettyprint"><code>and({ nested: { prop: true } }, 'nested.prop', true) // { nested: { prop: true } }</code></pre>
+
+    <pre class="prettyprint"><code>and({ nested: { prop: true } }, 'nested.prop', true, false) // { nested: { prop: false } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>args</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Other operands.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".divide"><span class="signature-type">(static) </span>divide<span class="signature">(object, path, divisor)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="lang_divide.js.html">lang/divide.js</a>, <a href="lang_divide.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by the division of the former number and the given number.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>divide({ nested: { prop: 1332 } }, 'nested.prop', 2) // => { nested: { prop: 666 } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>divisor</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The second number in the division.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".multiply"><span class="signature-type">(static) </span>multiply<span class="signature">(object, path, multiplicand)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="lang_multiply.js.html">lang/multiply.js</a>, <a href="lang_multiply.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by the multiplication of the former number and the given number.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>multiply({ nested: { prop: 333 } }, 'nested.prop', 2) // => { nested: { prop: 666 } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>multiplicand</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The second number in the multiplication.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".or"><span class="signature-type">(static) </span>or<span class="signature">(object, path, <span class="optional">[&hellip;args]</span>)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="lang_or.js.html">lang/or.js</a>, <a href="lang_or.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Applies <code>||</code> between the former value and <code>args</code>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Examples</h5>
+        
+    <pre class="prettyprint"><code>or({ nested: { prop: false } }, 'nested.prop', true) // { nested: { prop: true } }</code></pre>
+
+    <pre class="prettyprint"><code>or({ nested: { prop: true } }, 'nested.prop', false, false) // { nested: { prop: true } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+            <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+
+            
+
+            
+        </td>
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>args</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">*</span>
+
+
+        
+    </td>
+
+    
+        <td class="attributes">
+            
+                <div class="attribute optional">optional</div>
+            
+
+            
+
+            
+                <div class="attribute repeatable">repeatable</div>
+            
+        </td>
+    
+
+    
+
+    <td class="description last">Other operands.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".subtract"><span class="signature-type">(static) </span>subtract<span class="signature">(object, path, subtrahend)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="lang_subtract.js.html">lang/subtract.js</a>, <a href="lang_subtract.js.html#line14">line 14</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>1.0.0</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Replaces by the subtraction of the former number by the given number.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>subtract({ nested: { prop: 2000 } }, 'nested.prop', 336) // => { nested: { prop: 1664 } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>subtrahend</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">number</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The number to subtract.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+                    
+
+<article class="method">
+    
+        <h4 class="name" id=".toggle"><span class="signature-type">(static) </span>toggle<span class="signature">(object, path)</span><span class="signature-return"> &rarr; {Object}</span></h4>
+
+        
+    
+
+    
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul><li>
+        <a href="lang_toggle.js.html">lang/toggle.js</a>, <a href="lang_toggle.js.html#line13">line 13</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-since">Since:</dt>
+    <dd class="tag-since"><ul><li>0.1.5</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+    
+    <div class="description">
+        Applies <code>!</code> to the property.
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>toggle({ nested: { prop: true } }, 'nested.prop') // { nested: { prop: false } }</code></pre>
+
+    
+
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params">
+    <thead>
+    <tr>
+        
+            <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>object</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Object</span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The object to modify.</td>
+
+</tr>
+
+
+
+        
+            
+            
+<tr class="prop">
+    
+        <td class="name">
+            
+            <code>path</code>
+        </td>
+    
+
+    <td class="type">
+        
+            
+<span class="param-type">Array</span>
+|
+
+<span class="param-type"><a href="string.html">string</a></span>
+
+
+        
+    </td>
+
+    
+
+    
+
+    <td class="description last">The path of the property to set.</td>
+
+</tr>
+
+
+
+        
+    </tbody>
+</table>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    Returns the updated object.
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+        
+</article>
+
+                
+            </article>
+        
+
+        
+
+        
+    </section>
+
+</section>
+
+
+
+
+</div>
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.2</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script src="scripts/main.js"></script>
+</body>
+</html>
