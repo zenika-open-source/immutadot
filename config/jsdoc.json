@@ -9,7 +9,7 @@
   },
   "hotdoc": {
     "github": "https://github.com/zenika-open-source/immutadot",
-    "home": "immutad●t",
+    "home": "immutadot",
     "customOverrides": "../../docs/hotdoc-overrides.scss"
   }
 }

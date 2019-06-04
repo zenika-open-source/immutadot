@@ -1,8 +1,8 @@
 ![immutadot logo](https://raw.githubusercontent.com/zenika-open-source/immutadot/master/misc/otter.svg?sanitize=true)
 ===
 
-# Contributing to immutad●t
-First of all thank you for expressing interest in immutad●t! :+1:<br />
+# Contributing to immutadot
+First of all thank you for expressing interest in immutadot! :+1:<br />
 We are very happy to welcome new contributors. :tada:
 
 ## How can I contribute? :man_technologist:
@@ -15,7 +15,7 @@ You are welcome to try and fix it by submitting a pull request if you would like
 We are open to feature requests, be sure to search [our issue tracker][issues] to see if anyone has already asked for it.<br />
 If not, please [create an issue][new_issue] describing what you want, what your use case is, and an example of code.<br />
 You are welcome to try and do it yourself by submitting a pull request if you would like to (see Pull requests section for more information).<br />
-As immutad●t is still a very young project, we are also open to enhancement suggestions; if you think of anything that might help us improve the project, please [create an issue][new_issue] and we will be happy to discuss it with you.
+As immutadot is still a very young project, we are also open to enhancement suggestions; if you think of anything that might help us improve the project, please [create an issue][new_issue] and we will be happy to discuss it with you.
 
 ### Pull requests :arrow_up:
 #### Installation :package:
@@ -25,9 +25,9 @@ Once you have cloned the project, run `yarn` to install all the dependencies.
 If you encounter trouble in the post-install phase involving `node-sass`, make sure you are building with VC++ 2013: `yarn config set msvs_version 2013`.
 
 #### Architecture :house:
-immutad●t is managed as a [monorepo](https://medium.com/netscape/the-case-for-monorepos-907c1361708a) using [yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) and [lerna](https://lernajs.io/)
+immutadot is managed as a [monorepo](https://medium.com/netscape/the-case-for-monorepos-907c1361708a) using [yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) and [lerna](https://lernajs.io/)
 
-Each package of immutad●t is organized in namespaces (array, collection, lang, etc.), a lot like lodash. Please try to respect this organization; if you are not sure where to put your code, ask for the right place in your issue or PR.
+Each package of immutadot is organized in namespaces (array, collection, lang, etc.), a lot like lodash. Please try to respect this organization; if you are not sure where to put your code, ask for the right place in your issue or PR.
 
 #### Tests and Code style :policeman:
 If you write any code, be sure to write the test that goes with it in a file located at the same place and named `<something>.spec.js`; we have a coverage of a :100: percent and we would like to keep it :wink:.<br />

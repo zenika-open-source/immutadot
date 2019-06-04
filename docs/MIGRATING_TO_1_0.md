@@ -5,7 +5,7 @@
 
 ## Split in two packages
 
-The core of immutad●t has been rewritten without [lodash](https://lodash.com/), and immutad●t now has two npm packages [immutadot](https://www.npmjs.com/package/immutadot) and [immutadot-lodash](https://www.npmjs.com/package/immutadot-lodash).
+The core of immutadot has been rewritten without [lodash](https://lodash.com/), and immutadot now has two npm packages [immutadot](https://www.npmjs.com/package/immutadot) and [immutadot-lodash](https://www.npmjs.com/package/immutadot-lodash).
 
 ### immutadot package
 
@@ -13,13 +13,13 @@ immutadot package now contains exclusively functions based on [ES2015+ language 
 
 For a complete list see [immutadot's API documentation](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/).
 
-immutad●t's organization in namespaces has changed a little, see [Namespaces modifications](#namespaces-modifications) for more details.
+immutadot's organization in namespaces has changed a little, see [Namespaces modifications](#namespaces-modifications) for more details.
 
 Some functions such as [`filter()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/array.html#.filter) and [`map()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/array.html#.map) are now available in immutadot and in immutadot-lodash. This is because immutadot's version handles only arrays whereas immutadot-lodash's version handles collections (which includes objects), it is up to you to choose which version suits best your needs.
 
 ### immutadot-lodash package
 
-All immutad●t functions directly based on lodash utilities (such as [`mapValues()`](https://zenika-open-source.github.io/immutadot/api/immutadot-lodash/1.0/object.html#.mapValues)) have been moved into immutadot-lodash.
+All immutadot functions directly based on lodash utilities (such as [`mapValues()`](https://zenika-open-source.github.io/immutadot/api/immutadot-lodash/1.0/object.html#.mapValues)) have been moved into immutadot-lodash.
 
 For a complete list see [immutadot-lodash's API documentation](https://zenika-open-source.github.io/immutadot/api/immutadot-lodash/1.0/).
 
@@ -35,7 +35,7 @@ All immutadot-lodash functions have kept their former namespace, which is their 
 
 ## Curried `obj` parameter
 
-immutad●t functions now support currying the `obj` (leftmost) parameter:
+immutadot functions now support currying the `obj` (leftmost) parameter:
 
 ```js
 set('nested.prop', 'val')(obj)
@@ -54,7 +54,7 @@ set('nested.prop', 'val')(obj, discarded1, discarded2)
 [`chain()`](https://zenika-open-source.github.io/immutadot/api/immutadot/0.3/seq.html#.chain) has been removed in favor of [`flow()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.flow).
 
 The main reasons behind this are that `chain` had some major drawbacks:
- - Imports all of immutad●t's functions
+ - Imports all of immutadot's functions
  - Difficult to extend
  - Hard to test
 
@@ -98,13 +98,13 @@ If you were using `chain()`'s second parameter to avoid repeating a common path 
 
 ## Path notation
 
-immutad●t now uses its own path parser instead of lodash's [`toPath()`]() utility.
+immutadot now uses its own path parser instead of lodash's [`toPath()`]() utility.
 
 If your code contains cumbersome or incorrect paths (such as `set(obj, 'a[0.b', 'val')`) you might experience changes of behavior.
 
 ### Advandced path notation
 
-immutad●t 1.0 comes with an improved path notation, allowing to iterate over arrays and objects, check out the [path notation documentation](./PATH_NOTATION.md) for more information.
+immutadot 1.0 comes with an improved path notation, allowing to iterate over arrays and objects, check out the [path notation documentation](./PATH_NOTATION.md) for more information.
 
 You might be able to rewrite some of your code like this:
 
@@ -128,10 +128,10 @@ You might be able to rewrite some of your code like this:
 ### `using()` utility
 
 [`using()`](https://zenika-open-source.github.io/immutadot/api/immutadot/0.3/util.html#.using) has been removed for the same reasons as `chain()`:
- - Imports all of immutad●t's functions
+ - Imports all of immutadot's functions
  - Difficult to extend
 
-immutad●t now has a [`get()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.get) function that allows you to do the same:
+immutadot now has a [`get()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.get) function that allows you to do the same:
 
 ```diff
 -import { using } from 'immutadot'
@@ -149,7 +149,7 @@ get(obj, 'nested.prop', 'valueIfUndefined')
 
 ## Namespaces modifications
 
-If you were importing or requiring immutad●t functions from the root path `"immutadot"`, this section doesn't affect you.
+If you were importing or requiring immutadot functions from the root path `"immutadot"`, this section doesn't affect you.
 
 All immutadot-lodash functions have kept their former namespace, which is their original lodash namespace.
 

@@ -12,9 +12,9 @@ const benchmarkSuite = new BenchmarkSuite(
     ['seamless', 'seamless-immutable 7.1.4'],
     ['immer', 'immer 1.12.1'],
     ['qim', 'qim 0.0.52'],
-    ['immutadot', 'immutad●t 2.0.0'],
+    ['immutadot', 'immutadot 2.0.0'],
     ['qim-curried', 'qim 0.0.52 curried'],
-    ['immutadot-curried', 'immutad●t 2.0.0 curried'],
+    ['immutadot-curried', 'immutadot 2.0.0 curried'],
   ],
 )
 

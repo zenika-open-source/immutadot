@@ -107,7 +107,7 @@ export function updateTodos(benchmarkSuite, title, listSize, modifySize, maxTime
     })
   })
 
-  it('immutad●t', () => {
+  it('immutadot', () => {
     benchmark('immutadot', () => {
       const [start, end] = randomBounds()
       return set(baseState, `[${start}:${end}].done`, true)
@@ -121,7 +121,7 @@ export function updateTodos(benchmarkSuite, title, listSize, modifySize, maxTime
     })
   })
 
-  it('immutad●t curried', () => {
+  it('immutadot curried', () => {
     benchmark('immutadot-curried', () => {
       const [start, end] = randomBounds()
       return set(`[${start}:${end}].done`)(true)(baseState)

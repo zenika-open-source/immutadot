@@ -3,7 +3,7 @@ layout: default
 avatar: true
 permalink: /
 ---
-# immutad●t
+# immutadot
 A JavaScript library to deal with nested immutable structures.
 
 ```js
@@ -13,10 +13,10 @@ set({ english: { greeting: 'Hi' } }, 'english.greeting', 'Hello')
 push({ i18n: { languages: ['English', 'French'] } }, 'i18n.languages', 'German', 'Spanish')
 // → { i18n: { languages: ['English', 'French', 'German', 'Spanish'] } }
 ```
-immutad●t gives you a short and meaningful syntax to apply operations on immutable structures.
+immutadot gives you a short and meaningful syntax to apply operations on immutable structures.
 
 ## Installation
-immutad●t is available on [npm repository](https://www.npmjs.com/package/immutadot).
+immutadot is available on [npm repository](https://www.npmjs.com/package/immutadot).
 
 using yarn:
 
@@ -60,4 +60,4 @@ const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutrinae')
 
 ## Getting started
 
-A fast overview of immutad●t's features is available in the [Getting started](/GETTING_STARTED.html) guide.
+A fast overview of immutadot's features is available in the [Getting started](/GETTING_STARTED.html) guide.

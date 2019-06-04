@@ -1,14 +1,14 @@
 ![immutadot logo](https://raw.githubusercontent.com/zenika-open-source/immutadot/master/misc/otter.svg?sanitize=true)
 ===
 
-## immutad●t-lodash
-immutadot-lodash is an extension to immutad●t, adding functions based on [lodash](https://lodash.com/).
+## immutadot-lodash
+immutadot-lodash is an extension to immutadot, adding functions based on [lodash](https://lodash.com/).
 
-More information on immutad●t is available on the [repository's main page](https://github.com/zenika-open-source/immutadot).
+More information on immutadot is available on the [repository's main page](https://github.com/zenika-open-source/immutadot).
 
 ## Installation
 
-immutad●t-lodash is available on [npm repository](https://www.npmjs.com/package/immutadot-lodash).
+immutadot-lodash is available on [npm repository](https://www.npmjs.com/package/immutadot-lodash).
 
 using yarn:
 
@@ -70,4 +70,4 @@ Latest API documentation is available [here](https://zenika-open-source.github.i
 
 ## License
 
-immutad●t-lodash is [MIT licensed](https://github.com/zenika-open-source/immutadot/blob/master/LICENSE.md).
+immutadot-lodash is [MIT licensed](https://github.com/zenika-open-source/immutadot/blob/master/LICENSE.md).

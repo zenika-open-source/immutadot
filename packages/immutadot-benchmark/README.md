@@ -1,6 +1,6 @@
 ![immutadot logo](https://raw.githubusercontent.com/zenika-open-source/immutadot/master/misc/otter.svg?sanitize=true)
 ===
 
-## immutad●t-benchmark
+## immutadot-benchmark
 
-This is a benchmarking private package for immutad●t, find out more on the [repository main page](../../#performances).
+This is a benchmarking private package for immutadot, find out more on the [repository main page](../../#performances).

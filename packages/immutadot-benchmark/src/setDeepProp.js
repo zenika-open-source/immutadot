@@ -191,7 +191,7 @@ export function setDeepProp(benchmarkSuite) {
     })
   })
 
-  it('immutad●t', () => {
+  it('immutadot', () => {
     benchmark('immutadot', () => {
       return set(baseState, 'nested1.arr1[0].nested2.arr2[0].nested3.arr3[0].nested4.arr4[0].nested5.arr5[0].nested6.arr6[0].prop', 'bar')
     })
@@ -203,7 +203,7 @@ export function setDeepProp(benchmarkSuite) {
     })
   })
 
-  it('immutad●t curried', () => {
+  it('immutadot curried', () => {
     benchmark('immutadot-curried', () => {
       return set('nested1.arr1[0].nested2.arr2[0].nested3.arr3[0].nested4.arr4[0].nested5.arr5[0].nested6.arr6[0].prop')('bar')(baseState)
     })

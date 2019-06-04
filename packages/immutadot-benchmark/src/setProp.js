@@ -78,7 +78,7 @@ export function setProp(benchmarkSuite) {
     })
   })
 
-  it('immutad●t', () => {
+  it('immutadot', () => {
     benchmark('immutadot', () => {
       return set(baseState, 'nested.prop', 'bar')
     })
@@ -90,7 +90,7 @@ export function setProp(benchmarkSuite) {
     })
   })
 
-  it('immutad●t curried', () => {
+  it('immutadot curried', () => {
     benchmark('immutadot-curried', () => {
       return set('nested.prop')('bar')(baseState)
     })

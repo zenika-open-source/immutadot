@@ -1,5 +1,5 @@
 # Site settings
-title: immutad●t
+title: immutadot
 email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
   is a set of immutable functions using dot notation.

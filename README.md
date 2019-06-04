@@ -10,7 +10,7 @@ set({ english: { greeting: 'Hi' } }, 'english.greeting', 'Hello')
 push({ i18n: { languages: ['English', 'French'] } }, 'i18n.languages', 'German', 'Spanish')
 // → { i18n: { languages: ['English', 'French', 'German', 'Spanish'] } }
 ```
-immutad●t gives you a short and meaningful syntax to apply operations on immutable structures.
+immutadot gives you a short and meaningful syntax to apply operations on immutable structures.
 
 [![npm version](https://badge.fury.io/js/immutadot.svg)](https://badge.fury.io/js/immutadot)
 [![Try on RunKit](https://badge.runkitcdn.com/immutadot.svg)](https://npm.runkit.com/immutadot)
@@ -21,7 +21,7 @@ immutad●t gives you a short and meaningful syntax to apply operations on immut
 
 ## [2.0](https://github.com/zenika-open-source/immutadot/milestone/12) is under development :building_construction:
 
-We are working right now on the second major version of immutad●t ! :construction_worker_woman::construction_worker_man:
+We are working right now on the second major version of immutadot ! :construction_worker_woman::construction_worker_man:
 
 One of our main goals is to bring a major performance improvement :zap:, but also some new features :
  - [Negative array indexes](https://github.com/zenika-open-source/immutadot/issues/169) (already supported in slices)
@@ -32,7 +32,7 @@ Feel free to add feature requests or to join us !
 
 ## Installation
 
-immutad●t is available on [npm repository](https://www.npmjs.com/package/immutadot).
+immutadot is available on [npm repository](https://www.npmjs.com/package/immutadot).
 
 using yarn:
 
@@ -78,15 +78,15 @@ const animals = {
 const newAnimals = set(animals, 'weasels.lutraLutra.name', 'Lutrinae')
 ```
 
-Learn more about what immutad●t can do in the [Getting started](https://github.com/zenika-open-source/immutadot/blob/master/docs/GETTING_STARTED.md).
+Learn more about what immutadot can do in the [Getting started](https://github.com/zenika-open-source/immutadot/blob/master/docs/GETTING_STARTED.md).
 
-Feel free to [try immutad●t on runkit](https://npm.runkit.com/immutadot).
+Feel free to [try immutadot on runkit](https://npm.runkit.com/immutadot).
 
 ## Documentation
 
 ### Getting started
 
-A fast overview of immutad●t's features is available in the [Getting started](https://github.com/zenika-open-source/immutadot/blob/master/docs/GETTING_STARTED.md) guide.
+A fast overview of immutadot's features is available in the [Getting started](https://github.com/zenika-open-source/immutadot/blob/master/docs/GETTING_STARTED.md) guide.
 
 ### API
 
@@ -98,11 +98,11 @@ Looking for older versions API documentation? Links are available [here](https:/
 
 ### Migrating from 0.x versions
 
-If you were using a version of immutad●t previous to 1.0, check out the [migrating guide](docs/MIGRATING_TO_1_0.md).
+If you were using a version of immutadot previous to 1.0, check out the [migrating guide](docs/MIGRATING_TO_1_0.md).
 
 ## Performances
 
-A [simple benchmark](https://github.com/zenika-open-source/immutadot/tree/master/packages/immutadot-benchmark/src/updateTodos.spec.js) (freely inspired from one made by [mweststrate](https://github.com/mweststrate) for [immer](https://github.com/mweststrate/immer)) reveals that immutad●t shows good results compared to other libraries.
+A [simple benchmark](https://github.com/zenika-open-source/immutadot/tree/master/packages/immutadot-benchmark/src/updateTodos.spec.js) (freely inspired from one made by [mweststrate](https://github.com/mweststrate) for [immer](https://github.com/mweststrate/immer)) reveals that immutadot shows good results compared to other libraries.
 
 :warning: The following results should be taken with caution, they may vary depending on the hardware, the JavaScript engine, and the kind of operations performed. This particular test updates 10% out of a list of todos items, and was ran with Node 9.8.0 on an Intel® Core™ i7-6560U CPU @ 2.20GHz.
 
@@ -114,7 +114,7 @@ Update small todos list (1000 items):
   immer 1.2.0 (proxy implementation w/o autofreeze): ~1132ops/s (0.88ms/op) on 34025ops
   immer 1.2.0 (ES5 implementation w/o autofreeze): ~521ops/s (1.92ms/op) on 15680ops
   qim 0.0.52: ~12042ops/s (0.08ms/op) on 50000ops
-  immutad●t 1.0.0: ~2351ops/s (0.43ms/op) on 50000ops
+  immutadot 1.0.0: ~2351ops/s (0.43ms/op) on 50000ops
 Update medium todos list (10000 items):
   ES2015 destructuring: ~1801ops/s (0.56ms/op) on 5000ops
   immutable 3.8.2 (w/o conversion to plain JS objects): ~630ops/s (1.59ms/op) on 5000ops
@@ -122,7 +122,7 @@ Update medium todos list (10000 items):
   immer 1.2.0 (proxy implementation w/o autofreeze): ~111ops/s (9.04ms/op) on 3319ops
   immer 1.2.0 (ES5 implementation w/o autofreeze): ~51ops/s (19.76ms/op) on 1519ops
   qim 0.0.52: ~1257ops/s (0.80ms/op) on 5000ops
-  immutad●t 1.0.0: ~234ops/s (4.28ms/op) on 5000ops
+  immutadot 1.0.0: ~234ops/s (4.28ms/op) on 5000ops
 Update large todos list (100000 items):
   ES2015 destructuring: ~120ops/s (8.34ms/op) on 500ops
   immutable 3.8.2 (w/o conversion to plain JS objects): ~58ops/s (17.28ms/op) on 500ops
@@ -130,7 +130,7 @@ Update large todos list (100000 items):
   immer 1.2.0 (proxy implementation w/o autofreeze): ~21ops/s (48.68ms/op) on 500ops
   immer 1.2.0 (ES5 implementation w/o autofreeze): ~4ops/s (264.16ms/op) on 114ops
   qim 0.0.52: ~91ops/s (11.01ms/op) on 500ops
-  immutad●t 1.0.0: ~21ops/s (48.22ms/op) on 500ops
+  immutadot 1.0.0: ~21ops/s (48.22ms/op) on 500ops
 ```
 
 ## Immutability
@@ -149,23 +149,23 @@ An immutable object is an object that cannot be changed once created. It brings 
 
 ### Concise
 
-[ES2015+](https://mdn.io/JavaScript/Reference) new features are great to deal with arrays and objects. As data structures expand, the code you write to make data immutable gets bigger and less readable. immutad●t uses the dot notation to address this issue.
+[ES2015+](https://mdn.io/JavaScript/Reference) new features are great to deal with arrays and objects. As data structures expand, the code you write to make data immutable gets bigger and less readable. immutadot uses the dot notation to address this issue.
 
 ### Interoperability
 
-immutad●t uses plain JavaScript objects so you can access your data using standard ways. Moreover, it lets you freely enjoy your favorite libraries.
+immutadot uses plain JavaScript objects so you can access your data using standard ways. Moreover, it lets you freely enjoy your favorite libraries.
 
 ### Exhaustive and yet extensible
 
-immutad●t comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/zenika-open-source/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the [`convert`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.convert) feature.
+immutadot comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/zenika-open-source/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the [`convert`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.convert) feature.
 
 ### Learning curve
 
-If you are already familiar with [ES2015+](https://mdn.io/JavaScript/Reference) and [lodash](https://lodash.com/) then you should be able to use immutad●t quickly.
+If you are already familiar with [ES2015+](https://mdn.io/JavaScript/Reference) and [lodash](https://lodash.com/) then you should be able to use immutadot quickly.
 
 ## Contributing
 
-We want contributing to immutad●t to be fun, enjoyable, and educational for anyone, and everyone.
+We want contributing to immutadot to be fun, enjoyable, and educational for anyone, and everyone.
 
 ### [Code of Conduct](https://github.com/zenika-open-source/immutadot/blob/master/.github/CODE_OF_CONDUCT.md)
 
@@ -173,11 +173,11 @@ In the interest of fostering an open and welcoming environment, we have adopted 
 
 ### [Contributing guide](https://github.com/zenika-open-source/immutadot/blob/master/.github/CONTRIBUTING.md)
 
-If you are interested in contributing to immutad●t, please read our [contributing guide](https://github.com/zenika-open-source/immutadot/blob/master/.github/CONTRIBUTING.md) to learn more about how to suggest bugfixes and improvements.
+If you are interested in contributing to immutadot, please read our [contributing guide](https://github.com/zenika-open-source/immutadot/blob/master/.github/CONTRIBUTING.md) to learn more about how to suggest bugfixes and improvements.
 
 ## License
 
-immutad●t is [MIT licensed](https://github.com/zenika-open-source/immutadot/blob/master/LICENSE.md).
+immutadot is [MIT licensed](https://github.com/zenika-open-source/immutadot/blob/master/LICENSE.md).
 
 ## Notes
 

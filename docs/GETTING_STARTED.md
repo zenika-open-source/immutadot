@@ -1,12 +1,12 @@
 # Getting started
 
-This guide will give you an overview of immutad●t features.
+This guide will give you an overview of immutadot features.
 
 Feel free to try the following examples with [runkit](https://npm.runkit.com/immutadot).
 
 ## Installation
 
-immutad●t is available on [npm repository](https://www.npmjs.com/package/immutadot).
+immutadot is available on [npm repository](https://www.npmjs.com/package/immutadot).
 
 using yarn:
 
@@ -102,7 +102,7 @@ immutadot includes all common functions of Array's prototype, see [documentation
 
 ## Updating properties
 
-immutad●t offers basic functions to work with primitive types such as [`toggle()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/lang.html#.toggle), [`stringConcat()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/string.html#.concat), or [`add()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/lang.html#.add), see [immutad●t's API](https://zenika-open-source.github.io/immutadot/api/immutadot/) for a full list.
+immutadot offers basic functions to work with primitive types such as [`toggle()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/lang.html#.toggle), [`stringConcat()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/string.html#.concat), or [`add()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/lang.html#.add), see [immutadot's API](https://zenika-open-source.github.io/immutadot/api/immutadot/) for a full list.
 
 It is also possible to perform custom updates with [`update()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.update):
 
@@ -180,7 +180,7 @@ It is also possible to pick specific properties with the syntax `{prop1,prop2}`.
 
 ### Path notation
 
-For more information on the path notation of immutad●t, see the [path notation documentation](./PATH_NOTATION.md).
+For more information on the path notation of immutadot, see the [path notation documentation](./PATH_NOTATION.md).
 
 ## Grouping modifications
 
@@ -211,7 +211,7 @@ const newAnimals = flow(
 )(animals)
 ```
 
-All immutad●t functions support currying the first parameter and can be used without `flow`:
+All immutadot functions support currying the first parameter and can be used without `flow`:
 
 ```js
 import { set } from 'immutadot'
@@ -229,7 +229,7 @@ const newAnimals = set('weasels.lutraLutra.scientificName', 'Lutra lutra')(anima
 
 ## Reusing custom updates
 
-New immutad●t functions can be created with [`convert()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.convert):
+New immutadot functions can be created with [`convert()`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.convert):
 
 ```js
 import { convert } from 'immutadot'
