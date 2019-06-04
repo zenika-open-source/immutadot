@@ -14,7 +14,7 @@ immutadot gives you a short and meaningful syntax to apply operations on immutab
 
 [![npm version](https://badge.fury.io/js/immutadot.svg)](https://badge.fury.io/js/immutadot)
 [![Try on RunKit](https://badge.runkitcdn.com/immutadot.svg)](https://npm.runkit.com/immutadot)
-[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://zenika-open-source.github.io/immutadot/api/immutadot)
+[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://immutadot.zenika.com/api/immutadot)
 
 [![CircleCI](https://circleci.com/gh/zenika-open-source/immutadot.svg?style=shield&circle-token=8b309750f5785783ec9fb4531ba097da60563beb)](https://circleci.com/gh/zenika-open-source/immutadot)
 [![codecov](https://codecov.io/gh/zenika-open-source/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/zenika-open-source/immutadot)
@@ -62,7 +62,7 @@ const { set } = require('immutadot')
 
 ### Example
 
-Quickly set nested properties using [set()](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.set)
+Quickly set nested properties using [set()](https://immutadot.zenika.com/api/immutadot/1.0/core.html#.set)
 
 ```js
 import { set } from 'immutadot'
@@ -91,8 +91,8 @@ A fast overview of immutadot's features is available in the [Getting started](ht
 ### API
 
 The detailed API documentations of the different packages are available here:
-- [immutadot](https://zenika-open-source.github.io/immutadot/api/immutadot)
-- [immutadot-lodash](https://zenika-open-source.github.io/immutadot/api/immutadot-lodash/)
+- [immutadot](https://immutadot.zenika.com/api/immutadot)
+- [immutadot-lodash](https://immutadot.zenika.com/api/immutadot-lodash/)
 
 Looking for older versions API documentation? Links are available [here](https://github.com/zenika-open-source/immutadot/blob/master/docs/README.md).
 
@@ -157,7 +157,7 @@ immutadot uses plain JavaScript objects so you can access your data using standa
 
 ### Exhaustive and yet extensible
 
-immutadot comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/zenika-open-source/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the [`convert`](https://zenika-open-source.github.io/immutadot/api/immutadot/1.0/core.html#.convert) feature.
+immutadot comes with a large set of built-in utilities, mostly based on [ES2015+](https://mdn.io/JavaScript/Reference). You can also find a package called [immutadot-lodash](https://github.com/zenika-open-source/immutadot/tree/master/packages/immutadot-lodash) with some of [lodash](https://lodash.com/)'s utilities. You haven't found what you're looking for? Do it yourself with the [`convert`](https://immutadot.zenika.com/api/immutadot/1.0/core.html#.convert) feature.
 
 ### Learning curve
 

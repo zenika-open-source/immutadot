@@ -4,13 +4,13 @@
 # Documentation
 
 Latest API documentations for our different packages are available here:
-- [immutadot](https://zenika-open-source.github.io/immutadot/api/immutadot)
-- [immutadot-lodash](https://zenika-open-source.github.io/immutadot/api/immutadot-lodash/)
+- [immutadot](https://immutadot.zenika.com/api/immutadot)
+- [immutadot-lodash](https://immutadot.zenika.com/api/immutadot-lodash/)
 
 Older API documentations :
-- [immutadot 0.3](https://zenika-open-source.github.io/immutadot/api/immutadot/0.3)
-- [immutadot 0.2](https://zenika-open-source.github.io/immutadot/api/immutadot/0.2)
-- [immutadot 0.1](https://zenika-open-source.github.io/immutadot/api/immutadot/0.1)
+- [immutadot 0.3](https://immutadot.zenika.com/api/immutadot/0.3)
+- [immutadot 0.2](https://immutadot.zenika.com/api/immutadot/0.2)
+- [immutadot 0.1](https://immutadot.zenika.com/api/immutadot/0.1)
 
 Other ressources:
 - [Getting started](./GETTING_STARTED.md)
