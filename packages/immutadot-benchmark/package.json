@@ -9,7 +9,7 @@
     "immutable": "~4.0.0-rc.12",
     "immutadot": "~2.0.0-alpha.1",
     "jest": "~21.2.1",
-    "lerna": "~3.10.6",
+    "lerna": "~3.14.1",
     "qim": "~0.0.52",
     "seamless-immutable": "~7.1.4"
   },
