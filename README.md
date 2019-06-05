@@ -19,7 +19,7 @@ immutadot gives you a short and meaningful syntax to apply operations on immutab
 [![CircleCI](https://circleci.com/gh/zenika-open-source/immutadot.svg?style=shield&circle-token=8b309750f5785783ec9fb4531ba097da60563beb)](https://circleci.com/gh/zenika-open-source/immutadot)
 [![codecov](https://codecov.io/gh/zenika-open-source/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/zenika-open-source/immutadot)
 
-## [2.0](https://github.com/zenika-open-source/immutadot/milestone/12) is in beta :tada:
+## [2.0](https://github.com/zenika-open-source/immutadot/milestone/12) is in alpha :tada:
 
 immutadot 2.0 in a nutshell:
  - :zap: Performance improvements (immutadot's way of navigating structures has been rewritten)
