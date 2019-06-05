@@ -18,7 +18,7 @@ class PropsNav extends ObjectNav {
   get() {
     const { _next, keys, value } = this
 
-    return keys.map(key => _next(value[key]))
+    return keys.map(key => _next(value[key]).get())
   }
 
   update(updater) {
