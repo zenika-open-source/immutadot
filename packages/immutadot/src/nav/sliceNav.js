@@ -1,7 +1,7 @@
 import { ArrayNav } from './arrayNav'
 import { isNil } from 'util/lang'
 
-const resolveNegativeIndex = (index, length) => index > 0 ? index : Math.max(length + index, 0)
+const resolveNegativeIndex = (index, length) => index >= 0 ? index : Math.max(length + index, 0)
 
 class SliceNav extends ArrayNav {
   constructor(value, params, next) {
