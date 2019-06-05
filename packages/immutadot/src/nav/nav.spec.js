@@ -262,28 +262,6 @@ describe('nav.nav', () => {
     })
   })
 
-  it.skip('should support lazy function args', () => {
-    immutaTest({
-      nested: {
-        prop1: { val: 3 },
-        prop2: { val: 4 },
-      },
-      other: {},
-    },
-    ['nested.prop1.val'],
-    input => {
-      const output = inc(input, 'nested.prop1.val', get('nested.prop2.val'))
-      expect(output).toEqual({
-        nested: {
-          prop1: { val: 7 },
-          prop2: { val: 4 },
-        },
-        other: {},
-      })
-      return output
-    })
-  })
-
   it('should get a nested prop', () => {
     expect(nav(toPath('nested.prop'))({ nested: { prop: 'foo' } }).get()).toBe('foo')
   })
