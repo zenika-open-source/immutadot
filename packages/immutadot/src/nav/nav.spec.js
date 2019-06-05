@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import { get } from 'core'
 import { immutaTest } from 'test.utils'
 import { isString } from 'util/lang'
 import { nav } from './nav'
