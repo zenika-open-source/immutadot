@@ -348,6 +348,13 @@ describe('nav.nav', () => {
     expect(nav(toPath('nested.prop'))({ nested: { prop: 'foo' } }).get()).toBe('foo')
   })
 
+  it('should get a list of props', () => {
+    expect(nav(toPath('nested.{prop1,prop2}'))({ nested: { prop1: 'foo',
+      prop2: 'bar' } }).get()).toEqual(['foo', 'bar'])
+    expect(nav(toPath('nested.{*}'))({ nested: { prop1: 'foo',
+      prop2: 'bar' } }).get()).toEqual(['foo', 'bar'])
+  })
+
   it('should set a nested prop', () => {
     immutaTest(
       { nested: { prop: 'foo' } },
