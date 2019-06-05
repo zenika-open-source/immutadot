@@ -1,7 +1,7 @@
 import { ArrayNav } from './arrayNav'
 import { isNil } from 'util/lang'
 
-const resolveNegativeIndex = (index, length) => index >= 0 ? index : Math.max(length + index, 0)
+const resolveIndex = (index, length) => index >= 0 ? index : Math.max(length + index, 0)
 
 class SliceNav extends ArrayNav {
   constructor(value, params, next) {
@@ -12,14 +12,14 @@ class SliceNav extends ArrayNav {
   get start() {
     const { length, params: [start] } = this
     if (length === 0) return 0
-    if (start !== undefined) return resolveNegativeIndex(start, length)
+    if (start !== undefined) return resolveIndex(start, length)
     return this.step > 0 ? 0 : length - 1
   }
 
   get end() {
     const { length, params: [, end] } = this
     if (length === 0) return 0
-    if (end !== undefined) return resolveNegativeIndex(end, length)
+    if (end !== undefined) return resolveIndex(end, length)
     return this.step > 0 ? length : -1
   }
 
