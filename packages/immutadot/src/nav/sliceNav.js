@@ -30,11 +30,17 @@ class SliceNav extends ArrayNav {
 
   get range() {
     const { start, end, step } = this
+
     if (step > 0) {
+      if (end <= start) return null
+
       return (function*() {
         for (let i = start; i < end; i += step) yield i
       }())
     }
+
+    if (end >= start) return null
+
     return (function*() {
       // eslint-disable-next-line for-direction
       for (let i = start; i > end; i += step) yield i
@@ -44,13 +50,15 @@ class SliceNav extends ArrayNav {
   get() {
     const { _next, value, range } = this
 
-    if (isNil(value)) return []
+    if (range === null || isNil(value)) return []
 
     return Array.from(range, index => _next(value[index]).get())
   }
 
   update(updater) {
     const { _next, value, range } = this
+
+    if (range === null) return value
 
     const copy = this.copy()
     for (const index of range) copy[index] = _next(value[index]).update(updater)
@@ -59,6 +67,8 @@ class SliceNav extends ArrayNav {
 
   unset() {
     const { _next, value, range } = this
+
+    if (range === null) return value
 
     const copy = this.copy()
     for (const index of range) {

@@ -1,5 +1,4 @@
 /* eslint-env jest */
-import { get } from 'core'
 import { immutaTest } from 'test.utils'
 import { isString } from 'util/lang'
 import { nav } from './nav'
@@ -35,16 +34,6 @@ describe('nav.nav', () => {
       input => {
         const output = inc(input, 'nested.prop[-1]', 1)
         expect(output).toEqual({ nested: { prop: [0, 1, 2, 4] } })
-        return output
-      })
-  })
-
-  it.skip('should do nothing for out of bounds negative array index', () => {
-    immutaTest({ nested: { prop: [0, 1, 2, 3] } },
-      [],
-      input => {
-        const output = inc(input, 'nested.prop[-5]', 1)
-        expect(output).toEqual({ nested: { prop: [0, 1, 2, 3] } })
         return output
       })
   })
@@ -174,56 +163,6 @@ describe('nav.nav', () => {
     })
   })
 
-  it.skip('should avoid unnecessary copies with slice operator', () => {
-    immutaTest({
-      nested: {
-        prop: [{ val: 0 },
-          { val: 1 },
-        ],
-      },
-      other: {},
-    }, [], input => inc(input, 'nested.prop[0:0].val', 6))
-    immutaTest({
-      nested: {
-        prop: [{
-          arr: [{ val: 0 },
-            { val: 1 },
-          ],
-        },
-        { arr: [{ val: 2 }] },
-        ],
-      },
-      other: {},
-    }, [], input => inc(input, 'nested.prop[:].arr[0:0].val', 6))
-    immutaTest({
-      nested: {
-        prop: [{
-          arr: [{ val: 0 },
-            { val: 1 },
-          ],
-        },
-        { arr: [{ val: 2 }] },
-        ],
-      },
-      other: {},
-    }, ['nested.prop.0.arr.1.val'], input => {
-      const output = inc(input, 'nested.prop[:].arr[1:].val', 6)
-      expect(output).toEqual({
-        nested: {
-          prop: [{
-            arr: [{ val: 0 },
-              { val: 7 },
-            ],
-          },
-          { arr: [{ val: 2 }] },
-          ],
-        },
-        other: {},
-      })
-      return output
-    })
-  })
-
   it('should inc in a list of props', () => {
     immutaTest({
       nested: {
@@ -315,28 +254,6 @@ describe('nav.nav', () => {
         nested: {
           prop1: { val: 6 },
           prop2: { val: 1 },
-        },
-        other: {},
-      })
-      return output
-    })
-  })
-
-  it.skip('should support lazy function args', () => {
-    immutaTest({
-      nested: {
-        prop1: { val: 3 },
-        prop2: { val: 4 },
-      },
-      other: {},
-    },
-    ['nested.prop1.val'],
-    input => {
-      const output = inc(input, 'nested.prop1.val', get('nested.prop2.val'))
-      expect(output).toEqual({
-        nested: {
-          prop1: { val: 7 },
-          prop2: { val: 4 },
         },
         other: {},
       })
