@@ -6,8 +6,8 @@
   "scripts": {
     "build": "lerna run --stream build",
     "lint": "lerna run --stream lint",
-    "test": "lerna run --stream test",
-    "test:coverage": "lerna run --stream test:coverage && codecov --disable=gcov",
+    "test": "lerna run --stream --concurrency=1 test",
+    "test:coverage": "lerna run --stream --concurrency=1 test:coverage && codecov --disable=gcov",
     "docs": "lerna run --stream docs",
     "docs:private": "lerna run --stream docs:private",
     "benchmark": "lerna run benchmark",
