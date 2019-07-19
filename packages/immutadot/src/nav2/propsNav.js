@@ -1,4 +1,5 @@
 import { isNil } from 'util/lang'
+import { makeNav } from './makeNav'
 import { onCopy } from './objectNav'
 
 const update = (keys, next) => updater => {
@@ -9,18 +10,17 @@ const update = (keys, next) => updater => {
         for (const key of keys) newValue[key] = nextUpdater(undefined)
       else
         for (const key of keys) newValue[key] = nextUpdater(value[key])
-    })
+    }, true)
   }
   return onCopy((newValue, value) => {
     if (isNil(value)) return
     for (const key of Object.keys(value)) newValue[key] = nextUpdater(value[key])
-  })
+  }, true)
 }
 
 const get = (keys, next) => () => {
   const nextGetter = next()
-  if (keys)
-    return value => isNil(value) ? undefined : keys.map(key => nextGetter(value[key]))
+  if (keys) return value => isNil(value) ? undefined : keys.map(key => nextGetter(value[key]))
   return value => isNil(value) ? undefined : Object.keys(value).map(key => nextGetter(value[key]))
 }
 
@@ -49,11 +49,8 @@ const unset = (keys, next) => () => {
   })
 }
 
-export const propsNav = keys => next => operation => {
-  switch (operation) {
-  case 'update': return update(keys, next(operation))
-  case 'get': return get(keys, next(operation))
-  case 'unset': return unset(keys, next(operation))
-  }
-  throw TypeError(`Unknown navigator operation ${operation}`)
-}
+export const propsNav = makeNav({
+  update,
+  get,
+  unset,
+})

@@ -10,7 +10,7 @@ describe('nav.nav', () => {
     },
     ['nested.prop'],
     input => {
-      const output = nav([['prop', 'nested'], ['prop', 'prop']])('update')(() => 'bar')(input)
+      const output = nav([['prop', 'nested'], ['prop', 'prop']]).update(() => 'bar')(input)
       expect(output).toEqual({
         nested: { prop: 'bar' },
         other: { prop: 'baz' },
@@ -24,6 +24,22 @@ describe('nav.nav', () => {
       nested: { prop: 'foo' },
       other: { prop: 'baz' },
     }
-    expect(nav([['prop', 'nested'], ['prop', 'prop']])('get')()(input)).toEqual('foo')
+    expect(nav([['prop', 'nested'], ['prop', 'prop']]).get()(input)).toEqual('foo')
   })
+
+  it('should unset a nested prop', () => immutaTest(
+    {
+      nested: { prop: 'foo' },
+      other: { prop: 'bar' },
+    },
+    ['nested.prop'],
+    input => {
+      const output = nav([['prop', 'nested'], ['prop', 'prop']]).unset()(input)
+      expect(output).toEqual({
+        nested: {},
+        other: { prop: 'bar' },
+      })
+      return output
+    },
+  ))
 })

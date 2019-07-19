@@ -4,12 +4,8 @@ const get = () => value => value
 
 const unset = () => undefined
 
-export const finalNav = operation => {
-  switch (operation) {
-  case 'update': return update
-  case 'get': return get
-  case 'unset': return unset
-  }
-  throw TypeError(`Unknown navigator operation ${operation}`)
+export const finalNav = {
+  update,
+  get,
+  unset,
 }
-
