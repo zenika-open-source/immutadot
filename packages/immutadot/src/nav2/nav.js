@@ -1,9 +1,11 @@
 import { finalNav } from './finalNav'
 import { propNav } from './propNav'
+import { propsNav } from './propsNav'
 
 const toNav = ([type, params]) => {
   switch (type) {
   case 'prop': return propNav(params)
+  case 'props': return propsNav(params)
   }
   throw TypeError(`Unknown navigator type ${type}`)
 }

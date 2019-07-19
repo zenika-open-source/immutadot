@@ -18,4 +18,12 @@ describe('nav.nav', () => {
       return output
     },
   ))
+
+  it('should get a nested prop', () => {
+    const input = {
+      nested: { prop: 'foo' },
+      other: { prop: 'baz' },
+    }
+    expect(nav([['prop', 'nested'], ['prop', 'prop']])('get')()(input)).toEqual('foo')
+  })
 })
