@@ -6,7 +6,7 @@ const update = (key, next) => updater => {
   const nextUpdater = next(updater)
   return onCopy((newValue, value) => {
     newValue[key] = nextUpdater(isNil(value) ? undefined : value[key])
-  })
+  }, true)
 }
 
 const get = (key, next) => () => {

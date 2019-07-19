@@ -13,9 +13,8 @@ const update = (keys, next) => updater => {
     }, true)
   }
   return onCopy((newValue, value) => {
-    if (isNil(value)) return
     for (const key of Object.keys(value)) newValue[key] = nextUpdater(value[key])
-  }, true)
+  })
 }
 
 const get = (keys, next) => () => {
