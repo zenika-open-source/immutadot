@@ -44,7 +44,7 @@ const unset = (pIndex, next) => () => {
   })
 }
 
-export const propNav = makeNav({
+export const indexNav = makeNav({
   update,
   get,
   unset,

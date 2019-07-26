@@ -1,12 +1,16 @@
+import { NavType } from 'immutadot-parser'
 import { finalNav } from './finalNav'
 import { indexNav } from './indexNav'
 import { propNav } from './propNav'
 import { propsNav } from './propsNav'
+import { sliceNav } from './sliceNav'
 
 const navs = {
-  prop: propNav,
-  props: propsNav,
-  index: indexNav,
+  [NavType.prop]: propNav,
+  [NavType.list]: propsNav,
+  [NavType.allProps]: propsNav,
+  [NavType.index]: indexNav,
+  [NavType.slice]: sliceNav,
 }
 
 const toNav = ([type, params]) => {

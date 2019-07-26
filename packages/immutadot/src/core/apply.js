@@ -14,42 +14,42 @@ function apply(fn, { arity = fn.length, fixedArity = false, curried = true, lazy
     switch (arity) {
     case 0:
     case 1:
-      appliedFn = (obj, path) => nav(toPath(path))(obj).update(fn)
+      appliedFn = (obj, path) => nav(toPath(path)).update(fn)(obj)
       break
     case 2:
-      appliedFn = (obj, path, arg) => nav(toPath(path))(obj).update(
+      appliedFn = (obj, path, arg) => nav(toPath(path)).update(
         value => fn(value, resolveArg(arg, obj)),
-      )
+      )(obj)
       break
     case 3:
-      appliedFn = (obj, path, arg1, arg2) => nav(toPath(path))(obj).update(
+      appliedFn = (obj, path, arg1, arg2) => nav(toPath(path)).update(
         value => fn(
           value,
           resolveArg(arg1, obj),
           resolveArg(arg2, obj),
         ),
-      )
+      )(obj)
       break
     case 4:
-      appliedFn = (obj, path, arg1, arg2, arg3) => nav(toPath(path))(obj).update(
+      appliedFn = (obj, path, arg1, arg2, arg3) => nav(toPath(path)).update(
         value => fn(
           value,
           resolveArg(arg1, obj),
           resolveArg(arg2, obj),
           resolveArg(arg3, obj),
         ),
-      )
+      )(obj)
       break
     }
   }
 
   if (!appliedFn) {
-    appliedFn = (obj, path, ...args) => nav(toPath(path))(obj).update(
+    appliedFn = (obj, path, ...args) => nav(toPath(path)).update(
       value => fn(
         value,
         ...args.map(arg => resolveArg(arg, obj)),
       ),
-    )
+    )(obj)
   }
 
   if (curried) {

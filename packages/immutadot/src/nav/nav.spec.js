@@ -13,7 +13,7 @@ describe('nav.nav', () => {
   }
 
   function uncurriedInc(obj, path, ...args) {
-    return nav(toPath(path))(obj).update(v => incV(v, ...args))
+    return nav(toPath(path)).update(v => incV(v, ...args))(obj)
   }
 
   function curriedInc(path, ...args) {
@@ -224,7 +224,7 @@ describe('nav.nav', () => {
   })
 
   it('should throw an explicit error when en empty path is given as parameter', () => {
-    expect(() => inc({}, '')).toThrowError('path should not be empty')
+    expect(() => inc({}, '')).toThrowError('Path should not be empty')
   })
 
   it('should support curried first arg', () => {
@@ -262,14 +262,14 @@ describe('nav.nav', () => {
   })
 
   it('should get a nested prop', () => {
-    expect(nav(toPath('nested.prop'))({ nested: { prop: 'foo' } }).get()).toBe('foo')
+    expect(nav(toPath('nested.prop')).get()({ nested: { prop: 'foo' } })).toBe('foo')
   })
 
   it('should get a list of props', () => {
-    expect(nav(toPath('nested.{prop1,prop2}'))({ nested: { prop1: 'foo',
-      prop2: 'bar' } }).get()).toEqual(['foo', 'bar'])
-    expect(nav(toPath('nested.{*}'))({ nested: { prop1: 'foo',
-      prop2: 'bar' } }).get()).toEqual(['foo', 'bar'])
+    expect(nav(toPath('nested.{prop1,prop2}')).get()({ nested: { prop1: 'foo',
+      prop2: 'bar' } })).toEqual(['foo', 'bar'])
+    expect(nav(toPath('nested.{*}')).get()({ nested: { prop1: 'foo',
+      prop2: 'bar' } })).toEqual(['foo', 'bar'])
   })
 
   it('should set a nested prop', () => {
@@ -277,7 +277,7 @@ describe('nav.nav', () => {
       { nested: { prop: 'foo' } },
       ['nested.prop'],
       (input, [path]) => {
-        const output = nav(toPath(path))(input).update(() => 'bar')
+        const output = nav(toPath(path)).update(() => 'bar')(input)
         expect(output).toEqual({ nested: { prop: 'bar' } })
         return output
       },
@@ -289,7 +289,7 @@ describe('nav.nav', () => {
       { nested: { prop: 'foo' } },
       ['nested.prop'],
       (input, [path]) => {
-        const output = nav(toPath(path))(input).update(value => value.toUpperCase())
+        const output = nav(toPath(path)).update(value => value.toUpperCase())(input)
         expect(output).toEqual({ nested: { prop: 'FOO' } })
         return output
       },
@@ -301,7 +301,7 @@ describe('nav.nav', () => {
       {},
       ['nested.prop.0', 'nested.prop.1'],
       input => {
-        const output = nav(toPath('nested.prop[1]'))(input).update(() => 'foo')
+        const output = nav(toPath('nested.prop[1]')).update(() => 'foo')(input)
         expect(output).toEqual({ nested: { prop: [undefined, 'foo'] } })
         return output
       },
@@ -309,26 +309,26 @@ describe('nav.nav', () => {
   })
 
   it('should get a slice', () => {
-    expect(nav(toPath('nested.prop[:].val'))({
+    expect(nav(toPath('nested.prop[:].val')).get()({
       nested: {
         prop: [
           { val: 'foo' },
           { val: 'bar' },
         ],
       },
-    }).get()).toEqual(['foo', 'bar'])
-    expect(nav(toPath('nested.prop[::-1].val'))({
+    })).toEqual(['foo', 'bar'])
+    expect(nav(toPath('nested.prop[::-1].val')).get()({
       nested: {
         prop: [
           { val: 'foo' },
           { val: 'bar' },
         ],
       },
-    }).get()).toEqual(['bar', 'foo'])
+    })).toEqual(['bar', 'foo'])
   })
 
   it('should get a negative array index', () => {
-    expect(nav(toPath('nested.prop[-3]'))({ nested: { prop: [0, 1, 2, 3, 4] } }).get()).toBe(2)
+    expect(nav(toPath('nested.prop[-3]')).get()({ nested: { prop: [0, 1, 2, 3, 4] } })).toBe(2)
   })
 
   it('should update a slice', () => immutaTest(
@@ -343,7 +343,7 @@ describe('nav.nav', () => {
     },
     ['nested.prop.1.val', 'nested.prop.2.val'],
     input => {
-      const output = nav(toPath('nested.prop[-2:].val'))(input).update(value => value.toUpperCase())
+      const output = nav(toPath('nested.prop[-2:].val')).update(value => value.toUpperCase())(input)
       expect(output).toEqual({
         nested: {
           prop: [
