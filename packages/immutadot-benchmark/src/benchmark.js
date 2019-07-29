@@ -51,13 +51,16 @@ export class BenchmarkSuite {
         nbOperations += iterations
 
         const runStartTime = Date.now()
-        while (iterations--) operation()
+        while (iterations--) {
+          if (testResult && iterations % 100 === 0)
+            testResult(key, operation())
+          else
+            operation()
+        }
         totalTime += Date.now() - runStartTime
 
         iterations = getIterations(nbOperations, totalTime)
       }
-
-      if (typeof testResult === 'function') testResult(key, operation())
 
       benchmark.runs[key] = {
         totalTime,
@@ -68,7 +71,7 @@ export class BenchmarkSuite {
     return run
   }
 
-  printRun(run) {
+  printRun(run, reference) {
     if (run === undefined) return 'No run'
     const { totalTime, nbOperations } = run
     const opTime = totalTime / nbOperations
@@ -84,22 +87,14 @@ export class BenchmarkSuite {
       formattedOpTime = `${(opTime).toFixed(3 - Math.ceil(Math.log10(opTime)))}ms`
     }
 
-    return `${Math.round(nbOperations * 1000 / totalTime)}ops/s (${formattedOpTime}/op)`
+    const score = Math.round(run.nbOperations * 100 * reference.totalTime / run.totalTime / reference.nbOperations)
+
+    return `${score} <br> ${Math.round(nbOperations * 1000 / totalTime)}ops/s (${formattedOpTime}/op)`
   }
 
   printBenchmark({ title, runs }) {
-    return `| ${title} | ${this.contestants.map(([key]) => runs[key]).map(run => this.printRun(run)).join(' | ')} |`
-  }
-
-  printScore(key) {
-    if (key === this.reference) return 100
-    const scores = this.benchmarks.map(({ runs }) => {
-      const reference = runs[this.reference]
-      const run = runs[key]
-      if (run === undefined) return undefined
-      return run.nbOperations * 100 * reference.totalTime / run.totalTime / reference.nbOperations
-    }).filter(score => score !== undefined)
-    return Math.round(scores.reduce((sum, score) => sum + score, 0) / scores.length)
+    const reference = runs[this.reference]
+    return `| ${title} | ${this.contestants.map(([key]) => runs[key]).map(run => this.printRun(run, reference)).join(' | ')} |`
   }
 
   log() {
@@ -108,7 +103,6 @@ export class BenchmarkSuite {
       `|  | ${this.contestants.map(([, title]) => title).join(' | ')} |`,
       `| --- | ${this.contestants.map(() => '---').join(' | ')} |`,
       this.benchmarks.map(benchmark => this.printBenchmark(benchmark)).join('\n'),
-      `| Final score | ${this.contestants.map(([key]) => this.printScore(key)).join(' | ')} |`,
     ].join('\n'))
   }
 }

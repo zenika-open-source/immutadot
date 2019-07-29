@@ -56,16 +56,14 @@ export function updateTodos(benchmarkSuite, title, listSize, modifySize, maxTime
   it('es2015', () => {
     benchmark('es2015', () => {
       const [start, end] = randomBounds()
-      return baseState
-        .slice(0, start)
-        .concat(
-          baseState.slice(start, end)
-            .map(todo => ({
-              ...todo,
-              done: true,
-            })),
-          baseState.slice(end),
-        )
+      const stateCopy = [...baseState]
+      for (let i = start; i < end; i++) {
+        stateCopy[i] = {
+          ...stateCopy[i],
+          done: true,
+        }
+      }
+      return stateCopy
     })
   })
 
