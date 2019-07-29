@@ -14,7 +14,7 @@
     "seamless-immutable": "~7.1.4"
   },
   "scripts": {
-    "build:deps": "lerna run --scope @immutadot/parser build && lerna run --scope immutadot build",
+    "build:deps": "lerna run --scope immutadot-parser build && lerna run --scope immutadot build",
     "prestart": "yarn build:deps",
     "start": "jest -i",
     "prefast": "yarn build:deps",
