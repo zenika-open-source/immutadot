@@ -16,53 +16,94 @@ const resolveEnd = (pEnd, length, step) => {
   return resolveIndex(pEnd, length)
 }
 
+const getRange = (pStart, pEnd, pStep, value) => {
+  const step = pStep === undefined ? 1 : pStep
+  const length = getLength(value)
+  const start = resolveStart(pStart, length, step)
+  const end = resolveEnd(pEnd, length, step)
+  if (step > 0) {
+    if (end <= start) return null
+    return {
+      [Symbol.iterator]: () => {
+        let i = start
+        return {
+          next: () => {
+            if (i < end) {
+              const res = {
+                value: i,
+                done: false,
+              }
+              i += step
+              return res
+            }
+            return { done: true }
+          },
+        }
+      },
+    }
+  }
+  if (end >= start) return null
+  return {
+    [Symbol.iterator]: () => {
+      let i = start
+      return {
+        next: () => {
+          if (i > end) {
+            const res = {
+              value: i,
+              done: false,
+            }
+            i += step
+            return res
+          }
+          return { done: true }
+        },
+      }
+    },
+  }
+}
+
 const update = ([pStart, pEnd, pStep], next) => updater => {
   const nextUpdater = next(updater)
-  const step = pStep === undefined ? 1 : pStep
   return onCopy((newValue, value) => {
-    const length = getLength(value)
-    const start = resolveStart(pStart, length, step)
-    const end = resolveEnd(pEnd, length, step)
-    if (step > 0) {
-      if (end <= start) return // TODO avoid useless copy
-      if (isNil(value))
-        for (let i = start; i < end; i += step) newValue[i] = nextUpdater(undefined)
-      else
-        for (let i = start; i < end; i += step) newValue[i] = nextUpdater(value[i])
-    }
-    if (end >= start) return // TODO avoid useless copy
+    const range = getRange(pStart, pEnd, pStep, value)
+    if (!range) return // TODO avoid useless copy
     if (isNil(value))
-      for (let i = start; i > end; i += step) newValue[i] = nextUpdater(undefined)
+      for (const i of range) newValue[i] = nextUpdater(undefined)
     else
-      for (let i = start; i > end; i += step) newValue[i] = nextUpdater(value[i])
+      for (const i of range) newValue[i] = nextUpdater(value[i])
   }, true)
 }
 
 const get = ([pStart, pEnd, pStep], next) => () => {
   const nextGetter = next()
-  const step = pStep === undefined ? 1 : pStep
   return value => {
-    const length = getLength(value)
-    const start = resolveStart(pStart, length, step)
-    const end = resolveEnd(pEnd, length, step)
     if (isNil(value)) return []
-    let range
-    if (step > 0) {
-      if (end <= start) return []
-      range = (function* () {
-        for (let i = start; i < end; i += step) yield i
-      }())
-    } else {
-      if (end >= start) return []
-      range = (function* () {
-        for (let i = start; i > end; i += step) yield i
-      }())
-    }
+    const range = getRange(pStart, pEnd, pStep, value)
+    if (!range) return []
     return Array.from(range, i => nextGetter(value[i]))
   }
+}
+
+const unsetSlice = (pStart, pEnd, pStep, nextUnsetter) => () => onCopy(value => {
+  const range = getRange(pStart, pEnd, pStep, value)
+  if (!range) return // TODO avoid useless copy
+  for (const i of range) value[i] = nextUnsetter(value[i])
+})
+
+const deleteSlice = (pStart, pEnd, pStep) => () => onCopy(value => {
+  const range = getRange(pStart, pEnd, pStep, value)
+  if (!range) return // TODO avoid useless copy
+  for (const i of range) delete value[i]
+})
+
+const unset = ([pStart, pEnd, pStep], next) => {
+  const nextUnsetter = next()
+  return nextUnsetter ? unsetSlice(pStart, pEnd, pStep, nextUnsetter) : deleteSlice(pStart, pEnd, pStep)
 }
 
 export const sliceNav = makeNav({
   update,
   get,
+  unset,
 })

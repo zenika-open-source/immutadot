@@ -23,29 +23,27 @@ const get = (keys, next) => () => {
   return value => isNil(value) ? undefined : Object.keys(value).map(key => nextGetter(value[key]))
 }
 
-const unset = (keys, next) => () => {
+const unsetKeys = (keys, nextUnsetter) => () => onCopy(value => {
+  for (const key of keys) value[key] = nextUnsetter(value[key])
+})
+
+const unsetAll = nextUnsetter => () => onCopy(value => {
+  for (const key of Object.keys(value)) value[key] = nextUnsetter(value[key])
+})
+
+const deleteKeys = keys => () => onCopy(value => {
+  for (const key of keys) delete value[key]
+})
+
+const deleteAll = () => onCopy(value => {
+  for (const key of Object.keys(value)) delete value[key]
+})
+
+const unset = (keys, next) => {
   const nextUnsetter = next()
-  if (nextUnsetter) {
-    if (keys) {
-      return onCopy((newValue, value) => {
-        if (isNil(value))
-          for (const key of keys) newValue[key] = nextUnsetter(undefined)
-        else
-          for (const key of keys) newValue[key] = nextUnsetter(value[key])
-      }, true)
-    }
-    return onCopy((newValue, value) => {
-      for (const key of Object.keys(value)) newValue[key] = nextUnsetter(value[key])
-    })
-  }
-  if (keys) {
-    return onCopy(newValue => {
-      for (const key of keys) delete newValue[key]
-    })
-  }
-  return onCopy((newValue, value) => {
-    for (const key of Object.keys(value)) delete newValue[key]
-  })
+  if (nextUnsetter)
+    return keys ? unsetKeys(keys, nextUnsetter) : unsetAll(nextUnsetter)
+  return keys ? deleteKeys(keys) : deleteAll
 }
 
 export const propsNav = makeNav({

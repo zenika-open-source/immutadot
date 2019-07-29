@@ -17,16 +17,17 @@ const get = (key, next) => () => {
   }
 }
 
-const unset = (key, next) => () => {
+const unsetProp = (key, nextUnsetter) => () => onCopy(newValue => {
+  newValue[key] = nextUnsetter(newValue[key])
+})
+
+const deleteProp = key => () => onCopy(newValue => {
+  delete newValue[key]
+})
+
+const unset = (key, next) => {
   const nextUnsetter = next()
-  if (nextUnsetter) {
-    return onCopy(newValue => {
-      newValue[key] = nextUnsetter(newValue[key])
-    })
-  }
-  return onCopy(newValue => {
-    delete newValue[key]
-  })
+  return nextUnsetter ? unsetProp(key, nextUnsetter) : deleteProp(key)
 }
 
 export const propNav = makeNav({

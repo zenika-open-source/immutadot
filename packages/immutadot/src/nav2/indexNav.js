@@ -31,16 +31,16 @@ const get = (pIndex, next) => () => {
 const unset = (pIndex, next) => () => {
   const nextUnsetter = next()
   if (nextUnsetter) {
-    return onCopy(newValue => {
-      const index = resolveIndex(pIndex, newValue)
+    return onCopy(value => {
+      const index = resolveIndex(pIndex, value)
       if (index === undefined) return // TODO avoid useless copy ?
-      newValue[index] = nextUnsetter(newValue[index])
+      value[index] = nextUnsetter(value[index])
     })
   }
-  return onCopy(newValue => {
-    const index = resolveIndex(pIndex, newValue)
+  return onCopy(value => {
+    const index = resolveIndex(pIndex, value)
     if (index === undefined) return // TODO avoid useless copy ?
-    delete newValue[index]
+    delete value[index]
   })
 }
 
