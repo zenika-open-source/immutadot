@@ -13,14 +13,19 @@
     "clean": "rm -rf dist",
     "build": "tsc",
     "prebuild": "yarn clean",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test": "jest src"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.15",
     "@typescript-eslint/eslint-plugin": "^4.6.1",
     "@typescript-eslint/parser": "^4.6.1",
     "eslint": "^7.12.1",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.0",
+    "jest": "^26.6.2",
+    "ts-jest": "^26.4.3",
     "typescript": "^4.0.5"
   }
 }
