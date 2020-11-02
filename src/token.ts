@@ -4,7 +4,8 @@ export const enum TokenType {
   RBracket = ']',
   SQuote = "'",
   DQuote = '"',
-  EOF = '',
+  Identifier = 'identifier',
+  Integer = 'integer',
 }
 
 export interface Token {

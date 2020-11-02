@@ -7,7 +7,7 @@ export default class Lexer implements IterableIterator<Token> {
 
   #readPosition = 0
 
-  #ch: string
+  #ch: number
 
   constructor(source: string) {
     this.#source = source
@@ -15,24 +15,24 @@ export default class Lexer implements IterableIterator<Token> {
   }
 
   next(): IteratorResult<Token> {
+    if (this.#readPosition > this.#source.length) return { done: true, value: null }
     const { token } = this
     this.readChar()
-    return token
+    return { value: token }
   }
 
   private readChar() {
-    this.#ch = this.#source[this.#position = this.#readPosition++]
+    this.#ch = this.#source.charCodeAt(this.#position = this.#readPosition++)
   }
 
   private get token() {
     switch (this.#ch) {
-      case '.': return { value: { type: TokenType.Dot } }
-      case '"': return { value: { type: TokenType.DQuote } }
-      case "'": return { value: { type: TokenType.SQuote } }
-      case '[': return { value: { type: TokenType.LBracket } }
-      case ']': return { value: { type: TokenType.RBracket } }
-      case undefined: return { done: true, value: null }
-      default: throw TypeError(`unexpected character "${this.#ch}"`)
+      case 46: return { type: TokenType.Dot }
+      case 34: return { type: TokenType.DQuote }
+      case 39: return { type: TokenType.SQuote }
+      case 91: return { type: TokenType.LBracket }
+      case 93: return { type: TokenType.RBracket }
+      default: throw TypeError(`unexpected character "${String.fromCharCode(this.#ch)}" at position ${this.#position}`)
     }
   }
 
