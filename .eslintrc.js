@@ -19,5 +19,6 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/semi': ['error', 'never'],
+    'no-plusplus': 'off',
   },
 }
