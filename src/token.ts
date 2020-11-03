@@ -9,7 +9,4 @@ export const enum TokenType {
   Illegal = 'illegal character',
 }
 
-export interface Token {
-  type: TokenType
-  literal?: string
-}
+export type Token = [TokenType, string?]

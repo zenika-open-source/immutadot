@@ -20,15 +20,15 @@ export default class Lexer implements IterableIterator<Token> {
     let token: Token
 
     switch (this.#ch) {
-      case '.': token = { type: TokenType.Dot }; break
-      case '"': token = { type: TokenType.DQuote }; break
-      case "'": token = { type: TokenType.SQuote }; break
-      case '[': token = { type: TokenType.LBracket }; break
-      case ']': token = { type: TokenType.RBracket }; break
+      case '.': token = [TokenType.Dot]; break
+      case '"': token = [TokenType.DQuote]; break
+      case "'": token = [TokenType.SQuote]; break
+      case '[': token = [TokenType.LBracket]; break
+      case ']': token = [TokenType.RBracket]; break
       default:
-        if (isLetter(this.#ch)) return { value: { type: TokenType.Identifier, literal: this.readIdentifier() } }
-        if (isDigit(this.#ch)) return { value: { type: TokenType.Integer, literal: this.readInteger() } }
-        token = { type: TokenType.Illegal, literal: this.#ch }
+        if (isLetter(this.#ch)) return { value: [TokenType.Identifier, this.readIdentifier()] }
+        if (isDigit(this.#ch)) return { value: [TokenType.Integer, this.readInteger()] }
+        token = [TokenType.Illegal, this.#ch]
     }
 
     this.readChar()
