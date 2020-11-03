@@ -31,6 +31,8 @@ export default class Lexer implements IterableIterator<Token> {
       }
     }
 
+    this.skipWhitespaces()
+
     switch (this.#ch) {
       case undefined: return { done: true, value: null }
       case '.': token = [TokenType.Dot]; break
@@ -66,7 +68,6 @@ export default class Lexer implements IterableIterator<Token> {
       case '_':
         return { value: this.readIdentifier() }
       default:
-        // FIXME follow numeric literals from https://www.ecma-international.org/ecma-262/11.0/index.html#sec-literals-numeric-literals
         if (isNonZeroDigit(this.#ch)) return { value: this.readDecimalInteger() }
         if (isIdentifierStart(this.#ch)) return { value: this.readIdentifier() }
         token = [TokenType.Illegal, this.#ch]
@@ -75,6 +76,10 @@ export default class Lexer implements IterableIterator<Token> {
     this.readChar()
 
     return { value: token }
+  }
+
+  private skipWhitespaces() {
+    while (isWhitespace(this.#ch)) this.readChar()
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-IdentifierName
@@ -134,6 +139,11 @@ export default class Lexer implements IterableIterator<Token> {
   }
 }
 
+// https://www.ecma-international.org/ecma-262/11.0/index.html#sec-white-space
+function isWhitespace(ch: string) {
+  return ch === ' ' || ch === '\t' || ch === '\u000b' || ch === '\u000c' || ch === '\u00a0' || ch === '\ufeff' || /\p{Zs}/u.test(ch)
+}
+
 // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-NonZeroDigit
 function isNonZeroDigit(ch: string) {
   return ch >= '1' && ch <= '9'
@@ -160,7 +170,7 @@ function isHexDigit(ch: string) {
 }
 
 // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-IdentifierStart
-const identifierStart = /[\p{ID_Start}]/u
+const identifierStart = /\p{ID_Start}/u
 
 function isIdentifierStart(ch: string) {
   return ch !== undefined && identifierStart.test(ch)
