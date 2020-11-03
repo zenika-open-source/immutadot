@@ -15,7 +15,7 @@ export default class Lexer implements IterableIterator<Token> {
   }
 
   next(): IteratorResult<Token> {
-    if (this.#readPosition > this.#source.length) return { done: true, value: null }
+    if (this.#ch === undefined) return { done: true, value: null }
 
     let token: Token
 
