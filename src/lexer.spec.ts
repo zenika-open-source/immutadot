@@ -2,7 +2,7 @@ import Lexer from './lexer'
 import { TokenType } from './token'
 
 describe('Lexer', () => {
-  it('should extract special chars from input', () => {
+  it('should tokenize special characters', () => {
     expect([...new Lexer('.?.[:]-')]).toEqual([
       [TokenType.Dot],
       [TokenType.OptDot],
@@ -13,14 +13,14 @@ describe('Lexer', () => {
     ])
   })
 
-  it('should extract identifiers from input', () => {
+  it('should tokenize identifiers', () => {
     expect([...new Lexer('foo _bar')]).toEqual([
       [TokenType.Identifier, 'foo'],
       [TokenType.Identifier, '_bar'],
     ])
   })
 
-  it('should extract integers from input', () => {
+  it('should tokenize integer literals', () => {
     expect([...new Lexer('123 456 -789 0')]).toEqual([
       [TokenType.Integer, '123'],
       [TokenType.Integer, '456'],
@@ -48,7 +48,7 @@ describe('Lexer', () => {
     ])
   })
 
-  it('should extract strings from input', () => {
+  it('should tokenize string literals', () => {
     expect([...new Lexer('"double quoted \'test\'" \'simple quoted "test"\' "double \\"escaped\\" \\"\\"" \'simple \\\'escaped\\\' \\\\\'')]).toEqual([
       [TokenType.String, "double quoted 'test'"],
       [TokenType.String, 'simple quoted "test"'],
@@ -56,4 +56,6 @@ describe('Lexer', () => {
       [TokenType.String, "simple 'escaped' \\"],
     ])
   })
+
+  // FIXME test illegals
 })
