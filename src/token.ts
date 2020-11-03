@@ -6,6 +6,7 @@ export const enum TokenType {
   DQuote = '"',
   Identifier = 'identifier',
   Integer = 'integer',
+  Illegal = 'illegal character',
 }
 
 export interface Token {
