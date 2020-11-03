@@ -64,6 +64,10 @@ export default class Lexer implements IterableIterator<Token> {
             token = [TokenType.Integer, '0']
         }
         break
+      case '"':
+      case "'":
+        token = this.readString()
+        break
       case '$':
       case '_':
         return { value: this.readIdentifier() }
@@ -80,13 +84,6 @@ export default class Lexer implements IterableIterator<Token> {
 
   private skipWhitespaces() {
     while (isWhitespace(this.#ch)) this.readChar()
-  }
-
-  // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-IdentifierName
-  private readIdentifier(): Token {
-    const position = this.#position
-    do { this.readChar() } while (isIdentifierPart(this.#ch))
-    return [TokenType.Identifier, this.#source.slice(position, this.#position)]
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-DecimalIntegerLiteral
@@ -124,6 +121,29 @@ export default class Lexer implements IterableIterator<Token> {
     if (!isHexDigit(ch)) return [TokenType.Illegal, this.#source.slice(position, this.#position)]
     do { this.readChar() } while (isHexDigit(this.#ch))
     return [TokenType.Integer, this.#source.slice(position, this.#position)]
+  }
+
+  // https://www.ecma-international.org/ecma-262/11.0/index.html#sec-literals-string-literals
+  // Simplified: only supports escaping the following characters: " ' \
+  private readString(): Token {
+    const position = this.#position
+    const delim = this.#ch
+    do {
+      this.readChar()
+      while (this.#ch === '\\') {
+        this.readChar()
+        this.readChar()
+      }
+    } while (this.#ch !== undefined && this.#ch !== delim)
+    if (this.#ch === undefined) return [TokenType.Illegal, this.#source.slice(position, this.#position)]
+    return [TokenType.String, this.#source.slice(position + 1, this.#position).replace(/\\(.)/g, '$1')]
+  }
+
+  // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-IdentifierName
+  private readIdentifier(): Token {
+    const position = this.#position
+    do { this.readChar() } while (isIdentifierPart(this.#ch))
+    return [TokenType.Identifier, this.#source.slice(position, this.#position)]
   }
 
   private readChar() {

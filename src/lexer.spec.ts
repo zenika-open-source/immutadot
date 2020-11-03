@@ -48,6 +48,12 @@ describe('Lexer', () => {
     ])
   })
 
-  // it('should extract strings from input', () => {
-  // })
+  it('should extract strings from input', () => {
+    expect([...new Lexer('"double quoted \'test\'" \'simple quoted "test"\' "double \\"escaped\\" \\"\\"" \'simple \\\'escaped\\\' \\\\\'')]).toEqual([
+      [TokenType.String, "double quoted 'test'"],
+      [TokenType.String, 'simple quoted "test"'],
+      [TokenType.String, 'double "escaped" ""'],
+      [TokenType.String, "simple 'escaped' \\"],
+    ])
+  })
 })
