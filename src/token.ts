@@ -1,11 +1,12 @@
 export const enum TokenType {
   Dot = '.',
+  OptDot = '?.',
   LBracket = '[',
   RBracket = ']',
-  SQuote = "'",
-  DQuote = '"',
+  Colon = ':',
   Identifier = 'identifier',
   Integer = 'integer',
+  String = 'string',
   Illegal = 'illegal character',
 }
 

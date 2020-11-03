@@ -15,19 +15,34 @@ export default class Lexer implements IterableIterator<Token> {
   }
 
   next(): IteratorResult<Token> {
-    if (this.#ch === undefined) return { done: true, value: null }
-
     let token: Token
 
     switch (this.#ch) {
+      case undefined: return { done: true, value: null }
       case '.': token = [TokenType.Dot]; break
-      case '"': token = [TokenType.DQuote]; break
-      case "'": token = [TokenType.SQuote]; break
+      case '?':
+        if (this.peekChar() === '.') {
+          token = [TokenType.OptDot]
+          this.readChar()
+        } else {
+          token = [TokenType.Illegal, '?']
+        }
+        break
       case '[': token = [TokenType.LBracket]; break
+      case ':': token = [TokenType.Colon]; break
       case ']': token = [TokenType.RBracket]; break
+      case '-':
+        if (isDigit(this.peekChar())) return { value: [TokenType.Integer, this.readInteger()] }
+        token = [TokenType.Illegal, '-']
+        break
+      case '$':
+      case '_':
+        return { value: [TokenType.Identifier, this.readIdentifier()] }
       default:
-        if (isLetter(this.#ch)) return { value: [TokenType.Identifier, this.readIdentifier()] }
+        // FIXME follow numeric literals from https://www.ecma-international.org/ecma-262/11.0/index.html#sec-literals-numeric-literals
         if (isDigit(this.#ch)) return { value: [TokenType.Integer, this.readInteger()] }
+        if (isUnicodeIDStart(this.#ch)) return { value: [TokenType.Identifier, this.readIdentifier()] }
+        // FIXME identifier starting with unicode escape sequence
         token = [TokenType.Illegal, this.#ch]
     }
 
@@ -38,7 +53,7 @@ export default class Lexer implements IterableIterator<Token> {
 
   private readIdentifier(): string {
     const position = this.#position
-    do { this.readChar() } while (isLetter(this.#ch))
+    do { this.readChar() } while (this.#ch !== undefined && isIdentifierPart(this.#ch))
     return this.#source.slice(position, this.#position)
   }
 
@@ -52,15 +67,29 @@ export default class Lexer implements IterableIterator<Token> {
     this.#ch = this.#source[this.#position = this.#readPosition++]
   }
 
+  private peekChar() {
+    return this.#source[this.#readPosition]
+  }
+
   [Symbol.iterator](): IterableIterator<Token> {
     return this
   }
 }
 
-function isLetter(char: string) {
-  return (char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z') || char === '_'
-}
-
 function isDigit(char: string) {
   return char >= '0' && char <= '9'
+}
+
+// https://www.ecma-international.org/ecma-262/11.0/index.html#prod-UnicodeIDStart
+const unicodeIDStart = /[\p{ID_Start}]/u
+
+function isUnicodeIDStart(char: string) {
+  return unicodeIDStart.test(char)
+}
+
+// https://www.ecma-international.org/ecma-262/11.0/index.html#prod-IdentifierPart
+const identifierPart = /[$\p{ID_Continue}\u200c\u200d]/u
+
+function isIdentifierPart(char: string) {
+  return identifierPart.test(char)
 }
