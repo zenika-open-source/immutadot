@@ -4,10 +4,11 @@ export const enum TokenType {
   LBracket = '[',
   RBracket = ']',
   Colon = ':',
+  Minus = '-',
   Identifier = 'identifier',
   Integer = 'integer',
   String = 'string',
-  Illegal = 'illegal character',
+  Illegal = 'illegal',
 }
 
 export type Token = [TokenType, string?]
