@@ -1,5 +1,5 @@
 import Lexer from './lexer'
-import { Navigator, NavigatorType, PropNavigator } from './path'
+import { Navigator, NavigatorType } from './path'
 import { TokenType } from './token'
 
 export default class Parser implements IterableIterator<Navigator> {

@@ -14,7 +14,7 @@
     "build": "tsc",
     "prebuild": "yarn clean",
     "lint": "eslint src",
-    "test": "jest src"
+    "test": "node --use_strict node_modules/.bin/jest"
   },
   "devDependencies": {
     "@types/jest": "^26.0.15",

@@ -23,5 +23,6 @@ module.exports = {
     'max-len': ['error', { 'code': 160 }],
     'no-case-declarations': 'off',
     'no-plusplus': 'off',
+    'no-restricted-syntax': 'off',
   },
 }
