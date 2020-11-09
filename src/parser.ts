@@ -2,7 +2,7 @@ import Lexer from './lexer'
 import {
   IndexNavigator, Navigator, NavigatorType, PropNavigator,
 } from './path'
-import { TokenType } from './token'
+import { Token, TokenType } from './token'
 
 export default class Parser implements IterableIterator<Navigator> {
   #l: Lexer
@@ -32,34 +32,23 @@ export default class Parser implements IterableIterator<Navigator> {
   }
 
   private readPropNavigator(): PropNavigator {
-    const token = this.readNextToken()
-
-    if (token === undefined) throw SyntaxError('unexpected EOF')
-
-    if (token[0] !== TokenType.Identifier) throw SyntaxError(`unexpected ${token[0]}`)
-
-    return [NavigatorType.Prop, token[1]]
+    return [NavigatorType.Prop, this.readNextTokenType(TokenType.Identifier)]
   }
 
   private readIndexNavigator(): IndexNavigator {
-    let token = this.readNextToken()
-
-    if (token === undefined) throw SyntaxError('unexpected EOF')
-
-    if (token[0] !== TokenType.Integer) throw SyntaxError(`unexpected ${token[0]}`)
-
-    const index = Number(token[1])
-
-    token = this.readNextToken()
-
-    if (token === undefined) throw SyntaxError('unexpected EOF')
-
-    if (token[0] !== TokenType.RBracket) throw SyntaxError(`unexpected ${token[0]}`)
-
+    const index = Number(this.readNextTokenType(TokenType.Integer))
+    this.readNextTokenType(TokenType.RBracket)
     return [NavigatorType.Index, index]
   }
 
-  private readNextToken() {
+  private readNextTokenType(type: TokenType): string {
+    const token = this.readNextToken()
+    if (token === undefined) throw SyntaxError(`unexpected EOF expected ${type}`)
+    if (token[0] !== type) throw SyntaxError(`unexpected ${token[0]} expected ${type}`)
+    return token[1]
+  }
+
+  private readNextToken(): Token {
     const res = this.#l.next()
     return res.done ? undefined : res.value
   }
