@@ -1,29 +1,35 @@
 import Parser from './parser'
 import { NavigatorType } from './path'
 
-export default function set(chunks: TemplateStringsArray, o: any): (v: string) => any {
+export default function set(chunks: TemplateStringsArray, root: any): (v: any) => any {
   if (chunks.length > 2 || chunks[0] !== '') throw TypeError('not implemented')
 
   const path = [...new Parser(chunks[1])]
 
-  const prop = path[path.length - 1]
-  if (prop[0] !== NavigatorType.Prop) throw TypeError('not implemented')
+  const steps = Array(path.length + 1)
+  steps[0] = root
 
-  const copy = { ...o }
-  let cur = copy
-  for (const nav of path.slice(0, -1)) {
-    if (nav[0] !== NavigatorType.Prop) throw TypeError('not implemented')
-    let next = o?.[nav[1]]
-    if (!next) break
-    next = { ...next }
-    cur[nav[1]] = next
-    cur = next
+  for (let i = 0; i < path.length; i++) {
+    switch (path[i][0]) {
+      case NavigatorType.Prop:
+      case NavigatorType.Index:
+        steps[i + 1] = steps[i]?.[path[i][1]]
+        break
+      default: throw TypeError('not implemented')
+    }
   }
 
-  if (!cur) return () => o
-
   return (v) => {
-    cur[prop[1]] = v
-    return copy
+    steps[path.length] = v
+
+    for (let i = path.length - 1; i >= 0; i--) {
+      if (steps[i] === undefined || steps[i] === null || typeof steps[i] !== 'object') throw TypeError('not implemented')
+
+      steps[i] = Array.isArray(steps[i]) ? [...steps[i]] : { ...steps[i] }
+
+      steps[i][path[i][1]] = steps[i + 1]
+    }
+
+    return steps[0]
   }
 }
