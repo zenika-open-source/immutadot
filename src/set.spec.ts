@@ -1,14 +1,13 @@
+import { recurFreeze } from '../recurFreeze'
 import set from './set'
 
 describe('Set', () => {
   it('should set a nested property (prop navigators only)', () => {
-    const o = {
+    const o = recurFreeze({
       nested: {
         property: 'foo',
       },
-    }
-    Object.freeze(o)
-    Object.freeze(o.nested)
+    })
 
     expect(set`${o}.nested.property`('bar')).toEqual({
       nested: {
@@ -18,13 +17,11 @@ describe('Set', () => {
   })
 
   it('should set a nested array index (index navigators only)', () => {
-    const a = [
+    const a = recurFreeze([
       'foo',
       ['bar', 'baz', 'qwe'],
       'plop',
-    ]
-    Object.freeze(a)
-    Object.freeze(a[1])
+    ])
 
     expect(set`${a}[1][2]`('aze')).toEqual([
       'foo',
