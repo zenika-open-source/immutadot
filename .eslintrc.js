@@ -20,6 +20,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-use-before-define': ['error', 'nofunc'],
     '@typescript-eslint/semi': ['error', 'never'],
+    'default-case': 'off',
     'max-len': ['error', { 'code': 160 }],
     'no-case-declarations': 'off',
     'no-plusplus': 'off',

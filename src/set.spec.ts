@@ -29,4 +29,19 @@ describe('Set', () => {
       'plop',
     ])
   })
+
+  it('should create missing objects for prop navigators', () => {
+    expect(set`${undefined}.nested.property`('bar')).toEqual({
+      nested: {
+        property: 'bar',
+      },
+    })
+  })
+
+  it('should create missing arrays for index navigators', () => {
+    expect(set`${undefined}[1][2]`('aze')).toEqual([
+      undefined,
+      [undefined, undefined, 'aze'],
+    ])
+  })
 })

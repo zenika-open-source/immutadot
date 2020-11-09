@@ -23,9 +23,20 @@ export default function set(chunks: TemplateStringsArray, root: any): (v: any) =
     steps[path.length] = v
 
     for (let i = path.length - 1; i >= 0; i--) {
-      if (steps[i] === undefined || steps[i] === null || typeof steps[i] !== 'object') throw TypeError('not implemented')
+      if (steps[i] === undefined || steps[i] === null) {
+        switch (path[i][0]) {
+          case NavigatorType.Prop:
+            steps[i] = {}
+            break
+          case NavigatorType.Index:
+            steps[i] = []
+            break
+        }
+      } else {
+        if (typeof steps[i] !== 'object') throw TypeError('not implemented')
 
-      steps[i] = Array.isArray(steps[i]) ? [...steps[i]] : { ...steps[i] }
+        steps[i] = Array.isArray(steps[i]) ? [...steps[i]] : { ...steps[i] }
+      }
 
       steps[i][path[i][1]] = steps[i + 1]
     }
