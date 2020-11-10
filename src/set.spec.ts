@@ -6,12 +6,14 @@ describe('Set', () => {
     const o = recurFreeze({
       nested: {
         property: 'foo',
+        otherProperty: 'baz',
       },
     })
 
     expect(set`${o}.nested.property`('bar')).toEqual({
       nested: {
         property: 'bar',
+        otherProperty: 'baz',
       },
     })
   })
