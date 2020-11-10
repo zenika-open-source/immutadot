@@ -1,3 +1,2 @@
-const dot = 'dot'
-
-export default dot
+export * from './push'
+export * from './set'

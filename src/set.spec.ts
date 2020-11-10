@@ -1,5 +1,5 @@
 import { recurFreeze } from '../recurFreeze'
-import set from './set'
+import { set } from './set'
 
 describe('Set', () => {
   it('should set a nested property (prop navigators only)', () => {
