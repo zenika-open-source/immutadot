@@ -1,5 +1,5 @@
-import { get, set } from './nav'
 import Parser from './parser'
+import { read, write } from './path'
 
 export function make(updater: (value: any, args: any[]) => any): (chunks: TemplateStringsArray, root: any) => (...args: any[]) => any {
   return (chunks, root) => {
@@ -7,12 +7,14 @@ export function make(updater: (value: any, args: any[]) => any): (chunks: Templa
 
     const path = [...new Parser(chunks[1])]
 
-    const steps = get(path, root)
+    const accesses = read(path, root)
 
     return (...args: any[]) => {
-      steps[path.length] = updater(steps[path.length], args)
+      accesses[path.length].forEach((access) => { access[3] = updater(access[3], args) })
 
-      return set(path, steps)
+      write(accesses)
+
+      return accesses[0][0][3]
     }
   }
 }
