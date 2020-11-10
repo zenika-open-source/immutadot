@@ -22,10 +22,11 @@ module.exports = {
     '@typescript-eslint/semi': ['error', 'never'],
     'default-case': 'off',
     'import/prefer-default-export': 'off',
-    'max-len': ['error', { 'code': 160 }],
+    'max-len': ['error', { code: 160 }],
     'no-case-declarations': 'off',
     'no-param-reassign': 'off',
     'no-plusplus': 'off',
     'no-restricted-syntax': 'off',
+    'object-curly-newline': ['error', { consistent: true }]
   },
 }
