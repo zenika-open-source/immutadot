@@ -44,24 +44,22 @@ export function write(accesses: Access[][]) {
 
   for (let i = accesses.length - 1; i > 0; i--) {
     for (const [type, parent, key, value] of accesses[i]) {
-      if (!refs.has(parent[3])) {
-        if (parent[3] === undefined || parent[3] === null) {
-          switch (type) {
-            case NavigatorType.Prop:
-              refs.add(parent[3] = {})
-              break
-            case NavigatorType.Index:
-              refs.add(parent[3] = [])
-              break
-          }
-        } else {
-          if (typeof parent[3] !== 'object') throw TypeError('not implemented')
-
-          refs.add(parent[3] = Array.isArray(parent[3]) ? [...parent[3]] : { ...parent[3] })
-        }
-      }
-
+      if (!refs.has(parent[3])) refs.add(parent[3] = copy(parent[3], type))
       parent[3][key] = value
     }
   }
+}
+
+function copy(value: any, accessType: NavigatorType) {
+  if (value === undefined || value === null) {
+    switch (accessType) {
+      case NavigatorType.Prop: return {}
+      case NavigatorType.Index: return []
+      default: throw TypeError('not implemented')
+    }
+  }
+
+  if (typeof value !== 'object') throw TypeError('not implemented')
+
+  return Array.isArray(value) ? [...value] : { ...value }
 }
