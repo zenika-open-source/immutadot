@@ -11,4 +11,4 @@ export const enum TokenType {
   Illegal = 'illegal',
 }
 
-export type Token = [TokenType, string?]
+export type Token = [TokenType, any?]

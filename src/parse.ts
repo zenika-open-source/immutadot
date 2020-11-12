@@ -2,7 +2,6 @@ import Lexer from './lexer'
 import { IndexNavigator, Navigator, NavigatorType, PropNavigator } from './path'
 import { Token, TokenType } from './token'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function parse(chunks: readonly string[], args: any[]): Navigator[] {
   return [...new Parser(chunks, args)]
 }
@@ -19,6 +18,7 @@ class Parser implements IterableIterator<Navigator> {
   constructor(chunks: readonly string[], args: any[]) {
     this.#chunks = chunks
     this.#args = args
+    this.nextLexer()
   }
 
   next(): IteratorResult<Navigator> {
@@ -59,17 +59,29 @@ class Parser implements IterableIterator<Navigator> {
   }
 
   private readNextToken(): Token {
-    if (this.#l === undefined) this.#l = new Lexer(this.#chunks[this.#chunkIndex])
+    if (this.#l === undefined) return undefined
     const res = this.#l.next()
-    if (res.done) {
-      if (this.#chunkIndex === this.#args.length) return undefined
-      return this.readNextArgToken()
+    if (!res.done) return res.value
+    if (this.#chunkIndex === this.#args.length) {
+      this.#l = undefined
+      return undefined
     }
-    return res.value
+    const token = this.readNextArgToken()
+    this.#chunkIndex++
+    this.nextLexer()
+    return token
   }
 
   private readNextArgToken(): Token {
-    throw new Error('Method not implemented.')
+    const arg = this.#args[this.#chunkIndex]
+    switch (typeof arg) {
+      case 'number': return [TokenType.Integer, arg]
+      default: throw TypeError(`unexpected argument ${arg}`)
+    }
+  }
+
+  private nextLexer() {
+    this.#l = new Lexer(this.#chunks[this.#chunkIndex])
   }
 
   [Symbol.iterator](): IterableIterator<Navigator> {

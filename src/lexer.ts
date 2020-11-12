@@ -61,7 +61,7 @@ export default class Lexer implements IterableIterator<Token> {
           case 'X':
             return { value: this.readHexInteger() }
           default:
-            token = [TokenType.Integer, '0']
+            token = [TokenType.Integer, 0]
         }
         break
       case '"':
@@ -90,7 +90,7 @@ export default class Lexer implements IterableIterator<Token> {
   private readDecimalInteger(): Token {
     const position = this.#position
     do { this.readChar() } while (isDecimalDigit(this.#ch))
-    return [TokenType.Integer, this.#source.slice(position, this.#position)]
+    return [TokenType.Integer, Number(this.#source.slice(position, this.#position))]
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-BinaryIntegerLiteral
@@ -100,7 +100,7 @@ export default class Lexer implements IterableIterator<Token> {
     const ch = this.peekChar()
     if (!isBinaryDigit(ch)) return [TokenType.Illegal, this.#source.slice(position, this.#position)]
     do { this.readChar() } while (isBinaryDigit(this.#ch))
-    return [TokenType.Integer, this.#source.slice(position, this.#position)]
+    return [TokenType.Integer, Number(this.#source.slice(position, this.#position))]
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-OctalIntegerLiteral
@@ -110,7 +110,7 @@ export default class Lexer implements IterableIterator<Token> {
     const ch = this.peekChar()
     if (!isOctalDigit(ch)) return [TokenType.Illegal, this.#source.slice(position, this.#position)]
     do { this.readChar() } while (isOctalDigit(this.#ch))
-    return [TokenType.Integer, this.#source.slice(position, this.#position)]
+    return [TokenType.Integer, Number(this.#source.slice(position, this.#position))]
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-HexIntegerLiteral
@@ -120,7 +120,7 @@ export default class Lexer implements IterableIterator<Token> {
     const ch = this.peekChar()
     if (!isHexDigit(ch)) return [TokenType.Illegal, this.#source.slice(position, this.#position)]
     do { this.readChar() } while (isHexDigit(this.#ch))
-    return [TokenType.Integer, this.#source.slice(position, this.#position)]
+    return [TokenType.Integer, Number(this.#source.slice(position, this.#position))]
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#sec-literals-string-literals
