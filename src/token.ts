@@ -11,4 +11,15 @@ export const enum TokenType {
   Illegal = 'illegal',
 }
 
-export type Token = [TokenType, any?]
+export type Token = (
+  [TokenType.Dot] |
+  [TokenType.OptDot] |
+  [TokenType.LBracket] |
+  [TokenType.RBracket] |
+  [TokenType.Colon] |
+  [TokenType.Minus] |
+  [TokenType.Identifier, string] |
+  [TokenType.Integer, number] |
+  [TokenType.String, string] |
+  [TokenType.Illegal, any]
+)

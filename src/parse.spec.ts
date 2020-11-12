@@ -1,9 +1,14 @@
 import { parse } from './parse'
 import { NavigatorType } from './path'
 
-describe('Parser', () => {
+describe('parse', () => {
   it('should parse prop navigators', () => {
     expect(parse(['.foo.bar.baz'], [])).toEqual([
+      [NavigatorType.Prop, 'foo'],
+      [NavigatorType.Prop, 'bar'],
+      [NavigatorType.Prop, 'baz'],
+    ])
+    expect(parse(['["foo"][\'bar\'][', ']'], ['baz'])).toEqual([
       [NavigatorType.Prop, 'foo'],
       [NavigatorType.Prop, 'bar'],
       [NavigatorType.Prop, 'baz'],
