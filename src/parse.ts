@@ -4,15 +4,21 @@ import { Token, TokenType } from './token'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function parse(chunks: readonly string[], args: any[]): Navigator[] {
-  if (chunks.length > 1) throw TypeError('not implemented')
-  return [...new Parser(chunks[0])]
+  return [...new Parser(chunks, args)]
 }
 
 class Parser implements IterableIterator<Navigator> {
+  #chunks: readonly string[]
+
+  #args: any[]
+
+  #chunkIndex = 0
+
   #l: Lexer
 
-  constructor(source: string) {
-    this.#l = new Lexer(source)
+  constructor(chunks: readonly string[], args: any[]) {
+    this.#chunks = chunks
+    this.#args = args
   }
 
   next(): IteratorResult<Navigator> {
@@ -53,8 +59,17 @@ class Parser implements IterableIterator<Navigator> {
   }
 
   private readNextToken(): Token {
+    if (this.#l === undefined) this.#l = new Lexer(this.#chunks[this.#chunkIndex])
     const res = this.#l.next()
-    return res.done ? undefined : res.value
+    if (res.done) {
+      if (this.#chunkIndex === this.#args.length) return undefined
+      return this.readNextArgToken()
+    }
+    return res.value
+  }
+
+  private readNextArgToken(): Token {
+    throw new Error('Method not implemented.')
   }
 
   [Symbol.iterator](): IterableIterator<Navigator> {

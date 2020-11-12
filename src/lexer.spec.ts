@@ -57,5 +57,9 @@ describe('Lexer', () => {
     ])
   })
 
+  it('should return no token for empty string', () => {
+    expect([...new Lexer('')]).toEqual([])
+  })
+
   // FIXME test illegals
 })
