@@ -46,4 +46,20 @@ describe('Set', () => {
       [undefined, undefined, 'aze'],
     ])
   })
+
+  it('should support path w/o root object', () => {
+    const o = recurFreeze({
+      nested: {
+        property: 'foo',
+        otherProperty: 'baz',
+      },
+    })
+
+    expect(set`.nested.property`('bar')(o)).toEqual({
+      nested: {
+        property: 'bar',
+        otherProperty: 'baz',
+      },
+    })
+  })
 })

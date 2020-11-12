@@ -2,8 +2,10 @@ import Lexer from './lexer'
 import { IndexNavigator, Navigator, NavigatorType, PropNavigator } from './path'
 import { Token, TokenType } from './token'
 
-export function parse(source: string): Navigator[] {
-  return [...new Parser(source)]
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function parse(chunks: readonly string[], args: any[]): Navigator[] {
+  if (chunks.length > 1) throw TypeError('not implemented')
+  return [...new Parser(chunks[0])]
 }
 
 class Parser implements IterableIterator<Navigator> {

@@ -1,19 +1,25 @@
 import { parse } from './parse'
 import { read, write } from './path'
 
-export function make(updater: (value: any, args: any[]) => any): (chunks: TemplateStringsArray, root: any) => (...args: any[]) => any {
-  return (chunks, root) => {
-    if (chunks.length !== 2 || chunks[0] !== '') throw TypeError('not implemented')
+export function make(updater: (value: any, args: any[]) => any): (tmplChunks: TemplateStringsArray, ...tmplArgs: any[]) => (...args: any[]) => any {
+  return (tmplChunks, ...tmplArgs) => {
+    if (tmplChunks[0] === '') {
+      const path = parse(tmplChunks.slice(1), tmplArgs.slice(1))
 
-    const path = parse(chunks[1])
+      return (...args: any[]) => {
+        const accesses = read(path, tmplArgs[0])
+        accesses[path.length].forEach((access) => { access[3] = updater(access[3], args) })
+        write(accesses)
+        return accesses[0][0][3]
+      }
+    }
 
-    const accesses = read(path, root)
+    const path = parse(tmplChunks, tmplArgs)
 
-    return (...args: any[]) => {
+    return (...args: any[]) => (root: any) => {
+      const accesses = read(path, root)
       accesses[path.length].forEach((access) => { access[3] = updater(access[3], args) })
-
       write(accesses)
-
       return accesses[0][0][3]
     }
   }

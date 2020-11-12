@@ -1,3 +1,4 @@
 import { make } from './make'
 
-export const set: (chunks: TemplateStringsArray, root: any) => (value: any) => any = make((_: any, [value]: any[]) => value)
+// FIXME try declaring several signatures
+export const set: (chunks: TemplateStringsArray, ...args: any[]) => (value: any) => any = make((_: any, [value]: any[]) => value)
