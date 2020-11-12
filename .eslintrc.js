@@ -27,6 +27,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-plusplus': 'off',
     'no-restricted-syntax': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
     'object-curly-newline': ['error', { consistent: true }]
   },
 }
