@@ -1,4 +1,4 @@
-import Parser from './parser'
+import Parser from './parse'
 import { read, write } from './path'
 
 export function make(updater: (value: any, args: any[]) => any): (chunks: TemplateStringsArray, root: any) => (...args: any[]) => any {

@@ -1,4 +1,4 @@
-import Parser from './parser'
+import Parser from './parse'
 import { NavigatorType } from './path'
 
 describe('Parser', () => {
