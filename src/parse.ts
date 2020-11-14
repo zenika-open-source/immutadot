@@ -17,10 +17,13 @@ class Parser implements IterableIterator<Navigator> {
 
   #token: Token
 
+  #nextToken: Token
+
   constructor(chunks: readonly string[], args: any[]) {
     this.#chunks = chunks
     this.#args = args
     this.nextLexer()
+    this.readToken()
     this.readToken()
   }
 
@@ -76,33 +79,35 @@ class Parser implements IterableIterator<Navigator> {
   }
 
   private readToken() {
+    this.#token = this.#nextToken
+
     if (this.#lexer === undefined) {
-      this.#token = undefined
+      this.#nextToken = undefined
       return
     }
 
     const res = this.#lexer.next()
     if (!res.done) {
-      this.#token = res.value
+      this.#nextToken = res.value
       return
     }
 
     if (this.#chunkIndex === this.#args.length) {
       this.#lexer = undefined
-      this.#token = undefined
+      this.#nextToken = undefined
       return
     }
 
     const arg = this.#args[this.#chunkIndex]
     switch (typeof arg) {
       case 'number':
-        this.#token = [TokenType.Integer, arg]
+        this.#nextToken = [TokenType.Integer, arg]
         break
       case 'string':
-        this.#token = [TokenType.String, arg]
+        this.#nextToken = [TokenType.String, arg]
         break
       case 'symbol':
-        this.#token = [TokenType.Symbol, arg]
+        this.#nextToken = [TokenType.Symbol, arg]
         break
       default: throw TypeError(`unexpected argument ${arg}`)
     }
