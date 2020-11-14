@@ -1,5 +1,5 @@
 import Lexer from './lexer'
-import { Navigator, NavigatorType, PropNavigator } from './path'
+import { Navigator, NavigatorType, PropNavigator, SliceNavigator } from './path'
 import { Token, TokenType } from './token'
 
 export function parse(chunks: readonly string[], args: any[]): Navigator[] {
@@ -59,11 +59,14 @@ class Parser implements IterableIterator<Navigator> {
     let navigator: Navigator
     switch (this.#token?.[0]) {
       case TokenType.Integer:
-        navigator = [NavigatorType.Index, this.#token[1]]
+        navigator = this.#nextToken?.[0] === TokenType.Colon ? this.readSlice() : [NavigatorType.Index, this.#token[1]]
         break
       case TokenType.String:
       case TokenType.Symbol:
         navigator = [NavigatorType.Prop, this.#token[1]]
+        break
+      case TokenType.Colon:
+        navigator = this.readSlice()
         break
       default: throw SyntaxError(`unexpected ${this.#token?.[0] ?? 'EOF'} expected one of integer, string, symbol`)
     }
@@ -72,6 +75,20 @@ class Parser implements IterableIterator<Navigator> {
     this.assertTokenType(TokenType.RBracket)
 
     return navigator
+  }
+
+  private readSlice(): SliceNavigator {
+    let start: number
+    if (this.#token[0] === TokenType.Integer) {
+      [, start] = this.#token
+      this.readToken()
+    }
+    let end: number
+    if (this.#nextToken?.[0] === TokenType.Integer) {
+      this.readToken();
+      [, end] = this.#token
+    }
+    return [NavigatorType.Slice, start, end]
   }
 
   private assertTokenType(...types: TokenType[]) {
