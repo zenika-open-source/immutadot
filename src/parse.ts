@@ -13,7 +13,7 @@ class Parser implements IterableIterator<Navigator> {
 
   #chunkIndex = 0
 
-  #l: Lexer
+  #lexer: Lexer
 
   constructor(chunks: readonly string[], args: any[]) {
     this.#chunks = chunks
@@ -71,11 +71,11 @@ class Parser implements IterableIterator<Navigator> {
   }
 
   private readNextToken(): Token {
-    if (this.#l === undefined) return undefined
-    const res = this.#l.next()
+    if (this.#lexer === undefined) return undefined
+    const res = this.#lexer.next()
     if (!res.done) return res.value
     if (this.#chunkIndex === this.#args.length) {
-      this.#l = undefined
+      this.#lexer = undefined
       return undefined
     }
     const token = this.readNextArgToken()
@@ -95,7 +95,7 @@ class Parser implements IterableIterator<Navigator> {
   }
 
   private nextLexer() {
-    this.#l = new Lexer(this.#chunks[this.#chunkIndex])
+    this.#lexer = new Lexer(this.#chunks[this.#chunkIndex])
   }
 
   [Symbol.iterator](): IterableIterator<Navigator> {

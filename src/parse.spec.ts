@@ -37,4 +37,13 @@ describe('parse', () => {
       [NavigatorType.Index, 3],
     ])
   })
+
+  it('should parse slice navigators', () => {
+    expect(parse(['[1:2][3:][:4][:]'], [])).toEqual([
+      [NavigatorType.Slice, 1, 2],
+      [NavigatorType.Slice, 2, undefined],
+      [NavigatorType.Slice, undefined, 4],
+      [NavigatorType.Slice, undefined, undefined],
+    ])
+  })
 })
