@@ -8,10 +8,17 @@ describe('parse', () => {
       [NavigatorType.Prop, 'bar'],
       [NavigatorType.Prop, 'baz'],
     ])
-    expect(parse(['["foo"][\'bar\'][', ']'], ['baz'])).toEqual([
+    expect(parse(['["foo"][\'bar\']'], [])).toEqual([
       [NavigatorType.Prop, 'foo'],
       [NavigatorType.Prop, 'bar'],
-      [NavigatorType.Prop, 'baz'],
+    ])
+  })
+
+  it('should parse interpolated navigators', () => {
+    const bar = Symbol('bar')
+    expect(parse(['[', '][', ']'], ['foo', bar])).toEqual([
+      [NavigatorType.Prop, 'foo'],
+      [NavigatorType.Prop, bar],
     ])
   })
 

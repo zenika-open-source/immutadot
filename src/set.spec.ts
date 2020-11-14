@@ -62,4 +62,22 @@ describe('Set', () => {
       },
     })
   })
+
+  it('should access Symbol properties', () => {
+    const nested = Symbol('nested')
+    const property = Symbol('property')
+    const o = recurFreeze({
+      [nested]: {
+        [property]: 'foo',
+        otherProperty: 'baz',
+      },
+    })
+
+    expect(set`${o}[${nested}][${property}]`('bar')).toEqual({
+      [nested]: {
+        [property]: 'bar',
+        otherProperty: 'baz',
+      },
+    })
+  })
 })
