@@ -54,6 +54,7 @@ class Parser implements IterableIterator<Navigator> {
         navigator = [NavigatorType.Index, token[1]]
         break
       case TokenType.String:
+      case TokenType.Symbol:
         navigator = [NavigatorType.Prop, token[1]]
         break
       default: throw SyntaxError(`unexpected ${token[0]} expected integer or string`)
@@ -88,6 +89,7 @@ class Parser implements IterableIterator<Navigator> {
     switch (typeof arg) {
       case 'number': return [TokenType.Integer, arg]
       case 'string': return [TokenType.String, arg]
+      case 'symbol': return [TokenType.Symbol, arg]
       default: throw TypeError(`unexpected argument ${arg}`)
     }
   }

@@ -8,6 +8,7 @@ export const enum TokenType {
   Identifier = 'identifier',
   Integer = 'integer',
   String = 'string',
+  Symbol = 'symbol',
   Illegal = 'illegal',
 }
 
@@ -21,5 +22,6 @@ export type Token = (
   [TokenType.Identifier, string] |
   [TokenType.Integer, number] |
   [TokenType.String, string] |
+  [TokenType.Symbol, symbol] |
   [TokenType.Illegal, any]
 )

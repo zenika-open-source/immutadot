@@ -2,7 +2,7 @@ export type Path = Navigator[]
 
 export type Navigator = PropNavigator | IndexNavigator
 
-export type PropNavigator = [NavigatorType.Prop, string]
+export type PropNavigator = [NavigatorType.Prop, string | symbol]
 export type IndexNavigator = [NavigatorType.Index, number]
 
 export const enum NavigatorType {
@@ -14,7 +14,7 @@ export const enum NavigatorType {
 export type Access = RootAccess | PropAccess | IndexAccess
 
 export type RootAccess = [NavigatorType.Root, null, null, any]
-export type PropAccess = [NavigatorType.Prop, Access, string, any]
+export type PropAccess = [NavigatorType.Prop, Access, string | symbol, any]
 export type IndexAccess = [NavigatorType.Index, Access, number, any]
 
 export function read(path: Navigator[], root: any): Access[][] {

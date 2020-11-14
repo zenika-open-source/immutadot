@@ -14,7 +14,7 @@ describe('parse', () => {
     ])
   })
 
-  it('should parse interpolated navigators', () => {
+  it('should parse interpolated props', () => {
     const bar = Symbol('bar')
     expect(parse(['[', '][', ']'], ['foo', bar])).toEqual([
       [NavigatorType.Prop, 'foo'],
