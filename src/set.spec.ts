@@ -88,9 +88,9 @@ describe('Set', () => {
       'plop',
     ])
 
-    expect(set`${a}[1][0:3]`('qwe')).toEqual([
+    expect(set`${a}[1][1:3]`('aze')).toEqual([
       'foo',
-      ['qwe', 'qwe', 'qwe'],
+      ['bar', 'aze', 'aze'],
       'plop',
     ])
   })
