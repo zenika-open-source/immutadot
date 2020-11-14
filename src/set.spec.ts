@@ -63,7 +63,7 @@ describe('Set', () => {
     })
   })
 
-  it('should access Symbol properties', () => {
+  it('should support Symbol properties', () => {
     const nested = Symbol('nested')
     const property = Symbol('property')
     const o = recurFreeze({
@@ -79,5 +79,19 @@ describe('Set', () => {
         otherProperty: 'baz',
       },
     })
+  })
+
+  it('should support array slices', () => {
+    const a = recurFreeze([
+      'foo',
+      ['bar', 'baz', 'qwe'],
+      'plop',
+    ])
+
+    expect(set`${a}[1][0:3]`('qwe')).toEqual([
+      'foo',
+      ['qwe', 'qwe', 'qwe'],
+      'plop',
+    ])
   })
 })

@@ -34,6 +34,11 @@ export function read(path: Navigator[], root: any): Access[][] {
       case NavigatorType.Index:
         accesses[i + 1] = accesses[i].map((parent) => [NavigatorType.Index, parent, step[1], parent[3]?.[step[1]]])
         break
+      case NavigatorType.Slice:
+        accesses[i + 1] = accesses[i].flatMap(
+          (parent) => parent[3]?.slice(step[1], step[2]).map((value: any, index: number) => [NavigatorType.Index, parent, index, value]),
+        )
+        break
       default: throw TypeError('not implemented')
     }
   }
