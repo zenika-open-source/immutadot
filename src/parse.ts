@@ -11,91 +11,107 @@ class Parser implements IterableIterator<Navigator> {
 
   #args: any[]
 
-  #chunkIndex = 0
+  #chunkIndex = -1
 
   #lexer: Lexer
+
+  #token: Token
 
   constructor(chunks: readonly string[], args: any[]) {
     this.#chunks = chunks
     this.#args = args
     this.nextLexer()
+    this.readToken()
   }
 
   next(): IteratorResult<Navigator> {
-    const token = this.readNextToken()
-
-    if (token === undefined) return { done: true, value: null }
+    if (this.#token === undefined) return { done: true, value: null }
 
     let navigator: Navigator
 
-    switch (token[0]) {
+    switch (this.#token[0]) {
       case TokenType.Dot:
-        navigator = this.readPropNavigator()
+        navigator = this.readProp()
         break
       case TokenType.LBracket:
-        navigator = this.readBracketNavigator()
+        navigator = this.readBracket()
         break
-      default: throw SyntaxError(`unexpected ${token[0]}`)
+      default: throw SyntaxError(`unexpected ${this.#token[0]}`)
     }
+
+    this.readToken()
 
     return { value: navigator }
   }
 
-  private readPropNavigator(): PropNavigator {
-    return [NavigatorType.Prop, this.readNextTokenType(TokenType.Identifier)]
+  private readProp(): PropNavigator {
+    this.readToken()
+    this.assertTokenType(TokenType.Identifier)
+    return [NavigatorType.Prop, this.#token[1]]
   }
 
-  private readBracketNavigator(): Navigator {
-    const token = this.readNextToken()
-    if (token === undefined) throw SyntaxError('unexpected EOF, expected integer or string')
+  private readBracket(): Navigator {
+    this.readToken()
+
     let navigator: Navigator
-    switch (token[0]) {
+    switch (this.#token?.[0]) {
       case TokenType.Integer:
-        navigator = [NavigatorType.Index, token[1]]
+        navigator = [NavigatorType.Index, this.#token[1]]
         break
       case TokenType.String:
       case TokenType.Symbol:
-        navigator = [NavigatorType.Prop, token[1]]
+        navigator = [NavigatorType.Prop, this.#token[1]]
         break
-      default: throw SyntaxError(`unexpected ${token[0]} expected integer or string`)
+      default: throw SyntaxError(`unexpected ${this.#token?.[0] ?? 'EOF'} expected one of integer, string, symbol`)
     }
-    this.readNextTokenType(TokenType.RBracket)
+
+    this.readToken()
+    this.assertTokenType(TokenType.RBracket)
+
     return navigator
   }
 
-  private readNextTokenType(type: TokenType): any {
-    const token = this.readNextToken()
-    if (token === undefined) throw SyntaxError(`unexpected EOF expected ${type}`)
-    if (token[0] !== type) throw SyntaxError(`unexpected ${token[0]} expected ${type}`)
-    return token[1]
+  private assertTokenType(...types: TokenType[]) {
+    if (!types.includes(this.#token?.[0])) throw SyntaxError(`unexpected ${this.#token?.[0] ?? 'EOF'} expected one of ${types}`)
   }
 
-  private readNextToken(): Token {
-    if (this.#lexer === undefined) return undefined
+  private readToken() {
+    if (this.#lexer === undefined) {
+      this.#token = undefined
+      return
+    }
+
     const res = this.#lexer.next()
-    if (!res.done) return res.value
+    if (!res.done) {
+      this.#token = res.value
+      return
+    }
+
     if (this.#chunkIndex === this.#args.length) {
       this.#lexer = undefined
-      return undefined
+      this.#token = undefined
+      return
     }
-    const token = this.readNextArgToken()
-    this.#chunkIndex++
-    this.nextLexer()
-    return token
-  }
 
-  private readNextArgToken(): Token {
     const arg = this.#args[this.#chunkIndex]
     switch (typeof arg) {
-      case 'number': return [TokenType.Integer, arg]
-      case 'string': return [TokenType.String, arg]
-      case 'symbol': return [TokenType.Symbol, arg]
+      case 'number':
+        this.#token = [TokenType.Integer, arg]
+        break
+      case 'string':
+        this.#token = [TokenType.String, arg]
+        break
+      case 'symbol':
+        this.#token = [TokenType.Symbol, arg]
+        break
       default: throw TypeError(`unexpected argument ${arg}`)
     }
+
+    this.nextLexer()
   }
 
   private nextLexer() {
-    this.#lexer = new Lexer(this.#chunks[this.#chunkIndex])
+    this.#lexer = new Lexer(this.#chunks[++this.#chunkIndex])
   }
 
   [Symbol.iterator](): IterableIterator<Navigator> {
