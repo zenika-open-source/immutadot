@@ -16,10 +16,10 @@ export function make(updater: (value: any, args: any[]) => any): (tmplChunks: Te
 
     const path = parse(tmplChunks, tmplArgs)
 
-    return (...args: any[]) => (root: any) => {
+    return (...args: any[]) => (root: any, refs?: Set<any>) => {
       const accesses = read(path, root)
       accesses[path.length].forEach((access) => { access.value = updater(access.value, args) })
-      write(accesses)
+      write(accesses, refs)
       return accesses[0][0].value
     }
   }

@@ -29,15 +29,30 @@ export function read(path: Navigator[], root: any): Access[][] {
 
     switch (step[0]) {
       case NavigatorType.Prop:
-        accesses[i + 1] = accesses[i].map((parent) => ({ type: NavigatorType.Prop, parent, key: step[1], value: parent.value?.[step[1]] }))
+        accesses[i + 1] = accesses[i].map((parent) => ({
+          type: NavigatorType.Prop,
+          parent,
+          key: step[1],
+          value: parent.value?.[step[1]],
+        }))
         break
       case NavigatorType.Index:
-        accesses[i + 1] = accesses[i].map((parent) => ({ type: NavigatorType.Index, parent, key: step[1], value: parent.value?.[step[1]] }))
+        accesses[i + 1] = accesses[i].map((parent) => ({
+          type: NavigatorType.Index,
+          parent,
+          key: step[1],
+          value: parent.value?.[step[1]],
+        }))
         break
       case NavigatorType.Slice:
         accesses[i + 1] = accesses[i].flatMap((parent) => {
           const [start, end] = resolveSlice(parent.value, step[1], step[2])
-          return slice(parent.value, start, end).map<IndexAccess>((value, index) => ({ type: NavigatorType.Index, parent, key: start + index, value }))
+          return slice(parent.value, start, end).map<IndexAccess>((value, index) => ({
+            type: NavigatorType.Index,
+            parent,
+            key: start + index,
+            value,
+          }))
         })
         break
       default: throw TypeError('not implemented')
@@ -55,9 +70,7 @@ function resolveSlice(value: any, start: number, end: number): [number, number] 
   return [start ?? 0, end ?? value.length ?? 0]
 }
 
-export function write(accesses: Access[][]) {
-  const refs = new Set()
-
+export function write(accesses: Access[][], refs = new Set()) {
   for (let i = accesses.length - 1; i > 0; i--) {
     for (const { type, parent, key, value } of accesses[i]) {
       if (!refs.has(parent.value)) refs.add(parent.value = copy(parent.value, type))
