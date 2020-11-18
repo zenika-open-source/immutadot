@@ -36,9 +36,8 @@ export function read(path: Navigator[], root: any): Access[][] {
         break
       case NavigatorType.Slice:
         accesses[i + 1] = accesses[i].flatMap((parent) => {
-          if (!Array.isArray(parent[3])) return []
-          const slice = resolveSlice(parent[3], step[1], step[2])
-          return parent[3].slice(...slice).map<IndexAccess>((value, index) => [NavigatorType.Index, parent, slice[0] + index, value])
+          const [start, end] = resolveSlice(parent[3], step[1], step[2])
+          return slice(parent[3], start, end).map<IndexAccess>((value, index) => [NavigatorType.Index, parent, start + index, value])
         })
         break
       default: throw TypeError('not implemented')
@@ -48,8 +47,12 @@ export function read(path: Navigator[], root: any): Access[][] {
   return accesses
 }
 
+function slice(value: any, start: number, end: number): any[] {
+  return value.slice(start, end)
+}
+
 function resolveSlice(value: any, start: number, end: number): [number, number] {
-  return [start, end]
+  return [start ?? 0, end ?? value.length ?? 0]
 }
 
 export function write(accesses: Access[][]) {
