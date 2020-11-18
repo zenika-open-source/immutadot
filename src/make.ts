@@ -8,9 +8,9 @@ export function make(updater: (value: any, args: any[]) => any): (tmplChunks: Te
 
       return (...args: any[]) => {
         const accesses = read(path, tmplArgs[0])
-        accesses[path.length].forEach((access) => { access[3] = updater(access[3], args) })
+        accesses[path.length].forEach((access) => { access.value = updater(access.value, args) })
         write(accesses)
-        return accesses[0][0][3]
+        return accesses[0][0].value
       }
     }
 
@@ -18,9 +18,9 @@ export function make(updater: (value: any, args: any[]) => any): (tmplChunks: Te
 
     return (...args: any[]) => (root: any) => {
       const accesses = read(path, root)
-      accesses[path.length].forEach((access) => { access[3] = updater(access[3], args) })
+      accesses[path.length].forEach((access) => { access.value = updater(access.value, args) })
       write(accesses)
-      return accesses[0][0][3]
+      return accesses[0][0].value
     }
   }
 }

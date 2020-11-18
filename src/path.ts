@@ -15,29 +15,29 @@ export const enum NavigatorType {
 
 export type Access = RootAccess | PropAccess | IndexAccess
 
-export type RootAccess = [NavigatorType.Root, null, null, any]
-export type PropAccess = [NavigatorType.Prop, Access, string | symbol, any]
-export type IndexAccess = [NavigatorType.Index, Access, number, any]
+export type RootAccess = { type: NavigatorType.Root, parent: undefined, key: undefined, value: any }
+export type PropAccess = { type: NavigatorType.Prop, parent: Access, key: string | symbol, value: any }
+export type IndexAccess = { type: NavigatorType.Index, parent: Access, key: number, value: any }
 
 export function read(path: Navigator[], root: any): Access[][] {
   const accesses: Access[][] = Array(path.length + 1)
 
-  accesses[0] = [[NavigatorType.Root, null, null, root]]
+  accesses[0] = [{ type: NavigatorType.Root, parent: undefined, key: undefined, value: root }]
 
   for (let i = 0; i < path.length; i++) {
     const step = path[i]
 
     switch (step[0]) {
       case NavigatorType.Prop:
-        accesses[i + 1] = accesses[i].map((parent) => [NavigatorType.Prop, parent, step[1], parent[3]?.[step[1]]])
+        accesses[i + 1] = accesses[i].map((parent) => ({ type: NavigatorType.Prop, parent, key: step[1], value: parent.value?.[step[1]] }))
         break
       case NavigatorType.Index:
-        accesses[i + 1] = accesses[i].map((parent) => [NavigatorType.Index, parent, step[1], parent[3]?.[step[1]]])
+        accesses[i + 1] = accesses[i].map((parent) => ({ type: NavigatorType.Index, parent, key: step[1], value: parent.value?.[step[1]] }))
         break
       case NavigatorType.Slice:
         accesses[i + 1] = accesses[i].flatMap((parent) => {
-          const [start, end] = resolveSlice(parent[3], step[1], step[2])
-          return slice(parent[3], start, end).map<IndexAccess>((value, index) => [NavigatorType.Index, parent, start + index, value])
+          const [start, end] = resolveSlice(parent.value, step[1], step[2])
+          return slice(parent.value, start, end).map<IndexAccess>((value, index) => ({ type: NavigatorType.Index, parent, key: start + index, value }))
         })
         break
       default: throw TypeError('not implemented')
@@ -59,9 +59,9 @@ export function write(accesses: Access[][]) {
   const refs = new Set()
 
   for (let i = accesses.length - 1; i > 0; i--) {
-    for (const [type, parent, key, value] of accesses[i]) {
-      if (!refs.has(parent[3])) refs.add(parent[3] = copy(parent[3], type))
-      parent[3][key] = value
+    for (const { type, parent, key, value } of accesses[i]) {
+      if (!refs.has(parent.value)) refs.add(parent.value = copy(parent.value, type))
+      parent.value[key] = value
     }
   }
 }
