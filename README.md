@@ -20,25 +20,27 @@ immutadot gives you a short and meaningful syntax to apply operations on immutab
 [![codecov](https://codecov.io/gh/zenika-open-source/immutadot/branch/master/graph/badge.svg)](https://codecov.io/gh/zenika-open-source/immutadot)
 [![gitmoji-changelog](https://img.shields.io/badge/Changelog-gitmoji-brightgreen.svg)](https://github.com/frinyvonnick/gitmoji-changelog)
 
-## [2.0](https://github.com/zenika-open-source/immutadot/milestone/12) is in alpha :tada:
+## :construction: I'm currently rewriting immutadot
 
-immutadot 2.0 in a nutshell:
- - :zap: Performance improvements (immutadot's way of navigating structures has been rewritten)
- - :sparkles: [Negative array indexes](https://github.com/zenika-open-source/immutadot/issues/169)
- - :sparkles: [Step in slice notation](https://github.com/zenika-open-source/immutadot/issues/295)
- - :sparkles: [`get()`](https://immutadot.zenika.com/api/immutadot/2.0/core.html#.get) now supports all kinds of paths
+Hi :wave:, I'm currently rewriting entirely immutadot, and hopefully I will publish a v3 very soon (v2 never reached a satisfying state).
 
-Test it:
+Here is a pick at the new API which uses [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals):
 
-```shell
-yarn add immutadot@2.0.0-alpha.1
-# or
-npm install immutadot@2.0.0-alpha.1
+```js
+import { set } from 'immutadot'
+
+const animals = {
+  weasels: {
+    lutraLutra: {
+      commonNames: ['eurasian otter'],
+    },
+  },
+}
+
+const newAnimals = set`${animals}.weasels.lutraLutra.name'('Lutrinae')
 ```
 
-New documentation is available here:
-- [immutadot 2.0](https://immutadot.zenika.com/api/immutadot/2.0)
-- [immutadot-lodash 2.0](https://immutadot.zenika.com/api/immutadot-lodash/2.0)
+Check out the [v3 branch](https://github.com/zenika-open-source/immutadot/tree/v3/) if you're interested.
 
 ## Installation
 
