@@ -78,9 +78,10 @@ class Parser implements IterableIterator<Navigator> {
     return navigator
   }
 
-  private readIndexOrSlice(): IndexNavigator | SliceNavigator {
+  private readIndexOrSlice(): IndexNavigator | SliceNavigator | PropNavigator {
     const n = this.readInteger()
-    return this.#nextToken?.[0] === TokenType.Colon ? this.readSlice(n) : [NavigatorType.Index, n]
+    if (this.#nextToken?.[0] === TokenType.Colon) return this.readSlice(n)
+    return n >= 0 ? [NavigatorType.Index, n] : [NavigatorType.Prop, n.toString()]
   }
 
   private readSlice(start: number): SliceNavigator {
@@ -128,6 +129,7 @@ class Parser implements IterableIterator<Navigator> {
     const arg = this.#args[this.#chunkIndex]
     switch (typeof arg) {
       case 'number':
+        // FIXME check arg is an integer
         this.#nextToken = [TokenType.Integer, arg]
         break
       case 'string':
