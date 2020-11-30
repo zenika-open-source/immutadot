@@ -86,9 +86,9 @@ class Parser implements IterableIterator<Navigator> {
   private readSlice(start: number): SliceNavigator {
     if (this.#nextToken[0] === TokenType.Colon) this.readToken()
     let end: number
-    if (this.#nextToken?.[0] === TokenType.Integer) {
-      this.readToken();
-      [, end] = this.#token
+    if (this.#nextToken?.[0] === TokenType.Integer || this.#nextToken?.[0] === TokenType.Minus) {
+      this.readToken()
+      end = this.readInteger()
     }
     return [NavigatorType.Slice, start, end]
   }

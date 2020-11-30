@@ -54,12 +54,23 @@ describe('parse', () => {
     ])
   })
 
-  it('should parse slice navigators', () => {
+  it('should parse slices', () => {
     expect(parse(['[1:2][3:][:4][:]'], [])).toEqual([
       [NavigatorType.Slice, 1, 2],
       [NavigatorType.Slice, 3, undefined],
       [NavigatorType.Slice, undefined, 4],
       [NavigatorType.Slice, undefined, undefined],
+    ])
+  })
+
+  it('should parse negative slices', () => {
+    expect(parse(['[-1:-2][-3:][:-4][:][5:-6][-7:8]'], [])).toEqual([
+      [NavigatorType.Slice, -1, -2],
+      [NavigatorType.Slice, -3, undefined],
+      [NavigatorType.Slice, undefined, -4],
+      [NavigatorType.Slice, undefined, undefined],
+      [NavigatorType.Slice, 5, -6],
+      [NavigatorType.Slice, -7, 8],
     ])
   })
 })
