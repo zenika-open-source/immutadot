@@ -1,8 +1,8 @@
 import { recurFreeze } from '../recurFreeze'
 import { push } from './push'
 
-describe('Set', () => {
-  it('should set a nested property (prop navigators only)', () => {
+describe('Push', () => {
+  it('should push in a nested array (prop navigators only)', () => {
     const o = recurFreeze({
       nested: {
         array: [1, 2, 3],
