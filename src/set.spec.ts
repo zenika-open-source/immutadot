@@ -137,5 +137,11 @@ describe('Set', () => {
       ['bar', 'aze', 'aze'],
       'plop',
     ])
+
+    expect(set`${a}[1][-4:-1]`('aze')).toEqual([
+      'foo',
+      ['aze', 'aze', 'qwe'],
+      'plop',
+    ])
   })
 })

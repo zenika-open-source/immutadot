@@ -47,11 +47,11 @@ export function read(path: Navigator[], root: any): Access[][] {
       case NavigatorType.Slice:
         accesses[i + 1] = accesses[i].flatMap((parent) => {
           const [start, end] = resolveSlice(parent.value, step[1], step[2])
-          return slice(parent.value, start, end).map<IndexAccess>((value, index) => ({
+          return Array.from<any, IndexAccess>({ length: end - start }, (_, index) => ({
             type: NavigatorType.Index,
             parent,
             key: start + index,
-            value,
+            value: parent.value?.[start + index],
           }))
         })
         break
@@ -62,26 +62,14 @@ export function read(path: Navigator[], root: any): Access[][] {
   return accesses
 }
 
-function slice(value: any, start: number, end: number): any[] {
-  return value.slice(start, end)
-}
-
 function resolveSlice(value: any, start: number, end: number): [number, number] {
-  return [resolveSliceStart(value, start), resolveSliceEnd(value, end)]
+  return [resolveSliceIndex(value, start ?? 0), resolveSliceIndex(value, end ?? value?.length ?? 0)]
 }
 
-function resolveSliceStart(value: any, start: number) {
-  if (start === undefined || start === null) return 0
-  if (start >= 0) return start
+function resolveSliceIndex(value: any, index: number): number {
+  if (index >= 0) return index
   if (!value || !('length' in value)) return 0
-  return value.length + start // FIXME check is positive integer
-}
-
-function resolveSliceEnd(value: any, end: number) {
-  if (end === undefined || end === null) return value.length ?? 0
-  if (end >= 0) return end
-  if (!value || !('length' in value)) return 0
-  return value.length + end // FIXME check is positive integer
+  return -index < value.length ? value.length + index : 0
 }
 
 export function write(accesses: Access[][], refs = new Set()) {
