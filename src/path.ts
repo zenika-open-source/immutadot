@@ -67,7 +67,21 @@ function slice(value: any, start: number, end: number): any[] {
 }
 
 function resolveSlice(value: any, start: number, end: number): [number, number] {
-  return [start ?? 0, end ?? value.length ?? 0]
+  return [resolveSliceStart(value, start), resolveSliceEnd(value, end)]
+}
+
+function resolveSliceStart(value: any, start: number) {
+  if (start === undefined || start === null) return 0
+  if (start >= 0) return start
+  if (!value || !('length' in value)) return 0
+  return value.length + start // FIXME check is positive integer
+}
+
+function resolveSliceEnd(value: any, end: number) {
+  if (end === undefined || end === null) return value.length ?? 0
+  if (end >= 0) return end
+  if (!value || !('length' in value)) return 0
+  return value.length + end // FIXME check is positive integer
 }
 
 export function write(accesses: Access[][], refs = new Set()) {
