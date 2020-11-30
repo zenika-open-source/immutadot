@@ -1,5 +1,5 @@
 import Lexer from './lexer'
-import { Navigator, NavigatorType, PropNavigator, SliceNavigator } from './path'
+import { IndexNavigator, Navigator, NavigatorType, PropNavigator, SliceNavigator } from './path'
 import { Token, TokenType } from './token'
 
 export function parse(chunks: readonly string[], args: any[]): Navigator[] {
@@ -58,17 +58,18 @@ class Parser implements IterableIterator<Navigator> {
 
     let navigator: Navigator
     switch (this.#token?.[0]) {
+      case TokenType.Minus:
       case TokenType.Integer:
-        navigator = this.#nextToken?.[0] === TokenType.Colon ? this.readSlice() : [NavigatorType.Index, this.#token[1]]
+        navigator = this.readIndexOrSlice()
         break
       case TokenType.String:
       case TokenType.Symbol:
         navigator = [NavigatorType.Prop, this.#token[1]]
         break
       case TokenType.Colon:
-        navigator = this.readSlice()
+        navigator = this.readSlice(undefined)
         break
-      default: throw SyntaxError(`unexpected ${this.#token?.[0] ?? 'EOF'} expected one of integer, string, symbol`)
+      default: throw new SyntaxError(`unexpected ${this.#token?.[0] ?? 'EOF'} expected one of integer, string, symbol`)
     }
 
     this.readToken()
@@ -77,12 +78,13 @@ class Parser implements IterableIterator<Navigator> {
     return navigator
   }
 
-  private readSlice(): SliceNavigator {
-    let start: number
-    if (this.#token[0] === TokenType.Integer) {
-      [, start] = this.#token
-      this.readToken()
-    }
+  private readIndexOrSlice(): IndexNavigator | SliceNavigator {
+    const n = this.readInteger()
+    return this.#nextToken?.[0] === TokenType.Colon ? this.readSlice(n) : [NavigatorType.Index, n]
+  }
+
+  private readSlice(start: number): SliceNavigator {
+    if (this.#nextToken[0] === TokenType.Colon) this.readToken()
     let end: number
     if (this.#nextToken?.[0] === TokenType.Integer) {
       this.readToken();
@@ -91,8 +93,16 @@ class Parser implements IterableIterator<Navigator> {
     return [NavigatorType.Slice, start, end]
   }
 
+  private readInteger(): number {
+    if (this.#token[0] === TokenType.Integer) return this.#token[1]
+    this.readToken()
+    // @ts-ignore: ts(2637) shitty type assertion
+    if (this.#token[0] !== TokenType.Integer) throw new SyntaxError(`unexpected ${this.#token?.[0] ?? 'EOF'} expected integer`)
+    return -this.#token[1]
+  }
+
   private assertTokenType(...types: TokenType[]) {
-    if (!types.includes(this.#token?.[0])) throw SyntaxError(`unexpected ${this.#token?.[0] ?? 'EOF'} expected one of ${types}`)
+    if (!types.includes(this.#token?.[0])) throw new SyntaxError(`unexpected ${this.#token?.[0] ?? 'EOF'} expected one of ${types}`)
   }
 
   private readToken() {

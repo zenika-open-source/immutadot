@@ -22,7 +22,7 @@ describe('parse', () => {
     ])
   })
 
-  it('should parse index navigators', () => {
+  it('should parse indexes', () => {
     expect(parse(['[1][2][3]'], [])).toEqual([
       [NavigatorType.Index, 1],
       [NavigatorType.Index, 2],
@@ -30,11 +30,11 @@ describe('parse', () => {
     ])
   })
 
-  it('should parse negative index navigators', () => {
+  it('should parse negative indexes', () => {
     expect(parse(['[-1][- 2][-3]'], [])).toEqual([
-      [NavigatorType.Index, 1],
-      [NavigatorType.Index, 2],
-      [NavigatorType.Index, 3],
+      [NavigatorType.Index, -1],
+      [NavigatorType.Index, -2],
+      [NavigatorType.Index, -3],
     ])
   })
 
@@ -43,6 +43,14 @@ describe('parse', () => {
       [NavigatorType.Index, 1],
       [NavigatorType.Index, 2],
       [NavigatorType.Index, 3],
+    ])
+  })
+
+  it('should parse negative interpolated indexes', () => {
+    expect(parse(['[', '][', '][', ']'], [-1, -2, -3])).toEqual([
+      [NavigatorType.Index, -1],
+      [NavigatorType.Index, -2],
+      [NavigatorType.Index, -3],
     ])
   })
 
