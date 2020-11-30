@@ -112,4 +112,30 @@ describe('Set', () => {
       'plop',
     ])
   })
+
+  it('should support negative array slices', () => {
+    const a = recurFreeze([
+      'foo',
+      ['bar', 'baz', 'qwe'],
+      'plop',
+    ])
+
+    expect(set`${a}[1][-3:-1]`('aze')).toEqual([
+      'foo',
+      ['aze', 'aze', 'qwe'],
+      'plop',
+    ])
+
+    expect(set`${a}[1][:-2]`('aze')).toEqual([
+      'foo',
+      ['aze', 'baz', 'qwe'],
+      'plop',
+    ])
+
+    expect(set`${a}[1][-2:]`('aze')).toEqual([
+      'foo',
+      ['bar', 'aze', 'aze'],
+      'plop',
+    ])
+  })
 })
