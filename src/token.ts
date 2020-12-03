@@ -23,5 +23,5 @@ export type Token = (
   [TokenType.Integer, number, number] |
   [TokenType.String, string, number] |
   [TokenType.Symbol, symbol, number] |
-  [TokenType.Illegal, any, number]
+  [TokenType.Illegal, any, number, string?]
 )

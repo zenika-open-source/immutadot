@@ -25,7 +25,7 @@ export default class Lexer implements IterableIterator<Token> {
       this.#afterInteger = false
 
       if (isDecimalDigit(this.#ch) || isIdentifierStart(this.#ch)) {
-        token = [TokenType.Illegal, this.#ch, this.#position]
+        token = [TokenType.Illegal, this.#ch, this.#position, 'A numeric literal must not be immediately followed by an identifier start or decimal digit']
         this.readChar()
         return { value: token }
       }

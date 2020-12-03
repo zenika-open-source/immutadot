@@ -64,22 +64,22 @@ describe('Lexer', () => {
   it('should return illegal for decimal digit immediately following numeric literal', () => {
     expect([...new Lexer('00 01 09')]).toEqual([
       [TokenType.Integer, 0, 0],
-      [TokenType.Illegal, '0', 1],
+      [TokenType.Illegal, '0', 1, 'A numeric literal must not be immediately followed by an identifier start or decimal digit'],
       [TokenType.Integer, 0, 3],
-      [TokenType.Illegal, '1', 4],
+      [TokenType.Illegal, '1', 4, 'A numeric literal must not be immediately followed by an identifier start or decimal digit'],
       [TokenType.Integer, 0, 6],
-      [TokenType.Illegal, '9', 7],
+      [TokenType.Illegal, '9', 7, 'A numeric literal must not be immediately followed by an identifier start or decimal digit'],
     ])
   })
 
   it('should return illegal for identifier start immediately following numeric literal', () => {
     expect([...new Lexer('0_ 1a 2$')]).toEqual([
       [TokenType.Integer, 0, 0],
-      [TokenType.Illegal, '_', 1],
+      [TokenType.Illegal, '_', 1, 'A numeric literal must not be immediately followed by an identifier start or decimal digit'],
       [TokenType.Integer, 1, 3],
-      [TokenType.Illegal, 'a', 4],
+      [TokenType.Illegal, 'a', 4, 'A numeric literal must not be immediately followed by an identifier start or decimal digit'],
       [TokenType.Integer, 2, 6],
-      [TokenType.Illegal, '$', 7],
+      [TokenType.Illegal, '$', 7, 'A numeric literal must not be immediately followed by an identifier start or decimal digit'],
     ])
   })
 
