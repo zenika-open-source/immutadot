@@ -144,7 +144,7 @@ export default class Lexer implements IterableIterator<Token> {
         this.readChar()
       }
     } while (this.#ch !== undefined && this.#ch !== delim)
-    if (this.#ch === undefined) return [TokenType.Illegal, this.#source.slice(position, this.#position), position]
+    if (this.#ch === undefined) return [TokenType.Illegal, this.#source.slice(position, this.#position), position, 'unterminated string literal']
     return [TokenType.String, this.#source.slice(position + 1, this.#position).replace(/\\(.)/g, '$1'), position]
   }
 

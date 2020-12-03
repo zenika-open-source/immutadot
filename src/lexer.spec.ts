@@ -127,5 +127,9 @@ describe('Lexer', () => {
     ])
   })
 
-  // FIXME test illegals
+  it('should return illegal for unterminated string literal', () => {
+    expect([...new Lexer('"foo')]).toEqual([
+      [TokenType.Illegal, '"foo', 0, 'unterminated string literal'],
+    ])
+  })
 })
