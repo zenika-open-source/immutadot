@@ -124,9 +124,11 @@ export default class Lexer implements IterableIterator<Token> {
   private readHexInteger(): Token {
     const position = this.#position
     this.readChar()
-    const ch = this.peekChar()
-    if (!isHexDigit(ch)) return [TokenType.Illegal, this.#source.slice(position, this.#position), position]
-    do { this.readChar() } while (isHexDigit(this.#ch))
+    this.readChar()
+    const ch = this.#ch
+    this.readChar()
+    if (!isHexDigit(ch)) return [TokenType.Illegal, this.#source.slice(position, this.#position), position, 'expected hexadecimal digit']
+    while (isHexDigit(this.#ch)) { this.readChar() }
     return [TokenType.Integer, Number(this.#source.slice(position, this.#position)), position]
   }
 

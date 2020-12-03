@@ -120,5 +120,12 @@ describe('Lexer', () => {
     ])
   })
 
+  it('should return illegal for non hexadecimal digit following hexadecimal integer prefix', () => {
+    expect([...new Lexer('0xg 0x_')]).toEqual([
+      [TokenType.Illegal, '0xg', 0, 'expected hexadecimal digit'],
+      [TokenType.Illegal, '0x_', 4, 'expected hexadecimal digit'],
+    ])
+  })
+
   // FIXME test illegals
 })
