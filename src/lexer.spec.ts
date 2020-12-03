@@ -61,6 +61,19 @@ describe('Lexer', () => {
     expect([...new Lexer('')]).toEqual([])
   })
 
+  it('should return illegal for any unauthorized character', () => {
+    expect([...new Lexer('#@%^!+()')]).toEqual([
+      [TokenType.Illegal, '#', 0],
+      [TokenType.Illegal, '@', 1],
+      [TokenType.Illegal, '%', 2],
+      [TokenType.Illegal, '^', 3],
+      [TokenType.Illegal, '!', 4],
+      [TokenType.Illegal, '+', 5],
+      [TokenType.Illegal, '(', 6],
+      [TokenType.Illegal, ')', 7],
+    ])
+  })
+
   it('should return illegal for decimal digit immediately following numeric literal', () => {
     expect([...new Lexer('00 01 09')]).toEqual([
       [TokenType.Integer, 0, 0],
