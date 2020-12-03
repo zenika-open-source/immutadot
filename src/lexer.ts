@@ -100,9 +100,11 @@ export default class Lexer implements IterableIterator<Token> {
   private readBinaryInteger(): Token {
     const position = this.#position
     this.readChar()
-    const ch = this.peekChar()
-    if (!isBinaryDigit(ch)) return [TokenType.Illegal, this.#source.slice(position, this.#position), position]
-    do { this.readChar() } while (isBinaryDigit(this.#ch))
+    this.readChar()
+    const ch = this.#ch
+    this.readChar()
+    if (!isBinaryDigit(ch)) return [TokenType.Illegal, this.#source.slice(position, this.#position), position, 'expected binary digit']
+    while (isBinaryDigit(this.#ch)) { this.readChar() }
     return [TokenType.Integer, Number(this.#source.slice(position, this.#position)), position]
   }
 

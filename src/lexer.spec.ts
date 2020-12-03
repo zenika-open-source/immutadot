@@ -104,5 +104,13 @@ describe('Lexer', () => {
     ])
   })
 
+  it('should return illegal for non binary digit following binary integer prefix', () => {
+    expect([...new Lexer('0b2 0ba 0b_')]).toEqual([
+      [TokenType.Illegal, '0b2', 0, 'expected binary digit'],
+      [TokenType.Illegal, '0ba', 4, 'expected binary digit'],
+      [TokenType.Illegal, '0b_', 8, 'expected binary digit'],
+    ])
+  })
+
   // FIXME test illegals
 })
