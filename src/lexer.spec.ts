@@ -72,5 +72,16 @@ describe('Lexer', () => {
     ])
   })
 
+  it('should return illegal for identifier start immediately following numeric literal', () => {
+    expect([...new Lexer('0_ 1a 2$')]).toEqual([
+      [TokenType.Integer, 0, 0],
+      [TokenType.Illegal, '_', 1],
+      [TokenType.Integer, 1, 3],
+      [TokenType.Illegal, 'a', 4],
+      [TokenType.Integer, 2, 6],
+      [TokenType.Illegal, '$', 7],
+    ])
+  })
+
   // FIXME test illegals
 })

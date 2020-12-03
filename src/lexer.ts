@@ -23,14 +23,11 @@ export default class Lexer implements IterableIterator<Token> {
     // The SourceCharacter immediately following a NumericLiteral must not be an IdentifierStart or DecimalDigit.
     if (this.#afterInteger) {
       this.#afterInteger = false
-      if (isDecimalDigit(this.#ch)) {
+
+      if (isDecimalDigit(this.#ch) || isIdentifierStart(this.#ch)) {
         token = [TokenType.Illegal, this.#ch, this.#position]
         this.readChar()
         return { value: token }
-      }
-      if (isIdentifierStart(this.#ch)) {
-        const [, literal] = this.readIdentifier()
-        return { value: [TokenType.Illegal, literal, this.#position] }
       }
     }
 
@@ -75,7 +72,10 @@ export default class Lexer implements IterableIterator<Token> {
       case '_':
         return { value: this.readIdentifier() }
       default:
-        if (isNonZeroDigit(this.#ch)) return { value: this.readDecimalInteger() }
+        if (isNonZeroDigit(this.#ch)) {
+          this.#afterInteger = true
+          return { value: this.readDecimalInteger() }
+        }
         if (isIdentifierStart(this.#ch)) return { value: this.readIdentifier() }
         token = [TokenType.Illegal, this.#ch, this.#position]
     }
@@ -196,12 +196,14 @@ function isHexDigit(ch: string) {
 const identifierStart = /\p{ID_Start}/u
 
 function isIdentifierStart(ch: string) {
-  return ch !== undefined && identifierStart.test(ch)
+  if (ch === undefined) return false
+  return ch === '$' || ch === '_' || identifierStart.test(ch)
 }
 
 // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-IdentifierPart
 const identifierPart = /[$\p{ID_Continue}\u200c\u200d]/u
 
 function isIdentifierPart(ch: string) {
-  return ch !== undefined && identifierPart.test(ch)
+  if (ch === undefined) return false
+  return ch === '$' || identifierPart.test(ch)
 }
