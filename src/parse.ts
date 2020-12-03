@@ -130,13 +130,13 @@ class Parser implements IterableIterator<Navigator> {
     switch (typeof arg) {
       case 'number':
         // FIXME check arg is an integer
-        this.#nextToken = [TokenType.Integer, arg]
+        this.#nextToken = [TokenType.Integer, arg, 0] // FIXME position
         break
       case 'string':
-        this.#nextToken = [TokenType.String, arg]
+        this.#nextToken = [TokenType.String, arg, 0] // FIXME position
         break
       case 'symbol':
-        this.#nextToken = [TokenType.Symbol, arg]
+        this.#nextToken = [TokenType.Symbol, arg, 0] // FIXME position
         break
       default: throw TypeError(`unexpected argument ${arg}`)
     }
