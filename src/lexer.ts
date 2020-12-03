@@ -19,11 +19,14 @@ export default class Lexer implements IterableIterator<Token> {
   next(): IteratorResult<Token> {
     let token: Token
 
+    // https://www.ecma-international.org/ecma-262/11.0/index.html#sec-literals-numeric-literals
+    // The SourceCharacter immediately following a NumericLiteral must not be an IdentifierStart or DecimalDigit.
     if (this.#afterInteger) {
       this.#afterInteger = false
-      if (isNonZeroDigit(this.#ch)) {
-        const [, literal] = this.readDecimalInteger()
-        return { value: [TokenType.Illegal, literal, this.#position] }
+      if (isDecimalDigit(this.#ch)) {
+        token = [TokenType.Illegal, this.#ch, this.#position]
+        this.readChar()
+        return { value: token }
       }
       if (isIdentifierStart(this.#ch)) {
         const [, literal] = this.readIdentifier()

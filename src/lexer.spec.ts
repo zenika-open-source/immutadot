@@ -61,5 +61,16 @@ describe('Lexer', () => {
     expect([...new Lexer('')]).toEqual([])
   })
 
+  it('should return illegal for decimal digit immediately following numeric literal', () => {
+    expect([...new Lexer('00 01 09')]).toEqual([
+      [TokenType.Integer, 0, 0],
+      [TokenType.Illegal, '0', 1],
+      [TokenType.Integer, 0, 3],
+      [TokenType.Illegal, '1', 4],
+      [TokenType.Integer, 0, 6],
+      [TokenType.Illegal, '9', 7],
+    ])
+  })
+
   // FIXME test illegals
 })
