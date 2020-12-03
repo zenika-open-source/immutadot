@@ -112,5 +112,13 @@ describe('Lexer', () => {
     ])
   })
 
+  it('should return illegal for non octal digit following octal integer prefix', () => {
+    expect([...new Lexer('0o8 0oa 0o_')]).toEqual([
+      [TokenType.Illegal, '0o8', 0, 'expected octal digit'],
+      [TokenType.Illegal, '0oa', 4, 'expected octal digit'],
+      [TokenType.Illegal, '0o_', 8, 'expected octal digit'],
+    ])
+  })
+
   // FIXME test illegals
 })
