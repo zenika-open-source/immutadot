@@ -13,15 +13,15 @@ export const enum TokenType {
 }
 
 export type Token = (
-  [TokenType.Dot] |
-  [TokenType.OptDot] |
-  [TokenType.LBracket] |
-  [TokenType.RBracket] |
-  [TokenType.Colon] |
-  [TokenType.Minus] |
-  [TokenType.Identifier, string] |
-  [TokenType.Integer, number] |
-  [TokenType.String, string] |
-  [TokenType.Symbol, symbol] |
-  [TokenType.Illegal, any]
+  [TokenType.Dot, undefined, number] |
+  [TokenType.OptDot, undefined, number] |
+  [TokenType.LBracket, undefined, number] |
+  [TokenType.RBracket, undefined, number] |
+  [TokenType.Colon, undefined, number] |
+  [TokenType.Minus, undefined, number] |
+  [TokenType.Identifier, string, number] |
+  [TokenType.Integer, number, number] |
+  [TokenType.String, string, number] |
+  [TokenType.Symbol, symbol, number] |
+  [TokenType.Illegal, any, number]
 )
