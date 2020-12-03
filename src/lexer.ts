@@ -25,7 +25,7 @@ export default class Lexer implements IterableIterator<Token> {
       this.#afterInteger = false
 
       if (isDecimalDigit(this.#ch) || isIdentifierStart(this.#ch)) {
-        token = [TokenType.Illegal, this.#ch, this.#position, 'A numeric literal must not be immediately followed by an identifier start or decimal digit']
+        token = [TokenType.Illegal, this.#ch, this.#position, 'a numeric literal must not be immediately followed by an identifier start or decimal digit']
         this.readChar()
         return { value: token }
       }
@@ -36,14 +36,7 @@ export default class Lexer implements IterableIterator<Token> {
     switch (this.#ch) {
       case undefined: return { done: true, value: null }
       case '.': token = [TokenType.Dot, undefined, this.#position]; break
-      case '?':
-        if (this.peekChar() === '.') {
-          token = [TokenType.OptDot, undefined, this.#position]
-          this.readChar()
-        } else {
-          token = [TokenType.Illegal, '?', this.#position]
-        }
-        break
+      case '?': token = this.readOptDot(); break
       case '[': token = [TokenType.LBracket, undefined, this.#position]; break
       case ':': token = [TokenType.Colon, undefined, this.#position]; break
       case ']': token = [TokenType.RBracket, undefined, this.#position]; break
@@ -87,6 +80,13 @@ export default class Lexer implements IterableIterator<Token> {
 
   private skipWhitespaces() {
     while (isWhitespace(this.#ch)) this.readChar()
+  }
+
+  private readOptDot(): Token {
+    this.readChar()
+    return this.#ch === '.'
+      ? [TokenType.OptDot, undefined, this.#position - 1]
+      : [TokenType.Illegal, `?${this.#ch}`, this.#position - 1, '? must be followed by .']
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-DecimalIntegerLiteral
