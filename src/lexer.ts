@@ -193,17 +193,17 @@ function isHexDigit(ch: string) {
 }
 
 // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-IdentifierStart
-const identifierStart = /\p{ID_Start}/u
+const unicodeIDStart = /\p{ID_Start}/u
 
 function isIdentifierStart(ch: string) {
   if (ch === undefined) return false
-  return ch === '$' || ch === '_' || identifierStart.test(ch)
+  return ch === '$' || ch === '_' || unicodeIDStart.test(ch)
 }
 
 // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-IdentifierPart
-const identifierPart = /[$\p{ID_Continue}\u200c\u200d]/u
+const unicodeIDContinue = /[$\p{ID_Continue}\u200c\u200d]/u
 
 function isIdentifierPart(ch: string) {
   if (ch === undefined) return false
-  return ch === '$' || identifierPart.test(ch)
+  return ch === '$' || unicodeIDContinue.test(ch)
 }
