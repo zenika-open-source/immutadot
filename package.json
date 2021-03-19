@@ -1,6 +1,6 @@
 {
   "name": "immutadot",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "description": "immutadot is an immutable data structure manipulation tool using dot notation",
   "main": "dist/index.js",
   "repository": "https://github.com/zenika-open-source/immutadot",
