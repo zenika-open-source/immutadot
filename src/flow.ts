@@ -1,8 +1,4 @@
-import { useRefs } from './make'
-
+// FIXME flow should take a path, otherwise it's _.flow()...
 export function flow(...fns: ((value: any) => any)[]): (value: any) => any {
-  return (value) => {
-    const refs = new Set()
-    return fns.reduce((res, fn) => (fn[useRefs]?.(refs) ?? fn)(res), value)
-  }
+  return (value) => fns.reduce((res, fn) => fn(res), value)
 }
