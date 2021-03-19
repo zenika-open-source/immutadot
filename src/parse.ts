@@ -1,8 +1,8 @@
 import Lexer from './lexer'
-import { IndexNavigator, Navigator, NavigatorType, PropNavigator, SliceNavigator } from './path'
+import { IndexNavigator, Navigator, NavigatorType, Path, PropNavigator, SliceNavigator } from './path'
 import { Token, TokenType } from './token'
 
-export function parse(chunks: readonly string[], args: any[]): Navigator[] {
+export function parse(chunks: readonly string[], args: any[]): Path {
   return [...new Parser(chunks, args)]
 }
 
