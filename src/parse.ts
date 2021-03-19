@@ -1,4 +1,4 @@
-import Lexer from './lexer'
+import { lex } from './lex'
 import { IndexNavigator, Navigator, NavigatorType, Path, PropNavigator, SliceNavigator } from './path'
 import { Token, TokenType } from './token'
 
@@ -13,7 +13,9 @@ class Parser implements IterableIterator<Navigator> {
 
   #chunkIndex = -1
 
-  #lexer: Lexer
+  #chunkTokens: Token[]
+
+  #chunkTokenIndex: number
 
   #token: Token
 
@@ -22,7 +24,7 @@ class Parser implements IterableIterator<Navigator> {
   constructor(chunks: readonly string[], args: any[]) {
     this.#chunks = chunks
     this.#args = args
-    this.nextLexer()
+    this.nextChunk()
     this.readToken()
     this.readToken()
   }
@@ -109,19 +111,18 @@ class Parser implements IterableIterator<Navigator> {
   private readToken() {
     this.#token = this.#nextToken
 
-    if (this.#lexer === undefined) {
+    if (this.#chunkTokens === undefined) {
       this.#nextToken = undefined
       return
     }
 
-    const res = this.#lexer.next()
-    if (!res.done) {
-      this.#nextToken = res.value
+    if (this.#chunkTokenIndex < this.#chunkTokens.length) {
+      this.#nextToken = this.#chunkTokens[this.#chunkTokenIndex++]
       return
     }
 
     if (this.#chunkIndex === this.#args.length) {
-      this.#lexer = undefined
+      this.#chunkTokens = undefined
       this.#nextToken = undefined
       return
     }
@@ -141,11 +142,12 @@ class Parser implements IterableIterator<Navigator> {
       default: throw TypeError(`unexpected argument ${arg}`)
     }
 
-    this.nextLexer()
+    this.nextChunk()
   }
 
-  private nextLexer() {
-    this.#lexer = new Lexer(this.#chunks[++this.#chunkIndex])
+  private nextChunk() {
+    this.#chunkTokens = lex(this.#chunks[++this.#chunkIndex])
+    this.#chunkTokenIndex = 0
   }
 
   [Symbol.iterator](): IterableIterator<Navigator> {

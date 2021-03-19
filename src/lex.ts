@@ -1,6 +1,10 @@
 import { Token, TokenType } from './token'
 
-export default class Lexer implements IterableIterator<Token> {
+export function lex(source: string): Token[] {
+  return [...new Lexer(source)]
+}
+
+class Lexer implements IterableIterator<Token> {
   #source: string
 
   #position: number
