@@ -1,5 +1,5 @@
+import { apply } from './apply'
 import { parse } from './parse'
-import { apply } from './path'
 
 export function make(updater: (value: any, args: any[]) => any): (tmplChunks: TemplateStringsArray, ...tmplArgs: any[]) => (...args: any[]) => any {
   return (tmplChunks, ...tmplArgs) => {
