@@ -19,7 +19,7 @@ export type RootAccess = { type: NavigatorType.Root, parent: undefined, key: und
 export type PropAccess = { type: NavigatorType.Prop, parent: Access, key: string | symbol, value: any }
 export type IndexAccess = { type: NavigatorType.Index, parent: Access, key: number, value: any }
 
-export function read(path: Navigator[], root: any): Access[][] {
+export function read(path: Path, root: any): Access[][] {
   const accesses: Access[][] = Array(path.length + 1)
 
   accesses[0] = [{ type: NavigatorType.Root, parent: undefined, key: undefined, value: root }]
@@ -60,6 +60,42 @@ export function read(path: Navigator[], root: any): Access[][] {
   }
 
   return accesses
+}
+
+type Updater = (value: any, args: any[]) => any
+
+// path = foo.bar, root= { foo: { bar: xxx } }
+
+export function apply(path: Path, parent: any, updater: Updater, args: any[]) {
+  if (path.length === 0) return updater(parent, args)
+
+  const [nav, ...pathRest] = path
+
+  switch (nav[0]) {
+    case NavigatorType.Prop:
+    case NavigatorType.Index: {
+      const value = parent?.[nav[1]]
+      const newValue = apply(pathRest, value, updater, args)
+      if (newValue === value) return parent
+      const parentCopy = copy(parent, nav[0])
+      parentCopy[nav[1]] = newValue
+      return parentCopy
+    }
+    case NavigatorType.Slice: {
+      const [start, end] = resolveSlice(parent, nav[1], nav[2])
+      let hasChanges = false
+      const newValues = parent?.slice(start, end).map((value: any) => {
+        const newValue = apply(pathRest, value, updater, args)
+        hasChanges ||= newValue !== value
+        return newValue
+      })
+      if (!hasChanges) return parent
+      const parentCopy = copy(parent, nav[0])
+      parentCopy.splice(start, end - start, ...newValues)
+      return parentCopy
+    }
+    default: throw TypeError('not implemented')
+  }
 }
 
 function resolveSlice(value: any, start: number, end: number): [number, number] {
