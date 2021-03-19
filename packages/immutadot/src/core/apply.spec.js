@@ -238,10 +238,6 @@ describe('path.apply', () => {
     })
   })
 
-  it('should throw an explicit error when en empty path is given as parameter', () => {
-    expect(() => inc({}, '')).toThrowError('path should not be empty')
-  })
-
   it('should support curried first arg', () => {
     immutaTest({
       nested: { prop: 5 },

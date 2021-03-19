@@ -10,6 +10,7 @@ import { apply } from './apply'
  * @example set({ nested: { prop: 'old' } }, 'nested.prop', 'new') // => { nested: { prop: 'new' } }
  * @since 1.0.0
  */
+// FIXME do not use apply here ?
 const set = apply((_, value) => value, { fixedArity: true })
 
 export { set }

@@ -13,17 +13,12 @@ const isGetter = Symbol('isGetter')
 * @since 1.0.0
 */
 function get(...args) {
-  if (args.length >= 2)
-    return _get(...args)
+  if (args.length >= 2) return nav(toPath(args[1])).get()(args[0])
 
-  const getter = obj => _get(obj, ...args)
+  const getter = nav(toPath(args[0])).get()
   getter[isGetter] = true
 
   return getter
-}
-
-function _get(obj, path) {
-  return nav(toPath(path))(obj).get()
 }
 
 function resolveGetter(value, obj) {
@@ -31,5 +26,4 @@ function resolveGetter(value, obj) {
   return value
 }
 
-// FIXME stop exporting isGetter
-export { get, isGetter, resolveGetter }
+export { get, resolveGetter }

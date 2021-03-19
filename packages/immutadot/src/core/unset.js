@@ -12,6 +12,7 @@ import { toPath } from 'immutadot-parser'
  * @example unset({ nested: { prop: 'value' } }, 'nested.prop') // => { nested: {} }
  * @since 1.0.0
  */
-const unset = curry((obj, path) => nav(toPath(path))(obj).unset(), { fixedArity: true })
+// FIXME do not use curry here ?
+const unset = curry((obj, path) => nav(toPath(path)).unset()(obj), { fixedArity: true })
 
 export { unset }

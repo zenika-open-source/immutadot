@@ -14,7 +14,7 @@ describe('core.get', () => {
     expect(get(obj, 'nested2.arr[0].val')).toBe('arrVal1')
   })
 
-  it('should get multiple props', () => {
+  it('should get slices of nested props', () => {
     expect(get(obj, 'nested2.arr[:].val')).toEqual(['arrVal1', 'arrVal2'])
     expect(get(obj, 'nested3[:][:].val')).toEqual([[1, 2], [3, 4]])
   })
