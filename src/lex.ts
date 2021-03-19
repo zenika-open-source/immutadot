@@ -5,18 +5,18 @@ export function lex(source: string): Token[] {
 }
 
 class Lexer implements IterableIterator<Token> {
-  #source: string
+  source: string
 
-  #position: number
+  position: number
 
-  #readPosition = 0
+  readPosition = 0
 
-  #ch: string
+  ch: string
 
-  #afterInteger = false
+  afterInteger = false
 
   constructor(source: string) {
-    this.#source = source
+    this.source = source
     this.readChar()
   }
 
@@ -25,11 +25,11 @@ class Lexer implements IterableIterator<Token> {
 
     // https://www.ecma-international.org/ecma-262/11.0/index.html#sec-literals-numeric-literals
     // The SourceCharacter immediately following a NumericLiteral must not be an IdentifierStart or DecimalDigit.
-    if (this.#afterInteger) {
-      this.#afterInteger = false
+    if (this.afterInteger) {
+      this.afterInteger = false
 
-      if (isDecimalDigit(this.#ch) || isIdentifierStart(this.#ch)) {
-        token = [TokenType.Illegal, this.#ch, this.#position, 'a numeric literal must not be immediately followed by an identifier start or decimal digit']
+      if (isDecimalDigit(this.ch) || isIdentifierStart(this.ch)) {
+        token = [TokenType.Illegal, this.ch, this.position, 'a numeric literal must not be immediately followed by an identifier start or decimal digit']
         this.readChar()
         return { value: token }
       }
@@ -37,16 +37,16 @@ class Lexer implements IterableIterator<Token> {
 
     this.skipWhitespaces()
 
-    switch (this.#ch) {
+    switch (this.ch) {
       case undefined: return { done: true, value: null }
-      case '.': token = [TokenType.Dot, undefined, this.#position]; break
+      case '.': token = [TokenType.Dot, undefined, this.position]; break
       case '?': token = this.readOptDot(); break
-      case '[': token = [TokenType.LBracket, undefined, this.#position]; break
-      case ':': token = [TokenType.Colon, undefined, this.#position]; break
-      case ']': token = [TokenType.RBracket, undefined, this.#position]; break
-      case '-': token = [TokenType.Minus, undefined, this.#position]; break
+      case '[': token = [TokenType.LBracket, undefined, this.position]; break
+      case ':': token = [TokenType.Colon, undefined, this.position]; break
+      case ']': token = [TokenType.RBracket, undefined, this.position]; break
+      case '-': token = [TokenType.Minus, undefined, this.position]; break
       case '0':
-        this.#afterInteger = true
+        this.afterInteger = true
         switch (this.peekChar()) {
           case 'b':
           case 'B':
@@ -58,7 +58,7 @@ class Lexer implements IterableIterator<Token> {
           case 'X':
             return { value: this.readHexInteger() }
           default:
-            token = [TokenType.Integer, 0, this.#position]
+            token = [TokenType.Integer, 0, this.position]
         }
         break
       case '"':
@@ -69,12 +69,12 @@ class Lexer implements IterableIterator<Token> {
       case '_':
         return { value: this.readIdentifier() }
       default:
-        if (isNonZeroDigit(this.#ch)) {
-          this.#afterInteger = true
+        if (isNonZeroDigit(this.ch)) {
+          this.afterInteger = true
           return { value: this.readDecimalInteger() }
         }
-        if (isIdentifierStart(this.#ch)) return { value: this.readIdentifier() }
-        token = [TokenType.Illegal, this.#ch, this.#position]
+        if (isIdentifierStart(this.ch)) return { value: this.readIdentifier() }
+        token = [TokenType.Illegal, this.ch, this.position]
     }
 
     this.readChar()
@@ -83,88 +83,88 @@ class Lexer implements IterableIterator<Token> {
   }
 
   private skipWhitespaces() {
-    while (isWhitespace(this.#ch)) this.readChar()
+    while (isWhitespace(this.ch)) this.readChar()
   }
 
   private readOptDot(): Token {
     this.readChar()
-    return this.#ch === '.'
-      ? [TokenType.OptDot, undefined, this.#position - 1]
-      : [TokenType.Illegal, `?${this.#ch}`, this.#position - 1, '? must be followed by .']
+    return this.ch === '.'
+      ? [TokenType.OptDot, undefined, this.position - 1]
+      : [TokenType.Illegal, `?${this.ch}`, this.position - 1, '? must be followed by .']
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-DecimalIntegerLiteral
   private readDecimalInteger(): Token {
-    const position = this.#position
-    do { this.readChar() } while (isDecimalDigit(this.#ch))
-    return [TokenType.Integer, Number(this.#source.slice(position, this.#position)), position]
+    const { position } = this
+    do { this.readChar() } while (isDecimalDigit(this.ch))
+    return [TokenType.Integer, Number(this.source.slice(position, this.position)), position]
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-BinaryIntegerLiteral
   private readBinaryInteger(): Token {
-    const position = this.#position
+    const { position } = this
     this.readChar()
     this.readChar()
-    const ch = this.#ch
+    const { ch } = this
     this.readChar()
-    if (!isBinaryDigit(ch)) return [TokenType.Illegal, this.#source.slice(position, this.#position), position, 'expected binary digit']
-    while (isBinaryDigit(this.#ch)) { this.readChar() }
-    return [TokenType.Integer, Number(this.#source.slice(position, this.#position)), position]
+    if (!isBinaryDigit(ch)) return [TokenType.Illegal, this.source.slice(position, this.position), position, 'expected binary digit']
+    while (isBinaryDigit(this.ch)) { this.readChar() }
+    return [TokenType.Integer, Number(this.source.slice(position, this.position)), position]
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-OctalIntegerLiteral
   private readOctalInteger(): Token {
-    const position = this.#position
+    const { position } = this
     this.readChar()
     this.readChar()
-    const ch = this.#ch
+    const { ch } = this
     this.readChar()
-    if (!isOctalDigit(ch)) return [TokenType.Illegal, this.#source.slice(position, this.#position), position, 'expected octal digit']
-    while (isOctalDigit(this.#ch)) { this.readChar() }
-    return [TokenType.Integer, Number(this.#source.slice(position, this.#position)), position]
+    if (!isOctalDigit(ch)) return [TokenType.Illegal, this.source.slice(position, this.position), position, 'expected octal digit']
+    while (isOctalDigit(this.ch)) { this.readChar() }
+    return [TokenType.Integer, Number(this.source.slice(position, this.position)), position]
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-HexIntegerLiteral
   private readHexInteger(): Token {
-    const position = this.#position
+    const { position } = this
     this.readChar()
     this.readChar()
-    const ch = this.#ch
+    const { ch } = this
     this.readChar()
-    if (!isHexDigit(ch)) return [TokenType.Illegal, this.#source.slice(position, this.#position), position, 'expected hexadecimal digit']
-    while (isHexDigit(this.#ch)) { this.readChar() }
-    return [TokenType.Integer, Number(this.#source.slice(position, this.#position)), position]
+    if (!isHexDigit(ch)) return [TokenType.Illegal, this.source.slice(position, this.position), position, 'expected hexadecimal digit']
+    while (isHexDigit(this.ch)) { this.readChar() }
+    return [TokenType.Integer, Number(this.source.slice(position, this.position)), position]
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#sec-literals-string-literals
   // Simplified: only supports escaping the following characters: " ' \
   private readString(): Token {
-    const position = this.#position
-    const delim = this.#ch
+    const { position } = this
+    const delim = this.ch
     do {
       this.readChar()
-      while (this.#ch === '\\') {
+      while (this.ch === '\\') {
         this.readChar()
         this.readChar()
       }
-    } while (this.#ch !== undefined && this.#ch !== delim)
-    if (this.#ch === undefined) return [TokenType.Illegal, this.#source.slice(position, this.#position), position, 'unterminated string literal']
-    return [TokenType.String, this.#source.slice(position + 1, this.#position).replace(/\\(.)/g, '$1'), position]
+    } while (this.ch !== undefined && this.ch !== delim)
+    if (this.ch === undefined) return [TokenType.Illegal, this.source.slice(position, this.position), position, 'unterminated string literal']
+    return [TokenType.String, this.source.slice(position + 1, this.position).replace(/\\(.)/g, '$1'), position]
   }
 
   // https://www.ecma-international.org/ecma-262/11.0/index.html#prod-IdentifierName
   private readIdentifier(): Token {
-    const position = this.#position
-    do { this.readChar() } while (isIdentifierPart(this.#ch))
-    return [TokenType.Identifier, this.#source.slice(position, this.#position), position]
+    const { position } = this
+    do { this.readChar() } while (isIdentifierPart(this.ch))
+    return [TokenType.Identifier, this.source.slice(position, this.position), position]
   }
 
   private readChar() {
-    this.#ch = this.#source[this.#position = this.#readPosition++]
+    this.ch = this.source[this.position = this.readPosition++]
   }
 
   private peekChar() {
-    return this.#source[this.#readPosition]
+    return this.source[this.readPosition]
   }
 
   [Symbol.iterator](): IterableIterator<Token> {
