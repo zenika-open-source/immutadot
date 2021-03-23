@@ -17,6 +17,8 @@ class Parser implements IterableIterator<Navigator> {
 
   chunkTokenIndex: number
 
+  chunkPos: number = 0
+
   token: Token
 
   nextToken: Token
@@ -71,7 +73,7 @@ class Parser implements IterableIterator<Navigator> {
       case TokenType.Colon:
         navigator = this.readSlice(undefined)
         break
-      default: throw new SyntaxError(`unexpected ${this.token?.[0] ?? 'EOF'} expected one of integer, string, symbol`)
+      default: throw new SyntaxError(this.unexpectedTokenMessage([TokenType.Minus, TokenType.Integer, TokenType.String, TokenType.Symbol, TokenType.Colon]))
     }
 
     this.readToken()
@@ -100,12 +102,12 @@ class Parser implements IterableIterator<Navigator> {
     if (this.token[0] === TokenType.Integer) return this.token[1]
     this.readToken()
     // @ts-ignore: ts(2637) shitty type assertion
-    if (this.token[0] !== TokenType.Integer) throw new SyntaxError(`unexpected ${this.token?.[0] ?? 'EOF'} expected integer`)
+    if (this.token[0] !== TokenType.Integer) throw new SyntaxError(this.unexpectedTokenMessage(TokenType.Integer))
     return -this.token[1]
   }
 
   private assertTokenType(...types: TokenType[]) {
-    if (!types.includes(this.token?.[0])) throw new SyntaxError(`unexpected ${this.token?.[0] ?? 'EOF'} expected one of ${types}`)
+    if (!types.includes(this.token?.[0])) throw new SyntaxError(this.unexpectedTokenMessage(types))
   }
 
   private readToken() {
@@ -131,23 +133,32 @@ class Parser implements IterableIterator<Navigator> {
     switch (typeof arg) {
       case 'number':
         // FIXME check arg is an integer
-        this.nextToken = [TokenType.Integer, arg, 0] // FIXME position
+        this.nextToken = [TokenType.Integer, arg, this.chunks[this.chunkIndex].length + 3]
         break
       case 'string':
-        this.nextToken = [TokenType.String, arg, 0] // FIXME position
+        this.nextToken = [TokenType.String, arg, this.chunks[this.chunkIndex].length + 3]
         break
       case 'symbol':
-        this.nextToken = [TokenType.Symbol, arg, 0] // FIXME position
+        this.nextToken = [TokenType.Symbol, arg, this.chunks[this.chunkIndex].length + 3]
         break
-      default: throw TypeError(`unexpected argument ${arg}`)
+      default: throw TypeError(`unexpected argument ${arg}`) // FIXME improve error
     }
 
     this.nextChunk()
   }
 
   private nextChunk() {
+    if (this.chunkIndex !== -1) this.chunkPos += this.chunks[this.chunkIndex].length + 4 + (typeof this.args[this.chunkIndex]).length
     this.chunkTokens = lex(this.chunks[++this.chunkIndex])
     this.chunkTokenIndex = 0
+  }
+
+  private unexpectedTokenMessage(expected: TokenType[]) {
+    let message = `unexpected ${this.token?.[0] ?? 'EOF'}`
+    if (this.token) message += ` at position ${this.token[2] + 1}`
+    if (expected.length === 1) message += `, expected ${expected}`
+    else message += `, expected one of ${expected}`
+    return message
   }
 
   [Symbol.iterator](): IterableIterator<Navigator> {
