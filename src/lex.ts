@@ -1,12 +1,7 @@
 import { Token, TokenType } from './token'
 
-const cache = new Map<string, Token[]>()
-
 export function lex(source: string): Token[] {
-  if (cache.has(source)) return cache.get(source)
-  const tokens = Array.from(new Lexer(source))
-  cache.set(source, tokens)
-  return tokens
+  return Array.from(new Lexer(source))
 }
 
 class Lexer implements IterableIterator<Token> {
