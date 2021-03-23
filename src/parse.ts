@@ -3,7 +3,7 @@ import { IndexNavigator, Navigator, NavigatorType, Path, PropNavigator, SliceNav
 import { Token, TokenType } from './token'
 
 export function parse(chunks: readonly string[], args: any[]): Path {
-  return [...new Parser(chunks, args)]
+  return Array.from(new Parser(chunks, args))
 }
 
 class Parser implements IterableIterator<Navigator> {
