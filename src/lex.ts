@@ -4,7 +4,7 @@ export function lex(source: string): Token[] {
   return Array.from(new Lexer(source))
 }
 
-class Lexer implements IterableIterator<Token> {
+export class Lexer implements IterableIterator<Token> {
   source: string
 
   position: number
@@ -38,13 +38,14 @@ class Lexer implements IterableIterator<Token> {
     this.skipWhitespaces()
 
     switch (this.ch) {
-      case undefined: return { done: true, value: null }
+      case undefined: return { done: true, value: undefined }
       case '.': token = [TokenType.Dot, undefined, this.position]; break
       case '?': token = this.readOptDot(); break
       case '[': token = [TokenType.LBracket, undefined, this.position]; break
       case ':': token = [TokenType.Colon, undefined, this.position]; break
       case ']': token = [TokenType.RBracket, undefined, this.position]; break
       case '-': token = [TokenType.Minus, undefined, this.position]; break
+      case '}': token = [TokenType.RCurly, undefined, this.position]; break
       case '0':
         this.afterInteger = true
         switch (this.peekChar()) {
@@ -66,8 +67,13 @@ class Lexer implements IterableIterator<Token> {
         token = this.readString()
         break
       case '$':
-      case '_':
-        return { value: this.readIdentifier() }
+        if (this.peekChar() === '{') {
+          token = [TokenType.DollarLCurly, undefined, this.position]
+          this.readChar()
+          break
+        }
+        // fallthrough...
+      case '_': return { value: this.readIdentifier() }
       default:
         if (isNonZeroDigit(this.ch)) {
           this.afterInteger = true

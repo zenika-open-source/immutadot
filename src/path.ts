@@ -1,13 +1,23 @@
 export type Path = Navigator[]
 
-export type Navigator = PropNavigator | IndexNavigator | SliceNavigator
+export type Navigator = PropIndexNavigator | SliceNavigator
 
-export type PropNavigator = [NavigatorType.Prop, string | symbol]
-export type IndexNavigator = [NavigatorType.Index, number]
-export type SliceNavigator = [NavigatorType.Slice, number, number]
+export type PropIndexNavigator = [NavigatorType.PropIndex, string | symbol | number | NavigatorVariable]
+export type SliceNavigator = [NavigatorType.Slice, number | NavigatorVariable, number | NavigatorVariable]
 
 export const enum NavigatorType {
-  Prop,
-  Index,
+  PropIndex,
   Slice,
+}
+
+export type NavigatorVariable = NavigatorArgument
+
+export type NavigatorArgument = [NavigatorVariableType.Argument, number]
+
+export const enum NavigatorVariableType {
+  Argument,
+}
+
+export function isNavigatorArgument(value: any): value is NavigatorArgument {
+  return value?.[0] === NavigatorVariableType.Argument
 }

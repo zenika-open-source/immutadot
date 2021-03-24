@@ -1,32 +1,29 @@
-import { lex } from './lex'
-import { IndexNavigator, Navigator, NavigatorType, Path, PropNavigator, SliceNavigator } from './path'
+import { Lexer } from './lex'
+import {
+  Navigator,
+  NavigatorArgument,
+  NavigatorType,
+  NavigatorVariable,
+  NavigatorVariableType,
+  Path,
+  PropIndexNavigator,
+  SliceNavigator,
+} from './path'
 import { Token, TokenType } from './token'
 
-export function parse(chunks: readonly string[], args: any[]): Path {
-  return Array.from(new Parser(chunks, args))
+export function parse(chunks: readonly string[]): Path {
+  return Array.from(new Parser(chunks.reduce((acc, chunk, index) => `${acc}\${${index}}${chunk}`)))
 }
 
 class Parser implements IterableIterator<Navigator> {
-  chunks: readonly string[]
-
-  args: any[]
-
-  chunkIndex = -1
-
-  chunkTokens: Token[]
-
-  chunkTokenIndex: number
-
-  chunkPos: number = 0
+  lexer: Lexer
 
   token: Token
 
   nextToken: Token
 
-  constructor(chunks: readonly string[], args: any[]) {
-    this.chunks = chunks
-    this.args = args
-    this.nextChunk()
+  constructor(source: string) {
+    this.lexer = new Lexer(source)
     this.readToken()
     this.readToken()
   }
@@ -51,10 +48,10 @@ class Parser implements IterableIterator<Navigator> {
     return { value: navigator }
   }
 
-  private readProp(): PropNavigator {
+  private readProp(): PropIndexNavigator {
     this.readToken()
     this.assertTokenType(TokenType.Identifier)
-    return [NavigatorType.Prop, this.token[1]]
+    return [NavigatorType.PropIndex, this.token[1]]
   }
 
   private readBracket(): Navigator {
@@ -62,18 +59,21 @@ class Parser implements IterableIterator<Navigator> {
 
     let navigator: Navigator
     switch (this.token?.[0]) {
+      case TokenType.DollarLCurly:
       case TokenType.Minus:
       case TokenType.Integer:
         navigator = this.readIndexOrSlice()
         break
       case TokenType.String:
       case TokenType.Symbol:
-        navigator = [NavigatorType.Prop, this.token[1]]
+        navigator = [NavigatorType.PropIndex, this.token[1]]
         break
       case TokenType.Colon:
         navigator = this.readSlice(undefined)
         break
-      default: throw new SyntaxError(this.unexpectedTokenMessage([TokenType.Minus, TokenType.Integer, TokenType.String, TokenType.Symbol, TokenType.Colon]))
+      default: throw new SyntaxError(this.unexpectedTokenMessage([
+        TokenType.DollarLCurly, TokenType.Minus, TokenType.Integer, TokenType.String, TokenType.Symbol, TokenType.Colon,
+      ]))
     }
 
     this.readToken()
@@ -82,18 +82,26 @@ class Parser implements IterableIterator<Navigator> {
     return navigator
   }
 
-  private readIndexOrSlice(): IndexNavigator | SliceNavigator | PropNavigator {
-    const n = this.readInteger()
-    if (this.nextToken?.[0] === TokenType.Colon) return this.readSlice(n)
-    return n >= 0 ? [NavigatorType.Index, n] : [NavigatorType.Prop, n.toString()]
+  private readIndexOrSlice(): PropIndexNavigator | SliceNavigator {
+    const index = this.token?.[0] === TokenType.DollarLCurly ? this.readArg() : this.readInteger()
+    return this.nextToken?.[0] === TokenType.Colon ? this.readSlice(index) : [NavigatorType.PropIndex, index]
   }
 
-  private readSlice(start: number): SliceNavigator {
+  private readArg(): NavigatorVariable {
+    this.readToken()
+    if (this.token[0] !== TokenType.Integer) throw new SyntaxError(this.unexpectedTokenMessage([TokenType.Integer]))
+    const index = this.token[1]
+    this.readToken()
+    this.assertTokenType(TokenType.RCurly)
+    return [NavigatorVariableType.Argument, index]
+  }
+
+  private readSlice(start: number | NavigatorArgument): SliceNavigator {
     if (this.nextToken[0] === TokenType.Colon) this.readToken()
-    let end: number
-    if (this.nextToken?.[0] === TokenType.Integer || this.nextToken?.[0] === TokenType.Minus) {
+    let end: number | NavigatorArgument
+    if (this.nextToken?.[0] === TokenType.Integer || this.nextToken?.[0] === TokenType.Minus || this.nextToken?.[0] === TokenType.DollarLCurly) {
       this.readToken()
-      end = this.readInteger()
+      end = this.token?.[0] === TokenType.DollarLCurly ? this.readArg() : this.readInteger()
     }
     return [NavigatorType.Slice, start, end]
   }
@@ -102,7 +110,7 @@ class Parser implements IterableIterator<Navigator> {
     if (this.token[0] === TokenType.Integer) return this.token[1]
     this.readToken()
     // @ts-ignore: ts(2637) shitty type assertion
-    if (this.token[0] !== TokenType.Integer) throw new SyntaxError(this.unexpectedTokenMessage(TokenType.Integer))
+    if (this.token[0] !== TokenType.Integer) throw new SyntaxError(this.unexpectedTokenMessage([TokenType.Integer]))
     return -this.token[1]
   }
 
@@ -112,45 +120,7 @@ class Parser implements IterableIterator<Navigator> {
 
   private readToken() {
     this.token = this.nextToken
-
-    if (this.chunkTokens === undefined) {
-      this.nextToken = undefined
-      return
-    }
-
-    if (this.chunkTokenIndex < this.chunkTokens.length) {
-      this.nextToken = this.chunkTokens[this.chunkTokenIndex++]
-      return
-    }
-
-    if (this.chunkIndex === this.args.length) {
-      this.chunkTokens = undefined
-      this.nextToken = undefined
-      return
-    }
-
-    const arg = this.args[this.chunkIndex]
-    switch (typeof arg) {
-      case 'number':
-        // FIXME check arg is an integer
-        this.nextToken = [TokenType.Integer, arg, this.chunks[this.chunkIndex].length + 3]
-        break
-      case 'string':
-        this.nextToken = [TokenType.String, arg, this.chunks[this.chunkIndex].length + 3]
-        break
-      case 'symbol':
-        this.nextToken = [TokenType.Symbol, arg, this.chunks[this.chunkIndex].length + 3]
-        break
-      default: throw TypeError(`unexpected argument ${arg}`) // FIXME improve error
-    }
-
-    this.nextChunk()
-  }
-
-  private nextChunk() {
-    if (this.chunkIndex !== -1) this.chunkPos += this.chunks[this.chunkIndex].length + 4 + (typeof this.args[this.chunkIndex]).length
-    this.chunkTokens = lex(this.chunks[++this.chunkIndex])
-    this.chunkTokenIndex = 0
+    this.nextToken = this.lexer.next().value
   }
 
   private unexpectedTokenMessage(expected: TokenType[]) {

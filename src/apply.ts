@@ -1,32 +1,37 @@
-import { NavigatorType, Path } from './path'
+import { isNavigatorArgument, NavigatorType, Path } from './path'
 
-type Updater = (value: any, args: any[]) => any
+export type Updater = (value: any, args: any[]) => any
 
-export function apply(path: Path, parent: any, updater: Updater, args: any[]) {
-  if (path.length === 0) return updater(parent, args)
+export function apply(path: Path, pathArgs: any[], parent: any, updater: Updater, updaterArgs: any[]) {
+  if (path.length === 0) return updater(parent, updaterArgs)
 
   const [nav, ...pathRest] = path
 
   switch (nav[0]) {
-    case NavigatorType.Prop:
-    case NavigatorType.Index: {
-      const value = parent?.[nav[1]]
-      const newValue = apply(pathRest, value, updater, args)
+    case NavigatorType.PropIndex: {
+      // FIXME propIndex is of type any...
+      const propIndex = isNavigatorArgument(nav[1]) ? pathArgs[nav[1][1] - 1] : nav[1]
+      const value = parent?.[propIndex]
+      const newValue = apply(pathRest, pathArgs, value, updater, updaterArgs)
       if (newValue === value) return parent
-      const parentCopy = copy(parent, nav[0])
-      parentCopy[nav[1]] = newValue
+      const parentCopy = copy(parent, typeof propIndex === 'number' && propIndex >= 0) // FIXME isArrayAccess...
+      parentCopy[propIndex] = newValue
       return parentCopy
     }
     case NavigatorType.Slice: {
-      const [start, end] = resolveSlice(parent, nav[1], nav[2])
+      const [start, end] = resolveSlice(
+        parent,
+        isNavigatorArgument(nav[1]) ? pathArgs[nav[1][1]] : nav[1],
+        isNavigatorArgument(nav[2]) ? pathArgs[nav[2][1]] : nav[2],
+      )
       let hasChanges = false
       const newValues = parent?.slice(start, end).map((value: any) => {
-        const newValue = apply(pathRest, value, updater, args)
+        const newValue = apply(pathRest, pathArgs, value, updater, updaterArgs)
         hasChanges ||= newValue !== value
         return newValue
       })
       if (!hasChanges) return parent
-      const parentCopy = copy(parent, nav[0])
+      const parentCopy = copy(parent, true)
       parentCopy.splice(start, end - start, ...newValues)
       return parentCopy
     }
@@ -44,16 +49,8 @@ function resolveSliceIndex(value: any, index: number): number {
   return -index < value.length ? value.length + index : 0
 }
 
-function copy(value: any, accessType: NavigatorType) {
-  if (value === undefined || value === null) {
-    switch (accessType) {
-      case NavigatorType.Prop: return {}
-      case NavigatorType.Index: return []
-      default: throw TypeError('not implemented')
-    }
-  }
-
+function copy(value: any, isArrayAccess: boolean) {
+  if (value === undefined || value === null) return isArrayAccess ? [] : {}
   if (typeof value !== 'object') throw TypeError('not implemented')
-
   return Array.isArray(value) ? [...value] : { ...value }
 }

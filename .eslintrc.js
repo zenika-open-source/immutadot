@@ -24,6 +24,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'max-len': ['error', { code: 160 }],
     'no-case-declarations': 'off',
+    'no-fallthrough': 'off',
     'no-param-reassign': 'off',
     'no-plusplus': 'off',
     'no-restricted-syntax': 'off',
