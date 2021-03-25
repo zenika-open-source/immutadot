@@ -11,8 +11,14 @@ import {
 } from './path'
 import { Token, TokenType } from './token'
 
+const cache = new Map<string, Path>()
+
 export function parse(chunks: readonly string[]): Path {
-  return Array.from(new Parser(chunks.reduce((acc, chunk, index) => `${acc}\${${index}}${chunk}`)))
+  const source = chunks.reduce((acc, chunk, index) => `${acc}\${${index}}${chunk}`)
+  if (cache.has(source)) return cache.get(source)
+  const path = Array.from(new Parser(source))
+  cache.set(source, path)
+  return path
 }
 
 class Parser implements IterableIterator<Navigator> {
