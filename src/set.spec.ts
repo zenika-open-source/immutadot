@@ -111,6 +111,12 @@ describe('Set', () => {
       ['aze', 'aze', 'aze'],
       'plop',
     ])
+
+    expect(set`${a}[1][${1}:${3}]`('aze')).toEqual([
+      'foo',
+      ['bar', 'aze', 'aze'],
+      'plop',
+    ])
   })
 
   it('should support negative array slices', () => {

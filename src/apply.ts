@@ -21,8 +21,8 @@ export function apply(path: Path, pathArgs: any[], parent: any, updater: Updater
     case NavigatorType.Slice: {
       const [start, end] = resolveSlice(
         parent,
-        isNavigatorArgument(nav[1]) ? pathArgs[nav[1][1]] : nav[1],
-        isNavigatorArgument(nav[2]) ? pathArgs[nav[2][1]] : nav[2],
+        isNavigatorArgument(nav[1]) ? pathArgs[nav[1][1] - 1] : nav[1],
+        isNavigatorArgument(nav[2]) ? pathArgs[nav[2][1] - 1] : nav[2],
       )
       let hasChanges = false
       const newValues = parent?.slice(start, end).map((value: any) => {
