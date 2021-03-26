@@ -16,8 +16,8 @@ describe('parse', () => {
 
   it('should parse interpolated props', () => {
     expect(parse(['[', '][', ']'])).toEqual([
+      [NavigatorType.PropIndex, [NavigatorVariableType.Argument, 0]],
       [NavigatorType.PropIndex, [NavigatorVariableType.Argument, 1]],
-      [NavigatorType.PropIndex, [NavigatorVariableType.Argument, 2]],
     ])
   })
 
@@ -39,17 +39,17 @@ describe('parse', () => {
 
   it('should parse interpolated indexes', () => {
     expect(parse(['[', '][', '][', ']'])).toEqual([
+      [NavigatorType.PropIndex, [NavigatorVariableType.Argument, 0]],
       [NavigatorType.PropIndex, [NavigatorVariableType.Argument, 1]],
       [NavigatorType.PropIndex, [NavigatorVariableType.Argument, 2]],
-      [NavigatorType.PropIndex, [NavigatorVariableType.Argument, 3]],
     ])
   })
 
   it('should parse negative interpolated indexes as properties', () => {
     expect(parse(['[', '][', '][', ']'])).toEqual([
+      [NavigatorType.PropIndex, [NavigatorVariableType.Argument, 0]],
       [NavigatorType.PropIndex, [NavigatorVariableType.Argument, 1]],
       [NavigatorType.PropIndex, [NavigatorVariableType.Argument, 2]],
-      [NavigatorType.PropIndex, [NavigatorVariableType.Argument, 3]],
     ])
   })
 
