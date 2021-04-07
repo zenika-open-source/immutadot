@@ -2,8 +2,8 @@ export type Path = Navigator[]
 
 export type Navigator = PropIndexNavigator | SliceNavigator
 
-export type PropIndexNavigator = [NavigatorType.PropIndex, string | symbol | number | NavigatorVariable]
-export type SliceNavigator = [NavigatorType.Slice, number | NavigatorVariable, number | NavigatorVariable]
+export type PropIndexNavigator = [NavigatorType.PropIndex, string | symbol | number | NavigatorVariable, boolean]
+export type SliceNavigator = [NavigatorType.Slice, number | NavigatorVariable, number | NavigatorVariable, boolean]
 
 export const enum NavigatorType {
   PropIndex,
