@@ -81,7 +81,7 @@ class Parser implements IterableIterator<Navigator> {
         navigator = [NavigatorType.PropIndex, this.token[1], optional]
         break
       case TokenType.Colon:
-        navigator = this.readSlice(undefined)
+        navigator = this.readSlice(undefined, optional)
         break
       default: throw new SyntaxError(this.unexpectedTokenMessage([
         TokenType.DollarLCurly, TokenType.Minus, TokenType.Integer, TokenType.String, TokenType.Symbol, TokenType.Colon,
@@ -96,7 +96,7 @@ class Parser implements IterableIterator<Navigator> {
 
   private readIndexOrSlice(optional: boolean): PropIndexNavigator | SliceNavigator {
     const index = this.token?.[0] === TokenType.DollarLCurly ? this.readArg() : this.readInteger()
-    return this.nextToken?.[0] === TokenType.Colon ? this.readSlice(index) : [NavigatorType.PropIndex, index, optional]
+    return this.nextToken?.[0] === TokenType.Colon ? this.readSlice(index, optional) : [NavigatorType.PropIndex, index, optional]
   }
 
   private readArg(): NavigatorVariable {
@@ -108,14 +108,14 @@ class Parser implements IterableIterator<Navigator> {
     return [NavigatorVariableType.Argument, index]
   }
 
-  private readSlice(start: number | NavigatorArgument): SliceNavigator {
+  private readSlice(start: number | NavigatorArgument, optional: boolean): SliceNavigator {
     if (this.nextToken[0] === TokenType.Colon) this.readToken()
     let end: number | NavigatorArgument
     if (this.nextToken?.[0] === TokenType.Integer || this.nextToken?.[0] === TokenType.Minus || this.nextToken?.[0] === TokenType.DollarLCurly) {
       this.readToken()
       end = this.token?.[0] === TokenType.DollarLCurly ? this.readArg() : this.readInteger()
     }
-    return [NavigatorType.Slice, start, end, false]
+    return [NavigatorType.Slice, start, end, optional]
   }
 
   private readInteger(): number {

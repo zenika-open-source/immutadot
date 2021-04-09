@@ -46,22 +46,22 @@ describe('parse', () => {
   })
 
   it('should parse slices', () => {
-    expect(parse(['[1:2][3:][:4][:]'])).toEqual([
+    expect(parse(['[1:2]?.[3:][:4]?.[:]'])).toEqual([
       [NavigatorType.Slice, 1, 2, false],
-      [NavigatorType.Slice, 3, undefined, false],
+      [NavigatorType.Slice, 3, undefined, true],
       [NavigatorType.Slice, undefined, 4, false],
-      [NavigatorType.Slice, undefined, undefined, false],
+      [NavigatorType.Slice, undefined, undefined, true],
     ])
   })
 
   it('should parse negative slices', () => {
-    expect(parse(['[-1:-2][-3:][:-4][:][5:-6][-7:8]'])).toEqual([
-      [NavigatorType.Slice, -1, -2, false],
+    expect(parse(['?.[-1:-2][-3:][:-4][:][5:-6]?.[-7:8]'])).toEqual([
+      [NavigatorType.Slice, -1, -2, true],
       [NavigatorType.Slice, -3, undefined, false],
       [NavigatorType.Slice, undefined, -4, false],
       [NavigatorType.Slice, undefined, undefined, false],
       [NavigatorType.Slice, 5, -6, false],
-      [NavigatorType.Slice, -7, 8, false],
+      [NavigatorType.Slice, -7, 8, true],
     ])
   })
 })
