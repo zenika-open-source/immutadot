@@ -3,15 +3,15 @@ import { TokenType } from './token'
 
 describe('lex', () => {
   it('should tokenize special characters', () => {
-    expect(lex('.?.[:]-${}')).toEqual([
+    expect(lex('.?.[:]-{}')).toEqual([
       [TokenType.Dot, undefined, 0],
       [TokenType.OptDot, undefined, 1],
       [TokenType.LBracket, undefined, 3],
       [TokenType.Colon, undefined, 4],
       [TokenType.RBracket, undefined, 5],
       [TokenType.Minus, undefined, 6],
-      [TokenType.DollarLCurly, undefined, 7],
-      [TokenType.RCurly, undefined, 9],
+      [TokenType.LCurly, undefined, 7],
+      [TokenType.RCurly, undefined, 8],
     ])
   })
 

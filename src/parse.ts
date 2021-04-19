@@ -14,7 +14,7 @@ import { Token, TokenType } from './token'
 const cache = new Map<string, Path>()
 
 export function parse(chunks: readonly string[]): Path {
-  const source = chunks.reduce((acc, chunk, index) => `${acc}\${${index - 1}}${chunk}`)
+  const source = chunks.reduce((acc, chunk, index) => `${acc}{${index - 1}}${chunk}`)
   if (cache.has(source)) return cache.get(source)
   const path = Array.from(new Parser(source))
   cache.set(source, path)
@@ -71,7 +71,7 @@ class Parser implements IterableIterator<Navigator> {
 
     let navigator: Navigator
     switch (this.token?.[0]) {
-      case TokenType.DollarLCurly:
+      case TokenType.LCurly:
       case TokenType.Minus:
       case TokenType.Integer:
         navigator = this.readIndexOrSlice(optional)
@@ -84,7 +84,7 @@ class Parser implements IterableIterator<Navigator> {
         navigator = this.readSlice(undefined, optional)
         break
       default: throw new SyntaxError(this.unexpectedTokenMessage([
-        TokenType.DollarLCurly, TokenType.Minus, TokenType.Integer, TokenType.String, TokenType.Symbol, TokenType.Colon,
+        TokenType.LCurly, TokenType.Minus, TokenType.Integer, TokenType.String, TokenType.Symbol, TokenType.Colon,
       ]))
     }
 
@@ -95,7 +95,7 @@ class Parser implements IterableIterator<Navigator> {
   }
 
   private readIndexOrSlice(optional: boolean): PropIndexNavigator | SliceNavigator {
-    const index = this.token?.[0] === TokenType.DollarLCurly ? this.readArg() : this.readInteger()
+    const index = this.token?.[0] === TokenType.LCurly ? this.readArg() : this.readInteger()
     return this.nextToken?.[0] === TokenType.Colon ? this.readSlice(index, optional) : [NavigatorType.PropIndex, index, optional]
   }
 
@@ -111,9 +111,9 @@ class Parser implements IterableIterator<Navigator> {
   private readSlice(start: number | NavigatorArgument, optional: boolean): SliceNavigator {
     if (this.nextToken[0] === TokenType.Colon) this.readToken()
     let end: number | NavigatorArgument
-    if (this.nextToken?.[0] === TokenType.Integer || this.nextToken?.[0] === TokenType.Minus || this.nextToken?.[0] === TokenType.DollarLCurly) {
+    if (this.nextToken?.[0] === TokenType.Integer || this.nextToken?.[0] === TokenType.Minus || this.nextToken?.[0] === TokenType.LCurly) {
       this.readToken()
-      end = this.token?.[0] === TokenType.DollarLCurly ? this.readArg() : this.readInteger()
+      end = this.token?.[0] === TokenType.LCurly ? this.readArg() : this.readInteger()
     }
     return [NavigatorType.Slice, start, end, optional]
   }

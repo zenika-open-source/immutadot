@@ -45,6 +45,7 @@ export class Lexer implements IterableIterator<Token> {
       case ':': token = [TokenType.Colon, undefined, this.position]; break
       case ']': token = [TokenType.RBracket, undefined, this.position]; break
       case '-': token = [TokenType.Minus, undefined, this.position]; break
+      case '{': token = [TokenType.LCurly, undefined, this.position]; break
       case '}': token = [TokenType.RCurly, undefined, this.position]; break
       case '0':
         this.afterInteger = true
@@ -67,13 +68,8 @@ export class Lexer implements IterableIterator<Token> {
         token = this.readString()
         break
       case '$':
-        if (this.peekChar() === '{') {
-          token = [TokenType.DollarLCurly, undefined, this.position]
-          this.readChar()
-          break
-        }
-        // fallthrough...
-      case '_': return { value: this.readIdentifier() }
+      case '_':
+        return { value: this.readIdentifier() }
       default:
         if (isNonZeroDigit(this.ch)) {
           this.afterInteger = true

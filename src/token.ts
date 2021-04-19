@@ -5,7 +5,7 @@ export const enum TokenType {
   RBracket = ']',
   Colon = ':',
   Minus = '-',
-  DollarLCurly = '${',
+  LCurly = '{',
   RCurly = '}',
   Identifier = 'identifier',
   Integer = 'integer',
@@ -21,7 +21,7 @@ export type Token = (
   [TokenType.RBracket, undefined, number] |
   [TokenType.Colon, undefined, number] |
   [TokenType.Minus, undefined, number] |
-  [TokenType.DollarLCurly, undefined, number] |
+  [TokenType.LCurly, undefined, number] |
   [TokenType.RCurly, undefined, number] |
   [TokenType.Identifier, string, number] |
   [TokenType.Integer, number, number] |
