@@ -1,5 +1,5 @@
-import { apply } from './apply'
 import { parse } from './parse'
+import { walk } from './walk'
 
 export function make(updater: (value: any, args: any[]) => any): (tmplChunks: TemplateStringsArray, ...tmplArgs: any[]) => (...args: any[]) => any {
   return (tmplChunks, ...tmplArgs) => {
@@ -7,11 +7,11 @@ export function make(updater: (value: any, args: any[]) => any): (tmplChunks: Te
       const [, ...restChunks] = tmplChunks
       const path = parse(restChunks)
       const [firstArg, ...restArgs] = tmplArgs
-      return (...args: any[]) => apply(path, restArgs, firstArg, updater, args)
+      return (...args: any[]) => walk(path, restArgs, firstArg, updater, args)
     }
 
     const path = parse(tmplChunks)
 
-    return (...args: any[]) => (root: any) => apply(path, tmplArgs, root, updater, args)
+    return (...args: any[]) => (root: any) => walk(path, tmplArgs, root, updater, args)
   }
 }
