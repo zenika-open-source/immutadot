@@ -9,6 +9,7 @@ export function apply(path: Path, pathArgs: any[], parent: any, updater: Updater
 
   switch (nav[0]) {
     case NavigatorType.PropIndex: {
+      if (nav[2] && parent == null) return parent // Optional access shortcut
       // FIXME propIndex is of type any...
       const propIndex = isNavigatorArgument(nav[1]) ? pathArgs[nav[1][1]] : nav[1]
       const value = parent?.[propIndex]
@@ -19,6 +20,10 @@ export function apply(path: Path, pathArgs: any[], parent: any, updater: Updater
       return parentCopy
     }
     case NavigatorType.Slice: {
+      if (parent == null) {
+        if (nav[3]) return parent
+        return []
+      }
       const [start, end] = resolveSlice(
         parent,
         isNavigatorArgument(nav[1]) ? pathArgs[nav[1][1]] : nav[1],
@@ -45,8 +50,8 @@ function resolveSlice(value: any, start: number, end: number): [number, number] 
 
 function resolveSliceIndex(value: any, index: number): number {
   if (index >= 0) return index
-  if (!value || !('length' in value)) return 0
-  return -index < value.length ? value.length + index : 0
+  if (value == null || !('length' in value)) return 0
+  return Math.max(value.length + index, 0)
 }
 
 function copy(value: any, isArrayAccess: boolean) {

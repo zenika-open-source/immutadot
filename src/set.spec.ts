@@ -40,11 +40,42 @@ describe('Set', () => {
     })
   })
 
+  it('should not create missing objects for optional prop navigators', () => {
+    expect(set`${undefined}?.nested.property`('bar')).toBeUndefined()
+    expect(set`${undefined}.nested?.property`('bar')).toBeUndefined()
+    const oUndefined = recurFreeze({ nested: undefined })
+    expect(set`${oUndefined}.nested?.property`('bar')).toBe(oUndefined)
+    const oNull = recurFreeze({ nested: null })
+    expect(set`${oNull}.nested?.property`('bar')).toBe(oNull)
+  })
+
   it('should create missing arrays for index navigators', () => {
     expect(set`${undefined}[1][2]`('aze')).toEqual([
       undefined,
       [undefined, undefined, 'aze'],
     ])
+  })
+
+  it('should not create missing arrays for optional index navigators', () => {
+    expect(set`${undefined}?.[1][2]`('aze')).toBeUndefined()
+    expect(set`${undefined}[1]?.[2]`('aze')).toBeUndefined()
+    const aUndefined = recurFreeze([undefined, undefined])
+    expect(set`${aUndefined}[1]?.[2]`('aze')).toBe(aUndefined)
+    const aNull = recurFreeze([null, null])
+    expect(set`${aNull}[1]?.[2]`('aze')).toBe(aNull)
+  })
+
+  it('should create empty array for slice navigators', () => {
+    expect(set`${undefined}[:].property`('aze')).toEqual([])
+    expect(set`${recurFreeze({ nested: undefined })}.nested[:].property`('aze')).toEqual({
+      nested: [],
+    })
+  })
+
+  it('should not create empty array for optional slice navigators', () => {
+    expect(set`${undefined}?.[:].property`('aze')).toBeUndefined()
+    const o = recurFreeze({ nested: undefined })
+    expect(set`${o}.nested?.[:].property`('aze')).toBe(o)
   })
 
   it('should support path w/o root object', () => {
