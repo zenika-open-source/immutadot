@@ -24,6 +24,7 @@ export function walk(path: Path, pathArgs: any[], parent: any, updater: Updater,
         if (nav[3]) return parent
         return []
       }
+      // FIXME shortcut for non arrays with userfriendly message
       const [start, end] = resolveSlice(
         parent,
         isNavigatorArgument(nav[1]) ? pathArgs[nav[1][1]] : nav[1],

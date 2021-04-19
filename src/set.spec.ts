@@ -181,4 +181,8 @@ describe('Set', () => {
       'plop',
     ])
   })
+
+  it('should throw an error for slice on non array', () => {
+    expect(() => set`${recurFreeze({})}[:]`('foo')).toThrow(TypeError)
+  })
 })
