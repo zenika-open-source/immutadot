@@ -1,5 +1,5 @@
-import { make } from './make'
+import { apply } from './apply'
 
 // FIXME manage null/undefined value
 // FIXME manage non-array value
-export const push: (chunks: TemplateStringsArray, ...args: any[]) => (...values: any[]) => any = make((value: any, values: any[]) => value.concat(values))
+export const push: (chunks: TemplateStringsArray, ...args: any[]) => (...values: any[]) => any = apply((value: any, values: any[]) => value.concat(values))

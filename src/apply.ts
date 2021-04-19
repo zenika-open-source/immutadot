@@ -1,7 +1,7 @@
 import { parse } from './parse'
 import { walk } from './walk'
 
-export function make(updater: (value: any, args: any[]) => any): (tmplChunks: TemplateStringsArray, ...tmplArgs: any[]) => (...args: any[]) => any {
+export function apply(updater: (value: any, args: any[]) => any): (tmplChunks: TemplateStringsArray, ...tmplArgs: any[]) => (...args: any[]) => any {
   return (tmplChunks, ...tmplArgs) => {
     if (tmplChunks[0] === '') {
       const [, ...restChunks] = tmplChunks

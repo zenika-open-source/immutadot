@@ -1,4 +1,4 @@
-import { make } from './make'
+import { apply } from './apply'
 
 // FIXME try declaring several signatures
-export const set: (chunks: TemplateStringsArray, ...args: any[]) => (value: any) => any = make((_: any, [value]: any[]) => value)
+export const set: (chunks: TemplateStringsArray, ...args: any[]) => (value: any) => any = apply((_: any, [value]: any[]) => value)
