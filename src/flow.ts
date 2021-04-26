@@ -1,4 +1,3 @@
-// FIXME flow should take a path, otherwise it's _.flow()...
-export function flow(...fns: ((value: any) => any)[]): (value: any) => any {
-  return (value) => fns.reduce((res, fn) => fn(res), value)
-}
+import { apply } from './apply'
+
+export const flow = apply((value: any, fns: ((value: any) => any)[]) => fns.reduce((res, fn) => fn(res), value))
