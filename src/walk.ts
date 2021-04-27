@@ -20,11 +20,8 @@ export function walk(path: Path, pathArgs: any[], parent: any, updater: Updater,
       return parentCopy
     }
     case NavigatorType.Slice: {
-      if (parent == null) {
-        if (nav[3]) return parent
-        return []
-      }
-      // FIXME shortcut for non arrays with userfriendly message
+      if (parent == null) return nav[3] ? parent : []
+      if (!Array.isArray(parent)) throw TypeError(`Slice operator is not defined for ${typeof parent}`)
       const [start, end] = resolveSlice(
         parent,
         isNavigatorArgument(nav[1]) ? pathArgs[nav[1][1]] : nav[1],
