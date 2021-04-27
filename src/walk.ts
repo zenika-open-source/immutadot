@@ -13,6 +13,26 @@ export function walk(path: Path, pathArgs: any[], parent: any, updater: Updater,
 
       const arg = isPathArgument(nav[1]) ? pathArgs[nav[1][1]] : nav[1]
 
+      if (typeof arg === 'function') {
+        if (parent == null) return [] // Undefined parent shortcut
+
+        if (Array.isArray(parent)) {
+          let hasChanges = false
+
+          const copy2 = parent.map((value, i) => {
+            if (!arg(value, i)) return value
+
+            const newValue = walk(pathRest, pathArgs, value, updater, updaterArgs)
+            hasChanges ||= newValue !== value
+            return newValue
+          })
+
+          if (!hasChanges) return parent
+
+          return copy2
+        }
+      }
+
       const value = parent?.[arg]
 
       const newValue = walk(pathRest, pathArgs, value, updater, updaterArgs)

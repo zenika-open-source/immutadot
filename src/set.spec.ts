@@ -182,6 +182,12 @@ describe('Set', () => {
     ])
   })
 
+  it('should support filter navigator on arrays', () => {
+    const a = recurFreeze([2, 1, 0, 0, 1, 0, 0, 2, 2, 1])
+
+    expect(set`${a}[${(v: any) => v === 1}]`(3)).toEqual([2, 3, 0, 0, 3, 0, 0, 2, 2, 3])
+  })
+
   it('should throw an error for slice on non array', () => {
     expect(() => set`${recurFreeze({})}[:]`('foo')).toThrow(TypeError)
   })
