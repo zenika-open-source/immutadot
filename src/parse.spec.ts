@@ -37,14 +37,6 @@ describe('parse', () => {
     ])
   })
 
-  it('should parse interpolated indexes', () => {
-    expect(parse(['[', ']?.[', ']?.[', ']'])).toEqual([
-      [NavigatorType.PropIndex, [NavigatorVariableType.PathArgument, 0], false],
-      [NavigatorType.PropIndex, [NavigatorVariableType.PathArgument, 1], true],
-      [NavigatorType.PropIndex, [NavigatorVariableType.PathArgument, 2], true],
-    ])
-  })
-
   it('should parse slices', () => {
     expect(parse(['[1:2]?.[3:][:4]?.[:]'])).toEqual([
       [NavigatorType.Slice, 1, 2, false],
@@ -62,6 +54,14 @@ describe('parse', () => {
       [NavigatorType.Slice, undefined, undefined, false],
       [NavigatorType.Slice, 5, -6, false],
       [NavigatorType.Slice, -7, 8, true],
+    ])
+  })
+
+  it('should parse interpolated slices', () => {
+    expect(parse(['?.[', ':', '][', ':]?.[:', ']'])).toEqual([
+      [NavigatorType.Slice, [NavigatorVariableType.PathArgument, 0], [NavigatorVariableType.PathArgument, 1], true],
+      [NavigatorType.Slice, [NavigatorVariableType.PathArgument, 2], undefined, false],
+      [NavigatorType.Slice, undefined, [NavigatorVariableType.PathArgument, 3], true],
     ])
   })
 })
