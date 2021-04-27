@@ -1,7 +1,7 @@
 import { Lexer } from './lex'
 import {
   Navigator,
-  NavigatorArgument,
+  PathArgument,
   NavigatorType,
   NavigatorVariable,
   NavigatorVariableType,
@@ -105,12 +105,12 @@ class Parser implements IterableIterator<Navigator> {
     const index = this.token[1]
     this.readToken()
     this.assertTokenType(TokenType.RCurly)
-    return [NavigatorVariableType.Argument, index]
+    return [NavigatorVariableType.PathArgument, index]
   }
 
-  private readSlice(start: number | NavigatorArgument, optional: boolean): SliceNavigator {
+  private readSlice(start: number | PathArgument, optional: boolean): SliceNavigator {
     if (this.nextToken[0] === TokenType.Colon) this.readToken()
-    let end: number | NavigatorArgument
+    let end: number | PathArgument
     if (this.nextToken?.[0] === TokenType.Integer || this.nextToken?.[0] === TokenType.Minus || this.nextToken?.[0] === TokenType.LCurly) {
       this.readToken()
       end = this.token?.[0] === TokenType.LCurly ? this.readArg() : this.readInteger()

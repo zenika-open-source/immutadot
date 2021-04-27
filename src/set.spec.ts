@@ -185,4 +185,11 @@ describe('Set', () => {
   it('should throw an error for slice on non array', () => {
     expect(() => set`${recurFreeze({})}[:]`('foo')).toThrow(TypeError)
   })
+
+  it('should throw an error for non integers slice bounds', () => {
+    expect(() => set`${recurFreeze([])}[${{}}:]`('foo')).toThrow(TypeError)
+    expect(() => set`${recurFreeze([])}[:${'foo'}]`('foo')).toThrow(TypeError)
+    expect(() => set`${recurFreeze([])}[${0.5}:]`('foo')).toThrow(TypeError)
+    expect(() => set`${recurFreeze([])}[:${'0'}]`('foo')).toThrow(TypeError)
+  })
 })

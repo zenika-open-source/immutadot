@@ -10,14 +10,14 @@ export const enum NavigatorType {
   Slice,
 }
 
-export type NavigatorVariable = NavigatorArgument
+export type NavigatorVariable = PathArgument
 
-export type NavigatorArgument = [NavigatorVariableType.Argument, number]
+export type PathArgument = [NavigatorVariableType.PathArgument, any]
 
 export const enum NavigatorVariableType {
-  Argument,
+  PathArgument,
 }
 
-export function isNavigatorArgument(value: any): value is NavigatorArgument {
-  return value?.[0] === NavigatorVariableType.Argument
+export function isPathArgument(value: any): value is PathArgument {
+  return value?.[0] === NavigatorVariableType.PathArgument
 }
