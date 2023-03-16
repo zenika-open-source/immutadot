@@ -1,9 +1,9 @@
 import { isPathArgument, NavigatorType, Path, PathArgument } from './path'
 
-export type Updater = (value: any, args: any[]) => any
+export type Updater = (value: any, ...args: any[]) => any
 
 export function walk(path: Path, pathArgs: any[], parent: any, updater: Updater, updaterArgs: any[]) {
-  if (path.length === 0) return updater(parent, updaterArgs)
+  if (path.length === 0) return updater(parent, ...updaterArgs)
 
   const [nav, ...pathRest] = path
 

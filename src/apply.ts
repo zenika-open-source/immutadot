@@ -1,17 +1,11 @@
 import { parse } from './parse'
 import { walk } from './walk'
 
-export function apply(updater: (value: any, args: any[]) => any): (tmplChunks: TemplateStringsArray, ...tmplArgs: any[]) => (...args: any[]) => any {
-  return (tmplChunks, ...tmplArgs) => {
-    if (tmplChunks[0] === '') {
-      const [, ...restChunks] = tmplChunks
-      const path = parse(restChunks)
-      const [firstArg, ...restArgs] = tmplArgs
-      return (...args: any[]) => walk(path, restArgs, firstArg, updater, args)
-    }
-
-    const path = parse(tmplChunks)
-
-    return (...args: any[]) => (root: any) => walk(path, tmplArgs, root, updater, args)
+export function apply<Args extends any[]>(
+  updater: (value: any, ...args: Args) => any,
+): <T>(tmplChunks: TemplateStringsArray, root: T, ...tmplArgs: any[]) => (...args: Args) => T {
+  return (tmplChunks, root, ...tmplArgs) => {
+    const path = parse(tmplChunks.slice(1))
+    return (...args: any[]) => walk(path, tmplArgs, root, updater, args)
   }
 }

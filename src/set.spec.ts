@@ -78,22 +78,6 @@ describe('Set', () => {
     expect(set`${o}.nested?.[:].property`('aze')).toBe(o)
   })
 
-  it('should support path w/o root object', () => {
-    const o = recurFreeze({
-      nested: {
-        property: 'foo',
-        otherProperty: 'baz',
-      },
-    })
-
-    expect(set`.nested.property`('bar')(o)).toEqual({
-      nested: {
-        property: 'bar',
-        otherProperty: 'baz',
-      },
-    })
-  })
-
   it('should support Symbol properties', () => {
     const nested = Symbol('nested')
     const property = Symbol('property')

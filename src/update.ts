@@ -1,3 +1,3 @@
 import { apply } from './apply'
 
-export const update = apply((value: any, [updater, ...argsRest]: any[]) => updater(value, ...argsRest))
+export const update = apply<[updater:(value: any, ...args: any[]) => any, ...args: any[]]>((value, updater, ...argsRest) => updater(value, ...argsRest))

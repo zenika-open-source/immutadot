@@ -1,3 +1,3 @@
 import { apply } from './apply'
 
-export const set = apply((_: any, [value]: any[]) => value)
+export const set = apply<[value: any]>((_, value) => value)
