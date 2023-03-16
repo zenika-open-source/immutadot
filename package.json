@@ -12,7 +12,6 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "tsc",
-    "prebuild": "yarn clean",
     "lint": "eslint src",
     "test": "node --use_strict node_modules/.bin/jest"
   },
@@ -32,5 +31,6 @@
     "dist",
     "src",
     "LICENSE"
-  ]
+  ],
+  "packageManager": "yarn@3.4.1"
 }
