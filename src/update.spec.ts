@@ -1,3 +1,5 @@
+import { expect, describe, it } from 'vitest'
+
 import { recurFreeze } from '../recurFreeze'
 import { update } from './update'
 

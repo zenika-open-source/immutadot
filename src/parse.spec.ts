@@ -1,3 +1,5 @@
+import { expect, describe, it } from 'vitest'
+
 import { parse } from './parse'
 import { NavigatorType, NavigatorVariableType } from './path'
 

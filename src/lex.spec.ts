@@ -1,3 +1,5 @@
+import { expect, describe, it } from 'vitest'
+
 import { lex } from './lex'
 import { TokenType } from './token'
 
