@@ -2,7 +2,10 @@
   "name": "immutadot",
   "version": "3.0.0-alpha.2",
   "description": "immutadot is an immutable data structure manipulation tool using dot notation",
-  "main": "dist/index.js",
+  "type": "module",
+  "module": "./dist/immutadot.js",
+  "main": "./dist/immutadot.umd.cjs",
+  "types": "./dist/index.d.ts",
   "repository": "https://github.com/zenika-open-source/immutadot",
   "author": {
     "name": "Nicolas Lepage",
@@ -11,7 +14,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "tsc",
+    "build": "vite build",
     "lint": "eslint src",
     "test": "node --use_strict node_modules/.bin/jest"
   },
@@ -25,12 +28,12 @@
     "eslint-plugin-jest": "^24.3.2",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.4",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "vite": "^4.2.0",
+    "vite-plugin-dts": "^2.1.0"
   },
   "files": [
-    "dist",
-    "src",
-    "LICENSE"
+    "dist"
   ],
   "packageManager": "yarn@3.4.1"
 }
