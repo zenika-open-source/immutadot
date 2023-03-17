@@ -1,14 +1,5 @@
 import { Lexer } from './lex'
-import {
-  Navigator,
-  PathArgument,
-  NavigatorType,
-  NavigatorVariable,
-  NavigatorVariableType,
-  Path,
-  PropIndexNavigator,
-  SliceNavigator,
-} from './path'
+import { Navigator, PathArgument, NavigatorType, NavigatorVariable, NavigatorVariableType, Path, PropIndexNavigator, SliceNavigator } from './path'
 import { Token, TokenType } from './token'
 
 const cache = new Map<string, Path>()
@@ -49,7 +40,8 @@ class Parser implements IterableIterator<Navigator> {
       case TokenType.OptDot:
         navigator = this.nextToken[0] === TokenType.LBracket ? this.readBracket() : this.readProp()
         break
-      default: throw SyntaxError(`unexpected ${this.token[0]}`)
+      default:
+        throw SyntaxError(`unexpected ${this.token[0]}`)
     }
 
     this.readToken()
@@ -83,9 +75,10 @@ class Parser implements IterableIterator<Navigator> {
       case TokenType.Colon:
         navigator = this.readSlice(undefined, optional)
         break
-      default: throw new SyntaxError(this.unexpectedTokenMessage([
-        TokenType.LCurly, TokenType.Minus, TokenType.Integer, TokenType.String, TokenType.Symbol, TokenType.Colon,
-      ]))
+      default:
+        throw new SyntaxError(
+          this.unexpectedTokenMessage([TokenType.LCurly, TokenType.Minus, TokenType.Integer, TokenType.String, TokenType.Symbol, TokenType.Colon]),
+        )
     }
 
     this.readToken()

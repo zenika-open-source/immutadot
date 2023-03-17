@@ -21,17 +21,9 @@ describe('Set', () => {
   })
 
   it('should set a nested array index (index navigators only)', () => {
-    const a = recurFreeze([
-      'foo',
-      ['bar', 'baz', 'qwe'],
-      'plop',
-    ])
+    const a = recurFreeze(['foo', ['bar', 'baz', 'qwe'], 'plop'])
 
-    expect(set`${a}[1][${2}]`('aze')).toEqual([
-      'foo',
-      ['bar', 'baz', 'aze'],
-      'plop',
-    ])
+    expect(set`${a}[1][${2}]`('aze')).toEqual(['foo', ['bar', 'baz', 'aze'], 'plop'])
   })
 
   it('should create missing objects for prop navigators', () => {
@@ -52,10 +44,7 @@ describe('Set', () => {
   })
 
   it('should create missing arrays for index navigators', () => {
-    expect(set`${undefined}[1][2]`('aze')).toEqual([
-      undefined,
-      [undefined, undefined, 'aze'],
-    ])
+    expect(set`${undefined}[1][2]`('aze')).toEqual([undefined, [undefined, undefined, 'aze']])
   })
 
   it('should not create missing arrays for optional index navigators', () => {
@@ -99,73 +88,29 @@ describe('Set', () => {
   })
 
   it('should support array slices', () => {
-    const a = recurFreeze([
-      'foo',
-      ['bar', 'baz', 'qwe'],
-      'plop',
-    ])
+    const a = recurFreeze(['foo', ['bar', 'baz', 'qwe'], 'plop'])
 
-    expect(set`${a}[1][1:3]`('aze')).toEqual([
-      'foo',
-      ['bar', 'aze', 'aze'],
-      'plop',
-    ])
+    expect(set`${a}[1][1:3]`('aze')).toEqual(['foo', ['bar', 'aze', 'aze'], 'plop'])
 
-    expect(set`${a}[1][:2]`('aze')).toEqual([
-      'foo',
-      ['aze', 'aze', 'qwe'],
-      'plop',
-    ])
+    expect(set`${a}[1][:2]`('aze')).toEqual(['foo', ['aze', 'aze', 'qwe'], 'plop'])
 
-    expect(set`${a}[1][2:]`('aze')).toEqual([
-      'foo',
-      ['bar', 'baz', 'aze'],
-      'plop',
-    ])
+    expect(set`${a}[1][2:]`('aze')).toEqual(['foo', ['bar', 'baz', 'aze'], 'plop'])
 
-    expect(set`${a}[1][:]`('aze')).toEqual([
-      'foo',
-      ['aze', 'aze', 'aze'],
-      'plop',
-    ])
+    expect(set`${a}[1][:]`('aze')).toEqual(['foo', ['aze', 'aze', 'aze'], 'plop'])
 
-    expect(set`${a}[1][${1}:${3}]`('aze')).toEqual([
-      'foo',
-      ['bar', 'aze', 'aze'],
-      'plop',
-    ])
+    expect(set`${a}[1][${1}:${3}]`('aze')).toEqual(['foo', ['bar', 'aze', 'aze'], 'plop'])
   })
 
   it('should support negative array slices', () => {
-    const a = recurFreeze([
-      'foo',
-      ['bar', 'baz', 'qwe'],
-      'plop',
-    ])
+    const a = recurFreeze(['foo', ['bar', 'baz', 'qwe'], 'plop'])
 
-    expect(set`${a}[1][-3:-1]`('aze')).toEqual([
-      'foo',
-      ['aze', 'aze', 'qwe'],
-      'plop',
-    ])
+    expect(set`${a}[1][-3:-1]`('aze')).toEqual(['foo', ['aze', 'aze', 'qwe'], 'plop'])
 
-    expect(set`${a}[1][:-2]`('aze')).toEqual([
-      'foo',
-      ['aze', 'baz', 'qwe'],
-      'plop',
-    ])
+    expect(set`${a}[1][:-2]`('aze')).toEqual(['foo', ['aze', 'baz', 'qwe'], 'plop'])
 
-    expect(set`${a}[1][-2:]`('aze')).toEqual([
-      'foo',
-      ['bar', 'aze', 'aze'],
-      'plop',
-    ])
+    expect(set`${a}[1][-2:]`('aze')).toEqual(['foo', ['bar', 'aze', 'aze'], 'plop'])
 
-    expect(set`${a}[1][-4:-1]`('aze')).toEqual([
-      'foo',
-      ['aze', 'aze', 'qwe'],
-      'plop',
-    ])
+    expect(set`${a}[1][-4:-1]`('aze')).toEqual(['foo', ['aze', 'aze', 'qwe'], 'plop'])
   })
 
   it('should support filter navigator on arrays', () => {

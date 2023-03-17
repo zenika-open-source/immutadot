@@ -35,20 +35,20 @@ describe('lex', () => {
 
     expect(lex('0b0 0B101110 0b00000010')).toEqual([
       [TokenType.Integer, 0b0, 0],
-      [TokenType.Integer, 0B101110, 4],
+      [TokenType.Integer, 0b101110, 4],
       [TokenType.Integer, 0b00000010, 13],
     ])
 
     expect(lex('0o0 0O12345670 0o007')).toEqual([
       [TokenType.Integer, 0o0, 0],
-      [TokenType.Integer, 0O12345670, 4],
+      [TokenType.Integer, 0o12345670, 4],
       [TokenType.Integer, 0o007, 15],
     ])
 
     expect(lex('0x0 0Xdada 0x0123ABCDEF')).toEqual([
       [TokenType.Integer, 0x0, 0],
-      [TokenType.Integer, 0Xdada, 4],
-      [TokenType.Integer, 0x0123ABCDEF, 11],
+      [TokenType.Integer, 0xdada, 4],
+      [TokenType.Integer, 0x0123abcdef, 11],
     ])
   })
 
@@ -132,8 +132,6 @@ describe('lex', () => {
   })
 
   it('should return illegal for unterminated string literal', () => {
-    expect(lex('"foo')).toEqual([
-      [TokenType.Illegal, '"foo', 0, 'unterminated string literal'],
-    ])
+    expect(lex('"foo')).toEqual([[TokenType.Illegal, '"foo', 0, 'unterminated string literal']])
   })
 })

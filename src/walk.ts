@@ -64,7 +64,8 @@ export function walk(path: Path, pathArgs: any[], parent: any, updater: Updater,
       parentCopy.splice(start, end - start, ...newValues)
       return parentCopy
     }
-    default: throw TypeError('not implemented')
+    default:
+      throw TypeError('not implemented')
   }
 }
 
