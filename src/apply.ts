@@ -1,11 +1,11 @@
-import { parse } from './parse'
-import { walk } from './walk'
+import { compile } from './compile'
+import { Updater } from './updater'
 
 export function apply<Args extends any[]>(
-  updater: (value: any, ...args: Args) => any,
-): <T>(tmplChunks: TemplateStringsArray, root: T, ...tmplArgs: any[]) => (...args: Args) => T {
-  return (tmplChunks, root, ...tmplArgs) => {
-    const path = parse(tmplChunks.slice(1))
-    return (...args: any[]) => walk(path, tmplArgs, root, updater, args)
+  updater: Updater<Args>,
+): <T>(tmplChunks: TemplateStringsArray, root: T, ...pathArgs: any[]) => (...updaterArgs: Args) => T {
+  return (tmplChunks, root, ...pathArgs) => {
+    const link = compile(tmplChunks.slice(1), pathArgs, updater)
+    return (...updaterArgs: Args) => link(root, pathArgs, updaterArgs)
   }
 }
