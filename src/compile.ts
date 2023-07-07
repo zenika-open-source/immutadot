@@ -35,26 +35,6 @@ function propIndexLink<Args extends any[]>([, key, optional]: PropIndexNavigator
 
     const arg = isPathArgument(key) ? pathArgs[key[1]] : key
 
-    if (typeof arg === 'function') {
-      if (parent == null) return [] // Undefined parent shortcut
-
-      if (Array.isArray(parent)) {
-        let hasChanges = false
-
-        const copy2 = parent.map((value, i) => {
-          if (!arg(value, i)) return value
-
-          const newValue = next(value, pathArgs, updaterArgs)
-          hasChanges ||= newValue !== value
-          return newValue
-        })
-
-        if (!hasChanges) return parent
-
-        return copy2
-      }
-    }
-
     const value = parent?.[arg]
 
     const newValue = next(value, pathArgs, updaterArgs)
