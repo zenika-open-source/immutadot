@@ -1,6 +1,6 @@
 {
   "name": "immutadot",
-  "version": "3.0.0-alpha.2",
+  "version": "3.0.0-alpha.3",
   "description": "immutadot is an immutable data structure manipulation tool using dot notation",
   "type": "module",
   "module": "./dist/immutadot.js",
