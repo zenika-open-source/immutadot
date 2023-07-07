@@ -9,5 +9,9 @@ export default defineConfig({
       name: 'immutadot',
     },
   },
-  plugins: [dts()],
+  plugins: [
+    dts({
+      entryRoot: resolve(__dirname, 'src'),
+    }),
+  ],
 })

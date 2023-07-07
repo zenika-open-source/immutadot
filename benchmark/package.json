@@ -1,0 +1,14 @@
+{
+  "name": "immutadot-benchmark",
+  "version": "0.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "dependencies": {
+    "benchmark-node": "^0.7.3",
+    "immer": "^10.0.2",
+    "immutadot2": "npm:immutadot@^2.0.0-alpha.2",
+    "immutadot3": "npm:immutadot@^3.0.0-alpha.3",
+    "qim": "^0.0.52"
+  },
+  "type": "module"
+}
